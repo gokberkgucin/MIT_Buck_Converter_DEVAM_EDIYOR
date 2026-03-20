@@ -221,117 +221,112 @@ Su an icin cekirdek adaylar:
 #### 5.1.1 LM5146-Q1 dahili LDO siniri
 
 
-ODT'den aktarilan metin (`2.1. Giriş Gerilimi Vin`):
+ODT'den aktarilan metin (`4.2. Giriş Gerilimi Vin`):
 
 > Lm’nin içinde bir LDO (Low Dropout Regulator) barındırır. Bu LDO, 7.5V Vcc beslemesi sağlar, Mosfet kapı sürücülerini ve kontrol devrelerini besler.
+
+![Giris gerilimi / dahili LDO civari](images/odt_embedded/fig_02_vin_ldo_vcc.png)
+
+> VVCC-LDO VIN to VCC dropout voltage = 0.25V(typ) - 0.72V(max)
+>
+> Harici Vcc kullanılmayacaksa, LDO’nun düzgün çalışabilmesi için Giriş gerilimi Vin’in en az 7.5 V + 0.72V(max) = 8.22V olmalıdır.
+>
+> Yani Vin > 7.5V + dropout voltage olursa, Vcc gerilimi 7.5V sabitlenir. Vin = 9V iken de Vin = 50 V iken de Vcc = 7.5V olur. :*
+>
+> Eğer Vin < 7.5V + dropout voltage olursa
+> LDO regulatorü, 7.5V’u çıkaramaz. Denklem geçerlidir.
+> Örneğin giriş gerilimi Vin = 6V olsun.
+> Vcc gerilimi en iyi ihtimalle 6V-0.25V= 5.75 V olur.
+> Vcc gerilimi, Vin’i takip eder.
+> Bu düşük Vcc gerilimi gate sürücüleri için yeterli olmayabilir, mosfetler tam açılmaz, Rdson artar (İleride göreceğiz), verim düşer.
+>
+> Özetle, Vin < 7,5 V çalıştığınızda:
+>
+> Regülatör Dropout’u
+>
+> LDO’nun giriş–çıkış arasındaki “dropout” gerilimi devreye girer. Örneğin, Vin = 6 V iken LDO çıkışı 5,8 V’a düşer.
+>
+> Artan İletim Kayıpları
+>
+> Düşük VGS → MOSFET kanalı tam açılmaz → RDS(on) ↑ → iletim kayıpları (I²·R) artar.
+>
+> Aynı zamanda aşırı akım koruması (OCP) voltaj ölçümü yanıltabilir.
+>
+> Artan Anahtarlama Kayıpları
+>
+> Düşük gate gerilimi → gate şarj/deşarjı yavaşlar → geçiş süreleri uzar → switching kayıpları ↑.
+>
+> MOSFET Seçim Kısıtı
+>
+> Standart tipler yerine “logic-level” (RDS(on) @ VGS = 4,5 V garantili) MOSFET kullanmak gerekir.
+>
+> Çözüm Önerisi
+>
+> Vin ≥ 7,5 V sağlamak veya 8 – 13 V’luk harici VCC rail’ı Şekil 8-2’deki gibi DVCC ile bağlayarak LDO’yu bay-pas etmek, hem verimi hem termal performansı iyileştirir.
+
+
+
+
+
+#### 5.1.2 Ek notlar: dusuk `Vin` bolgesinin etkisi
+
+
+
+Bu ODT parcasi, dahili LDO'nun tam regulasyon ve dropout bolgeleri arasindaki tasarim farkini netlestiriyor. GitHub uyumlu matematik bicimiyle bu sinirlar su sekilde yazilabilir:
+
+$$
+V_{in,\min} = 7.5\,\text{V} + 0.72\,\text{V} = 8.22\,\text{V}
+$$
+
+$$
+V_{CC} \approx V_{in} - V_{dropout}
+$$
+
+Ornegin tipik dropout ile `V_{in} = 6\,\text{V}` icin:
+
+$$
+V_{CC} \approx 6.00\,\text{V} - 0.25\,\text{V} = 5.75\,\text{V}
+$$
+
+Bu bolgede teknik olarak su riskler one cikar:
+
+- dusuk `VGS` nedeniyle `R_{DS(on)}` artisi ve iletim kayiplari
+- gate sarj / desarj surelerinin uzamasi nedeniyle switching kayiplari
+- koruma ve akim algilama marjlarinin degismesi
+- gerekirse logic-level MOSFET veya harici `VCC` kullanim ihtiyaci
+
+Bu nedenle tasarimda iki yol acik tutulmalidir:
+
+- sistemi yalnizca `V_{in} \ge 8.22\,\text{V}` bolgesinde optimize etmek
+- veya `DVCC` uzerinden harici `8\,\text{V} - 13\,\text{V}` `VCC` rayi ile LDO'yu baypas etmek
+
+
+
+#### 5.1.3 Cikis gerilimi setpoint direncleri FB
+
+
+
+ODT'den aktarilan metin (`4.1. Çıkış gerilimi setpoint dirençleri FB`):
+
+> = 14V yapmak istiyoruz.  
+> 0402 boyutlarında.  
+> R14 Ohm R14 = 16.5 kΩ (RFB1)  
+> R10 = 1.00 kΩ (RFB2)  
+> Dirençleri % 0.1 tolerance’lı seçmek….
 
 
 
 Ek not:
 
-Bu paragraf, `Vin` tarafinin yalnizca giris araligi olarak degil, ayni zamanda kontrolcunun yerel beslemesini belirleyen bir sinir olarak da dusunulmesi gerektigini gosterir. Harici `VCC` kullanilmayacaksa, dahili LDO'nun tam regülasyonda kalabildigi bolge ayrica kontrol edilmelidir. Bu baglamda onceki hesap notu GitHub uyumlu matematik bicimiyle su sekilde korunabilir:
+Bu parca, geri besleme bolucusunun `14 V` cikis hedefi icin secildigini ve fiziksel paket hedefinin `0402` oldugunu kaydediyor. GitHub uyumlu matematik bicimiyle temel setpoint iliskisi su sekilde yazilabilir:
 
-$V_{in,\min} = 7.5\,\text{V} + 0.72\,\text{V} = 8.22\,\text{V}$
+$V_{out} = V_{FB}\left(1 + \frac{R_{FB1}}{R_{FB2}}\right)$
 
+Burada $V_{FB} = 0.8\,\text{V}$, $R_{FB1} = 16.5\,\text{k}\Omega$ ve $R_{FB2} = 1.00\,\text{k}\Omega$ alinirse:
 
+$V_{out} = 0.8\left(1 + \frac{16.5}{1.0}\right) = 14.0\,\text{V}$
 
-ODT gorseli:
-
-
-
-![Giris gerilimi / dahili LDO civari](images/odt_embedded/fig_02_vin_ldo_vcc.png)
-
-
-
-
-
-#### 5.1.2 Dusuk `Vin` bolgesinin etkisi
-
-
-
-Taslakta `Vin = 6 V` icin yaklasik `VCC ~= 5.75 V` ornegi verilmistir. Bu bolge, tasarim acisindan su riskleri getirir:
-
-- gate surucu gerilimi azalir
-
-- MOSFET tam iletime giremeyebilir ve `RDS(on)` artabilir
-
-- iletim kayiplari artabilir
-
-- gate sarj/desarj sureleri uzayarak switching kayiplari buyuyebilir
-
-- koruma ve akim algilama marjlari etkilenebilir
-
-
-
-Bu nedenle su karar daha sonra netlestirilmelidir:
-
-- sistem yalnizca `Vin >= 8.22 V` araliginda mi optimize edilecek?
-
-- yoksa harici `VCC` rayi kullanilarak daha dusuk `Vin` bolgesi de etkin calisma alani icine mi alinacak?
-
-
-
-#### 5.1.3 Cikis gerilimi setpoint direncleri
-
-
-
-Aktarim durumu:
-
-- Degerler `yeni.odt` taslagindan alinmistir.
-
-- Kullanilan divider iliskisi standart `FB` setpoint yaklasimina gore yazilmistir.
-
-- Son turda `G32_lm5146-q1.pdf` ile tekrar kontrol edilecektir.
-
-
-
-Taslak notlarda cikis gerilimi hedefi `14 V` olarak secilmistir. Buna karsilik geri besleme bolucu icin su degerler yazilmistir:
-
-- `RFB1 = 16.5 kOhm`
-
-- `RFB2 = 1.00 kOhm`
-
-- package hedefi: `0402`
-
-- tolerans hedefi: `%0.1`
-
-
-
-Taslakta kullanilan iliski su sekildedir:
-
-
-
-`Vout = VFB x (1 + RFB1 / RFB2)`
-
-
-
-Burada `VFB = 0.8 V` alininca:
-
-
-
-`Vout = 0.8 x (1 + 16.5 / 1.0) = 0.8 x 17.5 = 14.0 V`
-
-
-
-Bu nedenle mevcut direnç secimi, hedeflenen `14 V` cikis gerilimi ile tutarlidir.
-
-
-
-Bu bolumde iki tasarim niyeti goruluyor:
-
-- alt direnç `1 kOhm` secilerek bolucu akimi gereksiz yere cok dusurulmemis
-
-- `%0.1` toleransli direncler secilerek cikis gerilimi dogrulugu korunmak istenmis
-
-
-
-Sonraki revizyonda su maddeler eklenecek:
-
-- datasheet'teki tam setpoint denklemi
-
-- `VFB` toleransi ve toplam cikis dogruluguna etkisi
-
-- direnç toleransi ve sicaklik katsayisinin hata butcesine katkisi
+Bu secim, hedef cikis gerilimi ile uyumludur. Ayrica `%0.1` toleransli direnç secimi, setpoint hatasini dusuk tutmak icin mantikli bir tercihtir.
 
 
 
