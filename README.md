@@ -21,6 +21,11 @@ Bu belge icin kabul edilen ana sira soyledir:
 
 Ayrintili surum: `tracking/master_plan.md`
 
+Durum:
+- `yeni.odt -> yeni.md` aktarimi tamamlandi.
+- Siradaki aktif faz: defter notlarinin `foto/defter_raw/` uzerinden batch batch dijitale alinmasi.
+- Takip dosyalari: `tracking/notebook_ingestion.md`, `tracking/notebook_batches.md`
+
 ## 1. Arka Plan
 
 Ilk donemdeki tasarim, onceki tez calismasinda tamamlanan ve simulasyonla hedef spesifikasyonlari sagladigi gosterilen buck converter tasarimidir. Yeni calisma ise bu ilk tasarimin uzerine kurulan, daha ayrintili hesaplar, ek teknik gereksinimler ve daha bilincli komponent secimleri iceren ikinci tasarim iterasyonudur.
@@ -92,6 +97,9 @@ Su an icin cekirdek adaylar:
 - `G35_Basic Calculation of a Buck Converter's Power Stage (Rev. B).pdf`
 - `G46_LM5146-Q1EVM User's Guide.pdf`
 - `G101_The K Factor.pdf`
+- `G103_comp.txt`
+- `G95_04_K_FACTOR_CAN_HOCA.txt`
+- `G114_Simple Solution for Input Filter Stability Issue in DC_DC_slua929a.pdf`
 - `G112_Simple Success with Conducted EMI and Radiated EMI_snva755.pdf`
 - `G113_An Engineer's Guide to Low EMI in DC_DC Regulators_slyy208.pdf`
 
@@ -112,6 +120,11 @@ Taslak notlarda `VCC-LDO VIN to VCC dropout voltage` icin `0.25 V typ` ve `0.72 
 `Vin_min_for_full_VCC = 7.5 V + 0.72 V = 8.22 V`
 
 Bu sinirin uzerinde `VCC` dugumunun yaklasik `7.5 V` civarinda regule kaldigi kabul edilir. Bu sinirin altinda ise kontrolcu artk tam `7.5 V` uretemez ve `VCC`, `Vin` gerilimini dropout kadar geriden takip etmeye baslar.
+
+ODT gorseli:
+
+![Giris gerilimi / dahili LDO civari](images/odt_embedded/fig_02_vin_ldo_vcc.png)
+
 
 #### 5.1.2 Dusuk `Vin` bolgesinin etkisi
 
@@ -283,26 +296,72 @@ Bu karar, `bulk kesinlikle kullanilmaz` anlamina gelmiyor. Su anki anlami daha d
 - eger MLCC tabanli cikis agi ripple ve transient kriterlerini sagliyorsa, cikisa ek bulk koymayip kontrol tasarimini daha sade tutmak tercih edilir
 - eger daha sonra transient hedefleri sikilasirsa, cikis bulk kapasitörü yeniden degerlendirilir
 
-#### 5.4.3 Ripple ve transient acisindan dusunce yapisi
+#### 5.4.3 Overshoot / undershoot ve cikis empedansi dusuncesi
 
-Taslak notlardan cikan ana mantik su sekilde toparlanabilir:
-- `Vout` ripple'ini azaltmak icin bobin akimi dalgalanmasi azaltilabilir
-- bunun bir yolu bobin enduktansini artirmaktir, ancak bu boyut, maliyet ve transient cevabi acisindan bedelsiz degildir
-- daha etkili ikinci yol, anahtarlama frekansi civarinda cikis empedansini dusurmektir
-- bunun icin daha yuksek etkin kapasitans ve daha dusuk ESR avantaj saglar
+ODT taslaginda load transient sirasindaki `Overshoot/Undershoot` konusu, cikis empedansi uzerinden dusunuluyor. Buradaki temel muhendislik sezgisi degerlidir:
+- yuk aniden degistiginde yukun gordugu etkin cikis empedansi ne kadar dusukse gerilim sapmasi o kadar sinirli olur
+- bu nedenle transient performansi yalnizca kapasitans buyutme problemi degil, ayni zamanda empedans sekillendirme problemidir
 
-Load transient tarafinda ise taslak su fikri izliyor:
-- bobin akimi ani olarak degisemez
-- ilk anda gereken fazla akimi cikis kapasiteleri saglar
-- bu nedenle cikis kapasiteleri yalnizca ripple elemani degil, ayni zamanda enerji tamponudur
+Taslak notlarda "crossover frekansindaki acik-cevrim cikis impedance'i" ifadesi geciyor. Bu fikir dogrudan final denklem gibi yazilmamalidir. Nihai metinde bunun daha dikkatli bicimde, tercihen `kapali-cevrim cikis empedansi` ve gercek loop davranisi uzerinden yeniden ifade edilmesi daha dogru olacaktir.
 
-#### 5.4.4 Acik teknik dogrulamalar
+ODT gorseli:
+
+![Acik-cevrim cikis impedance civari](images/odt_embedded/fig_01_acik_cevrim_cikis_impedance.jpg)
+
+
+#### 5.4.4 Vripple ve `fsw` civarindaki `Zout`
+
+Taslakta ripple dusuncesi iki kola ayriliyor:
+- bobin akimi tepeden tepeye dalgalanmasini azaltmak
+- anahtarlama frekansi civarinda cikis empedansini dusurmek
+
+Birinci yol icin bobin enduktansini artirmak mumkundur; ancak bunun maliyet, hacim ve transient cevabi uzerinde bedeli vardir. Ikinci yol ise cikis aginin `fsw` civarindaki empedansini dusurmekten gecer. Bu da pratikte:
+- daha yuksek etkin kapasitans
+- daha dusuk ESR
+- uygun yerlesim ve dusuk parasitikler
+ile ilgilidir.
+
+ODT'deki bu sezgi korunmalidir: kapasitör secimi yalnizca toplam `uF` toplama isi degil, frekansa bagli `Zout` sekillendirme isidir.
+
+#### 5.4.5 Bulk kapasitör eklemenin getirdigi sifirlar
+
+Taslakta ozellikle su nokta fark edilmis: MLCC'lere ek olarak bulk kapasitör eklendiginde cikis agi yeni kutup / sifir davranislari getirir ve bu durum kompanzator tasarimini etkileyebilir.
+
+Bu gozlem onemlidir cunku:
+- farkli kapasitör teknolojileri farkli ESR / ESL getirir
+- bu da cikis empedansi egirisini ve plant'in sekilini degistirir
+- dolayisiyla bulk ekleme karari yalnizca enerji depolama karari degil, ayni zamanda kontrol tasarimi kararidir
+
+Bu nedenle mevcut iterasyonda "simdilik cikis bulk kapasitör kullanmayalim" karari teknik olarak tutarlidir. Ancak bu karar final degil; load transient ve simülasyon sonuclarina gore tekrar acilabilir.
+
+#### 5.4.6 Slew-rate ve cikis kapasitörlerinin enerji tamponu rolu
+
+Taslakta `Slew Rate Hesabi` altindaki ana mantik burada da korunmalidir:
+- regulator yuk aniden arttiginda bobin akimini anlik olarak yeterli seviyeye getiremez
+- ilk anda gereken ekstra akim cikis kapasitörlerinden gelir
+- bobin akiminin gercek yukselme hizi ideal denkleme ek olarak `RDS(on)`, `DCR` ve yerlesim kayiplari nedeniyle daha da sinirlanir
+
+ODT'de `t1` benzeri bir an ile gerilim dususunun durdugu nokta ve `dVout/dt ~= 0` sezgisi not edilmis. Bu not tam matematiksel final ifade olarak degil, ama faydali fiziksel sezgi olarak korunabilir: bobin akimi yuk gereksinimine yetismeye basladiginda kapasitörlerin tek basina akim verme yuku azalmaya baslar.
+
+Bu yorum, EVM'de yalnizca MLCC kullanilmasinin neden belirli kosullarda yeterli olabildigini anlamak icin de iyi bir ara basamaktir.
+
+ODT gorselleri:
+
+![G71 cikis transient yontemi civari](images/odt_embedded/fig_03_g71_transient_yontemi.png)
+
+![Slew-rate hesabi civari - 1](images/odt_embedded/fig_04_slew_rate_gecici_davranis.png)
+
+![Slew-rate hesabi civari - 2](images/odt_embedded/fig_05_slew_rate_notu.jpg)
+
+
+#### 5.4.7 Acik teknik dogrulamalar
 
 Bu bolumde daha sonra eklenecekler:
 - cikis kapasitörleri icin etkin kapasitans hesabi
 - ESR ve ESL etkisi
-- acik-cevrim cikis empedansi ile transient siniri arasindaki bag
+- cikis sapmasi ile kapali-cevrim cikis empedansi arasindaki bag
 - MLCC sayisi ve de-rating hesabi
+- G71 benzeri hizli-yuk yaklasimlarinin bu tasarima ne kadar gerekli oldugu
 - cikista bulk kapasitör gerekip gerekmedigine dair nihai karar
 
 ### 5.5 Giris kapasiteleri
@@ -332,22 +391,93 @@ Taslak notlarin ozeti su stratejiye isaret ediyor:
 - enerji depolama ve transient dayanimi icin bulk elektrolitik / polimer kapasitörleri degerlendir
 - EMI ve yerlesim acisindan giris kapasitörlerini high-side drain ile low-side source arasindaki sicak donguye cok yakin yerlestir
 
-#### 5.5.4 Ilk sayisal notlar
+#### 5.5.4 Minimum etkin `Cin` dusuncesi
 
-Taslakta su ilk notlar bulunuyor:
-- full-load durumda cikis akimi yaklasik `9 A`
-- kaba yaklasimla `Iin_rms ~= 0.5 x Iload` varsayimi kullanilmis
-- buna gore ilk tahmin `Iin_rms ~= 4.5 Arms`
+ODT taslaginda `MLCC Cin Hesabi` altinda hedef, `DeltaVIN_PP <= 0.24 V` sinirini saglayacak minimum etkin kapasitansi bulmaktir. Burada dikkat edilmesi gereken mantik dogru sekilde not edilmis:
+- once gerekli olan etkin `Cin` bulunur
+- sonra bu deger dc-bias, tolerans ve gerilim sinifi altinda gercek component degerine cevrilir
+- yani katalog `uF` degeri dogrudan kullanilmaz
 
-Bu deger simdilik taslak RMS boyutlandirma notu olarak tutuluyor. Sonraki turda tam duty oranina bagli RMS denkleminden yeniden hesaplanacak.
+Taslakta bir ara yaklasim olarak en kotu durumun `D ~= 0.5` civarinda alinmasi fikri geciyor. Bu kullanisli bir ilk muhendislik yaklasimi olabilir; ancak nihai yazimda bunun gercek `Vin/Vout` araligi icin tekrar kontrol edilmesi gerekir.
 
-#### 5.5.5 Acik teknik dogrulamalar
+#### 5.5.5 RMS akimi ve termal bakis
+
+ODT tarafinda dogru olarak vurgulanan ikinci konu, MLCC'lerin yalnizca kapasitans acisindan degil, RMS akim ve sicaklik artisi acisindan da boyutlandirilmasidir.
+
+Taslakta bulunan ilk kaba notlar:
+- full-load durumda `Iload ~= 9 A`
+- ilk yaklasim olarak `Iin_rms ~= 0.5 x Iload`
+- buna gore `Iin_rms ~= 4.5 Arms`
+
+Bu sonuc simdilik kaba boyutlandirma notu olarak tutulabilir. ODT'de ayrica EVM uzerindeki sicaklik gozlemlerinden yararlanarak kart sicakligi ve komponent termal yukleri hakkinda ilk cikarimlar yapildigi goruluyor. Bu cikarimlar yararli olabilir; fakat final secim sadece EVM benzetimine degil, secilen komponent datasheet'lerine ve gercek RMS dagilimina dayanmalidir.
+
+ODT gorselleri:
+
+![MLCC RMS akimi kaba hesap](images/odt_embedded/fig_06_input_mlcc_rms_kaba_hesap.jpg)
+
+![MLCC sicaklik / X7R-X5R civari](images/odt_embedded/fig_07_input_mlcc_temp_x7r_x5r.png)
+
+![MLCC sicaklik civari - 1](images/odt_embedded/fig_08_input_mlcc_temp_grafik_01.png)
+
+![MLCC sicaklik civari - 2](images/odt_embedded/fig_09_input_mlcc_temp_grafik_02.png)
+
+![MLCC sicaklik civari - 3](images/odt_embedded/fig_10_input_mlcc_temp_grafik_03.png)
+
+
+#### 5.5.6 ESL ve kucuk degerli yardimci MLCC'ler
+
+ODT'de iki ek fikir daha var ve ikisi de degerli:
+- MLCC'leri paralellemek etkin ESL'yi dusurmeye yardim eder
+- `1 uF`, `0.1 uF` gibi daha kucuk ve fiziksel olarak daha kucuk paketli seramikler, yuksek frekansli spike ve ringing bastirma isinde yararli olabilir
+
+Bu nedenle giris kapasitör agi tek tip ve tek degerli dusunulmemelidir. Buyuk degerli ana MLCC'lere ek olarak, kucuk degerli dusuk-ESL yardimci kapasitörler de anahtarlama kenarlarindaki cok yuksek frekansli akis icin faydali olabilir.
+
+Ancak bu kisim tamamen yerlesime bagimlidir; dolayisiyla final karar PCB veya LTspice parasitik modeli ile birlikte verilmelidir.
+
+ODT gorselleri:
+
+![MLCC ESL ve paralelleme civari - 1](images/odt_embedded/fig_11_input_esl_parallel_mlcc.png)
+
+![MLCC ESL ve paralelleme civari - 2](images/odt_embedded/fig_12_input_esl_not_01.png)
+
+![MLCC ESL ve paralelleme civari - 3](images/odt_embedded/fig_13_input_esl_not_02.png)
+
+![MLCC ESL ve paralelleme civari - 4](images/odt_embedded/fig_14_input_esl_not_03.png)
+
+![Kucuk MLCC ekleme civari - 1](images/odt_embedded/fig_15_small_mlcc_high_freq_01.png)
+
+![Kucuk MLCC ekleme civari - 2](images/odt_embedded/fig_16_small_mlcc_high_freq_02.png)
+
+
+#### 5.5.7 Bulk kapasitör secimi mantigi
+
+Taslakta giris bulk kapasitörlerinin rolü su sekilde ciziliyor:
+- MLCC'ler yuksek frekansta ve dusuk ESR tarafinda gucludur
+- fakat dc-bias ve sicaklik altinda etkin kapasitanslari duser
+- bu nedenle daha yavas enerji ihtiyaci, transient dayanimı ve damping tarafinda bulk kapasitörler destekleyici rol oynar
+
+Bu mantik tutarlidir. Final secimde bulk kapasitörler, yuksek frekansli current loop'un ana parcasi gibi degil; enerji tamponu ve filtre / damping stratejisinin bir parcasi gibi ele alinmalidir.
+
+ODT gorselleri:
+
+![Giris bulk capacitor secimi - 1](images/odt_embedded/fig_17_input_bulk_selection_01.png)
+
+![Giris bulk capacitor secimi - 2](images/odt_embedded/fig_18_input_bulk_selection_02.png)
+
+![Giris bulk capacitor secimi - 3](images/odt_embedded/fig_19_input_bulk_selection_03.png)
+
+![Giris bulk capacitor secimi - 4](images/odt_embedded/fig_20_input_bulk_selection_note.jpg)
+
+
+#### 5.5.8 Acik teknik dogrulamalar
 
 Bu bolume daha sonra su hesaplar eklenecek:
 - minimum etkin `Cin` hesabi
+- duty'ye bagli gercek `Iin_rms` hesabi
 - dc-bias ve toleransla duzeltilmis gercek kapasitans
 - MLCC basina RMS akim dagilimi
 - sicaklik artisi ve component derating kontrolu
+- yuksek frekans spike bastirma icin ek kucuk MLCC stratejisi
 - bulk kapasitör secimi ve damping gerekcesi
 - EMI filtresi ile birlikte giris aginin son hali
 
@@ -513,20 +643,34 @@ Yerel script notlarinda LM5146-Q1 icin modulator kazanci, ramp genligi uzerinden
 Ayni scriptte `Vramp = Vin / 15` alinmis ve boylece modulator kazanci fiilen sabit `15` olarak kullanilmistir. Bu, taslaktaki `input voltage feedforward` yorumuyla uyumludur: giris gerilimi degisirken ramp genligi de uygun sekilde degisiyorsa modulator kazanci yaklasik sabit tutulabilir.
 
 Bu nokta cok onemlidir, cunku kontrol tasarimini sadeleştirir:
+
+ODT gorseli:
+
+![Modulator blogu](images/odt_embedded/fig_22_voltage_mode_modulator.png)
+
 - `Vin` degisse bile modulator kazanci buyuk olcude sabit kalir
 - bu da plant kazancindaki degisimi kismen telafi eder
 
 #### 6.1.3 Power stage modeli
 
-Yerel scriptte power stage, cikis filtresi ve yukun ikinci dereceden bir transfer fonksiyonu olarak ele alindigi goruluyor. Bu modelde:
+Yerel scriptte power stage, cikis filtresi ve yukun ikinci dereceden bir transfer fonksiyonu olarak ele alindigi goruluyor. Bu modelde su buyuklukler birlikte dusunuluyor:
 - bobin `L`
 - bobin seri direnci `r_L`
 - cikis kapasiteleri ve etkin ESR etkisi
 - yuk direnci `R`
 
-beraber dusunuluyor.
-
 Bu, taslaktaki anlatimla da uyumludur: cikis filtresi ve yuk birlikte kontrol dongusunun frekans cevabini belirler ve kompanzator secimi bu modele bakilarak yapilir.
+
+ODT taslaginda ayrica cikista birden fazla kapasitör turu oldugu ve bunlardan cok kucuk degerli bir yuksek frekans kapasitörun ana transfer fonksiyonu hesabinda ihmal edildigi not edilmis. Bu yaklasim, eger ihmal edilen kapasitör yalnizca cok yuksek frekans bolgesinde etkiliyse ve crossover civarini anlamli degistirmiyorsa makul olabilir.
+
+Ancak bu ihmal karari final raporda otomatik kabul edilmemelidir; secilen `fc` civarinda ve ust kutup / sifir konumlarinda gercekten etkisiz kaldigi ya analitik olarak ya da bode karsilastirmasi ile gosterilmelidir.
+
+ODT gorselleri:
+
+![Cikis filtresi ve yuk](images/odt_embedded/fig_23_output_filter_and_load.png)
+
+![Cikis filtresi ve yuk / capacitorler](images/odt_embedded/fig_24_output_capacitor_bank.png)
+
 
 #### 6.1.4 Bu bolumde korunacak ayrim
 
@@ -540,7 +684,9 @@ Su an icin iki ayri katman oldugu acik yazilmalidir:
 
 #### 6.2.1 Neden bu yontem?
 
-`yeni.odt` taslagina gore ilk donemde kontrolcu tasarimi farkli bir yaklasimla yapilmisti. Bu iterasyonda ise K-factor yonteminin kullanilmasi hedefleniyor.
+`yeni.odt` taslagina gore ilk donemde kontrolcu tasarimi farkli bir yaklasimla yapilmisti. Ilk calismada, gerilim kontrollu Type-III / PID benzeri klasik kompanzator akisi izlenmisti. Bu iterasyonda ise K-factor yonteminin kullanilmasi hedefleniyor.
+
+Bu gecis onemlidir cunku yalnizca farkli bir formulu denemek anlamina gelmez; kompanzator tasarimini daha sistematik, faz katkisi odakli ve tekrar kontrol edilebilir bir akisa tasir.
 
 Bu degisim onemli cunku K-factor yaklasimi:
 - hedef crossover frekansi icin gereken kompanzator kazancini sistematik kurar
@@ -580,6 +726,22 @@ Bu tasarim ozelinde K-factor yontemi ile sonunda su ciktilar uretilmek isteniyor
 - acik ve kapali cevrim bode yorumu
 
 Bu bolum, ileride MATLAB ve LTspice ile yapilacak loop dogrulamasinin teorik baslangic noktasi olacak.
+
+#### 6.2.5 Kompanzator topolojisi notu
+
+ODT taslagindaki `Compensator` basligi ve onceki donem notlari birlikte okundugunda, bu tasarimda Type-III kompanzator topolojisinin korundugu anlasiliyor. Bu tercih mantiklidir cunku voltage-mode buck yapida guc katinin kutuplari ve istenen crossover seviyesi, ek faz katkisini gerekli kilabilir.
+
+Burada onemli ayirim sunlardir:
+- topolojinin Type-III olmasi, komponent degerlerinin de otomatik olarak dogru oldugu anlamina gelmez
+- ODT'de kompanzator devresine ait temiz sayisal sonuclar yok; bu nedenle sayisal `R/C` degerleri sonraki turda gercek plant ile yeniden kurulacaktir
+- yani kompanzatorun yapisi ODT'den aktarilmis kabul edilebilir, ama nihai boyutlandirma halen tasarim gorevidir
+
+ODT gorselleri:
+
+![Compensator / Type-III devre](images/odt_embedded/fig_25_type3_compensator.png)
+
+![Compensator civari - 2](images/odt_embedded/fig_26_compensator_related.png)
+
 
 ### 6.3 Hedef frekans yerlestirmesi
 
@@ -623,6 +785,20 @@ Faz marji ve kazanc marji yalnizca akademik bir bode ciktisi degil, bu tasarimin
 - giris filtresi, parasitikler ve gercek ESR/DCR degerleri bu marjlari kagittaki ilk tahminden uzaklastirabilir
 
 Bu nedenle nihai tasarimda hedef, yalnizca teorik olarak stabil bir dongu degil; transient, EMI ve uygulama toleranslari altinda da guvenli kalan bir dongu olmaktir.
+
+#### 6.4.3 Kararlilik kriterinin bu projedeki anlami
+
+ODT'de `Kararlilik Kriteri` ayri bir baslik olarak geciyor. Eldeki temiz metin sinirli olsa da bu basligin yeni.md icindeki karsiligi su sekilde korunabilir:
+- tek bir bode grafiginde sadece guzel gorunen egri aramak yeterli degildir
+- loop'un uygun crossover bolgesinde `0 dB` gecisi, pozitif faz marji ve pozitif kazanc marji birlikte degerlendirilmelidir
+- giris filtresi, parazitikler ve coklu kutup/sifir yapilari varsa stabilite yorumu sadece kabaca `fsw/10` kuralina birakilmamalidir
+
+Bu nedenle bu projede kararlilik kriteri, yalnizca "simulasyon patlamadi" seviyesinde degil; margin, transient davranisi ve filtre etkisi birlikte kabul edilirse saglanmis sayilacaktir.
+
+ODT gorseli:
+
+![Kararlilik kriteri](images/odt_embedded/fig_21_stability_criterion.png)
+
 
 ## 7. EMI, Giris Filtresi ve Yerlesim
 
@@ -705,6 +881,86 @@ Sonraki turda bu genel kurallar, gercek PCB veya EVM layout gorselleri uzerinden
 
 ## 8. LTspice Dogrulama Plani
 
+Bu bolumde amac, simulasyonu yalnizca "dalga sekli cizdirme" araci gibi degil, hesap ve tasarim kararlarini sistematik olarak sinayan bir dogrulama hatti haline getirmektir.
+
+### 8.1 Baslangic model seti
+
+YENI klasorunde simdiden kullanilabilecek bazi aday dosyalar bulunuyor:
+- `LTspice_InputFilterDesign/SyncBuck_average_CL.asc`
+- `LTspice_InputFilterDesign/SyncBuck_average_CL_IF.asc`
+- `LTspice_InputFilterDesign/SyncBuck_switching_CL.asc`
+- `LTspice_InputFilterDesign/SyncBuck_switching_CL_IF.asc`
+- `LTspice_InputFilterDesign/SyncBuck_switching_OL_IF.asc`
+- `LM5146-Q1_PSPICE_TRANS/LM5146-Q1_TRANS.DSN`
+
+Bu dosyalar dogrudan final tasarim modeli kabul edilmemelidir. Ancak giris filtresi etkisi, averaged / switching model farki ve uretici makromodelinin davranisi icin iyi birer baslangic noktasi olabilirler.
+
+### 8.2 Simulasyon asamalari
+
+Bu proje icin en temiz siralama su olabilir:
+1. averaged model ile ilk kontrol ve giris filtresi etkisini anlamak
+2. switching model ile ripple, duty sinirlari ve transient davranisini gormek
+3. gerekiyorsa TI PSpice makromodeli ile denetleyiciye daha yakin bir dogrulama yapmak
+4. en sonda parasitikler ve damping detaylarini eklemek
+
+Bu sira, sorun oldugunda hangi katmanda bozulma basladigini ayirmayi kolaylastirir.
+
+### 8.3 Steady-state kontrol listesi
+
+Ilk tur steady-state dogrulamada en az su koseler bakilmalidir:
+- `Vin = 24 V`, minimum yuk
+- `Vin = 24 V`, maksimum yuk
+- `Vin = 36 V`, minimum yuk
+- `Vin = 36 V`, maksimum yuk
+
+Bu koselerde kaydedilecek temel buyuklukler:
+- `Vout` statik dogruluk
+- cikis ripple
+- giris ripple / giris akim darbeleri
+- bobin akim ripple'i
+- MOSFET gerilim ve akim stresleri
+- tahmini verim veya kayip dagilimi
+
+### 8.4 Dinamik testler
+
+Bu tasarimin asil karakteri, yalnizca steady-state degil transientlerde ortaya cikacagi icin asagidaki testler zorunlu gorulmelidir:
+- load step: `3.571 A -> 9 A`
+- ters load step: `9 A -> 3.571 A`
+- line step: `24 V <-> 36 V`
+- startup / soft-start
+- duty cycle ve `tON(min) / tOFF(min)` sinirlarina yakin koseler
+
+Burada ozellikle izlenecek ciktilar:
+- `14 V +- 20%` transient sinirinin asilip asilmayacagi
+- settling suresi
+- ringing ve olasi snubber ihtiyaci
+- cikis bulk kapasitörsuz yaklasimin yeterli olup olmadigi
+
+### 8.5 Giris filtresi ve EMI ile baglantili testler
+
+Giris EMI filtresi eklenecegi icin filtreli ve filtresiz durumlar birlikte karsilastirilmalidir:
+- filtre yokken temel davranis
+- filtre varken line / load transient
+- damping elemani varken ve yokken giris ringing'i
+- averaged model ile filtre rezonansi yorumu
+- gerekiyorsa LISN benzeri yapiyla ilk iletilen EMI fikir taramasi
+
+Bu kisimda hedef, tam standart EMI olcumu yapmak degil; tasarim karari vermeye yetecek ilk elektronik dogrulamayi elde etmektir.
+
+### 8.6 44 V transient notu
+
+Specification notuna gore `44 V for up to 1 ms` olayi bir "survive" kosuludur; donusturucunun bu anda regule calismasi zorunlu degildir. Bu nedenle bu test ayri bir kategori gibi ele alinmalidir:
+- asiri gerilim stresini gormek
+- kritik dugumlerde abs max veya guvenlik payi asimi olup olmadigina bakmak
+- gerekiyorsa clamp, TVS veya input filter revizyonunu dusunmek
+
+### 8.7 Hesapla simulasyonun birlestirilmesi
+
+Her simulasyon turu bir hesap maddesine baglanmalidir. En saglikli yontem su olur:
+- her grafik icin hangi hesap veya spesifikasyon kontrol ediliyor acik yaz
+- uyusmayan sonuc varsa once model varsayimini, sonra hesap varsayimini sorgula
+- simulasyonu hesap yerine gecen bir "hakem" gibi degil, hesapla birlikte calisan ikinci goz gibi kullan
+
 Kontrol listesi:
 - [ ] steady-state
 - [ ] load transient
@@ -718,19 +974,16 @@ Kontrol listesi:
 
 Simulasyon dosyalari notlari:
 - Kullanilacak ana semalari burada ozetle.
-- Gerekirse ilgili `asc` dosyalarini bu bolumde bagla.
+- Gerekirse ilgili `asc` veya `DSN` dosyalarini bu bolumde bagla.
 
 ## 9. Secilmis Gorseller
 
-GitHub icin tercih edilen kullanim:
-
-```md
-![Cikis ripple olcumu](images/fig_01_vout_ripple.png)
-```
+Bu belgedeki ilk gorsel seti `yeni.odt` icinden cikartilan `26` gomulu gorselden olusur ve hepsi ilgili teknik bolumlere dagitilmistir.
 
 Not:
-- `foto/` klasorundeki tum gorselleri bu belgeye eklemeyin.
-- Yalnizca kullanacaginiz gorselleri `images/` klasorune daha duzenli isimlerle kopyalayin.
+- `/foto` dizinindeki arsiv gorselleri simdilik `yeni.md` icinde kullanilmiyor.
+- ODT icinden cikartilan gorsellerin envanteri ve hedef bolumleri `tracking/odt_embedded_images.md` dosyasinda tutuluyor.
+- Defter fotograflari sonraki fazda secilerek ayrica degerlendirilecek.
 
 ## 10. Acik Sorular
 
@@ -759,6 +1012,21 @@ Kisa liste:
 - Kontrolcu bolumunun modulator, K-factor ve ilk frekans yerlestirmesi iskeleti yazildi.
 - Faz/kazanc marji icin ilk taslak hedef bandi eklendi.
 - EMI, giris filtresi kararliligi ve layout bolumune ilk teknik omurga eklendi.
+- LTspice/PSpice baslangic dosyalari taranarak simulasyon plani detaylandirildi.
+- Cikis kapasiteleri bolumu, transient / output impedance / slew-rate mantigiyla genisletildi.
+- Giris kapasiteleri bolumu, minimum Cin, RMS/thermal, ESL ve bulk mantigiyla genisletildi.
+- Kontrolcu bolumune ilk donemden K-factor gecisi ve plant modelindeki ihmal notlari eklendi.
+- `yeni.odt -> yeni.md` teknik aktarimi tamamlandi; acik kalan maddeler tasarim dogrulama fazina tasindi.
+- Defter notlari fazi icin `foto/defter_raw/` ve `tracking/notebook_*` takip yapisi olusturuldu.
+- Mevcut `foto/` arsivi icin ilk triage envanteri ve `B001` batch kaydi olusturuldu.
+- Gorsel kullanim kurali netlestirildi: ilk secimler `yeni.odt` icindeki gomulu gorsellerden yapilacak, `/foto` simdilik kullanilmayacak.
+- `yeni.odt` icindeki 26 gomulu gorsel `images/odt_embedded/` altina cikarildi.
+- Bu 26 gorsel ilgili teknik bolumlere dagitildi; `/foto` arsivi ilk asamada disarida tutuldu.
+- ODT'de kalan stability criterion ve compensator basliklari yeni.md icinde karsiliklandi.
+
+
+
+
 
 
 
