@@ -180,6 +180,8 @@ Bu bolumu tek bir dogruluk kaynagi olarak kullan.
 
 Gercek kaynak listesi icin `references/used_sources.md` dosyasini guncelle.
 
+PDF kaynaklari bu belge icinde tiklanabilir olacaksa, dosyalari `references/pdfs/` altinda tut.
+
 
 
 Su an icin cekirdek adaylar:
@@ -188,23 +190,23 @@ Su an icin cekirdek adaylar:
 
 - `G31_Robert_Erikson_fundamentals-of-power-electronics-3n_2020.txt`
 
-- `G32_lm5146-q1.pdf`
+- [G32_lm5146-q1.pdf](./references/pdfs/G32_lm5146-q1.pdf)
 
-- `G35_Basic Calculation of a Buck Converter's Power Stage (Rev. B).pdf`
+- [G35_Basic Calculation of a Buck Converter's Power Stage (Rev. B).pdf](./references/pdfs/G35_Basic%20Calculation%20of%20a%20Buck%20Converter's%20Power%20Stage%20(Rev.%20B).pdf)
 
-- `G46_LM5146-Q1EVM User's Guide.pdf`
+- [G46_LM5146-Q1EVM User's Guide.pdf](./references/pdfs/G46_LM5146-Q1EVM%20User's%20Guide.pdf)
 
-- `G101_The K Factor.pdf`
+- [G101_The K Factor.pdf](./references/pdfs/G101_The%20K%20Factor.pdf)
 
 - `G103_comp.txt`
 
 - `G95_04_K_FACTOR_CAN_HOCA.txt`
 
-- `G114_Simple Solution for Input Filter Stability Issue in DC_DC_slua929a.pdf`
+- [G114_Simple Solution for Input Filter Stability Issue in DC_DC_slua929a.pdf](./references/pdfs/G114_Simple%20Solution%20for%20Input%20Filter%20Stability%20Issue%20in%20DC_DC_slua929a.pdf)
 
-- `G112_Simple Success with Conducted EMI and Radiated EMI_snva755.pdf`
+- [G112_Simple Success with Conducted EMI and Radiated EMI_snva755.pdf](./references/pdfs/G112_Simple%20Success%20with%20Conducted%20EMI%20and%20Radiated%20EMI_snva755.pdf)
 
-- `G113_An Engineer's Guide to Low EMI in DC_DC Regulators_slyy208.pdf`
+- [G113_An Engineer’s Guide to Low EMI in DC_DC Regulators_slyy208.pdf](./references/pdfs/G113_An%20Engineer%E2%80%99s%20Guide%20to%20Low%20EMI%20in%20DC_DC%20Regulators_slyy208.pdf)
 
 
 
@@ -219,28 +221,17 @@ Su an icin cekirdek adaylar:
 #### 5.1.1 LM5146-Q1 dahili LDO siniri
 
 
+ODT'den aktarilan metin (`2.1. Giriş Gerilimi Vin`):
 
-Aktarim durumu:
-
-- Bu alt bolum `yeni.odt` taslagindan temizlenerek tasinmistir.
-
-- Son hali verilmeden once `G32_lm5146-q1.pdf` ile tekrar satir satir dogrulanacaktir.
+> Lm’nin içinde bir LDO (Low Dropout Regulator) barındırır. Bu LDO, 7.5V Vcc beslemesi sağlar, Mosfet kapı sürücülerini ve kontrol devrelerini besler.
 
 
 
-LM5146-Q1 icinde gate suruculerini ve kontrol devrelerini besleyen nominal `7.5 V` seviyesinde bir dahili LDO bulundugu varsayimi ile ilerlenmektedir. Harici `VCC` kullanilmayacaksa, giris geriliminin bu LDO'yu dropout disinda tutacak kadar yuksek olmasi gerekir.
+Ek not:
 
+Bu paragraf, `Vin` tarafinin yalnizca giris araligi olarak degil, ayni zamanda kontrolcunun yerel beslemesini belirleyen bir sinir olarak da dusunulmesi gerektigini gosterir. Harici `VCC` kullanilmayacaksa, dahili LDO'nun tam regülasyonda kalabildigi bolge ayrica kontrol edilmelidir. Bu baglamda onceki hesap notu GitHub uyumlu matematik bicimiyle su sekilde korunabilir:
 
-
-Taslak notlarda `VCC-LDO VIN to VCC dropout voltage` icin `0.25 V typ` ve `0.72 V max` degerleri alinmistir. Worst-case yaklasimla dahili `7.5 V` VCC uretiminin korunmasi icin asgari giris gerilimi su sekilde yazilmistir:
-
-
-
-`Vin_min_for_full_VCC = 7.5 V + 0.72 V = 8.22 V`
-
-
-
-Bu sinirin uzerinde `VCC` dugumunun yaklasik `7.5 V` civarinda regule kaldigi kabul edilir. Bu sinirin altinda ise kontrolcu artk tam `7.5 V` uretemez ve `VCC`, `Vin` gerilimini dropout kadar geriden takip etmeye baslar.
+$V_{in,\min} = 7.5\,\text{V} + 0.72\,\text{V} = 8.22\,\text{V}$
 
 
 
@@ -594,23 +585,18 @@ Bu karar, `bulk kesinlikle kullanilmaz` anlamina gelmiyor. Su anki anlami daha d
 
 
 
-#### 5.4.3 Overshoot / undershoot ve cikis empedansi dusuncesi
+#### 5.4.3 Acik-cevrim cikis impedance
+
+
+ODT'den aktarilan metin (`BÖLÜM 3 / 3. Açık-çevrim çıkış ımpedance`):
+
+> EKLENECEK YAZILACAK yazılar var. TAMAMLANMADI
 
 
 
-ODT taslaginda load transient sirasindaki `Overshoot/Undershoot` konusu, cikis empedansi uzerinden dusunuluyor. Buradaki temel muhendislik sezgisi degerlidir:
+Ek not:
 
-- yuk aniden degistiginde yukun gordugu etkin cikis empedansi ne kadar dusukse gerilim sapmasi o kadar sinirli olur
-
-- bu nedenle transient performansi yalnizca kapasitans buyutme problemi degil, ayni zamanda empedans sekillendirme problemidir
-
-
-
-Taslak notlarda "crossover frekansindaki acik-cevrim cikis impedance'i" ifadesi geciyor. Bu fikir dogrudan final denklem gibi yazilmamalidir. Nihai metinde bunun daha dikkatli bicimde, tercihen `kapali-cevrim cikis empedansi` ve gercek loop davranisi uzerinden yeniden ifade edilmesi daha dogru olacaktir.
-
-
-
-ODT gorseli:
+Bu alt bolum su anda placeholder olarak tutuluyor. Sonraki parcada bu basligin altina acik-cevrim / kapali-cevrim cikis empedansi ayrimini ve gerekiyorsa denklemleri GitHub uyumlu matematik bicimiyle ekleyebiliriz.
 
 
 
