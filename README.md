@@ -694,11 +694,11 @@ Bu yorum, EVM'de yalnizca MLCC kullanilmasinin neden belirli kosullarda yeterli 
 
 ODT gorselleri:
 
-| Gorsel | Baglamda rolu |
-| --- | --- |
-| <img src="images/odt_embedded/fig_03_g71_transient_yontemi.png" alt="G71 cikis transient yontemi civari" width="260"> | Bu gorsel, ilk gerilim cokusunun cikis kapasitörlerinden karsilandigi ve toparlanmanin bobin akiminin yukselme hizi ile iliskili oldugu transient akisini gorsellestirir. |
-| <img src="images/odt_embedded/fig_04_slew_rate_gecici_davranis.png" alt="Slew-rate hesabi civari - 1" width="260"> | Buradaki not, bobin akim slew-rate siniri ile `dVout/dt` yorumu arasindaki fiziksel baglantiyi destekleyen ara referanstir. |
-| <img src="images/odt_embedded/fig_05_slew_rate_notu.jpg" alt="Slew-rate hesabi civari - 2" width="260"> | Son ekran goruntusu, `t1` benzeri gecis anini ve kapasitörden bobine dogru kayan akim tasima rolunu not dusen yardimci bir baglam gorselidir. |
+![G71 cikis transient yontemi civari](images/odt_embedded/fig_03_g71_transient_yontemi.png)
+
+![Slew-rate hesabi civari - 1](images/odt_embedded/fig_04_slew_rate_gecici_davranis.png)
+
+![Slew-rate hesabi civari - 2](images/odt_embedded/fig_05_slew_rate_notu.jpg)
 
 
 
@@ -819,13 +819,15 @@ Bu sonuc simdilik kaba boyutlandirma notu olarak tutulabilir. ODT'de ayrica EVM 
 
 ODT gorselleri:
 
-| Gorsel | Baglamda rolu |
-| --- | --- |
-| <img src="images/odt_embedded/fig_06_input_mlcc_rms_kaba_hesap.jpg" alt="MLCC RMS akimi kaba hesap" width="260"> | Bu not, giris MLCC bankasi icin ilk kaba RMS akim sezgisinin `~4.5 Arms` civarinda kuruldugunu gosteren baslangic referansidir. |
-| <img src="images/odt_embedded/fig_07_input_mlcc_temp_x7r_x5r.png" alt="MLCC sicaklik / X7R-X5R civari" width="260"> | Dielektrik seciminin yalnizca nominal kapasitansi degil, sicaklik ve bias altindaki etkin davranisi da belirledigini hatirlatan ana gorseldir. |
-| <img src="images/odt_embedded/fig_08_input_mlcc_temp_grafik_01.png" alt="MLCC sicaklik civari - 1" width="260"> | Ilk sicaklik grafigi, ODT tarafinda yapilan termal gozlemlerin ilk gorsel kaydini tutar ve komponent seciminin termal tarafa da bakilarak yapilmasi gerektigini destekler. |
-| <img src="images/odt_embedded/fig_09_input_mlcc_temp_grafik_02.png" alt="MLCC sicaklik civari - 2" width="260"> | Ikinci grafik, ayni sicaklik tartismasini farkli bir referansla tamamlayarak yalnizca isim degerine bakmanin yetersiz oldugunu gosterir. |
-| <img src="images/odt_embedded/fig_10_input_mlcc_temp_grafik_03.png" alt="MLCC sicaklik civari - 3" width="260"> | Ucuncu grafik, termal ve etkin kapasitans yorumunun tek bir ekran goruntusune degil, birden fazla destekleyici gostergeye dayandirilmasi gerektigini pekistirir. |
+![MLCC RMS akimi kaba hesap](images/odt_embedded/fig_06_input_mlcc_rms_kaba_hesap.jpg)
+
+![MLCC sicaklik / X7R-X5R civari](images/odt_embedded/fig_07_input_mlcc_temp_x7r_x5r.png)
+
+![MLCC sicaklik civari - 1](images/odt_embedded/fig_08_input_mlcc_temp_grafik_01.png)
+
+![MLCC sicaklik civari - 2](images/odt_embedded/fig_09_input_mlcc_temp_grafik_02.png)
+
+![MLCC sicaklik civari - 3](images/odt_embedded/fig_10_input_mlcc_temp_grafik_03.png)
 
 
 
@@ -852,14 +854,17 @@ Ancak bu kisim tamamen yerlesime bagimlidir; dolayisiyla final karar PCB veya LT
 
 ODT gorselleri:
 
-| Gorsel | Baglamda rolu |
-| --- | --- |
-| <img src="images/odt_embedded/fig_11_input_esl_parallel_mlcc.png" alt="MLCC ESL ve paralelleme civari - 1" width="260"> | Ilk gorsel, MLCC'leri paralellemenin etkin ESL'yi dusurme mantigini acan temel referanstir. |
-| <img src="images/odt_embedded/fig_12_input_esl_not_01.png" alt="MLCC ESL ve paralelleme civari - 2" width="260"> | Bu not, yuksek frekansta sadece toplam kapasitans degil baglanti ve paket parasitiklerinin de belirleyici oldugunu hatirlatir. |
-| <img src="images/odt_embedded/fig_13_input_esl_not_02.png" alt="MLCC ESL ve paralelleme civari - 3" width="260"> | Ikinci yardimci ekran goruntusu, ESL tartismasini yerlesim ve current-loop dusuncesi ile birlestiren ek baglam verir. |
-| <img src="images/odt_embedded/fig_14_input_esl_not_03.png" alt="MLCC ESL ve paralelleme civari - 4" width="260"> | Ucuncu not gorseli, ayni fikir zincirini tamamlayarak kucuk parasitiklerin neden pratikte onemli oldugunu belgelemektedir. |
-| <img src="images/odt_embedded/fig_15_small_mlcc_high_freq_01.png" alt="Kucuk MLCC ekleme civari - 1" width="260"> | Bu gorsel, `1 uF` veya `0.1 uF` gibi daha kucuk yardimci MLCC'lerin yuksek frekansli spike bastirma rolune neden aday oldugunu gosterir. |
-| <img src="images/odt_embedded/fig_16_small_mlcc_high_freq_02.png" alt="Kucuk MLCC ekleme civari - 2" width="260"> | Son gorsel, kucuk paketli yardimci kapasitör ekleme fikrinin ikinci destekleyici referansi olarak kullanilir. |
+![MLCC ESL ve paralelleme civari - 1](images/odt_embedded/fig_11_input_esl_parallel_mlcc.png)
+
+![MLCC ESL ve paralelleme civari - 2](images/odt_embedded/fig_12_input_esl_not_01.png)
+
+![MLCC ESL ve paralelleme civari - 3](images/odt_embedded/fig_13_input_esl_not_02.png)
+
+![MLCC ESL ve paralelleme civari - 4](images/odt_embedded/fig_14_input_esl_not_03.png)
+
+![Kucuk MLCC ekleme civari - 1](images/odt_embedded/fig_15_small_mlcc_high_freq_01.png)
+
+![Kucuk MLCC ekleme civari - 2](images/odt_embedded/fig_16_small_mlcc_high_freq_02.png)
 
 
 
@@ -884,12 +889,13 @@ Bu mantik tutarlidir. Final secimde bulk kapasitörler, yuksek frekansli current
 
 ODT gorselleri:
 
-| Gorsel | Baglamda rolu |
-| --- | --- |
-| <img src="images/odt_embedded/fig_17_input_bulk_selection_01.png" alt="Giris bulk capacitor secimi - 1" width="260"> | Ilk gorsel, bulk kapasitör seciminde enerji tamponu dusuncesinin nasil ortaya kondugunu gosteren baslangic referansidir. |
-| <img src="images/odt_embedded/fig_18_input_bulk_selection_02.png" alt="Giris bulk capacitor secimi - 2" width="260"> | Bu ekran goruntusu, bulk elemanlarin yuksek frekans current-loop'un ana parcasi degil daha yavas enerji ihtiyacinin destekleyicisi oldugu yorumunu pekistirir. |
-| <img src="images/odt_embedded/fig_19_input_bulk_selection_03.png" alt="Giris bulk capacitor secimi - 3" width="260"> | Ucuncu referans, MLCC ve bulk kapasitörlerin farkli gorevler ustlendigi fikrini gorsel olarak ayirmaya yardim eder. |
-| <img src="images/odt_embedded/fig_20_input_bulk_selection_note.jpg" alt="Giris bulk capacitor secimi - 4" width="260"> | Son not gorseli, damping ve transient destegi acisindan bulk kapasitörun neden ayrica dusunuldugunu toparlayan yardimci kayittir. |
+![Giris bulk capacitor secimi - 1](images/odt_embedded/fig_17_input_bulk_selection_01.png)
+
+![Giris bulk capacitor secimi - 2](images/odt_embedded/fig_18_input_bulk_selection_02.png)
+
+![Giris bulk capacitor secimi - 3](images/odt_embedded/fig_19_input_bulk_selection_03.png)
+
+![Giris bulk capacitor secimi - 4](images/odt_embedded/fig_20_input_bulk_selection_note.jpg)
 
 
 
@@ -1288,10 +1294,9 @@ Ancak bu ihmal karari final raporda otomatik kabul edilmemelidir; secilen `fc` c
 
 ODT gorselleri:
 
-| Gorsel | Baglamda rolu |
-| --- | --- |
-| <img src="images/odt_embedded/fig_23_output_filter_and_load.png" alt="Cikis filtresi ve yuk" width="260"> | Bu gorsel, power-stage modelinde bobin, cikis filtresi ve yukun birlikte ikinci dereceden davranisi nasil kurdugunu destekleyen ana referanstir. |
-| <img src="images/odt_embedded/fig_24_output_capacitor_bank.png" alt="Cikis filtresi ve yuk / capacitorler" width="260"> | Ikinci gorsel, ayni model icinde birden fazla cikis kapasitör turunun nasil dusunuldugunu ve hangi kapasitörlerin sade modelde ihmal edilebildigini baglama oturtur. |
+![Cikis filtresi ve yuk](images/odt_embedded/fig_23_output_filter_and_load.png)
+
+![Cikis filtresi ve yuk / capacitorler](images/odt_embedded/fig_24_output_capacitor_bank.png)
 
 
 
@@ -1426,10 +1431,9 @@ Burada onemli ayirim sunlardir:
 
 ODT gorselleri:
 
-| Gorsel | Baglamda rolu |
-| --- | --- |
-| <img src="images/odt_embedded/fig_25_type3_compensator.png" alt="Compensator / Type-III devre" width="260"> | Ilk gorsel, bu tasarimda korunan Type-III kompanzator topolojisinin devre seviyesindeki karsiligini gosterir. |
-| <img src="images/odt_embedded/fig_26_compensator_related.png" alt="Compensator civari - 2" width="260"> | Ikinci gorsel, ayni kompanzator tartismasina bagli yardimci notlari ve eleman iliskilerini ana paragrafla birlikte okunabilir hale getirir. |
+![Compensator / Type-III devre](images/odt_embedded/fig_25_type3_compensator.png)
+
+![Compensator civari - 2](images/odt_embedded/fig_26_compensator_related.png)
 
 
 
