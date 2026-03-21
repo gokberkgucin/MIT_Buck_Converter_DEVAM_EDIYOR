@@ -660,6 +660,9 @@ ODT'den aktarilan metin (`6.1.2. Vripple Gerilimi`):
 > Çıkış gerilimini düşürmek için, bobin akımının tepeden tepeye değerini düşürmek gerekir. Bunu da L’yi arttırarak yapabiliriz. Çıkış bobinin inductance’ı artarsa tepeden tepeye bobin akımının dalgalanması azalır. Eğer inductance çok artarsa, dalgalanmayı düşürürüz fakat, maliyet artar, fiziksel boyut artar, transient response bozulabilir.
 >
 > gerilimini düşürmenin daha etkili bir yolu, fsw frekansındaki çıkış impedance’sını düşürmektir. Şekil Hata: Başvuru kaynağı bulunamadı.1’a bakarsak; Zout, Daha yüksek capacitance ve daha düşük bir esr direncinden oluşursa; Capacitance eğrisi sola kayar, yatayda düz bir eğri olan esr direnci de azaldığı için daha aşağıda olur. fsw frekansında Zout‘u etkin oldüşürdüğünü görebiliriz.****?
+>
+> V<sub>ripple</sub> = I<sub>L(P-P)</sub> · Z<sub>OUT</sub>(f<sub>sw</sub>)
+>
 > ( Hata: Başvuru kaynağı bulunamadı.5 )
 
 
@@ -716,7 +719,7 @@ Bu nedenle burada korunacak karar mantigi sunudur:
 #### 5.4.6 Slew-rate ve cikis kapasitörlerinin enerji tamponu rolu
 
 
-ODT'den aktarilan metin (G71 transient yorumu):
+ODT'den aktarilan metin (`G71 transient yorumu`):
 
 > G71’deki t1 anına kadar, inductor akımı yükü karşılayamadı, ancak t1 anından sonra karşılayabildi. delta_Vout un türevinin 0 (dVOUT/dt) olduğu yer aslında. Gerilim azalmasının durduğu ana karşılık geliyor bu t1 anı, aynı zamanda bu t1 anı, t_undershoot süresinin sonu anlamına da gelir.
 
@@ -726,23 +729,70 @@ Ani bir yuk akimi degisimi sirasinda `Vout`'un minimum noktasi ve `t1` ani.
 
 
 
+ODT'den aktarilan metin (`Slew Rate Hesabı`):
+
+![Slew-rate hesabi civari - 1](images/odt_embedded/fig_04_slew_rate_gecici_davranis.png)
+
+> Bir voltage regulator’ü, ani yük değişimlerinde (Load transient) hemen cevap veremez. Çünkü çıkıi bobini, akımın oranını (Current Slew Rate) sınırlayan bir parametredir. Bobinlerin akımı ani olarak çok hızlı değişemez. **?
+> Bir yükte ani değişiklik olduğunda, ilk anda gereken ekstra akımı, regulator sağlayamaz. Bu nedenle ihtiyaç duyulan fazladan akım, Çıkış sığaçlarından sağlanmak zorundadır.
+
+![Slew-rate hesabi civari - 2](images/odt_embedded/fig_05_slew_rate_notu.jpg)
+
+Ani bir yük akımı değişimi sırasında `Vout`…
+
+> Feedback Control loop çıkış gerilimindeki değişimi algılar, ve mosfet duty cylcle’ını ayarlamaya başlar. Ancak duty cycle %100’e çıksa bile (Kullandığımız IC’nin donanımsal sınırından ötürü mümkün değil, Denklem Hata: Başvuru kaynağı bulunamadı.7’ten ) akımın artış hızı, Istep akımının artış hızından daha yavaştır.
+>
+> Istep akımı tramp süresinde artarken,
+> Bobinin akımı t_undershoot süresinde artar. Düzelt a.q***
+> Bobinin Tanım denkleminden yararlanarak:
+>
+> yerine gerilimini kullanma sebebim, Slew Rate’ı daha düşük yapar-eğimi azaltır, süresini uzatır. [1] ( Hata: Başvuru kaynağı bulunamadı.8 )
+>
+> Bobin akımının, akımı kadar artması bulduk.
+>
+> Ancak power-stage? kayıplarını (Mosfetlerin Rds(on) direnci, bobinin dcr direnci, layout direncini) göz önünde bulundurmadık. Bu kayıpları da dikkate alırsak:
+>
+> ( Hata: Başvuru kaynağı bulunamadı.9 )
+>
+> Gerçek devrede Çıkış akımının akımı kadar artış süresine diye isimlendirdik.
+> süresini de gerçekçi bir değer olarak belirlemek için Evm’deki başarım eğrilerinden aldım. ??Fig.14’ten olarak belirlenmiş.
+>
+> olması, Bobinin akımının, yük artışını yeterince hızlı karşılayamadığını gösterir. Kalan yükleri Capacitorler karşılayacak,
+>
+> Evm’de sadece MLCC capacitor kullanıp, hiç bulk capacitor kullanmamalarını bu hesaptan sonra anladım.
+> İlerleyen süreçte, çıkışta bulk capacitor kullanmayı gerektirecek şekilde design requirement’ı sıkılaştırabilirim.
+
+
+
 Ek not:
 
-Bu yorum, transient sirasinda cikis kapasitörlerinin enerji tamponu gorevini fiziksel olarak acikliyor. Yuk aniden arttiginda bobin akimi hemen yetisemedigi icin ilk fark cikis kapasitörlerinden cekilir. `t1` ani, gerilim dususunun durdugu ve matematiksel olarak su kosulun saglandigi an olarak yorumlanabilir:
+ODT kopyasinda bu bolumde de bazi semboller ve denklemler eksik gorunuyor; bu nedenle kaynak metni aynen korudum. Teknik olarak burada korunmak istenen ana iliskiler su sekilde yazilabilir:
+
+$$
+\frac{dI_L}{dt} = \frac{V_L}{L}
+$$
+
+Yani bobin akiminin artis hizi, bobin uzerindeki anlik gerilim ve enduktans tarafindan sinirlanir. Bu nedenle feedback dongusu duty oranini arttirsa bile akim sonsuz hizla yukselemez.
+
+Yukteki ani artis ile bobin akimi arasindaki fark ilk anda cikis kapasitörleri tarafindan karsilanir:
+
+$$
+I_C = I_{load} - I_L
+$$
+
+Bu da cikis geriliminin gecici davranisini belirler:
+
+$$
+C_{out}\frac{dV_{out}}{dt} = -I_C
+$$
+
+`t1` ani ve kullanicinin not ettigi `t_{undershoot}` sonu, matematiksel olarak su kosulla iliskilendirilebilir:
 
 $$
 \frac{dV_{out}}{dt} = 0
 $$
 
-Bu an ayni zamanda `t_{undershoot}` suresinin sonu olarak da dusunulebilir. Yani `t1` sonrasinda bobin akimi, yuk talebini karsilayacak seviyeye yaklasmis olur ve kapasitörlerin tek basina akim verme rolu azalmaya baslar.
-
-
-
-ODT gorselleri:
-
-![Slew-rate hesabi civari - 1](images/odt_embedded/fig_04_slew_rate_gecici_davranis.png)
-
-![Slew-rate hesabi civari - 2](images/odt_embedded/fig_05_slew_rate_notu.jpg)
+Bu anda bobin akimi, en azindan o anlik durumda, yuk talebini karsilayabilecek seviyeye yaklasmistir. ODT'deki EVM yorumu da bu bakimdan anlamlidir: eger MLCC bankasi bu gecis suresinde yeterli enerjiyi saglayabiliyorsa, bulk kapasitör ihtiyaci her durumda zorunlu olmayabilir.
 
 
 
