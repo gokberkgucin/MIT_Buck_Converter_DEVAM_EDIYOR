@@ -939,33 +939,51 @@ Kaba Hesap:
 
 Ek not:
 
-Bu alt bolumde ana teknik fikir, MLCC seciminin yalnizca kapasitansla degil RMS akim ve termal dayanım ile birlikte yapilmasi gerektigidir. ODT notundaki kaba `D = 0.5` yaklasimi ilk kontrol icin uygundur ve mavi egri uzerinden `I_in,rms ≈ 0.5 I_load` sonucu okunarak `4.5 A_rms` mertebesi bulunabilir.
+Bu alt bolumde ana teknik fikir, MLCC seciminin yalnizca kapasitansla degil RMS akim ve termal dayanım ile birlikte yapilmasi gerektigidir. ODT notundaki kaba `D = 0.5` yaklasimi ilk kontrol icin uygundur ve mavi egri uzerinden I<sub>in,RMS</sub> ≈ 0.5 I<sub>load</sub> sonucu okunarak 4.5 A<sub>RMS</sub> mertebesi bulunabilir.
+
+Kaba yaklasimin temiz yazimi:
+
+$$
+\frac{I_{in,RMS}}{I_{load}} \approx 0.5
+\qquad (D = 0.5)
+$$
+
+$$
+I_{in,RMS}
+= I_{load}\cdot 0.5
+= 9\,\text{A}\cdot 0.5
+= 4.5\,\text{A}_{RMS}
+$$
 
 GitHub uyumlu matematik bicimiyle verilen daha ayrintili ifade su sekilde yazilabilir:
 
 $$
+\begin{aligned}
 I_{in,RMS,\max}
-= I_{LOAD,\max}
+&= I_{LOAD,\max}
 \sqrt{
 D(1-D)
- + \frac{1}{12}
- + \left(\frac{V_{OUT}}{L\,f_{sw}\,I_{\max}}\right)^2
- + (1-D)^2 D
+ + \frac{1}{12}\cdot
+\left(\frac{V_{OUT}}{L\,f_{sw}\,I_{\max}}\right)^2
+\cdot (1-D)^2 \cdot D
 }
+\end{aligned}
 $$
 
 ODT notasyonundaki sayisal yerlestirme korunursa:
 
 $$
+\begin{aligned}
 I_{in,RMS,\max}
-= 9\,\text{A}\,
+&= 9\,\text{A}\,
 \sqrt{
 0.5(1-0.5)
- + \frac{1}{12}
- + \left(\frac{14\,\text{V}}{6.8\,\mu\text{H}\cdot 332\,\text{kHz}\cdot 9\,\text{A}}\right)^2
- + (1-0.5)^2\cdot 0.5
-}
-\approx 4.55\,\text{A}_{RMS}
+ + \frac{1}{12}\cdot
+\left(\frac{14\,\text{V}}{6.8\,\mu\text{H}\cdot 332\,\text{kHz}\cdot 9\,\text{A}}\right)^2
+\cdot (1-0.5)^2\cdot 0.5
+} \\
+&\approx 4.55\,\text{A}_{RMS}
+\end{aligned}
 $$
 
 Bu sonuc, giris MLCC bankasinin yalnizca ripple gerilimini degil, RMS akim tasima ve sicaklik artisi tarafini da karsilamasi gerektigini gosterir.
