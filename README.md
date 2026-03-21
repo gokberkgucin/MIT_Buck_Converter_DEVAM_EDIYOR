@@ -1265,137 +1265,147 @@ Bu bolum tamamlanirken su maddeler netlestirilecek:
 
 
 
-#### 5.7.1 Taslaktaki secim mantigi
+#### 5.7.1 ODT'den aktarilan metin (`8. mosfetler`)
 
 
 
-`yeni.odt` taslaginda bootstrap agi icin oldukca ayrintili bir ilk boyutlandirma notu bulunuyor. Temel mantik su sekilde kurulmus:
+> Eklenecek..
 
-- bootstrap kondansatoru low-side iletim araliginda sarj olur
 
-- bu nedenle en kritik durum, high-side iletim suresinin en uzun oldugu ve low-side sarj penceresinin en kisa kaldigi durumdur
 
-- `Rboot` cok buyurse sarj yavaslar
+#### 5.7.2 Bootstrap direncini (`R_{boot}`) hesaplama ve secim mantigi
 
-- `Rboot` cok kuculurse pik akim ve ringing artar
 
 
+ODT'den aktarilan metin (`8.1. Bootstrap Direncini (Rboot) Hesaplama ve Seçim Mantığı`, denklemler okunur formatta yeniden yazildi):
 
-Bu cerceve dogru bir muhendislik baslangicidir.
+1. "Hangi duty?"
 
+PWM'de high-side MOSFET'in en uzun sure acik kaldigi durum, bootstrap kondansatorunun en kisa sarj penceresini verir. ODT notunda verilen degerlerle:
 
+$$
+D_{\text{high,max}} = 0.648
+$$
 
-#### 5.7.2 Taslaktan alinan sayisal degerler
+$$
+D_{\text{low,min}} = 1 - D_{\text{high,max}} = 1 - 0.648 = 0.352
+$$
 
+Bu nedenle bootstrap sarji icin kullanilan worst-case pencere, periyodun `%35.2`'lik low-side iletim araligidir.
 
+2. Sarj penceresi ve zaman sabiti
 
-Taslakta kullanilan degerler su sekildedir:
+ODT notunda bu adim, `Rboot = 2.2\,\Omega` ve `Cboot = 0.1\,\mu\text{F}` secimiyle tartisiliyor. Standart RC zaman sabiti tanimi ile:
 
-- `Dutyhigh,max = 0.648`
+$$
+\tau = R_{boot} C_{boot}
+= 2.2\,\Omega \times 0.1\,\mu\text{F}
+= 0.22\,\mu\text{s}
+$$
 
-- `Dutyhigh,min = 0.432`
+PWM frekansi `332 kHz` icin:
 
-- `Dlow,min = 1 - 0.648 = 0.352`
+$$
+T_{sw} = \frac{1}{f_{sw}}
+= \frac{1}{332\,\text{kHz}}
+\approx 3.01\,\mu\text{s}
+$$
 
-- `fsw = 332 kHz`
+Worst-case bootstrap sarj penceresi:
 
-- `Tsw ~= 3.01 us`
+$$
+t_{\text{charge,min}} = D_{\text{low,min}} T_{sw}
+= 0.352 \times 3.01\,\mu\text{s}
+\approx 1.06\,\mu\text{s}
+$$
 
-- `tcharge,min = 0.352 x 3.01 us ~= 1.06 us`
+Dolayisiyla:
 
-- `Rboot = 2.2 ohm`
+$$
+\frac{t_{\text{charge,min}}}{\tau}
+= \frac{1.06}{0.22}
+\approx 4.82
+$$
 
-- `Cboot = 0.1 uF`
+ODT notunda gecen `0.625\,\mu\text{s}` degeri, standart RC zaman sabiti tanimi degildir. Standart tanimla bakildiginda, sarj penceresi yaklasik `4.8\tau` surmektedir. Bu, ideal bir RC sarj modelinde bootstrap kondansatorunun cok buyuk oranda dolabilecegini gosterir.
 
-- `VDD = 8.4 V`
+3. Bootstrap gerilimi
 
-- `VBootDiode ~= 0.5 V`
+ODT notunda `V_{DD} = 8.4\,\text{V}` ve bootstrap diyot dusumu yaklasik `0.5\,\text{V}` alinmis. Buna gore hedef bootstrap gerilimi:
 
-- ilk yaklasimla `VCboot ~= 7.9 V`
+$$
+V_{C_{boot}} \approx V_{DD} - V_{\text{BootDiode}}
+= 8.4\,\text{V} - 0.5\,\text{V}
+= 7.9\,\text{V}
+$$
 
+Eger bootstrap kondansatoru worst-case pencerenin basinda tamamen bos kabul edilirse, ideal RC modeliyle bu pencere sonunda ulasilan gerilim:
 
+$$
+V_{C_{boot}}(t_{\text{charge,min}})
+\approx 7.9\left(1 - e^{-t_{\text{charge,min}}/\tau}\right)
+\approx 7.9\left(1 - e^{-4.82}\right)
+\approx 7.84\,\text{V}
+$$
 
-Ayni taslakta tepe bootstrap sarj akimi de su sekilde hesaplanmis:
+Bu, ODT notundaki "bootstrap voltaji yeterince hizli olusuyor" sonucunu destekler.
 
+4. Kondansatörde depolanan enerji
 
+Bootstrap kondansatorunde depolanan enerji:
 
-`Ipk ~= (8.4 - 0.5) / 2.2 ~= 3.6 A`
+$$
+E_{\text{cap}}
+= \frac{1}{2} C_{boot} V_{C_{boot}}^2
+= \frac{1}{2}\cdot 0.1\,\mu\text{F}\cdot (7.9\,\text{V})^2
+\approx 3.12\,\mu\text{J}
+$$
 
+Bu, kondansatorun yaklasik `7.9 V` seviyesine sarj oldugunda depoladigi enerjiyi verir.
 
+5. Direncte yakilan enerji hakkinda dikkat
 
-Bu deger, bootstrap diyodu ve kisa sarj dongusu uzerindeki PCB izleri icin anlamli bir ilk boyutlandirma kontroludur.
+ODT notunda dirençte yakilan enerji icin ayrica bir hesap niyeti bulunuyor. Ancak bu kisimda kullanilan ifade, mevcut haliyle nihai denklem olarak alinmamalidir. Tam `0 V -> 7.9 V` RC sarj adiminda ideal seri dirençte harcanan enerji, ayni buyukluk mertebesinde:
 
+$$
+E_{R,\text{full-step}}
+\approx \frac{1}{2} C_{boot} V_{C_{boot}}^2
+\approx 3.12\,\mu\text{J}
+$$
 
+olur. Fakat bootstrap kondansatoru her cevrimde sifirdan sarj olmadigi icin, gercek cevrimsel kayip bundan daha dusuk olur. Bu nedenle direnç watt secimi yalnizca bu tek enerji hesabina baglanmamalidir.
 
-#### 5.7.3 Ilk fiziksel sanity check
+6. Ilk tepe akimi
 
+Bootstrap sarjinin ilk anindaki yaklasik tepe akimi:
 
+$$
+I_{\text{pk}}
+= \frac{V_{DD} - V_{\text{BootDiode}}}{R_{boot}}
+= \frac{8.4\,\text{V} - 0.5\,\text{V}}{2.2\,\Omega}
+\approx 3.59\,\text{A}
+$$
 
-Taslaktaki degerlerle standart RC zaman sabiti kullanilirsa:
+Bu nedenle bootstrap diyotu ve PCB izleri, en azindan bu buyukluk mertebesindeki pik sarj akimini tasiyabilecek sekilde degerlendirilmelidir.
 
 
 
-`tau_std = Rboot x Cboot = 2.2 x 0.1 uF = 0.22 us`
+Ek not:
 
+Bu bolumde korunacak ana muhendislik mantigi sunudur:
 
+- worst-case bootstrap sarj penceresi, $D_{\text{low,min}}$ ile belirlenir
+- `R_{boot}` buyurse sarj yavaslar; cok kuculurse pik akim ve ringing artar
+- `R_{boot} = 2.2\,\Omega` ve `C_{boot} = 0.1\,\mu\text{F}` secimi, ilk bakista sarj hizi acisindan makul gorunmektedir
+- fakat direnç guc derecelendirmesi, diyot peak akimi ve bootstrap dugumu ringing davranisi nihai olarak simulasyon veya deneyle dogrulanmalidir
 
-Worst-case sarj penceresi ise:
+Bu nedenle bu bolumde ozellikle su maddeler sonra yeniden kontrol edilmelidir:
 
-
-
-`tcharge,min ~= 1.06 us`
-
-
-
-Buna gore:
-
-
-
-`tcharge,min / tau_std ~= 1.06 / 0.22 ~= 4.8`
-
-
-
-Bu ilk kontrol, bootstrap kondansatorunun worst-case low-side iletim araliginda anlamli olcude sarj olabildigini gosterir. Dolayisiyla `Rboot = 2.2 ohm` ve `Cboot = 0.1 uF` secimi ilk bakista UVLO riski acisindan makul gorunmektedir.
-
-
-
-#### 5.7.4 Yeniden turetilmesi gereken kisimlar
-
-
-
-Taslak notlardaki bazi esitsizlikler ve formuller son hal olarak kabul edilmemelidir:
-
-- taslakta yazilan `tau = Rboot x Cboot / Dlow,min` ifadesi standart RC zaman sabiti tanimi degildir
-
-- `Eres ~= 3 x Cboot x Rboot` ifadesi boyutsal olarak suphelidir ve nihai enerji hesabi olarak kullanilmamalidir
-
-- buna bagli direnç watt yorumu tekrar kurulmalidir
-
-
-
-Bu nedenle bootstrap bolumunde su ayirim korunmalidir:
-
-- sarj penceresi, pik akim ve ilk RC kontrolu faydali bir taslak hesap olarak saklanabilir
-
-- enerji ve direnç guc derecelendirmesi ise fiziksel olarak tutarli bir modelle yeniden hesaplanmalidir
-
-
-
-#### 5.7.5 Sonraki dogrulamalar
-
-
-
-Bu bolume daha sonra su kontroller eklenecek:
-
-- `Dutyhigh,max` degerinin nereden geldiginin acikca gosterilmesi
-
-- `VDD` seviyesinin ve diyot dusumunun datasheet ile teyidi
-
-- bootstrap diyotunun peak akim ve ters gerilim uygunlugu
-
-- `Rboot` seciminin ringing ve sarj hizi acisindan simulasyonla gozlenmesi
-
-- gerekiyorsa PSPICE / LTspice ile bootstrap dugumu dalga seklinin kontrolu
+- $D_{\text{high,max}} = 0.648$ degerinin kaynagi
+- `VDD` ve diyot dusumunun datasheet ile teyidi
+- bootstrap diyotunun peak akim ve ters gerilim marji
+- `R_{boot}` seciminin ringing ve sarj hizi acisindan uygunlugu
+- gerekiyorsa LTspice / PSpice ile bootstrap dugumu dalga sekli
 
 
 
