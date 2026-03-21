@@ -1504,34 +1504,36 @@ ODT'den aktarilan metin (`Çıkış Filtresi ve Yük`):
 $$
 H_{\text{filter}}(s)
 = \frac{V_{out}}{V_{in}}
-=
-\frac{1 + C_{out} R_{esr} s}
-{1 + \dfrac{R_{Damp}}{R_{load}}
-+ \left(
-\dfrac{L_F}{R_{load}}
-+ R_{esr} C_{out}
-+ R_{Damp} C_{out}
-+ \dfrac{R_{Damp} R_{esr} C_{out}}{R_{load}}
-\right)s
-+ \left(\dfrac{R_{load} + R_{esr}}{R_{load}}\right)L_F C_{out} s^2}
+= \frac{1 + C_{out} R_{esr} s}{a_0 + a_1 s + a_2 s^2}
+$$
+
+Burada katsayilar:
+
+$$
+\begin{aligned}
+a_0 &= 1 + \frac{R_{Damp}}{R_{load}}, \\
+a_1 &= \frac{L_F}{R_{load}} + R_{esr} C_{out} + R_{Damp} C_{out}
++ \frac{R_{Damp} R_{esr} C_{out}}{R_{load}}, \\
+a_2 &= \left(\frac{R_{load} + R_{esr}}{R_{load}}\right)L_F C_{out}
+\end{aligned}
 $$
 
 > Sayisal yerlestirme:
 
 $$
 \begin{aligned}
-H_{\text{filter}}(s)
-=&
-\frac{1 + (70\,\mu\text{F})(0.26\,\text{m}\Omega)\,s}
-{1 + \dfrac{21.13\,\text{m}\Omega}{1.59\,\Omega}
-+ \left(
-\dfrac{6.8\,\mu\text{H}}{1.59\,\Omega}
+a_0 &= 1 + \frac{21.13\,\text{m}\Omega}{1.59\,\Omega}
+= 1.01329, \\
+a_1 &= \frac{6.8\,\mu\text{H}}{1.59\,\Omega}
 + (0.26\,\text{m}\Omega)(70\,\mu\text{F})
 + (21.13\,\text{m}\Omega)(70\,\mu\text{F})
-+ \dfrac{(21.13\,\text{m}\Omega)(0.26\,\text{m}\Omega)(70\,\mu\text{F})}{1.59\,\Omega}
-\right)s
-+ \left(\dfrac{1.59\,\Omega + 0.26\,\text{m}\Omega}{1.59\,\Omega}\right)
-(6.8\,\mu\text{H})(70\,\mu\text{F})\,s^2}
++ \frac{(21.13\,\text{m}\Omega)(0.26\,\text{m}\Omega)(70\,\mu\text{F})}{1.59\,\Omega}
+= 5.774 \times 10^{-6}, \\
+a_2 &= \left(\frac{1.59\,\Omega + 0.26\,\text{m}\Omega}{1.59\,\Omega}\right)
+(6.8\,\mu\text{H})(70\,\mu\text{F})
+= 4.761 \times 10^{-10}, \\
+C_{out}R_{esr} &= (70\,\mu\text{F})(0.26\,\text{m}\Omega)
+= 1.82 \times 10^{-8}
 \end{aligned}
 $$
 
@@ -1712,35 +1714,44 @@ $$
 $$
 H_{\text{filter}}(s)
 = \frac{V_{out}}{V_{in}}
-=
-\frac{1 + C_{out} R_{esr} s}
-{1 + \dfrac{R_{Damp}}{R_{load}}
-+ \left(
-\dfrac{L_F}{R_{load}}
-+ R_{esr} C_{out}
-+ R_{Damp} C_{out}
-+ \dfrac{R_{Damp} R_{esr} C_{out}}{R_{load}}
-\right)s
-+ \left(\dfrac{R_{load} + R_{esr}}{R_{load}}\right)L_F C_{out} s^2}
+= \frac{1 + C_{out} R_{esr} s}{a_0 + a_1 s + a_2 s^2}
+$$
+
+Burada:
+
+$$
+\begin{aligned}
+a_0 &= 1 + \frac{R_{Damp}}{R_{load}}, \\
+a_1 &= \frac{L_F}{R_{load}} + R_{esr} C_{out} + R_{Damp} C_{out}
++ \frac{R_{Damp} R_{esr} C_{out}}{R_{load}}, \\
+a_2 &= \left(\frac{R_{load} + R_{esr}}{R_{load}}\right)L_F C_{out}
+\end{aligned}
 $$
 
 > Sayisal yerlestirme:
 
 $$
 \begin{aligned}
-H_{\text{filter}}(s)
-=&
-\frac{1 + (70\,\mu\text{F})(0.26\,\text{m}\Omega)\,s}
-{1 + \dfrac{21.13\,\text{m}\Omega}{1.59\,\Omega}
-+ \left(
-\dfrac{6.8\,\mu\text{H}}{1.59\,\Omega}
+a_0 &= 1 + \frac{21.13\,\text{m}\Omega}{1.59\,\Omega}
+= 1.01329, \\
+a_1 &= \frac{6.8\,\mu\text{H}}{1.59\,\Omega}
 + (0.26\,\text{m}\Omega)(70\,\mu\text{F})
 + (21.13\,\text{m}\Omega)(70\,\mu\text{F})
-+ \dfrac{(21.13\,\text{m}\Omega)(0.26\,\text{m}\Omega)(70\,\mu\text{F})}{1.59\,\Omega}
-\right)s
-+ \left(\dfrac{1.59\,\Omega + 0.26\,\text{m}\Omega}{1.59\,\Omega}\right)
-(6.8\,\mu\text{H})(70\,\mu\text{F})\,s^2}
++ \frac{(21.13\,\text{m}\Omega)(0.26\,\text{m}\Omega)(70\,\mu\text{F})}{1.59\,\Omega}
+= 5.774 \times 10^{-6}, \\
+a_2 &= \left(\frac{1.59\,\Omega + 0.26\,\text{m}\Omega}{1.59\,\Omega}\right)
+(6.8\,\mu\text{H})(70\,\mu\text{F})
+= 4.761 \times 10^{-10}, \\
+C_{out}R_{esr} &= (70\,\mu\text{F})(0.26\,\text{m}\Omega)
+= 1.82 \times 10^{-8}
 \end{aligned}
+$$
+
+$$
+H_{\text{filter}}(s)
+\approx
+\frac{1 + 1.82 \times 10^{-8} s}
+{1.01329 + 5.774 \times 10^{-6} s + 4.761 \times 10^{-10} s^2}
 $$
 
 ![LM5146-Q1'nin Buck Regulator Poles and Zeros](images/odt_embedded/fig_26_compensator_related.png)
