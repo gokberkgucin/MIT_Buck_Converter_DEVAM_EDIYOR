@@ -1440,80 +1440,130 @@ Bu cerceve, voltage-mode control dusunce yapisi ile uyumludur. Kompanzatorun gor
 #### 6.1.2 Modulator blogunun rolu
 
 
+ODT'den aktarilan metin (`9.2. Modulator Bloğu`):
 
-`yeni.odt` taslaginda modulator blogu icin su temel gozlem yapiliyor:
+> Frekansa bağımlı değildir.
+>
+> Duty Cycle'ı belirler. Compensator bloğunda gelen işareti artarsa işaretinin genişliği artar, duty cycle artar, Q1 ana mosfet daha uzun süre açık (`on`) iletimde kalır.
 
-- modulator duty cycle'i belirler
+![Voltage Mode Modulator](images/odt_embedded/fig_22_voltage_mode_modulator.png)
 
-- kompanzator cikisi arttikca high-side iletim suresi artar
+Voltage Mode Modulator
 
-- bu da duty cycle'in artmasi ve enerji transferinin buyumesi anlamina gelir
+> Modulator bloğunun transfer function'ı:
 
+$$
+H_{\text{mod}}(s)
+= \frac{V_{in}}{V_{\text{ramp}}}
+= k_{FF}
+= 15\,\text{V/V}
+$$
 
-
-Yerel script notlarinda LM5146-Q1 icin modulator kazanci, ramp genligi uzerinden tanimlanmis:
-
-
-
-`M = Vin / Vramp`
-
-
-
-Ayni scriptte `Vramp = Vin / 15` alinmis ve boylece modulator kazanci fiilen sabit `15` olarak kullanilmistir. Bu, taslaktaki `input voltage feedforward` yorumuyla uyumludur: giris gerilimi degisirken ramp genligi de uygun sekilde degisiyorsa modulator kazanci yaklasik sabit tutulabilir.
-
-
-
-Bu nokta cok onemlidir, cunku kontrol tasarimini sadeleştirir:
+> Kullandığımız LM5146-Q1'ın input voltage feedforward özelliği var. Bu özellik sayesinde modülatör kazancı sabit kalıyor. Örneğin giriş gerilimi $V_{in}$ artarsa, $V_{\text{ramp}}$ da artarak $k_{FF} = 15\,\text{V/V}$ değerinin sabit kalmasını sağlıyor.
 
 
 
-ODT gorseli:
+Ek not:
+
+Bu bolumde korunacak ana fikir, voltage-mode kontrol yapisinda modulator blogunun frekansa bagimli bir filtre gibi davranmamasidir; asil gorevi, kompanzator cikisini PWM gorev oranina cevirmektir. Bu nedenle:
+
+- kompanzator cikisi artarsa high-side iletim suresi artar
+- duty cycle artar
+- guc katina aktarilan ortalama enerji artar
+
+LM5146-Q1 icindeki input-voltage feedforward yapisi nedeniyle, rampa genligi giris gerilimiyle birlikte olceklenir. Bu da modulator kazancinin yaklasik sabit tutulmasini saglar ve kontrol tasarimini sadeleştirir. Bu projede ilk yaklasim olarak:
+
+$$
+V_{\text{ramp}} \approx \frac{V_{in}}{15}
+$$
+
+ve dolayisiyla
+
+$$
+H_{\text{mod}}(s)
+= \frac{V_{in}}{V_{\text{ramp}}}
+\approx 15
+$$
+
+alinabilir.
 
 
 
-![Modulator blogu](images/odt_embedded/fig_22_voltage_mode_modulator.png)
+#### 6.1.3 Cikis filtresi ve yuk
 
 
 
-- `Vin` degisse bile modulator kazanci buyuk olcude sabit kalir
+ODT'den aktarilan metin (`Çıkış Filtresi ve Yük`):
 
-- bu da plant kazancindaki degisimi kismen telafi eder
+![Cikis Filtresi ve Yuk](images/odt_embedded/fig_23_output_filter_and_load.png)
+
+Çıkış Filtresi ve Yük
+
+> Cikis filtresi ve yuk icin kullanilan transfer fonksiyonu:
+
+$$
+H_{\text{filter}}(s)
+= \frac{V_{out}}{V_{in}}
+=
+\frac{1 + C_{out} R_{esr} s}
+{1 + \dfrac{R_{Damp}}{R_{load}}
++ \left(
+\dfrac{L_F}{R_{load}}
++ R_{esr} C_{out}
++ R_{Damp} C_{out}
++ \dfrac{R_{Damp} R_{esr} C_{out}}{R_{load}}
+\right)s
++ \left(\dfrac{R_{load} + R_{esr}}{R_{load}}\right)L_F C_{out} s^2}
+$$
+
+> Sayisal yerlestirme:
+
+$$
+\begin{aligned}
+H_{\text{filter}}(s)
+=&
+\frac{1 + (70\,\mu\text{F})(0.26\,\text{m}\Omega)\,s}
+{1 + \dfrac{21.13\,\text{m}\Omega}{1.59\,\Omega}
++ \left(
+\dfrac{6.8\,\mu\text{H}}{1.59\,\Omega}
++ (0.26\,\text{m}\Omega)(70\,\mu\text{F})
++ (21.13\,\text{m}\Omega)(70\,\mu\text{F})
++ \dfrac{(21.13\,\text{m}\Omega)(0.26\,\text{m}\Omega)(70\,\mu\text{F})}{1.59\,\Omega}
+\right)s
++ \left(\dfrac{1.59\,\Omega + 0.26\,\text{m}\Omega}{1.59\,\Omega}\right)
+(6.8\,\mu\text{H})(70\,\mu\text{F})\,s^2}
+\end{aligned}
+$$
+
+> Yaklasik katsayi bicimi:
+
+$$
+H_{\text{filter}}(s)
+\approx
+\frac{1 + 1.82 \times 10^{-8} s}
+{1.01329 + 5.774 \times 10^{-6} s + 4.761 \times 10^{-10} s^2}
+$$
+
+![Tasarimimizda kullandigimiz cikis capacitorleri](images/odt_embedded/fig_24_output_capacitor_bank.png)
+
+Tasarımımızda kullandığımız çıkış capacitorleri
+
+> Iki farkli turde cikis capacitor'u mevcut. $H_{\text{filter}}(s)$ transfer fonksiyonu hesabinda $0.1\,\mu\text{F}$ degerindeki `C28` capacitor'unu ihmal ettik.
+>
+> Sebebi: ihmal edilmis bicimi yeterince dogru; bu capacitor esas olarak daha yuksek frekans bolgesinde etkili.
 
 
 
-#### 6.1.3 Power stage modeli
+Ek not:
 
+Bu bolumde ana fikir, kontrol dongusunun plant kisminin yalnizca bobinden degil, cikis capacitor bank'i ve yuk ile birlikte olusan ikinci dereceden bir yapidan gelmesidir. Burada:
 
+- $L_F$ enerji depolayan ana kutbu etkiler
+- $C_{out}$ cikis dugumunun dinamiklerini belirler
+- $R_{esr}$ ESR sifirini olusturur
+- $R_{load}$ ve varsa sönumle ilgili direncler kutup yerlerini degistirir
 
-Yerel scriptte power stage, cikis filtresi ve yukun ikinci dereceden bir transfer fonksiyonu olarak ele alindigi goruluyor. Bu modelde su buyuklukler birlikte dusunuluyor:
-
-- bobin `L`
-
-- bobin seri direnci `r_L`
-
-- cikis kapasiteleri ve etkin ESR etkisi
-
-- yuk direnci `R`
-
-
-
-Bu, taslaktaki anlatimla da uyumludur: cikis filtresi ve yuk birlikte kontrol dongusunun frekans cevabini belirler ve kompanzator secimi bu modele bakilarak yapilir.
-
-
-
-ODT taslaginda ayrica cikista birden fazla kapasitör turu oldugu ve bunlardan cok kucuk degerli bir yuksek frekans kapasitörun ana transfer fonksiyonu hesabinda ihmal edildigi not edilmis. Bu yaklasim, eger ihmal edilen kapasitör yalnizca cok yuksek frekans bolgesinde etkiliyse ve crossover civarini anlamli degistirmiyorsa makul olabilir.
-
-
-
-Ancak bu ihmal karari final raporda otomatik kabul edilmemelidir; secilen `fc` civarinda ve ust kutup / sifir konumlarinda gercekten etkisiz kaldigi ya analitik olarak ya da bode karsilastirmasi ile gosterilmelidir.
-
-
-
-ODT gorselleri:
-
-![Cikis filtresi ve yuk](images/odt_embedded/fig_23_output_filter_and_load.png)
-
-![Cikis filtresi ve yuk / capacitorler](images/odt_embedded/fig_24_output_capacitor_bank.png)
+`C28 = 0.1 uF` gibi cok kucuk bir MLCC'nin ilk transfer fonksiyonu hesabinda ihmal edilmesi, ancak bu elemanin etkisi crossover civarinda gercekten kucukse kabul edilebilir. Genelde bu tip cok kucuk kapasiteler ana enerji depolama elemani olmaktan cok, daha yuksek frekansli spike ve ringing bastirma tarafinda etkili olur. Bu nedenle kompanzator hesabinda ilk yaklasimda ihmal edilmesi makul olabilir; yine de son kararin bode veya AC sweep ile dogrulanmasi gerekir.
 
 
 
@@ -1541,22 +1591,19 @@ Su an icin iki ayri katman oldugu acik yazilmalidir:
 #### 6.2.1 Neden bu yontem?
 
 
+ODT'den aktarilan metin (`9. kontrolcü tasarımı`):
 
-`yeni.odt` taslagina gore ilk donemde kontrolcu tasarimi farkli bir yaklasimla yapilmisti. Ilk calismada, gerilim kontrollu Type-III / PID benzeri klasik kompanzator akisi izlenmisti. Bu iterasyonda ise K-factor yonteminin kullanilmasi hedefleniyor.
-
-
-
-Bu gecis onemlidir cunku yalnizca farkli bir formulu denemek anlamina gelmez; kompanzator tasarimini daha sistematik, faz katkisi odakli ve tekrar kontrol edilebilir bir akisa tasir.
+> Bitirme Projesi 1 dersinde kontrolcü tasarımını [1] kaynağındaki gerilim kontrollü Type 3 PID Compensator yöntemini izleyerek yapmıştım. Bu dönemde, [4] kaynağındaki K factor yöntemi izleyerek yapacağım.
 
 
 
-Bu degisim onemli cunku K-factor yaklasimi:
+Ek not:
 
-- hedef crossover frekansi icin gereken kompanzator kazancini sistematik kurar
+Bu parca, yalnizca baska bir kompanzator topolojisine gecisi degil, ayni kontrol tasarim problemini daha sistematik bir yontemle yeniden kurma niyetini gosteriyor. K-factor yaklasimi burada ozellikle su nedenle degerli:
 
-- gerekli faz katkisini acikca hesaplamaya zorlar
-
-- Type-III kompanzator komponentlerini daha izlenebilir bir akisla cikarir
+- hedef crossover frekansinda gereken faz katkisini dogrudan hesaplamaya zorlar
+- kompanzator kazancini plant ve modulator ile birlikte ele alir
+- Type-III eleman degerlerini daha izlenebilir bir akista turetmeyi kolaylastirir
 
 
 
@@ -1628,29 +1675,96 @@ Bu bolum, ileride MATLAB ve LTspice ile yapilacak loop dogrulamasinin teorik bas
 
 
 
-#### 6.2.5 Kompanzator topolojisi notu
+#### 6.2.5 Compensator topolojisi ve temel model
 
 
 
-ODT taslagindaki `Compensator` basligi ve onceki donem notlari birlikte okundugunda, bu tasarimda Type-III kompanzator topolojisinin korundugu anlasiliyor. Bu tercih mantiklidir cunku voltage-mode buck yapida guc katinin kutuplari ve istenen crossover seviyesi, ek faz katkisini gerekli kilabilir.
+ODT'den aktarilan metin (`Compensator`):
+
+![Type 3 Compensator Devresi](images/odt_embedded/fig_25_type3_compensator.png)
+
+Type 3 Compensator Devresi
+
+> Compensator transfer function:
+
+$$
+H_{\text{compensator}}(s)
+= \frac{V_{\text{control}}}{V_{\text{sense}}}
+= \frac{H_{\text{error-amp,ol}}(s)}
+{1 + H_{\text{error-amp,ol}}(s)\,\beta(s)}
+$$
+
+> Error amplifier open-loop modeli:
+
+$$
+H_{\text{error-amp,ol}}(s)
+= \frac{A_{VOL}}
+{1 + \dfrac{s}{\omega_{\text{opamp}}}}
+$$
+
+$$
+\omega_{\text{opamp}}
+= 2\pi\,\frac{GBW}{A_{VOL}}
+$$
+
+> Bu kompanzator hesabinda kullanilan cikis filtresi ve yuk transfer fonksiyonu:
+
+$$
+H_{\text{filter}}(s)
+= \frac{V_{out}}{V_{in}}
+=
+\frac{1 + C_{out} R_{esr} s}
+{1 + \dfrac{R_{Damp}}{R_{load}}
++ \left(
+\dfrac{L_F}{R_{load}}
++ R_{esr} C_{out}
++ R_{Damp} C_{out}
++ \dfrac{R_{Damp} R_{esr} C_{out}}{R_{load}}
+\right)s
++ \left(\dfrac{R_{load} + R_{esr}}{R_{load}}\right)L_F C_{out} s^2}
+$$
+
+> Sayisal yerlestirme:
+
+$$
+\begin{aligned}
+H_{\text{filter}}(s)
+=&
+\frac{1 + (70\,\mu\text{F})(0.26\,\text{m}\Omega)\,s}
+{1 + \dfrac{21.13\,\text{m}\Omega}{1.59\,\Omega}
++ \left(
+\dfrac{6.8\,\mu\text{H}}{1.59\,\Omega}
++ (0.26\,\text{m}\Omega)(70\,\mu\text{F})
++ (21.13\,\text{m}\Omega)(70\,\mu\text{F})
++ \dfrac{(21.13\,\text{m}\Omega)(0.26\,\text{m}\Omega)(70\,\mu\text{F})}{1.59\,\Omega}
+\right)s
++ \left(\dfrac{1.59\,\Omega + 0.26\,\text{m}\Omega}{1.59\,\Omega}\right)
+(6.8\,\mu\text{H})(70\,\mu\text{F})\,s^2}
+\end{aligned}
+$$
+
+![LM5146-Q1'nin Buck Regulator Poles and Zeros](images/odt_embedded/fig_26_compensator_related.png)
+
+LM5146-Q1'nin Buck Regulator Poles and Zeros
 
 
 
-Burada onemli ayirim sunlardir:
+Ek not:
 
-- topolojinin Type-III olmasi, komponent degerlerinin de otomatik olarak dogru oldugu anlamina gelmez
+Bu bolumde artik sadece "Type-III kompanzator kullanilacak" demekle yetinmiyoruz; kompanzatorun analitik olarak hangi bloktan geldigi de acik hale geliyor. Burada temel mantik su:
 
-- ODT'de kompanzator devresine ait temiz sayisal sonuclar yok; bu nedenle sayisal `R/C` degerleri sonraki turda gercek plant ile yeniden kurulacaktir
+- sonlu acik-cevrim kazanca sahip hata yukselteci, `beta(s)` geri besleme agi ile birlikte kapali-cevrim kompanzatoru olusturur
+- `H_{\text{compensator}}(s)` kontrol dugumundeki gerilimi sekillendirir
+- bu blok, modulator ve power-stage ile carpilarak acik-cevrim donguyu belirler
 
-- yani kompanzatorun yapisi ODT'den aktarilmis kabul edilebilir, ama nihai boyutlandirma halen tasarim gorevidir
+Bu nedenle kompanzator tasarimi yalnizca `R` ve `C` secimi degil; ayni zamanda su uc ifadenin birlikte dusunulmesidir:
 
+$$
+H_{\text{open-loop}}(s)
+= H_{\text{mod}}(s)\,H_{\text{filter}}(s)\,H_{\text{compensator}}(s)
+$$
 
-
-ODT gorselleri:
-
-![Compensator / Type-III devre](images/odt_embedded/fig_25_type3_compensator.png)
-
-![Compensator civari - 2](images/odt_embedded/fig_26_compensator_related.png)
+Buradaki Type-III topoloji mantiklidir; ancak bu, komponent degerlerinin otomatik olarak dogru oldugu anlamina gelmez. Nihai `R/C` secimi, gercek plant, hedef crossover frekansi ve faz marji ile birlikte sonraki adimda yapilacaktir.
 
 
 
@@ -1744,26 +1858,53 @@ Bu nedenle nihai tasarimda hedef, yalnizca teorik olarak stabil bir dongu degil;
 #### 6.4.3 Kararlilik kriterinin bu projedeki anlami
 
 
-
-ODT'de `Kararlilik Kriteri` ayri bir baslik olarak geciyor. Eldeki temiz metin sinirli olsa da bu basligin yeni.md icindeki karsiligi su sekilde korunabilir:
-
-- tek bir bode grafiginde sadece guzel gorunen egri aramak yeterli degildir
-
-- loop'un uygun crossover bolgesinde `0 dB` gecisi, pozitif faz marji ve pozitif kazanc marji birlikte degerlendirilmelidir
-
-- giris filtresi, parazitikler ve coklu kutup/sifir yapilari varsa stabilite yorumu sadece kabaca `fsw/10` kuralina birakilmamalidir
-
-
-
-Bu nedenle bu projede kararlilik kriteri, yalnizca "simulasyon patlamadi" seviyesinde degil; margin, transient davranisi ve filtre etkisi birlikte kabul edilirse saglanmis sayilacaktir.
-
-
-
-ODT gorseli:
-
-
+ODT'den aktarilan metin (`Kararlılık Kriteri`):
 
 ![Kararlilik kriteri](images/odt_embedded/fig_21_stability_criterion.png)
+
+Buck DC/DC Regulator Control Block Diagram
+
+> Ani bir yük akımı değişimi sırasında Vout…. Şekil 9’daki block diagramının kapalı çevrim transfer fonksiyonu şöyledir:
+
+GitHub uyumlu matematik bicimiyle:
+
+$$
+H_{\text{system}}(s)
+= \frac{V_{out}}{V_{ref}}
+= \frac{\text{Ileri Yol}}{1 + \text{Açık Çevrim}}
+$$
+
+$$
+H_{\text{system}}(s)
+= \frac{H_{\text{mod}}(s)\,H_{\text{filter}}(s)}
+{1 + H_{\text{mod}}(s)\,H_{\text{filter}}(s)\,H_{\text{compensator}}(s)}
+$$
+
+$$
+H_{\text{open-loop}}(s)
+= H_{\text{mod}}(s)\,H_{\text{filter}}(s)\,H_{\text{compensator}}(s)
+$$
+
+Dolayisiyla kapali cevrim ifade su sekilde de yazilabilir:
+
+$$
+H_{\text{system}}(s)
+= \frac{H_{\text{mod}}(s)\,H_{\text{filter}}(s)}
+{1 + H_{\text{open-loop}}(s)}
+$$
+
+
+
+Ek not:
+
+Bu bolumde korunacak ana fikir, kararliligin yalnizca "cikis bir sekilde regule oldu" seviyesinde degil, acik-cevrim ve kapali-cevrim iliskisinin acikca kurulmasi ile degerlendirilmesidir. Bu nedenle:
+
+- uygun crossover bolgesinde `0 dB` gecisi
+- pozitif faz marji
+- pozitif kazanc marji
+- transient davranisi ile uyumlu kapali cevrim cevap
+
+birlikte yorumlanmalidir. Giris filtresi, parazitikler ve coklu kutup/sifir yapilari varsa stabilite yorumu sadece kabaca `f_{sw}/10` kuralina birakilmamalidir.
 
 
 
