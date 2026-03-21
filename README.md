@@ -282,7 +282,7 @@ $$
 V_{CC} \approx V_{in} - V_{dropout}
 $$
 
-Ornegin tipik dropout ile `V_{in} = 6\,\text{V}` icin:
+Ornegin tipik dropout ile $V_{in} = 6\,\text{V}$ icin:
 
 $$
 V_{CC} \approx 6.00\,\text{V} - 0.25\,\text{V} = 5.75\,\text{V}
@@ -290,15 +290,15 @@ $$
 
 Bu bolgede teknik olarak su riskler one cikar:
 
-- dusuk `VGS` nedeniyle `R_{DS(on)}` artisi ve iletim kayiplari
+- dusuk $V_{GS}$ nedeniyle $R_{DS(on)}$ artisi ve iletim kayiplari
 - gate sarj / desarj surelerinin uzamasi nedeniyle switching kayiplari
 - koruma ve akim algilama marjlarinin degismesi
 - gerekirse logic-level MOSFET veya harici `VCC` kullanim ihtiyaci
 
 Bu nedenle tasarimda iki yol acik tutulmalidir:
 
-- sistemi yalnizca `V_{in} \ge 8.22\,\text{V}` bolgesinde optimize etmek
-- veya `DVCC` uzerinden harici `8\,\text{V} - 13\,\text{V}` `VCC` rayi ile LDO'yu baypas etmek
+- sistemi yalnizca $V_{in} \ge 8.22\,\text{V}$ bolgesinde optimize etmek
+- veya `DVCC` uzerinden harici $8\,\text{V} - 13\,\text{V}$ $V_{CC}$ rayi ile LDO'yu baypas etmek
 
 
 
@@ -423,7 +423,7 @@ $$
 D_{\max,\text{donanimsal}} \approx \frac{\frac{1}{f_{sw}} - t_{OFF(\min)}}{\frac{1}{f_{sw}}}
 $$
 
-f<sub>sw</sub> = 332 kHz ve t<sub>OFF(min)</sub> = 140 ns icin:
+$f_{sw} = 332\,\text{kHz}$ ve $t_{OFF(\min)} = 140\,\text{ns}$ icin:
 
 $$
 D_{\max,\text{donanimsal}} \approx
@@ -440,7 +440,7 @@ D_{\min,\text{donanimsal}} \approx \frac{t_{ON(\min)}}{T_{sw}}
 \approx 0.013
 $$
 
-Bu nedenle nominal V<sub>in</sub> = 24 V - 36 V giris gerilimi araliginda gereken duty degerleri, ilk yaklasimda bu donanimsal sinirlarin icinde gorunmektedir. Ancak olu zaman, propagation delay ve kontrolcuye ozgu diger zamanlar nihai yorumdan once ayrica dogrulanmalidir.
+Bu nedenle nominal $V_{in} = 24\,\text{V} - 36\,\text{V}$ giris gerilimi araliginda gereken duty degerleri, ilk yaklasimda bu donanimsal sinirlarin icinde gorunmektedir. Ancak olu zaman, propagation delay ve kontrolcuye ozgu diger zamanlar nihai yorumdan once ayrica dogrulanmalidir.
 
 
 
@@ -661,7 +661,7 @@ ODT'den aktarilan metin (`6.1.2. Vripple Gerilimi`):
 >
 > gerilimini düşürmenin daha etkili bir yolu, fsw frekansındaki çıkış impedance’sını düşürmektir. Şekil Hata: Başvuru kaynağı bulunamadı.1’a bakarsak; Zout, Daha yüksek capacitance ve daha düşük bir esr direncinden oluşursa; Capacitance eğrisi sola kayar, yatayda düz bir eğri olan esr direnci de azaldığı için daha aşağıda olur. fsw frekansında Zout‘u etkin oldüşürdüğünü görebiliriz.****?
 >
-> V<sub>ripple</sub> = I<sub>L(P-P)</sub> · Z<sub>OUT</sub>(f<sub>sw</sub>)
+> $V_{ripple} = I_{L(P-P)} \cdot Z_{OUT}(f_{sw})$
 >
 > ( Hata: Başvuru kaynağı bulunamadı.5 )
 
@@ -682,13 +682,13 @@ $$
 
 Yani `L` arttikca bobin akiminin tepeden tepeye dalgalanmasi azalir. Ancak ODT'de dogru sezildigi gibi, bunun karsiliginda hacim, maliyet ve transient cevap hizi etkilenebilir.
 
-Ikinci yol ise `f_{sw}` civarindaki cikis empedansini dusurmektir. Bunun pratik anlami sunlardir:
+Ikinci yol ise $f_{sw}$ civarindaki cikis empedansini dusurmektir. Bunun pratik anlami sunlardir:
 
 - daha yuksek etkin kapasitans
 - daha dusuk `ESR`
 - uygun yerlesim ile daha dusuk parasitikler
 
-Bu nedenle bu alt bolumde korunacak ana fikir sunudur: `Vripple` yalnizca bobin akim dalgalanmasi problemi degil, ayni zamanda `f_{sw}` civarindaki `Zout`'un sekillendirilmesi problemidir.
+Bu nedenle bu alt bolumde korunacak ana fikir sunudur: $V_{ripple}$ yalnizca bobin akim dalgalanmasi problemi degil, ayni zamanda $f_{sw}$ civarindaki $Z_{out}$'un sekillendirilmesi problemidir.
 
 
 
@@ -786,7 +786,7 @@ $$
 C_{out}\frac{dV_{out}}{dt} = -I_C
 $$
 
-`t1` ani ve kullanicinin not ettigi `t_{undershoot}` sonu, matematiksel olarak su kosulla iliskilendirilebilir:
+$t_1$ ani ve kullanicinin not ettigi $t_{undershoot}$ sonu, matematiksel olarak su kosulla iliskilendirilebilir:
 
 $$
 \frac{dV_{out}}{dt} = 0
@@ -852,8 +852,8 @@ Ek not:
 
 Bu iki teknik sart, giris kapasiteleri icin artik yalnizca ortalama enerji depolama degil, ayni zamanda anlik gerilim kalite sinirlari da tanimlandigini gosteriyor. GitHub'da daha duzgun gorunmesi icin bu sinirlar su sekilde de okunabilir:
 
-- ΔV<sub>IN,PP</sub> ≤ 0.24 V
-- ΔV<sub>IN,Tran</sub> ≤ 0.36 V
+- $\Delta V_{IN,PP} \le 0.24\,\text{V}$
+- $\Delta V_{IN,Tran} \le 0.36\,\text{V}$
 
 
 
@@ -905,7 +905,7 @@ Bu alt bolumde korunacak esas mantik su:
 - once gerekli minimum etkin `Cin` bulunur
 - sonra `dc-bias`, tolerans ve gerilim sinifi etkileri eklenerek gercek secilecek parca degerine gidilir
 
-ODT notunda gecen `D = 0.5` varsayimi, ilk muhendislik yaklasimi olarak makul bir worst-case kontrol noktasi olabilir; ancak nihai hesapta gercek `V_in / V_out` araligina gore tekrar kontrol edilmelidir. Bu nedenle burada asil hedef katalog uF degerini degil, etkin `Cin` gereksinimini bulmaktir.
+ODT notunda gecen $D = 0.5$ varsayimi, ilk muhendislik yaklasimi olarak makul bir worst-case kontrol noktasi olabilir; ancak nihai hesapta gercek $V_{in} / V_{out}$ araligina gore tekrar kontrol edilmelidir. Bu nedenle burada asil hedef katalog `uF` degerini degil, etkin $C_{in}$ gereksinimini bulmaktir.
 
 
 
@@ -939,7 +939,7 @@ Kaba Hesap:
 
 Ek not:
 
-Bu alt bolumde ana teknik fikir, MLCC seciminin yalnizca kapasitansla degil RMS akim ve termal dayanım ile birlikte yapilmasi gerektigidir. ODT notundaki kaba `D = 0.5` yaklasimi ilk kontrol icin uygundur ve mavi egri uzerinden I<sub>in,RMS</sub> ≈ 0.5 I<sub>load</sub> sonucu okunarak 4.5 A<sub>RMS</sub> mertebesi bulunabilir.
+Bu alt bolumde ana teknik fikir, MLCC seciminin yalnizca kapasitansla degil RMS akim ve termal dayanım ile birlikte yapilmasi gerektigidir. ODT notundaki kaba $D = 0.5$ yaklasimi ilk kontrol icin uygundur ve mavi egri uzerinden $I_{in,RMS} \approx 0.5 I_{load}$ sonucu okunarak $4.5\,\text{A}_{RMS}$ mertebesi bulunabilir.
 
 Kaba yaklasimin temiz yazimi:
 
@@ -958,32 +958,28 @@ $$
 GitHub uyumlu matematik bicimiyle verilen daha ayrintili ifade su sekilde yazilabilir:
 
 $$
-\begin{aligned}
 I_{in,RMS,\max}
-&= I_{LOAD,\max}
+= I_{LOAD,\max}
 \sqrt{
 D(1-D)
- + \frac{1}{12}\cdot
++ \frac{1}{12}\cdot
 \left(\frac{V_{OUT}}{L\,f_{sw}\,I_{\max}}\right)^2
 \cdot (1-D)^2 \cdot D
 }
-\end{aligned}
 $$
 
 ODT notasyonundaki sayisal yerlestirme korunursa:
 
 $$
-\begin{aligned}
 I_{in,RMS,\max}
-&= 9\,\text{A}\,
+= 9\,\text{A}\,
 \sqrt{
 0.5(1-0.5)
- + \frac{1}{12}\cdot
++ \frac{1}{12}\cdot
 \left(\frac{14\,\text{V}}{6.8\,\mu\text{H}\cdot 332\,\text{kHz}\cdot 9\,\text{A}}\right)^2
-\cdot (1-0.5)^2\cdot 0.5
-} \\
-&\approx 4.55\,\text{A}_{RMS}
-\end{aligned}
+\cdot (1-0.5)^2 \cdot 0.5
+}
+\approx 4.55\,\text{A}_{RMS}
 $$
 
 Bu sonuc, giris MLCC bankasinin yalnizca ripple gerilimini degil, RMS akim tasima ve sicaklik artisi tarafini da karsilamasi gerektigini gosterir.
@@ -1033,24 +1029,11 @@ Bu parca, MLCC seciminde yalnizca elektriksel degerlerin degil sicaklik dayanim�
 #### 5.5.6 ESL ve kucuk degerli yardimci MLCC'ler
 
 
+ODT'den aktarilan metin (`7.1.4. MLCC Sığaçlarının ESL değeri ve Küçük Capacitance’lı Mlcc eklemek`):
 
-ODT'de iki ek fikir daha var ve ikisi de degerli:
-
-- MLCC'leri paralellemek etkin ESL'yi dusurmeye yardim eder
-
-- `1 uF`, `0.1 uF` gibi daha kucuk ve fiziksel olarak daha kucuk paketli seramikler, yuksek frekansli spike ve ringing bastirma isinde yararli olabilir
-
-
-
-Bu nedenle giris kapasitör agi tek tip ve tek degerli dusunulmemelidir. Buyuk degerli ana MLCC'lere ek olarak, kucuk degerli dusuk-ESL yardimci kapasitörler de anahtarlama kenarlarindaki cok yuksek frekansli akis icin faydali olabilir.
-
-
-
-Ancak bu kisim tamamen yerlesime bagimlidir; dolayisiyla final karar PCB veya LTspice parasitik modeli ile birlikte verilmelidir.
-
-
-
-ODT gorselleri:
+> Mlccler yüksek frekansta çalışırken ESL değerleri çok önemli olur.ç***
+> Düşük esl düşük ripple’için gereklidir.
+> Paralel bağlarsak esl’yi düşürürüz.
 
 ![MLCC ESL ve paralelleme civari - 1](images/odt_embedded/fig_11_input_esl_parallel_mlcc.png)
 
@@ -1060,9 +1043,39 @@ ODT gorselleri:
 
 ![MLCC ESL ve paralelleme civari - 4](images/odt_embedded/fig_14_input_esl_not_03.png)
 
+> genel ilke
+> ESL ne kadar düşükse, yüksek frekanslı spike’lar o kadar iyi bastırılır
+
+
+
+Ek not:
+
+Bu parca, yuksek frekansta MLCC seciminde `ESL`'nin belirleyici oldugunu net sekilde vurguluyor. Burada korunacak ana fikirler sunlardir:
+
+- dusuk `ESL`, yuksek frekansli spike ve ringing bastirma acisindan kritiktir
+- birden fazla MLCC'yi paralel baglamak etkin `ESL`'yi dusurmeye yardim eder
+- buyuk degerli ana MLCC'lere ek olarak daha kucuk kapasitansli, fiziksel olarak kucuk ve dusuk `ESL`'li yardimci kapasitörler de kullanilabilir
+
+Bu nedenle giris kapasitör agi tek tip ve tek degerli dusunulmemelidir; final karar yerlesim, akim dongusu ve parasitikler ile birlikte verilmelidir.
+
+ODT'den aktarilan metin (`7.1.4.1 Çok Küçük Farad’lı, Küçük Boyutlu MLCC’ler eklemek`):
+
+> Mosfetler çok hızlı açlıp kapandığında, giriş akımında ani sıçramalar oluşur. Giriş geriliminde ani kısa süreli dalgalanlanma Input spikes: Phase-node ringing:
+> Ali Shirsavar’den de örnek ver.
+> Küçük boyutlu (örneğin 0402, 0603) MLCC’ler genellikle daha düşük ESL değerine sahiptir.
+> Bu nedenle, sisteme 1 µF, 0.1 µF gibi küçük seramik kondansatörler eklenerek, bu yüksek frekanslı istenmeyen etkiler azaltılabilir.
+
 ![Kucuk MLCC ekleme civari - 1](images/odt_embedded/fig_15_small_mlcc_high_freq_01.png)
 
 ![Kucuk MLCC ekleme civari - 2](images/odt_embedded/fig_16_small_mlcc_high_freq_02.png)
+
+
+
+Ek not:
+
+Bu parca, ana MLCC bankasina ek olarak cok kucuk degerli yardimci MLCC ekleme mantigini veriyor. Buradaki fikir, enerji depolamaktan cok, `input spikes` ve `phase-node ringing` gibi cok yuksek frekansli istenmeyen etkileri bastirmaktir.
+
+Kucuk paketli `0402` veya `0603` MLCC'ler genellikle daha dusuk `ESL` sundugu icin, `1 µF` ve `0.1 µF` gibi degerler sicak akim dongusune yakin yerlestirilerek anahtarlama kenarlarindaki ani akim ihtiyacina daha hizli cevap verebilir.
 
 
 
@@ -1070,22 +1083,10 @@ ODT gorselleri:
 #### 5.5.7 Bulk kapasitör secimi mantigi
 
 
+ODT'den aktarilan metin (`7.2. Giriş Bulk Capacitor Seçimi`):
 
-Taslakta giris bulk kapasitörlerinin rolü su sekilde ciziliyor:
-
-- MLCC'ler yuksek frekansta ve dusuk ESR tarafinda gucludur
-
-- fakat dc-bias ve sicaklik altinda etkin kapasitanslari duser
-
-- bu nedenle daha yavas enerji ihtiyaci, transient dayanimı ve damping tarafinda bulk kapasitörler destekleyici rol oynar
-
-
-
-Bu mantik tutarlidir. Final secimde bulk kapasitörler, yuksek frekansli current loop'un ana parcasi gibi degil; enerji tamponu ve filtre / damping stratejisinin bir parcasi gibi ele alinmalidir.
-
-
-
-ODT gorselleri:
+> MLCC’ler düşük esr’leri sayesinde çok iyi ripple akımı yaşıyabilir. Ancak Mlcclerin etkin capacitance’sı Dc Bias ve sıcaklık altında önemli ölçüde azalır.
+> Bu da transient’lerde yeterli enerji depolayamamasına neden olur. Bu neden Bulk capacitorlerde kullanılır.
 
 ![Giris bulk capacitor secimi - 1](images/odt_embedded/fig_17_input_bulk_selection_01.png)
 
@@ -1094,6 +1095,14 @@ ODT gorselleri:
 ![Giris bulk capacitor secimi - 3](images/odt_embedded/fig_19_input_bulk_selection_03.png)
 
 ![Giris bulk capacitor secimi - 4](images/odt_embedded/fig_20_input_bulk_selection_note.jpg)
+
+
+
+Ek not:
+
+Bu parca, bulk kapasitörlerin neden hala gerekli olabildigini netlestiriyor. MLCC'ler yuksek frekans ripple bastirmada cok guclu olsalar da, `dc-bias` ve sicaklik altinda etkin kapasitans kaybi yasadiklari icin daha yavas transient enerji ihtiyacinda tek baslarina yetersiz kalabilirler.
+
+Bu nedenle bulk kapasitörler burada yuksek frekansli sicak akim dongusunun ana parcasi gibi degil, enerji tamponu ve daha yavas dinamiklerin destekleyicisi olarak dusunulmelidir.
 
 
 
