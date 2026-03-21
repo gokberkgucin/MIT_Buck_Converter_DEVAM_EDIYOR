@@ -150,7 +150,7 @@ Bu bolumu tek bir dogruluk kaynagi olarak kullan.
 
 | Cikis gucu | `50 W - 125 W` | rezistif yuk |
 
-| Cikis akimi, turetilmis | `3.571 A - 8.929 A` | `Iout = Pout / Vout` |
+| Cikis akimi, turetilmis | `3.571 A - 8.929 A` | $I_{out} = \dfrac{P_{out}}{V_{out}}$ |
 
 | Yuk adimi | `3.571 A -> 9 A` | taslakta `5.429 A` load-step olarak not edilmis |
 
@@ -274,23 +274,23 @@ ODT'den aktarilan metin (`4.2. Giriş Gerilimi Vin`):
 
 Bu ODT parcasi, dahili LDO'nun tam regulasyon ve dropout bolgeleri arasindaki tasarim farkini netlestiriyor. GitHub uyumlu matematik bicimiyle bu sinirlar su sekilde yazilabilir:
 
-$$
+```math
 V_{in,\min} = 7.5\,\text{V} + 0.72\,\text{V} = 8.22\,\text{V}
-$$
+```
 
-$$
+```math
 V_{CC} \approx V_{in} - V_{dropout}
-$$
+```
 
 Ornegin tipik dropout ile $V_{in} = 6\,\text{V}$ icin:
 
-$$
+```math
 V_{CC} \approx 6.00\,\text{V} - 0.25\,\text{V} = 5.75\,\text{V}
-$$
+```
 
 Bu bolgede teknik olarak su riskler one cikar:
 
-- dusuk $V_{GS}$ nedeniyle $R_{DS(on)}$ artisi ve iletim kayiplari
+- $R_{DS(on)} \approx 8.2\,\text{m}\Omega$
 - gate sarj / desarj surelerinin uzamasi nedeniyle switching kayiplari
 - koruma ve akim algilama marjlarinin degismesi
 - gerekirse logic-level MOSFET veya harici `VCC` kullanim ihtiyaci
@@ -320,11 +320,15 @@ Ek not:
 
 Bu parca, geri besleme bolucusunun `14 V` cikis hedefi icin secildigini ve fiziksel paket hedefinin `0402` oldugunu kaydediyor. GitHub uyumlu matematik bicimiyle temel setpoint iliskisi su sekilde yazilabilir:
 
-$V_{out} = V_{FB}\left(1 + \frac{R_{FB1}}{R_{FB2}}\right)$
+```math
+V_{out} = V_{FB}\left(1 + \frac{R_{FB1}}{R_{FB2}}\right)
+```
 
 Burada $V_{FB} = 0.8\,\text{V}$, $R_{FB1} = 16.5\,\text{k}\Omega$ ve $R_{FB2} = 1.00\,\text{k}\Omega$ alinirse:
 
-$V_{out} = 0.8\left(1 + \frac{16.5}{1.0}\right) = 14.0\,\text{V}$
+```math
+V_{out} = 0.8\left(1 + \frac{16.5}{1.0}\right) = 14.0\,\text{V}
+```
 
 Bu secim, hedef cikis gerilimi ile uyumludur. Ayrica `%0.1` toleransli direnç secimi, setpoint hatasini dusuk tutmak icin mantikli bir tercihtir.
 
@@ -342,15 +346,17 @@ Nominal ilk yaklasimda senkron buck donusturucu icin duty orani su sekilde alina
 
 
 
-`D ~= Vout / Vin`
+```math
+D \approx \frac{V_{out}}{V_{in}}
+```
 
 
 
 Buna gore mevcut spesifikasyonlarla:
 
-- `Dmax,ideal = 14 / 24 = 0.583`
+- $D_{\max,\text{ideal}} = \dfrac{14}{24} = 0.583$
 
-- `Dmin,ideal = 14 / 36 = 0.389`
+- $D_{\min,\text{ideal}} = \dfrac{14}{36} = 0.389$
 
 
 
@@ -366,7 +372,9 @@ Mevcut tasarim seciminde:
 
 
 
-`fsw = 332 kHz`
+```math
+f_{sw} = 332\,\text{kHz}
+```
 
 
 
@@ -374,19 +382,21 @@ Buna gore periyot:
 
 
 
-`Tsw = 1 / fsw ~= 3.01 us`
+```math
+T_{sw} = \frac{1}{f_{sw}} \approx 3.01\,\mu\text{s}
+```
 
 
 
 Ideal duty degerleri zaman alanina cevrilirse:
 
-- `tON,max,ideal = 0.583 x 3.01 us ~= 1.76 us`
+- $t_{ON,\max,\text{ideal}} = 0.583 \times 3.01\,\mu\text{s} \approx 1.76\,\mu\text{s}$
 
-- `tON,min,ideal = 0.389 x 3.01 us ~= 1.17 us`
+- $t_{ON,\min,\text{ideal}} = 0.389 \times 3.01\,\mu\text{s} \approx 1.17\,\mu\text{s}$
 
-- `tOFF,min,ideal = (1 - 0.583) x 3.01 us ~= 1.25 us`
+- $t_{OFF,\min,\text{ideal}} = (1 - 0.583) \times 3.01\,\mu\text{s} \approx 1.25\,\mu\text{s}$
 
-- `tOFF,max,ideal = (1 - 0.389) x 3.01 us ~= 1.84 us`
+- $t_{OFF,\max,\text{ideal}} = (1 - 0.389) \times 3.01\,\mu\text{s} \approx 1.84\,\mu\text{s}$
 
 
 
@@ -403,9 +413,9 @@ ODT'den aktarilan metin (`6.1.4. Dmax,donanımsal..?`):
 > … Dikkat burası tam doğru olmayabilir. *** Bakarsın bir video vardı. Eklersin.
 > Arada başka zamanlar da var. Ölü zaman gibi…
 >
-> {D} rsub {MAX,donanımsal} ≈ {{T} rsub {sw} "-"" " {t} rsub {off left (min right )}} over {{T} rsub {sw}} " "
-> ≈" " {{{1} over {f}} rsub {sw} "-"" " {t} rsub {off left (min right )}} over {{{1} over {f}} rsub {sw}} " "≈" " {{1} over {332kHz} "-"" " 140nsaniye} over {{1} over {332kHz}}
-> ≈" " {{{1} over {f}} rsub {sw} "-"" " {t} rsub {off left (min right )}} over {{{1} over {f}} rsub {sw}} " "≈" " {{1} over {332kHz} "-"" " 140nsaniye} over {{1} over {332kHz}}
+> ODT'deki denklem notasyonu bozuk aktarilmis; temiz matematik yazimi asagida verilmistir.
+
+
 
 
 
@@ -415,30 +425,30 @@ Bu parca, denetleyicinin ideal duty hesabindan ayri olarak donanimsal zaman sini
 
 GitHub uyumlu matematik bicimiyle donanimsal ust duty siniri su sekilde yazilabilir:
 
-$$
+```math
 D_{\max,\text{donanimsal}} \approx \frac{T_{sw} - t_{OFF(\min)}}{T_{sw}}
-$$
+```
 
-$$
+```math
 D_{\max,\text{donanimsal}} \approx \frac{\frac{1}{f_{sw}} - t_{OFF(\min)}}{\frac{1}{f_{sw}}}
-$$
+```
 
 $f_{sw} = 332\,\text{kHz}$ ve $t_{OFF(\min)} = 140\,\text{ns}$ icin:
 
-$$
+```math
 D_{\max,\text{donanimsal}} \approx
 \frac{\frac{1}{332\,\text{kHz}} - 140\,\text{ns}}{\frac{1}{332\,\text{kHz}}}
 \approx 0.953
-$$
+```
 
 Ayni yaklasimla en kucuk on-time sinirindan bir alt duty tahmini de elde edilebilir:
 
-$$
+```math
 D_{\min,\text{donanimsal}} \approx \frac{t_{ON(\min)}}{T_{sw}}
 = t_{ON(\min)} f_{sw}
 \approx 40\,\text{ns} \times 332\,\text{kHz}
 \approx 0.013
-$$
+```
 
 Bu nedenle nominal $V_{in} = 24\,\text{V} - 36\,\text{V}$ giris gerilimi araliginda gereken duty degerleri, ilk yaklasimda bu donanimsal sinirlarin icinde gorunmektedir. Ancak olu zaman, propagation delay ve kontrolcuye ozgu diger zamanlar nihai yorumdan once ayrica dogrulanmalidir.
 
@@ -450,11 +460,11 @@ Bu nedenle nominal $V_{in} = 24\,\text{V} - 36\,\text{V}$ giris gerilimi araligi
 
 Bootstrap hesabinin icinde ayrica su duty notlari bulunuyor:
 
-- `Dutyhigh,max = 0.648`
+- $D_{\text{high,max}} = 0.648$
 
-- `Dutyhigh,min = 0.432`
+- $D_{\text{high,min}} = 0.432$
 
-- buradan `Dlow,min = 1 - 0.648 = 0.352`
+- buradan $D_{\text{low,min}} = 1 - 0.648 = 0.352$
 
 
 
@@ -510,7 +520,7 @@ Taslakta `Slew Rate Hesabi` basligi altinda vurgulanan ana fikir dogrudur:
 
 - ilk anda gereken ek akim cikis kapasitelerinden gelir
 
-- bobin akiminin yukselme hizi birinci yaklasimda `diL/dt ~= VL/L` ile sinirlanir
+- bobin akiminin yukselme hizi birinci yaklasimda $\dfrac{dI_L}{dt} \approx \dfrac{V_L}{L}$ ile sinirlanir
 
 
 
@@ -627,9 +637,9 @@ Ek not:
 
 ODT kopyasinda formül sembollerinin bir kismi eksik gelmis gorunuyor; bu nedenle kaynak metni oldugu gibi korudum. Teknik anlam olarak burada anlatilan iliski buyuk olasilikla asagidaki sezgiye karsilik geliyor:
 
-$$
+```math
 \Delta V_{out} \approx \Delta I_{load}\,\bigl|Z_{out}(f_c)\bigr|
-$$
+```
 
 Burada:
 
@@ -661,7 +671,9 @@ ODT'den aktarilan metin (`6.1.2. Vripple Gerilimi`):
 >
 > gerilimini düşürmenin daha etkili bir yolu, fsw frekansındaki çıkış impedance’sını düşürmektir. Şekil Hata: Başvuru kaynağı bulunamadı.1’a bakarsak; Zout, Daha yüksek capacitance ve daha düşük bir esr direncinden oluşursa; Capacitance eğrisi sola kayar, yatayda düz bir eğri olan esr direnci de azaldığı için daha aşağıda olur. fsw frekansında Zout‘u etkin oldüşürdüğünü görebiliriz.****?
 >
-> $V_{ripple} = I_{L(P-P)} \cdot Z_{OUT}(f_{sw})$
+```math
+V_{ripple} = I_{L(P-P)} \cdot Z_{OUT}(f_{sw})
+```
 >
 > ( Hata: Başvuru kaynağı bulunamadı.5 )
 
@@ -676,9 +688,9 @@ Bu parca, `Vripple` dusuncesini iki ayri tasarim koluna ayiriyor:
 
 GitHub uyumlu matematik bicimiyle ilk sezgi su sekilde yazilabilir:
 
-$$
+```math
 \Delta I_L \propto \frac{1}{L}
-$$
+```
 
 Yani `L` arttikca bobin akiminin tepeden tepeye dalgalanmasi azalir. Ancak ODT'de dogru sezildigi gibi, bunun karsiliginda hacim, maliyet ve transient cevap hizi etkilenebilir.
 
@@ -768,29 +780,29 @@ Ek not:
 
 ODT kopyasinda bu bolumde de bazi semboller ve denklemler eksik gorunuyor; bu nedenle kaynak metni aynen korudum. Teknik olarak burada korunmak istenen ana iliskiler su sekilde yazilabilir:
 
-$$
-\frac{dI_L}{dt} = \frac{V_L}{L}
-$$
+```math
+- bobin akiminin yukselme hizi birinci yaklasimda $\dfrac{dI_L}{dt} \approx \dfrac{V_L}{L}$ ile sinirlanir
+```
 
 Yani bobin akiminin artis hizi, bobin uzerindeki anlik gerilim ve enduktans tarafindan sinirlanir. Bu nedenle feedback dongusu duty oranini arttirsa bile akim sonsuz hizla yukselemez.
 
 Yukteki ani artis ile bobin akimi arasindaki fark ilk anda cikis kapasitörleri tarafindan karsilanir:
 
-$$
+```math
 I_C = I_{load} - I_L
-$$
+```
 
 Bu da cikis geriliminin gecici davranisini belirler:
 
-$$
+```math
 C_{out}\frac{dV_{out}}{dt} = -I_C
-$$
+```
 
 $t_1$ ani ve kullanicinin not ettigi $t_{undershoot}$ sonu, matematiksel olarak su kosulla iliskilendirilebilir:
 
-$$
+```math
 \frac{dV_{out}}{dt} = 0
-$$
+```
 
 Bu anda bobin akimi, en azindan o anlik durumda, yuk talebini karsilayabilecek seviyeye yaklasmistir. ODT'deki EVM yorumu da bu bakimdan anlamlidir: eger MLCC bankasi bu gecis suresinde yeterli enerjiyi saglayabiliyorsa, bulk kapasitör ihtiyaci her durumda zorunlu olmayabilir.
 
@@ -931,9 +943,7 @@ Kaba Hesap:
 > IIn_rms = 9A*0.5
 > IIn_rms = 4.5A rms
 >
-> {I} rsub {i {n} rsub {R} M {S} rsub {m} ax} "=" {I} rsub {LOAD,max} "*" sqrt {left none D left (1"-"D right ) "+" {1} over {" " 12} {left none left (" " {{V} rsub {OUT}} over {" " {L"*"f} rsub {sw} "*" {I} rsub {max}} right none right )} ^ {2} ⋅ {left (1"-"D right )} ^ {2} ⋅D right none}
-> {I} rsub {i {n} rsub {R} M {S} rsub {m} ax} "="9A"*" sqrt {left none 0.5 left (1"-"0.5 right ) "+" {1} over {" " 12} {left none left (" " {14V} over {" "6.8μH"*" 332kHz"*"9A} right none right )} ^ {2} ⋅ {left (1"-"0.5 right )} ^ {2} ⋅0.5 right none}
-> {I} rsub {i {n} rsub {R} M {S} rsub {m} ax} "="4.55" " {A} rsub {RMS}
+> ODT'deki denklem notasyonu bozuk aktarilmis; temiz matematik yazimi asagida verilmistir.
 
 
 
@@ -943,21 +953,21 @@ Bu alt bolumde ana teknik fikir, MLCC seciminin yalnizca kapasitansla degil RMS 
 
 Kaba yaklasimin temiz yazimi:
 
-$$
+```math
 \frac{I_{in,RMS}}{I_{load}} \approx 0.5
 \qquad (D = 0.5)
-$$
+```
 
-$$
+```math
 I_{in,RMS}
 = I_{load}\cdot 0.5
 = 9\,\text{A}\cdot 0.5
 = 4.5\,\text{A}_{RMS}
-$$
+```
 
 GitHub uyumlu matematik bicimiyle verilen daha ayrintili ifade su sekilde yazilabilir:
 
-$$
+```math
 I_{in,RMS,\max}
 = I_{LOAD,\max}
 \sqrt{
@@ -966,11 +976,11 @@ D(1-D)
 \left(\frac{V_{OUT}}{L\,f_{sw}\,I_{\max}}\right)^2
 \cdot (1-D)^2 \cdot D
 }
-$$
+```
 
 ODT notasyonundaki sayisal yerlestirme korunursa:
 
-$$
+```math
 I_{in,RMS,\max}
 = 9\,\text{A}\,
 \sqrt{
@@ -980,7 +990,7 @@ I_{in,RMS,\max}
 \cdot (1-0.5)^2 \cdot 0.5
 }
 \approx 4.55\,\text{A}_{RMS}
-$$
+```
 
 Bu sonuc, giris MLCC bankasinin yalnizca ripple gerilimini degil, RMS akim tasima ve sicaklik artisi tarafini da karsilamasi gerektigini gosterir.
 
@@ -1017,11 +1027,11 @@ Ek not:
 
 Bu parca, MLCC seciminde yalnizca elektriksel degerlerin degil sicaklik dayanimının da hesaba katilmasi gerektigini vurguluyor. ODT notundaki ana fikirler sunlardir:
 
-- `X7R`, `X5R`'ye gore sicaklik davranisi acisindan daha guvenli bir tercihtir
+- $X7R$, $X5R$'ye gore sicaklik davranisi acisindan daha guvenli bir tercihtir
 - giris MLCC'leri high-side drain ile low-side source arasindaki sicak donguye olabildigince yakin yerlestirilmelidir
-- `I_in,RMS,max = 4.55 A_rms` akimi birden fazla paralel kapasitöre paylastirmak, her bir kapasitördeki `temp rise` degerini azaltir
+- $I_{in,RMS,\max} = 4.55\,\text{A}_{RMS}$ akimini birden fazla paralel kapasitore paylastirmak, her bir kapasitordeki `temp rise` degerini azaltir
 
-`48 V / 8 A` ve `24 V / 8 A` EVM gozlemlerinden yapilan `~70 degC` kart sicakligi tahmini, yalnizca ilk muhendislik referansi olarak tutulmalidir; nihai secimde secilen MLCC datasheet'indeki izin verilen sicaklik artisi ve ortam / kart sicakligi birlikte kontrol edilmelidir.
+`48 V / 8 A` ve `24 V / 8 A` EVM gozlemlerinden yapilan $\sim 70\,^{\circ}\text{C}$ kart sicakligi tahmini, yalnizca ilk muhendislik referansi olarak tutulmalidir; nihai secimde secilen MLCC datasheet'indeki izin verilen sicaklik artisi ve ortam / kart sicakligi birlikte kontrol edilmelidir.
 
 
 
@@ -1147,17 +1157,17 @@ Proje klasorunde secilmis MOSFET adayi olarak su parca gorunuyor:
 
 Ek not dosyalarinda bu parcaya ait ilk parametre ozeti de bulunuyor:
 
-- `RDS(on) ~= 8.2 mOhm`
+- $R_{DS(on)} \approx 8.2\,\text{m}\Omega$
 
-- `Qg,total ~= 16 nC`
+- $Q_{g,\text{total}} \approx 16\,\text{nC}$
 
-- `Cgd ~= 54 pF`
+- $C_{gd} \approx 54\,\text{pF}$
 
-- `Qgd ~= 1.2 nC` yaklasimi
+- $Q_{gd} \approx 1.2\,\text{nC}$ yaklasimi
 
-- `Vdrive ~= 7.5 V`
+- $V_{\text{drive}} \approx 7.5\,\text{V}$
 
-- `Rgate = 2.2 ohm` notu
+- $R_{gate} = 2.2\,\Omega$ notu
 
 
 
@@ -1283,49 +1293,49 @@ ODT'den aktarilan metin (`8.1. Bootstrap Direncini (Rboot) Hesaplama ve Seçim M
 
 PWM'de high-side MOSFET'in en uzun sure acik kaldigi durum, bootstrap kondansatorunun en kisa sarj penceresini verir. ODT notunda verilen degerlerle:
 
-$$
+```math
 D_{\text{high,max}} = 0.648
-$$
+```
 
-$$
+```math
 D_{\text{low,min}} = 1 - D_{\text{high,max}} = 1 - 0.648 = 0.352
-$$
+```
 
 Bu nedenle bootstrap sarji icin kullanilan worst-case pencere, periyodun `%35.2`'lik low-side iletim araligidir.
 
 2. Sarj penceresi ve zaman sabiti
 
-ODT notunda bu adim, `Rboot = 2.2\,\Omega` ve `Cboot = 0.1\,\mu\text{F}` secimiyle tartisiliyor. Standart RC zaman sabiti tanimi ile:
+ODT notunda bu adim, $R_{boot} = 2.2\,\Omega$ ve $C_{boot} = 0.1\,\mu\text{F}$ secimiyle tartisiliyor. Standart RC zaman sabiti tanimi ile:
 
-$$
+```math
 \tau = R_{boot} C_{boot}
 = 2.2\,\Omega \times 0.1\,\mu\text{F}
 = 0.22\,\mu\text{s}
-$$
+```
 
-PWM frekansi `332 kHz` icin:
+PWM frekansi $332\,\text{kHz}$ icin:
 
-$$
+```math
 T_{sw} = \frac{1}{f_{sw}}
 = \frac{1}{332\,\text{kHz}}
 \approx 3.01\,\mu\text{s}
-$$
+```
 
 Worst-case bootstrap sarj penceresi:
 
-$$
+```math
 t_{\text{charge,min}} = D_{\text{low,min}} T_{sw}
 = 0.352 \times 3.01\,\mu\text{s}
 \approx 1.06\,\mu\text{s}
-$$
+```
 
 Dolayisiyla:
 
-$$
+```math
 \frac{t_{\text{charge,min}}}{\tau}
 = \frac{1.06}{0.22}
 \approx 4.82
-$$
+```
 
 ODT notunda gecen `0.625\,\mu\text{s}` degeri, standart RC zaman sabiti tanimi degildir. Standart tanimla bakildiginda, sarj penceresi yaklasik `4.8\tau` surmektedir. Bu, ideal bir RC sarj modelinde bootstrap kondansatorunun cok buyuk oranda dolabilecegini gosterir.
 
@@ -1333,20 +1343,20 @@ ODT notunda gecen `0.625\,\mu\text{s}` degeri, standart RC zaman sabiti tanimi d
 
 ODT notunda `V_{DD} = 8.4\,\text{V}` ve bootstrap diyot dusumu yaklasik `0.5\,\text{V}` alinmis. Buna gore hedef bootstrap gerilimi:
 
-$$
+```math
 V_{C_{boot}} \approx V_{DD} - V_{\text{BootDiode}}
 = 8.4\,\text{V} - 0.5\,\text{V}
 = 7.9\,\text{V}
-$$
+```
 
 Eger bootstrap kondansatoru worst-case pencerenin basinda tamamen bos kabul edilirse, ideal RC modeliyle bu pencere sonunda ulasilan gerilim:
 
-$$
+```math
 V_{C_{boot}}(t_{\text{charge,min}})
 \approx 7.9\left(1 - e^{-t_{\text{charge,min}}/\tau}\right)
 \approx 7.9\left(1 - e^{-4.82}\right)
 \approx 7.84\,\text{V}
-$$
+```
 
 Bu, ODT notundaki "bootstrap voltaji yeterince hizli olusuyor" sonucunu destekler.
 
@@ -1354,12 +1364,12 @@ Bu, ODT notundaki "bootstrap voltaji yeterince hizli olusuyor" sonucunu destekle
 
 Bootstrap kondansatorunde depolanan enerji:
 
-$$
+```math
 E_{\text{cap}}
 = \frac{1}{2} C_{boot} V_{C_{boot}}^2
 = \frac{1}{2}\cdot 0.1\,\mu\text{F}\cdot (7.9\,\text{V})^2
 \approx 3.12\,\mu\text{J}
-$$
+```
 
 Bu, kondansatorun yaklasik `7.9 V` seviyesine sarj oldugunda depoladigi enerjiyi verir.
 
@@ -1367,11 +1377,11 @@ Bu, kondansatorun yaklasik `7.9 V` seviyesine sarj oldugunda depoladigi enerjiyi
 
 ODT notunda dirençte yakilan enerji icin ayrica bir hesap niyeti bulunuyor. Ancak bu kisimda kullanilan ifade, mevcut haliyle nihai denklem olarak alinmamalidir. Tam `0 V -> 7.9 V` RC sarj adiminda ideal seri dirençte harcanan enerji, ayni buyukluk mertebesinde:
 
-$$
+```math
 E_{R,\text{full-step}}
 \approx \frac{1}{2} C_{boot} V_{C_{boot}}^2
 \approx 3.12\,\mu\text{J}
-$$
+```
 
 olur. Fakat bootstrap kondansatoru her cevrimde sifirdan sarj olmadigi icin, gercek cevrimsel kayip bundan daha dusuk olur. Bu nedenle direnç watt secimi yalnizca bu tek enerji hesabina baglanmamalidir.
 
@@ -1379,12 +1389,12 @@ olur. Fakat bootstrap kondansatoru her cevrimde sifirdan sarj olmadigi icin, ger
 
 Bootstrap sarjinin ilk anindaki yaklasik tepe akimi:
 
-$$
+```math
 I_{\text{pk}}
 = \frac{V_{DD} - V_{\text{BootDiode}}}{R_{boot}}
 = \frac{8.4\,\text{V} - 0.5\,\text{V}}{2.2\,\Omega}
 \approx 3.59\,\text{A}
-$$
+```
 
 Bu nedenle bootstrap diyotu ve PCB izleri, en azindan bu buyukluk mertebesindeki pik sarj akimini tasiyabilecek sekilde degerlendirilmelidir.
 
@@ -1395,13 +1405,13 @@ Ek not:
 Bu bolumde korunacak ana muhendislik mantigi sunudur:
 
 - worst-case bootstrap sarj penceresi, $D_{\text{low,min}}$ ile belirlenir
-- `R_{boot}` buyurse sarj yavaslar; cok kuculurse pik akim ve ringing artar
-- `R_{boot} = 2.2\,\Omega` ve `C_{boot} = 0.1\,\mu\text{F}` secimi, ilk bakista sarj hizi acisindan makul gorunmektedir
+- $R_{boot}$ buyurse sarj yavaslar; cok kuculurse pik akim ve ringing artar
+- $R_{boot} = 2.2\,\Omega$ ve $C_{boot} = 0.1\,\mu\text{F}$ secimi, ilk bakista sarj hizi acisindan makul gorunmektedir
 - fakat direnç guc derecelendirmesi, diyot peak akimi ve bootstrap dugumu ringing davranisi nihai olarak simulasyon veya deneyle dogrulanmalidir
 
 Bu nedenle bu bolumde ozellikle su maddeler sonra yeniden kontrol edilmelidir:
 
-- $D_{\text{high,max}} = 0.648$ degerinin kaynagi
+- $D_{\text{high,max}} = 0.648$
 - `VDD` ve diyot dusumunun datasheet ile teyidi
 - bootstrap diyotunun peak akim ve ters gerilim marji
 - `R_{boot}` seciminin ringing ve sarj hizi acisindan uygunlugu
@@ -1452,12 +1462,12 @@ Voltage Mode Modulator
 
 > Modulator bloğunun transfer function'ı:
 
-$$
+```math
 H_{\text{mod}}(s)
 = \frac{V_{in}}{V_{\text{ramp}}}
 = k_{FF}
 = 15\,\text{V/V}
-$$
+```
 
 > Kullandığımız LM5146-Q1'ın input voltage feedforward özelliği var. Bu özellik sayesinde modülatör kazancı sabit kalıyor. Örneğin giriş gerilimi $V_{in}$ artarsa, $V_{\text{ramp}}$ da artarak $k_{FF} = 15\,\text{V/V}$ değerinin sabit kalmasını sağlıyor.
 
@@ -1473,17 +1483,17 @@ Bu bolumde korunacak ana fikir, voltage-mode kontrol yapisinda modulator blogunu
 
 LM5146-Q1 icindeki input-voltage feedforward yapisi nedeniyle, rampa genligi giris gerilimiyle birlikte olceklenir. Bu da modulator kazancinin yaklasik sabit tutulmasini saglar ve kontrol tasarimini sadeleştirir. Bu projede ilk yaklasim olarak:
 
-$$
+```math
 V_{\text{ramp}} \approx \frac{V_{in}}{15}
-$$
+```
 
 ve dolayisiyla
 
-$$
+```math
 H_{\text{mod}}(s)
 = \frac{V_{in}}{V_{\text{ramp}}}
 \approx 15
-$$
+```
 
 alinabilir.
 
@@ -1501,50 +1511,61 @@ ODT'den aktarilan metin (`Çıkış Filtresi ve Yük`):
 
 > Cikis filtresi ve yuk icin kullanilan transfer fonksiyonu:
 
-$$
+```math
 H_{\text{filter}}(s)
 = \frac{V_{out}}{V_{in}}
 = \frac{1 + C_{out} R_{esr} s}{a_0 + a_1 s + a_2 s^2}
-$$
+```
 
 Burada katsayilar:
 
-$$
-\begin{aligned}
-a_0 &= 1 + \frac{R_{Damp}}{R_{load}}, \\
-a_1 &= \frac{L_F}{R_{load}} + R_{esr} C_{out} + R_{Damp} C_{out}
-+ \frac{R_{Damp} R_{esr} C_{out}}{R_{load}}, \\
-a_2 &= \left(\frac{R_{load} + R_{esr}}{R_{load}}\right)L_F C_{out}
-\end{aligned}
-$$
+```math
+a_0 = 1 + \frac{R_{Damp}}{R_{load}}
+```
+
+```math
+a_1 = \frac{L_F}{R_{load}} + R_{esr} C_{out} + R_{Damp} C_{out}
++ \frac{R_{Damp} R_{esr} C_{out}}{R_{load}}
+```
+
+```math
+a_2 = \left(\frac{R_{load} + R_{esr}}{R_{load}}\right)L_F C_{out}
+```
 
 > Sayisal yerlestirme:
 
-$$
-\begin{aligned}
-a_0 &= 1 + \frac{21.13\,\text{m}\Omega}{1.59\,\Omega}
-= 1.01329, \\
-a_1 &= \frac{6.8\,\mu\text{H}}{1.59\,\Omega}
+```math
+a_0 = 1 + \frac{21.13\,\text{m}\Omega}{1.59\,\Omega} = 1.01329
+```
+
+```math
+a_1 =
+\frac{6.8\,\mu\text{H}}{1.59\,\Omega}
 + (0.26\,\text{m}\Omega)(70\,\mu\text{F})
 + (21.13\,\text{m}\Omega)(70\,\mu\text{F})
 + \frac{(21.13\,\text{m}\Omega)(0.26\,\text{m}\Omega)(70\,\mu\text{F})}{1.59\,\Omega}
-= 5.774 \times 10^{-6}, \\
-a_2 &= \left(\frac{1.59\,\Omega + 0.26\,\text{m}\Omega}{1.59\,\Omega}\right)
+= 5.774 \times 10^{-6}
+```
+
+```math
+a_2 =
+\left(\frac{1.59\,\Omega + 0.26\,\text{m}\Omega}{1.59\,\Omega}\right)
 (6.8\,\mu\text{H})(70\,\mu\text{F})
-= 4.761 \times 10^{-10}, \\
-C_{out}R_{esr} &= (70\,\mu\text{F})(0.26\,\text{m}\Omega)
-= 1.82 \times 10^{-8}
-\end{aligned}
-$$
+= 4.761 \times 10^{-10}
+```
+
+```math
+C_{out} R_{esr} = (70\,\mu\text{F})(0.26\,\text{m}\Omega) = 1.82 \times 10^{-8}
+```
 
 > Yaklasik katsayi bicimi:
 
-$$
+```math
 H_{\text{filter}}(s)
 \approx
 \frac{1 + 1.82 \times 10^{-8} s}
 {1.01329 + 5.774 \times 10^{-6} s + 4.761 \times 10^{-10} s^2}
-$$
+```
 
 ![Tasarimimizda kullandigimiz cikis capacitorleri](images/odt_embedded/fig_24_output_capacitor_bank.png)
 
@@ -1565,7 +1586,7 @@ Bu bolumde ana fikir, kontrol dongusunun plant kisminin yalnizca bobinden degil,
 - $R_{esr}$ ESR sifirini olusturur
 - $R_{load}$ ve varsa sönumle ilgili direncler kutup yerlerini degistirir
 
-`C28 = 0.1 uF` gibi cok kucuk bir MLCC'nin ilk transfer fonksiyonu hesabinda ihmal edilmesi, ancak bu elemanin etkisi crossover civarinda gercekten kucukse kabul edilebilir. Genelde bu tip cok kucuk kapasiteler ana enerji depolama elemani olmaktan cok, daha yuksek frekansli spike ve ringing bastirma tarafinda etkili olur. Bu nedenle kompanzator hesabinda ilk yaklasimda ihmal edilmesi makul olabilir; yine de son kararin bode veya AC sweep ile dogrulanmasi gerekir.
+$C_{28} = 0.1\,\mu\text{F}$ gibi cok kucuk bir MLCC'nin ilk transfer fonksiyonu hesabinda ihmal edilmesi, ancak bu elemanin etkisi crossover civarinda gercekten kucukse kabul edilebilir. Genelde bu tip cok kucuk kapasiteler ana enerji depolama elemani olmaktan cok, daha yuksek frekansli spike ve ringing bastirma tarafinda etkili olur. Bu nedenle kompanzator hesabinda ilk yaklasimda ihmal edilmesi makul olabilir; yine de son kararin bode veya AC sweep ile dogrulanmasi gerekir.
 
 
 
@@ -1641,11 +1662,13 @@ Bu akis, tasarimi deneme-yanilma yerine daha kontrollu hale getirir.
 
 Yerel scriptte su genel iliskiler kullaniliyor:
 
-- crossover frekansi kabaca `f_t = 0.1 x f_s`
+- crossover frekansi kabaca $f_t = 0.1\,f_s$
 
 - gerekli kompanzator kazanci, modulator ve plant buyukluklerinden turetiliyor
 
-- `K = tan^2((phi_comp + 90 deg)/4)` tipinde standart K-factor iliskisi kullaniliyor
+- $K = \tan^2\!\left(\dfrac{\phi_{comp} + 90^\circ}{4}\right)$ tipinde standart K-factor iliskisi kullaniliyor
+
+
 
 
 
@@ -1689,70 +1712,81 @@ Type 3 Compensator Devresi
 
 > Compensator transfer function:
 
-$$
+```math
 H_{\text{compensator}}(s)
 = \frac{V_{\text{control}}}{V_{\text{sense}}}
 = \frac{H_{\text{error-amp,ol}}(s)}
 {1 + H_{\text{error-amp,ol}}(s)\,\beta(s)}
-$$
+```
 
 > Error amplifier open-loop modeli:
 
-$$
+```math
 H_{\text{error-amp,ol}}(s)
 = \frac{A_{VOL}}
 {1 + \dfrac{s}{\omega_{\text{opamp}}}}
-$$
+```
 
-$$
+```math
 \omega_{\text{opamp}}
 = 2\pi\,\frac{GBW}{A_{VOL}}
-$$
+```
 
 > Bu kompanzator hesabinda kullanilan cikis filtresi ve yuk transfer fonksiyonu:
 
-$$
+```math
 H_{\text{filter}}(s)
 = \frac{V_{out}}{V_{in}}
 = \frac{1 + C_{out} R_{esr} s}{a_0 + a_1 s + a_2 s^2}
-$$
+```
 
 Burada:
 
-$$
-\begin{aligned}
-a_0 &= 1 + \frac{R_{Damp}}{R_{load}}, \\
-a_1 &= \frac{L_F}{R_{load}} + R_{esr} C_{out} + R_{Damp} C_{out}
-+ \frac{R_{Damp} R_{esr} C_{out}}{R_{load}}, \\
-a_2 &= \left(\frac{R_{load} + R_{esr}}{R_{load}}\right)L_F C_{out}
-\end{aligned}
-$$
+```math
+a_0 = 1 + \frac{R_{Damp}}{R_{load}}
+```
+
+```math
+a_1 = \frac{L_F}{R_{load}} + R_{esr} C_{out} + R_{Damp} C_{out}
++ \frac{R_{Damp} R_{esr} C_{out}}{R_{load}}
+```
+
+```math
+a_2 = \left(\frac{R_{load} + R_{esr}}{R_{load}}\right)L_F C_{out}
+```
 
 > Sayisal yerlestirme:
 
-$$
-\begin{aligned}
-a_0 &= 1 + \frac{21.13\,\text{m}\Omega}{1.59\,\Omega}
-= 1.01329, \\
-a_1 &= \frac{6.8\,\mu\text{H}}{1.59\,\Omega}
+```math
+a_0 = 1 + \frac{21.13\,\text{m}\Omega}{1.59\,\Omega} = 1.01329
+```
+
+```math
+a_1 =
+\frac{6.8\,\mu\text{H}}{1.59\,\Omega}
 + (0.26\,\text{m}\Omega)(70\,\mu\text{F})
 + (21.13\,\text{m}\Omega)(70\,\mu\text{F})
 + \frac{(21.13\,\text{m}\Omega)(0.26\,\text{m}\Omega)(70\,\mu\text{F})}{1.59\,\Omega}
-= 5.774 \times 10^{-6}, \\
-a_2 &= \left(\frac{1.59\,\Omega + 0.26\,\text{m}\Omega}{1.59\,\Omega}\right)
-(6.8\,\mu\text{H})(70\,\mu\text{F})
-= 4.761 \times 10^{-10}, \\
-C_{out}R_{esr} &= (70\,\mu\text{F})(0.26\,\text{m}\Omega)
-= 1.82 \times 10^{-8}
-\end{aligned}
-$$
+= 5.774 \times 10^{-6}
+```
 
-$$
+```math
+a_2 =
+\left(\frac{1.59\,\Omega + 0.26\,\text{m}\Omega}{1.59\,\Omega}\right)
+(6.8\,\mu\text{H})(70\,\mu\text{F})
+= 4.761 \times 10^{-10}
+```
+
+```math
+C_{out} R_{esr} = (70\,\mu\text{F})(0.26\,\text{m}\Omega) = 1.82 \times 10^{-8}
+```
+
+```math
 H_{\text{filter}}(s)
 \approx
 \frac{1 + 1.82 \times 10^{-8} s}
 {1.01329 + 5.774 \times 10^{-6} s + 4.761 \times 10^{-10} s^2}
-$$
+```
 
 ![LM5146-Q1'nin Buck Regulator Poles and Zeros](images/odt_embedded/fig_26_compensator_related.png)
 
@@ -1770,10 +1804,10 @@ Bu bolumde artik sadece "Type-III kompanzator kullanilacak" demekle yetinmiyoruz
 
 Bu nedenle kompanzator tasarimi yalnizca `R` ve `C` secimi degil; ayni zamanda su uc ifadenin birlikte dusunulmesidir:
 
-$$
+```math
 H_{\text{open-loop}}(s)
 = H_{\text{mod}}(s)\,H_{\text{filter}}(s)\,H_{\text{compensator}}(s)
-$$
+```
 
 Buradaki Type-III topoloji mantiklidir; ancak bu, komponent degerlerinin otomatik olarak dogru oldugu anlamina gelmez. Nihai `R/C` secimi, gercek plant, hedef crossover frekansi ve faz marji ile birlikte sonraki adimda yapilacaktir.
 
@@ -1794,7 +1828,7 @@ Yerel scriptlerde ve notlarda ilk yaklasim olarak crossover frekansinin anahtarl
 
 Bu tasarimda secilen:
 
-- `fsw = 332 kHz`
+- $f_{sw} = 332\,\text{kHz}$
 
 
 
@@ -1802,7 +1836,9 @@ olduguna gore ilk muhendislik tahmini su olur:
 
 
 
-`fc,ilk ~= fsw / 10 ~= 33.2 kHz`
+```math
+f_{c,\text{ilk}} \approx \frac{f_{sw}}{10} \approx 33.2\,\text{kHz}
+```
 
 
 
@@ -1879,30 +1915,30 @@ Buck DC/DC Regulator Control Block Diagram
 
 GitHub uyumlu matematik bicimiyle:
 
-$$
+```math
 H_{\text{system}}(s)
 = \frac{V_{out}}{V_{ref}}
 = \frac{\text{Ileri Yol}}{1 + \text{Açık Çevrim}}
-$$
+```
 
-$$
+```math
 H_{\text{system}}(s)
 = \frac{H_{\text{mod}}(s)\,H_{\text{filter}}(s)}
 {1 + H_{\text{mod}}(s)\,H_{\text{filter}}(s)\,H_{\text{compensator}}(s)}
-$$
+```
 
-$$
+```math
 H_{\text{open-loop}}(s)
 = H_{\text{mod}}(s)\,H_{\text{filter}}(s)\,H_{\text{compensator}}(s)
-$$
+```
 
 Dolayisiyla kapali cevrim ifade su sekilde de yazilabilir:
 
-$$
+```math
 H_{\text{system}}(s)
 = \frac{H_{\text{mod}}(s)\,H_{\text{filter}}(s)}
 {1 + H_{\text{open-loop}}(s)}
-$$
+```
 
 
 
@@ -2137,13 +2173,13 @@ Bu sira, sorun oldugunda hangi katmanda bozulma basladigini ayirmayi kolaylastir
 
 Ilk tur steady-state dogrulamada en az su koseler bakilmalidir:
 
-- `Vin = 24 V`, minimum yuk
+- $V_{in} = 24\,\text{V}$, minimum yuk
 
-- `Vin = 24 V`, maksimum yuk
+- $V_{in} = 24\,\text{V}$, maksimum yuk
 
-- `Vin = 36 V`, minimum yuk
+- $V_{in} = 36\,\text{V}$, minimum yuk
 
-- `Vin = 36 V`, maksimum yuk
+- $V_{in} = 36\,\text{V}$, maksimum yuk
 
 
 
