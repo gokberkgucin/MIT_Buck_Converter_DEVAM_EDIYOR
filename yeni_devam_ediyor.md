@@ -318,19 +318,37 @@ ODT'den aktarilan metin (`4.1. Çıkış gerilimi setpoint dirençleri FB`):
 
 Ek not:
 
-Bu parca, geri besleme bolucusunun `14 V` cikis hedefi icin secildigini ve fiziksel paket hedefinin `0402` oldugunu kaydediyor. GitHub uyumlu matematik bicimiyle temel setpoint iliskisi su sekilde yazilabilir:
+Bu parca, geri besleme bolucusunun `14 V` cikis hedefi icin secildigini ve fiziksel paket hedefinin `0402` oldugunu kaydediyor. Ancak ilk ODT taslagindaki `16.5 kOhm / 1.00 kOhm` secimi, sonraki defter iterasyonlari ve satin alinmis BOM ile karsilastirildiginda artik nihai secim gibi gorunmuyor.
+
+Temel setpoint iliskisi su sekilde yazilabilir:
 
 ```math
 V_{out} = V_{FB}\left(1 + \frac{R_{FB1}}{R_{FB2}}\right)
 ```
 
-Burada $V_{FB} = 0.8\,\text{V}$, $R_{FB1} = 16.5\,\text{k}\Omega$ ve $R_{FB2} = 1.00\,\text{k}\Omega$ alinirse:
+Ilk taslaktaki eski aday secim:
 
 ```math
 V_{out} = 0.8\left(1 + \frac{16.5}{1.0}\right) = 14.0\,\text{V}
 ```
 
-Bu secim, hedef cikis gerilimi ile uyumludur. Ayrica `%0.1` toleransli direnç secimi, setpoint hatasini dusuk tutmak icin mantikli bir tercihtir.
+Defter taramasi `W.14-W.16` ve BOM'daki satin alinmis parcalar ise su guncel adayi gosteriyor:
+
+- `R11 / R1 / RFB1 = 26.4 kOhm`
+- `R10 / RFB2 = 1.6 kOhm`
+
+Bu durumda:
+
+```math
+V_{out} = 0.8\left(1 + \frac{26.4}{1.6}\right) = 14.0\,\text{V}
+```
+
+Tutarlilik kontrolu:
+
+- eski `16.5 kOhm / 1.00 kOhm` secimi matematiksel olarak yanlis degil
+- ancak nihai BOM ile uyumlu gorunen secim `26.4 kOhm / 1.6 kOhm`
+- bu nedenle eski secim silinmemeli, "ilk aday / eski iterasyon" olarak korunmali
+- bundan sonra setpoint hesabinda varsayilan guncel aday `26.4 kOhm / 1.6 kOhm` olacak
 
 
 
@@ -996,7 +1014,7 @@ Bu sonuc, giris MLCC bankasinin yalnizca ripple gerilimini degil, RMS akim tasim
 
 ODT'den aktarilan metin (`7.1.3. MLCC Sığaçlarının Sıcaklıkla RMS Akımıı?`):
 
-> NOT: ELEMAN SEÇMEYE ÇALIŞMAAA
+> ELEMAN SEÇMEYE ÇALIŞMA
 > 4.55 Arms akımı
 > X7R, X5R’den daha iyi sıcaklığa daha dayanıklı.
 
@@ -1445,6 +1463,10 @@ Taslakta kontrol dongusu su bloklar uzerinden dusunuluyor:
 
 Bu cerceve, voltage-mode control dusunce yapisi ile uyumludur. Kompanzatorun gorevi, power stage'in kutup ve sifirlarini hesaba katarak istenen crossover frekansi ve faz marjini saglamaktir.
 
+![Buck Converter Schematic](images/odt_embedded/Figure 2. Buck Converter Schematic.jpg)
+
+Buck Converter Schematic
+
 
 
 #### 6.1.2 Modulator blogunun rolu
@@ -1700,6 +1722,47 @@ Bu bolum, ileride MATLAB ve LTspice ile yapilacak loop dogrulamasinin teorik bas
 
 
 
+##### Defter taramasi: `W.1-W.24`
+
+Defterden aktarilan not:
+
+- `W.1-W.6`: `G99` ve benzeri Type-III kaynaklardan, crossover frekansinda gereken kazanc ve faz katkisi turetiliyor. Bu sayfalar daha cok yontemin ogrenilmesi ve isaret-konvansiyonu oturtulmasi icin kullanilmis gorunuyor.
+- `W.7-W.10`: op-amp acik-cevrim modeli, `GBW / A_{dc}` iliskisi, `KFF = 15 V/V` notu ve `G98` Figure 2 / Figure 3 kullanim izleri var. Bu grup, modulator ve hata yukselteci modelini destekliyor.
+- `W.11-W.12`: faz marji ve plant fazinin sayisal olarak tekrar hesaplandigi ara sayfalar. `PM = 55 deg` hedefinin bu iterasyonda da korundugu goruluyor.
+- `W.13-W.16`: Type-III kompanzator eleman degerleri icin sayisal hesaplar yapiliyor. Bu aralikta en az iki farkli iterasyon var.
+- `W.17-W.19`: current-limit / `R_{ilim}` hesabi. EVM'deki `619 Ohm` referans degeri ile yerel hesap karsilastiriliyor.
+- `W.20-W.24`: Type-III kutup-sifir mantigi, `Kmid`, `f_c`, `f_o`, `f_{esr}` ve geri besleme bolucusunun kompanzatorla iliskisi uzerine kavramsal notlar var.
+
+Tutarlilik kontrolu:
+
+- bu batch'in tamami ayni kronolojik iterasyon degil; ayni konu uzerinde birkac farkli deneme ve yaklasim var
+- `W.13` ile `W.15-W.16` ayni nihai komponent setini vermiyor; bu nedenle `W.13` alternatif / ara iterasyon olarak etiketlenmeli
+- `W.23-W.24` icindeki bazi `Kmid` ve `RFB1` iliskileri eski `16.5 kOhm` bolucu uzerinden ilerliyor olabilir
+- `W.14-W.16` ile BOM daha guclu bicimde uyusuyor; bu nedenle bunlar su an icin "nihai adaya en yakin" sayfalar
+
+Bu batch'ten su ilk aday komponent seti cikiyor:
+
+- `R11 / R1 / RFB1 = 26.4 kOhm`
+- `R10 / RFB2 = 1.6 kOhm`
+- `R6 / R2 / RC1 = 6.65 kOhm`
+- `R9 / R3 / RC2 = 768 Ohm`
+- `C1 = 120 pF`
+- `C2 = 4.7 nF`
+- `C3 = 1.0 nF`
+- `R4 / R_{ilim} = 576 Ohm`
+
+Ek not:
+
+Bu grup, projedeki kontrolcu bolumunun artik yalnizca "Type-III kullanilacak" seviyesinde olmadigini gosteriyor. Gercek resistor ve capacitor secimlerine yaklasilmis durumda. Ancak burada yine ayni ayrim korunmali:
+
+- dogru ama nihai olmayan hesap
+- nihai tasarima yaklasan hesap
+- teyit / capraz kontrol amacli hesap
+
+Bu nedenle `W.1-W.24`, topluca tek bir "nihai sonuc" olarak degil, ayni kontrol problemi uzerinde olusan tasarim izi olarak okunmalidir.
+
+
+
 #### 6.2.5 Compensator topolojisi ve temel model
 
 
@@ -1846,7 +1909,24 @@ Bu sadece ilk yerlestirme tahminidir; son deger plant kutuplari, ESR sifiri, tra
 
 
 
-#### 6.3.2 Sonradan eklenecekler
+#### 6.3.2 Defterden gelen ilk sayisal adaylar
+
+Defterden aktarilan not:
+
+- `W.23-W.24` icinde, `f_c` icin `f_{sw}/10` ile `f_{sw}/5` araligina bakan bir yerel yerlesim notu var
+- `f_{sw} = 332 kHz` alininca bu, kabaca `33.2 kHz < f_c < 66.4 kHz` bandina denk geliyor
+- ayni sayfalarda `f_o ~= 7.309 kHz` ve `f_{esr} ~= 8.74 kHz` civari notlar da yer aliyor
+- bu notlar, `f_c = 35 kHz` seciminin defterde kullanilan yerel hedefle uyumlu oldugunu gosteriyor
+
+Tutarlilik kontrolu:
+
+- bu frekans yerlestirmesi mantikli bir ilk aday
+- ancak `W.23-W.24` sayfalari eski geri besleme bolucusu notlariyla da karismis durumda
+- bu nedenle frekanslarin kendisi faydali olsa da, oradaki tum ara cebir dogrudan nihai kabul edilmemeli
+
+
+
+#### 6.3.3 Sonradan eklenecekler
 
 
 
@@ -1881,6 +1961,8 @@ Bu bolumde henuz nihai sayisal bode sonucu yoktur. Ancak yerel K-factor notlari 
 
 
 Buradaki sayilar su an "tasarim niyeti" seviyesindedir. Gercek `L`, `C`, `ESR`, `DCR`, modulator kazanci ve yuk araligiyla olusan plant uzerinden tekrar kontrol edilmeden final kabul edilmeyecektir.
+
+Defter taramasi `W.1-W.2`, `W.5`, `W.11` ve `W.12` icinde de `PM = 55 deg` hedefinin tekrarlandigi goruluyor. Yani bu hedef sadece eski ODT taslaginda gecen bir niyet degil; ilk 24 sayfalik defter batch'inde de aktif olarak kullanilmis bir tasarim hedefi.
 
 
 
@@ -2392,6 +2474,7 @@ Kisa liste:
 - Bu 26 gorsel ilgili teknik bolumlere dagitildi; `/foto` arsivi ilk asamada disarida tutuldu.
 
 - ODT'de kalan stability criterion ve compensator basliklari yeni.md icinde karsiliklandi.
+
 
 
 
