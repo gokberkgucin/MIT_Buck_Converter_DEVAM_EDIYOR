@@ -734,6 +734,32 @@ Tutarlilik kontrolu:
 - bu nedenle bu sayfa "yanlis hesap" gibi degil, daha cok eski / alternatif bir cikis kapasitörü iterasyonu olarak okunmali
 - cikis ripple icin kullanilan bu tip hesaplar korunmali; ancak nihai cikis capacitor bank'i ilan edilirken BOM ve daha sonraki sayfalarla tekrar eslestirilmelidir
 
+Defterden aktarilan not (`W.34`, `W.37`):
+
+Bu iki sayfa, cikis kapasitörü tarafinda iki farkli alt kriteri ayri ayri kontrol ediyor:
+
+- `W.34`: ripple siniri tarafindan minimum `Cout`
+- `W.37`: load-step / overshoot siniri tarafindan minimum `Cout`
+
+`W.34` tarafinda klasik ripple tabanli yaklasimla, `f_{sw} = 332 kHz`, `\Delta I_L \approx 3.8 A`, `\Delta V_{out} = 0.1 V` ve `R_{ESR} = 5 mOhm` varsayimi altinda yaklasik:
+
+```math
+C_{out} \gtrsim 14.57\,\mu\text{F}
+```
+
+`W.37` tarafinda ise `I_{step} \approx 5.429 A`, `L_F = 6.8 \mu H` ve izin verilen overshoot/undershoot zarfi ile:
+
+```math
+C_{out} \gtrsim 2.32\,\mu\text{F}
+```
+
+Tutarlilik kontrolu:
+
+- bu iki sayfa ayni capacitor bank'i iki farkli acidan siniyor
+- `W.37` sonucuna gore transient siniri burada daha gevsek gorunuyor
+- `W.34` sonucu ise daha zorlayici; yani bu iterasyonda cikis kapasitörü boyutunu ripple kriteri belirliyor
+- bu da onceki `70 uF` mertebesindeki secimin neden rahat marjli gorundugunu acikliyor
+
 
 
 #### 5.4.5 Bulk kapasitör eklemenin getirdigi sifirlar
@@ -1030,10 +1056,30 @@ I_{out}\,R_{ESR}
 - kaynak tarafinin gordugu akim dalgalanmasi ile de bag kuruldugunu
 - dolayisiyla daha sonra eklenecek input filter veya damping agi ile ayni konuya baglanacagini
 
+`W.35` sayfasi, bu minimum `Cin` hesabini bir adim daha ileri goturup `ESR` terimini acikca denkleme katiyor. Defterdeki yazima gore:
+
+```math
+\Delta V_{IN}
+=
+\frac{I_{out}\,D(1-D)}{f_{sw}\,C_{in}}
+ + I_{out}R_{ESR}
+```
+
+ve `R_{ESR} = 3 mOhm`, `I_{out} = 9 A`, `D = 0.5`, `f_{sw} = 332 kHz`, `\Delta V_{IN} = 0.24 V` kabul edilince:
+
+```math
+C_{in}
+\gtrsim
+\frac{0.5(1-0.5)\cdot 9}
+{332\,\text{kHz}\cdot(0.24 - 0.003\cdot 9)}
+\approx 31.1\,\mu\text{F}
+```
+
 Tutarlilik kontrolu:
 
 - `W.27` sonucundaki `28.4 uF`, ilk minimum etkin `Cin` adayi olarak yararlidir
 - `W.30-W.31` ayni problemi `ESR` terimini de icerecek sekilde daha gercekci okumaya calisiyor
+- `W.35`, bu gercekci okumayi sayisal olarak netlestirerek minimum `Cin` degerini `31.1 uF` civarina tasiyor
 - `W.32` mevcut projedeki `0.24 V` hedefine gore daha sert bir ornek oldugu icin nihai sonuc gibi yazilmamali
 - `W.33` sayfasindaki `50 mA` current ripple yorumu, dogrudan capacitor seciminden cok kaynak tarafinin gordugu kalite metriği olarak ele alinmali
 - bu nedenle bu batch tek bir sonuc vermiyor; aksine ayni input-capacitor problemini farkli seviyelerde cozen bir hesap ailesi veriyor
@@ -1141,6 +1187,32 @@ Tutarlilik kontrolu:
 - bu sonuc, yukaridaki `4.55 A_RMS` hesabiyla birebir ayni degil
 - farkin nedeni, kullanilan form, $\Delta I_L$ teriminin dahil edilmesi ve sayfadaki varsayimlar olabilir
 - su asamada bu iki hesap arasindan birini silmek yerine, `4.55 A_RMS` kaba ilk tahmin, `4.94 A_RMS` ise daha ayrintili / daha korunmaci tahmin olarak birlikte saklamak daha dogru
+
+Defterden aktarilan not (`W.36`):
+
+Bu sayfa, ayni `I_{Cin,RMS}` hesabini daha temiz ve daha duz bir yerlestirmeyle tekrar ediyor:
+
+```math
+I_{Cin,RMS}
+\approx
+\sqrt{
+D\left(
+I_{out}^2(1-D) + \frac{\Delta I_L^2}{12}
+\right)
+}
+```
+
+`D = 0.5`, `I_{out} = 9 A`, `\Delta I_L = 3.8 A` ile defterde:
+
+```math
+I_{Cin,RMS} \approx 4.566\,\text{A}_{RMS}
+```
+
+Tutarlilik kontrolu:
+
+- `W.36` sonucu, mevcut `4.55 A_RMS` notuna cok yakin
+- bu nedenle `W.36`, ilk kaba RMS tahmini destekleyen temiz bir teyit sayfasi gibi okunabilir
+- buna karsilik `W.29` daha yuksek bir `4.94 A` sonucu veriyor; dolayisiyla bu iki sayfa arasindaki farkin, ara adimlarda kullanilan form veya yerlestirme farkindan geldigi not edilmelidir
 
 ODT'den aktarilan metin (`7.1.3. MLCC Sığaçlarının Sıcaklıkla RMS Akımıı?`):
 
