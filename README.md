@@ -1442,6 +1442,66 @@ Tutarlilik kontrolu:
 - buna ragmen, cikis sığaci, `ESR`, bobin ve kayiplarin `Zout` egrisini nasil birlikte sekillendirdigini gormek acisindan cok degerlidir
 - bu nedenle bu sayfa korunmali; fakat "harici ornek Zout eskizi" etiketi akilda tutulmalidir
 
+Defterden aktarilan not (`W.66`):
+
+Bu sayfa, `W.64-W.65`teki ayni harici ornegi biraz daha formel hale getirerek `Zout`'un parca empedanslarindan nasil kuruldugunu not ediyor.
+
+Sayfada once ESR sifiri bir kez daha yaziliyor:
+
+```math
+f_{ESR}
+=
+\frac{1}{2\pi R_{ESR} C}
+\approx
+1\,\text{MHz}
+```
+
+Ardindan bobin koluna ait karakteristik bir frekans noktasi su sekilde not edilmis:
+
+```math
+R_L = \omega L
+\;\Rightarrow\;
+f_2 = \frac{R_L}{2\pi L}
+\approx 4.7\,\text{kHz}
+```
+
+Sayfadaki en onemli not ise toplam cikis empedansinin iki kolun paraleli olarak dusunulmesi:
+
+```math
+Z_{out} = Z_0 \parallel Z_b
+```
+
+Burada:
+
+- bir kol, bobin / kayip tarafini
+- diger kol ise kapasitör / `ESR` tarafini
+
+temsil eden bilesen empedanslari gibi dusunulmustur.
+
+Sayfanin alt tarafinda `f_0` icin iki yazim notu var:
+
+```math
+f_0
+\approx
+\frac{1}{2\pi\sqrt{L_F C_{out}}}
+\approx
+11.25\,\text{kHz}
+```
+
+ve `R_{yuk}` sonlu oldugunda daha ayrintili ifadeyle:
+
+```math
+f_0 \approx 11.278\,\text{kHz}
+```
+
+notu dusulmus. Sayfada ayri olarak `R_{yuk} = 0.36 \Omega` ve cok buyuk `R_{yuk}` durumu karsilastiriliyor.
+
+Tutarlilik kontrolu:
+
+- `W.66`, `W.64-W.65` zincirinin dogal devamidir; ayni harici ornek icin frekans noktalarini ve `Zout` bilesimini daha formel sekilde yazmaktadir
+- bu sayfa ikinci projenin kendi nihai sayilarini temsil etmiyor olabilir; dolayisiyla "harici ornek" etiketi korunmalidir
+- buna ragmen `Z_{out} = Z_0 || Z_b` dusuncesi ve `f_0 / f_{ESR}` / bobin kolu frekans notlari, ileride kendi tasarimindaki `Zout` dusuncesini kurarken faydali bir referans olarak degerlidir
+
 
 
 #### 5.4.5 Bulk kapasitör eklemenin getirdigi sifirlar
