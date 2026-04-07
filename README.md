@@ -9211,29 +9211,61 @@ Bu nedenle bu sayfa, "crossover frekansinda kompanzatorun gerekli kazancini bulm
 
 Sayfada guvenle okunan ana akis sunlardir:
 
-- `f_t = 35 kHz`
-- `M = V_s / V_{ramp} = 15`
-- `|L(j\omega_t)| = |M(j\omega_t)| \cdot |F(j\omega_t)| \cdot |G_3(j\omega_t)| = 1`
-- `|F(j\omega_t)| \approx 0.045356`
-- buradan:
+Crossover frekansi:
 
-```math
-\left|G_3(j\omega_t)\right|
+$$
+f_t = 35\,\text{kHz}
+$$
+
+Modulator kazanci:
+
+$$
+M = \frac{V_s}{V_{ramp}} = 15
+$$
+
+Crossover noktasinda toplam loop gain'in `1` olmasi gerekiyor. Sayfadaki ana iliski:
+
+$$
+\lvert L(j\omega_t)\rvert
 =
-\frac{1}{\left|M(j\omega_t)\right|\,\left|F(j\omega_t)\right|}
+\lvert M(j\omega_t)\rvert
+\cdot
+\lvert F(j\omega_t)\rvert
+\cdot
+\lvert G_3(j\omega_t)\rvert
+=
+1
+$$
+
+Sayfada bulunan plant / filter buyuklugu:
+
+$$
+\lvert F(j\omega_t)\rvert \approx 0.045356
+$$
+
+Unity-gain kosulu kullanilarak gerekli kompanzator kazanci:
+
+$$
+\lvert G_3(j\omega_t)\rvert
+=
+\frac{1}{\lvert M(j\omega_t)\rvert \cdot \lvert F(j\omega_t)\rvert}
 =
 \frac{1}{15 \cdot 0.045356}
 \approx
 1.46985
-```
+$$
 
-Bu buyuklugun `dB` cinsinden yazimi ise:
+Bu buyuklugun `dB` cinsinden karsiligi:
 
-```math
-20\log_{10}\!\left(\left|G_3(j\omega_t)\right|\right)
+$$
+20\log_{10}\!\big(\lvert G_3(j\omega_t)\rvert\big)
 \approx
-3.3454\,\mathrm{dB}
-```
+3.35\,\text{dB}
+$$
+
+Kisa yorum:
+
+Bu sayfanin anlattigi sey su: `35 kHz` crossover noktasinda, modulator kazanci ve plant kazanci birlikte dusunuldugunde, kompanzatorun o frekansta yaklasik `1.47 V/V` ya da `3.35 dB` kazanc vermesi gerekiyor.
 
 Buradaki ara sayisal adimlarin bazilarinin son basamaklari foto uzerinden cok net okunmasa da, sayfanin yaptigi islem ve vardigi sonuc kaynak yontemle tutarlidir. Bu nedenle `W.1`, serbest bir karalama degil; `EX7.1 / G2` yonteminin kullanicinin kendi `35 kHz` tasarim hedefiyle uygulanmis ilk temiz kazanc sayfasi olarak korunmalidir.
 
