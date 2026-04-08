@@ -2540,6 +2540,12 @@ Ani bir yük akımı değişimi sırasında `Vout`…
 > Evm’de sadece MLCC capacitor kullanıp, hiç bulk capacitor kullanmamalarını bu hesaptan sonra anladım.
 > İlerleyen süreçte, çıkışta bulk capacitor kullanmayı gerektirecek şekilde design requirement’ı sıkılaştırabilirim.
 
+Bu bolume ait ek kaynak-fotolar:
+
+![Regulator slew-rate example circuit uzerine alinmis not](images/foto_selected/p20_slew_rate_example_circuit.jpg)
+
+![Modern load-step ve load slew-rate ornek tablosu](images/foto_selected/p19_processor_load_spec_table.jpg)
+
 
 
 Ek not:
@@ -2571,6 +2577,8 @@ $t_1$ ani ve kullanicinin not ettigi $t_{undershoot}$ sonu, matematiksel olarak 
 ```
 
 Bu anda bobin akimi, en azindan o anlik durumda, yuk talebini karsilayabilecek seviyeye yaklasmistir. ODT'deki EVM yorumu da bu bakimdan anlamlidir: eger MLCC bankasi bu gecis suresinde yeterli enerjiyi saglayabiliyorsa, bulk kapasitör ihtiyaci her durumda zorunlu olmayabilir.
+
+Ilk foto, bobin uzerindeki `di/dt = \Delta V / L` sezgisini ve yuk adimi aninda hangi gerilimlerin bobin egimini belirledigini not etmek icin kullanilmistir. Ikinci foto ise bu projeye ait nihai bir veri tablosu degil; ama modern yuklerin neden sert `load step` ve `load slew-rate` gereksinimleri dogurabildigini gosteren arka-plan referansi olarak yararlidir.
 
 
 Defterden aktarilan not (`W.98`):
@@ -2622,6 +2630,12 @@ Tutarlilik kontrolu:
 - buna ragmen teknik fikir cok degerli: load transient sirasinda dongu tepki verse bile bobin akimi ancak sonlu bir `A/us` egimiyle yukselebilir
 - dolayisiyla ani yuk adimlarinda ilk anda gereken fark akim, cikis kapasitörleri tarafindan saglanir
 - bu nedenle `W.98`, `5.4.6` altinda "slew-rate mantigini ornekle anlatan defter sayfasi" olarak korunmalidir
+
+Kaynak-ustu olcum notu:
+
+![Transient sirasinda gerilim cevabi icin ornek scope ekran goruntusu](images/foto_selected/p18_scope_transient_example.jpg)
+
+Bu ekran goruntusu, nihai projeye ait kesin laboratuvar kaniti gibi degil; ama transientte gorulen ilk sapma, altsinusoidal ringing ve yerlesme davranisinin ne tip bir osiloskop goruntusune donustugunu hatirlatan bir destek gorsel olarak yararlidir. Bu nedenle burada "transient davranişin goruntu dili"ni destekleyen ek not olarak korunabilir.
 
 
 
@@ -3047,6 +3061,15 @@ Senin sayfa uzerine aldigin notlardan, ozellikle su mesaj korunmali:
 - cikis ripple akimi ve giris pulse akimi buyuklukleri yuk / duty ile birlikte degisir
 - duty `0.5` civari, giris pulse akimi acisindan kritik / worst-case bolgelerden biri olabilir
 - bu nedenle `Cin` hesabi sadece `uF` secimi degil, ayni zamanda `RMS current` ve `pulse current` secimidir
+
+![Duty cycle'a gore input RMS/load current orani uzerine alinmis not](images/foto_selected/p21_input_rms_vs_duty.jpg)
+
+![Input ripple gerilimi denkleminin not alindigi ekran goruntusu](images/foto_selected/p22_input_ripple_equation.jpg)
+
+Bu iki ekran goruntusu, `W.94`te kaynak-ustu-not olarak yazilan iki ana ekseni gorsel olarak da destekliyor:
+
+- `Figure 1` uzerinden `input pulse current / RMS current` davranisinin duty'e bagli oldugu
+- `\Delta V_{IN,PP}` hesabi tarafinda ise toplam etkin `C_{in}` ile `D(1-D)` teriminin ana rol oynadigi
 
 Tutarlilik kontrolu:
 
@@ -3878,6 +3901,8 @@ I_{CB,RMS}
 \approx
 \frac{\Delta V_{IN,PP}}{2\sqrt{3}\,ESR_B}
 ```
+
+![Bulk capacitor RMS akimi ile ESR/ripple iliskisini gosteren notlu ekran goruntusu](images/foto_selected/p23_bulk_rms_esr_constraint.jpg)
 
 ve buna bagli olarak, izin verilen ripple gerilimi, bulk kapasitör `ESR`'i ve datasheet'teki izin verilen ripple akimi arasinda ikinci bir secim kosulu kuruluyor.
 
@@ -4850,6 +4875,10 @@ Tutarlilik kontrolu:
 - buna ragmen not cok degerli: yuksek `VDS` spike veya layout / snubber yetersizligi durumunda avalanche konusu secimde goz ardi edilmemelidir
 - bu nedenle `W.120`, `5.6.2 Secim mantigi` altinda MOSFET ruggedness / UIS / avalanche farkindaligini gosteren kaynak-not sayfasi olarak korunmalidir
 
+![Secilen MOSFET datasheet'inde EAS single-pulse avalanche energy notu](images/foto_selected/p26_avalanche_energy_single_pulse.jpg)
+
+Bu ekran goruntusu, `W.120-W.121` tarafinda kavramsal olarak not edilen UIS / avalanche farkindaliginin secilen MOSFET datasheet'inde de somut bir dayanim kalemi olarak arandigini gosteriyor. Yani burada yalnizca genel teori degil, secilen parcanin gercek datasheet'i de okunuyor.
+
 Defterden aktarilan not (`W.121`):
 
 Bu sayfa, `W.120`deki UIS / avalanche makalesinin dalga sekli mantigini kullanicinin kendi cizimiyle tekrar kuruyor. Yani artik yalnizca metin degil, testin nasil isledigine dair zamana bagli sezgi de yazilmis.
@@ -4937,6 +4966,10 @@ Tutarlilik kontrolu:
 - burada yeni sayisal secim veya kayip hesabi yok
 - ama MOSFET davranisini ezber parametre yerine karakteristik egri gozuyla dusunmeye yardim ettigi icin degerlidir
 - bu nedenle `W.123`, `5.6.2 Secim mantigi` altinda `VGS` / lineer bolge / `RDS(on)` sezgisini gosteren temel bir defter notu olarak korunmalidir
+
+![MOSFET on-region karakteristikleri uzerinde VGS seviyeleri isaretlenmis ekran goruntusu](images/foto_selected/p30_on_region_characteristics.jpg)
+
+Bu ekran goruntusu, `W.123`te cizgisel olarak anlatilan `I_D - V_{DS}` ailelerini secilen MOSFET datasheet'i uzerinden tekrar gormeyi sagliyor. Ozellikle farkli `V_{GS}` seviyelerinde ayni `V_{DS}` icin tasinabilen akimin nasil degistigi ve "gercek surme gerilimine gore okumak" gerektigi daha somut hale geliyor.
 
 Defterden aktarilan not (`W.178`):
 
@@ -5794,6 +5827,12 @@ Bu sayfa, TI kaynagindaki `MOSFET's Vpl and Vgs(th) Estimation` konulu sayfanin 
 ![G81 Figure 3 MOSFET Switch Transition](images/odt_embedded/G81_Figure 3 MOSFET Switch Transition.png)
 
 G81 Figure 3. MOSFET Switch Transition
+
+Ek waveform notu:
+
+![MOSFET turn-on surecinin bolgelere ayrildigi ozet dalga sekli](images/foto_selected/p16_switching_intervals_waveform.jpg)
+
+![MOSFET turn-on surecinin daha sade gate-drain-current dalga sekli](images/foto_selected/p27_mosfet_turn_on_waveform_simple.jpg)
 
 Sayfadaki basili bolumde:
 
@@ -7838,6 +7877,10 @@ Tutarlilik kontrolu:
 - `Q_g \approx 12.2 nC` notu, `W.129`daki `10 nC` ve `W.161`deki `8 nC` civari notlarla birlikte daha sonra tekrar karsilastirilmasi gereken bir ara aday olarak gorulmelidir
 - bu nedenle `W.164`, `5.6.3 Ilk kayip notlari` altinda gate-charge yorumu ve `Qg`'yi grafikten okuma gerekliligini anlatan destek defter sayfasi olarak korunmalidir
 
+![Gate-charge egirisi uzerinden Qg okuma mantigini gosteren ekran goruntusu](images/foto_selected/p28_gate_charge_curve.jpg)
+
+Bu ekran goruntusu, `W.164`te yazdigin "Kesinlikle Fig.6 grafigini kullan" notunu dogrudan gorsellestiriyor. Yani `Q_g` degerinin sabit tablo sayisindan degil, secilen `V_{GS}` kosulunda gate-charge egirisinden okunmasi gerektigi burada daha acik hale geliyor.
+
 Defterden aktarilan not (`W.130`):
 
 Bu sayfa, `G88` kaynagindan gelen MOSFET kapasitans verilerini projedeki ortalama `V_{DS}` kosuluna donusturmeye calisan bir ara sayfa gibi duruyor. Bu nedenle dogrudan nihai kayip sonucu degil; `C_{GD}`, `C_{GS}` ve `C_{DS}` gibi parasitiklerin projede hangi buyukluk mertebesinde alinacagini gosteren kaynak-uygulama notu olarak korunmalidir.
@@ -7910,6 +7953,8 @@ Tutarlilik kontrolu:
 - burada kullanilan `2*C*sqrt(Vspec/Vave)` tipi donusum, saf temel denklemden cok uygulama-notu / yaklasik datasheet yorumlama kurali gibi gorunuyor; bu nedenle sonuc dogrudan fizik kanunu gibi degil, tasarim yaklasimi olarak ele alinmalidir
 - buna ragmen sayfa cok faydali; cunku kayip hesabinda kullanilan kapasitanslarin rasgele degil, belirli bir `VDS` seviyesine uyarlandigi goruluyor
 - bu nedenle `W.130`, `5.6.3 Ilk kayip notlari` altinda MOSFET parasitik kapasitanslarini proje kosuluna tasiyan ara sayfa olarak korunmalidir
+
+![MOSFET Ciss-Coss-Crss egirilerinin VDS'e gore degisimini gosteren ekran goruntusu](images/foto_selected/p29_mosfet_capacitance_vs_vds.jpg)
 
 Defterden aktarilan not (`W.165`):
 
@@ -8085,6 +8130,10 @@ Bu nedenle son raporda su ilke korunmalidir:
 
 - `RthetaJA`, `RthetaJC`, kart sicakligi ve tahmini junction sicakligi birlikte yorumlanacak
 
+![Exposed pad ve paket alt termal yolunu gosteren ekran goruntusu](images/foto_selected/p25_exposed_pad_package.jpg)
+
+Bu gorsel, `W.108-W.110` hattinda tekrar tekrar vurgulanan exposed pad gercegini cok hizli anlatan iyi bir destek sayfasi. Termal performansin yalnizca paketin kendisine degil, alt pad'in PCB'ye nasil baglandigina da dayandigini gorsel olarak destekliyor.
+
 Defterden aktarilan not (`W.107`):
 
 Bu sayfa, TI'nin `Understanding MOSFET Data Sheets, Part 6 - Thermal Impedance` makalesinin ilk sayfasi uzerine alinmis not gibi duruyor. Bu nedenle proje-ozel hesap sayfasindan cok, MOSFET datasheet yorumunu dogru zemine oturtan bir kaynak-not sayfasi olarak korunmali.
@@ -8238,6 +8287,18 @@ Bu alt baslikta ODT'deki eski metin tam govde olarak yeniden kullanilmamistir. B
 
 ODT'den aktarilan metin (`8.1. Bootstrap Direncini (Rboot) Hesaplama ve Seçim Mantığı`, denklemler okunur formatta yeniden yazildi):
 
+Bu bolume ait kaynak-fotolar:
+
+![Bootstrap aginin fiziksel baglantisini gosteren notlu cizim](images/foto_selected/p11_bootstrap_structure_markup.jpg)
+
+![LM5146 icindeki dahili bootstrap diyodu notu](images/foto_selected/p12_internal_bootstrap_diode.jpg)
+
+![Gercek sema uzerinde Cbst ve Rilim civari](images/foto_selected/p13_actual_cbst_rilim_markup.jpg)
+
+![LM5146 pinleri uzerinden bootstrap ve CVCC baglantisi](images/foto_selected/p14_lm5146_bootstrap_pinout.jpg)
+
+![Bootstrap supply konseptini anlatan kaynak sekil](images/foto_selected/p15_bootstrap_supply_concept.jpg)
+
 1. "Hangi duty?"
 
 PWM'de high-side MOSFET'in en uzun sure acik kaldigi durum, bootstrap kondansatorunun en kisa sarj penceresini verir. ODT notunda verilen degerlerle:
@@ -8365,6 +8426,15 @@ Bu nedenle bu bolumde ozellikle su maddeler sonra yeniden kontrol edilmelidir:
 - bootstrap diyotunun peak akim ve ters gerilim marji
 - `R_{boot}` seciminin ringing ve sarj hizi acisindan uygunlugu
 - gerekiyorsa LTspice / PSpice ile bootstrap dugumu dalga sekli
+
+Bu bes kaynak-foto birlikte okundugunda su ayirim daha gorunur olur:
+
+- `BST / HO / SW` dugumlerinin fiziksel baglantisi
+- `C_{BST}`'nin high-side gate surucusunu nasil besledigi
+- bootstrap diyotunun LM5146 icinde yer aldigi bilgisi
+- gercek semadaki `C_{BST}`, `C_{VCC}` ve `R_{ILIM}` cevresinin birbirinden nasil ayrildigi
+
+Bu nedenle gorseller burada "sadece sema resmi" gibi degil; bootstrap hesabinin hangi fiziksel yapidan turetigini gosteren destek katmani olarak korunmalidir.
 
 Defterden aktarilan not (`W.160`):
 
@@ -9323,6 +9393,12 @@ Defterden aktarilan not:
 - `W.17-W.19`: current-limit / `R_{ilim}` hesabi. EVM'deki `619 Ohm` referans degeri ile yerel hesap karsilastiriliyor.
 - `W.20-W.24`: Type-III kutup-sifir mantigi, `Kmid`, `f_c`, `f_o`, `f_{esr}` ve geri besleme bolucusunun kompanzatorla iliskisi uzerine kavramsal notlar var.
 
+`R_{ilim}` / current sensing baglamini destekleyen kaynak-foto:
+
+![MOSFET RDS(on) current sensing ve shunt current sensing karsilastirmasi](images/foto_selected/p17_rds_on_current_sensing.jpg)
+
+Bu gorsel, `ILIM` pininin ideal bir "soyut akim limiti" degil; ya `RDS(on)` tabanli ya da shunt tabanli bir current-sensing mantiginin parcasi olarak dusunuldugunu gosteren iyi bir arka-plan referansidir. Bu nedenle `W.17-W.19` grubunun yaninda, current-limit hesabinin fiziksel baglamini guclendiren destek gorsel olarak korunmalidir.
+
 Ek not (ikinci tur netlestirme - `W.1`):
 
 `W.1`, artik daha net bicimde su kaynak zincirine oturuyor:
@@ -9447,7 +9523,11 @@ ODT'den aktarilan metin (`Compensator`):
 
 ![Type 3 Compensator Devresi](images/odt_embedded/fig_25_type3_compensator.png)
 
+![Kutup ve sifir yerlesimini analog kompanzator ornegi uzerinde notladigin ekran goruntusu](images/foto_selected/p24_lt1215_compensator_markup.jpg)
+
 Type 3 Compensator Devresi
+
+Bu ekran goruntusu dogrudan LM5146 devresine ait degil; ancak Type-III kompanzatorun kutup / sifir / egim mantigini daha genel bir analog kompanzator ornegi uzerinden dusundugunu gosterdigi icin burada destekleyici bir gorsel olarak korunmali. Yani "ayni controller" degil, ama "ayni kompanzasyon sezgisi" vardir.
 
 > Compensator transfer function:
 
