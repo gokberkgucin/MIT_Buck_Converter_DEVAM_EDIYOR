@@ -274,6 +274,63 @@ Bu nedenle, workbook ile bu Markdown belge arasindaki iliski su sekilde okunmali
 Bu yuzden workbook ile `yeni.md` iliskisi "birebir ayni tek iterasyon" gibi degil, "ayni tasarimin nihai omurgasi + defterde korunmus tasarim izi" seklinde dusunulmelidir
 
 
+### 4.2 `WEBENCH` ile hizli simulasyon teyidi
+
+
+
+Ek not (`WEBENCH` teyidi):
+
+`WBDesign21.pdf`, nihai tasarimin yerine gecen tek ve mutlak dogrulama belgesi gibi okunmamalidir. Daha dogru okuma bicimi sunlardir:
+
+- kullanicinin kendi hesaplariyla kurulan tasarim omurgasinin hizli davranis teyidi
+- secilen komponent ailesinin ilk simulasyon tabanli sagduyu kontrolu
+- statik calisma, ripple, verim ve loop davranisi icin hizli referans goruntu paketi
+
+Bu nedenle `WEBENCH` ciktilari, "tek basina final kanit" degil; defter, hesap, calculator ve BOM secimi ile birlikte okunan hizli bir capraz teyit katmani olarak kullanilmalidir.
+
+Bu hizli teyitte guclu bicimde tekrar eden ana noktalar sunlardir:
+
+- `V_{IN} = 24 - 36 V`
+- `V_{OUT} = 14 V`
+- `I_{OUT,max} = 9 A`
+- `f_{sw} = 332.226 kHz`
+- `Mode = FCCM`
+- `SoftStart = 3.8 ms`
+- `I_{L,pp} = 3.805 A`
+- bobin ripple orani `42.277%`
+- `Efficiency = 97.877%`
+
+Kontrol kararliligi acisindan `WEBENCH` loop-response verisi de tasarim hedefiyle uyumludur. `amCharts.json` icindeki sayisal Bode verisine gore ana loop icin:
+
+$$
+f_c \approx 34.83 \,\text{kHz}
+$$
+
+$$
+PM \approx 55.75^\circ
+$$
+
+Bu sonuc, defterde ve kompanzator hesabinda hedeflenen `f_c \approx 35 \,\text{kHz}` cizgisiyle iyi ortusur ve kapali cevrimin kararlilik acisindan makul oldugunu gosterir.
+
+`WBDesign21.pdf` icinde statik calisma tarafinda olumlu gorunen basliklar da vardir:
+
+- `Vout Actual = 13.8 V`, yani `14 V +- 3%` bandi icinde
+- verim `%90` hedefinin belirgin ustundedir
+- filtre sonrasi giris gurultusu `61.79 dBuV` olup, ayni raporda verilen `67.75 dBuV` sinirinin altindadir
+
+Buna karsilik, ayni `WEBENCH` snapshot'inda henuz hedefe tam oturmayan veya dikkatli yorumlanmasi gereken noktalar da vardir:
+
+- `Vout p-p = 122.002 mV`, yani `100 mVpp` hedefinin biraz ustunde
+- `Vin p-p = 2.951 V`, yani defterdeki `0.24 Vpp` hedefi ile uyumlu degildir
+- rapordaki ortam sicakligi `Ta = 30 degC` oldugu icin, `76 degC board worst-case` hedefini tek basina dogrulamaz
+
+Bu nedenle `WEBENCH` sonucu icin en dogru ozet sudur:
+
+- tasarimin temel calisma noktasi saglikli gorunmektedir
+- loop response kararlidir ve `35 kHz` civari crossover hedefiyle uyumludur
+- ancak ripple ve sicaklik gibi bazi hedefler icin bu snapshot tek basina nihai kanit olarak kullanilmamalidir
+
+
 
 ## 5. Guc Katinin Tasarimi
 
@@ -329,6 +386,18 @@ ODT'den aktarilan metin (`4.2. Giriş Gerilimi Vin`):
 >
 > Vin ≥ 7,5 V sağlamak veya 8 – 13 V’luk harici VCC rail’ı Şekil 8-2’deki gibi DVCC ile bağlayarak LDO’yu bay-pas etmek, hem verimi hem termal performansı iyileştirir.
 
+Ilgili kaynak-foto notu:
+
+![LM5146 functional block diagram uzerine alinmis LDO ve referans notu](images/foto_selected/p02_lm5146_functional_block.jpg)
+
+Bu foto, `LM5146` fonksiyonel blok diyagrami uzerinde ozellikle:
+
+- `7.5 V` dahili `LDO`
+- `FB` / `0.8 V` referans dugumu
+- `COMP` ve `SS/TRK`
+
+arasindaki iliskiyi not etmek icin kullanilmistir. Bu nedenle `5.1.1` altinda, kontrolcunun ic yapisinin tasarim notlarina nasil tasindigini gosteren destek gorseli olarak korunmalidir.
+
 
 
 
@@ -364,6 +433,14 @@ Bu nedenle tasarimda iki yol acik tutulmalidir:
 
 - sistemi yalnizca $V_{in} \ge 8.22\,\text{V}$ bolgesinde optimize etmek
 - veya `DVCC` uzerinden harici $8\,\text{V} - 13\,\text{V}$ $V_{CC}$ rayi ile LDO'yu baypas etmek
+
+Harici `VCC` seceneginin not edildigi kaynak-fotolar:
+
+![DVCC ve harici VCC yolu uzerine alinmis not](images/foto_selected/p06_external_vcc_markup.jpg)
+
+![VCC enable dugumu ve harici VCC notu](images/foto_selected/p05_lm5146_vcc_enable_detail.jpg)
+
+Bu iki foto birlikte, kullanicinin dahili `LDO` yolu ile harici `VCC` / `DVCC` secenegini ayni blok diyagram uzerinde ayirmaya calistigini gosterir. Nihai tasarimda dahili yolun kullanildigi not edilmis olsa da, bu gorseller alternatifin bilincli olarak dusunuldugunu gosterdigi icin korunmalidir.
 
 Defterden aktarilan not (`W.108`):
 
@@ -554,6 +631,12 @@ Ek not (calculator teyidi):
 - `Actual Vout = 14.167 V`
 
 Bu nedenle calculator, `16.5 kOhm / 1.00 kOhm` eski adayini degil; `W.14-W.16` ve satin alinmis BOM ile uyumlu gorunen `26.4 kOhm / 1.6 kOhm` cizgisini daha guclu bicimde destekliyor
+
+Bu bolume ait kaynak-foto:
+
+![WEBENCH benzeri devre uzerinde FB bolucusu ve kompanzator notlari](images/foto_selected/p04_feedback_and_compensation_markup.jpg)
+
+Bu foto, geri besleme bolucusunun `RFB1 / RFB2` kimligini ve kompanzator kolunun hangi elemanlardan olustugunu hizli gormek icin kullanilan notlu bir ekran goruntusu gibi okunmalidir. Bu nedenle `5.1.3` altinda, `FB` setpoint mantiginin gorsel esligi olarak korunmalidir.
 
 Defterden aktarilan not (`W.202`):
 
@@ -4736,6 +4819,14 @@ Bu nedenle MOSFET secimi en az su basliklarla savunulmalidir:
 - termal metrikler ve paket
 
 - guvenli calisma alani ve akim/avalanche sinirlari
+
+Bu secim mantigini destekleyen iki kaynak-foto:
+
+![RDS(on) vs VGS grafiği uzerinde surme gerilimi notu](images/foto_selected/p03_rds_on_vs_vgs.jpg)
+
+![Gate driver ve MOSFET kapasitans modeli uzerinde direnç notlari](images/foto_selected/p10_gate_driver_and_mosfet_caps.jpg)
+
+Ilk foto, `V_{GS} \approx 7.5 V` civarinda `R_{DS(on)}`'in hangi mertebede okunmasi gerektigini not eden bir datasheet-grafik calismasidir. Ikinci foto ise `R_{HI}`, `R_{LO}`, harici gate direnci ve `C_{GD} / C_{GS} / C_{DS}` kapasitanslari uzerinden `dv/dt`, Miller etkisi ve gate-surme hizi dusuncesinin nasil kuruldugunu gosterir. Bu nedenle her iki foto da `5.6.2` altinda secim mantigini kuvvetlendiren gorsel notlar olarak korunmalidir.
 
 Defterden aktarilan not (`W.120`):
 
@@ -9030,6 +9121,14 @@ Tasarımımızda kullandığımız çıkış capacitorleri
 >
 > Sebebi: ihmal edilmis bicimi yeterince dogru; bu capacitor esas olarak daha yuksek frekans bolgesinde etkili.
 
+Bu bolume ait kaynak-fotolar:
+
+![Control-to-output transfer function Gvd ornegi](images/foto_selected/p08_control_to_output_transfer.jpg)
+
+![Ornek buck guc kati ve cikis filtresi modeli](images/foto_selected/p01_example_power_stage.jpg)
+
+![Gvd buyukluk ve faz Bode egileri ornegi](images/foto_selected/p07_gvd_bode_example.jpg)
+
 
 
 Ek not:
@@ -9042,6 +9141,8 @@ Bu bolumde ana fikir, kontrol dongusunun plant kisminin yalnizca bobinden degil,
 - $R_{load}$ ve varsa sönumle ilgili direncler kutup yerlerini degistirir
 
 $C_{28} = 0.1\,\mu\text{F}$ gibi cok kucuk bir MLCC'nin ilk transfer fonksiyonu hesabinda ihmal edilmesi, ancak bu elemanin etkisi crossover civarinda gercekten kucukse kabul edilebilir. Genelde bu tip cok kucuk kapasiteler ana enerji depolama elemani olmaktan cok, daha yuksek frekansli spike ve ringing bastirma tarafinda etkili olur. Bu nedenle kompanzator hesabinda ilk yaklasimda ihmal edilmesi makul olabilir; yine de son kararin bode veya AC sweep ile dogrulanmasi gerekir.
+
+Bu uc foto birlikte, kullanicinin plant dusuncesini yalnizca denklemler uzerinden degil; ornek buck guc kati, `G_{vd}` ifadesi ve buna ait Bode sezgisi uzerinden de kurdugunu gosterir. Bu nedenle `6.1.3` altinda, cikis filtresi ve yuk modelinin gorsel arka plani olarak korunmalidir.
 
 Defterden aktarilan not (`W.116`):
 
@@ -9109,6 +9210,12 @@ Su an icin iki ayri katman oldugu acik yazilmalidir:
 
 
 `G103_comp.txt` icindeki sayilar faydali bir ornek / calisma dosyasidir; ancak bunlarin tamami dogrudan bu proje icin son deger olarak alinmamalidir. Nihai transfer fonksiyonu, bu projede secilen gercek `L`, `C`, `ESR`, `DCR`, yuk ve modulator parametrelerinden yeniden kurulacaktir.
+
+Bu ayrimi destekleyen bir diger kaynak-foto:
+
+![Buck regulator poles and zeros haritasi](images/foto_selected/p09_poles_zeros_map.jpg)
+
+Bu foto, modulator, power stage ve compensator kutup / sifirlarinin ayni cizim uzerinde birlikte goruldugu bir ozet tablo gibi okunur. Bu nedenle `6.1.4` altinda, genel yontem ile proje-ozel sayisal model arasindaki ayrimin gorsel karsiligi olarak korunmalidir.
 
 
 
