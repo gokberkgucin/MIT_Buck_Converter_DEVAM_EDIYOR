@@ -2,14 +2,14 @@
 
 
 
-Bu belge, ikinci buck converter tasariminin GitHub uzerinden surdurulen ana muhendislik dokumanidir.
+Bu belge, ikinci buck converter tasariminin ana calisma dokumanidir.
 
 Bu dosya iki seyi ayni anda tasir:
 
 - nihai tasarima giden teknik omurgayi
 - o omurgaya nasil ulasildigini gosteren secilmis tasarim izlerini
 
-Buradaki hesaplarin omurgasi, dogrudan kullanicinin kendi defterinden gelen notlar ve hesap sayfalaridir. Bu nedenle belgede birlikte bulunabilen seyler sunlardir:
+Hesaplarin omurgasi dogrudan defterden geliyor. O yuzden bu belgede yan yana sunlar bulunabiliyor:
 
 - nihaiye yakin hesap
 - alternatif yontem
@@ -17,14 +17,14 @@ Buradaki hesaplarin omurgasi, dogrudan kullanicinin kendi defterinden gelen notl
 - eski iterasyon
 - hata zinciri nedeniyle sonradan zayiflayan hesap
 
-Bu, belgeyi zayiflatan bir sey olarak degil; tasarim surecinin gercek izini koruyan bir ozellik olarak okunmalidir.
+Bu, belgeyi zayiflatan bir sey degil; tam tersine tasarim surecinin gercek izini koruyan kisim.
 
-Bu nedenle belge:
+Bu belge:
 
 - yalnizca "temiz final sonuc" metni gibi okunmamalidir
 - ama ham defter yigini gibi de okunmamalidir
 
-En dogru okuma bicimi sudur:
+En rahat su sirayla okunur:
 
 - `2. Durum Ozeti` ve `3. Tasarim Hedefleri` bolumleri repo'nun mevcut seviyesini ve hedefini verir
 - `4. Kullanilan Ana Kaynaklar` tasarim kararlarinin dayandigi ana belge ailesini gosterir
@@ -35,7 +35,7 @@ Ana yol haritasi: `tracking/master_plan.md`
 
 Temel belge kurallari:
 
-- yalnizca secilen ve gercekten kullanilan kaynaklari govdeye tasiyin
+- yalnizca gercekten kullanilan kaynaklari govdeye tasiyin
 - ham notlari oldugu gibi yigmak yerine izlerini koruyarak okunur hale getirin
 - belgede gorunecek gorselleri mumkunse `images/` altinda temiz isimlerle kullanin
 
@@ -45,7 +45,7 @@ Temel belge kurallari:
 
 
 
-Bu belge icin kabul edilen ana sira soyledir:
+Bu belge icin ana sira su:
 
 1. `yeni.odt` icerigini bolum bolum `yeni.md` dosyasina aktarmak
 
@@ -63,15 +63,11 @@ Bu belge icin kabul edilen ana sira soyledir:
 
 Ayrintili surum: `tracking/master_plan.md`
 
+Su anki durum:
 
-
-Durum:
-
-- `yeni.odt -> yeni.md` aktarimi tamamlandi.
-
-- Siradaki aktif faz: defter notlarinin `foto/defter_raw/` uzerinden batch batch dijitale alinmasi.
-
-- Takip dosyalari: `tracking/notebook_ingestion.md`, `tracking/notebook_batches.md`
+- `yeni.odt -> yeni.md` aktarimi tamamlandi
+- aktif faz: defter notlarinin `foto/defter_raw/` uzerinden batch batch dijitale alinmasi
+- takip dosyalari: `tracking/notebook_ingestion.md`, `tracking/notebook_batches.md`
 
 
 
@@ -79,11 +75,9 @@ Durum:
 
 
 
-Ilk donemdeki tasarim, onceki tez calismasinda tamamlanan ve simulasyonla hedef spesifikasyonlari sagladigi gosterilen buck converter tasarimidir. Yeni calisma ise bu ilk tasarimin uzerine kurulan, daha ayrintili hesaplar, ek teknik gereksinimler ve daha bilincli komponent secimleri iceren ikinci tasarim iterasyonudur.
+Ilk donemdeki tasarim, onceki tez calismasinda tamamlanan ve simulasyonla hedef spesifikasyonlari sagladigi gosterilen buck converter tasarimiydi. Buradaki yeni calisma ise onun uzerine kurulan ikinci iterasyon: daha ayrintili hesaplar, ek teknik gereksinimler ve daha bilincli komponent secimleri var.
 
-
-
-Bu ikinci iterasyonda sadece mevcut devreyi tekrar etmek yerine, tasarim kararlarini daha guclu kaynaklarla ve daha sistematik hesaplarla desteklemek hedeflenmektedir. Ozellikle kontrolcu tasarimi, kapasitör secimi, giris filtresi, EMI, MOSFET kayiplari ve bootstrap davranisi daha derin ele alinacaktir.
+Bu iterasyonda amac devreyi oldugu gibi tekrar etmek degil. Tasarim kararlarini daha guclu kaynaklarla ve daha sistematik hesaplarla desteklemek. Ozellikle kontrolcu tasarimi, kapasitör secimi, giris filtresi, EMI, MOSFET kayiplari ve bootstrap davranisi daha derin ele aliniyor.
 
 
 
@@ -95,7 +89,7 @@ Bu ikinci iterasyonda sadece mevcut devreyi tekrar etmek yerine, tasarim kararla
 
 
 
-Ilk tasarim tamamlanmis bir referans noktasi olarak kabul edilir:
+Ilk tasarim tamamlanmis bir referans noktasi:
 
 - simulasyonlari alinmistir
 
@@ -105,7 +99,7 @@ Ilk tasarim tamamlanmis bir referans noktasi olarak kabul edilir:
 
 
 
-Bu nedenle ilk tasarim, yeni calisma icin hem karsilastirma tabani hem de dogrulanmis baslangic noktasi olarak degerlendirilir.
+Bu yuzden ilk tasarim, yeni calisma icin hem karsilastirma tabani hem de dogrulanmis baslangic noktasi.
 
 
 
@@ -113,7 +107,7 @@ Bu nedenle ilk tasarim, yeni calisma icin hem karsilastirma tabani hem de dogrul
 
 
 
-Yeni tasarim daha ileri bir noktayi hedeflemektedir:
+Yeni tasarim daha ileri bir noktayi hedefliyor:
 
 - ek spesifikasyonlar tanimlanmistir
 
@@ -125,7 +119,7 @@ Yeni tasarim daha ileri bir noktayi hedeflemektedir:
 
 
 
-Bu nedenle mevcut durum, "tasarim dusuncesi olgun, belge ve dogrulama yarim" seklinde ozetlenebilir.
+Kisa ozet su: tasarim dusuncesi olgun, belge ve dogrulama ise hala toparlaniyor.
 
 
 
@@ -133,11 +127,11 @@ Bu nedenle mevcut durum, "tasarim dusuncesi olgun, belge ve dogrulama yarim" sek
 
 
 
-`yeni.odt` taslagina gore ilk donemde kontrolcu tasarimi daha once ogrenilen yaklasimla kurulmustu. Yeni iterasyonda ise Can Hoca'dan ogrenilen K-factor yonteminin uygulanmasi hedeflenmistir. Bu degisim, yalnizca kompanzasyon devresini degil, tum tasarim mantigini daha sistematik hale getirme niyetini gostermektedir.
+`yeni.odt` taslagina gore ilk donemde kontrolcu tasarimi daha once ogrenilen yaklasimla kurulmustu. Bu iterasyonda ise Can Hoca'dan ogrenilen K-factor yontemi merkeze alinmis durumda. Bu degisim sadece kompanzasyon devresini degil, tum tasarim mantigini daha sistematik kurma istegini gosteriyor.
 
 
 
-Ayni zamanda bu iterasyonda su basliklara daha fazla agirlik verilmistir:
+Bu turda agirlik verilen basliklar:
 
 - LM5146-Q1 ve EVM referanslarinin ayrintili incelenmesi
 
@@ -153,7 +147,7 @@ Ayni zamanda bu iterasyonda su basliklara daha fazla agirlik verilmistir:
 
 
 
-Bu bolumu tek bir dogruluk kaynagi olarak kullan.
+Bu bolum tek bir dogruluk kaynagi gibi kullanilmali.
 
 
 
@@ -217,7 +211,7 @@ Su an icin cekirdek adaylar:
 
 - [G32_lm5146-q1.pdf](./references/pdfs/G32_lm5146-q1.pdf)
 
-- [G35_Basic Calculation of a Buck Converter's Power Stage (Rev. B).pdf](./references/pdfs/G35_Basic%20Calculation%20of%20a%20Buck%20Converter's%20Power%20Stage%20(Rev.%20B).pdf)
+- [G35_Basic Calculation of a Buck Converter's Power Stage (Rev. B).pdf](./references/pdfs/G35_Basic%20Calculation%20of%20a%20Buck%20Converter%27s%20Power%20Stage%20%28Rev.%20B%29.pdf)
 
 - [G46_LM5146-Q1EVM User's Guide.pdf](./references/pdfs/G46_LM5146-Q1EVM%20User's%20Guide.pdf)
 
@@ -420,7 +414,7 @@ Bu foto, `LM5146` fonksiyonel blok diyagrami uzerinde ozellikle:
 - `FB` / `0.8 V` referans dugumu
 - `COMP` ve `SS/TRK`
 
-arasindaki iliskiyi not etmek icin kullanilmistir. Bu nedenle `5.1.1` altinda, kontrolcunun ic yapisinin tasarim notlarina nasil tasindigini gosteren destek gorseli olarak korunmalidir.
+arasindaki iliskiyi not etmek icin alinmis. `5.1.1` altinda durmasi da bu yuzden yerinde; kontrolcunun ic yapisinin tasarim notlarina nasil tasindigini gosteren iyi bir destek gorseli.
 
 
 
@@ -453,7 +447,7 @@ Bu bolgede teknik olarak su riskler one cikar:
 - koruma ve akim algilama marjlarinin degismesi
 - gerekirse logic-level MOSFET veya harici `VCC` kullanim ihtiyaci
 
-Bu nedenle tasarimda iki yol acik tutulmalidir:
+Burada tasarimda iki yol acik:
 
 - sistemi yalnizca $V_{in} \ge 8.22\,\text{V}$ bolgesinde optimize etmek
 - veya `DVCC` uzerinden harici $8\,\text{V} - 13\,\text{V}$ $V_{CC}$ rayi ile LDO'yu baypas etmek
@@ -468,13 +462,13 @@ Harici `VCC` seceneginin not edildigi kaynak-fotolar:
 
 ![Fonksiyonel blok diyagram uzerinde `DVCC`, `-VCC`, `BST` ve harici VCC yolu notu](images/foto_selected/p105_vcc_external_note_block_diagram.jpg)
 
-Bu iki foto birlikte, kullanicinin dahili `LDO` yolu ile harici `VCC` / `DVCC` secenegini ayni blok diyagram uzerinde ayirmaya calistigini gosterir. Nihai tasarimda dahili yolun kullanildigi not edilmis olsa da, bu gorseller alternatifin bilincli olarak dusunuldugunu gosterdigi icin korunmalidir.
+Bu iki foto birlikte bakildiginda, dahili `LDO` yolu ile harici `VCC` / `DVCC` seceneginin ayni blok diyagram uzerinde ayirilmaya calisildigi net goruluyor. Nihai tasarimda dahili yolun kullanildigi not edilmis olsa da, alternatifin bilincli olarak dusunulmus olmasi burada degerli.
 
 Ucuncu ekran goruntusu ise ayni ayrimi daha genis bir blok diyagram uzerinde tekrarliyor. `DVCC`, `-VCC`, `BST` ve harici `8-13 V` ray notu ayni cizim uzerinde goruldugu icin, `5.1.1-5.1.2` altinda gecen "harici VCC ile dahili LDO'yu baypas etme" seceneginin gercekten kontrolcunun kendi blok yapisi uzerinden dusunuldugunu destekliyor.
 
 Defterden aktarilan not (`W.108`):
 
-Bu sayfa, LM5146-Q1 benzeri kontrolcu/IC datasheet'indeki sicaklik ve termal koruma notlarini ozetleyen bir defter sayfasi gibi duruyor. Bu nedenle proje-ozel hesap sayfasindan cok, cihazin mutlak calisma ve koruma sinirlarini hatirlatan kaynak-not olarak korunmalidir.
+Burada daha cok kontrolcu datasheet'indeki sicaklik ve termal koruma notlari toplanmis. Proje-ozel bir kayip hesabi degil; cihazin mutlak calisma ve koruma sinirlarini hatirlatan bir defter ozeti gibi okunuyor.
 
 ![W.108'den secilen el yazisi parca: kontrolcunun junction temperature, thermal shutdown ve exposed pad notlari](images/defter_snippets_web/d06_w108_thermal_controller_limits.jpg)
 
@@ -510,15 +504,11 @@ T_J \approx T_{case} + P_{diss} \cdot R_{\theta JC}
 5. `Storage temperature`
    - yaklasik `-55 C` ile `150 C` araligi not edilmis
 
-Tutarlilik kontrolu:
-
-- bu sayfa, secilen kontrolcu IC'nin yalnizca elektriksel degil termal sinirlarini da fark ettigini gosteren bir datasheet-ozet sayfasi
-- burada henuz proje-ozel guc kaybi hesabi yapilmiyor; ama `T_J`, thermal shutdown ve exposed pad dusuncesinin erken asamada not edilmis olmasi degerli
-- bu nedenle `W.108`, `5.1` altinda kontrolcu cihaz sinirlari ve termal farkindalik notu olarak korunmalidir
+Buradaki asil deger, secilen kontrolcu IC'nin yalnizca elektriksel degil termal sinirlarinin da erken asamada not edilmis olmasi. Burada henuz proje-ozel guc kaybi hesabi yok; ama `T_J`, thermal shutdown ve exposed pad dusuncesinin erkenden gorunur hale gelmesi bence yeterince degerli.
 
 Defterden aktarilan not (`W.111`):
 
-Bu sayfa, `5.1.1-5.1.2`de tartisilan dahili `VCC` / LDO konusunu termal guc kaybi tarafindan ele aliyor. Ust satirda acikca su ifade yazilmis:
+Burada `5.1.1-5.1.2`de tartisilan dahili `VCC` / LDO konusu bu kez termal guc kaybi tarafindan ele aliniyor. Ust satirda acikca su ifade yazilmis:
 
 ![W.111'den secilen el yazisi parca: dahili VCC regulatorunun guc kaybi ve harici DVCC secenegi notu](images/defter_snippets_web/d07_w111_vcc_ldo_loss_note.jpg)
 
@@ -544,15 +534,11 @@ Sayfanin alt kismina dusulen tasarim karari notu su:
 - dahili `VCC` rayi yerine `8 V - 13 V` araliginda harici bir kaynak kullanilabilir
 - ve `DVCC` uzerinden `VCC` pinleri beslenebilir
 
-Tutarlilik kontrolu:
-
-- bu sayfa, daha once `W.108`de genel termal sinir olarak yazilan seyleri bu kez LM5146'nin dahili regulatorune ozel bir guc kaybi iliskisiyle somutlastiriyor
-- ayni zamanda `5.1.1`de gecen "harici VCC ile LDO'yu baypas etme" onerisine dogrudan muhendislik gerekcesi veriyor
-- bu nedenle `W.111`, `5.1.2` altinda dahili `VCC` regulatorunun termal yukunu anlatan defter sayfasi olarak korunmalidir
+Burada daha once `W.108`de genel termal sinir olarak yazilan seyler, bu kez LM5146'nin dahili regulatorune ozel bir guc kaybi iliskisiyle somutlasiyor. Ayni zamanda `5.1.1`de gecen "harici VCC ile LDO'yu baypas etme" secenegine de dogrudan muhendislik gerekcesi veriyor.
 
 Defterden aktarilan not (`W.170`):
 
-Bu sayfa, `5.1.1`deki dahili `VCC` / LDO sinirini kullanicinin kendi cümleleriyle yeniden kurdugu bir ozet sayfasi gibi duruyor. Bu nedenle yeni bir nihai hesap degil; `5.1.2 Ek notlar: dusuk Vin bolgesinin etkisi` altinda, minimum `V_{in}` sinirinin defterde elle tekrar edildigi ve tasarim niyetinin netlestirildigi bir uygulama-notu sayfasi olarak korunmalidir.
+Burada `5.1.1`deki dahili `VCC` / LDO siniri kendi cumlelerinle yeniden kuruluyor. Yeni bir nihai hesap degil; minimum `V_{in}` sinirinin defterde elle tekrar edildigi ve tasarim niyetinin netlestigi bir not.
 
 ![W.170'den secilen el yazisi parca: minimum Vin = 8.22 V ve dahili VCC kullanimi niyeti](images/defter_snippets_web/d08_w170_internal_vcc_min_vin.jpg)
 
@@ -591,7 +577,7 @@ Sayfanin orta-alt kisminda kullanici kendi tasarim niyetini de acikca not ediyor
 - `Harici VCC kullanmayi kastetmiyorum`
 - `Dahiliyi kullaniyorum`
 
-Bu not cok degerli; cunku bu projede en azindan bu iterasyonda:
+Bu not degerli; cunku bu projede en azindan bu iterasyonda:
 
 - `DVCC` ile harici bypass secenegi bilinmesine ragmen
 - mevcut tasarim mantiginin dahili `VCC/LDO` uzerinden ilerledigi anlasiliyor
@@ -602,11 +588,7 @@ Sayfanin en altinda ayrica:
 
 notu var. Bu, bu konunun ayri bir yazili belgede de toparlanmaya baslandigini gosteren kisa bir aktarim izi olarak korunabilir.
 
-Tutarlilik kontrolu:
-
-- bu sayfa `5.1.1`deki ODT notunu yeni bir yonde degistirmiyor; aksine ayni `8.22 V` sinirini defterde yeniden teyit ediyor
-- en degerli yani, kullanicinin bu projede harici `VCC` secenegini degil, dahili `LDO` yolunu esas aldigini acikca not etmesi
-- bu nedenle `W.170`, `5.1.2` altinda minimum `V_{in}` siniri ve "dahili `VCC` kullanimi" niyetini gosteren defter sayfasi olarak korunmalidir
+Bu not `5.1.1`deki ODT cizgisini degistirmiyor; ayni `8.22 V` sinirini defterde yeniden teyit ediyor. En degerli yani da, bu projede harici `VCC` secenegini degil dahili `LDO` yolunu esas aldigini acikca not etmesi.
 
 
 
@@ -651,12 +633,7 @@ Bu durumda:
 V_{out} = 0.8\left(1 + \frac{26.4}{1.6}\right) = 14.0\,\text{V}
 ```
 
-Tutarlilik kontrolu:
-
-- eski `16.5 kOhm / 1.00 kOhm` secimi matematiksel olarak yanlis degil
-- ancak nihai BOM ile uyumlu gorunen secim `26.4 kOhm / 1.6 kOhm`
-- bu nedenle eski secim silinmemeli, "ilk aday / eski iterasyon" olarak korunmali
-- bundan sonra setpoint hesabinda varsayilan guncel aday `26.4 kOhm / 1.6 kOhm` olacak
+Burada iki farkli iterasyon ust uste duruyor. Eski `16.5 kOhm / 1.00 kOhm` secimi matematiksel olarak yanlis degil; ama sonraki defter sayfalari ve satin alinmis BOM artik `26.4 kOhm / 1.6 kOhm` cizgisini isaret ediyor. O yuzden eski secimi silmek yerine ilk aday olarak birakmak, bundan sonraki setpoint hesabinda ise guncel varsayim olarak `26.4 kOhm / 1.6 kOhm` kullanmak daha dogru.
 
 Ek not (calculator teyidi):
 
@@ -666,17 +643,17 @@ Ek not (calculator teyidi):
 - `RFB2 = 1.58 kOhm`
 - `Actual Vout = 14.167 V`
 
-Bu nedenle calculator, `16.5 kOhm / 1.00 kOhm` eski adayini degil; `W.14-W.16` ve satin alinmis BOM ile uyumlu gorunen `26.4 kOhm / 1.6 kOhm` cizgisini daha guclu bicimde destekliyor
+Calculator da ayni yone bakiyor. Yani `16.5 kOhm / 1.00 kOhm` eski adayi tamamen gecersiz kilmiyor; ama `W.14-W.16` ve satin alinmis BOM ile uyumlu gorunen `26.4 kOhm / 1.6 kOhm` secimini daha guclu bicimde destekliyor.
 
 Bu bolume ait kaynak-foto:
 
 ![WEBENCH benzeri devre uzerinde FB bolucusu ve kompanzator notlari](images/foto_selected/p04_feedback_and_compensation_markup.jpg)
 
-Bu foto, geri besleme bolucusunun `RFB1 / RFB2` kimligini ve kompanzator kolunun hangi elemanlardan olustugunu hizli gormek icin kullanilan notlu bir ekran goruntusu gibi okunmalidir. Bu nedenle `5.1.3` altinda, `FB` setpoint mantiginin gorsel esligi olarak korunmalidir.
+Bu foto, geri besleme bolucusunun `RFB1 / RFB2` kimligini ve kompanzator kolunun hangi elemanlardan olustugunu hizli gormek icin iyi bir gorsel eslik veriyor. `5.1.3` altinda durmasinin nedeni bu.
 
 Defterden aktarilan not (`W.202`):
 
-Bu sayfa, LM5146 datasheet'indeki `Output Voltage Setpoint and Accuracy FB` basligina bakilarak tutulmus bir setpoint notu gibi duruyor. Sayfada geri besleme bolucusu ve `FB` dugumunun referansla iliskisi cizilmis.
+`W.202`, bu konunun ilk kuruldugu sayfalardan biri. LM5146 datasheet'indeki `Output Voltage Setpoint and Accuracy FB` basligina bakip `FB` dugumunun referansla iliskisini kisa yoldan not etmissin.
 
 ![W.202'den secilen el yazisi parca: FB bolucu denklemi ve 14 V icin oran hesabi](images/defter_snippets_web/d09_w202_fb_divider_equation.jpg)
 
@@ -722,12 +699,7 @@ yani yaklasik:
 
 not edilmis.
 
-Tutarlilik kontrolu:
-
-- `W.202`, `5.1.3`teki eski `16.5 k\Omega / 1.00 k\Omega` setpoint iterasyonunu dogrudan destekleyen defter sayfasi gibi duruyor
-- bu sayfa nihai BOM ile uyumlu gorunen `26.4 k\Omega / 1.6 k\Omega` secimini degistirmiyor
-- ama kullanicinin ilk olarak datasheet'teki `FB = 0.8 V` iliskisinden yola cikarak setpoint bolucusunu nasil kurdugunu gosterdigi icin korunmali
-- ayrica `VREF` toleransinin cikis gerilimine tasinacagini erken asamada not etmesi de degerli bir dusunce izi
+Buradaki sayfa, `5.1.3`teki eski `16.5 k\Omega / 1.00 k\Omega` setpoint iterasyonunu dogrudan destekliyor. Nihai BOM ile uyumlu gorunen `26.4 k\Omega / 1.6 k\Omega` secimini degistirmiyor; ama bu bolucuyu ilk kez nasil kurdugunu gosterdigi icin degerli. `VREF` toleransinin cikis gerilimine tasinacagini erken asamada not etmen de bu sayfanin guclu yani.
 
 
 #### 5.1.4 `EN/UVLO`, `SS/TRK` ve startup notlari
@@ -742,11 +714,11 @@ Bu bolume ait kaynak-fotolar:
 
 ![Enable / UVLO ve PWM logic akislarini isaretleyen notlu blok diyagram](images/foto_selected/p39_enable_pwm_logic_highlight.jpg)
 
-Bu uc gorsel birlikte, `EN/UVLO`, `VCC UVLO`, `thermal shutdown`, `PWM logic` ve `driver` arasindaki ic akis mantigini tek yerde gormeyi sagliyor. Yani `W.204-W.209` notlarinda parca parca yazilan startup / enable dusuncesi burada kontrolcunun kendi blok diyagrami uzerinden birlestiriliyor.
+Bu uc gorsel birlikte, `EN/UVLO`, `VCC UVLO`, `thermal shutdown`, `PWM logic` ve `driver` arasindaki ic akis mantigini tek yerde gormeyi sagliyor. `W.204-W.209` notlarinda parca parca yazilan startup / enable dusuncesi burada kontrolcunun kendi blok diyagrami uzerinden toparlaniyor.
 
 Defterden aktarilan not (`W.204`):
 
-Bu sayfa, datasheet'in `8.3.7` civarindaki `EN/UVLO`, `SS/TRK` ve startup/soft-start davranisini anlamaya calisan bir defter sayfasi gibi duruyor. Sayfanin ust kismina yazilan net notlar sunlar:
+`W.204`, datasheet'in `8.3.7` civarindaki `EN/UVLO`, `SS/TRK` ve startup/soft-start davranisini anlamaya calistigin sayfalardan biri. Sayfanin ust kismina aldigin net notlar sunlar:
 
 ![W.204'ten secilen el yazisi parca: EN/UVLO, ISS, SS/TRK ve startup rampasi notlari](images/defter_snippets_web/d10_w204_ss_trk_startup_note.jpg)
 
@@ -776,22 +748,17 @@ V_{out} = A_{OL}(V_+ - V_-)
 
 Bu, startup sirasinda sabit bir referans yerine degisen bir referans gormenin hata kuvvetlendiricisi davranisini nasil etkileyebilecegini kendi dilinle dusundugunu gosteriyor.
 
-Sayfanin altindaki diger maddeler tam net okunmuyor; ancak guvenle secilen ana fikirler sunlar:
+Sayfanin altindaki diger maddeler tam net okunmuyor; ama ana yon gayet belirgin:
 
 - soft-start sirasinda `SS/TRK` pimi aktif bir rampa / takip dugumu gibi dusunuluyor
 - sabit `0.8 V` referans dogrudan en basindan uygulanmiyor gibi okunuyor
 - takip (`tracking`) modunda bu pine disaridan bir referans / rampa verilebilmesi fikri not edilmis gorunuyor
 
-Tutarlilik kontrolu:
-
-- `W.204`, dogrudan yeni bir komponent secimi ya da nihai sayisal sonuc vermiyor
-- ama kullanicinin startup davranisini "bir anda 0.8 V referans uygulanmasi" gibi degil, `SS/TRK` rampasi uzerinden dusunmeye basladigini gosteriyor
-- `PWL` ile startup referansi olusturma notu da, LTspice tarafinda bu davranisi taklit etmeye calistigini gosterdigi icin degerli
-- bu nedenle `W.204`, `5.1` altinda kontrolcunun startup/soft-start ve `SS/TRK` davranisini anlamaya yonelik bir defter sayfasi olarak korunmali
+Yani `W.204` yeni bir parca secimi ya da nihai sayisal sonuc vermiyor. Daha cok startup davranisini "bir anda 0.8 V referans uygulanmasi" gibi degil, `SS/TRK` rampasi uzerinden dusunmeye basladigini gosteriyor. `PWL` ile startup referansi olusturma notu da bunu LTspice tarafinda taklit etmeye calistigini gosteriyor. Bu sayfa o yuzden burada yerinde duruyor.
 
 Defterden aktarilan not (`W.206`):
 
-Bu sayfa, `SS/TRK` pinine baglanan soft-start kapasitörunun degerini ve buna karsilik gelen soft-start suresini hesaplayan kisa bir uygulama sayfasi gibi duruyor.
+`W.206`, `SS/TRK` pinine baglanan soft-start kapasitörunun degerini ve buna karsilik gelen soft-start suresini hesaplayan kisa bir uygulama sayfasi.
 
 ![W.206'dan secilen el yazisi parca: CSS secimi ve tSS hesabinin defterden kisa gorunumu](images/defter_snippets_web/d11_w206_soft_start_time.jpg)
 
@@ -838,18 +805,9 @@ Sayfanin altindaki kucuk cizimde:
 
 ![SS/TRK, FB ve RT pinlerinin birbirine gore konumunu gosteren notlu yakin plan](images/foto_selected/p41_sstrk_rt_relation.jpg)
 
-![SS/TRK, RT ve FB civarini daha yakin gosteren ikinci notlu ekran goruntusu](images/foto_selected/p53_sstrk_rt_closeup.jpg)
+Bu yakin plan, `C_{SS}` seciminin tek basina degil; `SS/TRK`, `FB` ve `RT` pinlerinin kart uzerindeki fiziksel komsulugu baglaminda dusunuldugunu da gosteriyor.
 
-birlikte gosterilmis. Bu da kullanicinin startup rampasini, anahtarlama frekansini belirleyen `RT` agindan ayri ama ona komsu kontrol pinleri baglaminda dusundugunu gosteriyor.
-
-Ikinci yakin plan da ayni pin grubunu daha dar bir kadrajla tekrar gosteriyor. Bu tekrar, `C_{SS}` seciminin tek basina degil; `SS/TRK`, `FB` ve `RT` pinlerinin kart uzerindeki fiziksel komsulugu baglaminda dusunuldugunu daha net hale getiriyor.
-
-Tutarlilik kontrolu:
-
-- `W.206`, `W.204`teki kavramsal `SS/TRK` notunu bu kez dogrudan sayisal bir `t_{SS}` hesabina donusturuyor
-- bu sayfa yeni bir karisik kontrol yasasi degil; basit ve net bir startup boyutlandirma notu
-- `C26 = 47 nF` seciminin neden oldugunu gosterdigi icin degerli
-- bu nedenle `W.206`, `5.1.4` altinda `SS/TRK` soft-start kapasitörü ve rampa suresini hesaplayan uygulama sayfasi olarak korunmali
+Burada artik `W.204`teki kavramsal `SS/TRK` notu, dogrudan sayisal bir `t_{SS}` hesabina donusuyor. Yeni bir kontrol yasasi kurmuyor; sadece `C26 = 47 nF` seciminin nedenini acik ediyor. O nedenle `5.1.4` icinde dogal bir devam.
 
 Ek not (calculator teyidi):
 
@@ -858,11 +816,11 @@ Ek not (calculator teyidi):
 - `C_{SS} = 47 nF`
 - `t_{SS} = 4 ms`
 
-Bu, defterdeki `47 nF -> 3.76 ms` hesabinin ayni tasarim cizgisinde oldugunu gosteriyor. Yani burada ciddi bir celiski degil, yuvarlama / hedef sure farki var
+Bu, defterdeki `47 nF -> 3.76 ms` hesabinin ayni tasarim cizgisinde oldugunu gosteriyor. Burada ciddi bir celiski yok; daha cok yuvarlama / hedef sure farki var.
 
 Defterden aktarilan not (`W.207`):
 
-Bu sayfa, datasheet'in `8.3.2 Precision Enable` tarafina ait bir `EN/UVLO` notu gibi duruyor. Sayfanin ustunde, `VIN` ile `EN/UVLO` pini arasinda bir direnç bolucusu cizilmis:
+`W.207`, datasheet'in `8.3.2 Precision Enable` tarafina ait bir `EN/UVLO` notu. Sayfanin ustunde, `VIN` ile `EN/UVLO` pini arasinda bir direnç bolucusu cizilmis:
 
 ![W.207'den secilen el yazisi parca: Precision Enable denklemleri ve VCC UVLO notlari](images/defter_snippets_web/d12_w207_precision_enable_and_vcc_uvlo.jpg)
 
@@ -906,27 +864,22 @@ Sayfanin alt kisminda ayrica `VCC` UVLO notu yer aliyor:
 
 ![VCC UVLO hysteresis degerini isaretleyen yakin plan goruntu](images/foto_selected/p38_vcc_uvlo_hysteresis_markup.jpg)
 
-Bu yakin plan gorseller, `W.207`de yazilan iki sayiyi dogrudan datasheet tarafinda da gormeyi sagliyor:
+Bu yakin plan gorseller, `W.207`de yazdigin iki sayiyi dogrudan datasheet tarafinda da gormeyi sagliyor:
 
 - `VCC-UV \approx 4.93 V`
 - `VCC-UVHYS \approx 0.26 V`
 
-ve kullanici su startup sezgisini not ediyor:
+Burada not ettigin startup sezgisi de acik:
 
 - guc verildiginde `C_{VCC}` kapasitörü doldurulur
 - yalnizca `EN/UVLO > 1.2 V` olmasi tek basina yetmez
 - `VCC` tarafinin da kendi UVLO esigini gecmesi gerekir
 
-Tutarlilik kontrolu:
-
-- `W.207`, `W.204`teki `EN/UVLO = 1.2 V` ve startup dusuncesini bu kez precision-enable direnç bolucusu ve `VCC` UVLO esikleriyle tamamliyor
-- bu sayfa yeni bir nihai direnç secimi vermiyor; daha cok etkinlesme mantigini ve esik bolgelerini kaynak uzerinden anlamaya calistigin bir defter sayfasi gibi duruyor
-- `EN/UVLO > 1.2 V` tek basina yetmez; `VCC` UVLO da asilmali notu ozellikle degerli
-- bu nedenle `W.207`, `5.1.4` altinda precision-enable ve startup esiklerini anlatan uygulama-notu sayfasi olarak korunmali
+Burada yeni bir nihai direnç secimi yok. Daha cok etkinlesme mantigini ve esik bolgelerini kaynak uzerinden anlamaya calistigin bir not var. En degerli yani da su: `EN/UVLO > 1.2 V` tek basina yetmez, `VCC` UVLO da asilmalidir.
 
 Defterden aktarilan not (`W.209`):
 
-Bu sayfa, `Precision Enable` denklemlerini kullanarak `EN/UVLO` pinine giden direnç bolucuyu sayisal olarak boyutlandiran bir uygulama sayfasi gibi duruyor.
+`W.209`, `Precision Enable` denklemlerini kullanarak `EN/UVLO` pinine giden direnç bolucuyu sayisal olarak boyutlandiran bir uygulama sayfasi.
 
 ![W.209'dan secilen el yazisi parca: RUV1 ve RUV2 icin sayisal UVLO ornegi](images/defter_snippets_web/d13_w209_uvlo_resistor_example.jpg)
 
@@ -967,12 +920,7 @@ R_{UV2}
 
 ve alt tarafta bu degere yakin standart bir deger kullanma notu dusulmus.
 
-Tutarlilik kontrolu:
-
-- `W.209`, `W.207`de kavramsal olarak anlatilan `Precision Enable` direnç bolucusunu bu kez sayisal bir ornege donusturuyor
-- sayfanin ustundeki `Vin(on) / Vin(off)` el yazisi ile alttaki sayisal yerlestirme arasinda kucuk bir tutarsizlik olabilir; ustteki hedefler tam net okunmasa da alttaki denklem acikca `24V` ve `23V` ile kurulmus
-- bu nedenle bu sayfa "nihai dogrulanmis direnç secimi" gibi degil, `EN/UVLO` bolucusunu boyutlandirma mantigini gosteren uygulama sayfasi olarak korunmali
-- daha sonra son temizlik turunda, `Vin(on)` ve `Vin(off)` hedefleri tekrar teyit edilerek bu bolum netlestirilebilir
+Burada `W.207`de kavramsal olarak kurulan `Precision Enable` bolucusu bu kez sayisal bir ornege donusuyor. Yalniz sayfanin ustundeki `Vin(on) / Vin(off)` el yazisi ile alttaki sayisal yerlestirme arasinda kucuk bir tutarsizlik olabilir; ustteki hedefler tam net okunmasa da alttaki denklem acikca `24V` ve `23V` ile kurulmus. Bu yuzden bu sayfayi "nihai dogrulanmis direnç secimi" diye degil, boyutlandirma mantigini gosteren bir ara uygulama gibi okumak daha dogru.
 
 Ek not (calculator teyidi):
 
@@ -983,7 +931,7 @@ Ek not (calculator teyidi):
 - `R_{UV1} = 200 kOhm`
 - `R_{UV2} = 8.25 kOhm`
 
-Bu nedenle `W.209` icindeki `24 V / 23 V` yerlestirmesi, su asamada nihai UVLO secimi gibi degil; daha cok ayni denklemi anlamaya yonelik bir ornek / ara uygulama gibi okunmali
+Bu da `W.209` icindeki `24 V / 23 V` yerlestirmesinin su asamada nihai UVLO secimi gibi degil, ayni denklemi anlamaya yonelik bir ornek / ara uygulama gibi okunmasi gerektigini destekliyor.
 
 
 #### 5.1.5 `RT` pini ve anahtarlama frekansi
@@ -992,7 +940,7 @@ Bu nedenle `W.209` icindeki `24 V / 23 V` yerlestirmesi, su asamada nihai UVLO s
 
 Defterden aktarilan not (`W.208`):
 
-Bu sayfa, datasheet'in `8.3.6.1 Frequency Adjust` kuralini kullanarak `RT` direncinden anahtarlama frekansini belirleyen kisa bir uygulama sayfasi gibi duruyor.
+Burada datasheet'in `8.3.6.1 Frequency Adjust` kuralini kullanarak `RT` direncinden anahtarlama frekansi belirleniyor.
 
 ![W.208'den secilen el yazisi parca: RT direnci ile 332 kHz switching frequency baglantisi](images/defter_snippets_web/d14_w208_rt_frequency_formula.jpg)
 
@@ -1028,12 +976,7 @@ Sayfanin sag tarafina da kisaca:
 
 notu dusulmus.
 
-Tutarlilik kontrolu:
-
-- `W.208`, projede kullandigin `332 kHz` anahtarlama frekansinin `RT` pinindeki direnç secimiyle nasil baglandigini netlestiriyor
-- bu sayfa yeni bir karma denetim sonucu vermiyor; basit bir `frequency adjust` uygulama notu
-- `W.203`teki "`FPWM`'de sabit switching frequency var, `R13` burada kullaniyoruz" notuyla dogrudan uyumlu
-- bu nedenle `W.208`, `5.1` altinda `RT` direnci ile `f_{SW}` secimini baglayan kisa uygulama sayfasi olarak korunmali
+`W.208`, projede kullandigin `332 kHz` anahtarlama frekansinin `RT` pinindeki direnç secimiyle nasil baglandigini netlestiriyor. Burada yeni bir karma denetim sonucu yok; daha cok sade bir `frequency adjust` uygulama notu var. `W.203`teki "`FPWM`'de sabit switching frequency var, `R13` burada kullaniyoruz" notuyla da dogrudan uyusuyor.
 
 
 ### 5.2 Duty cycle, `tON(min)`, `tOFF(min)` ve sinir durumlari
@@ -1157,7 +1100,7 @@ Bu nedenle nominal $V_{in} = 24\,\text{V} - 36\,\text{V}$ giris gerilimi araligi
 
 Defterden aktarilan not (`W.203`):
 
-Bu sayfa, datasheet'in `Description` kismindan alinmis kisa bir ozet not gibi duruyor. Icerik dogrudan `duty cycle`, `t_{ON(min)}`, `t_{OFF(min)}` ve `FPWM` davranisina baglaniyor.
+Burada datasheet'in `Description` kismindan alinmis kisa bir ozet not var. Icerik dogrudan `duty cycle`, `t_{ON(min)}`, `t_{OFF(min)}` ve `FPWM` davranisina baglaniyor.
 
 ![W.203'ten secilen el yazisi parca: duty cycle, tON(min), tOFF(min) ve FPWM notu](images/defter_snippets_web/d15_w203_ton_toff_fpwm_note.jpg)
 
@@ -1186,12 +1129,7 @@ Sayfanin sagina da:
 
 notu dusulmus.
 
-Tutarlilik kontrolu:
-
-- `W.203`, yukaridaki `5.2.3` bolumunde yazilan `40 ns / 140 ns` donanimsal zaman sinirlarini defterde tekrar eden kaynak-ozet sayfasi gibi duruyor
-- `Vin = 5.5 V` notu, kontrolcunun genis duty bolgesine cikabilecegini hatirlatiyor; ancak bu ikinci projenin nominal `24-36 V` spesifikasyonunu degistiren bir tasarim noktasi gibi degil, cihazin genel davranis notu gibi okunmali
-- `FPWM` ile sabit anahtarlama frekansi notu da, daha sonra `R13` uzerinden yapilan `f_{sw}` secimiyle baglaniyor
-- bu nedenle `W.203`, `5.2.3` altinda donanimsal duty/on-off sinirlari ve `FPWM` davranisini hatirlatan kisa defter sayfasi olarak korunmali
+`W.203`, yukaridaki `40 ns / 140 ns` donanimsal zaman sinirlarini defterde tekrar eden kisa bir kaynak-ozet sayfasi. `Vin = 5.5 V` notu, kontrolcunun genis duty bolgesine cikabilecegini hatirlatiyor; ama bu ikinci projenin nominal `24-36 V` spesifikasyonunu degistiren bir tasarim karari degil, cihazin genel davranis notu. `FPWM` ile sabit anahtarlama frekansi notu da daha sonra `R13` uzerinden yapilan `f_{sw}` secimiyle baglaniyor.
 
 
 
@@ -1209,23 +1147,16 @@ Bootstrap hesabinin icinde ayrica su duty notlari bulunuyor:
 
 
 
-Bu degerler ideal `Vout / Vin` yaklasimindan daha yuksek gorunmektedir. Bu fark su olasiliklardan birinden geliyor olabilir:
+Bu degerler ideal `Vout / Vin` yaklasimindan daha yuksek gorunuyor. Farkin kaynagi su ihtimallerden biri olabilir:
 
 - kayiplar ve gercek duty ihtiyaci dahil edilmistir
-
 - farkli bir worst-case senaryo alinmistir
-
 - ara notlarda muhafazakar bir bootstrap varsayimi kullanilmistir
-
 - notlarda tekrar kontrol gerektiren bir tutarsizlik vardir
 
 
 
-Su an icin en dogru tavir, bu iki duty kumesini yan yana tutmak ve daha sonra datasheet, secilen komponentler ve gerekirse simulasyon ile tek bir nihai duty zarfina indirmektir.
-
-
-
-Bu nedenle acik kontrol maddesi olarak su soru korunacaktir:
+Su an icin en dogru tavir, bu iki duty kumesini yan yana tutmak ve daha sonra datasheet, secilen komponentler ve gerekirse simulasyonla tek bir nihai duty zarfina indirmek. Bu bolumde acik kalan temel soru da su:
 
 - Bootstrap hesabinda kullanilan `0.648 / 0.432` duty degerleri hangi varsayimdan turetildi?
 
@@ -1241,15 +1172,11 @@ Bu nedenle acik kontrol maddesi olarak su soru korunacaktir:
 
 ODT'den aktarilan metin (`5. çıkış bobini`):
 
-Bu alt baslikta ODT'den gelen eski metin su asamada govdeye oldugu gibi tasinmamistir. Bobin secimi bu iterasyonda agirlikli olarak defter sayfalari, secilen gercek parca ve sonraki notlar uzerinden yeniden kurulmustur.
-
-Ek not:
-
-Bu nedenle bobin bolumu bos gecilmek yerine, asagidaki `W.54-W.56` hattindan itibaren tekrar insa edilmektedir.
+Bu alt baslikta ODT'den gelen eski metni govdeye oldugu gibi tasimadim. Bobin secimi burada agirlikli olarak defter sayfalari, secilen gercek parca ve sonraki notlar uzerinden yeniden kuruluyor. O yuzden bobin bolumu bos gecilmek yerine, asagidaki `W.54-W.56` hattindan itibaren yeniden insa ediliyor.
 
 Defterden aktarilan not (`W.54`):
 
-Bu sayfa, cikis bobini icin secilen `L = 6.8 uH` degerini, bobin akimi dalgalanmasi ve alternatif ust sinir dusuncesi uzerinden tekrar kontrol ediyor gibi gorunuyor.
+Burada secilen `L = 6.8 uH` degeri, bobin akimi dalgalanmasi ve alternatif ust sinir dusuncesi uzerinden tekrar kontrol ediliyor.
 
 ![W.54'ten secilen el yazisi parca: 6.8 uH secimi, 9.6 uH ust siniri ve DCR araligi notu](images/defter_snippets_web/d16_w54_inductor_range_selection.jpg)
 
@@ -1296,17 +1223,11 @@ ve bunun yanina ayrica bobin `DCR` degeri icin de bir aralik not edilmis:
 0.38\,m\Omega < DCR < 13.3\,m\Omega
 ```
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `6.8 uH` seciminin tamamen keyfi olmadigini; daha dusuk ripple hedefiyle kiyaslandiginda mantikli bir alt tarafta kaldigini gosteren bir kontrol sayfasi gibi okunuyor
-- sayfadaki ana sonuc, `6.8 uH` seciminin korunup `9.6 uH` civarinin "daha dusuk ripple ama daha buyuk L" alternatifi olarak gorulmesi
-- `DCR` araligi notu cok degerli; cunku bobin seciminde yalnizca `uH` degeri degil kayip / isinma tarafinin da dusunuldugunu gosteriyor
-- bu nedenle bu sayfa, bobin bolumunde hem secilen `L` degerinin hem de `DCR` dusuncesinin ilk sayisal izi olarak korunmali
-- kullanicinin son notuna gore, bu hesap zincirinin gercek / nihai tasarimda kullanilmis olma olasiligi yuksektir; dolayisiyla bu sayfa artik yalnizca alternatif degil, guclu bir `nihai aday` izi olarak okunmalidir
+Buradaki ana fikir su: `6.8 uH` secimi tamamen keyfi degil; daha dusuk ripple hedefiyle kiyaslandiginda mantikli bir alt tarafta kaliyor. `9.6 uH` civari "daha dusuk ripple ama daha buyuk L" alternatifi gibi duruyor. `DCR` araligi notu da bunu guclendiriyor; cunku secimde yalnizca `uH` degeri degil kayip ve isinma tarafi da dusunulmus. Kullanicinin son notuna gore bu hesap zincirinin gercek / nihai tasarimda kullanilmis olma olasiligi yuksek; bu yuzden burada yalnizca alternatif bir deneme degil, guclu bir `nihai aday` izi var.
 
 Defterden aktarilan not (`W.55`):
 
-Bu sayfa, `W.54`teki bobin secimi dusuncesini daha derli toplu kriterlerle devam ettiriyor. Baslikta dogrudan `Bobin secimi L1` yaziyor.
+Burada `W.54`teki bobin secimi dusuncesi daha derli toplu kriterlerle devam ediyor. Baslikta dogrudan `Bobin secimi L1` yaziyor.
 
 ![W.55'ten secilen el yazisi parca: ripple yuzdesi, ILpeak ve bobin secim kriterleri](images/defter_snippets_web/d17_w55_inductor_ripple_and_peak_current.jpg)
 
@@ -1389,13 +1310,7 @@ Sayfada ayrica `V_{in} = 24 V` icin ripple'in daha kucuk oldugu not edilmis:
 
 Bu da yaklasik `%28.9` ripple oranina karsilik geliyor.
 
-Tutarlilik kontrolu:
-
-- `W.55`, `W.54`teki `6.8 uH` secimini bu kez daha net bir `ripple yüzdesi + I_L,peak + I_sat + DCR` diliyle destekliyor
-- sayfada en kotu durum olarak `36 V` secilmesi yerinde; buck icin giris gerilimi arttikca ripple buyur
-- `I_{L,peak} \approx 10.9 A` sonucu, secilecek bobinin doyma akimi icin dogrudan kullanilabilecek degerli bir izdir
-- bu nedenle bu sayfa, bobin secimini teorik `uH` degerinden gercek komponent kriterlerine tasiyan guclu bir devam sayfasi olarak korunmali
-- kullanicinin son notuna gore, bu sayfadaki kriterlerin gercek / nihai tasarimda kullanilmis olma olasiligi yuksektir; bu nedenle `W.54-W.55` birlikte bobin seciminin guclu `nihai aday` hesap zinciri olarak ele alinmalidir
+Burada `W.54`teki `6.8 uH` secimi bu kez daha net bir `ripple yuzdesi + I_{L,peak} + I_{sat} + DCR` diliyle somutlasiyor. `36 V`'un en kotu durum olarak alinmasi da yerinde; buck'ta giris arttikca ripple buyuyor. Cikan `I_{L,\text{peak}} \approx 10.9 A` sonucu, secilecek bobinin doyma akimi icin dogrudan kullanilabilecek bir sayi. Kullanicinin son notuyla birlikte dusunulunce `W.54-W.55` hattinin gercek bobin secimine yakin durdugu anlasiliyor.
 
 Defterden aktarilan not (`W.56`):
 
@@ -1430,12 +1345,7 @@ P_{\text{bakir}}
 \approx 0.071\,\text{W}
 ```
 
-Tutarlilik kontrolu:
-
-- `W.56`, `W.54-W.55` zincirini soyut kriter seviyesinden secilen gercek bobin parcasi seviyesine tasiyor
-- `I_{sat} \approx 36.3 A` notu, `I_{L,peak} \approx 10.9 A` sonucuna gore cok rahat bir doyma marji oldugunu gosteriyor
-- `DCR \approx 0.88 mOhm` notu da, onceki sayfadaki `DCR` dusuk olmali fikrinin secilen parcada somutlastigini gosteriyor
-- bu nedenle bu sayfa, bobin seciminin artik kuvvetli bicimde `nihai tasarimda kullanilan parca` seviyesine yaklastigini gosteren cok degerli bir sayfadir
+`W.56` ile is artik soyut kriterlerden gercek parcaya geliyor. `I_{sat} \approx 36.3 A` notu, `I_{L,\text{peak}} \approx 10.9 A` sonucuna gore cok rahat bir doyma marji oldugunu gosteriyor. `DCR \approx 0.88 m\Omega` bilgisi de onceki sayfalardaki "DCR dusuk olmali" fikrini secilen parca uzerinde somutlastiriyor. Bu yuzden `W.54-W.56` zinciri, bobin seciminde elde kurulmus en guclu kisimlardan biri gibi duruyor.
 
 Ek not (calculator teyidi):
 
@@ -1472,7 +1382,7 @@ Bu nedenle bobin secimi dogrudan su iki buyuklugu etkiler:
 
 
 
-Taslak notlarda ayrica gercek devrede MOSFET `RDS(on)`, bobin `DCR` ve yerlesim kaynakli kayiplarin ideal slew-rate hesabini azaltacagi da fark edilmis. Bu gozlem yerindedir ve nihai hesapta korunmalidir.
+Taslak notlarda ayrica gercek devrede MOSFET `RDS(on)`, bobin `DCR` ve yerlesim kaynakli kayiplarin ideal slew-rate hesabini azaltacagi da fark edilmis. Bu gozlem yerinde; nihai hesapta da akilda tutulmasi gereken noktalardan biri bu.
 
 
 
@@ -1689,15 +1599,11 @@ Sayfanin ust tarafinda ayrica su notlar korunmaya deger:
 - dusuk cikis empedansi, yuk degisimlerine hizli ve kararlı gerilim cevabi icin gereklidir
 - spike'lar icin ise ek kucuk MLCC / dusuk `ESL` dusuncesi not edilmis
 
-Tutarlilik kontrolu:
-
-- `W.68`, `5.4.3` ve `5.4.4` alt bolumlerinde yazili olan iki farkli `Zout` bakisini defter dilinle ayni sayfada birlestiriyor
-- yeni ve nihai sayisal sonuc vermiyor; daha cok performans hedeflerini `Zout(fc)` ve `Zout(fsw)` uzerinden zihinde ayiran bir tasarim notu
-- bu nedenle bu sayfa, cikis sığaçlari seciminde transient ve ripple kriterlerinin neden ayri ama bagli dusunulmesi gerektigini gosteren guclu bir kavramsal sayfa olarak korunmali
+`W.68`, `5.4.3` ve `5.4.4` alt bolumlerinde yazili olan iki farkli `Zout` bakisini ayni sayfada birlestiriyor. Yeni ve nihai bir sayisal sonuc vermiyor; daha cok transient ile ripple tarafini `Zout(fc)` ve `Zout(fsw)` uzerinden zihinde ayiran bir tasarim notu. Bu acidan degeri gayet yuksek.
 
 Defterden aktarilan not (`W.69`):
 
-Bu sayfa, Bode grafiklerine bakilmadiginda kapasitans degisiminin etkisinin tam anlasilmadigini not ediyor ve bunu tek basina kapasitör empedansi uzerinden aciklamaya calisiyor.
+Burada, Bode grafiklerine bakilmadiginda kapasitans degisiminin etkisinin tam anlasilmadigi not edilmis ve konu tek basina kapasitör empedansi uzerinden aciklanmaya calisiliyor.
 
 ![W.69'dan secilen el yazisi parca: Zc(f)=1/(2pi f C) ile frekans sezgisinin kisa notu](images/defter_snippets_web/d39_w69_basic_zc_frequency_note.jpg)
 
@@ -1719,15 +1625,11 @@ ve buna bagli yorumlar:
 
 Sayfanin ana amaci, kapasitans degeri degistiginde bunun frekans cevabina neden dogrudan yansidigini sezgisel olarak gostermek gibi gorunuyor.
 
-Tutarlilik kontrolu:
-
-- `W.69`, `W.68`in dogal kavramsal devamidir; `Zout(fc)` ve `Zout(fsw)` dusuncesinin arkasinda yatan en temel `Z_C(f)` sezgisini yeniden yaziyor
-- yeni bir sayisal sonuc vermiyor
-- buna ragmen bu sayfa, "neden Bode / frekans bakisi olmadan ayni kapasitans degisiminin tum etkisini goremiyoruz?" sorusuna iyi bir defter notu oldugu icin korunmali
+`W.69`, `W.68`in dogal kavramsal devami. `Zout(fc)` ve `Zout(fsw)` dusuncesinin arkasindaki en temel `Z_C(f)` sezgisini yeniden yaziyor. Yeni bir sayisal sonuc cikarmiyor; ama "neden Bode / frekans bakisi olmadan ayni kapasitans degisiminin tum etkisini goremiyoruz?" sorusuna iyi bir defter cevabi veriyor.
 
 Defterden aktarilan not (`W.70`):
 
-Bu sayfa, kapasitörun frekansa bagli empedansini ve klasik ripple-tabanli `C` hesabinin nereden geldigini ayni yerde birlestiriyor.
+Burada kapasitörun frekansa bagli empedansi ile klasik ripple-tabanli `C` hesabinin nereden geldigi ayni yerde birlesiyor.
 
 ![W.70'ten secilen el yazisi parca: Zc, ESR/ESL etkisi ve DeltaQ=CDeltaV uzerinden ripple denklemi](images/defter_snippets_web/d40_w70_zc_and_ripple_equations.jpg)
 
@@ -1767,15 +1669,11 @@ C \approx \frac{\Delta I_L \, T_{switch}}{8\,\Delta V}
 
 Yani bu sayfa, cikis ripple denklemindeki `8 f C` yapisinin nereden geldigini hatirlatan bir not gibi okunabilir.
 
-Tutarlilik kontrolu:
-
-- `W.70`, `W.68-W.69` hattinin dogal devamidir; `Zout` ve frekans bakisina klasik `\Delta Q = C\Delta V` ripple sezgisini ekliyor
-- yeni bir nihai sayisal sonuc vermiyor
-- buna ragmen bu sayfa, cikis sığaci seciminde hem frekans-temelli empedans dusuncesinin hem de zaman-duzlemindeki ripple yaklasiminin birlikte nasil tutuldugunu gosterdigi icin korunmali
+`W.70`, `W.68-W.69` hattinin dogal devami. Yeni bir nihai sayisal sonuc vermiyor; ama `Zout` ve frekans bakisina klasik `\Delta Q = C\Delta V` ripple sezgisini ekledigi icin degerli. Cikis sığaci seciminde hem frekans-temelli empedans dusuncesinin hem de zaman-duzlemindeki ripple yaklasiminin birlikte nasil tutuldugu burada gorunuyor.
 
 Defterden aktarilan not (`W.71`):
 
-Bu sayfa, `W.68-W.70` hattindaki dusunceyi cok kisa bir ozet halinde tekrar ediyor.
+Burada `W.68-W.70` hattindaki dusunce cok kisa bir ozet halinde tekrar ediliyor.
 
 ![W.71'den secilen el yazisi parca: Zout(fc) ile transient, Zout(fsw) ile ripple ayriminin kisa ozeti](images/defter_snippets_web/d41_w71_zout_summary_note.jpg)
 
@@ -1800,14 +1698,11 @@ I_{L(p-p)} \times Z_{out}(f_{sw})
 
 Sayfanin altindaki not, bu iliskilerin Bode / empedans egileri uzerinden dusunulmesi gerektigini yeniden vurguluyor.
 
-Tutarlilik kontrolu:
-
-- `W.71`, yeni sayisal sonuc vermiyor; daha cok `W.68-W.70`teki ana ayrimi kisaltilmis bir ozet halinde tekrar ediyor
-- bu nedenle bu sayfa, defterde transient ve ripple problemlerini frekans ekseninde ayri takip ettigini gosteren kisa ama degerli bir isaret sayfasidir
+`W.71` yeni bir sayisal sonuc vermiyor; daha cok `W.68-W.70`teki ana ayrimi kisaltilmis bir ozet halinde tekrar ediyor. Kisa olmasina ragmen transient ve ripple problemlerini frekans ekseninde ayri takip ettigini gosterdigi icin degerli.
 
 Defterden aktarilan not (`W.72`):
 
-Bu sayfa, tek bir kapasitörü ideal bir `C` elemani gibi degil, gercek esdeger modeli ile dusunmeye basladigini gosteriyor.
+Burada tek bir kapasitörun ideal bir `C` elemani gibi degil, gercek esdeger modeli ile dusunulmeye baslandigi goruluyor.
 
 ![W.72'den secilen el yazisi parca: kapasitörun ESR, ESL ve sizinti dahil esdeger modeli](images/defter_snippets_web/d22_w72_capacitor_equivalent_model.jpg)
 
@@ -1832,21 +1727,17 @@ Z \approx Z_C + Z_{ESL} + Z_{ESR}
 
 notu dusulmus. Sayfa kenarindaki aciklamadan, `R_{leak}`'in genelde cok buyuk oldugu ve bu nedenle ilk yaklasimda ihmal edilebildigi dusuncesi anlasiliyor.
 
-Bu sayfanin ana degeri su:
+Buradaki ana deger su:
 
 - kapasitörun empedansi frekansa gore yalnizca `1/(sC)` gibi davranmaz
 - `ESR` ve `ESL` de modele girince, cikis sığaci secimi frekans cevabini ve spike davranisini dogrudan etkiler
 - dolayisiyla `Zout` dusuncesi kurulurken gercek komponent modeli gereklidir
 
-Tutarlilik kontrolu:
-
-- `W.72`, `W.57`, `W.69` ve `W.70` ile ayni hatta duruyor; fakat bu kez frekansa bagli davranisi daha dogrudan esdeger devre modeli uzerinden yaziyor
-- yeni bir nihai sayisal sonuc vermiyor
-- buna ragmen bu sayfa, cikis sığaci / MLCC davranisinin neden sadece ideal `C` ile aciklanamayacagini gosterdigi icin korunmali
+`W.72`, `W.57`, `W.69` ve `W.70` ile ayni hatta duruyor; bu kez frekansa bagli davranisi daha dogrudan esdeger devre modeli uzerinden yaziyor. Yeni bir nihai sayisal sonuc vermiyor ama cikis sığaci / MLCC davranisinin neden sadece ideal `C` ile aciklanamayacagini iyi gosteriyor.
 
 Defterden aktarilan not (`W.73`):
 
-Bu sayfa, artik output filter / control-to-output ve Type-III kompanzator topolojisini ayni cizim uzerinde dusunmeye basladigini gosteriyor.
+Burada artik output filter / control-to-output ve Type-III kompanzator topolojisi ayni cizim uzerinde dusunulmeye basliyor.
 
 ![W.73'ten secilen el yazisi parca: control-to-output Bode sezgisi ve Type-III topoloji cizimi](images/defter_snippets_web/d42_w73_type3_topology_and_bode.jpg)
 
@@ -1876,15 +1767,11 @@ Z_F = \frac{1}{sC_3} \parallel \left(R_2 + \frac{1}{sC_1}\right)
 
 Sayfanin alttaki ifadesi de, kompanzator transfer fonksiyonunu bu iki empedansin orani olarak kurma denemesidir.
 
-Tutarlilik kontrolu:
-
-- `W.73`, cikis sığaci / plant modelinden kompanzator topolojisine gecis yapan cok onemli bir kopru sayfa
-- bu sayfa yeni nihai komponent degerlerini tek basina vermiyor; daha cok "planti gordukten sonra Type-III agi nasil kurulur?" sorusunun ilk defter cevabi gibi
-- bu nedenle bu sayfa, ileride `6.2.5 Compensator topolojisi ve temel model` bolumune geri baglanacak guclu bir ara sayfa olarak korunmali
+`W.73`, cikis sığaci / plant modelinden kompanzator topolojisine gecis yapan onemli bir kopru sayfa. Nihai komponent degerlerini tek basina vermiyor; daha cok "planti gordukten sonra Type-III agi nasil kurulur?" sorusunun ilk defter cevabi gibi.
 
 Defterden aktarilan not (`W.141`):
 
-Bu sayfa, `W.73`te tanimlanan Type-III kompanzator agindaki `Z_F` ve `Z_1` empedanslarinin cebirsel olarak nasil acildigini gosteren ara islem sayfasi gibi duruyor. Bu nedenle yeni kutup/sifir hedefi ya da yeni nihai komponent sonucu veren bir sayfa degil; kompanzator transfer fonksiyonunun ara matematik adimlarini gosteren teknik iz notu olarak korunmalidir.
+Burasi, `W.73`te tanimlanan Type-III kompanzator agindaki `Z_F` ve `Z_1` empedanslarinin cebirsel olarak nasil acildigini gosteren bir ara islem sayfasi. Yeni kutup/sifir hedefi ya da yeni nihai komponent sonucu vermiyor; ama kompanzator transfer fonksiyonunun ara matematik adimlarini gosterdigi icin teknik izi guclendiriyor.
 
 ![W.141'den secilen el yazisi parca: Type-III ZF/Z1 oraninin ara cebir adimlari](images/defter_snippets_web/d43_w141_type3_algebra_steps.jpg)
 
@@ -1923,12 +1810,7 @@ Sayfadaki cebir tam sonuca kadar gitmiyor; ancak ana niyet net:
 - sonra `H(s) = -Z_F/Z_1` ifadesi pay/payda polinom formuna cekilecek
 - boylece kutup ve sifirlar daha acik okunabilir hale gelecek
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni frekans yerlesimi vermiyor
-- ama `W.73`te topolojik olarak kurulan Type-III agin, bu kez cebirsel olarak da acilmaya baslandigini gosterdigi icin cok degerlidir
-- `W.84-W.85`te gordugumuz kutup-sifir hedeflerinin arkasinda yalnizca ezber iliski degil, bu tur ara cebir adimlarinin da oldugunu gosterir
-- bu nedenle `W.141`, Type-III kompanzatorun `Z_F / Z_1` oraninin ara sadeletme adimlarini gosteren teknik defter sayfasi olarak korunmalidir
+Bu sayfa yeni frekans yerlesimi vermiyor; ama `W.73`te topolojik olarak kurulan Type-III agin bu kez cebirsel olarak da acilmaya baslandigini gosteriyor. `W.84-W.85`te gordugumuz kutup-sifir hedeflerinin arkasinda yalnizca ezber iliski degil, bu tur ara cebir adimlari oldugunu gostermesi acisindan guclu.
 
 Defterden aktarilan not (`W.42`):
 
@@ -1957,11 +1839,7 @@ Sayfa sonunda ayrica su pratik ayrim not edilmis:
 - `ripple`: surekli tekrar eden kucuk dalgalanma
 - `transient`: ani ve buyuk degisim
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni bir sayisal hesap vermiyor
-- ama `W.34-W.41` araligindaki cikis / giris kapasitörü secim mantiginin temel fiziksel sezgisini acikca yaziyor
-- bu nedenle belge icin degerli; cunku sadece sonuc degil, tasarim dusunce yapini da gosteriyor
+Bu sayfa yeni bir sayisal hesap vermiyor. Ama `W.34-W.41` araligindaki cikis / giris kapasitörü secim mantiginin temel fiziksel sezgisini acikca yaziyor. Degeri de burada; sadece sonucu degil, dusunce bicimini de gosteriyor.
 
 Defterden aktarilan not (`W.46`):
 
@@ -1988,11 +1866,7 @@ Alt tarafta ayrica secim kriterleri kisa maddeler halinde yazilmis:
 - bant genisligi (`BW`)
 - load transient response
 
-Tutarlilik kontrolu:
-
-- `W.46` yeni bir son denklem vermiyor
-- ama kapasitör seciminin neden tek boyutlu bir `C` secimi olmadigini acikca yaziyor
-- bu nedenle bu sayfa, hem cikis kapasitörü hem de genel olarak power-stage dusunce akisini gosteren degerli bir kavramsal sayfa olarak korunmali
+`W.46` yeni bir son denklem vermiyor; ama kapasitör seciminin neden tek boyutlu bir `C` secimi olmadigini acikca yaziyor. O yuzden hem cikis kapasitörü hem de genel olarak power-stage dusunce akisini gosteren iyi bir kavramsal sayfa gibi duruyor.
 
 Defterden aktarilan not (`W.57`):
 
@@ -2028,12 +1902,7 @@ Sayfa sonunda ayrica yuksek frekans davranisi icin su fikir not edilmis:
 - `400 kHz - 1 MHz` civarinda parasitik enduktans (`ESL`) etkisi on plana cikmaya baslayabilir
 - bu noktada cok farkli degerli veya kucuk degerli MLCC'ler spike bastirma amacli fayda saglayabilir
 
-Tutarlilik kontrolu:
-
-- `W.57`, `W.46` ile ayni kavramsal hatta duruyor; ikisi birlikte kapasitör seciminin neden tek boyutlu olmadigini guclu bicimde gosteriyor
-- sayfa yeni bir nihai sayisal sonuc vermiyor; daha cok secilen cikis MLCC bankinin nasil dusunulmesi gerektigine dair tasarim mantigi veriyor
-- `dc-bias` altinda etkin kapasitans dususu notu cok degerli; cunku katalog `uF` toplami ile gercek etkin `Cout` arasindaki farki acikca hatirlatiyor
-- bu nedenle bu sayfa, cikis sığaçlari bolumunde hem tasarim dusunce izi hem de gercek parca secimi uyarisi olarak korunmali
+`W.57`, `W.46` ile ayni kavramsal hatta duruyor; ikisi birlikte kapasitör seciminin neden tek boyutlu olmadigini guclu bicimde gosteriyor. Yeni bir sayisal sonuc vermiyor; daha cok secilen cikis MLCC bankinin nasil dusunulmesi gerektigine dair tasarim mantigi veriyor. `dc-bias` altinda etkin kapasitans dususu notu da sayfanin en guclu yani; katalog `uF` toplami ile gercek etkin `Cout` arasindaki farki acikca hatirlatiyor.
 
 
 
@@ -2045,11 +1914,7 @@ Defterden aktarilan not (`W.28`):
 
 ![W.28'den secilen el yazisi parca: alternatif ilk Cout iterasyonu ve ESR kontrolu](images/defter_snippets_web/d23_w28_esr_and_cout_check.jpg)
 
-Tutarlilik kontrolu:
-
-- `W.28`, mevcut belgede kullanilan `70 uF` cikis bankasi ile birebir uyusmuyor
-- bu nedenle bu sayfa "yanlis hesap" gibi degil, daha cok eski / alternatif bir cikis kapasitörü iterasyonu olarak okunmali
-- cikis ripple icin kullanilan bu tip hesaplar korunmali; ancak nihai cikis capacitor bank'i ilan edilirken BOM ve daha sonraki sayfalarla tekrar eslestirilmelidir
+`W.28`, mevcut belgede kullanilan `70 uF` cikis bankasi ile birebir uyusmuyor. O yuzden bunu "yanlis hesap" gibi degil, daha cok eski / alternatif bir cikis kapasitörü iterasyonu gibi okumak daha dogru. Ripple icin kullanilan bu tip hesaplari silmek yerine, nihai cikis capacitor bank'ini ilan ederken BOM ve sonraki sayfalarla yeniden eslestirmek gerekiyor.
 
 Defterden aktarilan not (`W.34`, `W.37`):
 
@@ -2074,12 +1939,7 @@ C_{out} \gtrsim 14.57\,\mu\text{F}
 C_{out} \gtrsim 2.32\,\mu\text{F}
 ```
 
-Tutarlilik kontrolu:
-
-- bu iki sayfa ayni capacitor bank'i iki farkli acidan siniyor
-- `W.37` sonucuna gore transient siniri burada daha gevsek gorunuyor
-- `W.34` sonucu ise daha zorlayici; yani bu iterasyonda cikis kapasitörü boyutunu ripple kriteri belirliyor
-- bu da onceki `70 uF` mertebesindeki secimin neden rahat marjli gorundugunu acikliyor
+Bu iki sayfa ayni capacitor bank'i iki farkli acidan siniyor. `W.37` sonucuna gore transient siniri burada daha gevsek gorunuyor; `W.34` sonucu ise daha zorlayici. Yani bu iterasyonda cikis kapasitörü boyutunu asil belirleyen sey ripple kriteri gibi duruyor. Bu da onceki `70 uF` mertebesindeki secimin neden rahat marjli gorundugunu acikliyor.
 
 Defterden aktarilan not (`W.58`):
 
@@ -2112,12 +1972,7 @@ C_{out} \gg 10\,\mu\text{F}
 
 Sayfadaki notlardan, bu iki durumda da `R_{ESR} \approx 2\,m\Omega` ve `\Delta V_{out} \approx 0.1 V` civari bir kontrol yapildigi anlasiliyor.
 
-Tutarlilik kontrolu:
-
-- `W.58`, `W.34`teki ripple-tabanli minimum `Cout` hesabinin daha acik formullu ve karsilastirmali bir devam sayfasi gibi gorunuyor
-- daha buyuk `L` secildiginde `\Delta I_L` azaldigi icin gereken minimum `Cout` alt sinirinin de dustugu burada acikca goruluyor
-- bu nedenle bu sayfa, bobin secimi ile cikis kapasitörü seciminin birbirine nasil baglandigini gosteren degerli bir kopru sayfasidir
-- mevcut `70 uF` mertebesindeki secim, bu iki alt sinirin de oldukca uzerinde kalmaktadir
+`W.58`, `W.34`teki ripple-tabanli minimum `Cout` hesabinin daha acik formullu ve karsilastirmali bir devam sayfasi. Burada, daha buyuk `L` secildiginde `\Delta I_L` azaldigi icin gereken minimum `Cout` alt sinirinin de dustugu acikca goruluyor. Bu baglantiyi gostermesi sayfayi degerli yapiyor. Mevcut `70 uF` mertebesindeki secim de iki alt sinirin oldukca uzerinde kaliyor.
 
 Defterden aktarilan not (`W.93`):
 
@@ -2147,13 +2002,7 @@ Sayfanin ortasindaki yerlestirme, `3.8 A` ile kapasitif ripple teriminin hesapla
 \frac{3.8}{8 \times 332\times 10^3 \times C_{out}}
 ```
 
-Tutarlilik kontrolu:
-
-- `W.93`, `W.58`in cok kisa ama temiz bir teyit / kaynak-ustu-not devami gibi gorunuyor
-- burada `ESR` teriminden ayri olarak yalnizca kapasitif ripple bileseni yaziliyor; bu, toplam ripple'i fiziksel bilesenlerine ayirma acisindan degerlidir
-- sayfa yeni nihai `Cout` sonucu vermiyor
-- ama `\Delta I_L = 3.8 A` ve `2.7 A` senaryolarinin cikis ripple hesabina nasil girdigini gosterdigi icin, bobin secimi ile cikis ripple'i arasindaki bagi bir kez daha pekistiriyor
-- bu nedenle bu sayfa, `W.58` hattinda kapasitif ripple bilesenini ayri gosteren kisa bir destek sayfasi olarak korunmali
+`W.93`, `W.58`in cok kisa ama temiz bir teyit / kaynak-ustu-not devami. Burada `ESR` teriminden ayri olarak yalnizca kapasitif ripple bileseni yaziliyor; bu da toplam ripple'i fiziksel bilesenlerine ayirma acisindan degerli. Yeni bir nihai `Cout` sonucu vermiyor, ama `\Delta I_L = 3.8 A` ve `2.7 A` senaryolarinin cikis ripple hesabina nasil girdigini gosterdigi icin bobin secimi ile cikis ripple'i arasindaki bagi bir kez daha pekistiriyor.
 
 Ek not (calculator teyidi):
 
@@ -2210,12 +2059,7 @@ Bu durumda:
 C_{out} \gg 4.86\,\mu\text{F}
 ```
 
-Tutarlilik kontrolu:
-
-- `W.59`, `W.37`teki transient-tabanli minimum `Cout` hesabinin daha acik ve karsilastirmali bir devam sayfasi gibi gorunuyor
-- burada da transient kriteri, ripple kriterine gore daha gevsek kalmaktadir
-- `%20` yerine `%10` zarf kullanildiginda gereken minimum `Cout` artsa da, yine de `W.58`teki ripple-tabanli `10-14 uF` seviyelerinin altinda kalmaktadir
-- bu nedenle `W.58-W.59` birlikte okundugunda, bu iterasyonda cikis sığaç secimini belirleyen baskin kriterin hala ripple tarafi oldugu daha da netlesmektedir
+`W.59`, `W.37`teki transient-tabanli minimum `Cout` hesabinin daha acik ve karsilastirmali bir devami. Burada da transient kriteri ripple kriterine gore daha gevsek kaliyor. `%20` yerine `%10` zarf kullanildiginda gereken minimum `Cout` artsa da, yine de `W.58`teki ripple-tabanli `10-14 uF` seviyelerinin altinda kaliyor. Yani `W.58-W.59` birlikte okununca, bu iterasyonda cikis sığaç secimini belirleyen baskin kriterin hala ripple tarafi oldugu daha net goruluyor.
 
 Defterden aktarilan not (`W.60`):
 
@@ -2288,15 +2132,11 @@ Q_{loss} \parallel Q_{load}
 1.55
 ```
 
-Tutarlilik kontrolu:
-
-- `W.60`, cikis sığaci secimini artik yalnizca `uF` ve `ESR` seviyesinde degil, cikis LC filtresinin `Q` faktorune etkisi uzerinden de dusunmeye basladigini gosteriyor
-- bu sayfa sayisal olarak ikinci projenin tum nihai degerleriyle birebir kurulmus bir sonuc sayfasi olmayabilir; ama control-loop tarafina gecis icin cok degerli bir ara dusunce sayfasi
-- bu nedenle bu sayfa, cikis sığaci / output filter secimi ile kontrol davranisi arasindaki kopru olarak korunmali
+`W.60`, cikis sığaci secimini artik yalnizca `uF` ve `ESR` seviyesinde degil, cikis LC filtresinin `Q` faktorune etkisi uzerinden de dusunmeye basladigini gosteriyor. Sayisal olarak ikinci projenin tum nihai degerleriyle birebir kurulmus bir sonuc sayfasi olmayabilir; ama control-loop tarafina gecis icin degerli bir ara dusunce sayfasi.
 
 Defterden aktarilan not (`W.61`):
 
-Bu sayfa, `W.60`ta baslanan `Q_{load}`, `Q_{loss}` ve toplam `Q` dusuncesini yukun farkli uc durumlarinda siniyor gibi gorunuyor.
+Burada `W.60`ta baslanan `Q_{load}`, `Q_{loss}` ve toplam `Q` dusuncesi yukun farkli uc durumlarinda sinaniyor.
 
 ![W.61'den secilen el yazisi parca: yuk degistikce Qload ve toplam Q'nun nasil degistiginin sayisal notu](images/defter_snippets_web/d32_w61_q_vs_load_cases.jpg)
 
@@ -2355,12 +2195,7 @@ Q \approx 0.1206
 
 gibi cok daha dusuk bir toplam `Q` ortaya cikiyor.
 
-Tutarlilik kontrolu:
-
-- `W.61`, `W.60`in dogal devamidir; cikis LC filtresinin sönumlenmesinde bazen kayiplarin, bazen de yukun baskin hale geldigini gostermektedir
-- cok hafif yukte toplam `Q`, `Q_{loss}` tarafina yaklasirken; agir yukte `Q_{load}` kuculup toplam `Q`yu asagi cekebilmektedir
-- bu sayfa ikinci projenin nihai sayilariyla birebir kurulmus olmak zorunda olmayabilir; ama "hangi yukte hangi `Q` baskin?" sorusuna verdigi cevap, control-loop dusuncesi acisindan cok degerlidir
-- bu nedenle `W.60-W.61` birlikte, output filter ve kontrol arasindaki bagin neden yukten bagimsiz dusunulemeyecegini gosteren guclu bir dusunce izi olarak korunmali
+`W.61`, `W.60`in dogal devami. Cikis LC filtresinin sönumlenmesinde bazen kayiplarin, bazen de yukun baskin hale geldigini gosteriyor. Bu sayfa ikinci projenin nihai sayilariyla birebir kurulmus olmak zorunda olmayabilir; ama "hangi yukte hangi `Q` baskin?" sorusuna verdigi cevap control-loop dusuncesi acisindan gayet degerli.
 
 Defterden aktarilan not (`W.62`):
 
@@ -2412,22 +2247,18 @@ hemen altinda ise ilk yaklasim olarak:
 
 notu dusulmus.
 
-Sayfanin alt yarisi, `W.61`teki tablonun daha ozet bir yeniden kurulumu gibi gorunuyor:
+Sayfanin alt yarisi, `W.61`teki tablonun daha ozet bir yeniden kurulumu:
 
 - cok hafif yukte (`R \to \infty`) toplam `Q`, `Q_{loss}` tarafina yaklasiyor
 - ornek not olarak `Q \approx 2.2999`
 - orta bir yuk durumunda `Q \approx 1.584`
 - agir yukte ise `Q \approx 0.1206`
 
-Tutarlilik kontrolu:
-
-- `W.62`, `W.60-W.61`deki sezgisel `Q` dusuncesini artik dogrudan output filter / plant modeline baglayan cok degerli bir ara sayfa
-- bu sayfa ikinci projenin tam nihai plant modeli olmayabilir; ama `R_{damp}`, `\omega_0`, `Q` ve `G_{vd}(s)` arasindaki iliskiyi kurma denemesi acisindan onemli
-- bu nedenle `W.60-W.62` birlikte, cikis sığaci secimi ile kontrol tasarimi arasindaki bagin defterde nasil kurulmaya baslandigini gosteren guclu bir zincir olarak korunmali
+`W.62`, `W.60-W.61`deki sezgisel `Q` dusuncesini bu kez dogrudan output filter / plant modeline baglamaya calisiyor. Ikinci projenin tam nihai plant modeli olmayabilir; ama `R_{damp}`, `\omega_0`, `Q` ve `G_{vd}(s)` arasindaki iliskiyi kurma denemesi acisindan onemli.
 
 Defterden aktarilan not (`W.63`):
 
-Bu sayfa, `P1` diye adlandirilan onceki output-filter / `Q` calismasinin kisa bir ozetini veriyor gibi gorunuyor.
+Burada `P1` diye adlandirilan onceki output-filter / `Q` calismasinin kisa bir ozeti var.
 
 ![W.63'ten secilen el yazisi parca: Q factor araligi ve harici ornek f0 notunun kisa ozeti](images/defter_snippets_web/d34_w63_q_summary_note.jpg)
 
@@ -2454,18 +2285,14 @@ f_0
 4\,\text{kHz}
 ```
 
-Tutarlilik kontrolu:
+Sayfanin ilk satiri, ikinci projedeki `P1` / `Q` calismasinin ozeti gibi degerli. Buna karsilik alttaki `180 uF` ve `9 uH` ile yapilan `f_0 \approx 4 kHz` hesabi buyuk ihtimalle harici bir ornek devreye veya excel/web uzerindeki baska bir calismaya ait. O yuzden burada iki parcayi ayri okumak daha dogru:
 
-- sayfanin ilk satiri, ikinci projedeki `P1` / `Q` calismasinin ozeti gibi degerli gorunuyor
-- buna karsilik alttaki `180 uF` ve `9 uH` ile yapilan `f_0 \approx 4 kHz` hesabı, muhtemelen harici bir ornek devreye veya excel/web uzerindeki baska bir calismaya ait karsilastirma notudur
-- bu nedenle bu sayfa korunmali; ancak iki parca birbirinden zihinde ayrilmalidir:
-  - ustteki `Q` araligi notu: proje icin faydali ozet
-  - alttaki `f_0` hesabi: harici ornek / karsilastirma notu
-- bu ayrim sayesinde proje plant modeli ile ornek devre notlari birbirine karismamış olur
+- ustteki `Q` araligi notu: proje icin faydali ozet
+- alttaki `f_0` hesabi: harici ornek / karsilastirma notu
 
 Defterden aktarilan not (`W.64`):
 
-Bu sayfa da basligindan anlasildigi kadariyla harici bir ornekten alinmis not gibi gorunuyor: `Another Example: Plant-of-Load Regulator`.
+Basligindan anlasildigi kadariyla bu not harici bir ornekten alinmis: `Another Example: Plant-of-Load Regulator`.
 
 ![W.64'ten secilen el yazisi parca: harici plant-of-load orneginde f0, fESR ve Q notlari](images/defter_snippets_web/d35_w64_external_plant_example.jpg)
 
@@ -2502,15 +2329,11 @@ notlari da yer aliyor.
 
 Alt kisimda da bu ornegin, `Vref` girisini cikisin `V(s)` / `Vout` takibine baglayan bir kontrol yorumu oldugu not edilmis.
 
-Tutarlilik kontrolu:
-
-- `W.64`, ikinci projenin kendi nihai sayilarindan cok, harici bir plant-ornegi / egitsel karsilastirma notu gibi okunmalidir
-- buna ragmen `f_0`, `f_{ESR}`, `f_s` ve `Q` buyukluklerinin ayni ornekte nasil bir arada dusunuldugunu gosterdigi icin degerlidir
-- bu nedenle bu sayfa korunmali; fakat proje sayilariyla karistirilmamasi icin "harici ornek" etiketi zihinde acik tutulmalidir
+`W.64`, ikinci projenin kendi nihai sayilarindan cok harici bir plant-ornegi / egitsel karsilastirma notu gibi okunmali. Buna ragmen `f_0`, `f_{ESR}`, `f_s` ve `Q` buyukluklerinin ayni ornekte nasil bir arada dusunuldugunu gostermesi acisindan degerli. Burada "harici ornek" etiketini akilda tutmak yeterli.
 
 Defterden aktarilan not (`W.65`):
 
-Bu sayfa, `W.64`teki ayni harici ornek uzerinden acik-cevrim cikis empedansi `Zout` egrisini kavramsal olarak cizmeye calisiyor gibi gorunuyor.
+Burada `W.64`teki ayni harici ornek uzerinden acik-cevrim cikis empedansi `Zout` egrisi kavramsal olarak cizilmeye calisiliyor.
 
 ![W.65'ten secilen el yazisi parca: harici ornekte open-loop Zout egrisinin kavramsal eskizi](images/defter_snippets_web/d36_w65_zout_sketch_example.jpg)
 
@@ -2540,12 +2363,7 @@ Sayfadaki en onemli tasarim notu su sekilde okunuyor:
 - ancak bunun bedeli hacim, maliyet veya cevap hizi olabilir
 - yani `C` buyutmek yalnizca "daha iyi" degil; egrinin tum seklini degistiren bir tasarim karari olarak gorulmelidir
 
-Tutarlilik kontrolu:
-
-- `W.65`, `W.64`un dogal devamidir; ayni harici ornek uzerinden bu kez sayisal denklemden cok `Zout` egrisinin sezgisel seklini ciziyor
-- bu sayfa ikinci projenin kendi nihai `Zout` egrisi degil; egitsel / harici ornek olarak okunmalidir
-- buna ragmen, cikis sığaci, `ESR`, bobin ve kayiplarin `Zout` egrisini nasil birlikte sekillendirdigini gormek acisindan cok degerlidir
-- bu nedenle bu sayfa korunmali; fakat "harici ornek Zout eskizi" etiketi akilda tutulmalidir
+`W.65`, `W.64`un dogal devami; ayni harici ornek uzerinden bu kez sayisal denklemden cok `Zout` egrisinin sezgisel seklini ciziyor. Ikinci projenin kendi nihai `Zout` egrisi degil; daha cok egitsel / harici ornek. Buna ragmen, cikis sığaci, `ESR`, bobin ve kayiplarin `Zout` egrisini nasil birlikte sekillendirdigini gostermesi acisindan degerli.
 
 Defterden aktarilan not (`W.66`):
 
@@ -2603,11 +2421,7 @@ f_0 \approx 11.278\,\text{kHz}
 
 notu dusulmus. Sayfada ayri olarak `R_{yuk} = 0.36 \Omega` ve cok buyuk `R_{yuk}` durumu karsilastiriliyor.
 
-Tutarlilik kontrolu:
-
-- `W.66`, `W.64-W.65` zincirinin dogal devamidir; ayni harici ornek icin frekans noktalarini ve `Zout` bilesimini daha formel sekilde yazmaktadir
-- bu sayfa ikinci projenin kendi nihai sayilarini temsil etmiyor olabilir; dolayisiyla "harici ornek" etiketi korunmalidir
-- buna ragmen `Z_{out} = Z_0 || Z_b` dusuncesi ve `f_0 / f_{ESR}` / bobin kolu frekans notlari, ileride kendi tasarimindaki `Zout` dusuncesini kurarken faydali bir referans olarak degerlidir
+`W.66`, `W.64-W.65`teki harici ornek zincirinin dogal devami gibi okunuyor. Buyuk ihtimalle ikinci projenin kendi nihai sayilari degil; ama `Z_{out} = Z_0 \parallel Z_b` dusuncesini ve `f_0`, `f_{ESR}` ile bobin kolu frekanslarini daha formel yazdigi icin yararli. Kendi tasarimindaki `Zout` sezgisine giden yolda iyi bir ara referans.
 
 
 
@@ -2724,7 +2538,7 @@ Ilk foto, bobin uzerindeki `di/dt = \Delta V / L` sezgisini ve yuk adimi aninda 
 
 Defterden aktarilan not (`W.98`):
 
-Bu sayfa, yukaridaki `Slew Rate Hesabı` bolumunun defterdeki daha duz, egitsel bir ornegi gibi duruyor. Ust kisimda su ana fikirler yazili:
+Burada yukaridaki `Slew Rate Hesabı` bolumunun defterdeki daha duz, egitsel bir ornegi var. Ust kisimda su ana fikirler yazili:
 
 ![W.98'den secilen el yazisi parca: load transient sirasinda dIL/dt ve cikis kapasitörlerinin ilk anda akim saglamasi](images/defter_snippets_web/d29_w98_slew_rate_example.jpg)
 
@@ -2767,18 +2581,7 @@ Sayfada yazilan ornek slew-rate hesabi:
 3\,\text{A}/\mu\text{s}
 ```
 
-Tutarlilik kontrolu:
-
-- bu sayfa, projenin kendi `24-36 V / 14 V` tasarim sayilariyla yazilmis bir nihai hesap sayfasi degil; daha cok defterde kurulmus egitsel bir ornek gibi duruyor
-- buna ragmen teknik fikir cok degerli: load transient sirasinda dongu tepki verse bile bobin akimi ancak sonlu bir `A/us` egimiyle yukselebilir
-- dolayisiyla ani yuk adimlarinda ilk anda gereken fark akim, cikis kapasitörleri tarafindan saglanir
-- bu nedenle `W.98`, `5.4.6` altinda "slew-rate mantigini ornekle anlatan defter sayfasi" olarak korunmalidir
-
-Kaynak-ustu olcum notu:
-
-![Transient sirasinda gerilim cevabi icin ornek scope ekran goruntusu](images/foto_selected/p18_scope_transient_example.jpg)
-
-Bu ekran goruntusu, nihai projeye ait kesin laboratuvar kaniti gibi degil; ama transientte gorulen ilk sapma, altsinusoidal ringing ve yerlesme davranisinin ne tip bir osiloskop goruntusune donustugunu hatirlatan bir destek gorsel olarak yararlidir. Bu nedenle burada "transient davranişin goruntu dili"ni destekleyen ek not olarak korunabilir.
+`W.98` burada proje-ozel `24-36 V / 14 V` sayilarini veren bir nihai hesap sayfasi degil; daha cok elde kurulmus egitsel bir ornek. Ama anlattigi fizik cok net: load transient sirasinda dongu tepki verse bile bobin akimi ancak sonlu bir `A/us` egimiyle yukselebilir, ilk anda gereken fark akim da cikis kapasitörlerinden gelir. O yuzden `5.4.6` altinda yerinde duruyor.
 
 
 
@@ -2844,7 +2647,7 @@ Bu iki teknik sart, giris kapasiteleri icin artik yalnizca ortalama enerji depol
 
 Defterden aktarilan not (`W.26`):
 
-Bu sayfa, ikinci projenin giris kapasitörü hesabinda kullanilan o anki tasarim ozet parametrelerini topluyor:
+Burada ikinci projenin giris kapasitörü hesabinda kullanilan o anki tasarim ozet parametreleri toplanmis:
 
 ![W.26'dan secilen el yazisi parca: temel tasarim girdileri, cikis akimi ve load-step notlari](images/defter_snippets_web/d01_w26_specs_and_load_step.jpg)
 
@@ -2859,20 +2662,16 @@ Bu sayfa, ikinci projenin giris kapasitörü hesabinda kullanilan o anki tasarim
   - $\Delta V_{IN,PP} \le 0.24\,\text{V}$
   - $\Delta V_{IN,Tran} \le 0.36\,\text{V}$
 
-Bu sayfada ayrica giris kapasitörü hesabinda kullanilan goreli duty notlari da goruluyor:
+Burada ayrica giris kapasitörü hesabinda kullanilan goreli duty notlari da goruluyor:
 
 - $D_{\max} \approx 0.648$
 - $D_{\min} \approx 0.432$
 
-Tutarlilik kontrolu:
-
-- bu duty degerleri, yalnizca ideal $V_{out}/V_{in}$ oranindan gelmiyor; verim ve gercek tasarim kabulune dayali bir iterasyon olmasi muhtemel
-- bu nedenle input capacitor hesabinda kullanilan duty araligi olarak korunmali
-- ileride baska sayfalarda ayni duty degerlerinin kaynagi daha net gorulurse baglantisi kurulacak
+Bu duty degerleri yalnizca ideal $V_{out}/V_{in}$ oranindan gelmiyor gibi duruyor; verim ve gercek tasarim kabulune dayali bir iterasyon izi var. O yuzden input capacitor hesabinda kullanilan duty araligi olarak burada durmasi mantikli.
 
 Defterden aktarilan not (`W.140`):
 
-Bu sayfa, ikinci proje icin kullanilan temel tasarim girdilerini ve duty araligi secimini daha duz ve toplu bicimde tekrar ediyor. Bu nedenle `W.26`daki parametre ozetinin kuvvetli bir devam sayfasi gibi gorunuyor ve ozellikle `D = 0.5` seciminin nereden geldigini gostermesi acisindan degerlidir.
+Burada ikinci proje icin kullanilan temel tasarim girdileri ve duty araligi daha duz ve toplu bicimde tekrar ediliyor. `W.26`daki parametre ozetinin guclu bir devami ve ozellikle `D = 0.5` seciminin nereden geldigini gostermesi acisindan degerli.
 
 ![W.140'tan secilen el yazisi parca: duty araligi, verim dahil duty notlari ve D = 0.5 secimi](images/defter_snippets_web/d03_w140_duty_and_design_inputs.jpg)
 
@@ -2944,15 +2743,11 @@ Sayfanin en altindaki cok onemli not da su:
   - `D = 0.5`
   secilmis
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.26`daki `0.648 / 0.432` duty degerlerinin rastgele degil, verim dahil edilmis duty araligindan geldigini cok daha net hale getiriyor
-- ayni zamanda neden bircok giris kapasitörü ve EMI hesabinda `D = 0.5` kullanildigini de acikliyor: secilen araligin makul orta noktasi / worst-case'e yakin hizli tasarim noktasi olarak alinmis
-- bu nedenle `W.140`, giris kapasitesi ve EMI hesaplarinda kullanilan duty varsayimlarini baglayan temel defter sayfasi olarak korunmalidir
+Bu sayfa, `W.26`daki `0.648 / 0.432` duty degerlerinin rastgele gelmedigini daha net gosteriyor. Ayni zamanda neden bircok giris kapasitörü ve EMI hesabinda `D = 0.5` kullanildigini da acikliyor: secilen araligin makul orta noktasi ve worst-case'e yakin hizli tasarim noktasi gibi dusunulmus.
 
 Defterden aktarilan not (`W.53`):
 
-Bu sayfa, ikinci proje icin eklenen specification'lari bir kez daha topluyor ve bunlardan hareketle en kotu / en iyi durumda giris akimini hizli bir sekilde hesapliyor.
+Burada ikinci proje icin eklenen specification'lar bir kez daha toplanip, bunlardan hareketle en kotu / en iyi durumda giris akimi hizli bir sekilde hesaplanmis.
 
 ![W.53'ten secilen el yazisi parca: ripple hedefleri, transient limitleri ve giris akimi hesabi](images/defter_snippets_web/d02_w53_requirements_summary.jpg)
 
@@ -2985,12 +2780,7 @@ I_{IN,\min}
 \approx 3.86\,\text{A}
 ```
 
-Tutarlilik kontrolu:
-
-- `W.53`, `W.26` ile ayni ozet-parametre hattina ait gorunuyor
-- burada verilen `I_{IN}` degerleri, giris kapasitörü ve input filter hesabinda kullanilabilecek yararli sinirlar veriyor
-- `50 mA` giris ripple hedefi icin dusulen "EMI / input filter eklenmesiyle karsilanir" notu, bu requirement'in yalnizca kapasitör secimiyle degil daha genis bir giris filter tasarimiyla baglantili oldugunu gosteriyor
-- bu nedenle bu sayfa, specification ozeti ile input-side tasarim karari arasinda degerli bir kopru sayfadir
+`W.53`, `W.26` ile ayni ozet-parametre hattina ait. Burada verilen `I_{IN}` degerleri, giris kapasitörü ve input filter hesabinda kullanilabilecek yararli sinirlar veriyor. `50 mA` giris ripple hedefi icin dusulen "EMI / input filter eklenmesiyle karsilanir" notu da, bu requirement'in yalnizca kapasitör secimiyle degil daha genis bir giris filter tasarimiyla bagli oldugunu gosteriyor.
 
 
 
@@ -3037,16 +2827,11 @@ ODT'den aktarilan metin (`7.1. MLCC Sığaç Hesabı / 7.1.1. MLCC Cin Hesabı?`
 
 Ek not:
 
-Bu alt bolumde korunacak esas mantik su:
-
-- once gerekli minimum etkin `Cin` bulunur
-- sonra `dc-bias`, tolerans ve gerilim sinifi etkileri eklenerek gercek secilecek parca degerine gidilir
-
-ODT notunda gecen $D = 0.5$ varsayimi, ilk muhendislik yaklasimi olarak makul bir worst-case kontrol noktasi olabilir; ancak nihai hesapta gercek $V_{in} / V_{out}$ araligina gore tekrar kontrol edilmelidir. Bu nedenle burada asil hedef katalog `uF` degerini degil, etkin $C_{in}$ gereksinimini bulmaktir.
+Buradaki esas mantik basit: once gerekli minimum etkin `Cin` bulunuyor, sonra `dc-bias`, tolerans ve gerilim sinifi etkileri eklenerek gercek secilecek parca degerine gidiliyor. ODT notunda gecen $D = 0.5$ varsayimi ilk muhendislik yaklasimi olarak makul bir worst-case noktasi olabilir; ama asil hedef katalog `uF` degerini degil, etkin $C_{in}$ gereksinimini bulmak.
 
 Defterden aktarilan not (`W.47`):
 
-Bu sayfa, giris kapasitörü hesabinda kullanilan temel fiziksel mantigi cizim ve kisa notlarla anlatiyor.
+Burada giris kapasitörü hesabinda kullanilan temel fiziksel mantik cizim ve kisa notlarla anlatiliyor.
 
 ![W.47'den secilen el yazisi parca: giris akiminin darbeli olmasi ve DeltaVin ripple sezgisi](images/defter_snippets_web/d44_w47_input_cap_pulsating_current_note.jpg)
 
@@ -3071,15 +2856,11 @@ Alt notlarda ayrica su fikirler de goruluyor:
 - buck katinin ani akim ihtiyaci ile kaynagin verebildigi akim arasindaki fark ilk anda giris kapasitörlerince kapanir
 - secilecek `C_{IN}` degeri yalnizca formulle degil, MLCC'lerdeki `dc-bias` dususu ile birlikte dusunulmelidir
 
-Tutarlilik kontrolu:
-
-- `W.47`, `W.27` ve `W.35` tarafindaki giris ripple denklemlerinin fiziksel gerekcesini veren bir ara dusunce sayfasi gibi gorunuyor
-- yeni ve nihai bir sayisal sonuc vermiyor
-- buna ragmen belge acisindan degerli; cunku "neden giris kapasitörü hesabi yapiyoruz?" sorusunu senin defter dilinle acikliyor
+`W.47`, `W.27` ve `W.35` tarafindaki giris ripple denklemlerinin fiziksel gerekcesini veren bir ara dusunce sayfasi. Yeni bir sayisal sonuc vermiyor; ama "neden giris kapasitörü hesabi yapiyoruz?" sorusunu senin defter dilinle aciklamasi bence yeterince degerli.
 
 Defterden aktarilan not (`W.48`):
 
-Bu sayfa, giris kapasitörü / bulk / MLCC tarafinda nasil test dusunuldugunu ve hangi sorularin akilda tutuldugunu gosteren bir not sayfasi gibi gorunuyor.
+Burada giris kapasitörü / bulk / MLCC tarafinda nasil test dusunuldugu ve hangi sorularin akilda tutuldugu goruluyor.
 
 ![W.48'den secilen el yazisi parca: bulk, MLCC ve LISN uzerine test sorulari ve notlar](images/defter_snippets_web/d46_w48_input_cap_test_questions.jpg)
 
@@ -3106,15 +2887,11 @@ Son kisimdaki ana fikir ise su sekilde okunuyor:
 - MOSFET `OFF` iken bu akim sifira yaklasabilir
 - bu nedenle kaynak tarafindan bakildiginda giris akimi `pulsating current` karakterindedir
 
-Tutarlilik kontrolu:
-
-- `W.48`, `W.47` ile ayni kavramsal hatta duruyor
-- yeni bir son formül vermiyor; ama neden giris kapasitörü hesabinin, testinin ve hatta EMI baglaminin birlikte dusunuldugunu gosteriyor
-- bu nedenle bu sayfa, salt hesap sonucu degil tasarim sureci ve test dusuncesi acisindan korunmali
+`W.48`, `W.47` ile ayni kavramsal hatta duruyor. Yeni bir son formül vermiyor; ama neden giris kapasitörü hesabinin, testinin ve hatta EMI baglaminin birlikte dusunuldugunu gostermesi acisindan guclu.
 
 Defterden aktarilan not (`W.52`):
 
-Bu sayfa, buck donusturucudeki akim dongulerini sematik uzerinde isaretleyerek giris ve cikis kapasitörlerinin hangi anda hangi akimi tasidigini gosteriyor.
+Burada buck donusturucudeki akim donguleri sematik uzerinde isaretlenmis; giris ve cikis kapasitörlerinin hangi anda hangi akimi tasidigi gosteriliyor.
 
 ![W.52'den secilen el yazisi parca: CIN ve COUT akim rollerini gosteren isaretli akim donguleri](images/defter_snippets_web/d45_w52_input_output_current_loops.jpg)
 
@@ -3138,16 +2915,11 @@ Bu sayfanin verdigi ana fikir su sekilde okunabilir:
 - bu fark yuzunden `CIN`, kaynagin anlik saglayamadigi akim bilesenini tasir
 - benzer sekilde `COUT` da yuk tarafinda ripple akimini ustlenir
 
-Tutarlilik kontrolu:
-
-- `W.52`, `W.47-W.48` tarafindaki "giris akimi darbeli" dusuncesini daha somut bir sematik cizimle destekliyor
-- yeni bir son sayisal sonuc vermiyor
-- buna ragmen belge acisindan degerli; cunku hem `CIN` hem `COUT` akim rollerini ayni cizimde senin notlarinla gorunur kilıyor
-- bu nedenle bu sayfa, hesaplardan once gelen fiziksel akim-dongusu sezgisi olarak korunmali
+`W.52`, `W.47-W.48` tarafindaki "giris akimi darbeli" dusuncesini daha somut bir sematik cizimle destekliyor. Yeni bir son sayisal sonuc vermiyor; ama hem `CIN` hem `COUT` akim rollerini ayni cizimde senin notlarinla gorunur kilmasi bence yeterince guclu.
 
 Defterden aktarilan not (`W.49`):
 
-Bu sayfa, ders videosunda hocanin anlattigi ornek uzerinden alinmis bir not gibi okunmalidir; bu projenin kendi buck converter tasarimina ait nihai hesap sayfasi degildir.
+Buradaki not, ders videosunda hocanin anlattigi ornekten alinmis; bu projenin kendi buck converter tasarimina ait nihai hesap sayfasi degil.
 
 ![W.49'dan secilen el yazisi parca: switching periyot bolgeleri ve giris kapasitörü akim dalga bicimi ornegi](images/defter_snippets_web/d47_w49_switching_waveform_example.jpg)
 
@@ -3166,16 +2938,11 @@ Sayfada ornek olarak su notlar okunuyor:
 - $T_{sw} \approx 5\,\mu\text{s}$
 - `t_rise` ve `t_fall` mertebesi `30 ns` civari
 
-Tutarlilik kontrolu:
-
-- bu sayfa, kullanicinin kendi tasarimindan degil; ders videosundaki hocanin orneginden alinmis kavramsal bir not olarak okunmalidir
-- bu sayfadaki `200 kHz` notu, mevcut ikinci proje icin kullandigin `332 kHz` nihai degerle uyusmuyor; dolayisiyla proje verisiyle karistirilmamalidir
-- buna ragmen ana fikir degerli: giris kapasitörü akimini sadece ortalama / RMS bakisiyla degil, hizli anahtarlama kenarlariyla birlikte dusunmek gerekir
-- bu nedenle sayfa korunmali; fakat uzerindeki zaman ve frekans degerleri dogrudan nihai tasarim verisi gibi okunmamalidir
+Buradaki not kullanicinin kendi tasarimindan degil; ders videosundaki hocanin orneginden alinmis kavramsal bir not. `200 kHz` notu, ikinci projede kullandigin `332 kHz` nihai degerle uyusmuyor; dolayisiyla proje verisiyle karistirilmamali. Buna ragmen ana fikir degerli: giris kapasitörü akimini sadece ortalama / RMS bakisiyla degil, hizli anahtarlama kenarlariyla birlikte dusunmek gerekiyor.
 
 Defterden aktarilan not (`W.50`):
 
-Bu sayfa da, ust basligindan anlasildigi kadariyla bir ders / video anlatimindan alinmis not gibi okunmalidir; bu projenin kendi nihai hesap sayfasi degildir.
+Bu kisim da, ust basligindan anlasildigi kadariyla bir ders / video anlatimindan alinmis not; bu projenin kendi nihai hesap sayfasi degil.
 
 ![W.50'den secilen el yazisi parca: bulk ve MLCC'nin farkli rollerini anlatan kavramsal notlar](images/defter_snippets_web/d48_w50_bulk_vs_mlcc_notes.jpg)
 
@@ -3195,15 +2962,11 @@ Sayfada ayrica su dusunce izi korunmaya deger gorunuyor:
 - `input voltage` daha fazla dalgalanabilir / dusus gosterebilir
 - agir durumda `brown-out` benzeri davranislar gorulebilir
 
-Tutarlilik kontrolu:
-
-- `W.50`, `W.49` ile ayni baglamda, ders anlatimindan ogrenilen kavramsal not olarak okunmalidir
-- bu sayfadaki fikirler proje icin faydali tasarim sezgileri saglar; ancak dogrudan ikinci projenin nihai hesap sonucu gibi kullanilmamalidir
-- bu nedenle sayfa korunmali, fakat "kaynak anlatim notu" etiketi zihinde acik tutulmalidir
+`W.50`, `W.49` ile ayni baglamda, ders anlatimindan ogrenilen kavramsal bir not. Buradaki fikirler proje icin faydali tasarim sezgileri sagliyor; ama dogrudan ikinci projenin nihai hesap sonucu gibi alinmamali.
 
 Defterden aktarilan not (`W.94`):
 
-Bu sayfa, Texas Instruments'in `Input and Output Capacitor Selection` uygulama notunun giris kapasitörü secimi bolumune ait ve dogrudan kaynak-ustu-not gibi gorunuyor. Sayfanin ust kismina dusulen notlar, giris kapasitörü seciminde iki ana eksenin izlendigini gosteriyor:
+Burada Texas Instruments'in `Input and Output Capacitor Selection` uygulama notunun giris kapasitörü secimi bolumune ait dogrudan kaynak-not var. Sayfanin ust kismina dusulen notlar, giris kapasitörü seciminde iki ana eksenin izlendigini gosteriyor:
 
 ![W.94'ten secilen el yazisi parca: G39/TI uygulama notu uzerine alinmis input capacitor selection notlari](images/defter_snippets_web/d49_w94_g39_input_cap_article_notes.jpg)
 
@@ -3217,7 +2980,7 @@ Sayfanin metninden ve senin yan notlarindan korunan ana fikirler sunlar:
 - buna karsilik bulk kapasitörler, ripple current tasima ve transient destek tarafinda deger kazanir
 - `Figure 1`'de `input pulse current vs duty cycle` iliskisi verilir; yani giris kapasitörü akim boyutlandirmasi duty'ye baglidir
 
-Senin sayfa uzerine aldigin notlardan, ozellikle su mesaj korunmali:
+Senin sayfa uzerine aldigin notlardan, ozellikle su mesaj onemli:
 
 - cikis ripple akimi ve giris pulse akimi buyuklukleri yuk / duty ile birlikte degisir
 - duty `0.5` civari, giris pulse akimi acisindan kritik / worst-case bolgelerden biri olabilir
@@ -3232,12 +2995,7 @@ Bu iki ekran goruntusu, `W.94`te kaynak-ustu-not olarak yazilan iki ana ekseni g
 - `Figure 1` uzerinden `input pulse current / RMS current` davranisinin duty'e bagli oldugu
 - `\Delta V_{IN,PP}` hesabi tarafinda ise toplam etkin `C_{in}` ile `D(1-D)` teriminin ana rol oynadigi
 
-Tutarlilik kontrolu:
-
-- `W.94`, `W.27-W.35` hesap ailesinin arkasindaki kaynak mantigi gosteren cok degerli bir uygulama-notu sayfasidir
-- bu sayfa yeni bir proje-ozel sonuclu hesap vermiyor
-- ama neden bir yandan `\Delta V_{IN,PP}` hesabi, diger yandan `I_{Cin,RMS}` hesabi yaptigini cok net acikliyor
-- bu nedenle bu sayfa, giris kapasitörü secimi bolumunde "yontemin kaynak omurgasi" olarak korunmali
+`W.94`, `W.27-W.35` hesap ailesinin arkasindaki kaynak mantigi gosteren cok degerli bir uygulama-notu sayfasi. Yeni bir proje-ozel sonuclu hesap vermiyor; ama neden bir yandan `\Delta V_{IN,PP}` hesabi, diger yandan `I_{Cin,RMS}` hesabi yaptigini cok net acikliyor.
 
 
 Defterden aktarilan not (`W.27`, `W.30`, `W.31`, `W.32`, `W.33`):
@@ -3289,7 +3047,7 @@ Bu yaklasimin temiz yazimi su sekilde ozetlenebilir:
 I_{out}\,R_{ESR}
 ```
 
-`W.32` sayfasi, daha sikı bir ornek olarak `\Delta V_{IN} = 50\,\text{mV}` gibi bir hedefle tekrar deneme yapiyor. Bu, mevcut ikinci proje spesifikasyonundaki `0.24 V` ile ayni sey degil; dolayisiyla final hedef olarak degil, daha sert bir tasarim egzersizi / ara deneme gibi korunmali.
+`W.32` sayfasi, daha sikı bir ornek olarak `\Delta V_{IN} = 50\,\text{mV}` gibi bir hedefle tekrar deneme yapiyor. Bu, mevcut ikinci proje spesifikasyonundaki `0.24 V` ile ayni sey degil; dolayisiyla final hedef gibi degil, daha sert bir tasarim egzersizi / ara deneme gibi okunmali.
 
 ![W.32'den secilen el yazisi parca: daha sikı \Delta V_IN hedefi ile tekrar hesap ve yapilacaklar listesi](images/defter_snippets_web/d54_w32_stricter_dvin_exercise.jpg)
 
@@ -3322,14 +3080,7 @@ C_{in}
 \approx 31.1\,\mu\text{F}
 ```
 
-Tutarlilik kontrolu:
-
-- `W.27` sonucundaki `28.4 uF`, ilk minimum etkin `Cin` adayi olarak yararlidir
-- `W.30-W.31` ayni problemi `ESR` terimini de icerecek sekilde daha gercekci okumaya calisiyor
-- `W.35`, bu gercekci okumayi sayisal olarak netlestirerek minimum `Cin` degerini `31.1 uF` civarina tasiyor
-- `W.32` mevcut projedeki `0.24 V` hedefine gore daha sert bir ornek oldugu icin nihai sonuc gibi yazilmamali
-- `W.33` sayfasindaki `50 mA` current ripple yorumu, dogrudan capacitor seciminden cok kaynak tarafinin gordugu kalite metriği olarak ele alinmali
-- bu nedenle bu batch tek bir sonuc vermiyor; aksine ayni input-capacitor problemini farkli seviyelerde cozen bir hesap ailesi veriyor
+Bu batch tek bir sonuca vurmuyor; ayni input-capacitor problemini farkli acilardan kuruyor. `W.27`deki `28.4 uF` ilk minimum etkin `Cin` adayi gibi dururken, `W.30-W.31` ayni problemi `ESR` terimini de icerecek sekilde daha gercekci okumaya calisiyor. `W.35` bunu sayisal olarak `31.1 uF` civarina tasiyor. `W.32` mevcut `0.24 V` hedefine gore daha sert bir egzersiz, `W.33`teki `50 mA` yorumu ise daha cok kaynagin gordugu kalite metriği gibi okunmali.
 
 Ek not (calculator teyidi):
 
@@ -3345,7 +3096,7 @@ Bu, defterdeki ilk `28.4 uF` cizgisiyle cok uyumludur. Ancak sonraki defter sayf
 
 Defterden aktarilan not (`W.51`):
 
-Bu sayfa, minimum `Cin` hesabindan sonra gercek kapasitör seciminde kontrol edilmesi gereken ikinci adimlari topluyor gibi gorunuyor.
+Burada minimum `Cin` hesabindan sonra gercek kapasitör seciminde kontrol edilmesi gereken ikinci adimlar toplaniyor.
 
 ![W.51'den secilen el yazisi parca: ripple-current, rated-voltage ve dc-bias kontrollerini ayni yerde toplayan gercek parca secim notu](images/defter_snippets_web/d56_w51_real_cap_selection_checks.jpg)
 
@@ -3368,11 +3119,7 @@ Sayfa sonundaki grafik notlari da bunu destekliyor:
 
 hatirlatiyor.
 
-Tutarlilik kontrolu:
-
-- `W.51`, `W.27-W.35` tarafindaki minimum `Cin` hesabini tek basina yeterli gormuyor; gercek parca secimi icin `current rating + voltage rating + dc-bias` kontrollerini ekliyor
-- bu sayfa yeni bir nihai sayisal sonuc vermese de, teorik kapasitans hesabindan BOM secimine geciste cok degerli bir kopru sayfadir
-- bu nedenle bu sayfa, hesap zincirinin "sonraki muhendislik kontrolu" adimi olarak korunmali
+`W.51`, `W.27-W.35` tarafindaki minimum `Cin` hesabini tek basina yeterli gormuyor; gercek parca secimi icin `current rating + voltage rating + dc-bias` kontrollerini ekliyor. Yeni bir nihai sayisal sonuc vermiyor, ama teorik kapasitans hesabindan BOM secimine gecerken iyi bir kopru kuruyor.
 
 
 
@@ -3474,15 +3221,11 @@ I_{out}^2 (1-D)
 \approx 4.94\,\text{A}
 ```
 
-Tutarlilik kontrolu:
-
-- bu sonuc, yukaridaki `4.55 A_RMS` hesabiyla birebir ayni degil
-- farkin nedeni, kullanilan form, $\Delta I_L$ teriminin dahil edilmesi ve sayfadaki varsayimlar olabilir
-- su asamada bu iki hesap arasindan birini silmek yerine, `4.55 A_RMS` kaba ilk tahmin, `4.94 A_RMS` ise daha ayrintili / daha korunmaci tahmin olarak birlikte saklamak daha dogru
+Bu sonuc, yukaridaki `4.55 A_RMS` hesabiyla birebir ayni degil. Farkin nedeni kullanilan form, $\Delta I_L$ teriminin dahil edilmesi ve sayfadaki varsayimlar olabilir. Su asamada birini silmek yerine, `4.55 A_RMS` degerini kaba ilk tahmin, `4.94 A_RMS` degerini ise daha ayrintili / daha korunmaci tahmin olarak birlikte tutmak daha dogru gorunuyor.
 
 Defterden aktarilan not (`W.36`):
 
-Bu sayfa, ayni `I_{Cin,RMS}` hesabini daha temiz ve daha duz bir yerlestirmeyle tekrar ediyor:
+Burada ayni `I_{Cin,RMS}` hesabi daha temiz ve daha duz bir yerlestirmeyle tekrar ediliyor:
 
 ![W.36'dan secilen el yazisi parca: temiz yeniden yerlestirmeyle 4.566 Arms sonucunu veren I_Cin,RMS teyidi](images/defter_snippets_web/d58_w36_clean_input_rms_result.jpg)
 
@@ -3502,15 +3245,11 @@ I_{out}^2(1-D) + \frac{\Delta I_L^2}{12}
 I_{Cin,RMS} \approx 4.566\,\text{A}_{RMS}
 ```
 
-Tutarlilik kontrolu:
-
-- `W.36` sonucu, mevcut `4.55 A_RMS` notuna cok yakin
-- bu nedenle `W.36`, ilk kaba RMS tahmini destekleyen temiz bir teyit sayfasi gibi okunabilir
-- buna karsilik `W.29` daha yuksek bir `4.94 A` sonucu veriyor; dolayisiyla bu iki sayfa arasindaki farkin, ara adimlarda kullanilan form veya yerlestirme farkindan geldigi not edilmelidir
+`W.36` sonucu, mevcut `4.55 A_RMS` notuna cok yakin. O yuzden `W.36`, ilk kaba RMS tahmini destekleyen temiz bir teyit sayfasi gibi okunabilir. Buna karsilik `W.29` daha yuksek bir `4.94 A` sonucu veriyor; demek ki iki sayfa arasindaki fark ara adimlarda kullanilan form ya da yerlestirme farkindan geliyor olabilir.
 
 Defterden aktarilan not (`W.90`):
 
-Bu sayfa, giris kapasitörü `RMS` akimi hesabini bir kez daha toparliyor ve hem ayrintili ifade hem de `D = 0.5` icin kullanilan hizli yaklasimi ayni yerde koruyor.
+Burada giris kapasitörü `RMS` akimi hesabi bir kez daha toparlaniyor ve hem ayrintili ifade hem de `D = 0.5` icin kullanilan hizli yaklasim ayni yerde korunuyor.
 
 ![W.90'dan secilen el yazisi parca: 4.544 Arms sonucu, 0.5 I_load yaklasimi ve paralel MLCC notu](images/defter_snippets_web/d59_w90_rms_recheck_and_half_iload_rule.jpg)
 
@@ -3568,12 +3307,7 @@ Sayfanin en altindaki kisa not da, bu `RMS` sonucu ile fiziksel karar arasindaki
 - `ESL`'yi dusuk tutmak icin coklu paralel MLCC
 - yuksek frekans bastirma icin kucuk paket / kucuk `ESL`
 
-Tutarlilik kontrolu:
-
-- `W.90`, `W.36` ile neredeyse ayni sonucu (`4.544 A` vs `4.566 A`) veriyor; bu nedenle bu iki sayfa birbirini iyi dogruluyor
-- `W.29`daki `4.94 A` sonucuna gore daha dusuk bir deger veriyor; dolayisiyla `W.29` daha korunmaci bir alternatif olarak tutulmaya devam edilmeli
-- bu sayfa yeni bir farkli tasarim karari vermiyor; ama `RMS` hesabinin defterde birden fazla kez tekrarlandigini ve `4.5-4.6 A` bandinin kuvvetli ana aday oldugunu gosteriyor
-- ayrica sayfanin son notu, sayisal `RMS` hesabinin neden coklu paralel MLCC ve dusuk `ESL` kararina baglandigini gosterdigi icin degerlidir
+`W.90`, `W.36` ile neredeyse ayni sonucu (`4.544 A` vs `4.566 A`) veriyor; bu da iki sayfanin birbirini iyi destekledigini gosteriyor. `W.29`daki `4.94 A` sonucuna gore daha dusuk bir deger verdigi icin `W.29` korunmaci alternatif olarak yerinde kaliyor. Bu sayfanin asil degeri, `RMS` hesabinin defterde birden fazla kez tekrarlandigini ve `4.5-4.6 A` bandinin guclu ana aday oldugunu gostermesi. Sondaki not da sayisal `RMS` hesabinin neden coklu paralel MLCC ve dusuk `ESL` kararina baglandigini guzel bagliyor.
 
 ODT'den aktarilan metin (`7.1.3. MLCC Sığaçlarının Sıcaklıkla RMS Akımıı?`):
 
@@ -3612,7 +3346,7 @@ Bu parca, MLCC seciminde yalnizca elektriksel degerlerin degil sicaklik dayanim�
 - giris MLCC'leri high-side drain ile low-side source arasindaki sicak donguye olabildigince yakin yerlestirilmelidir
 - $I_{in,RMS,\max} = 4.55\,\text{A}_{RMS}$ akimini birden fazla paralel kapasitore paylastirmak, her bir kapasitordeki `temp rise` degerini azaltir
 
-`48 V / 8 A` ve `24 V / 8 A` EVM gozlemlerinden yapilan $\sim 70\,^{\circ}\text{C}$ kart sicakligi tahmini, yalnizca ilk muhendislik referansi olarak tutulmalidir; nihai secimde secilen MLCC datasheet'indeki izin verilen sicaklik artisi ve ortam / kart sicakligi birlikte kontrol edilmelidir.
+`48 V / 8 A` ve `24 V / 8 A` EVM gozlemlerinden yapilan $\sim 70\,^{\circ}\text{C}$ kart sicakligi tahmini, ilk muhendislik referansi olarak anlamli. Ama nihai secimde secilen MLCC datasheet'indeki izin verilen sicaklik artisi ile ortam / kart sicakligini birlikte kontrol etmek yine de gerekiyor.
 
 
 
@@ -3647,7 +3381,7 @@ Bu parca, yuksek frekansta MLCC seciminde `ESL`'nin belirleyici oldugunu net sek
 - birden fazla MLCC'yi paralel baglamak etkin `ESL`'yi dusurmeye yardim eder
 - buyuk degerli ana MLCC'lere ek olarak daha kucuk kapasitansli, fiziksel olarak kucuk ve dusuk `ESL`'li yardimci kapasitörler de kullanilabilir
 
-Bu nedenle giris kapasitör agi tek tip ve tek degerli dusunulmemelidir; final karar yerlesim, akim dongusu ve parasitikler ile birlikte verilmelidir.
+Buradan cikan pratik sonuc su: giris kapasitör agi tek tip ve tek degerli dusunulmemeli. Son karar, yerlesim, akim dongusu ve parasitiklerle birlikte verilmeli.
 
 ODT'den aktarilan metin (`7.1.4.1 Çok Küçük Farad’lı, Küçük Boyutlu MLCC’ler eklemek`):
 
@@ -3693,13 +3427,13 @@ Bu grafikler birlikte su noktayi guclendiriyor:
 - `36 V` civarinda bile `10 nF` sinifindaki bu yardimci cap'te bias kaynakli azalma var ama buyuk `uF` sinifindaki MLCC'lere gore daha sinirli
 - `40 kHz` civarinda direnç / `ESR` daha yuksekken, `0.3 MHz` civarinda `0.5 \Omega` mertebesine inmesi bu tip kucuk MLCC'lerin neden anahtarlama kenarlarina yakin, yuksek frekans bastirma gorevinde dusunuldugunu acikliyor
 
-Yani bu yardimci kapasitörler ana enerji deposu degil; ama dusuk `ESL` ve uygun yuksek frekans empedansi nedeniyle, hot-loop etrafindaki ani akim ihtiyacina buyuk MLCC'lerden daha hizli cevap verebilen yararli destek elemanlari gibi dusunulmeli.
+Yani bu yardimci kapasitörler ana enerji deposu degil. Ama dusuk `ESL` ve uygun yuksek frekans empedansi sayesinde, hot-loop etrafindaki ani akim ihtiyacina buyuk MLCC'lerden daha hizli cevap verebilen yararli destek elemanlari gibi dusunulmeli.
 
 Buradaki `p71` ve `p74` ciftinin ayri degeri de su: kullanicinin yalnizca "kucuk cap eklemek iyi olur" gibi soyut bir not tutmadigi, gercekten daha kucuk paket / daha dusuk `ESL` sinifinda bir parcayi secmek icin datasheet arayuzu uzerinden bilincli arama yaptigi goruluyor.
 
 Defterden aktarilan not (`W.86`):
 
-Bu sayfa, `ESR`, `ESL`, dielektrik tipi ve paket boyutu arasindaki pratik dengeyi kendi defter dilinle ozetliyor. Sayfanin ust kismina:
+Burada `ESR`, `ESL`, dielektrik tipi ve paket boyutu arasindaki pratik denge kendi defter dilinle ozetleniyor. Sayfanin ust kismina:
 
 ![W.86'dan secilen el yazisi parca: buyuk-kucuk MLCC, ESR-ESL dengesi ve paralel baglama notlarini ozetleyen sayfa](images/defter_snippets_web/d60_w86_esr_esl_small_vs_large_mlcc.jpg)
 
@@ -3734,16 +3468,11 @@ Sayfanin altinda ise buyuk ve kucuk MLCC'lerin karsilastirildigi kisa bir tablo 
   - `ESR` ve `ESL` acisindan dengeli bir cozum verebilir
   - yuksek frekansli spike bastirma iyilesebilir
 
-Tutarlilik kontrolu:
-
-- `W.86`, `5.5.6` altindaki ODT notlarini senin defter sezginle cok iyi tamamliyor
-- bu sayfa yeni bir nihai sayisal sonuc vermiyor
-- ama neden hem buyuk hem kucuk MLCC dusunuldugunu, neden `0402/0603` yardimci kapasitörlerin mantikli oldugunu ve neden paralel baglamanin yararli oldugunu acikca gosteriyor
-- bu nedenle bu sayfa, giris kapasitörü aginda `ESR/ESL/paket boyutu` dengesini anlatan degerli bir dusunce sayfasi olarak korunmali
+`W.86`, `5.5.6` altindaki ODT notlarini senin defter sezginle iyi tamamliyor. Yeni bir nihai sayisal sonuc vermiyor; ama neden hem buyuk hem kucuk MLCC dusunuldugunu, neden `0402/0603` yardimci kapasitörlerin mantikli oldugunu ve neden paralel baglamanin yararli oldugunu acikca gosteriyor.
 
 Defterden aktarilan not (`W.87`):
 
-Bu sayfa, `W.86`daki `ESR/ESL/kucuk-buyuk MLCC` dusuncesini daha pratik bir sorun uzerinden acikliyor: MOSFET acilip kapanirken gorulen yuksek frekansli `ringing` ve `spike` davranisi.
+Burada `W.86`daki `ESR/ESL/kucuk-buyuk MLCC` dusuncesi daha pratik bir sorun uzerinden aciklaniyor: MOSFET acilip kapanirken gorulen yuksek frekansli `ringing` ve `spike` davranisi.
 
 Sayfanin ust kismina, buyuk kapasitörlerin yanina kucuk bir kapasitör eklenmesi gerektigi not edilmis. Hemen altinda da gozlemsel bir problem tarifi var:
 
@@ -3781,16 +3510,11 @@ ve altina da daha dogrudan, yerlesim-odakli bir cozum eklenmis:
 - `ESL`'yi azalt
 - boylece EMI ve buyuk orandaki spike davranisi azalabilir
 
-Tutarlilik kontrolu:
-
-- `W.87`, `W.86`daki teorik `ESL dusuk olmali` notunu bu kez gozlenen problem ve cozum baglamina tasiyor
-- bu sayfa yeni bir nihai sayisal sonuc vermiyor
-- ama neden `0.1 uF / 1 uF` gibi kucuk yardimci MLCC'lerin sadece "ekstra olsun" diye degil, gercek bir `ringing / spike / EMI` problemi yuzunden istendigini cok iyi anlatiyor
-- bu nedenle bu sayfa, `5.5.6` altindaki yuksek frekans spike bastirma mantigini somut problem-gerekce iliskisiyle destekleyen cok degerli bir dusunce sayfasi olarak korunmali
+`W.87`, `W.86`daki teorik `ESL dusuk olmali` notunu bu kez gozlenen problem ve cozum baglamina tasiyor. Yeni bir nihai sayisal sonuc vermiyor; ama neden `0.1 uF / 1 uF` gibi kucuk yardimci MLCC'lerin sadece "ekstra olsun" diye degil, gercek bir `ringing / spike / EMI` problemi yuzunden istendigini cok iyi anlatiyor.
 
 Defterden aktarilan not (`W.95`):
 
-Bu sayfa, MLCC'nin frekansa bagli esdeger empedansini kendi cizimlerinle toparliyor. Sayfanin sol ustunde `G73 / Kemet` benzeri bir kaynak notu var ve `4.7 uF` ile `0.47 uF` kapasitörlerin empedans egimleri birlikte cizilmis.
+Burada MLCC'nin frekansa bagli esdeger empedansi kendi cizimlerinle toparlaniyor. Sayfanin sol ustunde `G73 / Kemet` benzeri bir kaynak notu var ve `4.7 uF` ile `0.47 uF` kapasitörlerin empedans egimleri birlikte cizilmis.
 
 ![W.95'ten secilen el yazisi parca: kapasitörun frekansa bagli empedans modeli ve farkli C degerlerinin egimleri](images/defter_snippets_web/d61_w95_cap_impedance_model.jpg)
 
@@ -3824,7 +3548,7 @@ ve buradan buyukluk icin:
 
 ifadesine geciliyor.
 
-Bu sayfanin en degerli tarafi, farkli kapasitans degerlerinin frekansa gore nasil davrandigini ayni cizimde gosteriyor olmasi:
+Buradaki en degerli sey, farkli kapasitans degerlerinin frekansa gore nasil davrandigini ayni cizimde gosteriyor olmasi:
 
 - `4.7 uF` gibi daha buyuk bir kapasitör dusuk frekansta daha dusuk `|Z|` saglayabilir
 - `0.47 uF` gibi daha kucuk bir kapasitör, farkli frekans bolgesinde avantajli olabilir
@@ -3835,17 +3559,11 @@ Sayfadaki yan notlardan, bu sonuca ulasilmis:
 - frekans degistiginde kapasitörun bileske empedansi da degisir
 - bunu belirleyen yalnizca `C` degil; `ESL` ve `ESR` de frekansa bagli olarak etkili hale gelir
 
-Tutarlilik kontrolu:
-
-- `W.95`, `W.72`deki esdeger devre modelini bu kez daha analitik bir `Z = R + jX` diliyle tekrar kuruyor
-- `W.86-W.87`deki "buyuk ve kucuk MLCC'ler farkli frekanslarda farkli avantajlar saglar" sezgisini de matematiksel olarak destekliyor
-- bu sayfa yeni bir nihai komponent secimi vermiyor
-- ama neden tek tip kapasitör yerine farkli degerlerin ve dusuk `ESL/ESR` ozelliklerinin birlikte dusunuldugunu gosterdigi icin cok degerli
-- bu nedenle bu sayfa, `5.5.6` altinda kapasitör empedansinin frekansa bagli fiziksel temelini gosteren kaynak-ustu-not / dusunce sayfasi olarak korunmali
+`W.95`, `W.72`deki esdeger devre modelini bu kez daha analitik bir `Z = R + jX` diliyle tekrar kuruyor. `W.86-W.87`deki "buyuk ve kucuk MLCC'ler farkli frekanslarda farkli avantajlar saglar" sezgisini de matematiksel olarak destekliyor. Yeni bir nihai komponent secimi vermiyor; ama neden tek tip kapasitör yerine farkli degerlerin ve dusuk `ESL/ESR` ozelliklerinin birlikte dusunuldugunu gostermesi acisindan cok degerli.
 
 Defterden aktarilan not (`W.96`):
 
-Bu sayfa, `W.95`teki kapasitör empedansi dusuncesini bir adim daha ileri goturup farkli kapasitör tiplerini `Q`, `f_0` ve damping acisindan karsilastiriyor. Ust kisimdaki not, bunun bir ders/video veya kaynak anlatimindan alinmis bir "EMI suppression filters" karsilastirmasi oldugunu gosteriyor.
+Burada `W.95`teki kapasitör empedansi dusuncesi bir adim daha ileri gidip farkli kapasitör tiplerini `Q`, `f_0` ve damping acisindan karsilastiriyor. Ust kisimdaki not, bunun bir ders/video veya kaynak anlatimindan alinmis bir "EMI suppression filters" karsilastirmasi oldugunu gosteriyor.
 
 ![W.96'dan secilen el yazisi parca: MLCC ve polymer kapasitörleri Q, f0 ve damping acisindan karsilastiran not](images/defter_snippets_web/d62_w96_mlcc_vs_polymer_q.jpg)
 
@@ -3906,16 +3624,11 @@ Sayfanin sagindaki renkli eskizlerde ana mesaj su:
 - polymer ise genelde daha yumusak / daha sönümlü bir davranis verir
 - bu nedenle ayni ag icinde farkli kapasitör tiplerini birlikte kullanmak, hem dusuk empedans hem de makul damping elde etmek icin yararli olabilir
 
-Tutarlilik kontrolu:
-
-- `W.96`, `W.95`teki frekansa bagli `Z` dusuncesini bu kez `MLCC` ve `polymer` karsilastirmasina tasiyor
-- bu sayfa proje-ozel nihai sayisal secim vermiyor; daha cok "hangi tip kapasitör nasil bir empedans profili olusturur?" sorusunu cevapliyor
-- `Q > 1` / `Q << 1` ayrimi, neden bazen yalnizca dusuk `ESR` istemenin yeterli olmadigini; damping'in de onemli oldugunu cok iyi gosteriyor
-- bu nedenle bu sayfa, `5.5.6` altinda kapasitör tipi seciminin frekans cevabi ve sönum uzerindeki etkisini gosteren degerli bir dusunce / kaynak-not sayfasi olarak korunmali
+`W.96`, `W.95`teki frekansa bagli `Z` dusuncesini bu kez `MLCC` ve `polymer` karsilastirmasina tasiyor. Proje-ozel nihai sayisal secim vermiyor; ama "hangi tip kapasitör nasil bir empedans profili olusturur?" sorusuna cevap veriyor. `Q > 1` / `Q << 1` ayrimi da neden bazen yalnizca dusuk `ESR` istemenin yetmedigini, damping'in de onemli oldugunu guzel gosteriyor.
 
 Defterden aktarilan not (`W.99`):
 
-Bu sayfa, ayni `C` ve `ESL` degerleri icin farkli `ESR` secildiginde empedans egrisinin ve `Q` davranisinin nasil degistigini cok sade bir ornekle anlatıyor.
+Burada ayni `C` ve `ESL` degerleri icin farkli `ESR` secildiginde empedans egrisinin ve `Q` davranisinin nasil degistigi cok sade bir ornekle anlatiliyor.
 
 ![W.99'dan secilen el yazisi parca: ayni C ve ESL icin ESR degisince Q davranisinin nasil keskinlestigini gosteren eskiz](images/defter_snippets_web/d63_w99_esr_changes_q_behavior.jpg)
 
@@ -3966,16 +3679,11 @@ Sayfadaki el cizimi de bu ayrimi gorsellestiriyor:
 - `Q_1 < 1` iken daha fazla sönümlü, daha yumusak bir empedans davranisi
 - `Q_2 > 1` iken daha keskin, daha belirgin rezonansli bir davranis
 
-Tutarlilik kontrolu:
-
-- bu sayfa ikinci projenin kendi nihai parca degerleriyle yazilmis bir secim sayfasi degil; daha cok `ESR` ile `Q` iliskisini sezgisel olarak anlatan egitsel bir kontrol sayfasi gibi duruyor
-- buna ragmen teknik fikir cok degerli: ayni `C` ve `ESL` icin yalnizca `ESR` degisimi bile empedans egrisinin sekli ve rezonans keskinligi uzerinde cok buyuk etki yaratabilir
-- bu, `W.95-W.96`daki "yalnizca dusuk ESR yetmez; damping davranisi da onemlidir" fikrini daha sade ve dogrudan bir ornekle destekliyor
-- bu nedenle `W.99`, `5.5.6` altinda farkli `ESR` durumlarinin `Q<1` ve `Q>1` davranisini gosteren egitsel bir defter notu olarak korunmalidir
+Bu not ikinci projenin kendi nihai parca degerleriyle yazilmis bir secim sayfasi degil; daha cok `ESR` ile `Q` iliskisini sezgisel olarak anlatan egitsel bir kontrol sayfasi. Buna ragmen teknik fikir cok degerli: ayni `C` ve `ESL` icin yalnizca `ESR` degisimi bile empedans egrisinin sekli ve rezonans keskinligi uzerinde buyuk etki yaratabiliyor. Bu da `W.95-W.96`daki "yalnizca dusuk ESR yetmez; damping de onemli" fikrini daha sade destekliyor.
 
 Defterden aktarilan not (`W.88`):
 
-Bu sayfa, dogrudan bir kaynak makale sayfasinin uzerine alinmis not gibi gorunuyor ve `5.5.6` ile `5.5.7` arasinda cok guclu bir kopru kuruyor.
+Burada dogrudan bir kaynak makale sayfasinin uzerine alinmis not var ve `5.5.6` ile `5.5.7` arasinda cok guclu bir kopru kuruyor.
 
 ![W.88'den secilen el yazisi parca: ustte kucuk seramik eklemenin switch-node davranisina etkisi, altta bulk transient mantigi](images/defter_snippets_web/d64_w88_small_mlcc_and_bulk_bridge.jpg)
 
@@ -3995,7 +3703,7 @@ Sayfanin alt kismindaki `Figure 9a` ise bulk kapasitör secimi tarafi icin cok d
 
 ayri ayri cizilmis.
 
-Senin sayfa uzerine aldigin notlardan, su ana fikirler korunmali:
+Senin sayfa uzerine aldigin notlardan, su ana fikirler one cikiyor:
 
 - ilk `\Delta V_{in}` dususu daha cok MLCC / `ESR` etkisiyle iliskili
 - daha sonra gelen daha yavas dusus ise bulk kapasitörun enerji tamponu roluyle iliskili
@@ -4006,19 +3714,11 @@ Sayfanin altina dusulen kisa notlar da bunu destekliyor:
 - `\Delta V_{in,MLCC}` benzeri ilk dusus
 - `Bulk` ile ilgili ikinci daha yavas davranis
 
-Tutarlilik kontrolu:
-
-- `W.88`, `W.87`deki "kucuk seramik spike bastirir" fikrini kaynak figuruyle destekliyor
-- ayni anda `W.83`teki bulk transient hesabinin fiziksel arka planini da acikliyor
-- bu nedenle bu sayfa, yalnizca sayisal hesap degil; kullandigin TI / uygulama-notu mantiginin dogrudan izini gosteren cok degerli bir kaynak-ustune-not sayfasidir
-- belge acisindan en dogru okuma su olur:
-  - ustteki figür: kucuk yardimci MLCC ve ring/spike bastirma
-  - alttaki figür: bulk kapasitörun transient enerji tamponu rolu
-- bu nedenle `W.88`, `5.5.6` ile `5.5.7` arasinda, iki konuyu birbirine baglayan ozel bir kopru sayfasi olarak korunmali
+`W.88`, `W.87`deki "kucuk seramik spike bastirir" fikrini kaynak figuruyle destekliyor. Ayni anda `W.83`teki bulk transient hesabinin fiziksel arka planini da acikliyor. Belgede en dogru okuma su: ustteki figür kucuk yardimci MLCC ve ring/spike bastirma tarafini, alttaki figür ise bulk kapasitörun transient enerji tamponu rolunu gosteriyor. Bu yuzden iki konu arasinda iyi bir kopru sayfasi.
 
 Defterden aktarilan not (`W.89`):
 
-Bu sayfa, `W.88`deki kaynak figurlere bakilarak alinmis kisa ozet not gibi duruyor. Ust kisimda `Figure 8`e referansla, kucuk ek bir kapasitör eklendiginde spike buyuklugunun azaldigi not edilmis:
+Burada `W.88`deki kaynak figurlere bakilarak alinmis kisa bir ozet not var. Ust kisimda `Figure 8`e referansla, kucuk ek bir kapasitör eklendiginde spike buyuklugunun azaldigi not edilmis:
 
 ![W.89'dan secilen el yazisi parca: kucuk yardimci kapasitör, bulk gorevi ve ESR'nin damping etkisini ozetleyen not](images/defter_snippets_web/d65_w89_bulk_summary_and_esr_note.jpg)
 
@@ -4049,15 +3749,7 @@ Sayfanin alt notunda cok degerli bir muhendislik sezgisi daha var:
 - buyuk `ESR` -> ripple gerilimi artar
 - ama bir miktar `ESR` varligi, `LC` rezonansini bastirmaya ve damping saglamaya yardim edebilir
 
-Tutarlilik kontrolu:
-
-- `W.89`, `W.88`deki iki ana temayi kisa ama net bir sekilde birlestiriyor:
-  - kucuk yardimci kapasitör -> spike bastirma
-  - bulk kapasitör -> transient enerji tamponu + ripple akimi destegi
-- bu sayfa yeni ayrintili sayisal sonuc vermiyor
-- ama bulk seciminde "kapasitans buyuk olsun, ESR da makul bir aralikta olsun" dusuncesini senin kendi not dilinle cok iyi ozetliyor
-- ozellikle "ESR sifir olsun" yerine "fazla buyuk olmasin ama damping de dusunulsun" sezgisi belge acisindan degerli
-- bu nedenle `W.89`, `5.5.6` ile `5.5.7` arasindaki kopru hattini pekistiren kisa bir toparlama sayfasi olarak korunmali
+`W.89`, `W.88`deki iki ana temayi kisa ama net bicimde birlestiriyor: kucuk yardimci kapasitör -> spike bastirma, bulk kapasitör -> transient enerji tamponu + ripple akimi destegi. Yeni ayrintili sayisal sonuc vermiyor; ama bulk seciminde "kapasitans buyuk olsun, ESR da makul bir aralikta olsun" dusuncesini senin not dilinle iyi ozetliyor. Ozellikle "ESR sifir olsun" yerine "fazla buyuk olmasin ama damping de dusunulsun" sezgisi burada degerli.
 
 
 
@@ -4097,18 +3789,14 @@ Bu sayfada bir ara aday olarak su giris bulk kapasitörü notu da goruluyor:
 
 Bu deger, dogrudan nihai secim ilan edilmis gibi gorunmuyor; ancak MLCC bankasina paralel bulk enerji tamponu dusuncesinin defterde acikca denendigini gosteriyor.
 
-Tutarlilik kontrolu:
-
-- bu not, mevcut `MLCC + bulk` stratejisiyle uyumlu
-- fakat su asamada kesin nihai bulk parca gibi yazilmamali
-- BOM ve sonraki sayfalarla eslestiginde "nihai secilen bulk capacitor" ayrica yazilacak
+Bu not, mevcut `MLCC + bulk` stratejisiyle uyumlu. Ama bu asamada kesin nihai bulk parca gibi yazilmamali; BOM ve sonraki sayfalarla eslestiginde "nihai secilen bulk capacitor" ayri netlesecek.
 
 
 
 
 Defterden aktarilan not (`W.38`):
 
-Bu sayfa, bulk giris kapasitörü seciminde ikinci bir kriteri vurguluyor: secilen bulk kapasitör yalnizca yeterli `uF` saglamamali, ayni zamanda uzerinden gececek ripple akimini ve buna bagli isinmayi da tasiyabilmelidir.
+Burada bulk giris kapasitörü seciminde ikinci bir kriter vurgulaniyor: secilen bulk kapasitör yalnizca yeterli `uF` saglamamali, ayni zamanda uzerinden gececek ripple akimini ve buna bagli isinmayi da tasiyabilmelidir.
 
 ![W.38'den secilen el yazisi parca: bulk capacitor icin ripple-current ve ESR tabanli ikinci secim kriteri](images/defter_snippets_web/d66_w38_bulk_rms_and_esr_criterion.jpg)
 
@@ -4130,17 +3818,11 @@ I_{CB,RMS}
 
 ve buna bagli olarak, izin verilen ripple gerilimi, bulk kapasitör `ESR`'i ve datasheet'teki izin verilen ripple akimi arasinda ikinci bir secim kosulu kuruluyor.
 
-Tutarlilik kontrolu:
-
-- bu sayfa, bulk capacitor secim mantigini "kapasitans yeterli mi?" sorusundan "eleman ripple akimini ve kaybini tasiyabilir mi?" sorusuna tasiyor
-- bu dogru muhendislik bakisidir
-- ancak sayfadaki son cebir ve son sayisal yerlestirme tam net degil
-- bu nedenle burada korunacak ana bilgi, kesin son formuldan cok secim mantiginin kendisidir
-- ileride secilen bulk capacitor datasheet'i ile birlikte bu kriter yeniden daha temiz kurulmalidir
+Burada bulk capacitor secim mantigi "kapasitans yeterli mi?" sorusundan "eleman ripple akimini ve kaybini tasiyabilir mi?" sorusuna tasiniyor. Bu dogru muhendislik bakisi. Son cebir ve son sayisal yerlestirme tam net degil; o yuzden asil korunacak sey kesin son formulden cok secim mantiginin kendisi.
 
 Defterden aktarilan not (`W.39`):
 
-Bu sayfa, bulk giris kapasitörü icin bu kez minimum kapasite tarafindan bir alt sinir hesaplamaya calisiyor. Yazimdan goruldugu kadariyla burada, bir `T_{rip}` veya benzeri rezerv / gecis suresi tanimlanip, load-step veya giris tarafindaki gecici durum boyunca bulk kapasitörun ne kadar enerji tamponu saglamasi gerektigi sorgulaniyor.
+Burada bulk giris kapasitörü icin bu kez minimum kapasite tarafindan bir alt sinir hesaplanmaya calisiliyor. Yazimdan goruldugu kadariyla bir `T_{rip}` veya benzeri rezerv / gecis suresi tanimlanip, load-step veya giris tarafindaki gecici durum boyunca bulk kapasitörun ne kadar enerji tamponu saglamasi gerektigi sorgulaniyor.
 
 ![W.39'dan secilen el yazisi parca: T_rip, I_step ve mevcut MLCC katkisini birlikte dusunerek C_B alt siniri arayan hesap](images/defter_snippets_web/d67_w39_bulk_min_cap_estimate.jpg)
 
@@ -4152,19 +3834,11 @@ Sayfada okunan ana izler sunlar:
 - ilk ara sonuc olarak yaklasik `C_B \gtrsim 5.27 uF`
 - daha sonra marj eklenerek `C_{bulk} \gtrsim 18.32 uF` gibi daha buyuk bir hedef yaziliyor
 
-Tutarlilik kontrolu:
-
-- bu sayfa, bulk kapasitörun sadece ripple akimi tasima degil, gecici durumda enerji rezervi saglama rolunu de dikkate aliyor
-- `W.38` ile birlikte okundugunda, bulk secimi icin iki farkli kriterin birlikte dusunuldugu anlasiliyor:
-  - ripple akimi / ESR / isinma
-  - minimum enerji tamponu / kapasite
-- ancak sayfadaki son cebirin bir kismi silik ve bazi ara parametrelerin kaynagi onceki sayfalardan geliyor
-- bu nedenle burada korunacak ana bilgi, "bulk capacitor secimi tek boyutlu degil" fikri ve gorulen ara sonuc araligidir
-- sonraki sayfalarda ayni denklemin daha temiz hali gelirse bu blok yeniden netlestirilecektir
+Burada bulk kapasitörun sadece ripple akimi tasima degil, gecici durumda enerji rezervi saglama rolunun de dikkate alindigi goruluyor. `W.38` ile birlikte okununca bulk seciminde iki farkli kriterin ayni anda dusunuldugu anlasiliyor: ripple akimi / ESR / isinma ve minimum enerji tamponu / kapasite. Son cebirin bir kismi silik; o yuzden asil korunacak sey "bulk capacitor secimi tek boyutlu degil" fikri ve gorulen ara sonuc araligi.
 
 Defterden aktarilan not (`W.40`):
 
-Bu sayfa, bulk kapasitör secimine bir ucuncu kosul daha ekliyor: bulk kapasitörun `ESR_B` degeri de belirli bir ust sinirin altinda olmali. Sayfadaki yazima gore, giris tarafindaki transient limiti ile bulk kapasitör `ESR`'i arasinda dogrudan bir iliski kuruluyor.
+Burada bulk kapasitör secimine bir ucuncu kosul daha ekleniyor: bulk kapasitörun `ESR_B` degeri de belirli bir ust sinirin altinda olmali. Sayfadaki yazima gore, giris tarafindaki transient limiti ile bulk kapasitör `ESR`'i arasinda dogrudan bir iliski kuruluyor.
 
 ![W.40'tan secilen el yazisi parca: ESR_B ust sinirini \Delta V_IN,tran, I_step ve D_max ile baglayan kontrol](images/defter_snippets_web/d68_w40_esrb_transient_limit.jpg)
 
@@ -4190,19 +3864,11 @@ ESR_B \lesssim 0.991\,\Omega
 
 gibi bir ust sinir yaziliyor.
 
-Tutarlilik kontrolu:
-
-- bu sayfa, bulk secim mantigini daha da genisletiyor:
-  - minimum kapasite yeterli mi
-  - ripple akimi ve isinma kabul edilebilir mi
-  - `ESR_B` transient limiti bozmayacak kadar dusuk mu
-- buradaki son sayisal sonuc cok siki bir sinir gibi degil; daha cok "asiri buyuk ESR kullanma" turu bir ust sinir kontrolu gibi gorunuyor
-- sayfada `Istep` ve `Dmax` degerlerinin nereden geldigi onceki sayfalara bagli oldugu icin, bu iliski final kabul edilmeden once kaynak parametrelerle tekrar eslestirilmelidir
-- buna ragmen, bulk kapasitör seciminin tek bir parametreyle degil kapasite + ESR + ripple dayaniminin birlikte dusunuldugu net sekilde goruluyor
+Burada bulk secim mantigi bir adim daha genisliyor: minimum kapasite yeterli mi, ripple akimi ve isinma kabul edilebilir mi, `ESR_B` transient limiti bozmayacak kadar dusuk mu? Buradaki son sayisal sonuc cok siki bir sinir gibi degil; daha cok "asiri buyuk ESR kullanma" turu bir ust sinir kontrolu. `Istep` ve `Dmax` degerleri onceki sayfalara bagli oldugu icin iliski final kabul edilmeden once tekrar eslestirilmeli; ama bulk seciminin tek parametreyle degil kapasite + ESR + ripple dayanimi ile birlikte dusunuldugu gayet net.
 
 Defterden aktarilan not (`W.44`):
 
-Bu sayfa, `W.40` tarafindaki `ESR_B` notunu daha kisa bir bicimde tekrar ediyor. Sayfada yazilan iliski su sekilde okunuyor:
+Burada `W.40` tarafindaki `ESR_B` notu daha kisa bir bicimde tekrar ediliyor. Sayfada yazilan iliski su sekilde okunuyor:
 
 ![W.44'ten secilen el yazisi parca: ESR_B esitliginde D_max vurgusunu tekrar eden kisa hatirlatici not](images/defter_snippets_web/d69_w44_esrb_dmax_reminder.jpg)
 
@@ -4212,15 +3878,11 @@ ESR_B < \frac{\Delta V_{IN,tran}}{I_{step}\,D_{\max}}
 
 Sayfanin alt notunda, bu iliskide ozellikle `D_{\max}` degerinin onemli oldugu ayrica vurgulaniyor.
 
-Tutarlilik kontrolu:
-
-- `W.44`, `W.40` ile ayni bulk-ESR dusunce hattina ait gorunuyor
-- yeni bir sayisal sonuc vermiyor; daha cok mevcut iliskiyi kisa bir tekrar ve vurgu notu halinde destekliyor
-- bu nedenle bu sayfa, bulk kapasitör seciminde `D_{\max}` parametresinin onemli oldugunu gosteren kisa bir iz notu olarak korunmali
+`W.44`, `W.40` ile ayni bulk-ESR dusunce hattina ait. Yeni bir sayisal sonuc vermiyor; daha cok mevcut iliskiyi kisa bir tekrar ve vurgu notu halinde destekliyor. `D_{\max}` parametresinin onemini vurgulayan kisa bir iz.
 
 Defterden aktarilan not (`W.41`):
 
-Bu sayfa, bulk kapasitör seciminin gerekcesini daha kavramsal bir dille toparliyor. Yazilan notlara gore, ani yuk degisimlerinde `Vin` uzerinde iki ayri spike / dusus mekanizmasi dusunuluyor:
+Burada bulk kapasitör seciminin gerekcesi daha kavramsal bir dille toparlaniyor. Yazilan notlara gore, ani yuk degisimlerinde `Vin` uzerinde iki ayri spike / dusus mekanizmasi dusunuluyor:
 
 ![W.41'den secilen el yazisi parca: ESR_B kaynakli ilk spike ile bulk enerji tamponu kaynakli ikinci dususu ayiran kavramsal not](images/defter_snippets_web/d70_w41_two_spike_bulk_reasoning.jpg)
 
@@ -4240,15 +3902,11 @@ Ikinci mekanizma icin ise, ani yuk degisiminde buck katinin giristen cekmesi ger
 - bulk kapasitör `ESR`'i yuksekse ani gerilim dususu buyur
 - bulk kapasitörü kucukse veya enerji rezervi azsa daha yavas ama daha buyuk bir `Vin` dususu olusabilir
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni bir sayisal sonuc vermekten cok, `W.38-W.40` arasindaki bulk secim mantigini sozlu olarak bagliyor
-- bu nedenle belge acisindan degerli; cunku salt formul degil, tasarim dusunce akisini da gosteriyor
-- "neden bulk gerekli?" sorusuna, defter dilinle verilmis en acik cevaplardan biri bu sayfada bulunuyor
+Burada yeni bir sayisal sonuc yok; asil is `W.38-W.40` arasindaki bulk secim mantigini sozlu olarak baglamak. Belge acisindan degerli; cunku salt formul degil, tasarim dusunce akisini da gosteriyor. "Neden bulk gerekli?" sorusuna defter dilinle verilen en acik cevaplardan biri burada.
 
 Defterden aktarilan not (`W.43`):
 
-Bu sayfa, bulk kapasitör secimini bir adim daha toparliyor ve MLCC ile bulk arasindaki gorev ayrimini sozlu olarak kuruyor:
+Burada bulk kapasitör secimi bir adim daha toparlaniyor ve MLCC ile bulk arasindaki gorev ayrimi sozlu olarak kuruluyor:
 
 ![W.43'ten secilen el yazisi parca: MLCC ile bulk arasindaki gorev paylasimini sozlu olarak kuran ozet sayfa](images/defter_snippets_web/d71_w43_mlcc_vs_bulk_roles.jpg)
 
@@ -4264,16 +3922,11 @@ Sayfadaki ana fikirler sunlar:
 - ani yuk degisiminde ilk anda gerekli akimin bir kismini bulk kapasitör saglar
 - bu sirada MLCC ve bulk farkli zaman olceklerinde gorev paylasir
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni ve temiz bir son formul vermiyor
-- ama `W.41` ile birlikte okundugunda, "MLCC ripple icin, bulk transient enerji rezervi icin" ayrimini senin defter dilinle acikca kuruyor
-- bu nedenle teknik icerikten cok tasarim dusunce izi acisindan degerli
-- ileride ayni konuya ait daha sayisal sayfalar gelirse, bu sayfa onlarin kavramsal ozet girdisi gibi okunabilir
+Burada yeni ve temiz bir son formul yok; ama `W.41` ile birlikte okundugunda "MLCC ripple icin, bulk transient enerji rezervi icin" ayrimi senin defter dilinle acikca kuruluyor. Bu yuzden teknik icerikten cok tasarim dusunce izi acisindan degerli.
 
 Defterden aktarilan not (`W.45`):
 
-Bu sayfa, buck yapisinin giris tarafini basit bir sema ve dalga bicimleriyle cizerek bulk / giris kapasitör seciminin neden gerekli oldugunu tekrar anlatmaya calisiyor.
+Burada buck yapisinin giris tarafi basit bir sema ve dalga bicimleriyle cizilerek bulk / giris kapasitör seciminin neden gerekli oldugu tekrar anlatiliyor.
 
 ![W.45'ten secilen el yazisi parca: input cap'in enerji tamponu rolunu cizim ve dalga bicimleriyle anlatan kavramsal sayfa](images/defter_snippets_web/d72_w45_input_cap_concept_sketch.jpg)
 
@@ -4290,15 +3943,11 @@ Sayfanin altindaki notlarda, ozellikle su dusunce izi goruluyor:
 - buck katinin giristen cektigi akim ise ayni anda ve ayni sekilde degismeyebilir
 - bu farkin ilk anda bulk kapasitör tarafindan karsilanmasi gerekir
 
-Tutarlilik kontrolu:
-
-- `W.45`, `W.41` ve `W.43` ile ayni kavramsal hatta duruyor
-- yeni bir son denklem vermiyor; ama neden bulk / giris kapasitörunun gerekli oldugunu cizim ve kisa notlarla temellendiriyor
-- bu nedenle belge acisindan, tasarim dusunce akisini gosteren degerli bir ara sayfa olarak korunmali
+`W.45`, `W.41` ve `W.43` ile ayni kavramsal hatta duruyor. Yeni bir son denklem vermiyor; ama neden bulk / giris kapasitörunun gerekli oldugunu cizim ve kisa notlarla temellendiriyor. Bu yuzden tasarim dusunce akisini gosteren iyi bir ara sayfa.
 
 Defterden aktarilan not (`W.67`):
 
-Bu sayfa, ani yuk degisiminde giris tarafinda gorulebilecek iki farkli gerilim spike mekanizmasini daha acik bir dille ayiriyor.
+Burada ani yuk degisiminde giris tarafinda gorulebilecek iki farkli gerilim spike mekanizmasi daha acik bir dille ayriliyor.
 
 ![W.67'den secilen el yazisi parca: ESR_B kaynakli ilk spike ile ikinci daha yavas spike'i ayiran not](images/defter_snippets_web/d73_w67_two_spike_explanation.jpg)
 
@@ -4330,16 +3979,11 @@ Ikinci spike icin ise sayfada su dusunce izi var:
   gibi bir akim bolusumu not edilmistir
 - `I_{PS}` akimi daha yavas yukselebilir; bu nedenle ani durumda ikinci bir gerilim sapmasi olusabilir
 
-Tutarlilik kontrolu:
-
-- `W.67`, `W.41`te sozlu olarak anlatilan "iki farkli spike mekanizmasi" fikrini daha net bir dille tekrar ediyor
-- ilk spike acikca `ESR_B` kaynakli ani dusus olarak tanimlanmis
-- ikinci spike ise bu kez kaynak akimi ile donusturucunun anlik talebi arasindaki fark uzerinden aciklanmis
-- bu nedenle bu sayfa, bulk secimi ve input transient davranisi arasindaki fiziksel ayrimi guclendiren degerli bir aciklama sayfasidir
+`W.67`, `W.41`te sozlu olarak anlatilan "iki farkli spike mekanizmasi" fikrini daha net bir dille tekrar ediyor. Ilk spike acikca `ESR_B` kaynakli ani dusus, ikinci spike ise kaynak akimi ile donusturucunun anlik talebi arasindaki fark uzerinden aciklaniyor. Bu acidan bulk secimi ve input transient davranisi arasindaki fiziksel ayrimi guclendiriyor.
 
 Defterden aktarilan not (`W.74`):
 
-Bu sayfa, bulk giris kapasitörü icin iki farkli kontrolu ayni yerde topluyor:
+Burada bulk giris kapasitörü icin iki farkli kontrol ayni yerde toplaniyor:
 
 ![W.74'ten secilen el yazisi parca: bulk RMS akimi ve toplam etkili C ile \Delta V_IN,PP kontrolunu birlestiren sayfa](images/defter_snippets_web/d74_w74_bulk_rms_and_total_c_check.jpg)
 
@@ -4382,16 +4026,11 @@ Sayfanin alt kisminda ise `\Delta V_{IN,PP}` hedefi bu kez toplam etkili giris k
 
 Sayfadaki alt notta da, bu hesabin sonunda hedef karsilanmiyorsa toplam etkili giris kapasitansinin arttirilmasi gerekecegi yazili.
 
-Tutarlilik kontrolu:
-
-- `W.74`, `W.38` tarafindaki bulk-uzerinden-RMS akim dusuncesini bu kez daha okunur bir formulle tekrar ediyor
-- ayni sayfada `\Delta V_{IN,PP}` hedefinin toplam etkili giris kapasitansi ile yeniden kontrol edilmesi, yalnizca tek bir capacitor degerine degil toplam etkin ag davranisina baktigini gosteriyor
-- bu sayfa yeni nihai parca secimini tek basina vermiyor; ama bulk capacitor secimi ile toplam `Cin` yeterliligi arasindaki baglanti cok net kuruluyor
-- bu nedenle `W.38-W.40` zincirinin devaminda, bulk ve toplam giris kapasitansi dusuncesini birlestiren degerli bir ara sayfa olarak korunmali
+`W.74`, `W.38` tarafindaki bulk-uzerinden-RMS akim dusuncesini bu kez daha okunur bir formulle tekrar ediyor. Ayni sayfada `\Delta V_{IN,PP}` hedefini toplam etkili giris kapasitansi ile yeniden kontrol etmen de yalnizca tek bir capacitor degerine degil, toplam etkin ag davranisina baktigini gosteriyor. Yeni nihai parca secimini tek basina vermiyor; ama bulk secimi ile toplam `Cin` yeterliligi arasindaki bag net kuruluyor.
 
 Defterden aktarilan not (`W.75`):
 
-Bu sayfa, `W.74`teki bulk-uzerinden `RMS` akim dusuncesini tekrar ediyor; fakat bu kez asil vurgu, bulk kapasitör ile MLCC'nin frekansa gore farkli roller ustlenmesi uzerine kurulmus.
+Burada `W.74`teki bulk-uzerinden `RMS` akim dusuncesi tekrar ediliyor; fakat bu kez asil vurgu, bulk kapasitör ile MLCC'nin frekansa gore farkli roller ustlenmesi uzerine kurulmus.
 
 ![W.75'ten secilen el yazisi parca: bulk ile MLCC'nin frekansa gore gorev paylasimini empedans sezgisiyle anlatan not](images/defter_snippets_web/d75_w75_bulk_vs_mlcc_frequency_roles.jpg)
 
@@ -4418,22 +4057,17 @@ Sayfada bu mantik, `Z_C = 1/(j\omega C)` iliskisi ve kabaca bir empedans-frekans
 
 anlatiliyor.
 
-Alt notta da su yorum korunmali:
+Alt notta da su yorum one cikiyor:
 
 - bulk kapasitör, yuksek frekansli ripple akimini tek basina etkin bastiramaz
 - bu yuzden bulk tek basina dusunulmemeli
 - MLCC ile birlikte kullanildiginda anlamli bir katkida bulunur
 
-Tutarlilik kontrolu:
-
-- `W.75`, `W.74`teki bulk `RMS` akim fikrini kavramsal bir frekans-sezgisi ile tamamliyor
-- bu sayfa yeni bir nihai hesap sonucu uretmiyor
-- ancak "neden bulk + MLCC birlikte dusunuluyor?" sorusuna cok net bir defter cevabi veriyor
-- bu nedenle `W.43-W.47-W.74` hattinin devaminda, giris kapasitörü bankasinin gorev paylasimini gosteren degerli bir dusunce sayfasi olarak korunmali
+`W.75`, `W.74`teki bulk `RMS` akim fikrini kavramsal bir frekans-sezgisi ile tamamliyor. Yeni bir nihai hesap sonucu yok; ama "neden bulk + MLCC birlikte dusunuluyor?" sorusuna cok net bir defter cevabi veriyor. Giris kapasitörü bankasinin gorev paylasimi burada gayet temiz gorunuyor.
 
 Defterden aktarilan not (`W.76`):
 
-Bu sayfa, artik kavramsal aciklamadan bir adim daha ileri gidip gercek giris kapasitörü adaylarini not etmeye basliyor. Ust kisimda yazimdan gorulebildigi kadariyla:
+Burada artik kavramsal aciklamadan bir adim daha ileri gidilip gercek giris kapasitörü adaylari not edilmeye baslaniyor. Ust kisimda yazimdan gorulebildigi kadariyla:
 
 ![W.76'dan secilen el yazisi parca: gercek giris MLCC adaylari ve frekansa gore ESR esitligi uzerinden yapilan ilk secim notu](images/defter_snippets_web/d76_w76_real_mlcc_candidates_and_esr.jpg)
 
@@ -4472,18 +4106,13 @@ ESR_{\text{eq}}
 0.125\,\Omega
 ```
 
-Tutarlilik kontrolu:
-
-- `W.76`, `W.75`te kurulan "MLCC yuksek frekansta daha etkilidir" fikrini bu kez gercek aday komponentler uzerinden dusunmeye basliyor
-- bu sayfadaki sayisal `ESR` degerleri, buyuk olasilikla datasheet / grafik uzerinden okunan kaba ara degerlerdir; bu nedenle dogrudan nihai kabul edilmemelidir
-- buna ragmen, paralel MLCC kullanip etkin `ESR`'i dusurme mantigi dogru okunmustur
-- bu sayfa yeni kesin sonuclardan cok, secilen `C10-C14` ve `C29` benzeri giris capacitor adaylarina giden dusunce izini gosteren degerli bir ara sayfa olarak korunmali
+`W.76`, `W.75`te kurulan "MLCC yuksek frekansta daha etkilidir" fikrini bu kez gercek aday komponentlere indiriyor. Buradaki `ESR` sayilari buyuk ihtimalle datasheet/grafik ustunden okunmus kaba ara degerler; o yuzden tek basina nihai sonuc gibi alinmamali. Buna ragmen paralel MLCC ile etkin `ESR`'i dusurme mantigi dogru kurulmus ve `C10-C14` ile `C29` tarafina giden dusunce izi degerli.
 
 `p79` burada ozellikle degerli; cunku bu dusunceyi soyut bir BOM listesi gibi degil, gercek EVM semasinda `C29 = 0.01 uF` yardimci cap ile `C10-C14 = 4.7 uF` ana MLCC grubunun fiziksel dagilimi olarak gosteriyor.
 
 Defterden aktarilan not (`W.77`):
 
-Bu sayfa, `W.76`da not edilen giris MLCC adaylarini bu kez `dc-bias` ve `RMS` akim dagilimi tarafindan kontrol etmeye basliyor. Sayfanin ust notunda:
+Burada `W.76`da not edilen giris MLCC adaylari bu kez `dc-bias` ve `RMS` akim dagilimi tarafindan kontrol edilmeye baslaniyor. Sayfanin ust notunda:
 
 ![W.77'den secilen el yazisi parca: dc-bias altindaki gercek kapasite ve kapasitör basina dusen RMS akim kontrolleri](images/defter_snippets_web/d77_w77_dc_bias_and_rms_share.jpg)
 
@@ -4514,17 +4143,11 @@ Bu sayilar tam olarak hangi kucuk kapasitör ailesine ait oldugu acik degil; fak
 - yuksek gerilim altinda kucuk / orta degerli MLCC'ler ciddi kapasite kaybi yasayabilir
 - bu nedenle "alinan sebep katalogdaki `uF`" degil, gercek calisma kosulundaki etkin degerdir
 
-Tutarlilik kontrolu:
-
-- `W.77`, `W.76`daki gercek MLCC adaylari notunu bu kez `dc-bias + RMS dagilimi` tarafina tasiyor
-- bu sayfa yeni bir tekil nihai sonuc vermiyor; daha cok parca secimi sirasinda nelere bakildigini gosteriyor
-- sayfadaki bazi sayisal ara degerlerin hangi tam datasheet egirisinden okundugu henuz net degil
-- buna ragmen, bu sayfa "katalogdaki `uF` degeriyle yetinme; bias altindaki etkin kapasiteye bak" dusuncesini cok net gosterdigi icin korunmali
-- ayrica bu sayfa, `W.51` ile ayni mantiga baglanir: gercek capacitor seciminde `current rating + voltage rating + dc-bias` birlikte dusunulmelidir
+`W.77`, bu adaylari `dc-bias + RMS dagilimi` tarafina tasiyor. Tek bir nihai sonuc vermiyor; daha cok parca secerken nelere bakildigini gosteriyor. Bazi ara degerlerin tam olarak hangi datasheet egrisinden okundugu net olmasa da ana mesaj acik: katalogdaki `uF` degeriyle yetinme, bias altindaki etkin kapasiteye bak. Bu da `W.51`deki mantikla uyusuyor; gercek capacitor seciminde `current rating`, `voltage rating` ve `dc-bias` birlikte dusunulmeli.
 
 Defterden aktarilan not (`W.78`):
 
-Bu sayfa, `4.7 uF` sinifindaki giris MLCC grubunu daha somut bir secim kontrolune tasiyor. Sayfada `5 adet` paralel `4.7 uF` MLCC dusunuluyor ve hem `RMS` akim dagilimi hem de bias altindaki etkin toplam kapasitans hesaplanmaya calisiliyor.
+Burada `4.7 uF` sinifindaki giris MLCC grubu daha somut bir secim kontrolune tasiniyor. Sayfada `5 adet` paralel `4.7 uF` MLCC dusunuluyor ve hem `RMS` akim dagilimi hem de bias altindaki etkin toplam kapasitans hesaplanmaya calisiliyor.
 
 ![W.78'den secilen el yazisi parca: 5 adet 4.7 uF MLCC bankasi icin ESL, RMS ve derated C hesabinin sayisal kontrolu](images/defter_snippets_web/d78_w78_five_mlcc_bank_numeric_check.jpg)
 
@@ -4597,17 +4220,11 @@ Bu gorseller, `W.78`te yazili buyukluklerin rasgele secilmedigini iyi destekliyo
 
 Bu nedenle burada kullanilan `1.639 \mu F` ve `8.195 \mu F` sayilari, yalnizca defterde yazilmis ara rakamlar degil; secilen `4.7 uF` giris MLCC adayinin bias altindaki gercek davranisina dayanan bilincli bir derating uygulamasi olarak okunmalidir.
 
-Tutarlilik kontrolu:
-
-- `W.78`, `W.77`deki "bias altindaki gercek kapasitansa bak" fikrini bu kez sayisal olarak daha netlestiriyor
-- `4.7 uF x 5` katalog olarak `23.5 uF` gibi gorunse de, bias altinda bunun yalnizca `~8.2 uF` seviyesinde kalabilecegi dusunuluyor
-- bu, giris MLCC bankasinin neden sadece katalog toplamiyla degerlendirilmemesi gerektigini cok guclu bicimde gosteriyor
-- sayfadaki `RMS` akim dagilimi de, secimin yalnizca kapasitans degil akim dayanim tarafi icin de kontrol edildigini gosteriyor
-- bu nedenle `W.78`, gercek giris MLCC secim mantiginda kuvvetli bir ara/nihai aday sayfasi olarak korunmali
+`W.78`, `W.77`deki "bias altindaki gercek kapasitansa bak" fikrini sayisal olarak daha net hale getiriyor. `4.7 uF x 5` katalogda `23.5 uF` gibi gorunse de, bias altinda bunun yalnizca `~8.2 uF` seviyesinde kalabilecegi dusunuluyor. Bu tek basina cok guclu bir sonuc; giris MLCC bankasinin neden sadece katalog toplamina bakilarak degerlendirilmemesi gerektigini gosteriyor. `RMS` akim dagilimi de isin akim-dayanimi tarafinin da kontrol edildigini gosteriyor.
 
 Defterden aktarilan not (`W.79`):
 
-Bu sayfa, `W.78`deki `4.7 uF x 5` MLCC grubunun frekansa bagli etkin `ESR` degerlerini ve bias sonrasi toplam etkin kapasitansi kisa bir ozet halinde tekrar topluyor.
+Burada `W.78`deki `4.7 uF x 5` MLCC grubunun frekansa bagli etkin `ESR` degerleri ve bias sonrasi toplam etkin kapasitans kisa bir ozet halinde tekrar toplaniyor.
 
 ![W.79'dan secilen el yazisi parca: 5x4.7 uF MLCC grubunun ESR_eq ve toplam derated kapasitesini ozetleyen sayfa](images/defter_snippets_web/d79_w79_mlcc_bank_summary.jpg)
 
@@ -4660,18 +4277,13 @@ Alt nottaki kucuk kapasitörlerin tam degerleri el yazisindan tam net degil; anc
 - yuksek frekans icin ek kucuk MLCC'ler de dusunuluyor
 - buna ragmen toplam etkin kapasite hesabinda asil agirlik `4.7 uF x 5` grubundan geliyor
 
-Tutarlilik kontrolu:
-
-- `W.79`, `W.78`in cok dogal bir ozet/devam sayfasi gibi duruyor
-- `332 kHz` ve `35 kHz` icin ayri `ESR_eq` not edilmesi, giris capacitor bankinin tek bir frekansta degil birden fazla kritik bolgede dusunuldugunu gosteriyor
-- `8.228 uF` sonucu, `W.78`deki `~8.195 uF` degeriyle uyumlu bir ozet/degisik yuvarlama gibi okunabilir
-- bu nedenle bu sayfa, giris MLCC banki icin frekansa bagli `ESR` ve bias sonrasi etkin `C` ozetini veren degerli bir takip sayfasi olarak korunmali
+`W.79`, `W.78`in cok dogal ozet/devam sayfasi gibi. `332 kHz` ve `35 kHz` icin ayri `ESR_{eq}` yazilmasi, giris capacitor bankinin tek bir frekansta degil birden fazla kritik bolgede dusunuldugunu gosteriyor. `8.228 uF` sonucu da `W.78`deki `~8.195 uF` ile uyumlu bir ozet gibi okunabilir.
 
 `p72`, `p73` ve `p75` birlikte okundugunda, bu satirlardaki `4 m\Omega` / `10 m\Omega` mertebelerinin hayali degil; secilen `4.7 uF`, `50 V`, `1206`, `X7R` MLCC adayinin belirli frekans ve bias kosullarinda okunmus gercek arac / datasheet ekranlarina dayandigi anlasiliyor.
 
 Defterden aktarilan not (`W.80`):
 
-Bu sayfa, artik giris kapasitörü seciminde kritik tasarim kararini daha acik yaziyor: ideal/ilk hesapta gereken `Cin` ile, bias altinda gercekte elde kalan MLCC kapasitesi arasinda belirgin bir fark var; bu fark nedeniyle bulk / elektrolitik takviye dusunuluyor.
+Burada artik giris kapasitörü seciminde kritik tasarim karari daha acik yaziyor: ideal/ilk hesapta gereken `Cin` ile, bias altinda gercekte elde kalan MLCC kapasitesi arasinda belirgin bir fark var; bu fark nedeniyle bulk / elektrolitik takviye dusunuluyor.
 
 ![W.80'den secilen el yazisi parca: MLCC bankasinin tek basina yetmedigini ve bulk ekleme kararini doguran kilit sayfa](images/defter_snippets_web/d80_w80_need_for_bulk_decision.jpg)
 
@@ -4717,16 +4329,13 @@ El yazisi tam net degil; fakat ana fikir su sekilde okunabiliyor:
 - bunun icin alüminyum elektrolitik / polimer hat dusunuluyor
 - bu ek bulk, hem eksik kapasiteyi tamamlamak hem de toplam ag davranisini daha gercekci hale getirmek icin seciliyor
 
-Tutarlilik kontrolu:
-
-- `W.80`, `W.78-W.79` hattinin en onemli karar sayfalarindan biri gibi duruyor
-- burada ilk kez "ideal gerekli `Cin` ile gercek MLCC banki arasinda kalan farki hangi bulk ile kapatacagim?" sorusu acik bicimde yazilmis
-- `~20 uF` acik ve `30 uF` sinifinda ek bulk dusuncesi, giris kapasitörü seciminin yalnizca MLCC ile sonuclanmadigini gosteren guclu bir izdir
-- bu nedenle bu sayfa, giris MLCC banki + ek bulk capacitor seciminin birlestigi kuvvetli bir tasarim karari sayfasi olarak korunmali
+`W.80`, `W.78-W.79` hattinin en onemli karar sayfalarindan biri. Burada ilk kez "ideal gerekli `Cin` ile gercekte kalan MLCC kapasitesi arasindaki farki hangi bulk ile kapatacagim?" sorusu acik bicimde yaziliyor. `~20 uF` acik ve `30 uF` sinifinda ek bulk dusuncesi, secimin yalnizca MLCC ile bitmedigini netlestiriyor.
 
 Defterden aktarilan not (`W.81`):
 
-Bu sayfa, `W.80`te ortaya cikan "eksik kalan kapasiteyi hangi bulk ile tamamlayacagim?" sorusuna artik gercek bir komponent adayi ile cevap veriyor. Sayfada `KEMET` markali, `50 V`, `47 uF`, `X7R` bir seramik bulk adayinin not edildigi goruluyor.
+Burada `W.80`te ortaya cikan "eksik kalan kapasiteyi hangi bulk ile tamamlayacagim?" sorusuna artik gercek bir komponent adayi ile cevap veriliyor. Sayfada `KEMET` markali, `50 V`, `47 uF`, `X7R` bir seramik bulk adayinin not edildigi goruluyor.
+
+![W.81'den secilen el yazisi parca: 2x47 uF bulk secimi icin ESR ve etkin kapasite kontrolunun kisa ozet notu](images/defter_snippets_web/d81_w81_bulk_candidate_check.jpg)
 
 Bu bulk adayini destekleyen arac / datasheet ekran goruntuleri de korunabilir:
 
@@ -4801,16 +4410,13 @@ olup,
 
 sonucuyla bu kosulun da saglandigi yazilmis.
 
-Tutarlilik kontrolu:
-
-- `W.81`, `W.80`deki soyut bulk kararini gercek bir komponent secimine tasiyan cok guclu bir sayfadir
-- burada hem `ESR` kosulu hem de `dc-bias` altindaki etkin kapasite kosulu ayni aday parca uzerinden dogrulaniyor
-- `2 x 47 uF / 50 V / X7R` secimi, giris tarafindaki eksik kapasiteyi kapatmak icin kuvvetli bir `nihai aday` olarak gorunuyor
-- bu nedenle bu sayfa, giris bulk seciminin en kuvvetli komponent-dogrulama sayfalarindan biri olarak korunmali
+`W.81`, `W.80`deki soyut bulk kararini gercek bir komponente tasiyor. Burada hem `ESR` kosulu hem de `dc-bias` altindaki etkin kapasite ayni aday parca uzerinden kontrol edilmis. `2 x 47 uF / 50 V / X7R` secimi de bu yuzden giris tarafindaki eksik kapasiteyi kapatmak icin en guclu adaylardan biri gibi gorunuyor.
 
 Defterden aktarilan not (`W.82`):
 
-Bu sayfa, giris kapasitörü bankasi icin bir ozet / kontrol sayfasi gibi gorunuyor. Sol tarafta toplam secilen etkin kapasitans ile `\Delta V_{IN,PP}` kosulu yeniden kontrol edilmis; sag tarafta ise kullanilabilecek kapasitör bankasi tablo halinde not edilmis.
+Burada giris kapasitörü bankasi icin bir ozet / kontrol sayfasi var. Sol tarafta toplam secilen etkin kapasitans ile `\Delta V_{IN,PP}` kosulu yeniden kontrol edilmis; sag tarafta ise kullanilabilecek kapasitör bankasi tablo halinde not edilmis.
+
+![W.82'den secilen el yazisi parca: toplam secilen giris kapasitansi ile 0.2006 V < 0.24 V kontrolunun kapandigini gosteren kisim](images/defter_snippets_web/d82_w82_total_c_and_dvin_check.jpg)
 
 Sol sayfadaki ana hesap su sekilde okunuyor:
 
@@ -4857,19 +4463,13 @@ Yan notlarda bunlarin rolleri kabaca su sekilde ayriliyor:
 - yuksek frekans bypass
 - bulk enerji depolama / damping
 
-Tutarlilik kontrolu:
-
-- `W.82`nin sol tarafi, `W.78-W.81` zincirinden gelen secimlerin toplam ag davranisini kontrol eden guclu bir ozet sayfadir
-- `0.2006 V < 0.24 V` sonucu, secilen toplam giris kapasitansi ile `\Delta V_{IN,PP}` kosulunun saglandigini gosteren onemli bir izdir
-- sag taraftaki tablo ise dikkatle okunmalidir; burada `2 x 47 uF` seramik bulk secimi ile `100 uF polymer` notu ayni sayfada gorundugu icin, bu kisim muhtemelen alternatif banka / ara secim / karsilastirma notu da iceriyor olabilir
-- bu nedenle bu sayfa ikiye ayrilarak okunmali:
-  - sol taraf: secilen toplam kapasiteyle yapilan dogrulama
-  - sag taraf: olasi veya karsilastirilan giris capacitor bankasi bilesenleri
-- sayfa karisik olmasina ragmen, toplam `Cin` yeterliliginin bir kez daha sayisal olarak kapatildigini gosterdigi icin korunmali
+`W.82`nin sol tarafi, `W.78-W.81` zincirinden gelen secimlerin toplam ag davranisini kontrol eden guclu bir ozet gibi. `0.2006 V < 0.24 V` sonucu, secilen toplam giris kapasitansi ile `\Delta V_{IN,PP}` kosulunun kapandigini gosteriyor. Sag taraftaki tablo ise biraz daha karisik; `2 x 47 uF` seramik bulk ile `100 uF polymer` notu ayni yerde oldugu icin, o kisim muhtemelen alternatif banka veya karsilastirma notu da iceriyor.
 
 Defterden aktarilan not (`W.83`):
 
-Bu sayfa, bulk giris kapasitörü icin transient-response tarafini iki ayri kosula ayirma niyetini gosteriyor:
+Burada bulk giris kapasitörü icin transient-response tarafi iki ayri kosula ayrilmaya calisiliyor:
+
+![W.83'ten secilen el yazisi parca: ESR_B kosulu ile T_rip zaman olcegini ayni yerde kuran kopru sayfa](images/defter_snippets_web/d83_w83_esrb_and_trip_time.jpg)
 
 1. `ESR_B` ile ilgili kosul
 2. `C_B` ile ilgili kosul
@@ -4906,18 +4506,13 @@ gibi bir ara sonuc not ediliyor.
 
 Sayfanin ust kisminda `undershoot` ve `overshoot` icin kisa sozlu notlar da var; bunlar, ani yuk degisimlerinde gerilimin kisa sureli dusmesi veya yukselmesi durumunu hatirlatan kavramsal notlar gibi okunuyor.
 
-Tutarlilik kontrolu:
-
-- `W.83` yeni bir son `C_B` sonucu vermiyor
-- ama bulk transient hesabini iki parcaya ayiriyor:
-  - ani ilk dusus / yukselis icin `ESR_B`
-  - daha yavas enerji tamponu etkisi icin `C_B`
-- `T_{rip} \approx 7.53 us` secimi, sonraki sayfalarda gelecek kapasite hesabinin zaman sabiti / tepki suresi dayanağı gibi gorunuyor
-- bu nedenle bu sayfa, bulk transient hesabinda "hangi zaman olcegiyle `C_B` hesaplanacak?" sorusuna cevap arayan degerli bir kopru sayfa olarak korunmali
+`W.83` son `C_B` sonucunu vermiyor ama bulk transient hesabini iki parcaya ayirdigi icin onemli: ani ilk dusus/yukselis icin `ESR_B`, daha yavas enerji tamponu icin `C_B`. `T_{rip} \approx 7.53 us` secimi de sonraki kapasite hesabinin zaman olcegi gibi duruyor. Bu haliyle iyi bir kopru sayfa.
 
 Defterden aktarilan not (`W.91`):
 
-Bu sayfa, `W.83`te kurulan bulk transient hesabini daha net ve daha sayisal bir bicimde tekrar ediyor. Ust kisimda once `ESR_B` kosulu dogrudan yazilmis:
+Burada `W.83`te kurulan bulk transient hesabi daha net ve daha sayisal bir bicimde tekrar ediliyor. Ust kisimda once `ESR_B` kosulu dogrudan yazilmis:
+
+![W.91'den secilen el yazisi parca: 0.1023 ohm ESR_B siniri ve 7.14 us T_rips notunu daha temiz veren sayfa](images/defter_snippets_web/d84_w91_clean_esrb_and_trips.jpg)
 
 ```math
 ESR_B
@@ -4971,19 +4566,12 @@ T_{rips}
 
 sonucu yazilmis.
 
-Sayfadaki kisa notlardan, bu surenin yorumlanisi da korunmali:
+Sayfadaki kisa notlardan, bu surenin nasil yorumlandigi da onemli:
 
 - bu sure boyunca gereken akimin bir kismini ozellikle bulk kapasitör karsilar
 - bu nedenle `C_B` hesabi icin kullanilan zaman olcegi olarak anlamlidir
 
-Tutarlilik kontrolu:
-
-- `W.91`, `W.83`teki ayni iki fikri daha temiz bicimde tekrar ediyor:
-  - `ESR_B` ust siniri
-  - `C_B` hesabinda kullanilacak `T_{rips}` suresi
-- `f_c = 35 kHz` kullanildiginda `T_{rips} \approx 7.14 us` sonucu, onceki `7.53 us` notunun daha guncel / secilen `fc` ile uyumlu hali gibi gorunuyor
-- bu sayfa yeni bir nihai `C_B` sonucu vermese de, bulk transient hesabinin dayanak parametrelerini netlestirdigi icin degerlidir
-- bu nedenle `W.91`, `W.83`un daha temiz bir devami olarak korunmali
+`W.91`, `W.83`teki ayni iki fikri daha temiz bicimde tekrar ediyor: `ESR_B` ust siniri ve `C_B` hesabinda kullanilacak `T_{rips}` suresi. `f_c = 35 kHz` ile bulunan `7.14 us`, onceki `7.53 us` notunun daha guncel hali gibi okunabilir. Yeni bir nihai `C_B` sonucu vermiyor ama bulk transient hesabinin dayanak parametrelerini toparliyor.
 
 Defterden aktarilan not (`W.97`):
 
@@ -5013,17 +4601,13 @@ Sayfanin hemen yanindaki kisa notlarda ayrica:
 
 benzeri onceki sayfalardan tanidik buyukluklerin tekrar yazildigi goruluyor.
 
-Tutarlilik kontrolu:
-
-- `W.97`, `W.91`deki `T_{rips} \approx 1/(4f_c)` yaklasimina alternatif olarak, bu kez `1/(2\pi f_c)` tipinde bir zaman sabiti dusuncesi not ediyor olabilir
-- bu sayfa yeni bir nihai secim vermiyor
-- ama bulk transient hesabinda kullanilan zaman olcegine dair defterde tek bir yol degil, birden fazla dusunce/approximation denendigini gostermesi acisindan degerli
-- sayfa oldukca silik oldugu icin yalnizca guvenle okunan `f_c = 33.2 kHz -> 4.8 us` iliskisi korunmali; geri kalan kisim daha sonra gerekirse tekrar teyit edilmelidir
-- bu nedenle `W.97`, `W.91` yaninda "alternatif zaman olcegi / ek not" olarak korunmali
+`W.97`, `W.91`deki `T_{rips} \approx 1/(4f_c)` yaklasimina alternatif olarak bu kez `1/(2\pi f_c)` tipi bir zaman sabiti dusunuyor olabilir. Sayfa silik oldugu icin elde net kalan kisim `f_c = 33.2 kHz -> 4.8 us` iliskisi. Yine de tek bir yol degil, birden fazla approximation denendigini gostermesi bakimindan degerli.
 
 Defterden aktarilan not (`W.92`):
 
 Bu sayfa, yine bir kaynak / uygulama-notu figuru uzerine alinmis kisa not gibi gorunuyor. Uzerindeki yazilar, `\Delta V_{OUT}` ve ripple bileşenlerinin hangi parcalardan geldigini ayirma amacini tasiyor.
+
+![W.92'den secilen el yazisi parca: kapasitif terim ile ESR terimini ayirmayi hatirlatan kaynak-ustu not](images/defter_snippets_web/d86_w92_ripple_components_figure.jpg)
 
 Sayfadaki basili ifade su tip bir iliskiyi gosteriyor:
 
@@ -5051,12 +4635,7 @@ Bu, bulk transient sayfalarindaki su ayrimla da uyumludur:
 - ilk hizli sapmalar `ESR` etkisiyle buyuyebilir
 - daha yavas ve genis zaman olcekli sapmalar ise kapasite / enerji tamponu etkisiyle ilgilidir
 
-Tutarlilik kontrolu:
-
-- `W.92`, yeni bir sayisal komponent secimi vermiyor
-- ama `ESR` ve kapasitif terimi ayirma aliskanligini, kullandigin kaynak figuru uzerinden gosterdigi icin degerli
-- bu sayfa ozellikle `W.88-W.91` hattinda, "gerilim sapmasinin farkli fiziksel bilesenleri var" dusuncesini destekleyen kisa bir kaynak-ustune-not sayfasi olarak korunmali
-- bu nedenle ana rolü, bulk / ripple / transient hesaplarinda kullanilan fiziksel ayirimi pekistirmektir
+`W.92` yeni bir sayisal komponent secimi vermiyor; burada asil deger, `ESR` ve kapasitif terimi ayirma aliskanligini kullandigin kaynak figuru uzerinden gostermesi. Ozellikle `W.88-W.91` hattinda "gerilim sapmasinin farkli fiziksel bilesenleri var" dusuncesini kisa ama yerinde bir notla pekistiriyor.
 
 
 
@@ -5152,11 +4731,13 @@ Bu secim mantigini destekleyen iki kaynak-foto:
 
 ![Gate driver ve MOSFET kapasitans modeli uzerinde direnç notlari](images/foto_selected/p10_gate_driver_and_mosfet_caps.jpg)
 
-Ilk foto, `V_{GS} \approx 7.5 V` civarinda `R_{DS(on)}`'in hangi mertebede okunmasi gerektigini not eden bir datasheet-grafik calismasidir. Ikinci foto ise `R_{HI}`, `R_{LO}`, harici gate direnci ve `C_{GD} / C_{GS} / C_{DS}` kapasitanslari uzerinden `dv/dt`, Miller etkisi ve gate-surme hizi dusuncesinin nasil kuruldugunu gosterir. Bu nedenle her iki foto da `5.6.2` altinda secim mantigini kuvvetlendiren gorsel notlar olarak korunmalidir.
+Ilk foto, `V_{GS} \approx 7.5 V` civarinda `R_{DS(on)}`'in hangi mertebede okunmasi gerektigini not eden bir datasheet-grafik calismasi. Ikinci foto ise `R_{HI}`, `R_{LO}`, harici gate direnci ve `C_{GD} / C_{GS} / C_{DS}` kapasitanslari uzerinden `dv/dt`, Miller etkisi ve gate-surme hizi dusuncesinin nasil kuruldugunu gosteriyor. Ikisi birlikte `5.6.2` altinda secim mantigini guzel destekliyor.
 
 Defterden aktarilan not (`W.120`):
 
-Bu sayfa, TI'nin `Understanding MOSFET Data Sheets, Part 1 - UIS / avalanche Ratings` makalesinin ilk sayfasi uzerine alinmis not gibi duruyor. Bu nedenle proje-ozel tekil hesap sayfasi olmaktan cok, MOSFET seciminde avalanche / UIS dayaniminin neden goz ardi edilmemesi gerektigini gosteren kaynak-not sayfasi olarak korunmalidir.
+Burada TI'nin `Understanding MOSFET Data Sheets, Part 1 - UIS / avalanche Ratings` makalesinin ilk sayfasi uzerine alinmis not var. Proje-ozel tekil hesap sayfasi olmaktan cok, MOSFET seciminde avalanche / UIS dayaniminin neden goz ardi edilmemesi gerektigini gosteren bir kaynak-not gibi okunuyor.
+
+![W.120'den secilen el yazisi parca: UIS/avalanche makalesi ustune alinmis not ve temel test devresi](images/defter_snippets_web/d87_w120_uis_article_and_test_circuit.jpg)
 
 Sayfadaki basili sekil ve notlardan korunacak ana fikirler sunlar:
 
@@ -5169,12 +4750,7 @@ Sayfanin ustundeki kullanici notu da bu yone cikiyor:
 - kayiplar / stres buyurse MOSFET'in daha "rugged" olmasi gerekir
 - `UIS test nasil yapilir?` sorusu not edilmis
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `5.6.2` altinda gecen `VDS` marji ve `avalanche` sinirlarinin yalnizca teorik basliklar olmadigini; datasheet yorumunda gercek bir dayanim parametresi oldugunu gosteriyor
-- burada henuz secilen MOSFET icin proje-ozel `EAS` veya UIS marj hesabi yapilmiyor
-- buna ragmen not cok degerli: yuksek `VDS` spike veya layout / snubber yetersizligi durumunda avalanche konusu secimde goz ardi edilmemelidir
-- bu nedenle `W.120`, `5.6.2 Secim mantigi` altinda MOSFET ruggedness / UIS / avalanche farkindaligini gosteren kaynak-not sayfasi olarak korunmalidir
+Burada `5.6.2` altinda gecen `VDS` marji ve `avalanche` sinirlarinin yalnizca teorik basliklar olmadigi, datasheet yorumunda gercek bir dayanim parametresi oldugu goruluyor. Henuz secilen MOSFET icin proje-ozel `EAS` veya UIS marj hesabi yok; ama yuksek `VDS` spike veya layout / snubber yetersizligi durumunda avalanche konusunun secimde goz ardi edilmemesi gerektigi gayet net.
 
 ![Secilen MOSFET datasheet'inde EAS single-pulse avalanche energy notu](images/foto_selected/p26_avalanche_energy_single_pulse.jpg)
 
@@ -5182,7 +4758,9 @@ Bu ekran goruntusu, `W.120-W.121` tarafinda kavramsal olarak not edilen UIS / av
 
 Defterden aktarilan not (`W.121`):
 
-Bu sayfa, `W.120`deki UIS / avalanche makalesinin dalga sekli mantigini kullanicinin kendi cizimiyle tekrar kuruyor. Yani artik yalnizca metin degil, testin nasil isledigine dair zamana bagli sezgi de yazilmis.
+Burada `W.120`deki UIS / avalanche makalesinin dalga sekli mantigi kendi ciziminle tekrar kuruluyor. Artik yalnizca metin degil, testin nasil isledigine dair zamana bagli sezgi de var.
+
+![W.121'den secilen el yazisi parca: drain voltage, gate voltage ve drain current ile UIS test mantigini anlatan kendi dalga sekli cizimi](images/defter_snippets_web/d88_w121_uis_waveform_sketch.jpg)
 
 Sayfada uc dalga seklinin birlikte dusunuldugu goruluyor:
 
@@ -5208,16 +4786,13 @@ Sayfadaki sembolik notlardan:
 - `V_{BK}` benzeri breakdown / clamping bolgesine isaret eden not
 - `E_{av}` benzeri avalanche enerjisine isaret eden not
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.120`deki UIS kavramini daha sezgisel hale getiriyor; ozellikle drain voltage, gate voltage ve drain current iliskisinin zamanla nasil degistigi goruluyor
-- burada yine proje-ozel sayisal `EAS` hesabi yok
-- ama MOSFET seciminde "avalanche dayanim" basliginin neden ciddiye alinmasi gerektigini gosteren cok iyi bir defter cizimi
-- bu nedenle `W.121`, `5.6.2 Secim mantigi` altinda UIS test mantigini aciklayan defter sayfasi olarak korunmalidir
+Bu sayfa, `W.120`deki UIS kavramini daha sezgisel hale getiriyor; ozellikle drain voltage, gate voltage ve drain current iliskisinin zamanla nasil degistigi goruluyor. Burada yine proje-ozel sayisal `EAS` hesabi yok, ama "avalanche dayanim" basliginin neden ciddiye alinmasi gerektigini gosteren cok iyi bir defter cizimi var.
 
 Defterden aktarilan not (`W.122`):
 
-Bu sayfa, TI'nin `Understanding MOSFET Data Sheets, Part 2 - Safe Operating Area (SOA) Graph` makalesinin ilk sayfasi uzerine alinmis not gibi duruyor. Bu nedenle proje-ozel tekil hesap sayfasi olmaktan cok, MOSFET seciminde `SOA` grafiginin neden goz onunde tutulmasi gerektigini gosteren kaynak-not sayfasi olarak korunmalidir.
+Burada TI'nin `Understanding MOSFET Data Sheets, Part 2 - Safe Operating Area (SOA) Graph` makalesinin ilk sayfasi uzerine alinmis not var. Proje-ozel tekil hesap sayfasi olmaktan cok, MOSFET seciminde `SOA` grafiginin neden goz onunde tutulmasi gerektigini gosteren bir kaynak-not.
+
+![W.122'den secilen el yazisi parca: SOA grafigi uzerindeki ana bolgeleri isaretleyen kaynak-ustu not](images/defter_snippets_web/d89_w122_soa_graph_note.jpg)
 
 Sayfadaki basili `SOA` grafiginden korunacak ana fikirler sunlar:
 
@@ -5230,17 +4805,13 @@ Kullanicinin ust notundan korunacak ana sezgi:
 - belirli bolgelerde MOSFET'in gorebilecegi gerilim ve akim birlikte sinirlanir
 - yalnizca tek eksende "max current" veya "max VDS" bakmak yeterli olmaz
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.120-W.121`deki avalanche / UIS farkindaligina bu kez `SOA` perspektifini ekliyor
-- yani secilen MOSFET icin sadece `RDS(on)` ve `Qg` degil, gerilim-akim-zaman ucgenindeki guvenli bolgenin de onemli oldugu hatirlatiliyor
-- burada yine proje-ozel sayisal `SOA` yerlestirmesi yapilmiyor
-- ama `SOA` grafiginin secim mantigina dahil edilmesi gerektigini gosterdigi icin degerlidir
-- bu nedenle `W.122`, `5.6.2 Secim mantigi` altinda MOSFET `SOA` farkindaligini gosteren kaynak-not sayfasi olarak korunmalidir
+Bu sayfa, `W.120-W.121`deki avalanche / UIS farkindaligina bu kez `SOA` perspektifini ekliyor. Yani secilen MOSFET icin sadece `RDS(on)` ve `Qg` degil, gerilim-akim-zaman ucgenindeki guvenli bolgenin de onemli oldugu hatirlatiyor. Proje-ozel sayisal `SOA` yerlestirmesi yok; ama `SOA` grafiginin secim mantigina dahil edilmesi gerektigini gayet iyi hatirlatiyor.
 
 Defterden aktarilan not (`W.123`):
 
-Bu sayfa, MOSFET'in `I_D - V_{DS}` karakteristiklerini cok sade bir eskizle hatirlatiyor. Bu nedenle proje-ozel nihai hesap sayfasi olmaktan cok, `VGS`, lineer bolge ve `RDS(on)` sezgisini canli tutan temel bir defter notu olarak korunmalidir.
+Bu sayfa, MOSFET'in `I_D - V_{DS}` karakteristiklerini cok sade bir eskizle hatirlatiyor. Proje-ozel nihai hesap sayfasi degil; daha cok `VGS`, lineer bolge ve `RDS(on)` sezgisini canli tutan temel bir defter notu gibi.
+
+![W.123'ten secilen el yazisi parca: farkli VGS seviyeleri icin Id-Vds ailelerini cizgisel olarak gosteren kisa eskiz](images/defter_snippets_web/d90_w123_id_vds_family_sketch.jpg)
 
 Sayfadaki cizimde:
 
@@ -5260,13 +4831,7 @@ Sayfadaki notlardan korunacak ana fikirler:
 - `VGS` arttikca egri yukariya tasinir; yani cihaz ayni `VDS` icin daha fazla akim tasiyabilir
 - `saturation` benzeri bolgede ise akim daha cok `VGS` tarafindan belirlenir
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `5.1.2`de gecen "dusuk VCC / dusuk VGS -> RDS(on) artar" fikrini transistor karakteristigi tarafindan destekliyor
-- ayni zamanda `5.6.2`de MOSFET seciminde neden surme geriliminin ve `RDS(on)` verisinin birlikte okunmasi gerektigini sezgisel olarak acikliyor
-- burada yeni sayisal secim veya kayip hesabi yok
-- ama MOSFET davranisini ezber parametre yerine karakteristik egri gozuyla dusunmeye yardim ettigi icin degerlidir
-- bu nedenle `W.123`, `5.6.2 Secim mantigi` altinda `VGS` / lineer bolge / `RDS(on)` sezgisini gosteren temel bir defter notu olarak korunmalidir
+Bu sayfa, `5.1.2`de gecen "dusuk VCC / dusuk VGS -> RDS(on) artar" fikrini transistor karakteristigi tarafindan destekliyor. Ayni zamanda `5.6.2`de MOSFET seciminde neden surme geriliminin ve `RDS(on)` verisinin birlikte okunmasi gerektigini sezgisel olarak acikliyor. Yeni sayisal secim veya kayip hesabi yok; ama MOSFET davranisini ezber parametre yerine karakteristik egri gozuyla dusunmeye yardim ettigi icin degerli.
 
 ![MOSFET on-region karakteristikleri uzerinde VGS seviyeleri isaretlenmis ekran goruntusu](images/foto_selected/p30_on_region_characteristics.jpg)
 
@@ -5274,7 +4839,7 @@ Bu ekran goruntusu, `W.123`te cizgisel olarak anlatilan `I_D - V_{DS}` ailelerin
 
 Defterden aktarilan not (`W.178`):
 
-Bu sayfa, `G88 A5 dv/dt Limit` konusuna giris yapan kavramsal bir defter sayfasi gibi duruyor. Bu nedenle yeni bir nihai kayip hesabi degil; `5.6.2 Secim mantigi` altinda, yuksek `dV/dt` nedeniyle MOSFET'in kendiliginden / istenmeden acilabilmesi problemini tanimlayan giris sayfasi olarak korunmalidir.
+Burasi `G88 A5 dv/dt Limit` konusuna giris yapan kavramsal bir defter sayfasi. Yeni bir nihai kayip hesabi degil; yuksek `dV/dt` nedeniyle MOSFET'in kendiliginden / istenmeden acilabilmesi problemini tanimlayan giris sayfasi.
 
 Sayfanin ust kisminda kullanici sorunu kendi cümleleriyle ozetliyor:
 
@@ -5304,15 +4869,13 @@ Yani bu sayfa, sonraki `W.125-W.127` notlarinda gelecek olan:
 
 gibi alt basliklarin kavramsal girisi olarak okunmalidir.
 
-Tutarlilik kontrolu:
+![W.178'den kucuk kirpim: dv/dt problemi ve parasitik kapasitans cizimi](images/defter_snippets_web/d91_w178_dvdt_problem_intro.jpg)
 
-- bu sayfa yeni sayisal sonuc vermiyor
-- ama `W.125-W.127` zincirinin asil fiziksel problemini cok net tarif ediyor: hizli `V_{DS}` degisimi, `C_{GD}` uzerinden gate'e enjekte olup MOSFET'i istemeden acabilir
-- bu nedenle `W.178`, `5.6.2 Secim mantigi` altinda `dv/dt` kaynakli kendiliginden acilma riskini tanimlayan giris defter sayfasi olarak korunmalidir
+Bu sayfa yeni sayisal sonuc vermiyor; ama `W.125-W.127` zincirinin asil fiziksel problemini cok net tarif ediyor: hizli `V_{DS}` degisimi, `C_{GD}` uzerinden gate'e enjekte olup MOSFET'i istemeden acabilir. Bu netligi yuzunden burada olmasi cok yerinde.
 
 Defterden aktarilan not (`W.179`):
 
-Bu sayfa, `W.178`te kavramsal olarak tanimlanan problemin gate dugumunde nasil bir `V_{GS}` olusturdugunu daha acik bicimde formullestiriyor gibi duruyor. Bu nedenle yeni bir nihai kayip hesabi degil; `5.6.2 Secim mantigi` altinda, `C_{GD}` ve `C_{GS}` uzerinden olusan kapasitif bolucunun istenmeyen turn-on riskine nasil donustugunu gosteren ara defter sayfasi olarak korunmalidir.
+Burada `W.178`te kavramsal olarak tanimlanan problemin gate dugumunde nasil bir `V_{GS}` olusturdugu daha acik bicimde formullestiriliyor. Yeni bir nihai kayip hesabi degil; `C_{GD}` ve `C_{GS}` uzerinden olusan kapasitif bolucunun istenmeyen turn-on riskine nasil donustugunu gosteren ara bir sayfa.
 
 Sayfanin ust kisminda kullanici sozel olarak su problemi yaziyor:
 
@@ -5354,15 +4917,13 @@ Sayfanin alt kisminda ayrica gate surucusu ve direncli ne olursa olsun, yuksek `
 
 etkileyebilecegi; yani sadece "statik bir threshold karsilastirmasi" olmadigi not edilmis.
 
-Tutarlilik kontrolu:
+![W.179'dan kucuk kirpim: kapasitif bolucu ile parasitik VGS ifadesi](images/defter_snippets_web/d92_w179_capacitive_divider_vgs.jpg)
 
-- bu sayfa, `W.178`de baslatilan kavramsal problemi tek bir denklemle daha gorunur hale getiriyor
-- ayni zamanda `W.127`deki Miller kaynakli istenmeyen tetiklenme notunun da daha erken ve daha sade anlatilmis bir versiyonu gibi okunabilir
-- bu nedenle `W.179`, `5.6.2 Secim mantigi` altinda kapasitif bolucu yoluyla olusan parasitik `V_{GS}` ve yanlis turn-on riskini aciklayan ara defter sayfasi olarak korunmalidir
+Bu sayfa, `W.178`de baslatilan kavramsal problemi tek bir denklemle daha gorunur hale getiriyor. Ayni zamanda `W.127`deki Miller kaynakli istenmeyen tetiklenme notunun daha erken ve daha sade anlatilmis bir versiyonu gibi de okunabilir.
 
 Defterden aktarilan not (`W.180`):
 
-Bu sayfa, `W.179`da yazilan kapasitif bolucu iliskisini bu kez gercek proje sayilarindan bazilarini yerine koyarak hizli bir senaryo kontrolu halinde deniyor gibi duruyor. Bu nedenle yeni nihai kayip hesabi degil; `5.6.2 Secim mantigi` altinda, istenmeyen turn-on riskinin buyukluk mertebesini sayisal olarak yoklayan ara defter sayfasi olarak korunmalidir.
+Burada `W.179`da yazilan kapasitif bolucu iliskisi, gercek proje sayilarindan bazilari yerine konarak hizli bir senaryo kontrolune tasinmis. Yeni nihai kayip hesabi degil; daha cok istenmeyen turn-on riskinin buyukluk mertebesini sayisal olarak yoklayan bir ara sayfa.
 
 Sayfanin ust kisminda okunabildigi kadariyla:
 
@@ -5414,16 +4975,13 @@ Sayfanin altindaki sonuc satiri tam net okunmasa da, genel mesaj acik gorunuyor:
 - bu senaryoda bulunan limit, devrede gorulen `22 V` seviyesinin oldukca uzerinde
 - yani kullanici bu kontrolu "Miller kaynakli kendiliginden turn-on acisindan rahatlik var" seklinde yorumluyor gibi duruyor
 
-Tutarlilik kontrolu:
+![W.180'den kucuk kirpim: ilk sayisal Miller kontrolu ve VDS,max sonucu](images/defter_snippets_web/d93_w180_first_numeric_miller_check.jpg)
 
-- bu sayfa, `W.179`daki iliskinin soyut kalmadigini; secilen MOSFET'in parasitikleriyle en azindan bir ilk kaba sayisal kontrol yapildigini gosteriyor
-- `C_{iss}` satirindaki rakam ve en alttaki nihai limit tam net okunmadigi icin, burada kesin son sayi yerine iliski ve buyukluk sezgisi korunmalidir
-- buna ragmen `C_{gd}`'nin kucuk, `C_{gs}`'nin buyuk olmasinin yanlis turn-on riskini azalttigi mesaji nettir
-- bu nedenle `W.180`, `5.6.2 Secim mantigi` altinda Miller kaynakli parasitik `V_{GS}` icin ilk sayisal senaryo kontrolu yapan ara defter sayfasi olarak korunmalidir
+Bu sayfa, `W.179`daki iliskinin soyut kalmadigini; secilen MOSFET'in parasitikleriyle en azindan bir ilk kaba sayisal kontrol yapildigini gosteriyor. `C_{iss}` satirindaki rakam ve en alttaki nihai limit tam net okunmadigi icin burada kesin son sayi yerine iliski ve buyukluk sezgisini korumak daha dogru. Buna ragmen `C_{gd}`'nin kucuk, `C_{gs}`'nin buyuk olmasinin yanlis turn-on riskini azalttigi mesaji net.
 
 Defterden aktarilan not (`W.181`):
 
-Bu sayfa, `W.178`te not edilen "3 senaryo" fikrinin `2. senaryo` sayfasi gibi duruyor. Odak yine `dv/dt` kaynakli yanlis turn-on riski; ancak bu kez onceki kapasitif bolucu esitligi yerine, gate yolunun daha sert / hizli bir limiti uzerinden kaba bir ust-sinir kontrolu yapiliyor gibi gorunuyor. Bu nedenle yeni nihai kayip hesabi degil; `5.6.2 Secim mantigi` altinda `W.180`in devaminda gelen ikinci senaryo / ikinci dayanim kontrolu olarak korunmalidir.
+Burada `W.178`te not edilen "3 senaryo" fikrinin `2. senaryo` sayfasi var. Odak yine `dv/dt` kaynakli yanlis turn-on riski; ama bu kez onceki kapasitif bolucu esitligi yerine, gate yolunun daha sert / hizli bir limiti uzerinden kaba bir ust-sinir kontrolu yapiliyor.
 
 Sayfanin ustunde okunabildigi kadariyla su iliski yaziliyor:
 
@@ -5465,16 +5023,13 @@ En alttaki kisa yorum da, eger bu tur bir sinir sorun olacak kadar dusuk ciksayd
 
 gibi ek onlemlerin dusunulebilecegi yone isaret ediyor gibi duruyor.
 
-Tutarlilik kontrolu:
+![W.181'den kucuk kirpim: ikinci senaryo icin dv/dt limit hesabi](images/defter_snippets_web/d94_w181_dvdt_limit_scenario2.jpg)
 
-- bu sayfa, `W.125-W.126`daki kaynak-not `dv/dt` fikirlerinin bu kez proje baglaminda daha agresif bir ikinci senaryo ile yoklandigini gosteriyor
-- sonucun birimi ve nanosaneye cevrilmis hali sayfada tam net degil; bu nedenle burada kesin nihai deger yerine buyukluk mertebesi korunmalidir
-- buna ragmen ana mesaj nettir: bu senaryoda bulunan `dv/dt` limiti oldukca yuksektir ve kullanici bunu "yanlis turn-on acisindan rahatlik var" seklinde yorumluyor gibi duruyor
-- bu nedenle `W.181`, `5.6.2 Secim mantigi` altinda `dv/dt` kaynakli yanlis turn-on riskine ait ikinci senaryo kontrolu olarak korunmalidir
+Bu sayfa, `W.125-W.126`daki kaynak-not `dv/dt` fikirlerinin proje baglaminda daha agresif bir ikinci senaryo ile yoklandigini gosteriyor. Sonucun birimi ve nanosaneye cevrilmis hali tam net degil; o yuzden burada kesin nihai deger yerine buyukluk mertebesini korumak daha dogru. Ama ana mesaj net: bu senaryoda bulunan `dv/dt` limiti oldukca yuksek ve yorum da "yanlis turn-on acisindan rahatlik var" yonunde.
 
 Defterden aktarilan not (`W.182`):
 
-Bu sayfa, `W.181`deki daha sade `dv/dt` limitinin fiziksel olarak nasil olustugunu aciklayan ve gercek devre yolunu biraz daha ayrintili gosteren bir ara not gibi duruyor. Bu nedenle yeni bir nihai sayisal sonuc sayfasi degil; `5.6.2 Secim mantigi` altinda, `C_{GD}` uzerinden enjekte olan akimin gate yolundaki direncler uzerinde nasil `V_{GS}` olusturdugunu anlatan turetim / fiziksel aciklama sayfasi olarak korunmalidir.
+Burada `W.181`deki daha sade `dv/dt` limitinin fiziksel olarak nasil olustugu aciklaniyor ve gercek devre yolu biraz daha ayrintili gosteriliyor. Yeni bir nihai sayisal sonuc sayfasi degil; `C_{GD}` uzerinden enjekte olan akimin gate yolundaki direncler uzerinde nasil `V_{GS}` olusturdugunu anlatan bir turetim / fiziksel aciklama sayfasi.
 
 Sayfanin ustunde, onceki `dv/dt` limitine benzeyen ama bu kez daha gercekci gate yolu ile yazilmis su iliski okunuyor:
 
@@ -5511,16 +5066,13 @@ Sayfada ayrica bu ifadenin:
 
 yone bir not da bulunuyor gibi gorunuyor.
 
-Tutarlilik kontrolu:
+![W.182'den kucuk kirpim: CGD akimi ve gate yolu uzerinden VGS olusumu](images/defter_snippets_web/d95_w182_cgd_current_gate_path.jpg)
 
-- bu sayfa, `W.179`daki kapasitif bolucu sezgisi ile `W.181`deki hizli `dv/dt` limitinin arasina fiziksel bir kopru koyuyor
-- `R_{LO}` ifadesi sayesinde, surucunun pull-down yolunun da bu problemde rol oynadigi daha net hale geliyor
-- ustteki baslik satirinin tamami tam net okunmasa da, ana mesaj cok acik: `C_{GD}` akimi gate yolunda gerilim olusturur ve bu gerilim `V_{TH}`'yi gecerse yanlis turn-on olur
-- bu nedenle `W.182`, `5.6.2 Secim mantigi` altinda `dv/dt` kaynakli yanlis turn-on mekanizmasini fiziksel olarak aciklayan ara defter sayfasi olarak korunmalidir
+Burada `W.179`daki kapasitif bolucu sezgisi ile `W.181`deki hizli `dv/dt` limitinin arasina fiziksel bir kopru konuyor. `R_{LO}` ifadesi sayesinde surucunun pull-down yolunun da bu problemde rol oynadigi daha net hale geliyor. Ustteki baslik satirinin tamami tam net okunmasa da, ana mesaj acik: `C_{GD}` akimi gate yolunda gerilim olusturur ve bu gerilim `V_{TH}`'yi gecerse yanlis turn-on olur.
 
 Defterden aktarilan not (`W.183`):
 
-Bu sayfa, `W.182`de yazilan fiziksel `dv/dt` limitinin bu kez daha pratik bir gate direnci secimiyle sayisal olarak yoklandigi uygulama sayfasi gibi duruyor. Bu nedenle yeni nihai LTspice veya kayip sonucu degil; `5.6.2 Secim mantigi` altinda, gercekci gate yolu degerleriyle Miller kaynakli yanlis turn-on riskini sayisal olarak kontrol eden ara defter sayfasi olarak korunmalidir.
+Burada `W.182`de yazilan fiziksel `dv/dt` limiti bu kez daha pratik bir gate direnci secimiyle sayisal olarak yoklaniyor. Yeni bir LTspice ya da kayip sonucu degil; gercekci gate yolu degerleriyle Miller kaynakli yanlis turn-on riskini sayisal olarak kontrol eden ara not.
 
 Sayfanin ustunde ayni iliski tekrar yaziliyor:
 
@@ -5563,16 +5115,13 @@ Sayfanin altindaki kullanici notu, bu sonucun pratik yorumunu da veriyor gibi go
 - dolayisiyla kendi buck tasarimindaki gercek `dv/dt` bunun oldukca altinda kalir
 - bu senaryoda MOSFET'in kendiliginden acilmasi beklenmez
 
-Tutarlilik kontrolu:
+![W.183'den kucuk kirpim: pratik gate direnci ile dv/dt limit teyidi](images/defter_snippets_web/d96_w183_practical_gate_resistance_limit.jpg)
 
-- bu sayfa, `W.181`deki daha soyut ikinci senaryo hesabini gercekci gate yolu degerleriyle daha okunur hale getiriyor
-- burada `R_{Gext}` icin bir aralik dusunulup sonra `1\,\Omega` ile ornek kontrol yapildigi gorunuyor; bu da tasarim kararinin tek bir ezber sayi yerine muhendislik bandi olarak dusunuldugunu gosteriyor
-- ana mesaj nettir: pratik gate yolu direnci eklendiginde bile bulunan `dv/dt` limiti cok yuksek kalmaktadir
-- bu nedenle `W.183`, `5.6.2 Secim mantigi` altinda `dv/dt` kaynakli yanlis turn-on riskine ait pratik uygulama kontrolu olarak korunmalidir
+Burada `W.181`deki daha soyut ikinci senaryo hesabi gercekci gate yolu degerleriyle daha okunur hale geliyor. `R_{Gext}` icin bir aralik dusunulup sonra `1\,\Omega` ile ornek kontrol yapildigi gorunuyor; bu da tasarim kararinin tek bir ezber sayi yerine muhendislik bandi olarak dusunuldugunu gosteriyor. Ana mesaj da net: pratik gate yolu direnci eklendiginde bile bulunan `dv/dt` limiti oldukca yuksek kaliyor.
 
 Defterden aktarilan not (`W.184`):
 
-Bu sayfa, `W.178-W.183` hattindaki yanlis turn-on / Miller problemini bu kez daha korumaci bir kapasite setiyle tekrar yoklayan ara sayfa gibi duruyor. Ozellikle `C_{iss}` ve `C_{rss}` tarafinda datasheet'in nominal degerleriyle kontrol yapilmaya calisildigi izlenimi var. Bu nedenle yeni nihai sonuc sayfasi degil; `5.6.2 Secim mantigi` altinda, secilen kapasite modeline gore sonucun ne kadar degisebildigini gosteren duyarlilik / alternatif parametre sayfasi olarak korunmalidir.
+Burada `W.178-W.183` hattindaki yanlis turn-on / Miller problemi bu kez daha korumaci bir kapasite setiyle tekrar yoklaniyor. Ozellikle `C_{iss}` ve `C_{rss}` tarafinda datasheet'in nominal degerleriyle kontrol yapilmaya calisildigi izlenimi var. Asil mesaj, secilen kapasite modeline gore sonucun ne kadar degisebildigi.
 
 Sayfanin ortasinda, kapasitif bolucu mantiginin bu kez daha buyuk bir datasheet kapasite setiyle yazildigi okunuyor. Okunabildigi kadariyla kullanilan ara sayilar sunlar:
 
@@ -5590,7 +5139,7 @@ V_{DS,\max}
 26.12\,\text{V}
 ```
 
-Bu, onceki sayfalardaki daha yuksek `V_{DS,\max}` / `dv/dt` limitlerine gore daha korumaci bir sonuca isaret ediyor gibi duruyor.
+Bu, onceki sayfalardaki daha yuksek `V_{DS,\max}` / `dv/dt` limitlerine gore daha korumaci bir sonuca isaret ediyor.
 
 Sayfanin alt kisminda, ayni konu bu kez `dv/dt` cinsinden de yeniden yazilmaya calisiliyor. Burada tam net okunamayan kisimlar olsa da, ana fikir su gibi gorunuyor:
 
@@ -5613,18 +5162,15 @@ Sayfanin sag tarafindaki not da, okunabildigi kadariyla, bu tarz kontrolde:
 - `dikkat`
 - `nominal capacitance` / datasheet nominal kapasite degerleri
 
-gibi bir uyarinin tutuldugunu gosteriyor gibi duruyor.
+gibi bir uyarinin tutuldugunu gosteriyor.
 
-Tutarlilik kontrolu:
+![W.184'den kucuk kirpim: korumaci nominal kapasite setiyle alternatif Miller kontrolu](images/defter_snippets_web/d97_w184_conservative_capacitance_model.jpg)
 
-- bu sayfa cok degerli; cunku ayni yanlis turn-on problemi icin farkli kapasite modellerinin sonucu ciddi bicimde degistirebildigini gosteriyor
-- `6\,pF` civari ortalama / uyarlanmis `C_{GD}` ile bulunan yuksek limitler ile, `340\,pF` civari daha korumaci nominal yaklasim arasindaki fark burada gorunur hale geliyor
-- alt taraftaki `dv/dt` esitliginin tam son sayisi net okunmadigi icin, bu sayfada en dogru korunmasi gereken sey "daha buyuk nominal kapasite alinirsa sinir daha korumaci cikar" mesajidir
-- bu nedenle `W.184`, `5.6.2 Secim mantigi` altinda Miller kaynakli yanlis turn-on kontrolunun kapasite-modeline duyarliligini gosteren alternatif / korumaci ara sayfa olarak korunmalidir
+Bu not degerli; cunku ayni yanlis turn-on problemi icin farkli kapasite modellerinin sonucu ciddi bicimde degistirebildigini gosteriyor. `6\,pF` civari ortalama / uyarlanmis `C_{GD}` ile bulunan yuksek limitler ile, `340\,pF` civari daha korumaci nominal yaklasim arasindaki fark burada gorunur hale geliyor. Alt taraftaki `dv/dt` esitliginin tam son sayisi net okunmadigi icin asil korunmasi gereken mesaj, "daha buyuk nominal kapasite alinirsa sinir daha korumaci cikar" fikri.
 
 Defterden aktarilan not (`W.125`):
 
-Bu sayfa, `G88` (`Estimating MOSFET Parameters from the Data Sheet`) kaynagindan alinmis kisa bir `dv/dt` dayanim / gate davranisi notu gibi duruyor. Bu nedenle proje-ozel nihai kayip hesabi sayfasi olmaktan cok, MOSFET seciminde ve gate-dugumu yorumunda kullanilan bir kaynak-not sayfasi olarak korunmalidir.
+Burada `G88` (`Estimating MOSFET Parameters from the Data Sheet`) kaynagindan alinmis kisa bir `dv/dt` dayanim / gate davranisi notu var. Proje-ozel nihai kayip hesabi degil; daha cok MOSFET seciminde ve gate dugumu yorumunda kullanilan bir kaynak notu.
 
 Sayfada goruldugu kadariyla yazilan temel iliski su yone cikiyor:
 
@@ -5646,16 +5192,13 @@ Sayfadaki sayisal yerlestirme de, okunabildigi kadariyla, su tip bir ornege isar
 10.64\,\text{V/ns}
 ```
 
-Tutarlilik kontrolu:
+![W.125'ten kucuk kirpim: G88 kaynakli dv/dt limit notu](images/defter_snippets_web/d98_w125_g88_dvdt_limit_note.jpg)
 
-- bu sayfa nihai proje dalga sekli veya LTspice sonucu degil; daha cok datasheet parametrelerinden turetilen bir gate `dv/dt` dayanim tahmini gibi duruyor
-- sayfadaki sayilarin bir kismi kisa yazildigi icin burada ana fikir korunmali: `C_{GD}` buyudukce ve toplam gate yolu direnci arttikca `dv/dt` dayanim / davranis degisir
-- bu not, `5.6.2` altindaki MOSFET secim mantigina yararlidir; cunku yalnizca `RDS(on)` ve `Qg` degil, Miller kapasitansi ve gate yolu da onemlidir
-- bu nedenle `W.125`, `5.6.2 Secim mantigi` altinda gate `dv/dt` davranisini gosteren kaynak-not sayfasi olarak korunmalidir
+Buradaki not nihai proje dalga sekli veya LTspice sonucu degil; daha cok datasheet parametrelerinden turetilen bir gate `dv/dt` dayanim tahmini. Sayilardan bir kismi kisa yazildigi icin burada ana fikri korumak daha dogru: `C_{GD}` buyudukce ve toplam gate yolu direnci arttikca `dv/dt` davranisi degisiyor. Bu da `5.6.2` altindaki MOSFET secim mantigina dogrudan yariyor.
 
 Defterden aktarilan not (`W.126`):
 
-Bu sayfa, `W.125`teki `dv/dt` notunun daha kaba / hizli bir yaklasimla tekrar yazilmis hali gibi duruyor. Bu nedenle yine proje-ozel nihai dalga sekli veya kayip hesabi sayfasi degil; MOSFET gate dugumunde `dv/dt` buyuklugunu sezmek icin yapilmis bir kaynak-not sayfasi olarak korunmalidir.
+Burada `W.125`teki `dv/dt` notu daha kaba / hizli bir yaklasimla tekrar yazilmis. Proje-ozel nihai dalga sekli veya kayip hesabi degil; MOSFET gate dugumunde `dv/dt` buyuklugunu sezmek icin yapilmis bir kaynak-not.
 
 Sayfada bu kez daha sade bir iliski yaziliyor:
 
@@ -5684,16 +5227,13 @@ Sayfanin sag tarafindaki kullanici notu da, bunun:
 
 ima ediyor gibi gorunuyor.
 
-Tutarlilik kontrolu:
+![W.126'dan kucuk kirpim: kaba dv/dt ust-sinir tahmini](images/defter_snippets_web/d99_w126_quick_dvdt_estimate.jpg)
 
-- bu sayfa, `W.125`teki `C_{GD}` tabanli yaklasima gore daha kaba bir ust-limit notu gibi duruyor
-- burada kullanilan kapasitenin tam olarak `C_{iss}` mi, benzeri bir datasheet giris kapasitansi mi oldugu baglamdan okunuyor; bu nedenle sonucu nihai proje sayisi gibi degil, buyukluk mertebesi notu gibi ele almak daha dogrudur
-- buna ragmen sayfa cok degerli; cunku gate direnci ve MOSFET kapasitanslarinin `dv/dt` uzerindeki etkisini hizli bir hesapla bagliyor
-- bu nedenle `W.126`, `5.6.2 Secim mantigi` altinda `W.125`in devaminda yer alan alternatif / kaba `dv/dt` tahmini olarak korunmalidir
+`W.126`, `W.125`teki `C_{GD}` tabanli yaklasima gore daha kaba bir ust-limit notu. Burada kullanilan kapasitenin tam olarak `C_{iss}` mi yoksa benzeri bir giris kapasitansi mi oldugu baglamdan okunuyor; o yuzden sonucu nihai proje sayisi gibi degil, buyukluk mertebesi notu gibi ele almak daha dogru. Buna ragmen gate direnci ile MOSFET kapasitanslarini `dv/dt` uzerinden hizli bir hesapta birlestirmesi guclu.
 
 Defterden aktarilan not (`W.127`):
 
-Bu sayfa, `W.125-W.126` ile ayni `G88` / MOSFET parasitik kapasitans hattinin devamidir. Ancak bu kez odak, yalnizca `dv/dt` buyuklugu degil; `C_{GD}` uzerinden gate'e enjekte olan gerilim nedeniyle MOSFET'in istenmeden iletime gecip gecmeyecegini kontrol etmektir. Bu nedenle proje-ozel nihai kayip hesabi sayfasi degil, Miller etkisi / yanlis tetiklenme sezgisini gosteren kaynak-not sayfasi olarak korunmalidir.
+Burasi, `W.125-W.126` ile ayni `G88` / MOSFET parasitik kapasitans hattinin devami. Ama bu kez odak yalnizca `dv/dt` buyuklugu degil; `C_{GD}` uzerinden gate'e enjekte olan gerilim nedeniyle MOSFET'in istenmeden iletime gecip gecmeyecegini kontrol etmek. O yuzden proje-ozel nihai kayip hesabi degil, Miller etkisi / yanlis tetiklenme sezgisini gosteren bir kaynak-not.
 
 Sayfada once temel kapasitif bolucu iliskisi yaziliyor:
 
@@ -5741,16 +5281,13 @@ Sayfanin altindaki kullanici notu, bunun pratikte su soruyu cevaplamak icin kull
 - drain dugumundeki hizli hareketler nedeniyle
 - cihaz kendi kendine acilip acilmiyor mu?
 
-Tutarlilik kontrolu:
+![W.127'den kucuk kirpim: Miller kaynakli yanlis turn-on icin VDS,max kontrolu](images/defter_snippets_web/d100_w127_miller_false_turn_on_check.jpg)
 
-- bu sayfa, `W.125-W.126` gibi kaynak-not niteligindedir; nihai proje dalga sekli ya da LTspice sonucu degildir
-- buna ragmen cok degerlidir; cunku parasitik kapasitanslarin yalnizca kayip degil, yanlis tetiklenme riski acisindan da dusunuldugunu gosterir
-- `C_{GD}`, `C_{GS}` ve `V_{TH}` kullanilarak bulunan bu kaba `V_{DS,\max}` siniri, yarim kopru / switch-node davranisinin gate tarafina nasil baglandigini sezgisel olarak aciklar
-- bu nedenle `W.127`, `5.6.2 Secim mantigi` altinda Miller kaynakli istenmeyen tetiklenme riskini kontrol eden kaynak-not sayfasi olarak korunmalidir
+`W.127`, `W.125-W.126` gibi kaynak-not niteliginde; nihai proje dalga sekli ya da LTspice sonucu degil. Yine de cok degerli, cunku parasitik kapasitanslarin yalnizca kayip degil, yanlis tetiklenme riski acisindan da dusunuldugunu gosteriyor. `C_{GD}`, `C_{GS}` ve `V_{TH}` ile kurulan kaba `V_{DS,\max}` siniri, yarim kopru davranisinin gate tarafina nasil baglandigini sezgisel olarak guzel acikliyor.
 
 Defterden aktarilan not (`W.131`):
 
-Bu sayfa, yine `G88` hattinda ama bu kez sayisal hesap yapmaktan cok `C_{GS}`, `C_{ISS}` ve `C_{GD}` (`Miller`) kavramlarini kullanicinin kendi diliyle ozetleyen bir defter notu gibi duruyor. Bu nedenle proje-ozel nihai sonuc sayfasi degil; MOSFET'in gate tarafindaki temel kapasitif davranisi anlamak icin yazilmis kavramsal kaynak-not sayfasi olarak korunmalidir.
+Burada yine `G88` hattindayiz; ama bu kez sayisal hesap yapmaktan cok `C_{GS}`, `C_{ISS}` ve `C_{GD}` (`Miller`) kavramlari kendi dilinle ozetleniyor. Proje-ozel nihai sonuc sayfasi degil; MOSFET'in gate tarafindaki temel kapasitif davranisi anlamak icin yazilmis kavramsal bir kaynak-not olarak okumak daha dogru.
 
 Sayfada kullanicinin ayirdigi ana fikirler sunlar:
 
@@ -5784,16 +5321,13 @@ olarak adlandirilmis ve su sezgi yazilmis:
 - gate'e uygulanan gerilim degisince, drain uzerindeki gerilim de etkilenir
 - ozellikle anahtarlama sirasinda `V_{DS}` sabit kalir gibi gorunen aralik, bu kapasitif etkilerle iliskilidir
 
-Tutarlilik kontrolu:
+![W.131'den kucuk kirpim: Cgs, Ciss ve Miller rollerini toparlayan el yazisi not](images/defter_snippets_web/d101_w131_gate_caps_roles.jpg)
 
-- bu sayfa yeni sayisal proje sonucu vermiyor
-- ama `W.125-W.127`deki `dv/dt`, Miller enjeksiyonu ve yanlis tetiklenme notlarini anlamak icin cok iyi bir kavramsal zemin sagliyor
-- ayrica `W.129-W.130`da kullanilan `C_{GD}`, `C_{GS}` ve `C_{ISS}` degerlerinin neden onemsendigini geriye donuk olarak daha anlasilir hale getiriyor
-- bu nedenle `W.131`, `5.6.2 Secim mantigi` altinda MOSFET gate kapasitanslarinin rollerini aciklayan kavramsal kaynak-not sayfasi olarak korunmalidir
+`W.131` yeni sayisal proje sonucu vermiyor ama `W.125-W.127`deki `dv/dt`, Miller enjeksiyonu ve yanlis tetiklenme notlarini anlamak icin iyi bir kavramsal zemin sagliyor. Ayni zamanda `W.129-W.130`da kullanilan `C_{GD}`, `C_{GS}` ve `C_{ISS}` degerlerinin neden onemsendigini de geriye donuk olarak daha anlasilir hale getiriyor.
 
 Defterden aktarilan not (`W.133`):
 
-Bu sayfa, sayisal hesap sayfasindan cok MOSFET secim mantigini kullanicinin kendi diliyle toparlayan bir ozet not gibi duruyor. Bu nedenle proje-ozel nihai sonuc sayfasi degil; `Qg`, parazitik kapasiteler ve `RDS(on)` arasindaki dengeyi anlatan secim-notu sayfasi olarak korunmalidir.
+Burada sayisal hesap sayfasindan cok MOSFET secim mantigi kendi dilinle toparlaniyor. Proje-ozel nihai sonuc sayfasi degil; `Qg`, parazitik kapasiteler ve `RDS(on)` arasindaki dengeyi anlatan bir secim notu olarak okumak daha dogru.
 
 Sayfanin ust yarisinda kullanici, MOSFET'in parazitik kapasitelerini kisa bir liste halinde not ediyor:
 
@@ -5819,16 +5353,13 @@ Sayfada acikca not edilen pratik kural su yone cikiyor:
 - `RDS(on)} \times Q_g` turu bir "Figure of Merit" kullanimli olabilir
 - bu carpim ne kadar kucukse, genel olarak o kadar iyi bir aday olabilir
 
-Tutarlilik kontrolu:
+![W.133'ten kucuk kirpim: RDS(on), Qg ve parazitikler arasindaki secim dengesi](images/defter_snippets_web/d102_w133_rdson_qg_tradeoff.jpg)
 
-- bu sayfa yeni sayisal sonuc vermiyor
-- ama `5.6.2 Secim mantigi` altinda zaten kurulan temel dengeyi, yani "dusuk `RDS(on)` tek basina yetmez; `Q_g` ve anahtarlama hizi da onemlidir" fikrini senin defter dilinle acikca tekrar ediyor
-- ayrica `W.131`deki kapasitif sezgiyle `W.129-W.130`daki gate-charge notlarini tek cümlelik secim mantigina bagliyor
-- bu nedenle `W.133`, `5.6.2 Secim mantigi` altinda MOSFET seciminde `RDS(on)` / `Q_g` dengesini vurgulayan ozet defter sayfasi olarak korunmalidir
+`W.133`, `5.6.2` altinda zaten kurulan temel dengeyi kendi dilinle daha acik soyluyor: dusuk `RDS(on)` tek basina yetmez, `Q_g` ve anahtarlama hizi da onemlidir. Bir bakima `W.131`deki kapasitif sezgiyi `W.129-W.130`daki gate-charge notlariyla tek cizgide birlestiriyor.
 
 Defterden aktarilan not (`W.144`):
 
-Bu sayfa, `W.133`te kisa maddeler halinde toparlanan MOSFET secim mantigini bu kez daha duzgun ve daha acik bir dille yazilmis ozet sayfa gibi duruyor. Bu nedenle yeni nihai proje hesabi degil; kullanicinin `RDS(on)`, parazitik kapasiteler, `Q_g` ve `Q_{oss}` arasindaki dengeyi kendi diliyle toparladigi secim-notu sayfasi olarak korunmalidir.
+Burada `W.133`te kisa maddeler halinde toparlanan MOSFET secim mantigi bu kez daha duzgun ve acik bir dille yazilmis. Yeni nihai proje hesabi degil; `RDS(on)`, parazitik kapasiteler, `Q_g` ve `Q_{oss}` arasindaki dengeyi kendi dilinle topladigin bir secim notu olarak okumak daha dogru.
 
 Sayfanin ilk maddesinde temel iletim sezgisi yazilmis:
 
@@ -5871,17 +5402,13 @@ Sayfanin sonundaki kisa ozet, kullanicinin secim mantigini cok net toparliyor:
   - daha hizli switching
   - ama daha yuksek iletim kaybi riski
 
-Tutarlilik kontrolu:
+![W.144'ten kucuk kirpim: MOSFET secim trade-off'unu toparlayan ozet not](images/defter_snippets_web/d103_w144_tradeoff_summary.jpg)
 
-- bu sayfa yeni sayisal sonuc vermiyor
-- ama `W.133`teki secim mantigini daha acik ve daha savunulabilir cumlelerle tekrar ediyor
-- `RDS(on)` ile `Q_g/Q_{oss}` arasindaki dengeyi, kullanicinin kendi secim cikarimi seviyesine tasidigi icin degerlidir
-- `W.129-W.130`daki gate-charge / kapasite notlari ile `W.133`teki FoM dusuncesi arasinda iyi bir ozet kopru kuruyor
-- bu nedenle `W.144`, `5.6.2 Secim mantigi` altinda MOSFET secim trade-off'unu kullanicinin kendi diliyle toparlayan ozet defter sayfasi olarak korunmalidir
+`W.144`, `W.133`teki ayni secim mantigini bu kez daha duz ve savunulabilir cumlelerle topluyor. `RDS(on)` ile `Q_g/Q_{oss}` arasindaki dengeyi sadece formulle degil, dogrudan secim cikarimi seviyesinde yazmis olman guclu. `W.129-W.130`daki gate-charge notlari ile `W.133`teki FoM dusuncesi arasinda da iyi bir kopru kuruyor.
 
 Defterden aktarilan not (`W.145`):
 
-Bu sayfa, secilen MOSFET icin "hangi datasheet kalemlerine hangi kosulda bakmaliyim?" sorusuna kisa bir kontrol listesi gibi duruyor. Bu nedenle yeni nihai kayip hesabi sayfasi degil; `5.6.2 Secim mantigi` altinda gercek parca seciminde nelere dikkat edilecegini toparlayan kisa defter notu olarak korunmalidir.
+Burada secilen MOSFET icin "hangi datasheet kalemlerine hangi kosulda bakmaliyim?" sorusuna kisa bir kontrol listesi var. Yeni nihai kayip hesabi degil; `5.6.2 Secim mantigi` altinda gercek parca seciminde nelere dikkat edilecegini toparlayan kisa bir defter notu olarak okumak daha dogru.
 
 Sayfanin ilk satirlarinda `RDS(on)` icin iki onemli uyari var:
 
@@ -5916,17 +5443,13 @@ at VGS = 7.5 V
 
 kosuluna gore degerlendirilmesi gerektigi belirtilmis.
 
-Tutarlilik kontrolu:
+![W.145'ten kucuk kirpim: datasheet'i hangi kosullarda okumak gerektigini gosteren kontrol listesi](images/defter_snippets_web/d104_w145_datasheet_checklist.jpg)
 
-- bu sayfa yeni sayisal sonuc vermiyor
-- ama MOSFET seciminde sadece nominal datasheet degerine bakilmadigini, sicaklik ve gercek gate-drive kosulunun da dikkate alindigini acikca gosteriyor
-- `W.144`teki genel trade-off notunu bu kez daha uygulanabilir secim kurallarina indiriyor
-- `RDS(on)` icin `125^\circ C` ve `VGS \approx 7.5 V`, `Qg` icin yine gercek surme gerilimi ve `BVDSS` icin marjli secim kurali birlikte dusunulmus
-- bu nedenle `W.145`, `5.6.2 Secim mantigi` altinda secilen MOSFET'in datasheet'ini hangi kosullarda okumak gerektigini gosteren kisa defter sayfasi olarak korunmalidir
+`W.145`, MOSFET seciminde sadece nominal datasheet degerine bakilmadigini acikca gosteriyor. `W.144`teki genel trade-off burada daha uygulanabilir kurallara iniyor: `RDS(on)` icin sicaklik ve `V_{GS} \approx 7.5 V`, `Q_g` icin gercek surme gerilimi, `BVDSS` icin de marjli secim. Kisa ama cok yerinde bir kontrol listesi.
 
 Defterden aktarilan not (`W.151`):
 
-Bu sayfa, `W.145`te kisa bir secim kurali olarak gecen `BVDSS` maddesini tek basina acan kisa defter sayfasi gibi duruyor. Bu nedenle yeni bir kayip hesabi degil; `5.6.2 Secim mantigi` altinda secilen MOSFET'in drain-source dayaniminin neden onemli oldugunu toparlayan uygulama notu olarak korunmalidir.
+Burada `W.145`te kisa bir secim kurali olarak gecen `BVDSS` maddesi tek basina aciliyor. Yeni bir kayip hesabi degil; `5.6.2 Secim mantigi` altinda secilen MOSFET'in drain-source dayaniminin neden onemli oldugunu toparlayan bir uygulama notu olarak okumak daha dogru.
 
 Sayfanin ustunde konu acikca:
 
@@ -5953,17 +5476,13 @@ Bizim MOS'un BVDSS'i = 100 V
 
 notudur.
 
-Tutarlilik kontrolu:
+![W.151'den kucuk kirpim: secilen MOSFET icin 100 V BVDSS vurgusu](images/defter_snippets_web/d105_w151_bvdss_100v_note.jpg)
 
-- bu sayfa yeni sayisal proje sonucu vermiyor
-- ama `W.145`teki genel `BVDSS` kuralini bu kez secilen parcaya bagliyor
-- en degerli tarafi, kullanicinin `36 V` nominal ust sinira bakip "sinirda degil, marjli sec" diye dusundugunu gostermesidir
-- sayfadaki ara el yazisinin bir kismi tam net okunmadigi icin burada yalnizca guvenle okunan ana fikirler korunmali
-- bu nedenle `W.151`, `5.6.2 Secim mantigi` altinda secilen MOSFET'in `100 V` `BVDSS` dayanimi uzerinden marjli gerilim secimini vurgulayan kisa defter sayfasi olarak korunmalidir
+`W.151`, `W.145`teki genel `BVDSS` kuralini bu kez secilen parcaya bagliyor. En degerli tarafi da burada: `36 V` ust sinira bakip "sinirda degil, marjli sec" diye dusundugun acikca goruluyor. Aradaki bazi el yazilari tam net degil ama `100 V` sonucunun niyeti yeterince acik.
 
 Defterden aktarilan not (`W.146`):
 
-Bu sayfa, `W.145`te "datasheet'i hangi kosulda okuyacagim?" diye yazilan kuralin secilen MOSFET uzerinde uygulanmis hali gibi duruyor. Bu nedenle yeni bir secim mantigi notundan ziyade, secilen parca icin gercek `RDS(on)` degerinin proje kosullarina nasil tasindigini gosteren uygulama sayfasi olarak korunmalidir.
+Burada `W.145`te "datasheet'i hangi kosulda okuyacagim?" diye yazilan kural secilen MOSFET uzerinde uygulanmis. Yeni bir secim mantigi notundan cok, secilen parca icin gercek `RDS(on)` degerinin proje kosullarina nasil tasindigini gosteren bir uygulama sayfasi olarak okumak daha dogru.
 
 Sayfanin ust satirinda yine su vurgu korunmus:
 
@@ -6012,25 +5531,21 @@ R_{DS(on)}(75^\circ C)
 20.25\,m\Omega
 ```
 
-Tutarlilik kontrolu:
+![W.146'dan kucuk kirpim: 15 mOhm'dan 20.25 mOhm'a sicaklik duzeltmesi](images/defter_snippets_web/d106_w146_rdson_75c_result.jpg)
 
-- bu sayfa, `W.145`te yazilan "sicaklik ve gercek gate-drive kosulunda bak" kuralinin somut uygulanisidir
-- `RDS(on)` icin artik yalnizca datasheet'in nominal tek sayisi degil, proje jonksiyon sicakligina uyarlanmis deger kullanildigi goruluyor
-- bu deger, iletim kaybi hesabina giris olacak onemli bir ara parametre gibi duruyor; bu nedenle secim mantigi ile kayip hesabi arasinda guclu bir kopru kurar
-- `15 m\Omega -> 20.25 m\Omega` gecisi, "gercek tasarimda nominal oda sicakligi degeriyle yetinmiyorum" dusuncesini acikca gosterir
-- bu nedenle `W.146`, `5.6.2 Secim mantigi` altinda secilen MOSFET'in sicakliga gore duzeltilmis `RDS(on)` degerini cikaran uygulama sayfasi olarak korunmalidir
+`W.146`, `W.145`te yazilan "sicaklik ve gercek gate-drive kosulunda bak" kuralinin dogrudan uygulanmis hali. Artik `RDS(on)` icin datasheet'in tek nominal sayisi degil, proje jonksiyon sicakligina uyarlanmis deger kullaniliyor. `15 m\Omega -> 20.25 m\Omega` gecisi de tam olarak bunu gosteriyor; secim mantigi ile iletim kaybi hesabi burada birbirine baglaniyor.
 
 Bu iki ekran goruntusu, `W.146` tarafindaki `15 m\Omega @ 7.5 V` ve `1.35` katsayisi notlarinin tam olarak hangi datasheet egirilerinden okundugunu gosteriyor. Boylece `20.25 m\Omega` iletim-kaybi girdisinin ezbere degil, iki farkli grafikten okunup birlestirilerek elde edildigi daha acik hale geliyor.
 
 Defterden aktarilan not (`W.147`):
 
-Bu sayfa, MOSFET'in acilma surecini zaman araliklarina ayiran egitsel bir kaynak-not gibi duruyor. Bu nedenle yeni bir nihai proje hesabi degil; `5.6.3 Ilk kayip notlari` altinda, `turn-on delay`, `V_{GS(th)}` ve Miller bolgesi sezgisini kuran defter sayfasi olarak korunmalidir.
+Burada MOSFET'in acilma sureci zaman araliklarina ayriliyor. Yeni bir nihai proje hesabi degil; `turn-on delay`, `V_{GS(th)}` ve Miller bolgesi sezgisini kuran iyi bir defter sayfasi.
 
 Sayfanin ustunde acikca su not var:
 
 - `MOSFET Gate Driver Turn-on Procedure 4 intervalden olusur`
 
-ve bu sayfada bu araliklarin ilk ikisine giris yapiliyor gibi gorunuyor.
+ve bu sayfada bu araliklarin ilk ikisine giris yapiliyor.
 
 Birinci aralik icin kullanici su notlari dusmus:
 
@@ -6076,16 +5591,13 @@ Sayfadaki kullanilan basili sekiller:
 
 gibi bloklarla, bu turn-on yorumunun yarim kopru / PWM / kompanzasyon baglaminda dusunuldugunu gosteriyor.
 
-Tutarlilik kontrolu:
+![W.147'den kucuk kirpim: turn-on surecinin ilk iki araligini anlatan el yazisi not](images/defter_snippets_web/d115_w147_turn_on_first_intervals.jpg)
 
-- bu sayfa yeni sayisal kayip sonucu vermiyor
-- ama `W.128-W.132`deki `V_{GS(th)}`, `Miller plateau`, `Q_g` ve `C_{GD}` notlarini fiziksel zaman-akisi icine oturttugu icin cok degerli
-- ozellikle switching-loss hesabinda gerekli olan "hangi aralikta akim degisiyor, hangi aralikta gerilim dusuyor?" sorularina kavramsal zemin hazirliyor
-- bu nedenle `W.147`, `5.6.3 Ilk kayip notlari` altinda MOSFET turn-on surecinin ilk araliklarini anlatan kaynak-not sayfasi olarak korunmalidir
+Burada yeni sayisal kayip sonucu yok; asil degeri `W.128-W.132`deki `V_{GS(th)}`, `Miller plateau`, `Q_g` ve `C_{GD}` notlarini fiziksel zaman-akisi icine oturtmasi. Ozellikle switching-loss hesabinda gerekli olan "hangi aralikta akim degisiyor, hangi aralikta gerilim dusuyor?" sorularina kavramsal zemin hazirliyor.
 
 Defterden aktarilan not (`W.148`):
 
-Bu sayfa, `W.147`te yaziyla anlatilan MOSFET `turn-on` araliklarini bu kez zaman ekseninde dalga sekilleriyle gosteren takip sayfasi gibi duruyor. Bu nedenle yeni nihai proje hesabi degil; `5.6.3 Ilk kayip notlari` altinda `V_G`, drain gerilimi ve drain akiminin turn-on sirasindaki goreli degisimini gosteren gorsel defter sayfasi olarak korunmalidir.
+Burada `W.147`te yaziyla anlatilan MOSFET `turn-on` araliklari bu kez zaman ekseninde dalga sekilleriyle gosteriliyor. Yeni bir nihai proje hesabi degil; `V_G`, drain gerilimi ve drain akiminin turn-on sirasindaki goreli degisimini gosteren gorsel bir defter sayfasi.
 
 Sayfanin ust tarafinda gate gerilimi `V_G` cizilmis ve zaman ekseni `t_0`, `t_1`, `t_2`, `t_3`, `t_4` gibi bolunmus. Buradaki ana sekil su:
 
@@ -6119,17 +5631,13 @@ Sayfanin alt satirindaki kullanici notu da bunu kisa cumleyle toparliyor:
 - bu sira gate yukunun bir kismi `Cgd` dolumuna gidiyor
 - `Cgd` dolunca `V_D = 0 V` oluyor
 
-Tutarlilik kontrolu:
+![W.148'den kucuk kirpim: turn-on dalga sekillerinin elle cizilmis ozeti](images/defter_snippets_web/d116_w148_turn_on_waveform_sketch.jpg)
 
-- bu sayfa yeni sayisal kayip sonucu vermiyor
-- ama `W.147`te yazili kalan turn-on araliklarini artik somut dalga sekilleriyle destekliyor
-- ozellikle switching-loss hesabinda kritik olan "akim ne zaman yukseliyor, gerilim ne zaman dusuyor, Miller bolgesi hangi aralik?" sorularini gorsel olarak cok iyi cevapliyor
-- `Q_{gs}` ve `Q_{gd}` etiketlerinin ayni sekilde gate dalga seklinin uzerine yazilmis olmasi, `W.129-W.130`daki gate-charge sayilariyla da guzel bag kuruyor
-- bu nedenle `W.148`, `5.6.3 Ilk kayip notlari` altinda MOSFET turn-on dalga sekillerini gostererek `W.147`yi tamamlayan gorsel defter sayfasi olarak korunmalidir
+Burada yeni sayisal kayip sonucu yok; ama `W.147`te yazili kalan turn-on araliklari artik somut dalga sekilleriyle destekleniyor. Ozellikle switching-loss hesabinda kritik olan "akim ne zaman yukseliyor, gerilim ne zaman dusuyor, Miller bolgesi hangi aralik?" sorularini gorsel olarak cok iyi cevapliyor. `Q_{gs}` ve `Q_{gd}` etiketlerinin ayni sekilde gate dalga seklinin uzerine yazilmis olmasi da `W.129-W.130`daki gate-charge sayilariyla guzel bag kuruyor.
 
 Defterden aktarilan not (`W.149`):
 
-Bu sayfa, TI kaynagindaki `MOSFET's Vpl and Vgs(th) Estimation` konulu sayfanin uzerine alinmis not gibi duruyor. Bu nedenle yeni bir proje sonucu degil; `W.124`, `W.128`, `W.147` ve `W.148` ile ayni zincirde, `V_{PL}`, `V_{GS(th)}` ve turn-on interval yorumuna kaynaklik eden referans-defter sayfasi olarak korunmalidir.
+Burada TI kaynagindaki `MOSFET's Vpl and Vgs(th) Estimation` sayfasinin uzerine alinmis notlar var. Yeni bir proje sonucu degil; `W.124`, `W.128`, `W.147` ve `W.148` ile ayni zincirde, `V_{PL}`, `V_{GS(th)}` ve turn-on interval yorumuna kaynaklik eden referans sayfa gibi.
 
 ![G81 Figure 3 MOSFET Switch Transition](images/odt_embedded/G81_Figure 3 MOSFET Switch Transition.png)
 
@@ -6140,6 +5648,8 @@ Ek waveform notu:
 ![MOSFET turn-on surecinin bolgelere ayrildigi ozet dalga sekli](images/foto_selected/p16_switching_intervals_waveform.jpg)
 
 ![MOSFET turn-on surecinin daha sade gate-drain-current dalga sekli](images/foto_selected/p27_mosfet_turn_on_waveform_simple.jpg)
+
+![W.149'dan kucuk kirpim: kaynak sayfa uzerine alinmis Vpl ve turn-on interval notlari](images/defter_snippets_web/d117_w149_source_waveform_and_notes.jpg)
 
 Sayfadaki basili bolumde:
 
@@ -6180,16 +5690,11 @@ Sayfanin altindaki notta ayrica su yonlendirme var:
 
 Bu da, kullanicinin `W.147-W.148`te kendi cizimiyle anlattigi turn-on surecini dogrudan kaynak sekille eslestirdigini gosteriyor.
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni sayisal proje sonucu vermiyor
-- ama `W.147-W.148`te kendi dilinle anlattigin turn-on dalga sekillerinin kaynak dayanak sayfasi gibi calisiyor
-- ayni zamanda `W.128`te cikarilmaya calisilan `V_{GS(th)}` ve `V_{PL}` parametrelerinin fiziksel anlamini da turn-on araliklari uzerinden bagliyor
-- bu nedenle `W.149`, `5.6.3 Ilk kayip notlari` altinda `Vpl`, `Vgs(th)` ve turn-on interval yorumuna kaynaklik eden referans-defter sayfasi olarak korunmalidir
+Burada yeni sayisal proje sonucu yok; ama `W.147-W.148`te kendi dilinle anlattigin turn-on dalga sekillerinin kaynak dayanak sayfasi var. Ayni zamanda `W.128`te cikarilmaya calisilan `V_{GS(th)}` ve `V_{PL}` parametrelerinin fiziksel anlamini da turn-on araliklari uzerinden bagliyor.
 
 Defterden aktarilan not (`W.210`):
 
-Bu sayfa, ayni `G81` kaynak zincirinde `Figure 2` ve `Figure 3`u birlikte gosteren referans sayfa gibi duruyor. Bu nedenle yeni bir proje sonucu degil; `5.6.3 Ilk kayip notlari` altinda, toplam MOSFET kayip butcesinin ana kalemlerini ve `MOSFET Switch Transition` sekline giden baglami ayni yerde gosteren kaynak-defter sayfasi olarak korunmalidir.
+Burada ayni `G81` kaynak zincirinde `Figure 2` ve `Figure 3` birlikte gorunuyor. Yeni bir proje sonucu degil; toplam MOSFET kayip butcesinin ana kalemlerini ve `MOSFET Switch Transition` sekline giden baglami ayni yerde gosteriyor.
 
 Sayfanin ust kisminda acikca:
 
@@ -6225,17 +5730,13 @@ Sayfada Equation `(3)` de gorunuyor; bu, `switching loss` hesabinda:
 
 gibi buyukluklerin birlikte kullanildigi genel formun kaynak tarafini gosteriyor.
 
-Tutarlilik kontrolu:
+![W.210'dan kucuk kirpim: toplam kayip siniflari ve MOSFET switch transition kaynagi](images/defter_snippets_web/d113_w210_loss_classes_and_switch_transition.jpg)
 
-- `W.210`, `W.149`teki `Figure 3` kaynagini daha genis bir baglama oturtuyor; yani yalniz dalga sekli degil, onun hangi toplam kayip butcesinin parcasi oldugunu da gosteriyor
-- ayni zamanda `W.150`de daha sonra gorecegimiz conduction/switching ayirimina dogru dogal bir kopru olusturuyor
-- bu sayfa yeni sayisal nihai sonuc vermiyor
-- ama `switching`, `conduction`, `gate-drive`, `Coss` ve `body-diode` kayiplari diye ayirdigin zincirin kaynaktaki ust haritasini gosterdigi icin cok degerli
-- bu nedenle `W.210`, `5.6.3 Ilk kayip notlari` altinda kaynak haritasi / kayip siniflandirma sayfasi olarak korunmalidir
+`W.210`, `W.149`teki `Figure 3` kaynagini daha genis bir baglama oturtuyor; yani yalniz dalga sekli degil, onun hangi toplam kayip butcesinin parcasi oldugunu da gosteriyor. Ayni zamanda `W.150`de daha sonra gorecegimiz conduction/switching ayirimina dogru dogal bir kopru olusturuyor. Yeni sayisal sonuc yok; ama `switching`, `conduction`, `gate-drive`, `Coss` ve `body-diode` kayiplari diye ayirdigin zincirin kaynaktaki ust haritasini gosterdigi icin degerli.
 
 Defterden aktarilan not (`W.162`):
 
-Bu sayfa, `W.149`daki kaynak sekli bu kez kullanicinin kendi cümleleriyle adim adim yorumladigi bir aciklama sayfasi gibi duruyor. Bu nedenle yeni nihai hesap sayfasi degil; `5.6.3 Ilk kayip notlari` altinda, `G81 Fig.3` uzerinden `t_0-t_4` interval yorumunu kullanicinin kendi diliyle anlatan defter sayfasi olarak korunmalidir.
+Burada `W.149`daki kaynak sekil bu kez kendi cumlelerinle adim adim yorumlaniyor. Yeni bir nihai hesap sayfasi degil; `G81 Fig.3` uzerinden `t_0-t_4` interval yorumunu kendi diliyle anlatan bir defter sayfasi.
 
 Sayfanin basliginda acikca:
 
@@ -6292,16 +5793,13 @@ Sayfanin sol kenarindaki kisa not da onemli:
 
 Bu da, `W.161`de sorgulanan Miller charge buyuklugunun burada zaman araligina baglandigini gosteriyor.
 
-Tutarlilik kontrolu:
+![W.162'den kucuk kirpim: G81 Figure 3 uzerinden t0-t4 interval yorumlari](images/defter_snippets_web/d114_w162_t0_t4_interval_notes.jpg)
 
-- bu sayfa yeni sayisal proje sonucu vermiyor
-- ama `W.147-W.148`te daha cizgisel anlatilan turn-on surecini bu kez kaynak sekle bakarak kelime kelime acikliyor
-- ozellikle "switching loss bu bolgede olur" notu cok degerlidir; cunku `Q_{GD}` ile `V_{DS}` dususu arasindaki fiziksel bag acikca kuruluyor
-- bu nedenle `W.162`, `5.6.3 Ilk kayip notlari` altinda `G81 Fig.3` uzerinden `t_0-t_4` interval yorumunu kullanicinin kendi diliyle anlatan defter sayfasi olarak korunmalidir
+Burada yeni sayisal proje sonucu yok; ama `W.147-W.148`te daha cizgisel anlatilan turn-on sureci bu kez kaynak sekle bakilarak kelime kelime aciklaniyor. Ozellikle "switching loss bu bolgede olur" notu degerli; cunku `Q_{GD}` ile `V_{DS}` dususu arasindaki fiziksel bag acikca kuruluyor.
 
 Defterden aktarilan not (`W.157`):
 
-Bu sayfa, `W.149`daki `Vpl` konusunun daha uygulamali devami gibi duruyor. Bu nedenle yeni proje hesabi degil; `5.6.3 Ilk kayip notlari` altinda, `Vpl`'in tablolu hesaplayici ve olculen `Vgs` dalga sekliyle nasil dogrulanabilecegini gosteren kaynak-defter sayfasi olarak korunmalidir.
+Burada `W.149`daki `Vpl` konusunun daha uygulamali devami var. Yeni proje hesabi degil; `Vpl`'in tablolu hesaplayici ve olculen `Vgs` dalga sekliyle nasil dogrulanabilecegini gosteren kaynak sayfa gibi.
 
 Sayfanin ust tarafinda TI tarafindan verilen `Vpl Calculator` tablosu gorunuyor. Tabloda, MOSFET datasheet'inden alinan bazi buyukluklerle `Vplateau` hesaplaniyor. Guvenle okunabilen tablo kalemleri sunlar:
 
@@ -6339,7 +5837,7 @@ Alt tablodaki karsilastirma da, okunabildigi kadariyla, su yone cikiyor:
   - olculen `Vplateau \approx 5.30 V`
   - hesaplanan `Vpl \approx 4.94 V`
 
-Kullanicinin sayfa ustune dusulen en degerli notu da korunmalidir:
+Kullanicinin sayfa ustune dustugu en degerli notlardan biri su:
 
 - `Deneyde dogrulama yap`
 - `Sen de yapacaksin`
@@ -6347,16 +5845,13 @@ Kullanicinin sayfa ustune dusulen en degerli notu da korunmalidir:
 
 Bu not, `Vpl` hesabinin salt kagit uzerinde bir ara parametre olarak kalmamasi, olculen dalga seklinden de kontrol edilmesi gerektigi dusuncesini acikca gosteriyor.
 
-Tutarlilik kontrolu:
+![W.157'den kucuk kirpim: Vpl hesaplayici tablosu ve olcum-karsilastirma sayfasi](images/defter_snippets_web/d126_w157_vpl_calculator_and_measurement_compare.jpg)
 
-- bu sayfa yeni sayisal proje sonucu vermiyor
-- ama `W.128` ve `W.149`daki `V_{GS(th)}` / `V_{PL}` hesabinin deneysel dogrulama fikriyle baglandigi cok degerli bir kaynak sayfasi
-- ayrica kullanicinin notu, ileride kendi tasariminda da `Vpl`'i olcumle karsilastirma niyetini gosterdigi icin tasarim sureci acisindan ozellikle anlamlidir
-- bu nedenle `W.157`, `5.6.3 Ilk kayip notlari` altinda `Vpl` hesap/olcum karsilastirmasini gosteren kaynak-defter sayfasi olarak korunmalidir
+Burada yeni sayisal proje sonucu yok; ama `W.128` ve `W.149`daki `V_{GS(th)}` / `V_{PL}` hesabinin deneysel dogrulama fikriyle baglandigi cok degerli bir kaynak sayfasi var. Ayrica notun, ileride kendi tasariminda da `Vpl`'i olcumle karsilastirma niyetini gosterdigi icin tasarim sureci acisindan ayri bir anlam tasiyor.
 
 Defterden aktarilan not (`W.158`):
 
-Bu sayfa, `W.157`teki `Vpl Calculator` ve olcum karsilastirmasinin hemen altindaki cebirsel/metodik arka plani veriyor gibi duruyor. Bu nedenle yeni proje sonucu degil; `5.6.3 Ilk kayip notlari` altinda, output-characteristic egrisinden `V_{GS(th)}`, `K_n` ve `V_{PL}` cikarma yontemini gosteren kaynak-defter sayfasi olarak korunmalidir.
+Burada `W.157`teki `Vpl Calculator` ve olcum karsilastirmasinin hemen altindaki cebirsel/metodik arka plan var. Yeni proje sonucu degil; `5.6.3 Ilk kayip notlari` altinda output-characteristic egrisinden `V_{GS(th)}`, `K_n` ve `V_{PL}` cikarma yontemini gosteren bir kaynak-defter sayfasi olarak okumak daha dogru.
 
 Sayfanin basili kisminda su iki sekil var:
 
@@ -6422,17 +5917,13 @@ ve bunlarin `Figure 6/7` uzerinden secildigi anlasiliyor.
 
 Bu notlu ekran goruntusu, `W.158` ve daha sonra `W.174-W.175` tarafinda yapilan iki-nokta seciminin nasil dusunuldugunu cok daha somut hale getiriyor. Uzerine dusulen `I_{D1} \approx 123 A` / `V_{GS1} = 6 V` ve `I_{D2} \approx 59 A` / `V_{GS2} = 4.5 V` notlari, `K_n`, `V_{GS(th)}` ve ardindan `V_{PL}` tahmini icin ayni output-characteristic mantiginin tekrar tekrar kullanildigini gosteren guclu bir ara gorseldir.
 
-Tutarlilik kontrolu:
+![W.158'den kucuk kirpim: output-characteristic egrisinden Vth, Kn ve Vpl cikarma yontemi](images/defter_snippets_web/d127_w158_output_characteristic_method.jpg)
 
-- bu sayfa yeni proje sonucu vermiyor
-- ama `W.157`te tablolu gosterilen `Vpl` hesaplayicisinin, `I_D-V_{GS}` / output-characteristic egrileri ustunden nasil kuruldugunu acikca gosteriyor
-- burada gorulen sayisal sonuclar, secilen MOSFET'ten cok kaynak ornek MOSFET'e ait olabilir; bu nedenle projeye ait nihai deger gibi degil, yontemin gosterimi gibi okunmalidir
-- buna ragmen sayfa cok degerlidir; cunku `V_{GS(th)}`, `K_n` ve `V_{PL}` zincirinin kaynaktaki matematiksel iskeletini senin defterine tasiyor
-- bu nedenle `W.158`, `5.6.3 Ilk kayip notlari` altinda output-characteristic egrisinden `V_{GS(th)}`, `K_n` ve `V_{PL}` cikaran kaynak-metot sayfasi olarak korunmalidir
+`W.158` yeni proje sonucu vermiyor; asil yaptigi is, `W.157`te tablolu gosterilen `V_{PL}` hesaplayicisinin `I_D-V_{GS}` / output-characteristic egrileri uzerinden nasil kuruldugunu gostermek. Buradaki sayilar secilen MOSFET'ten cok kaynak ornek MOSFET'e ait olabilir; o yuzden nihai proje degeri diye degil, yontemin gosterimi diye bakmak daha dogru. Buna ragmen `V_{GS(th)}`, `K_n` ve `V_{PL}` zincirinin matematik iskeletini deftere tasidigi icin degerli.
 
 Defterden aktarilan not (`W.150`):
 
-Bu sayfa, ayni kaynak ailesi icinde bu kez conduction-loss ve switching-loss tarafini ayni sayfada gormeye yarayan referans sayfa gibi duruyor. Bu nedenle yeni bir nihai proje hesabi degil; `5.6.3 Ilk kayip notlari` altinda, MOSFET kayip butcesinin iki ana kolunu ayni yerde gosteren kaynak-defter sayfasi olarak korunmalidir.
+Burada ayni kaynak ailesi icinde conduction-loss ve switching-loss tarafi ayni sayfada gorunuyor. Yeni bir nihai proje hesabi degil; `5.6.3 Ilk kayip notlari` altinda MOSFET kayip butcesinin iki ana kolunu ayni yerde gosteren bir kaynak-defter sayfasi olarak okumak daha dogru.
 
 Sayfadaki basili sekillerden guvenle okunabilen ana kisimlar sunlar:
 
@@ -6465,17 +5956,15 @@ Sayfanin en degerli tarafi su:
 - `W.147-W.149` ile `turn-on`, `Miller`, `V_{PL}` ve `V_{GS(th)}` tarafi kurulmustu
 - bu sayfa ise bu iki hattin aslinda ayni "MOSFET kayip butcesi" icinde birlikte dusunuldugunu gosteriyor
 
-Tutarlilik kontrolu:
+Burada yeni sayisal proje sonucu yok; ama conduction loss ile switching loss'un ayni kaynakta nasil ayrildigini ve baglandigini gosteriyor. Ayrica `W.145-W.146`deki `RDS(on)` okuma mantigi ile `W.147-W.149`daki gate-charge / turn-on waveform mantigini tek sayfada bulusturdugu icin degerli. Ince el notlarin bir kismi tam okunmasa da, guvenle okunan kavramsal bag gayet yeterli.
 
-- bu sayfa yeni sayisal proje sonucu vermiyor
-- ama conduction loss ile switching loss'un ayni kaynakta nasil ayrildigini ve baglandigini gosteriyor
-- ayrica `W.145-W.146`deki `RDS(on)` okuma mantigi ile `W.147-W.149`daki gate-charge / turn-on waveform mantigini tek sayfada bulusturdugu icin degerlidir
-- sayfa uzerindeki ince el notlarin bir kismi tam okunmuyor; bu nedenle burada yalnizca guvenle okunabilen kavramsal bag korunmali
-- bu nedenle `W.150`, `5.6.3 Ilk kayip notlari` altinda conduction-loss ve switching-loss kollarini ayni yerde gosteren kaynak-defter sayfasi olarak korunmalidir
+![W.150'den kucuk kirpim: conduction ve switching loss sekillerini ayni sayfada gosteren kaynak](images/defter_snippets_web/d118_w150_conduction_vs_switching_figures.jpg)
 
 Defterden aktarilan not (`W.152`):
 
-Bu sayfa, `G81` hattinda switching-loss hesabina girecek bircok ara parametreyi tek yerde toplayan toparlama sayfasi gibi duruyor. Bu nedenle yeni nihai kayip sonucu degil; `5.6.3 Ilk kayip notlari` altinda, onceki sayfalardan elde edilen buyuklukleri bir araya getirip sonraki hesap adimina hazirlayan ara defter sayfasi olarak korunmalidir.
+![W.152'den kucuk kirpim: ripple, kapasitanslar ve gate-charge giris parametrelerini ayni sayfada toplayan hesap blogu](images/defter_snippets_web/d134_w152_switching_loss_input_summary.jpg)
+
+Burada `G81` hattinda switching-loss hesabina girecek bircok ara parametre tek yerde toplanmis. Yeni nihai kayip sonucu degil; onceki sayfalardan elde edilen buyuklukleri bir araya getirip sonraki hesap adimina hazirliyor.
 
 Sayfanin ust kisminda once bobin akim dalgalanmasi tekrar yaziliyor:
 
@@ -6548,17 +6037,13 @@ Sayfadaki sayisal sonuc, okunabildigi kadariyla, yaklasik:
 Q_{gs2} \approx 1.34\,\text{nC}
 ```
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni nihai kayip sonucu vermiyor
-- ama `W.129-W.130`daki `C_{GD}`, `C_{GS}`, `C_{DS}` ve `Q_{gd}` notlarini, `W.147-W.149`daki `V_{GS(th)}` / Miller waveform sezgisiyle birlestiriyor
-- ustteki `\Delta i_L` tekrarinin da, switching-loss hesabinda kullanilacak akim seviyesini netlestirmek icin burada tutuldugu anlasiliyor
-- sag taraftaki gate-direnci ara notlarinin bir kismi tam secilemiyor; bu nedenle burada yalnizca guvenle okunan surme baglami korunmali
-- bu nedenle `W.152`, `5.6.3 Ilk kayip notlari` altinda switching-loss hesabina giris olacak parasitik, charge ve ripple buyukluklerini toplayan ara defter sayfasi olarak korunmalidir
+Bu sayfa yeni nihai kayip sonucu vermiyor; ama `W.129-W.130`daki `C_{GD}`, `C_{GS}`, `C_{DS}` ve `Q_{gd}` notlarini, `W.147-W.149`daki `V_{GS(th)}` / Miller waveform sezgisiyle birlestiriyor. Ustteki `\Delta i_L` tekrarinin da switching-loss hesabinda kullanilacak akim seviyesini netlestirmek icin burada tutuldugu anlasiliyor. Sag taraftaki gate-direnci ara notlarinin bir kismi tam secilemedigi icin guvenle okunan surme bagini korumak daha dogru.
 
 Defterden aktarilan not (`W.161`):
 
-Bu sayfa, `Q_{gd}` / Miller charge icin iki farkli bakis acisinin birbirine gore ne kadar farkli sonuc verebildigini not eden kisa bir tartisma sayfasi gibi duruyor. Bu nedenle yeni nihai sonuc sayfasi degil; `5.6.3 Ilk kayip notlari` altinda, `Q_{gd}` kestirimi icin yapilan ara teyit / sorgulama notu olarak korunmalidir.
+![W.161'den kucuk kirpim: `Qgd = Crss,ave x VDS` yaklasimi ve cok kucuk cikan Miller charge sorgulamasi](images/defter_snippets_web/d135_w161_qgd_sanity_check.jpg)
+
+Burada `Q_{gd}` / Miller charge icin iki farkli bakis acisinin birbirine gore ne kadar farkli sonuc verebildigi not ediliyor. Yeni nihai sonuc sayfasi degil; `Q_{gd}` kestirimi icin yapilan ara teyit / sorgulama notu gibi.
 
 Sayfanin ust satirinda kullanici, MOSFET'in kendi gate-charge grafiginden yaklasik bir not dusmus:
 
@@ -6588,18 +6073,15 @@ Sayfanin altindaki kullanici notlari ise, bu sonucun sezgisel olarak cok kucuk b
 - eger Miller charge gercekten kucukse:
   - `VDS` ile `IDS`'nin ayni anda ortusup kayip olusturdugu aralik da kisa olur
   - dolayisiyla switching loss daha dusuk olabilir
-- sayfanin en altinda EMI ile ilgili kisa bir not da var; ancak bu yorumun yonu burada kesinlestirilmeden yalnizca "EMI tarafina da etkisi olur" seviyesinde korunmalidir
+- sayfanin en altinda EMI ile ilgili kisa bir not da var; ancak bu yorumun yonu burada kesinlestirilmeden yalnizca "EMI tarafina da etkisi olur" seviyesinde birakmak daha dogru
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni nihai kayip sonucu vermiyor
-- ama `Q_{gd}` icin `C_{rss}\times V_{DS}` yaklasiminin, grafik/sekil sezgisiyle her zaman tam uyusmayabilecegini fark ettigini gosterdigi icin cok degerlidir
-- bu acidan, `W.129-W.130` ve `W.152`de kullanilan `Q_{gd}` kestirimlerinin daha sonra tekrar teyit edilmesi gerektigine dair dogal bir isaret sayilabilir
-- bu nedenle `W.161`, `5.6.3 Ilk kayip notlari` altinda `Q_{gd}` kestirimi icin ara kontrol ve tutarlilik sorgulama sayfasi olarak korunmalidir
+Bu sayfa yeni nihai kayip sonucu vermiyor; ama `Q_{gd}` icin `C_{rss}\times V_{DS}` yaklasiminin, grafik/sekil sezgisiyle her zaman tam uyusmayabilecegini fark ettigini gosterdigi icin degerli. Bu acidan, `W.129-W.130` ve `W.152`de kullanilan `Q_{gd}` kestirimlerinin daha sonra tekrar teyit edilmesi gerektigine dair dogal bir isaret gibi okunabilir.
 
 Defterden aktarilan not (`W.163`):
 
-Bu sayfa, MOSFET kayip hesabina giren birden fazla ara buyuklugu tek yerde tekrar toplayan ve bir kisimlarini guncelleyen toparlama sayfasi gibi duruyor. Bu nedenle yeni nihai sonuc sayfasi degil; `5.6.3 Ilk kayip notlari` altinda, gercek surme kosulu, `T_J` kestirimi ve `C_{rss}/C_{oss}/C_{gs}` uyarlamalarini ayni yerde toplayan ara defter sayfasi olarak korunmalidir.
+![W.163'ten kucuk kirpim: `Tj`, `Vdrive`, `VDS` ve revize kapasitans degerlerini ayni sayfada toparlayan ara not](images/defter_snippets_web/d136_w163_revised_tj_and_capacitances.jpg)
+
+Burada MOSFET kayip hesabina giren birden fazla ara buyukluk tek yerde tekrar toplanmis ve bir kismi guncellenmis. Yeni nihai sonuc sayfasi degil; gercek surme kosulu, `T_J` kestirimi ve `C_{rss}/C_{oss}/C_{gs}` uyarlamalarini ayni yerde topluyor.
 
 Sayfanin ust kisminda tekrar hatirlatilan temel proje sayilari sunlar:
 
@@ -6663,17 +6145,13 @@ C_{gs} = C_{iss} - C_{rss} \approx 835\,\text{pF} - 4.8\,\text{pF} \approx 830.2
 
 notu yer aliyor.
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.132`deki `T_J`, `V_{DS}`, `V_{drive}` ve gate-direnci baglamini, `W.130/W.152`deki kapasitans uyarlama notlariyla yeniden bir araya getiriyor
-- ayni zamanda `W.161`de tartisilan "neden `Q_{gd}` cok kucuk cikiyor?" sorusunun arka planinda kullanilan daha kucuk `C_{rss}` / `C_{oss}` degerlerinin de nereden geldigini gosteriyor
-- burada yazilan kapasitanslar onceki `54 pF / 783 pF / 729 pF` hattiyla birebir uyusmadigi icin bu sayfa ozel dikkat ister; muhtemelen farkli datasheet kosulu veya farkli yorum seviyesi kullanilmistir
-- bu nedenle bu sayfa yeni nihai dogru set gibi degil, "kayip hesabina giren parametreler tekrar gozden geciriliyor" seklinde okunmalidir
-- bu nedenle `W.163`, `5.6.3 Ilk kayip notlari` altinda `T_J`, gate-drive ve kapasitans parametrelerini yeniden toparlayan ve kismen revize eden ara defter sayfasi olarak korunmalidir
+Bu sayfa, `W.132`deki `T_J`, `V_{DS}`, `V_{drive}` ve gate-direnci baglamini, `W.130/W.152`deki kapasitans uyarlama notlariyla yeniden bir araya getiriyor. Ayni zamanda `W.161`de tartisilan "neden `Q_{gd}` cok kucuk cikiyor?" sorusunun arka planinda kullanilan daha kucuk `C_{rss}` / `C_{oss}` degerlerinin de nereden geldigini gosteriyor. Buradaki kapasitanslar onceki `54 pF / 783 pF / 729 pF` hattiyla birebir uyusmadigi icin bunu yeni nihai dogru set gibi degil, "kayip hesabina giren parametreler tekrar gozden geciriliyor" diye okumak daha dogru.
 
 Defterden aktarilan not (`W.190`):
 
-Bu sayfa, `W.152`de toplanan `Q_{gs2}`, `Q_{gd}`, `V_{drive}`, `V_{miller}` ve gate-yolu direncini kullanarak bu kez dogrudan `t_r` ve `t_{off}` icin zaman tahmini yapmaya calisan bir ara uygulama sayfasi gibi duruyor. Bu nedenle yeni nihai kayip sonucu degil; `5.6.3 Ilk kayip notlari` altinda, switching-loss hesabina girecek gecis surelerinin erken / alternatif bir kestirimi olarak korunmalidir.
+![W.190'dan kucuk kirpim: erken `tr` ve `toff` kestirimlerinde `Qgs2` ve `Qgd` kullanan ara hesap](images/defter_snippets_web/d137_w190_early_tr_toff_estimate.jpg)
+
+Burada `W.152`de toplanan `Q_{gs2}`, `Q_{gd}`, `V_{drive}`, `V_{miller}` ve gate-yolu direnci kullanilarak bu kez dogrudan `t_r` ve `t_{off}` icin zaman tahmini yapilmaya calisiliyor. Yeni nihai kayip sonucu degil; switching-loss hesabina girecek gecis surelerinin erken / alternatif bir kestirimi gibi.
 
 Sayfanin ust kisminda kullanici once turn-on tarafini ayiriyor:
 
@@ -6714,17 +6192,13 @@ ve benzer sekilde `Q_{gs2}`, `Q_{gd}`, `V_{miller}` ve toplam gate yolu direnci 
 t_{off} \approx 2.66\,ns
 ```
 
-Tutarlilik kontrolu:
-
-- bu sayfa cok onemli bir ara iz tasiyor; cunku `switching loss` hesabina girecek gecis zamanlarini ilk kez dogrudan hesaplamaya calisiyor
-- ancak burada bulunan `t_r \approx 3.23 ns` ve `t_{off} \approx 2.66 ns` sonuclari, daha sonra `W.153-W.154`te kullanilan `32.5 ns` ve `20.63 ns` degerleriyle belirgin bicimde celisiyor
-- bu nedenle bu sayfa, nihai kullanilan gecis zamani seti olarak degil; erken / alternatif / eksik-direncli bir ilk kestirim olarak okunmalidir
-- buna ragmen, `Q_{gs2}` ve `Q_{gd}`'yi ayri ayri zaman parcasi gibi dusunme fikri burada acikca goruldugu icin cok degerlidir
-- bu nedenle `W.190`, `5.6.3 Ilk kayip notlari` altinda switching-loss hesabina giden gecis surelerinin ilk alternatif tahmini olarak korunmalidir
+Bu sayfa onemli bir ara iz tasiyor; cunku `switching loss` hesabina girecek gecis zamanlarini ilk kez dogrudan hesaplamaya calisiyor. Ama burada bulunan `t_r \approx 3.23 ns` ve `t_{off} \approx 2.66 ns` sonuclari, daha sonra `W.153-W.154`te kullanilan `32.5 ns` ve `20.63 ns` degerleriyle belirgin bicimde celisiyor. O yuzden bunu nihai kullanilan gecis zamani seti gibi degil, erken / alternatif / eksik-direncli bir ilk kestirim gibi okumak daha dogru. Buna ragmen `Q_{gs2}` ve `Q_{gd}`'yi ayri ayri zaman parcasi gibi dusunme fikri burada acikca goruluyor.
 
 Defterden aktarilan not (`W.153`):
 
-Bu sayfa, `G81` hattinda artik dogrudan sayisal switching-loss hesabina gecildigini gosteriyor. Bu nedenle `5.6.3 Ilk kayip notlari` altinda, belirli bir `V_{in}` ve `\Delta i_L` kosulunda anahtarlama kaybini hesaplayan uygulama sayfasi olarak korunmalidir.
+![W.153'ten kucuk kirpim: `Vin = 24 V` ve `Delta iL = 2.6 A` kosulu icin switching-loss sonucu](images/defter_snippets_web/d138_w153_switching_loss_24v_result.jpg)
+
+Burada `G81` hattinda artik dogrudan sayisal switching-loss hesabina gecildigi goruluyor. `5.6.3 Ilk kayip notlari` altinda, belirli bir `V_{in}` ve `\Delta i_L` kosulunda anahtarlama kaybini hesaplayan uygulama sayfasi olarak okumak daha dogru.
 
 Sayfanin ustunde hesap kosulu net olarak yazilmis:
 
@@ -6766,16 +6240,13 @@ Sayfanin en altindaki ana sonuc da net olarak yazilmis:
 P_{switching} \approx 208.2\,mW
 ```
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.152`de toplanan ripple ve switching-zaman parametrelerinin artik dogrudan guce donusturuldugu ilk net sayfalardan biri gibi duruyor
-- burada kullanilan `I_0 \pm \Delta i_L/2` yapisi, anahtarlama anindaki minimum ve maksimum bobin akimi uzerinden iki gecisi ayri ayri dusundugunu gosteriyor
-- sonuc tek basina toplam MOSFET kaybi degil; belirli bir kosuldaki switching-loss parcasi olarak okunmalidir
-- bu nedenle `W.153`, `5.6.3 Ilk kayip notlari` altinda `V_{in}=24 V`, `\Delta i_L=2.6 A` kosulu icin switching-loss hesabi yapan uygulama sayfasi olarak korunmalidir
+Burada `W.152`de toplanan ripple ve gecis-zamani parametreleri artik dogrudan guce donusuyor. `I_0 \pm \Delta i_L/2` kullanman da iki gecisi ayri ayri dusundugunu gosteriyor. Yani bu sayfa toplam MOSFET kaybi degil, belirli bir kosuldaki switching-loss parcasi olarak okunmali.
 
 Defterden aktarilan not (`W.154`):
 
-Bu sayfa, `W.153`teki switching-loss hesabinin diger kosul icin yapilmis devami gibi duruyor. Bu nedenle `5.6.3 Ilk kayip notlari` altinda, bu kez `V_{in}=36 V` ve `\Delta i_L=3.8 A` kosulu icin anahtarlama kaybini hesaplayan uygulama sayfasi olarak korunmalidir.
+![W.154'ten kucuk kirpim: `Vin = 36 V`, `Delta iL = 3.8 A` icin switching-loss sonucu ve gecis yorumu](images/defter_snippets_web/d139_w154_switching_loss_36v_result.jpg)
+
+Burada `W.153`teki switching-loss hesabinin diger kosul icin yapilmis devami var. Ayni is bu kez `V_{in}=36 V` ve `\Delta i_L=3.8 A` icin yapiliyor.
 
 Sayfanin ustunde ana kosul not edilmis:
 
@@ -6830,21 +6301,16 @@ Sayfanin altindaki ek notlarin korunmasi gereken ana fikirleri sunlar:
 
 kullanmak daha dogru gorulmustur
 
-Sayfanin alt notlarinda ayrica su fikir de korunmali:
+Sayfanin alt notlarinda ayrica su fikir var:
 
 - verim hesabinda `t_r` ve `t_f`'in toplanabilmesi icin
 - bu iki gecisin benzer enerji katkisi yaptigi varsayimi dikkatle degerlendirilmelidir
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.153`teki `24 V / 2.6 A` kosulunun tamamlayici kardesi gibi duruyor
-- iki sayfa birlikte okununca switching-loss'un hem dusuk `V_{in}` hem yuksek `V_{in}` ucunda ayri ayri kontrol edildigi goruluyor
-- sayfadaki kutulu notlar, sayisal formulu yalnizca kopyalamadigini; enerji, gecis ve guc arasindaki iliskiyi fiziksel olarak da anlamaya calistigini gosteriyor
-- bu nedenle `W.154`, `5.6.3 Ilk kayip notlari` altinda `V_{in}=36 V`, `\Delta i_L=3.8 A` kosulu icin switching-loss hesabi ve gecis yorumu yapan uygulama sayfasi olarak korunmalidir
+`W.153` ile birlikte okununca switching-loss'un hem dusuk hem yuksek `V_{in}` ucunda ayri ayri kontrol edildigi goruluyor. Kutulu notlar da formulu sadece kopyalamadigini; enerji, gecis ve guc iliskisini kafanda oturtmaya calistigini gosterdigi icin degerli.
 
 Defterden aktarilan not (`W.155`):
 
-Bu sayfa, `G81` olarak kullandigin uygulama notunun kapak/ozet sayfasi gibi duruyor. Bu nedenle yeni bir teknik hesap sayfasi degil; `5.6.3 Ilk kayip notlari` altinda, bu kayip zincirinde kullandigin temel kaynagin kimligini ve kapsamini gosteren referans-defter sayfasi olarak korunmalidir.
+Burada `G81` olarak kullandigin uygulama notunun kapak/ozet sayfasi var. Yeni bir teknik hesap sayfasi degil; ama bu kayip zincirinde dayandigin temel kaynagi netlestiriyor.
 
 Sayfada guvenle okunabilen ana baslik sunlar:
 
@@ -6875,16 +6341,13 @@ Icindekiler listesinde de, kullanicinin defterde zaten izini surdugu basliklar a
 - `MOSFET's Vpl and Vgs(th) Estimation`
 - `Power Losses Calculation and Efficiency Estimation`
 
-Tutarlilik kontrolu:
+Bu sayfa yeni sayisal sonuc vermiyor; ama `W.124`, `W.128`, `W.149`, `W.153` ve `W.154`te kullandigin yontemin hangi TI application report'a dayandigini gayet net bagliyor. Sonraki formullerin havadan gelmedigini gostermesi acisindan da guclu.
 
-- bu sayfa yeni sayisal proje sonucu vermiyor
-- ama `W.124`, `W.128`, `W.149`, `W.153` ve `W.154`te kullandigin yontemin hangi resmi kaynaga dayandigini belgeye cok temiz sekilde bagliyor
-- bu acidan ozellikle degerli; cunku sonraki sayfalardaki formullerin "havadan gelmedigini", dogrudan belirli bir TI application report'tan iz suruldugunu gosteriyor
-- bu nedenle `W.155`, `5.6.3 Ilk kayip notlari` altinda `G81` kaynaginin kimligini ve kapsam basliklarini gosteren kaynak-referans sayfasi olarak korunmalidir
+![W.155'ten kucuk kirpim: G81 raporunun kapak ve kapsam sayfasi](images/defter_snippets_web/d111_w155_g81_title_and_scope.jpg)
 
 Defterden aktarilan not (`W.156`):
 
-Bu sayfa, `G81` application report'unun bu kez "losses calculation" bolumune giris yaptigi sayfa gibi duruyor. Bu nedenle yeni proje hesabi degil; `5.6.3 Ilk kayip notlari` altinda, toplam kayip butcesinin nasil parcandigini ve verim formunun hangi genel yapidan kuruldugunu gosteren kaynak-referans sayfasi olarak korunmalidir.
+Burada `G81` application report'unun bu kez "losses calculation" bolumune girisi goruluyor. Yeni proje hesabi degil; toplam kayip butcesinin nasil parcandigini ve verim formunun hangi genel yapidan kuruldugunu gosteriyor.
 
 Sayfanin basili basligi su sekilde okunuyor:
 
@@ -6931,16 +6394,13 @@ Bu, senin defterde daha once not ettigin:
 
 fikrinin tek bir ust verim denklemine baglandigini gosteriyor.
 
-Tutarlilik kontrolu:
+`W.155`te kaynagin genel kapsam basliklari vardi; burada ise onun tam merkezindeki iki sey, yani toplam kayip butcesi ve verim iliskisi acikca goruluyor. `W.153-W.154`teki switching-loss sayfalari ile `W.145-W.146`daki conduction-loss / `RDS(on)` dusuncesi de burada ayni cati altinda anlam kazaniyor.
 
-- bu sayfa yeni sayisal proje sonucu vermiyor
-- ama `W.155`te kaynagin genel kapsam basliklari vardi; burada ise o kapsamin tam merkezindeki iki ana ifade, yani toplam kayip butcesi ve verim iliskisi acikca goruluyor
-- `W.153-W.154`te hesaplanan switching-loss sayfalari ile `W.145-W.146`daki conduction-loss / `RDS(on)` dusuncesi, bu sayfadaki toplam kayip denkleminde ayni cati altinda anlam kazaniyor
-- bu nedenle `W.156`, `5.6.3 Ilk kayip notlari` altinda `G81` kaynaginin toplam kayip ve verim omurgasini gosteren referans-defter sayfasi olarak korunmalidir
+![W.156'dan kucuk kirpim: toplam kayip butcesi ve verim formulu](images/defter_snippets_web/d112_w156_power_loss_budget_formula.jpg)
 
 Defterden aktarilan not (`W.134`):
 
-Bu sayfa, sayisal kayip hesabi yapmaktan cok "MOSFET'i nasil dusunmeye basladim?" sorusuna cevap veren erken bir kavramsal not gibi duruyor. Bu nedenle proje-ozel nihai sonuc sayfasi degil; MOSFET'in gerilim kontrollu bir eleman gibi sezgisel olarak nasil modellendigini gosteren temel defter sayfasi olarak korunmalidir.
+Burasi, sayisal kayip hesabi yapmaktan cok "MOSFET'i nasil dusunmeye basladim?" sorusuna cevap veren erken bir kavramsal not. Proje-ozel nihai sonuc sayfasi degil; MOSFET'in gerilim kontrollu bir eleman gibi sezgisel olarak nasil modellendigini gosteren temel bir defter sayfasi.
 
 ![W.134'ten secilen el yazisi parca: degisken direnç, MOSFET/BJT ve geri besleme sezgisi](images/defter_snippets_web/d04_w134_regulation_concept_sketch.jpg)
 
@@ -6966,16 +6426,11 @@ Sayfanin son cümlesi de bu sezgiyi cok net toparliyor:
 - `Vin` `9 V` ile `16 V` arasinda degisse bile
 - "benim `5 V` cikisim sabit"
 
-Tutarlilik kontrolu:
-
-- bu sayfa, buck konvertörün nihai topolojisini anlatan sayfa degil; daha cok kullanicinin ilk bakista regülasyonu "ayarlanabilir direnç" sezgisiyle dusunmeye basladigini gosteriyor
-- bu nedenle burada yazilanlar, MOSFET'in lineer bolgede bir kontrol elemani gibi dusunulebildigini gosteren egitsel / kavramsal not olarak ele alinmalidir
-- sayfa yeni sayisal proje sonucu vermese de tasarim surecini gostermek acisindan cok degerlidir; cunku sonradan switch-mode dusunceye gecmeden once regülasyon fikrinin nasil kuruldugunu ortaya koyar
-- bu nedenle `W.134`, `5.6.2 Secim mantigi` altinda MOSFET'i gerilim kontrollu degisken direnç gibi dusunen erken kavramsal defter sayfasi olarak korunmalidir
+Bu sayfa, buck konvertörün nihai topolojisini anlatmiyor; daha cok regülasyonu ilk bakista "ayarlanabilir direnç" sezgisiyle kurdugun yeri gosteriyor. Yeni sayisal sonuc vermese de tasarim surecini gostermesi acisindan degerli; cunku switch-mode dusunceye gecmeden once kafadaki ilk model bu.
 
 Defterden aktarilan not (`W.135`):
 
-Bu sayfa da `W.134` ile ayni erken kavramsal hatta duruyor; ancak bu kez odak, lineer regülatör benzeri bir yapinin neden verimsiz oldugunu sezgisel olarak gostermek. Bu nedenle proje-ozel nihai tasarim hesabi degil; switch-mode yaklasima neden ihtiyac duyuldugunu aciklayan temel bir verim notu olarak korunmalidir.
+Bu not da `W.134` ile ayni erken kavramsal hatta duruyor; ancak bu kez odak, lineer regülatör benzeri bir yapinin neden verimsiz oldugunu sezgisel olarak gostermek. Proje-ozel nihai tasarim hesabi degil; switch-mode yaklasima neden ihtiyac duyuldugunu aciklayan temel bir verim notu.
 
 ![W.135'ten secilen el yazisi parca: lineer regulator verim siniri ve eta = Vout/Vin sezgisi](images/defter_snippets_web/d05_w135_linear_efficiency_note.jpg)
 
@@ -7019,12 +6474,7 @@ Sayfanin alt kisminda da bu fikir daha genel bir cümleyle toparlaniyor:
 - kucuk bir aleti yansitmak/duzenlemek icin giristeki enerjinin neredeyse tamamini cikisa ulastirmak istiyoruz
 - peki bunu nasil yapabiliriz?
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni buck komponent hesabi vermiyor
-- ama `W.134`teki "MOSFET'i degisken direnç gibi dusunme" sezgisinden sonra, neden yalnizca lineer calismanin yeterli olmadigini ve neden verim dusuncesinin on plana ciktigini acikliyor
-- bu nedenle sayfa, tasarim surecinde "regülasyon" dusuncesinden "verimli regülasyon" dusuncesine gecisi gosterdigi icin degerlidir
-- bu nedenle `W.135`, `5.6.2 Secim mantigi` altinda lineer regülatör verim sinirini anlatan erken kavramsal defter sayfasi olarak korunmalidir
+Bu sayfa yeni buck komponent hesabi vermiyor; ama `W.134`ten sonra neden yalnizca lineer dusunmenin yetmedigini, neden verim tarafina gecmek zorunda kaldigini guzel bagliyor. Yani "regülasyon" dusuncesinden "verimli regülasyon" dusuncesine gecis burada netlesiyor.
 
 
 
@@ -7052,7 +6502,7 @@ Bu da secilen frekansin ve secilen MOSFET'in birlikte degerlendirilmesi gerektig
 
 Defterden aktarilan not (`W.118`):
 
-Bu sayfa kisa ve bir miktar silik; ancak ana fikri enerji ile gucun iliskisini hatirlatan bir kayip notu gibi gorunuyor. Sayfanin alt satirinda acikca su hatirlatma yazilmis:
+Bu not kisa ve bir miktar silik; ama ana fikir enerji ile gucun iliskisini hatirlatan bir kayip notu. Sayfanin alt satirinda acikca su hatirlatma yazilmis:
 
 ```text
 Joule = Watt x saniye
@@ -7066,15 +6516,13 @@ E_{sw} \sim \left(\frac{V_{DS}\,I_D}{2}\right) t_{sw}
 
 Sayfada ayrica `Vout`, `Cout` ve `saniye` ifadeleri birlikte geciyor; bu da enerji veya gucun zamanla iliskisini kurmaya calistigini gosteriyor.
 
-Tutarlilik kontrolu:
+Bu sayfa tam okunur bir nihai hesap sayfasi degil; daha cok enerji birimi ile ortalama guc arasindaki iliskiyi hatirlatan kisa bir not gibi. Burada asil korunacak fikir de bu: anahtarlama olaylarinda once enerji dusunuluyor, sonra frekansla ortalama guce geciliyor.
 
-- bu sayfa tam okunur bir nihai hesap sayfasi degil; daha cok enerji birimi ve anahtarlama kaybi sezgisini hatirlatan kisa bir defter notu gibi duruyor
-- bu nedenle burada yalnizca guvenle okunan ana fikir korunmali: anahtarlama olaylarinda once enerji dusunulur, sonra bunun tekrar frekansiyla ortalama guce gecilir
-- bu nedenle `W.118`, `5.6.3 Ilk kayip notlari` altinda enerji-per-olay / guc iliskisini hatirlatan kisa bir destek notu olarak korunmalidir
+![W.118'den kucuk kirpim: Joule, Watt ve sure iliskisini hatirlatan not](images/defter_snippets_web/d120_w118_energy_to_power_note.jpg)
 
 Defterden aktarilan not (`W.119`):
 
-Bu sayfa, TI'nin `MOSFET power losses and how they affect power-supply efficiency` baslikli kaynak makalesinin uzerine alinmis not gibi duruyor. Bu nedenle projeye ozel tekil hesap sayfasi olmaktan cok, kayip butcesinin hangi ana kalemlerden olustugunu hatirlatan kaynak-not sayfasi olarak korunmalidir.
+Burada TI'nin `MOSFET power losses and how they affect power-supply efficiency` baslikli kaynak makalesinin uzerine alinmis not var. Projeye ozel tekil hesap sayfasi olmaktan cok, kayip butcesinin hangi ana kalemlerden olustugunu hatirlatan bir kaynak notu.
 
 Sayfadaki basili figürler ve el yazisi notlardan korunacak ana fikirler sunlar:
 
@@ -7094,15 +6542,15 @@ Kullanici notu da bu sayfada su yone cikiyor:
 - eger `100 W` civari cikis gucunde toplam kayip `10 W` seviyesinde ise
 - verim yaklasik `%90` mertebesine gelir
 
-Tutarlilik kontrolu:
+![W.119'dan kucuk kirpim: kayip kategorilerini ve verim baglantisini gosteren kaynak sayfa](images/defter_snippets_web/d121_w119_loss_article_and_contributors.jpg)
 
-- bu sayfa, `5.6.3` altindaki ilk kayip tahminlerinin yalnizca "iki MOSFET formulu"nden ibaret olmadigini; daha genis bir kayip butcesine oturtulmasi gerektigini hatirlatiyor
-- burada yeni sayisal nihai sonuc yok; ama kayiplarin verimle dogrudan baglantisini ve kayip siniflarinin ayrilmasi gerektigini gosterdigi icin degerlidir
-- bu nedenle `W.119`, MOSFET kayiplarinin verim ve toplam kayip butcesi icindeki yerini gosteren kaynak-not sayfasi olarak korunmalidir
+Bu sayfa, `5.6.3` altindaki ilk kayip tahminlerinin yalnizca "iki MOSFET formulu"nden ibaret olmadigini; daha genis bir kayip butcesine oturtulmasi gerektigini hatirlatiyor. Yeni sayisal nihai sonuc yok, ama kayiplarin verimle dogrudan baglantisini ve kayip siniflarinin ayri ayri dusunulmesi gerektigini gostermesi acisindan guclu.
 
 Defterden aktarilan not (`W.191`):
 
-Bu sayfa, secilen MOSFET icin ilk dogrudan `conduction loss` uygulama sayfasi gibi duruyor. `W.145-W.146`da secim mantigi ve sicakliga gore duzeltilmis `R_{DS(on)}` tarafi kurulmustu; burada ise bu bilgi artik yuk akimi, duty ve bobin akim dalgalanmasi ile birlestirilerek high-side iletim kaybi hesaplanmaya baslaniyor. Bu nedenle `5.6.3 Ilk kayip notlari` altinda, secilen MOSFET icin ilk somut iletim kaybi uygulamasi olarak korunmalidir.
+![W.191'den kucuk kirpim: high-side conduction loss hesabinda iki kosulun sonuc kutulari](images/defter_snippets_web/d140_w191_hs_conduction_loss_results.jpg)
+
+Burasi, secilen MOSFET icin ilk dogrudan `conduction loss` uygulama sayfasi. `W.145-W.146`da secim mantigi ve sicakliga gore duzeltilmis `R_{DS(on)}` tarafi kurulmustu; burada ise bu bilgi artik yuk akimi, duty ve bobin akim dalgalanmasi ile birlestirilerek high-side iletim kaybi hesaplanmaya baslaniyor.
 
 Sayfanin ust kisminda, iletim kaybinin fiziksel tanimi kendi cümlelerinle tekrar kuruluyor:
 
@@ -7183,16 +6631,13 @@ ve sayfadaki sonuc:
 P_{HS,\;cond} \approx 963.5\,mW
 ```
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `R_{DS(on)}` secim mantigini artik dogrudan guce donusturdugu icin cok degerlidir
-- `V_{in}=24\,V` kosulunda duty buyudugu icin high-side iletim kaybinin arttigi burada acikca goruluyor
-- formuldaki `1+\frac{1}{12}(\Delta I/I_0)^2` carpani, bobin akim dalgalanmasinin RMS akimi biraz yukselttigini hesaba kattigini gosteriyor
-- bu nedenle `W.191`, `5.6.3 Ilk kayip notlari` altinda secilen MOSFET'in high-side iletim kaybini iki farkli giris kosulunda hesaplayan uygulama sayfasi olarak korunmalidir
+Bu sayfa, `R_{DS(on)}` secim mantigini artik dogrudan guce donusturdugu icin cok degerli. `V_{in}=24\,V` kosulunda duty buyudugu icin high-side iletim kaybinin arttigi burada acikca goruluyor. Formuldaki `1+\frac{1}{12}(\Delta I/I_0)^2` carpani da bobin akim dalgalanmasinin RMS akimi biraz yukselttigini hesaba kattigini gosteriyor.
 
 Defterden aktarilan not (`W.192`):
 
-Bu sayfa, `W.191`de baslayan iletim kaybi hesabinin bu kez low-side MOSFET icin yazilmis devam sayfasi gibi duruyor. Bu nedenle `5.6.3 Ilk kayip notlari` altinda, secilen MOSFET icin low-side iletim kaybini iki farkli giris kosulunda hesaplayan tamamlayici uygulama sayfasi olarak korunmalidir.
+![W.192'den kucuk kirpim: low-side conduction loss hesabinda iki kosulun sonuc bloklari](images/defter_snippets_web/d141_w192_ls_conduction_loss_results.jpg)
+
+Burada `W.191`de baslayan iletim kaybi hesabinin bu kez low-side MOSFET icin yazilmis devami var.
 
 Sayfanin basliginda acikca:
 
@@ -7258,16 +6703,13 @@ ve sayfadaki sonuc:
 P_{LS,\;cond} \approx 0.688\,W
 ```
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.191` ile birlikte okununca high-side ve low-side iletim kayiplarinin duty'ye gore nasil bolustugunu netlestiriyor
-- `V_{in}=36\,V` kosulunda `D` kucuk oldugu icin `1-D` buyuyor ve low-side iletim kaybi artiyor
-- buna karsilik `V_{in}=24\,V` kosulunda high-side kaybi artarken low-side kaybi azaliyor
-- bu nedenle `W.192`, `5.6.3 Ilk kayip notlari` altinda secilen MOSFET'in low-side iletim kaybini iki farkli giris kosulunda hesaplayan tamamlayici uygulama sayfasi olarak korunmalidir
+Bu sayfa, `W.191` ile birlikte okununca high-side ve low-side iletim kayiplarinin duty'ye gore nasil bolustugunu netlestiriyor. `V_{in}=36\,V` kosulunda `D` kucuk oldugu icin `1-D` buyuyor ve low-side iletim kaybi artiyor; buna karsilik `V_{in}=24\,V` kosulunda high-side kaybi artarken low-side kaybi azaliyor.
 
 Defterden aktarilan not (`W.193`):
 
-Bu sayfa, iletim kayiplarindan sonra bu kez `gate-drive loss` koluna gectigini cok net gosteriyor. Bu nedenle `5.6.3 Ilk kayip notlari` altinda, MOSFET kayip butcesinin ucuncu ana kolu olan gate-surme kaybini hesaplayan uygulama sayfasi olarak korunmalidir.
+![W.193'ten kucuk kirpim: gate-drive loss formulu ve toplam iki MOSFET sonucu](images/defter_snippets_web/d142_w193_gate_drive_loss_results.jpg)
+
+Bu sayfa, iletim kayiplarindan sonra bu kez `gate-drive loss` koluna gectigini cok net gosteriyor.
 
 Sayfanin ustunde enerji-guc iliskisi tekrar not edilmis:
 
@@ -7313,23 +6755,20 @@ P_{gate-drive,\;total}
 
 sonucuna gidildigi goruluyor.
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `R_{DS(on)}` tabanli iletim kayiplarindan ve `t_r/t_f` tabanli switching kayiplarindan ayri olarak, gate'i surmek icin de bir guc harcandigini netlestiriyor
-- `Q_g`, `V_{drive}` ve `f_{sw}` ucgeni bu projede neden birlikte dusunulmesi gerektigini cok iyi gosteren bir sayfa
-- low-side icin de ayni kaybin yazilmasi, toplam MOSFET gate-drive kaybinin iki cihaz uzerinden toplanacagini gosterdigi icin yerinde
-- bu nedenle `W.193`, `5.6.3 Ilk kayip notlari` altinda toplam gate-drive kaybini hesaplayan uygulama sayfasi olarak korunmalidir
+Bu sayfa, `R_{DS(on)}` tabanli iletim kayiplarindan ve `t_r/t_f` tabanli switching kayiplarindan ayri olarak, gate'i surmek icin de bir guc harcandigini netlestiriyor. `Q_g`, `V_{drive}` ve `f_{sw}` ucgeni bu projede neden birlikte dusunulmesi gerektigini cok iyi gosteriyor. Low-side icin de ayni kaybin yazilmasi, toplam MOSFET gate-drive kaybinin iki cihaz uzerinden toplanacagini gosterdigi icin yerinde.
 
 Defterden aktarilan not (`W.194`):
 
-Bu sayfa, `W.193`te hesaplanan `gate-drive loss` ifadesinin fiziksel yorumunu ve bu kaybin gate yolu direncinden neden ayri dusunulmesi gerektigini aciklayan kisa bir devam sayfasi gibi duruyor. Bu nedenle yeni bir sayisal kayip sonucu degil; `5.6.3 Ilk kayip notlari` altinda, gate-drive kaybinin fiziksel anlamini ve gate yolu direnci secimini toparlayan uygulama-notu sayfasi olarak korunmalidir.
+![W.194'ten kucuk kirpim: gate-drive kaybinin fiziksel anlami ve gate direnci secimine dair kisa notlar](images/defter_snippets_web/d143_w194_gate_drive_physical_note.jpg)
+
+Burada `W.193`te hesaplanan `gate-drive loss` ifadesinin fiziksel yorumu ve bu kaybin gate yolu direncinden neden ayri dusunulmesi gerektigi toparlaniyor. Yeni bir sayisal kayip sonucu yok; daha cok fiziksel yorumu bir araya getiriyor.
 
 Sayfanin ustundeki ana dikkat notu su yone cikiyor:
 
 - gate surucusunun harcadigi enerji, MOSFET gate kapasitörlerini sarj etmek icin akan akimla ilgilidir
 - bu enerji akisi nedeniyle gate yolundaki direncler uzerinde de isi olusur
 
-Kullanici burada onemli bir fiziksel ayrim yapiyor gibi gorunuyor:
+Kullanici burada onemli bir fiziksel ayrim yapiyor:
 
 - gate-drive loss'un ana kaynagi, gate kapasitanslarina her periyotta enerji yuklenip bosaltilmasidir
 - direncler uzerindeki enerji, bu ayni surecin dagilim kanallarindan biridir
@@ -7367,16 +6806,13 @@ Sayfanin altindaki kullanici notu, konuya pratik bir tasarim karari olarak yakla
 - termal olarak daha guvenli olmak istenebilir
 - ancak bu durumda PCB, layout, sogutma ve diger kayiplar birlikte dusunulmelidir
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni bir `mW` sonucu vermiyor
-- ama `W.193`teki gate-drive loss hesabinin "yalnizca formül" olmadigini; gate kapasitansi, gate yolu direnci ve `dv/dt` karari ile birlikte okunmasi gerektigini gosteriyor
-- `R_{g,ext}=2.2\,\Omega` notunun tekrar gecmesi, bu degerin proje kararlarinda merkezi oldugunu gosteriyor
-- bu nedenle `W.194`, `5.6.3 Ilk kayip notlari` altinda gate-drive kaybinin fiziksel yorumunu ve gate yolu direnci kararini toparlayan uygulama-notu sayfasi olarak korunmalidir
+Burada yeni bir `mW` sonucu yok. Ama `W.193`teki gate-drive loss hesabinin "yalnizca formül" olmadigini; gate kapasitansi, gate yolu direnci ve `dv/dt` karari ile birlikte okunmasi gerektigini gosteriyor. `R_{g,ext}=2.2\,\Omega` notunun tekrar gecmesi de bu degerin proje kararlarinda merkezi oldugunu gosteriyor.
 
 Defterden aktarilan not (`W.195`):
 
-Bu sayfa, `other losses` basligi altinda bu kez MOSFET'lerin `output capacitance loss` / `C_{oss}` kaybina gecildigini gosteriyor. Bu nedenle `5.6.3 Ilk kayip notlari` altinda, gate-drive kaybinden sonra gelen yeni kayip kalemi olarak `C_{oss}` tabanli kayip notu / ara hesap sayfasi olarak korunmalidir.
+![W.195'ten kucuk kirpim: `Coss,HS,ave` ve `Coss,LS,ave` ortalama degerlerini veren ara hesap blogu](images/defter_snippets_web/d144_w195_coss_average_values.jpg)
+
+Burada `other losses` basligi altinda bu kez MOSFET'lerin `output capacitance loss` / `C_{oss}` kaybina gecildigi goruluyor.
 
 Sayfanin ustunde acikca:
 
@@ -7431,16 +6867,13 @@ Sayfanin altindaki notlarin en degerli yani, kullanicinin bu kayip kolunda nomin
 - uygulama notundaki kaba degerleri dogrudan almak yerine
 - proje kosuluna gore kendi `C_{oss,ave}` degerlerini kullanmak daha dogrudur
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni bir nihai `mW` sonucu vermiyor; ama `C_{oss}` kaybi icin kullanilacak ortalama kapasite degerlerini proje kosuluna tasiyor
-- `C_{oss,HS,\;ave} \approx 783\,pF` ve `C_{oss,LS,\;ave} \approx 982.8\,pF` notlari, sonraki `C_{oss}` kayip hesabinin temel girdileri gibi duruyor
-- low-side MOSFET icin `V_{DS,OFF}`'u ayri dusunmesi, kullanicinin iki cihazin ayni kapasite gibi ele alinmamasi gerektigini fark ettigini gosteriyor
-- bu nedenle `W.195`, `5.6.3 Ilk kayip notlari` altinda `C_{oss}` kaybi icin gerekli ortalama kapasite degerlerini proje kosuluna gore hazirlayan ara uygulama sayfasi olarak korunmalidir
+Bu sayfa yeni bir nihai `mW` sonucu vermiyor; ama `C_{oss}` kaybi icin kullanilacak ortalama kapasite degerlerini proje kosuluna tasiyor. `C_{oss,HS,\;ave} \approx 783\,pF` ve `C_{oss,LS,\;ave} \approx 982.8\,pF` notlari sonraki `C_{oss}` kayip hesabinin temel girdileri gibi duruyor. Low-side MOSFET icin `V_{DS,OFF}`'u ayri dusunmesi de iki cihazin ayni kapasite gibi ele alinmamasi gerektigini fark ettigini gosteriyor.
 
 Defterden aktarilan not (`W.196`):
 
-Bu sayfa, `W.195`te bulunan `C_{oss,ave}` degerlerini bu kez once esdeger yuk / sarj gibi yorumlayip, sonra da guce donusturen devam sayfasi gibi duruyor. Bu nedenle `5.6.3 Ilk kayip notlari` altinda, `C_{oss}` kaybini high-side ve low-side MOSFET icin sayisal olarak hesaplayan uygulama sayfasi olarak korunmalidir.
+![W.196'dan kucuk kirpim: `Qoss` ve high-side/low-side `Coss` kayip guclerini veren sonuc bloklari](images/defter_snippets_web/d145_w196_coss_power_results.jpg)
+
+Burada `W.195`te bulunan `C_{oss,ave}` degerleri bu kez once esdeger yuk / sarj gibi yorumlanip sonra da guce donusturuluyor.
 
 Sayfanin ustunde once `Q_{oss}` icin temel iliski yaziliyor:
 
@@ -7506,23 +6939,20 @@ P_{LS,Coss}
 82.15\,mW
 ```
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.195`teki ortalama `C_{oss}` degerlerini artik dogrudan kayip gucune cevirdigi icin cok degerli bir devam sayfasidir
-- iki MOSFET icin farkli `Q_{oss}` bulunmasi, low-side ve high-side'in ayni kapasite / ayni gerilimle ele alinmadigini gosteriyor
-- sonuclar buyukluk mertebesi olarak makul gorunuyor ve `other losses` kolunun ihmal edilmemesi gerektigini destekliyor
-- bu nedenle `W.196`, `5.6.3 Ilk kayip notlari` altinda `C_{oss}` kaybini high-side ve low-side MOSFET icin sayisal olarak hesaplayan uygulama sayfasi olarak korunmalidir
+Bu sayfa, `W.195`teki ortalama `C_{oss}` degerlerini artik dogrudan kayip gucune cevirdigi icin degerli bir devam sayfasi. Iki MOSFET icin farkli `Q_{oss}` bulunmasi, low-side ve high-side'in ayni kapasite / ayni gerilimle ele alinmadigini gosteriyor. Sonuclar da buyukluk mertebesi olarak makul gorunuyor; yani `other losses` kolunu ihmal etmemek gerektigini destekliyor.
 
 Defterden aktarilan not (`W.197`):
 
-Bu sayfa, `W.196`da high-side ve low-side icin ayri ayri bulunan `C_{oss}` kayiplarini bu kez tek bir toplam ifade altinda yeniden yazan / teyit eden devam sayfasi gibi duruyor. Bu nedenle yeni bagimsiz bir kayip kolu degil; `5.6.3 Ilk kayip notlari` altinda, `C_{oss}` kaybinin toplam ifadesini ve enerji-terimli yorumunu veren toplama / teyit sayfasi olarak korunmalidir.
+![W.197'den kucuk kirpim: toplam `Pcoss` ifadesi ve `185 mW` teyit sonucu](images/defter_snippets_web/d146_w197_total_coss_loss_result.jpg)
+
+Burada `W.196`da high-side ve low-side icin ayri ayri bulunan `C_{oss}` kayiplari bu kez tek bir toplam ifade altinda yeniden yazilip teyit ediliyor. Yeni bagimsiz bir kayip kolu degil; daha cok toplama ve teyit sayfasi.
 
 Sayfanin ustunde once bir onceki sayfadan gelen ara sonuclar hatirlatiliyor:
 
 - `P_{HS,Coss} \approx 102.9\,mW`
 - `P_{LS,Coss} \approx 82.1\,mW`
 
-Ardindan kullanici, uygulama notundaki daha toplu bir ifadeyi not ediyor gibi gorunuyor:
+Ardindan kullanici, uygulama notundaki daha toplu bir ifadeyi not ediyor:
 
 ```math
 P_{Coss}
@@ -7588,16 +7018,13 @@ P_{Coss,\;total} \approx 185\,mW
 
 olarak kutulanmis.
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.196`daki iki ayri sonucu toplam bir `P_{Coss}` ifadesiyle yeniden yazdigi icin cok iyi bir teyit sayfasidir
-- bulunan `185\,mW` sonucu, `102.9\,mW + 82.1\,mW \approx 185\,mW` toplamina da yakin oldugu icin, iki farkli yazim biciminin ayni buyukluk mertebesine gittigini gosterir
-- enerji terimlerindeki notasyon tam yer yer silik olsa da, kullanicinin `Q_{oss}` ile `E_{oss}` arasindaki iliskiyi de acikca kurmaya calistigi goruluyor
-- bu nedenle `W.197`, `5.6.3 Ilk kayip notlari` altinda toplam `C_{oss}` kaybini tek ifade altinda toplayan teyit / toplama sayfasi olarak korunmalidir
+Bu sayfa, `W.196`daki iki ayri sonucu toplam bir `P_{Coss}` ifadesiyle yeniden yazdigi icin iyi bir teyit sayfasi. Bulunan `185\,mW` sonucu, `102.9\,mW + 82.1\,mW \approx 185\,mW` toplamina da yakin; yani iki farkli yazim biciminin ayni buyukluk mertebesine gittigi goruluyor. Enerji terimlerindeki notasyon yer yer silik olsa da, `Q_{oss}` ile `E_{oss}` arasindaki iliskiyi de acikca kurmaya calistigin belli.
 
 Defterden aktarilan not (`W.198`):
 
-Bu sayfa, `W.197`de bulunan toplam `C_{oss}` kaybini bu kez hem `LM` tarafindaki denklemle hem de fiziksel enerji akisi yorumuyla tekrar teyit eden kisa bir kontrol sayfasi gibi duruyor. Bu nedenle yeni bagimsiz bir hesap sayfasi degil; `5.6.3 Ilk kayip notlari` altinda, `C_{oss}` kaybinin dogru toplandigini ve fiziksel anlaminin anlasildigini gosteren yorum / teyit sayfasi olarak korunmalidir.
+![W.198'den kucuk kirpim: `Pcoss = 185 mW` teyidi ve `Eoss1/Eoss2` fiziksel yorum notu](images/defter_snippets_web/d147_w198_coss_physical_interpretation.jpg)
+
+Burada `W.197`de bulunan toplam `C_{oss}` kaybi bu kez hem `LM` tarafindaki denklemle hem de fiziksel enerji akisi yorumuyla tekrar teyit ediliyor. Yeni bagimsiz bir hesap sayfasi degil; daha cok yorum ve teyit sayfasi.
 
 Sayfanin ustunde acik bir teyit notu yer aliyor:
 
@@ -7638,21 +7065,18 @@ Kullanicinin son notu da onemli:
 
 Yani burada sadece sayisal toplama degil, uygulama notundaki daha derin fiziksel ifadenin de neden kullanildigi anlasilmaya calisiliyor.
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni bir `mW` sonucu vermiyor
-- ama `185 mW` sonucunun hem parcali toplamla hem de `LM` denklem yorumu ile uyumlu oldugunu gosterdigi icin cok degerli
-- ayrica kullanicinin `C_{oss}` kaybini sadece ezber formulle degil, enerji depolama / bosaltma dengesi olarak anlamaya calistigini gosteriyor
-- bu nedenle `W.198`, `5.6.3 Ilk kayip notlari` altinda toplam `C_{oss}` kaybini hem sayisal hem fiziksel olarak teyit eden yorum sayfasi olarak korunmalidir
+Burada yeni bir `mW` sonucu cikmiyor; ama `185 mW` sonucunun hem parcali toplamla hem de `LM` denklem yorumu ile uyumlu oldugu goruluyor. `C_{oss}` kaybini ezber formulle degil, enerji depolama / bosaltma dengesi olarak dusunmeye calisman da burada net.
 
 Defterden aktarilan not (`W.199`):
 
-Bu sayfa, `other losses` basligi altinda `C_{oss}` kaybindan sonra bu kez iki yeni kayip kalemine gectigini gosteriyor:
+![W.199'dan kucuk kirpim: `PRR` ve dead-time loss hesaplarini ayni sayfada gosteren sonuc blogu](images/defter_snippets_web/d148_w199_rr_and_deadtime_losses.jpg)
+
+Burada `other losses` basligi altinda `C_{oss}` kaybindan sonra bu kez iki yeni kayip kalemine geciliyor:
 
 1. `body diode reverse recovery`
 2. `body diode dead-time loss`
 
-Bu nedenle `5.6.3 Ilk kayip notlari` altinda, MOSFET'in govde diyoduna bagli ek kayiplari toplayan uygulama sayfasi olarak korunmalidir.
+Yani bu noktada govde diyoduna bagli ek kayiplara geciyorsun.
 
 Sayfanin ust kutusunda once `reverse recovery` tarafi yaziliyor. Okunabildigi kadariyla temel iliski su yone cikiyor:
 
@@ -7707,16 +7131,13 @@ Sayfadaki kutulu sonuc, okunabildigi kadariyla:
 P_{dead} \approx 130\,mW
 ```
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `C_{oss}` kaybindan farkli olarak bu kez body-diode ile iliskili iki ek kaybi ayri ayri dusundugunu gosteriyor
-- `P_{RR}` sonucu tam sayisal olarak biraz bulaniktir; bu nedenle en guvenli korunacak sey buyukluk mertebesi ve formdur
-- `P_{dead}` tarafinda ise kullanilan `V_F`, `t_{dr}`, `t_{df}` ve kutulu `130 mW` sonucu daha net gorunmektedir
-- bu nedenle `W.199`, `5.6.3 Ilk kayip notlari` altinda body diode reverse-recovery ve dead-time kayiplarini toplayan uygulama sayfasi olarak korunmalidir
+Burada `C_{oss}` kaybindan farkli olarak body-diode ile iliskili iki ek kaybi ayri ayri dusundugun goruluyor. `P_{RR}` sonucu tam sayisal olarak biraz bulanik; o yuzden en guvenli sey buyukluk mertebesi ve formu korumak. `P_{dead}` tarafinda ise `V_F`, `t_{dr}`, `t_{df}` ve kutulu `130 mW` sonucu daha net.
 
 Defterden aktarilan not (`W.200`):
 
-Bu sayfa, `other losses` zincirinde MOSFET'e bagli kalemlerden sonra bu kez kontrolcü / yardimci devre tuketimi ve diger kalan kayip kalemlerine not dusen bir toplama sayfasi gibi duruyor. Bu nedenle yeni nihai verim sonucu degil; `5.6.3 Ilk kayip notlari` altinda, kontrolcu guc tuketimi ve sonraya birakilan kayip kalemlerini gosteren ara not sayfasi olarak korunmalidir.
+![W.200'den kucuk kirpim: `PIC = 64.8 mW` notu ve sonraya birakilan kayip kalemleri listesi](images/defter_snippets_web/d149_w200_pic_and_todo_losses.jpg)
+
+Burada `other losses` zincirinde MOSFET'e bagli kalemlerden sonra kontrolcu / yardimci devre tuketimi ve kalan kayip kalemlerine not dusuluyor. Yeni nihai verim sonucu degil; daha cok durum notu.
 
 Sayfanin ustunde once LM5146'nin kendi calisma akimindan dogan kayip hesaplanmis. Okunabildigi kadariyla iliski su:
 
@@ -7762,18 +7183,13 @@ Sayfanin alt kisminda ayrica, sonra ele alinacak baska kayip kalemleri de kisa l
 - `inductor losses calculation`
 - `input and output capacitor losses / ESR`
 
-Yani bu sayfa, kayip butcesinin artik neredeyse tamamlandigini ama hala tamamlanacak alt kalemler oldugunu gosteren bir durum sayfasi gibi de okunabilir.
+Yani burada kayip butcesinin artik neredeyse tamamlandigi ama hala tamamlanacak alt kalemler oldugu goruluyor.
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni bir toplam verim sonucu vermiyor
-- ama `P_{IC} \approx 64.8\,mW` gibi kontrolcunun kendi tuketimini kayip butcesine dahil ettigini gosterdigi icin onemli
-- daha da onemlisi, `R_{sense}`, bobin ve kapasitör/ESR kayiplarinin o asamada henuz "sonra yapilacaklar" listesinde oldugunu acikca gostermesi
-- bu nedenle `W.200`, `5.6.3 Ilk kayip notlari` altinda kontrolcu tuketimi ve kalan kayip kalemlerini not eden ara toplama sayfasi olarak korunmalidir
+Burada yeni bir toplam verim sonucu yok. Ama `P_{IC} \approx 64.8\,mW` ile kontrolcunun kendi tuketimini de kayip butcesine kattigin goruluyor. Daha onemlisi, `R_{sense}`, bobin ve kapasitör/ESR kayiplarinin o asamada hala "sonra yapilacaklar" listesinde oldugunu acikca gostermesi.
 
 Defterden aktarilan not (`W.124`):
 
-Bu sayfa, dogrudan yeni bir kayip hesabi yapan sayfadan cok, `G81` ve `G90` kaynaklarinin nasil birlikte kullanildigina dair bir metodoloji / iz notu gibi duruyor. Bu nedenle proje-ozel nihai sayisal sonuc sayfasi gibi degil, "hangi denklem hangi kaynaktan alinacak?" sorusuna verilmis kisa bir defter cevabi olarak korunmalidir.
+Burada dogrudan yeni bir kayip hesabi yok; daha cok `G81` ve `G90` kaynaklarinin nasil birlikte kullanildigina dair bir metodoloji notu var. Yani "hangi denklem hangi kaynaktan alinacak?" sorusuna verilmis kisa bir defter cevabi gibi.
 
 Sayfada guvenle okunabilen ana notlar sunlar:
 
@@ -7788,16 +7204,13 @@ Sayfada guvenle okunabilen ana notlar sunlar:
 - sayfada bu fikir cok kisa su sekilde ozetlenmis:
   - `Yani denklem G81'den, sekil G90'dan`
 
-Tutarlilik kontrolu:
+Bu sayfa nihai kayip sonuclari veren bir hesap sayfasi degil. Degeri, kayip analizi yaparken tek kaynaga koru korune baglanmadigini; denklem ve fiziksel yorum icin farkli kaynaklari eslestirdigini gostermesi. Ozellikle `G81` ve `G90` arasindaki bu ayrim, ileride kayip hesap zinciri gozden gecirilirken hangi adimin hangi kaynaga dayandigini anlamak icin faydali.
 
-- bu sayfa nihai kayip sonuclari veren bir hesap sayfasi degil
-- bunun degeri, kullanicinin kayip analizi yaparken tek kaynaga koru korune baglanmadigini; denklem ve fiziksel yorum icin farkli kaynaklari eslestirdigini gostermesidir
-- ozellikle `G81` ve `G90` arasindaki bu ayrim, ileride kayip hesap zinciri gozden gecirilirken hangi adimin hangi kaynaga dayandigini anlamak icin faydalidir
-- bu nedenle `W.124`, `5.6.3 Ilk kayip notlari` altinda kaynak-kullanim mantigini gosteren bir metodoloji notu olarak korunmalidir
+![W.124'ten kucuk kirpim: denklem G81'den, sekil G90'dan notu](images/defter_snippets_web/d119_w124_methodology_note_g81_g90.jpg)
 
 Defterden aktarilan not (`W.128`):
 
-Bu sayfa, `W.124`te not edilen `G81` yonteminin gercekten uygulanmaya baslandigi ilk ciddi parametre-cikarma sayfasi gibi duruyor. Sayfanin konusu dogrudan nihai kayip sonucu degil; `transfer characteristic` egirisinden hareketle MOSFET icin yaklasik `V_{GS(th)}` ve `Miller plateau` gerilimini bulmaya calismaktir. Bu nedenle `5.6.3 Ilk kayip notlari` altinda, kayip hesabinda kullanilacak MOSFET parametrelerinin nasil turetildigini gosteren kaynak-uygulama sayfasi olarak korunmalidir.
+Burada `W.124`te not edilen `G81` yonteminin gercekten uygulanmaya baslandigi ilk ciddi parametre-cikarma sayfasi var. Konu dogrudan nihai kayip sonucu degil; `transfer characteristic` egrisinden hareketle MOSFET icin yaklasik `V_{GS(th)}` ve `Miller plateau` gerilimini bulmaya calismak.
 
 Sayfada once klasik kare-kanun yaklasimi yaziliyor:
 
@@ -7851,7 +7264,7 @@ V_{PL}
 \sqrt{\frac{I_D}{K_n}} + V_{GS(th)}
 ```
 
-Sayfadaki sayisal sonuc burada tam net olmasa da, yazim `4.95 V` ile `6 V` bandinda bir ara degeri hedefliyor gibi gorunuyor; bu nedenle burada kesin rakamdan cok yontemin kendisi korunmalidir.
+Sayfadaki sayisal sonuc burada tam net olmasa da, yazim `4.95 V` ile `6 V` bandinda bir ara degeri hedefliyor gibi gorunuyor; burada asil alinacak sey kesin rakamdan cok yontemin kendisi.
 
 Sayfanin alt kisminda ayrica sicaklik duzeltmesi notu var:
 
@@ -7860,16 +7273,13 @@ Sayfanin alt kisminda ayrica sicaklik duzeltmesi notu var:
   - `-8.5 mV / ^\circ C`
 - buna gore `25 ^\circ C` datasheet degerinden sicaklik kaynakli kayma ayrica not edilmis
 
-Tutarlilik kontrolu:
+![W.128'den kucuk kirpim: G81 yontemiyle Vth, Kn ve Vpl cikarma adimlari](images/defter_snippets_web/d122_w128_vth_kn_vpl_extraction.jpg)
 
-- bu sayfa, `G81` yonteminin "denklem G81'den" kismini gercekten uygulamaya gecirdigini gosterdigi icin cok degerlidir
-- burada uretilen `V_{GS(th)}`, `K_n` ve `V_{PL}` degerleri, daha sonra switching-loss veya plateau-voltage tabanli hesaplarda kullanilmis olabilir; bu bag ileride baska sayfalar geldikce daha net eslestirilmelidir
-- `V_{PL}` sayisal sonucu bu sayfada tam net okunmadigi icin, belgeye kesin rakam gibi degil, yontem ve buyukluk mertebesi olarak yansitmak daha dogrudur
-- bu nedenle `W.128`, `5.6.3 Ilk kayip notlari` altinda `G81` tabanli MOSFET parametre-cikarma sayfasi olarak korunmalidir
+Bu sayfa, `G81` yonteminin "denklem G81'den" kismini gercekten uygulamaya gecirdigini gosterdigi icin degerli. Burada uretilen `V_{GS(th)}`, `K_n` ve `V_{PL}` degerleri daha sonra switching-loss veya plateau-voltage tabanli hesaplarda kullanilmis olabilir; ama `V_{PL}` sayisal sonucu tam net okunmadigi icin burada kesin rakamdan cok yontem ve buyukluk mertebesini korumak daha dogru.
 
 Defterden aktarilan not (`W.173`):
 
-Bu sayfa, `V_{GS(th)}` ve `Miller plateau` gerilimini hesaplarken hangi datasheet bilgisinin kullanilmasi gerektigi konusunda bir yontem uyarisi gibi duruyor. Bu nedenle yeni nihai proje sonucu degil; `5.6.3 Ilk kayip notlari` altinda, `W.128`te baslayan `V_{GS(th)}` / `V_{PL}` hesabina dair bir sorgulama ve metodoloji notu olarak korunmalidir.
+Bu sayfa, `V_{GS(th)}` ve `Miller plateau` gerilimini hesaplarken hangi datasheet bilgisinin kullanilmasi gerektigi konusunda bir yontem uyarisina donusuyor. Yeni nihai proje sonucu degil; `W.128`te baslayan `V_{GS(th)}` / `V_{PL}` hesabina dair sorgulama notu gibi.
 
 Sayfanin basliginda acikca:
 
@@ -7910,18 +7320,15 @@ Sayfada ayrica:
 
 notu yer aliyor.
 
+![W.173'ten kucuk kirpim: small-signal gfs ile Miller/Vth hesaplamasina dusulen metodoloji uyarisi](images/defter_snippets_web/d123_w173_small_signal_warning.jpg)
+
 Bu da, `V_{GS(th)}` ve `Miller plateau` yorumunun yalnizca basit cebirle degil; turn-on dalga sekli ve interval mantigiyla birlikte dusunulmesi gerektigi mesajini guclendiriyor.
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni bir sayisal sonuc vermiyor
-- ama cok degerli bir seyi gosteriyor: kullanici `W.128`teki parametre-cikarma akisini koru korune kabul etmemis; hangi datasheet buyuklugunun bu is icin uygun olup olmadigini ayrica sorgulamis
-- bu acidan `W.173`, `W.128`deki `V_{GS(th)}` / `K_n` / `V_{PL}` hesabina metodolojik bir fren ve dikkat notu ekliyor
-- bu nedenle `W.173`, `5.6.3 Ilk kayip notlari` altinda `V_{GS(th)}` ve `Miller plateau` hesabinda small-signal / large-signal ayrimini hatirlatan metodoloji notu olarak korunmalidir
+Burada yeni bir sayisal sonuc yok; ama daha onemli bir sey var: `W.128`teki parametre-cikarma akisini koru korune kabul etmemissin. Hangi datasheet buyuklugunun bu is icin uygun oldugunu ayri bir kez sorgulaman, `W.128`deki `V_{GS(th)}` / `K_n` / `V_{PL}` hattina metodolojik bir fren koyuyor.
 
 Defterden aktarilan not (`W.174`):
 
-Bu sayfa, `W.173`teki metodoloji uyarisindan sonra ayni `G88` hattinda daha somut bir `V_{GS(th)}` / `V_{GS,miller}` uygulamasi gibi duruyor. Bu nedenle yeni nihai proje sonucu degil; `5.6.3 Ilk kayip notlari` altinda, datasheet'teki yuksek sicaklik egrisinden `V_{TH}`, `K` ve `V_{GS,miller}` turetmeye calisan bir ara uygulama sayfasi olarak korunmalidir.
+Bu sayfa, `W.173`teki metodoloji uyarisindan sonra ayni `G88` hattinda daha somut bir `V_{GS(th)}` / `V_{GS,miller}` uygulamasi gibi duruyor. Yeni nihai proje sonucu degil; datasheet'teki yuksek sicaklik egrisinden `V_{TH}`, `K` ve `V_{GS,miller}` turetmeye calisan bir ara uygulama gibi.
 
 Sayfanin ust kisminda kullanici, `150^\circ C` egrisi uzerinden iki nokta okuyarak ilerliyor. Okunabildigi kadariyla secilen iki nokta sunlar:
 
@@ -8004,16 +7411,13 @@ Son satirlarda da buna gore duzeltilmis buyuklukler not edilmis:
 - `V_{TH} \approx 3.51 V`
 - `V_{GS,miller} \approx 4.76 V`
 
-Tutarlilik kontrolu:
+![W.174'ten kucuk kirpim: yuksek sicaklik egrisinden Vth ve Miller gerilimi cikarma notu](images/defter_snippets_web/d124_w174_high_temp_vth_miller_calc.jpg)
 
-- bu sayfa, `W.128`teki genel `V_{TH}` / `K` / `V_{PL}` akisini bu kez secilen iki nokta ve sicaklik duzeltmesiyle daha somut hale getiriyor
-- burada yapilan duzeltme, kullanilan egrinin `150^\circ C` olmasi ile gercek calisma sicakliginin farkli olmasi arasinda bilincli bir kopru kuruyor
-- yine de bu sayfadaki katsayilar ve son degerler, ileride hangi datasheet egri ailesinin kullanildigi teyit edilerek tekrar gozden gecirilmelidir
-- bu nedenle `W.174`, `5.6.3 Ilk kayip notlari` altinda `V_{TH}`, `K` ve `V_{GS,miller}` icin sicaklik duzeltilmis ara uygulama sayfasi olarak korunmalidir
+Bu sayfa, `W.128`teki genel `V_{TH}` / `K` / `V_{PL}` akisini secilen iki nokta ve sicaklik duzeltmesiyle daha somut hale getiriyor. Kullanilan egrinin `150^\circ C` olmasi ile gercek calisma sicakliginin farkli olmasi arasinda bilincli bir kopru kurulmus. Yine de katsayilar ve son degerler, hangi datasheet egri ailesinin kullanildigi teyit edilerek tekrar gozden gecirilmeli.
 
 Defterden aktarilan not (`W.175`):
 
-Bu sayfa, `W.174`teki ayni `G88` metodunu bu kez farkli bir datasheet egri secimi ve farkli iki nokta ile tekrar uygulayan alternatif bir ara hesap gibi duruyor. Bu nedenle yeni nihai proje sonucu degil; `5.6.3 Ilk kayip notlari` altinda, `V_{TH}`, `K` ve `V_{GS,miller}` icin ikinci bir nokta-secimi / sicaklik-duzeltme denemesi olarak korunmalidir.
+Bu sayfa, `W.174`teki ayni `G88` metodunu bu kez farkli bir datasheet egri secimi ve farkli iki nokta ile tekrar uygulayan alternatif bir ara hesap gibi duruyor. Yeni nihai proje sonucu degil; `V_{TH}`, `K` ve `V_{GS,miller}` icin ikinci bir nokta-secimi / sicaklik-duzeltme denemesi gibi.
 
 Sayfanin ust kismina yazilan not, kullanicinin secilen MOSFET'in ilgili `I_D - V_{GS}` egrisinden iki nokta belirledigini gosteriyor. Okunabildigi kadariyla secilen noktalar sunlar:
 
@@ -8086,15 +7490,13 @@ Son satirlarda buna gore duzeltilmis degerler not edilmis:
 - `V_{TH,adj} \approx 2.471 V`
 - `V_{GS,miller,adj} \approx 3.1585 V`
 
-Tutarlilik kontrolu:
+![W.175'ten kucuk kirpim: alternatif nokta secimiyle Vth ve VGS,miller hesabı](images/defter_snippets_web/d125_w175_alt_point_selection_and_temp_adjust.jpg)
 
-- bu sayfa, `W.174` ile ayni buyuklukleri hedefliyor ama farkli egri / farkli nokta secimi yuzunden belirgin bicimde farkli `V_{TH}` ve `V_{GS,miller}` degerleri uretiyor
-- bu fark cok degerli; cunku bu parametrelerin nokta secimine ve hangi sicaklik egrisinden okunduguna hassas oldugunu acikca gosteriyor
-- bu nedenle `W.175`, `5.6.3 Ilk kayip notlari` altinda `V_{TH}` ve `V_{GS,miller}` icin alternatif nokta-secimiyle yapilmis ikinci ara uygulama sayfasi olarak korunmalidir
+Bu sayfa, `W.174` ile ayni buyuklukleri hedefliyor ama farkli egri / farkli nokta secimi yuzunden belirgin bicimde farkli `V_{TH}` ve `V_{GS,miller}` degerleri uretiyor. Bu fark da degerli; cunku bu parametrelerin nokta secimine ve hangi sicaklik egrisinden okunduguna hassas oldugunu acikca gosteriyor.
 
 Defterden aktarilan not (`W.129`):
 
-Bu sayfa, `G88` hattinda gate-charge parametrelerini projedeki gercek surme kosuluna uyarlamaya calisan bir ara sayfa gibi duruyor. Bu nedenle dogrudan nihai kayip sonucu degil; switching-loss hesabinda kullanilacak `Q_g`, `Q_{GS}` ve `Q_{GD}` buyukluklerinin nasil secildigini gosteren kaynak-uygulama notu olarak korunmalidir.
+Bu sayfa, `G88` hattinda gate-charge parametrelerini projedeki gercek surme kosuluna uyarlamaya calisan bir ara sayfa gibi duruyor. Dogrudan nihai kayip sonucu degil; switching-loss hesabinda kullanilacak `Q_g`, `Q_{GS}` ve `Q_{GD}` buyukluklerinin nasil secildigini gosteriyor.
 
 Sayfanin ust kisminda datasheet'ten okunan tipik gate-charge notlari var:
 
@@ -8136,16 +7538,13 @@ Sayfanin en altinda kisa bir not daha var:
 - `Qgs2` benzeri bir bileşen icin hesap devam edecek
 - yanina da "G81'de bak" benzeri bir kaynak yonlendirmesi dusulmus
 
-Tutarlilik kontrolu:
+![W.129'dan kucuk kirpim: Qg guncellemesi ve Qgd yaklasik 1.2 nC notu](images/defter_snippets_web/d128_w129_qg_update_and_qgd_estimate.jpg)
 
-- bu sayfa cok degerli; cunku datasheet'teki `Qg(total)` degerinin her zaman dogrudan kullanilmadigini, projedeki gercek `VGS` ve `VDS` kosuluna gore yeniden yorumlandigini gosteriyor
-- ayni zamanda `Q_{GD}` icin kaba `C_{GD} \times V_{DS}` yaklasimini not ederek, switching kaybinin hangi yuk bolgesinde / plateau araliginda sekillendigine dair iz birakiyor
-- burada `Q_g(total) = 10 nC` ve `Q_{GD} \approx 1.2 nC` gibi degerler, ileride diger kayip sayfalariyla eslestirilerek tekrar teyit edilmelidir
-- bu nedenle `W.129`, `5.6.3 Ilk kayip notlari` altinda gate-charge parametrelerini proje kosuluna uyarlayan ara sayfa olarak korunmalidir
+Bu sayfa cok degerli; cunku datasheet'teki `Qg(total)` degerinin her zaman dogrudan kullanilmadigini, projedeki gercek `VGS` ve `VDS` kosuluna gore yeniden yorumlandigini gosteriyor. `Q_{GD}` icin kaba `C_{GD} \times V_{DS}` yaklasimini not etmen de switching kaybinin hangi yuk bolgesinde / plateau araliginda sekillendigine dair iyi bir iz birakiyor. Buradaki `Q_g(total) = 10 nC` ve `Q_{GD} \approx 1.2 nC` gibi degerler de diger kayip sayfalariyla birlikte tekrar teyit edilmeli.
 
 Defterden aktarilan not (`W.164`):
 
-Bu sayfa, `G88 Gate Charge` hattinda daha kavramsal bir toparlama notu gibi duruyor. Bu nedenle dogrudan nihai kayip sonucu degil; `5.6.3 Ilk kayip notlari` altinda, `Q_g`'nin neden onemli oldugunu ve neden basit `Q = C\cdot V` sezgisiyle sinirli kalmamasi gerektigini anlatan destek sayfasi olarak korunmalidir.
+Bu sayfa, `G88 Gate Charge` hattinda daha kavramsal bir toparlama notu gibi duruyor. Dogrudan nihai kayip sonucu degil; `Q_g`'nin neden onemli oldugunu ve neden basit `Q = C\cdot V` sezgisiyle sinirli kalmamasi gerektigini anlatiyor.
 
 Sayfanin ust kisminda kullanici su ana fikri not ediyor:
 
@@ -8185,12 +7584,9 @@ ve son satirdaki kisa not:
 
 Sayfanin ana mesajini iyi ozetliyor.
 
-Tutarlilik kontrolu:
+![W.164'ten kucuk kirpim: Qg'nin sabit tablo sayisi degil, grafikten okunmasi gerektigi notu](images/defter_snippets_web/d129_w164_qg_graph_not_constant_table_value.jpg)
 
-- bu sayfa yeni sayisal proje sonucu vermiyor
-- ama `W.129`daki `Qg(total)` uyarlamasinin arkasindaki muhendislik mantigini acikliyor: gate charge, sabit bir tek sayi degil; gercek surme gerilimine gore grafikten okunmali
-- `Q_g \approx 12.2 nC` notu, `W.129`daki `10 nC` ve `W.161`deki `8 nC` civari notlarla birlikte daha sonra tekrar karsilastirilmasi gereken bir ara aday olarak gorulmelidir
-- bu nedenle `W.164`, `5.6.3 Ilk kayip notlari` altinda gate-charge yorumu ve `Qg`'yi grafikten okuma gerekliligini anlatan destek defter sayfasi olarak korunmalidir
+Burada yeni bir sayisal proje sonucu yok; ama `W.129`daki `Qg(total)` uyarlamasinin arkasindaki muhendislik mantigini acikliyor: gate charge sabit bir tek sayi degil, gercek surme gerilimine gore grafikten okunmali. `Q_g \approx 12.2 nC` notu da `W.129`daki `10 nC` ve `W.161`deki `8 nC` civari notlarla birlikte daha sonra tekrar karsilastirilmasi gereken bir ara aday gibi duruyor.
 
 ![Gate-charge egirisi uzerinden Qg okuma mantigini gosteren ekran goruntusu](images/foto_selected/p28_gate_charge_curve.jpg)
 
@@ -8202,7 +7598,7 @@ Ikinci ekran goruntusu ise bu okumanin projedeki gercek surucu kosuluna tasindig
 
 Defterden aktarilan not (`W.130`):
 
-Bu sayfa, `G88` kaynagindan gelen MOSFET kapasitans verilerini projedeki ortalama `V_{DS}` kosuluna donusturmeye calisan bir ara sayfa gibi duruyor. Bu nedenle dogrudan nihai kayip sonucu degil; `C_{GD}`, `C_{GS}` ve `C_{DS}` gibi parasitiklerin projede hangi buyukluk mertebesinde alinacagini gosteren kaynak-uygulama notu olarak korunmalidir.
+Bu sayfa, `G88` kaynagindan gelen MOSFET kapasitans verilerini projedeki ortalama `V_{DS}` kosuluna donusturmeye calisan bir ara sayfa gibi duruyor. Dogrudan nihai kayip sonucu degil; `C_{GD}`, `C_{GS}` ve `C_{DS}` gibi parasitiklerin projede hangi buyukluk mertebesinde alinacagini gosteriyor.
 
 Sayfanin ust kisminda datasheet kosullarinda okunan tipik kapasitanslar not edilmis:
 
@@ -8266,12 +7662,9 @@ C_{GS} \approx C_{iss} - C_{rss} \approx 1300\,\text{pF} - 18\,\text{pF} \approx
 C_{DS} \approx C_{oss,ave} - C_{rss,ave} \approx 783\,\text{pF} - 54\,\text{pF} \approx 729\,\text{pF}
 ```
 
-Tutarlilik kontrolu:
+![W.130'dan kucuk kirpim: Ciss, Coss, Crss'ten Cgd, Cgs ve Cds turetimi](images/defter_snippets_web/d130_w130_ciss_coss_crss_to_cgd_cgs_cds.jpg)
 
-- bu sayfa, `W.129`da kullanilan `C_{GD} \approx 54 pF` notunun kokenini aciklar gibi duruyor; bu acidan cok degerlidir
-- burada kullanilan `2*C*sqrt(Vspec/Vave)` tipi donusum, saf temel denklemden cok uygulama-notu / yaklasik datasheet yorumlama kurali gibi gorunuyor; bu nedenle sonuc dogrudan fizik kanunu gibi degil, tasarim yaklasimi olarak ele alinmalidir
-- buna ragmen sayfa cok faydali; cunku kayip hesabinda kullanilan kapasitanslarin rasgele degil, belirli bir `VDS` seviyesine uyarlandigi goruluyor
-- bu nedenle `W.130`, `5.6.3 Ilk kayip notlari` altinda MOSFET parasitik kapasitanslarini proje kosuluna tasiyan ara sayfa olarak korunmalidir
+Bu sayfa, `W.129`da kullanilan `C_{GD} \approx 54 pF` notunun kokenini aciklar gibi duruyor; bu acidan guclu. Burada kullanilan `2*C*sqrt(Vspec/Vave)` tipi donusum saf temel denklemden cok uygulama-notu / yaklasik datasheet yorumlama kurali gibi; o yuzden sonucu fizik kanunu gibi degil, tasarim yaklasimi olarak okumak daha dogru. Buna ragmen kayip hesabinda kullanilan kapasitanslarin rastgele degil, belirli bir `VDS` seviyesine uyarlandigi net goruluyor.
 
 ![MOSFET Ciss-Coss-Crss egirilerinin VDS'e gore degisimini gosteren ekran goruntusu](images/foto_selected/p29_mosfet_capacitance_vs_vds.jpg)
 
@@ -8281,7 +7674,9 @@ Tutarlilik kontrolu:
 
 Defterden aktarilan not (`W.165`):
 
-Bu sayfa, yine `G88` hattinda ama bu kez farkli bir datasheet kapasitans setiyle ayni soruyu tekrar sormaya calisan bir ara sayfa gibi duruyor: "MOSFET datasheet'inde verilen `C_{iss}`, `C_{oss}` ve `C_{rss}` degerlerini, devredeki gercek `off-state` `V_{DS}` kosuluna nasil tasirim?" Bu nedenle dogrudan nihai proje sonucu degil; `5.6.3 Ilk kayip notlari` altinda, MOSFET parasitik kapasitanslarinin tekrar gozden gecirildigi bir `G88` kaynak-uygulama sayfasi olarak korunmalidir.
+![W.165'ten kucuk kirpim: `VDS,off` seviyesine gore `Ciss/Coss/Crss` degerlerini revize eden hesap blogu](images/defter_snippets_web/d131_w165_caps_revision_from_38v.jpg)
+
+Bu sayfa, yine `G88` hattinda ama bu kez farkli bir datasheet kapasitans setiyle ayni soruyu tekrar sormaya calisan bir ara sayfa gibi duruyor: "MOSFET datasheet'inde verilen `C_{iss}`, `C_{oss}` ve `C_{rss}` degerlerini, devredeki gercek `off-state` `V_{DS}` kosuluna nasil tasirim?" Yani burada kapasitans seti bir kez daha gozden geciriliyor.
 
 Sayfanin ust kisminda kullanici once uygulama kosullarini toparliyor. Okunabildigi kadariyla ana fikirler sunlar:
 
@@ -8330,16 +7725,13 @@ Ayri bir satirda da `C_{oss,ave}` icin yaklasik:
 
 gibi bir sonuc not edilmis gorunuyor. Bu degerler, datasheet'teki sabit tablo degerinden cok, grafik / calisma noktasi uyarlamasi mantigiyla alinmis ara buyuklukler gibi duruyor.
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.130` ile ayni tur problemi tekrar cozmeye calisiyor; dolayisiyla ikisi birlikte okunmali, ama birbirinin otomatik "dogrusu" gibi alinmamalidir
-- `W.130`daki `54 pF / 783 pF / 729 pF` hattiyla bu sayfadaki `134 pF / 368 pF / 2260 pF` hattinin ayni anda birebir dogru olmasi zor gorunuyor; buyuk olasilikla burada farkli MOSFET, farkli datasheet noktasi veya farkli yorum yontemi devreye girmis
-- buna ragmen sayfa cok degerlidir; cunku kullanicinin parasitikleri rastgele secmedigini, once datasheet kosulunu sonra gercek `V_{DS(off)}` kosulunu dusunerek yeniden yorumladigini gosterir
-- bu nedenle `W.165`, `5.6.3 Ilk kayip notlari` altinda kapasitans setinin tekrar sorgulandigi / revize edildigi `G88` kaynak-uygulama sayfasi olarak korunmalidir
+Bu sayfa, `W.130` ile ayni tur problemi tekrar cozuyor; dolayisiyla ikisi birlikte okunmali ama birbirinin otomatik "dogrusu" gibi alinmamali. `W.130`daki `54 pF / 783 pF / 729 pF` hattiyla bu sayfadaki `134 pF / 368 pF / 2260 pF` hattinin ayni anda birebir dogru olmasi zor; buyuk olasilikla farkli datasheet noktasi ya da farkli yorum yontemi devreye girmis. Buna ragmen parasitikleri rastgele secmedigini, once datasheet kosulunu sonra gercek `V_{DS(off)}` kosulunu dusunerek yeniden yorumladigin net.
 
 Defterden aktarilan not (`W.132`):
 
-Bu sayfa, `G88` tabanli MOSFET kayip hesabinda kullanilacak calisma noktasi ve surucu-direnci parametrelerini bir araya toplayan kisa bir ara sayfa gibi duruyor. Bu nedenle dogrudan nihai kayip sonucu degil; `G88` hesabina giris olacak sayilarin ve isim eslestirmelerinin not edildigi bir kaynak-uygulama sayfasi olarak korunmalidir.
+![W.132'den kucuk kirpim: `Tj`, `Id`, `VDS`, `Vdrive` ve gate-yolu direnclerini toplayan giris parametreleri](images/defter_snippets_web/d132_w132_g88_inputs_and_charge_values.jpg)
+
+Bu sayfa, `G88` tabanli MOSFET kayip hesabinda kullanilacak calisma noktasi ve surucu-direnci parametrelerini bir araya toplayan kisa bir ara sayfa gibi duruyor. Dogrudan nihai kayip sonucu degil; `G88` hesabina giris olacak sayilarin ve isim eslestirmelerinin not edildigi bir ara toplama sayfasi gibi.
 
 Sayfanin ust yarisinda, hesapta kullanilacak temel proje sayilari tekrar listelenmis:
 
@@ -8372,16 +7764,13 @@ Sayfanin en altinda da kisa bir hatirlatma var:
 - `Dikkat`
 - `R_HI = R_{HO-up} = 1.5 \Omega` unutulmamali
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni formulle yeni kayip sonucu uretmiyor
-- ama `G88` hesabinda kullanilacak `T_J`, `I_D`, `V_{DS}`, `V_{drive}` ve gate-direnci aginin nereden geldigini gosterdigi icin cok degerlidir
-- ozellikle `R_HI / R_LO` ile kontrolcu datasheet'indeki `pull-up / pull-down` surucu direnclerinin eslestirilmesi, daha sonra switching-loss hesabinda karisiklik olusmamasi icin onemlidir
-- bu nedenle `W.132`, `5.6.3 Ilk kayip notlari` altinda `G88` hesabina giris parametrelerini toplayan ara sayfa olarak korunmalidir
+Bu sayfa yeni formulle yeni kayip sonucu uretmiyor; ama `G88` hesabinda kullanilacak `T_J`, `I_D`, `V_{DS}`, `V_{drive}` ve gate-direnci aginin nereden geldigini gosterdigi icin degerli. Ozellikle `R_HI / R_LO` ile kontrolcu datasheet'indeki `pull-up / pull-down` surucu direnclerinin eslestirilmesi, daha sonra switching-loss hesabinda karisiklik olusmamasi icin onemli.
 
 Defterden aktarilan not (`W.177`):
 
-Bu sayfa, `G88` hattinda switching-loss hesabina girecek toplam gate-yolu direncini daha acik bicimde toplayan bir ara sayfa gibi duruyor. Bu nedenle yeni nihai kayip sonucu degil; `5.6.3 Ilk kayip notlari` altinda, `R_{total}` gate direncinin hangi bilesenlerden olustugunu gosteren uygulama-notu sayfasi olarak korunmalidir.
+![W.177'den kucuk kirpim: `Rtotal = Rdriver + Rg,ext + Rg,int` toplamini ve `2.2 ohm` sonucunu veren not](images/defter_snippets_web/d133_w177_total_gate_resistance.jpg)
+
+Bu sayfa, `G88` hattinda switching-loss hesabina girecek toplam gate-yolu direncini daha acik bicimde toplayan bir ara sayfa gibi duruyor. Yeni nihai kayip sonucu degil; `R_{total}` gate direncinin hangi bilesenlerden olustugunu gosteriyor.
 
 Sayfanin ust kisminda toplam gate yolu direnci su sekilde yazilmis:
 
@@ -8431,11 +7820,7 @@ Sayfanin altinda kullanici bu toplam direncin hangi konularda kullanildigini da 
 
 Yani bu sayfa, gate yolundaki etkili direncin yalnizca bir parca secim detayi degil; dogrudan gecis hizi ve kayip hesabi girdisi oldugunu hatirlatiyor.
 
-Tutarlilik kontrolu:
-
-- bu sayfa cok onemli bir ayirim getiriyor: burada `2.2 \Omega`, fiziksel olarak tek bir "harici gate direnci" gibi degil; `R_{driver} + R_{g,external} + R_{g,internal}` toplami olarak kuruluyor
-- bu durum, `W.132`de daha kaba okunmus olabilecek "`R_{gate,ext} = 2.2 \Omega`" yorumunun daha sonra yeniden gozden gecirilmesi gerektigini dusundurur
-- bu nedenle `W.177`, `5.6.3 Ilk kayip notlari` altinda gate yolunun toplam etkili direncini ve bu konudaki olasi yorum farkini gosteren ara defter sayfasi olarak korunmalidir
+Bu sayfa onemli bir ayirim getiriyor: burada `2.2 \Omega`, fiziksel olarak tek bir "harici gate direnci" gibi degil; `R_{driver} + R_{g,external} + R_{g,internal}` toplami olarak kuruluyor. Bu da `W.132`de daha kaba okunmus olabilecek "`R_{gate,ext} = 2.2 \Omega`" yorumunun daha sonra yeniden gozden gecirilmesi gerektigini dusunduruyor.
 
 
 
@@ -8447,7 +7832,7 @@ Yerel kaynaklar icinde MOSFET current rating yorumuna dair onemli bir not da bul
 
 
 
-Bu nedenle son raporda su ilke korunmalidir:
+Bu nedenle son raporda su ilke acik kalmali:
 
 - MOSFET'in datasheet continuous current degeri dogrudan yeterlilik kaniti olarak kullanilmayacak
 
@@ -8461,7 +7846,7 @@ Bu gorsel, `W.108-W.110` hattinda tekrar tekrar vurgulanan exposed pad gercegini
 
 Defterden aktarilan not (`W.107`):
 
-Bu sayfa, TI'nin `Understanding MOSFET Data Sheets, Part 6 - Thermal Impedance` makalesinin ilk sayfasi uzerine alinmis not gibi duruyor. Bu nedenle proje-ozel hesap sayfasindan cok, MOSFET datasheet yorumunu dogru zemine oturtan bir kaynak-not sayfasi olarak korunmali.
+Bu sayfa, TI'nin `Understanding MOSFET Data Sheets, Part 6 - Thermal Impedance` makalesinin ilk sayfasi uzerine alinmis not gibi duruyor. Proje-ozel hesap sayfasindan cok, MOSFET datasheet yorumunu dogru zemine oturtan bir kaynak notu gibi okunmali.
 
 Sayfada alti cizilmis ana teknik fikir su:
 
@@ -8475,16 +7860,14 @@ Sayfada altta kullanicinin not ettigi temel termal iliski sunlar:
 T_J = T_A + P_D \cdot R_{\theta JA}
 ```
 
-ve yan notta su dusunce korunmali:
+ve yan notta su dusunce one cikiyor:
 
 - `R_{theta JA}` ve kart yapisi, MOSFET'in gercekte ne kadar akim tasiyabilecegini belirleyen temel unsurlardandir
 - bu nedenle datasheet'teki "continuous current" degeri, paket / PCB / sogutma varsayimlari disinda tek basina yorumlanmamalidir
 
-Tutarlilik kontrolu:
+![W.107'den kucuk kirpim: termal empedans makalesi ustune Tj notu](images/defter_snippets_web/d107_w107_thermal_impedance_article_and_tj.jpg)
 
-- bu sayfa, `5.6.4` altindaki "datasheet current rating dogrudan yeterlilik kaniti degildir" ilkesini guclu bir kaynakla destekliyor
-- burada henuz proje-ozel `T_J` hesabi yapilmiyor; ama sonraki kayip hesabinin nasil termal limite baglanmasi gerektigini dogru sekilde hatirlatiyor
-- bu nedenle `W.107`, MOSFET secimi bolumunde termal yorumun kaynagini gosteren degerli bir defter / kaynak-not sayfasi olarak korunmalidir
+Bu sayfa, `5.6.4` altindaki "datasheet current rating dogrudan yeterlilik kaniti degildir" ilkesini guclu bir kaynakla destekliyor. Burada henuz proje-ozel `T_J` hesabi yok; ama sonraki kayip hesabinin nasil termal limite baglanmasi gerektigini dogru yerde hatirlatiyor.
 
 Defterden aktarilan not (`W.109`):
 
@@ -8508,11 +7891,9 @@ Sayfadaki sekil, kabaca su ayrimi destekliyor:
 - junction -> package top -> ambient yolu
 - junction -> package bottom / exposed pad -> PCB -> ambient yolu
 
-Tutarlilik kontrolu:
+![W.109'dan kucuk kirpim: RthJA esdeger agi ve isaretlenmis termal yol](images/defter_snippets_web/d108_w109_rthja_network_marked.jpg)
 
-- bu sayfa, `W.107`deki `T_J = T_A + P_D \cdot R_{\theta JA}` iliskisinin neden dikkatle yorumlanmasi gerektigini cok iyi acikliyor
-- yani ayni guc kaybinda bile `T_J`, yalnizca cihazin kendisine degil PCB yerlestirisine ve isi dagitma yapisina da baglidir
-- bu nedenle `W.109`, `5.6.4 Thermal ve datasheet yorumu acisindan dikkatler` altinda `R_{\theta JA}`'nin fiziksel anlamini gosteren kaynak-not sayfasi olarak korunmalidir
+Bu sayfa, `W.107`deki `T_J = T_A + P_D \cdot R_{\theta JA}` iliskisinin neden dikkatle yorumlanmasi gerektigini cok iyi acikliyor. Yani ayni guc kaybinda bile `T_J`, yalnizca cihazin kendisine degil PCB yerlestirisine ve isi dagitma yapisina da bagli.
 
 Defterden aktarilan not (`W.110`):
 
@@ -8529,11 +7910,9 @@ Sayfadaki basili notlardan korunacak ana fikirler:
 - altindaki bakir alan arttikca isi dagitma iyilesir ve `R_{\theta JA}` degisir
 - exposed pad ve PCB alani, termal performansin temel belirleyicilerindendir
 
-Tutarlilik kontrolu:
+![W.110'dan kucuk kirpim: olcum kurulumu ve PCB alanina gore RthJA degisimi](images/defter_snippets_web/d109_w110_measurement_setup_and_layout_effect.jpg)
 
-- bu sayfa, `W.109`daki "termal yol PCB'ye baglidir" fikrini gorsel ve deneysel bir baglamla guclendiriyor
-- yani termal hesapta datasheet'teki `R_{\theta JA}` degerini koru korune almak yerine, kullanilan paket ve kart yerlesimiyle birlikte yorumlamak gerekir
-- bu nedenle `W.110`, `5.6.4 Thermal ve datasheet yorumu acisindan dikkatler` altinda olcum kosullarinin `R_{\theta JA}` sonucunu nasil degistirdigini gosteren kaynak-not sayfasi olarak korunmalidir
+Bu sayfa, `W.109`daki "termal yol PCB'ye baglidir" fikrini gorsel ve deneysel bir baglamla guclendiriyor. Yani termal hesapta datasheet'teki `R_{\theta JA}` degerini koru korune almak yerine, kullanilan paket ve kart yerlesimiyle birlikte yorumlamak gerekiyor.
 
 Defterden aktarilan not (`W.117`):
 
@@ -8564,11 +7943,9 @@ Yani kullanici burada acikca su ayrimi not ediyor:
 - her termal buyukluk ayni anlamda degildir
 - ozellikle olcum / termokupl ile pratik sicaklik yorumu yaparken `\Psi` parametreleri farkli bir rolde kullanilir
 
-Tutarlilik kontrolu:
+![W.117'den kucuk kirpim: termal parametrelerin elle ozetlendigi liste](images/defter_snippets_web/d110_w117_thermal_parameter_list.jpg)
 
-- bu sayfa, `W.107-W.110` zincirindeki genel termal fikri bu kez belirli datasheet parametre isimlerine indiriyor
-- burada yeni proje-ozel guc kaybi hesabı yok; ama termal hesapta hangi parametrenin ne zaman kullanilacagini ayirmak acisindan cok degerli
-- bu nedenle `W.117`, `5.6.4 Thermal ve datasheet yorumu acisindan dikkatler` altinda termal parametre sozlugu / ozet sayfasi olarak korunmalidir
+Bu sayfa, `W.107-W.110` zincirindeki genel termal fikri bu kez belirli datasheet parametre isimlerine indiriyor. Yeni proje-ozel guc kaybi hesabi yok; ama termal hesapta hangi parametrenin ne zaman kullanilacagini ayirmak acisindan cok degerli. Bu kisim bir nevi termal parametre sozlugu gibi duruyor.
 
 
 
@@ -8602,7 +7979,7 @@ Bu bolum tamamlanirken su maddeler netlestirilecek:
 
 #### 5.7.1 ODT'den aktarilan metin (`8. mosfetler`)
 
-Bu alt baslikta ODT'deki eski metin tam govde olarak yeniden kullanilmamistir. Bootstrap ve gate-drive tarafinda, daha sonra defterden gelen sayfalar ve kaynak belgelerle daha guclu ve daha izlenebilir bir akis olustugu icin ana anlatim `5.7.2` altindan devam ettirilmistir.
+Bu alt baslikta ODT'deki eski metni govdeye oldugu gibi tasimadim. Bootstrap ve gate-drive tarafinda, defterden gelen sayfalar ve kaynak belgelerle daha guclu ve daha izlenebilir bir akis olustugu icin ana anlatim `5.7.2` altindan devam ediyor.
 
 
 
@@ -8652,7 +8029,7 @@ D_{\text{high,max}} = 0.648
 D_{\text{low,min}} = 1 - D_{\text{high,max}} = 1 - 0.648 = 0.352
 ```
 
-Bu nedenle bootstrap sarji icin kullanilan worst-case pencere, periyodun `%35.2`'lik low-side iletim araligidir.
+Yani bootstrap sarji icin kullanilan worst-case pencere, periyodun `%35.2`'lik low-side iletim araligi oluyor.
 
 2. Sarj penceresi ve zaman sabiti
 
@@ -8734,7 +8111,7 @@ E_{R,\text{full-step}}
 \approx 3.12\,\mu\text{J}
 ```
 
-olur. Fakat bootstrap kondansatoru her cevrimde sifirdan sarj olmadigi icin, gercek cevrimsel kayip bundan daha dusuk olur. Bu nedenle direnç watt secimi yalnizca bu tek enerji hesabina baglanmamalidir.
+olur. Fakat bootstrap kondansatoru her cevrimde sifirdan sarj olmadigi icin, gercek cevrimsel kayip bundan daha dusuk olur. O yuzden direnç watt secimini yalnizca bu tek enerji hesabina baglamak dogru olmaz.
 
 6. Ilk tepe akimi
 
@@ -8747,20 +8124,20 @@ I_{\text{pk}}
 \approx 3.59\,\text{A}
 ```
 
-Bu nedenle bootstrap diyotu ve PCB izleri, en azindan bu buyukluk mertebesindeki pik sarj akimini tasiyabilecek sekilde degerlendirilmelidir.
+Bu da bootstrap diyotu ve PCB izlerini, en azindan bu buyukluk mertebesindeki pik sarj akimini tasiyabilecek sekilde dusunmek gerektigini gosteriyor.
 
 
 
 Ek not:
 
-Bu bolumde korunacak ana muhendislik mantigi sunudur:
+Bu bolumde asil muhendislik mantigi su:
 
 - worst-case bootstrap sarj penceresi, $D_{\text{low,min}}$ ile belirlenir
 - $R_{boot}$ buyurse sarj yavaslar; cok kuculurse pik akim ve ringing artar
-- $R_{boot} = 2.2\,\Omega$ ve $C_{boot} = 0.1\,\mu\text{F}$ secimi, ilk bakista sarj hizi acisindan makul gorunmektedir
-- fakat direnç guc derecelendirmesi, diyot peak akimi ve bootstrap dugumu ringing davranisi nihai olarak simulasyon veya deneyle dogrulanmalidir
+- $R_{boot} = 2.2\,\Omega$ ve $C_{boot} = 0.1\,\mu\text{F}$ secimi, ilk bakista sarj hizi acisindan makul gorunur
+- ama direnç guc derecelendirmesi, diyot peak akimi ve bootstrap dugumu ringing davranisi nihai olarak simulasyon veya deneyle yine dogrulanmalidir
 
-Bu nedenle bu bolumde ozellikle su maddeler sonra yeniden kontrol edilmelidir:
+Bu bolumde ozellikle su maddeleri sonra tekrar kontrol etmek gerekir:
 
 - $D_{\text{high,max}} = 0.648$
 - `VDD` ve diyot dusumunun datasheet ile teyidi
@@ -8775,11 +8152,13 @@ Bu bes kaynak-foto birlikte okundugunda su ayirim daha gorunur olur:
 - bootstrap diyotunun LM5146 icinde yer aldigi bilgisi
 - gercek semadaki `C_{BST}`, `C_{VCC}` ve `R_{ILIM}` cevresinin birbirinden nasil ayrildigi
 
-Bu nedenle gorseller burada "sadece sema resmi" gibi degil; bootstrap hesabinin hangi fiziksel yapidan turetigini gosteren destek katmani olarak korunmalidir.
+O yuzden bu gorseller burada "sadece sema resmi" gibi durmuyor; bootstrap hesabinin hangi fiziksel yapidan turedigini gosteren destek katmani gibi calisiyor.
 
 Defterden aktarilan not (`W.160`):
 
-Bu sayfa, bootstrap aginda kullanilan gercek elemanlari ve bunlarin karttaki / semadaki karsiliklarini toplu halde not eden kisa bir envanter sayfasi gibi duruyor. Bu nedenle yeni bir denklem veya nihai sayisal sonuc sayfasi degil; `5.7 Bootstrap agi` altinda, hesaplanan buyukluklerin hangi gercek elemanlara baglandigini gosteren uygulama notu olarak korunmalidir.
+![W.160'tan kucuk kirpim: bootstrap agindaki gercek elemanlari ve kart referanslarini toplayan envanter notu](images/defter_snippets_web/d150_w160_bootstrap_inventory_map.jpg)
+
+Burada bootstrap aginda kullanilan gercek elemanlar ve bunlarin karttaki / semadaki karsiliklari toplu halde not edilmis. Yeni bir denklem ya da nihai sayisal sonuc sayfasi degil; daha cok hesaplanan buyukluklerin hangi gercek elemanlara baglandigini gosteriyor.
 
 Sayfanin basliginda:
 
@@ -8823,16 +8202,13 @@ ve sayfanin solunda:
 
 notu da yer aliyor. Bu da `VCC` / `VDD` bypass elemaninin bootstrap agiyla yakin baglantili dusunuldugunu gosteriyor.
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni sayisal bootstrap sonucu vermiyor
-- ama `Cboot`, `Dboot`, `Rboot` ve `CVCC` elemanlarinin sema/kart karsiliklarini tek yerde topladigi icin cok degerli
-- `C16 = 0.1 uF`, `R3 = 2.2 \Omega` ve `C25 = 2.2 uF` notlari, sonraki BOM / sema dogrulamasinda da kullanisli olacak kadar nettir
-- bu nedenle `W.160`, `5.7 Bootstrap agi` altinda bootstrap eleman envanterini gosteren uygulama-notu sayfasi olarak korunmalidir
+Burada yeni bir bootstrap sonucu yok; ama `Cboot`, `Dboot`, `Rboot` ve `CVCC` elemanlarinin sema/kart karsiliklari tek yerde toplandigi icin cok yararli. `C16 = 0.1 uF`, `R3 = 2.2 \Omega` ve `C25 = 2.2 uF` notlari sonraki BOM ve sema kontrolunde de is gorur.
 
 Defterden aktarilan not (`W.205`):
 
-Bu sayfa, bootstrap aginin fiziksel baglanti mantigini kendi ciziminle aciklayan kisa bir kavramsal sayfa gibi duruyor. Ust kisimda LM5146'nin high-side surucu pinleri ve ust MOSFET birlikte cizilmis:
+![W.205'ten kucuk kirpim: `HB/HO/HS`, `Cboot` ve ust MOSFET baglantisini gosteren kavramsal bootstrap cizimi](images/defter_snippets_web/d151_w205_bootstrap_connection_sketch.jpg)
+
+Burada bootstrap aginin fiziksel baglanti mantigi kendi ciziminle aciklaniyor. Ust kisimda LM5146'nin high-side surucu pinleri ve ust MOSFET birlikte cizilmis:
 
 - `HB / BST` pini
 - `HO` pini
@@ -8854,12 +8230,7 @@ Sayfanin altina dusulen en degerli not ise su:
 
 Yani bu sayfada kullanici, bootstrap kapasitörunun ust MOSFET'in gate-source'u uzerine dogrudan paralel bir eleman gibi dusunulmemesi gerektigini; asil gorevinin high-side gate surucu katina enerji saglamak oldugunu kendi cizimiyle not ediyor.
 
-Tutarlilik kontrolu:
-
-- `W.205`, `W.160`ta listelenen `HB/HO/HS`, `Cboot` ve `Q1` iliskisini daha sezgisel bir baglanti semasi ile aciyor
-- bu sayfa yeni bir `C_{boot}` sonucu ya da yeni bir `R_{boot}` hesabi vermiyor
-- ama bootstrap kapasitörunun "Q1'in gate-source kapasitörü gibi" yorumlanmamasini acikca not ettigi icin cok degerli
-- bu nedenle `W.205`, `5.7 Bootstrap agi` altinda bootstrap enerjisinin high-side surucu uzerinden MOSFET'e nasil tasindigini anlatan kavramsal defter sayfasi olarak korunmalidir
+`W.205`, `W.160`ta listelenen `HB/HO/HS`, `Cboot` ve `Q1` iliskisini daha sezgisel bir baglanti semasi ile aciyor. Yeni bir `C_{boot}` ya da `R_{boot}` sonucu vermiyor; ama bootstrap kapasitörunun "Q1'in gate-source kapasitörü gibi" okunmamasini acikca not ettigi icin cok degerli.
 
 Defterden aktarilan meta not (`W.166`):
 
@@ -8877,15 +8248,13 @@ Sayfanin ortasinda ise buyuk harflerle:
 
 notu yazilmis.
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni teknik sonuc vermiyor
-- ama defter aktariminin bir noktasinda, kullanicinin bootstrap bolumunde `W.160` civarina kadar olan kismi ayri bir belgeye / Word metnine gecirdigini gosteren iz notu olarak degerli
-- bu nedenle `W.166`, teknik hesap olarak degil, defter aktarim surecine ait kisa bir meta not olarak korunmalidir
+`W.166` yeni teknik sonuc vermiyor; daha cok defter aktariminin bir noktasinda bootstrap bolumundeki `W.160` civarinin ayri bir belgeye / Word metnine gecirildigini gosteren iz notu gibi. Teknik hesap sayfasi degil ama aktarim surecinin izini tasiyor.
 
 Defterden aktarilan not (`W.167`):
 
-Bu sayfa, bootstrap aginda `C_{VCC}` bypass kondansatorunun `C_{BST}`'ye gore yeterli buyuklukte olup olmadigini kontrol eden kisa bir kural-kontrol sayfasi gibi duruyor. Bu nedenle yeni bir bootstrap denklemi degil; `5.7 Bootstrap agi` altinda, `W.160`ta listelenen gercek elemanlarin basit bir yeterlilik kontrolu olarak korunmalidir.
+![W.167'den kucuk kirpim: `CVCC >> 10 x CBST` kuralini ve `2.2 uF > 10 x 0.1 uF` kontrolunu gosteren not](images/defter_snippets_web/d152_w167_cvcc_vs_cbst_rule.jpg)
+
+Bu sayfa, bootstrap aginda `C_{VCC}` bypass kondansatorunun `C_{BST}`'ye gore yeterli buyuklukte olup olmadigini kontrol eden kisa bir kural-kontrol sayfasi gibi duruyor. Yeni bir bootstrap denklemi degil; `W.160`ta listelenen gercek elemanlarin basit bir yeterlilik kontrolu gibi okunmali.
 
 Sayfanin basliginda okunabildigi kadariyla:
 
@@ -8920,16 +8289,13 @@ ve su karsilastirma yapiliyor:
 
 Yani bu sayfada kullanici, secilen `2.2 uF` `CVCC` degerinin bootstrap agi icin yeterli oldugunu kisa bir tasarim kurali uzerinden kontrol ediyor.
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni bir sembolik bootstrap hesabi vermiyor
-- ama `W.160`ta listelenen `C25 = 2.2 uF` ve `C16 = 0.1 uF` degerlerini birbirine baglayarak cok pratik bir yeterlilik kontrolu yapiyor
-- bu acidan, `CVCC` seciminin yalniz BOM listesi degil, ayni zamanda bilincli bir kural-kontrol sonucu oldugunu gosteriyor
-- bu nedenle `W.167`, `5.7 Bootstrap agi` altinda `C_{VCC}` / `C_{BST}` buyukluk iliskisini kontrol eden kisa uygulama-notu sayfasi olarak korunmalidir
+Bu sayfa yeni bir sembolik bootstrap hesabi vermiyor; ama `C25 = 2.2 uF` ile `C16 = 0.1 uF` degerlerini birbirine baglayip cok pratik bir yeterlilik kontrolu yapiyor. `CVCC` seciminin yalniz BOM listesi degil, bilincli bir kural-kontrol sonucu oldugunu gostermesi de burada guclu.
 
 Defterden aktarilan not (`W.171`):
 
-Bu sayfa, `W.168`de kullanilan `Q_{total}` buyuklugunun nereden geldigini acan bir ara bootstrap hesabı gibi duruyor. Bu nedenle `5.7 Bootstrap agi` altinda, minimum `C_{boot}` hesabina girecek toplam yuk bilesenlerini toplayan uygulama-notu sayfasi olarak korunmalidir.
+![W.171'den kucuk kirpim: `Qtotal = Qg + I_HBS Dmax/fsw + I_HB/fsw` toplamini ve `16.255 nC` sonucunu veren hesap](images/defter_snippets_web/d153_w171_qtotal_bootstrap_components.jpg)
+
+Burada `W.168`de kullanilan `Q_{total}` buyuklugunun nereden geldigi aciliyor. Minimum `C_{boot}` hesabina girecek toplam yuk bilesenleri burada toplaniyor.
 
 Sayfanin ust kisminda once gate ile ilgili temel iliski not edilmis:
 
@@ -8993,15 +8359,13 @@ C_{boot} > \frac{16.255\,nC}{4.1\,V}
 
 adiminin kaynagini netlestiriyor.
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.168`in en kritik girdilerinden biri olan `Q_{total}` degerini acikca turettigi icin cok degerli
-- `Q_g = 16 nC`, `I_{HBS} = 5 uA` ve `I_{HB} = 80 uA` degerlerinin tam kaynagi daha sonra datasheet satirlariyla yeniden teyit edilebilir; ama bu sayfada kullanilan mantik acik
-- bu nedenle `W.171`, `5.7 Bootstrap agi` altinda minimum `C_{boot}` hesabina giren toplam yuk bilesenlerini toplayan ara defter sayfasi olarak korunmalidir
+Bu sayfa, `W.168`in en kritik girdilerinden biri olan `Q_{total}` degerini acikca turettigi icin cok degerli. `Q_g = 16 nC`, `I_{HBS} = 5 uA` ve `I_{HB} = 80 uA` degerlerinin kaynagi daha sonra datasheet satirlariyla tekrar teyit edilebilir; ama burada kurulan mantik acik ve yeterince temiz.
 
 Defterden aktarilan not (`W.188`):
 
-Bu sayfa, bootstrap kapasitoru hesabina girecek parametreleri uygulama notu / datasheet tarafindan topladigin bir kaynak-not sayfasi gibi duruyor. Bu nedenle yeni bir nihai `C_{boot}` sonucu degil; `5.7 Bootstrap agi` altinda, `W.171-W.172-W.168` zincirine girdi veren parametre toplama sayfasi olarak korunmalidir.
+![W.188'den kucuk kirpim: bootstrap kapasitoru hesabina girecek `Vinmax`, `VDRV`, `DeltaVBST` ve benzeri parametreleri toplayan sayfa](images/defter_snippets_web/d154_w188_bootstrap_parameter_collection.jpg)
+
+Burada bootstrap kapasitoru hesabina girecek parametreler uygulama notu / datasheet tarafindan toplanmis. Yeni bir nihai `C_{boot}` sonucu degil; `W.171-W.172-W.168` zincirine girdi veren parametreler burada bir araya geliyor.
 
 Sayfanin ustunde ana rol acikca yazilmis gibi gorunuyor:
 
@@ -9028,16 +8392,13 @@ Sayfanin alt tarafinda ayrica bootstrap hesabina girecek ek bilesenler de not ed
 
 Bu sayfanin en degerli yani, sonraki bootstrap hesabinda kullanilan bazi parametrelerin ezbere degil, uygulama notu / datasheet satirlarindan toplanmis oldugunu gostermesidir.
 
-Tutarlilik kontrolu:
-
-- bu sayfa kendi basina son `C_{boot}` degerini vermiyor
-- ama `W.171`deki `Q_{total}` mantigi ve `W.168`deki minimum `C_{boot}` hesabi icin gerekli kaynak parametrelerin nereden geldigini gosterdigi icin cok degerli
-- `65 V` ve `12 V` gibi uygulama-notu seviyesinde daha genel parametreler ile proje-ozel `7.5 V` / `16 nC` hesaplari daha sonra ayri bir turda daha dikkatli eslestirilebilir
-- bu nedenle `W.188`, `5.7 Bootstrap agi` altinda bootstrap parametrelerini kaynaklardan toplayan uygulama-notu sayfasi olarak korunmalidir
+Burada kendi basina son `C_{boot}` degeri yok; ama `W.171`deki `Q_{total}` mantigi ve `W.168`deki minimum `C_{boot}` hesabi icin gerekli kaynak parametrelerin nereden geldigi net goruluyor. `65 V` ve `12 V` gibi daha genel uygulama-notu parametreleri ile proje-ozel `7.5 V` / `16 nC` hesaplarinin ayri oldugu da burada goruluyor.
 
 Defterden aktarilan not (`W.189`):
 
-Bu sayfa, bootstrap kapasitoru hesabinda tek bir durum degil, birden fazla calisma kosulunun ayri ayri kontrol edildigini hatirlatan metodoloji notu gibi duruyor. Bu nedenle yeni bir nihai `C_{boot}` sonucu sayfasi degil; `5.7 Bootstrap agi` altinda, `C_{BST}` hesabinin hangi senaryolar arasindan secildigini gosteren kaynak-not / yontem sayfasi olarak korunmalidir.
+![W.189'dan kucuk kirpim: `transient-off`, `transient-on` ve `steady-state` acilarini ayni bootstrap secim mantiginda toplayan metod notu](images/defter_snippets_web/d155_w189_bootstrap_multi_case_method.jpg)
+
+Burada bootstrap kapasitoru hesabinda tek bir durum degil, birden fazla calisma kosulunun ayri ayri kontrol edildigi hatirlatiliyor. Yeni bir nihai `C_{boot}` sonucu degil; `C_{BST}` hesabinda hangi senaryolara tek tek bakildigi goruluyor.
 
 Sayfanin ustunde, okunabildigi kadariyla, su ana fikir yazilmis:
 
@@ -9075,16 +8436,13 @@ Sayfanin alt notlari, bootstrap kapasitorunun fiziksel rolunu da tekrar vurguluy
 - `C_{BST}` her sarj oldugunda bu enerji `VCC` hattindan gelir
 - dolayisiyla `CVCC` ile `CBST` dusuncesi birbirinden kopuk degil, ayni enerji zincirinin parcalaridir
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni bir sayisal bootstrap sonucu vermiyor
-- ama cok degerli bir metodoloji notu veriyor: `C_{BST}` secimi icin birden fazla durum kontrol ediliyor ve en buyuk gereksinim alinmasi gerekiyor
-- ayrica `CVCC` ile `CBST` iliskisini bir kez daha hatirlatarak `W.167`, `W.169`, `W.185-W.187` hattiyla uyum kuruyor
-- bu nedenle `W.189`, `5.7 Bootstrap agi` altinda bootstrap kapasitoru secimindeki coklu-senaryo mantigini gosteren kaynak-not sayfasi olarak korunmalidir
+Burada yeni bir sayisal bootstrap sonucu yok; ama `C_{BST}` seciminde birden fazla durumun kontrol edilip en buyuk gereksinimin alinmasi gerektigi acikca not edilmis. `CVCC` ile `CBST` iliskisini tekrar hatirlatmasi da `W.167`, `W.169`, `W.185-W.187` hattiyla guzel uyusuyor.
 
 Defterden aktarilan not (`W.172`):
 
-Bu sayfa, `C_{boot}` boyutlandirmasina daha basit bir tasarim kurali uzerinden bakan bir ara bootstrap sayfasi gibi duruyor. Bu nedenle `5.7 Bootstrap agi` altinda, ayrintili `Q_{total}` hesabindan once kullanilmis olabilecek hizli bir yeterlilik kontrolu olarak korunmalidir.
+![W.172'den kucuk kirpim: `Cg = Qg/Vgs` ve `Cboot > 10 x Cg` hizli kuralini gosteren bootstrap yeterlilik kontrolu](images/defter_snippets_web/d156_w172_quick_cboot_rule.jpg)
+
+Burada `C_{boot}` boyutlandirmasina daha basit bir tasarim kurali uzerinden bakiliyor. Ayrintili `Q_{total}` hesabindan once yapilan hizli bir yeterlilik kontrolu gibi okunuyor.
 
 Sayfanin ust kisminda once bootstrap diyotunun ileri yon dusumu not edilmis. Okunabildigi kadariyla ana fikir su:
 
@@ -9136,15 +8494,13 @@ Sayfanin sag altinda secilen gercek parca ile karsilastirma da yazilmis:
 - `C16 = 0.1 uF`
 - yani secilen bootstrap kapasitörü bu hizli kurali zaten rahatlikla sagliyor
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.171` ve `W.168`deki daha ayrintili bootstrap hesabindan farkli olarak hizli bir "gate charge tabanli" yaklasim kullaniyor
-- `C_{boot} > 10 C_g` kurali ile bulunan `21.33 nF`, secilen `0.1 uF` degerin yeterli oldugunu kaba ama faydali bicimde dogruluyor
-- bu nedenle `W.172`, `5.7 Bootstrap agi` altinda bootstrap kapasitoru icin hizli gate-charge tabanli yeterlilik kontrolu yapan ara defter sayfasi olarak korunmalidir
+Bu sayfa, `W.171` ve `W.168`deki daha ayrintili bootstrap hesabindan farkli olarak hizli bir "gate charge tabanli" yaklasim kullaniyor. `C_{boot} > 10 C_g` kurali ile bulunan `21.33 nF`, secilen `0.1 uF` degerin yeterli oldugunu kaba ama faydali bicimde dogruluyor.
 
 Defterden aktarilan not (`W.168`):
 
-Bu sayfa, bootstrap kapasitorunun minimum gerekli buyuklugunu ve ayni zamanda neden keyfi bicimde "cok buyuk" secilmemesi gerektigini toparlayan bir uygulama sayfasi gibi duruyor. Bu nedenle `5.7 Bootstrap agi` altinda, `C_{boot}` secimine ait kisa bir alt-sinir / pratik sinir notu olarak korunmalidir.
+![W.168'den kucuk kirpim: `DeltaVHB = 4.1 V` ve `Cboot > Qtotal/DeltaVHB` alt-sinir hesabini veren sonuc blogu](images/defter_snippets_web/d157_w168_cboot_minimum_and_dvhb.jpg)
+
+Bu sayfa, bootstrap kapasitorunun minimum gerekli buyuklugunu ve ayni zamanda neden keyfi bicimde "cok buyuk" secilmemesi gerektigini toparlayan bir uygulama sayfasi gibi duruyor.
 
 Sayfanin ust kisminda kullanici once bootstrap dugumunde izin verilen gerilim dusumunu not ediyor. Okunabildigi kadariyla ana sayisal fikir su:
 
@@ -9197,16 +8553,13 @@ Bu nedenle sayfanin son mesaji:
 - `C_{boot}` cok kucuk olmamali
 - ama gereksiz buyuk de secilmemelidir
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.160`ta listelenen `C16 = 0.1 uF` degerinin yalniz BOM ezberi olmadigini; once minimum gereksinime gore sonra da peak akim sezgisine gore dusunuldugunu gosteriyor
-- `C_{boot} > 3.96 nF` sonucu ile secilen `0.1 uF` arasinda buyuk marj oldugu acik
-- bununla birlikte sayfa cok yerinde bir pratik sinir da koyuyor: `C_{boot}` buyudukce bootstrap yolu uzerindeki tepe akim yukselir
-- bu nedenle `W.168`, `5.7 Bootstrap agi` altinda `C_{boot}` alt-siniri ve "cok buyuk secmeme" gerekcesini birlikte gosteren uygulama-notu sayfasi olarak korunmalidir
+Burada `C16 = 0.1 uF` degerinin yalniz BOM ezberi olmadigi; once minimum gereksinime gore sonra da peak akim sezgisine gore dusunuldugu goruluyor. `C_{boot} > 3.96 nF` sonucu ile secilen `0.1 uF` arasinda buyuk marj oldugu acik. Bir yandan da cok yerinde bir pratik sinir koyuyor: `C_{boot}` buyudukce bootstrap yolu uzerindeki tepe akim yukselir.
 
 Defterden aktarilan not (`W.169`):
 
-Bu sayfa, bootstrap aginin yaninda yer alan `VCC` bypass kondansatoru icin ayri bir secim / yerlestirme notu gibi duruyor. Bu nedenle yeni bir bootstrap denklemi degil; `5.7 Bootstrap agi` altinda, `CVCC` seciminde dikkat edilen pratik kurallari gosteren uygulama-notu sayfasi olarak korunmalidir.
+![W.169'dan kucuk kirpim: `CVCC` icin `1-6 uF` araligi, seramik bypass ve startup etkisi notlari](images/defter_snippets_web/d158_w169_cvcc_bypass_selection_note.jpg)
+
+Bu sayfa, bootstrap aginin yaninda yer alan `VCC` bypass kondansatoru icin ayri bir secim / yerlestirme notu gibi duruyor. Yeni bir bootstrap denklemi degil; `CVCC` seciminde dikkat edilen pratik kurallari toparliyor.
 
 Sayfanin basliginda okunabildigi kadariyla:
 
@@ -9243,16 +8596,13 @@ Sayfanin alt kisminda kullanici, dahili `VCC regulator` / `LDO` akim siniri ile 
 - cihaz ilk acildiginda bu akim, once `CVCC` kondansatorunu sarj etmeye gider
 - `CVCC` gereksiz buyuk secilirse `VCC` geriliminin yukselmesi ve dolayisiyla startup / soft-start davranisi gecikebilir
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni bir sayisal `CVCC` hesabı vermiyor
-- ama `W.160` ve `W.167` ile birlikte okununca, `C25 = 2.2 uF` seciminin sadece sema referansi degil; ayni zamanda bypass yerlesimi ve startup davranisi acisindan da dusunulmus bir karar oldugu anlasiliyor
-- burada yazilan `1 - 6 uF` mertebesi de, secilen `2.2 uF` ile genel olarak uyumludur
-- bu nedenle `W.169`, `5.7 Bootstrap agi` altinda `VCC` bypass kondansatorunun secim / yerlestirme / startup etkisini anlatan uygulama-notu sayfasi olarak korunmalidir
+Bu sayfa yeni bir sayisal `CVCC` hesabi vermiyor; ama `W.160` ve `W.167` ile birlikte okununca `C25 = 2.2 uF` seciminin sadece sema referansi degil, bypass yerlesimi ve startup davranisi acisindan da dusunulmus bir karar oldugu anlasiliyor. Buradaki `1 - 6 uF` mertebesi de secilen `2.2 uF` ile gayet uyumlu.
 
 Defterden aktarilan not (`W.185`):
 
-Bu sayfa, `W.169`daki `VCC / C_{VCC}` bypass notunun neden gerekli oldugunu daha temel bir fiziksel sezgiyle anlatan kisa bir uygulama sayfasi gibi duruyor. Bu nedenle yeni bir nihai bootstrap denklemi degil; `5.7 Bootstrap agi` altinda, surucu / kontrolcu yakininaki yerel bypass kapasitörunun neden zorunlu oldugunu anlatan kavramsal defter sayfasi olarak korunmalidir.
+![W.185'ten kucuk kirpim: neden yerel `bypass capacitor` gerektigini surucu-gate yolu uzerinden aciklayan kavramsal not](images/defter_snippets_web/d159_w185_driver_bypass_why_local.jpg)
+
+Burada `W.169`daki `VCC / C_{VCC}` bypass notunun neden gerekli oldugu daha temel bir fiziksel sezgiyle anlatiliyor. Yeni bir nihai bootstrap denklemi degil; surucu / kontrolcu yakininaki yerel bypass kapasitörunun neden zorunlu oldugunu anlatiyor.
 
 Sayfanin ustunde, okunabildigi kadariyla, su baslik ve niyet notlari yer aliyor:
 
@@ -9286,16 +8636,13 @@ Sayfanin altindaki kisa notlarda da:
 
 ifadeleri tekrar edilerek, bu sayfanin dogrudan `LM5146` uzerindeki `CVCC` bypass kararina baglandigi goruluyor.
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni bir `uF` sonucu uretmiyor
-- ama `W.169`daki `CVCC` secim mantigina cok iyi bir fiziksel gerekce ekliyor: surucu yolu anlik akimi uzak kaynaktan degil, once yerel bypass kondansatorunden cekmek ister
-- bu acidan `W.185`, sayisal secimden cok "neden bypass var?" sorusunun cevabini veriyor
-- bu nedenle `W.185`, `5.7 Bootstrap agi` altinda `VCC / CVCC` bypass kondansatorunun fiziksel gorevini anlatan kavramsal uygulama-notu sayfasi olarak korunmalidir
+Burada yeni bir `uF` sonucu uretilmiyor; ama `W.169`daki `CVCC` secim mantigina iyi bir fiziksel gerekce ekleniyor: surucu yolu anlik akimi uzak kaynaktan degil, once yerel bypass kondansatorunden cekmek istiyor. Sayisal secimden cok "neden bypass var?" sorusunun cevabi burada.
 
 Defterden aktarilan not (`W.186`):
 
-Bu sayfa, `W.185`te anlatilan `driver bypass capacitor` ihtiyacini bu kez sayisal bir alt-sinir hesabina donusturuyor gibi duruyor. Bu nedenle yeni bir genel kavramsal not degil; `5.7 Bootstrap agi` altinda, surucu / `CVCC` bypass kapasitörunun minimum buyuklugunu kaba bir denklemle kontrol eden uygulama sayfasi olarak korunmalidir.
+![W.186'dan kucuk kirpim: `driver bypass capacitor` icin minimum degeri `27.1 nF` civarinda bulan kaba hesap](images/defter_snippets_web/d160_w186_driver_bypass_minimum_calc.jpg)
+
+Burada `W.185`te anlatilan `driver bypass capacitor` ihtiyaci bu kez sayisal bir alt-sinir hesabina donusuyor. Yeni genel kavramsal not degil; surucu / `CVCC` bypass kapasitörunun minimum buyuklugu kaba bir denklemle kontrol ediliyor.
 
 Sayfanin ustundeki ana fikir, okunabildigi kadariyla, su yone cikiyor:
 
@@ -9339,16 +8686,11 @@ Sayfanin alt kismindaki kullanici notlari da, bu bypass kondansatorunun:
 
 ima ediyor gibi gorunuyor.
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.169` ve `W.185`teki kavramsal bypass ihtiyacini ilk kez sayisal minimum deger hesabina bagliyor
-- bazi kelimeler tam net okunmasa da, denklem omurgasi ve `27.1 nF` sonucu yeterince nettir
-- bu sonuc, `C25 = 2.2 uF` gibi secilmis bir `CVCC` degerinin buyuk bir marjla yeterli oldugunu dusunduren guclu bir izdir
-- bu nedenle `W.186`, `5.7 Bootstrap agi` altinda `driver / CVCC bypass capacitor` icin minimum kapasiteyi kontrol eden uygulama-notu sayfasi olarak korunmalidir
+Burada `W.169` ve `W.185`teki kavramsal bypass ihtiyaci ilk kez sayisal minimum deger hesabina baglaniyor. Bazi kelimeler tam net okunmasa da, denklem omurgasi ve `27.1 nF` sonucu yeterince net. Bu sonuc da `C25 = 2.2 uF` gibi secilmis bir `CVCC` degerinin buyuk marjla yeterli oldugunu dusunduruyor.
 
 Defterden aktarilan not (`W.187`):
 
-Bu sayfa, `W.186`da kullanilan `driver / CVCC bypass capacitor` denklemini tek satirda ozetleyen kisa bir tekrar / ozet sayfasi gibi duruyor. Yeni sayisal sonuc vermedigi icin ayri bir nihai hesap sayfasi degil; `5.7 Bootstrap agi` altinda, kullanicinin ayni formulu temizce yeniden yazip sabitledigi bir ozet-defter sayfasi olarak korunmalidir.
+Burada `W.186`da kullanilan `driver / CVCC bypass capacitor` denklemi tek satirda ozetleniyor. Yeni sayisal sonuc vermiyor; daha cok ayni formulu temizce yeniden yazip sabitledigin bir ozet.
 
 Sayfada okunabildigi kadariyla su iliski yeniden yaziliyor:
 
@@ -9365,12 +8707,7 @@ Burada sembollerin yazimi sayfada biraz kisaltilmis olsa da, formun `W.186`daki 
 - gate charge bileseni
 - izin verilen gerilim dusumu `\Delta V`
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni bir sayi uretmiyor
-- ama `W.186`daki denklemin kullanici tarafindan tek satir ozet seklinde yeniden yazildigini gosteriyor
-- bu da, bypass kapasitoru hesabinin defterde gecici bir karalama degil, tutulmak istenen bir temel iliski oldugunu dusunduruyor
-- bu nedenle `W.187`, `5.7 Bootstrap agi` altinda `driver / CVCC bypass capacitor` hesabinin ozet formulu olarak korunmalidir
+Bu sayfa yeni bir sayi uretmiyor; ama `W.186`daki denklemin tek satir ozet seklinde yeniden yazildigini gosteriyor. Bu da bypass kapasitörü hesabinin gecici bir karalama degil, tutulmak istenen temel bir iliski oldugunu dusunduruyor.
 
 
 
@@ -9565,11 +8902,11 @@ Bu bolumde ana fikir, kontrol dongusunun plant kisminin yalnizca bobinden degil,
 
 $C_{28} = 0.1\,\mu\text{F}$ gibi cok kucuk bir MLCC'nin ilk transfer fonksiyonu hesabinda ihmal edilmesi, ancak bu elemanin etkisi crossover civarinda gercekten kucukse kabul edilebilir. Genelde bu tip cok kucuk kapasiteler ana enerji depolama elemani olmaktan cok, daha yuksek frekansli spike ve ringing bastirma tarafinda etkili olur. Bu nedenle kompanzator hesabinda ilk yaklasimda ihmal edilmesi makul olabilir; yine de son kararin bode veya AC sweep ile dogrulanmasi gerekir.
 
-Bu uc foto birlikte, kullanicinin plant dusuncesini yalnizca denklemler uzerinden degil; ornek buck guc kati, `G_{vd}` ifadesi ve buna ait Bode sezgisi uzerinden de kurdugunu gosterir. Bu nedenle `6.1.3` altinda, cikis filtresi ve yuk modelinin gorsel arka plani olarak korunmalidir.
+Bu uc foto birlikte, plant dusuncesini yalnizca denklemler uzerinden degil; ornek buck guc kati, `G_{vd}` ifadesi ve buna ait Bode sezgisi uzerinden de kurdugunu gosteriyor. `6.1.3` altinda cikis filtresi ve yuk modelinin gorsel arka plani olarak yerinde duruyorlar.
 
 Defterden aktarilan not (`W.116`):
 
-Bu sayfa, kontrol tasariminda kullanilan power-stage sayilarini tek sayfada topluyor gibi gorunuyor. Bu nedenle yeni denklem uretmekten cok, plant tarafinda hangi sayisal ozetin kullanildigini gosteren bir `snapshot` sayfasi olarak korunmali.
+Bu sayfa, kontrol tasariminda kullanilan power-stage sayilarini tek sayfada topluyor gibi gorunuyor. Yeni denklem uretmekten cok, plant tarafinda hangi sayisal ozetin kullanildigini gosteren bir `snapshot` gibi okunmali.
 
 ![W.116'dan secilen el yazisi parca: output filter sayilari, ESR, DCR, Rdamp ve f0 ozeti](images/defter_snippets_web/d30_w116_output_filter_parameter_summary.jpg)
 
@@ -9619,11 +8956,7 @@ ve buna bagli:
 f_0 \approx 7.309\,kHz
 ```
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `6.1.3 Cikis filtresi ve yuk` bolumunde kullanilan `70 uF`, `6.8 uH`, `R_{damp} \approx 21.13 m\Omega`, `f_0 \approx 7.309 kHz` sayilarinin defterde tek yerde toplandigini gosteriyor
-- dolayisiyla bu sayfa yeni bir alternatif yontem degil; mevcut plant modelinin sayisal girislerini toplayan guclu bir defter ozeti gibi okunmali
-- bu nedenle `W.116`, `6.1.3` altinda power-stage / output-filter sayilarinin defter snapshot'i olarak korunmalidir
+`W.116`, `6.1.3 Cikis filtresi ve yuk` bolumunde kullanilan `70 uF`, `6.8 uH`, `R_{damp} \approx 21.13 m\Omega`, `f_0 \approx 7.309 kHz` gibi sayilari tek yerde topluyor. Yeni bir alternatif yontem degil; mevcut plant modelinin sayisal girislerini veren guclu bir defter ozeti gibi okunmali.
 
 
 
@@ -9646,7 +8979,7 @@ Bu ayrimi destekleyen bir diger kaynak-foto:
 
 ![Buck regulator poles and zeros haritasi](images/foto_selected/p09_poles_zeros_map.jpg)
 
-Bu foto, modulator, power stage ve compensator kutup / sifirlarinin ayni cizim uzerinde birlikte goruldugu bir ozet tablo gibi okunur. Bu nedenle `6.1.4` altinda, genel yontem ile proje-ozel sayisal model arasindaki ayrimin gorsel karsiligi olarak korunmalidir.
+Bu foto, modulator, power stage ve compensator kutup / sifirlarinin ayni cizim uzerinde birlikte goruldugu bir ozet tablo gibi okunuyor. `6.1.4` altinda, genel yontem ile proje-ozel sayisal model arasindaki ayrimin gorsel karsiligi olarak iyi calisiyor.
 
 
 
@@ -9715,7 +9048,7 @@ Yerel scriptte su genel iliskiler kullaniliyor:
 
 
 
-Bu iliskiler, taslaktaki yontemin teorik omurgasini veriyor. Ancak burada yine ayni dikkat korunmali:
+Bu iliskiler, taslaktaki yontemin teorik omurgasini veriyor. Ancak burada yine ayni dikkat gerekli:
 
 - scriptteki ornek `60 V -> 15 V`, `100 kHz` ve belirli `L/C/R` degerleri dogrudan bu projenin son degerleri degil
 
@@ -9747,24 +9080,68 @@ Bu bolum, ileride MATLAB ve LTspice ile yapilacak loop dogrulamasinin teorik bas
 
 Defterden aktarilan not:
 
-- `W.1-W.6`: [EX7.1 Buck Converter Closed-Loop Design (Type 3 Compensator).pdf](./references/pdfs/EX7.1%20Buck%20Converter%20Closed-Loop%20Design%20(Type%203%20Compensator).pdf), [G2_Buck Converter Design Part 2 - Closed-Loop LM5146 - Video Version.pdf](./references/pdfs/G2_Buck%20Converter%20Design%20Part%202%20-%20Closed-Loop%20LM5146%20-%20Video%20Version.pdf) ve [G32_lm5146-q1.pdf](./references/pdfs/G32_lm5146-q1.pdf) uzerinden, crossover frekansinda gereken kazanc ve faz katkisi turetiliyor. Bu sayfalar daha cok yontemin ogrenilmesi ve isaret-konvansiyonu oturtulmasi icin kullanilmis gorunuyor.
+- `W.1-W.6`: [EX7.1 Buck Converter Closed-Loop Design (Type 3 Compensator).pdf](./references/pdfs/EX7.1%20Buck%20Converter%20Closed-Loop%20Design%20%28Type%203%20Compensator%29.pdf), [G2_Buck Converter Design Part 2 - Closed-Loop LM5146 - Video Version.pdf](./references/pdfs/G2_Buck%20Converter%20Design%20Part%202%20-%20Closed-Loop%20LM5146%20-%20Video%20Version.pdf) ve [G32_lm5146-q1.pdf](./references/pdfs/G32_lm5146-q1.pdf) uzerinden, crossover frekansinda gereken kazanc ve faz katkisi turetiliyor. Bu sayfalar daha cok yontemin ogrenilmesi ve isaret-konvansiyonu oturtulmasi icin kullanilmis gorunuyor.
 - `W.7-W.10`: op-amp acik-cevrim modeli, `GBW / A_{dc}` iliskisi, `KFF = 15 V/V` notu ve `G98` Figure 2 / Figure 3 kullanim izleri var. Bu grup, modulator ve hata yukselteci modelini destekliyor.
 - `W.11-W.12`: faz marji ve plant fazinin sayisal olarak tekrar hesaplandigi ara sayfalar. `PM = 55 deg` hedefinin bu iterasyonda da korundugu goruluyor.
 - `W.13-W.16`: Type-III kompanzator eleman degerleri icin sayisal hesaplar yapiliyor. Bu aralikta en az iki farkli iterasyon var.
 - `W.17-W.19`: current-limit / `R_{ilim}` hesabi. EVM'deki `619 Ohm` referans degeri ile yerel hesap karsilastiriliyor.
 - `W.20-W.24`: Type-III kutup-sifir mantigi, `Kmid`, `f_c`, `f_o`, `f_{esr}` ve geri besleme bolucusunun kompanzatorla iliskisi uzerine kavramsal notlar var.
 
+Bu grubun devaminda secilen bazi kucuk el yazisi parcalar, `W.1-W.9` ile kurulan teorik cercevenin `W.10-W.19` sayfalarinda nasil sayisal degerlere yaklastigini gosteriyor:
+
+![W.10'dan kucuk kirpim: modulator / duty iliskisi ve `Vout = D*Vin` mantigini destekleyen kisa not](images/defter_snippets_web/d171_w10_modulator_vout_d_vin.jpg)
+
+![W.11'den kucuk kirpim: faz marji / kazanc marji icin ornek ara hesap](images/defter_snippets_web/d172_w11_example_pm_gm.jpg)
+
+![W.12'den kucuk kirpim: `PM = 55 deg` hedefiyle plant fazinin yeniden hesabi](images/defter_snippets_web/d173_w12_plant_phase_calc.jpg)
+
+Bu ilk uc sayfa, `W.1-W.9` grubunun yalnizca soyut bir kaynak ozetinden ibaret olmadigini; faz marji ve plant fazi tarafinin sayisal olarak tekrar tekrar kontrol edildigini gosteren iyi ara izlerdir.
+
+![W.13'ten kucuk kirpim: alternatif Type-III komponent seti ve `Q` / buyukluk sezgisi](images/defter_snippets_web/d174_w13_alt_type3_values_and_q.jpg)
+
+![W.14'ten kucuk kirpim: adaya yaklasan Type-III `R-C` degerleri](images/defter_snippets_web/d175_w14_candidate_type3_component_values.jpg)
+
+![W.15'ten kucuk kirpim: `K`-factor yontemiyle Type-III boyutlandirma adimlari](images/defter_snippets_web/d176_w15_k_factor_type3_sizing.jpg)
+
+![W.16'dan kucuk kirpim: `R3 / Rc2` icin son adim ve sonuc](images/defter_snippets_web/d177_w16_rc2_final_step.jpg)
+
+Bu dort sayfa birlikte okununca, kompanzatorun tek hamlede secilmedigi; alternatif iterasyonlar icinden gecilerek `26.4k / 1.6k / 6.65k / 768 / 4.7n / 120p / 1n` ailesine yaklasildigi daha iyi goruluyor.
+
+![W.17'den kucuk kirpim: `Rilim` icin ilk kaba dusunce akisi](images/defter_snippets_web/d178_w17_initial_rilim_reasoning.jpg)
+
+![W.18'den kucuk kirpim: sicak `RDS(on)` ve `ILIM` akimi uzerinden `Rilim` kontrolu](images/defter_snippets_web/d179_w18_rilim_from_rds_on_hot.jpg)
+
+![W.19'dan kucuk kirpim: `Cilim` secimi ve `tau = Cilim * Rilim ≈ 6 ns` kontrolu](images/defter_snippets_web/d180_w19_cilim_tau_and_rilim.jpg)
+
+Bu uc sayfa da `W.17-W.19` grubunun yalnizca "bir direnç sectim" notu olmadigini; `RDS(on)` tabanli current-sensing baglaminda `Rilim` ve `Cilim` tarafinin bilincli olarak kurgulandigini gosteriyor.
+
+Bu grubun son halkasinda ise `W.20-W.24`, current-limit tarafindan yeniden kompanzator ve frekans yerlestirme mantigina donuyor:
+
+![W.20'den kucuk kirpim: `Kmid`, `Vin/Vramp` ve modulator kazanci notu](images/defter_snippets_web/d181_w20_kmid_and_modulator_note.jpg)
+
+![W.21'den kucuk kirpim: `FB2`'nin loopa etkisi olmadigi ve cikis sigaclarinda derating notu](images/defter_snippets_web/d182_w21_fb2_and_output_cap_derating_note.jpg)
+
+![W.22'den kucuk kirpim: Type-III kutup ve sifirlarin rolu hakkinda kisa ozet](images/defter_snippets_web/d183_w22_type3_poles_zeros_roles.jpg)
+
+![W.23'ten kucuk kirpim: `Kmid`, `\omega_c`, `f_c` araligi ve `\omega_{p1}/\omega_{p2}` yerlestirme notlari](images/defter_snippets_web/d184_w23_kmid_and_we_placement.jpg)
+
+![W.24'ten kucuk kirpim: `f_c`, `f_o`, `f_{ESR}` ve `Kmid` ile ilgili ilk sayisal adaylar](images/defter_snippets_web/d185_w24_fc_fo_fesr_and_kmid.jpg)
+
+Bu bes sayfa birlikte okununca, `W.1-W.19` grubunun yalnizca tek tek formuller degil; ayni zamanda `Kmid`, `f_c`, `f_o`, `f_{ESR}` ve feedback bolucu oraninin kompanzatorla nasil iliskilendirildigini arayan bir yerlesim calismasi oldugu daha net goruluyor.
+
 `R_{ilim}` / current sensing baglamini destekleyen kaynak-foto:
 
 ![MOSFET RDS(on) current sensing ve shunt current sensing karsilastirmasi](images/foto_selected/p17_rds_on_current_sensing.jpg)
 
-Bu gorsel, `ILIM` pininin ideal bir "soyut akim limiti" degil; ya `RDS(on)` tabanli ya da shunt tabanli bir current-sensing mantiginin parcasi olarak dusunuldugunu gosteren iyi bir arka-plan referansidir. Bu nedenle `W.17-W.19` grubunun yaninda, current-limit hesabinin fiziksel baglamini guclendiren destek gorsel olarak korunmalidir.
+Bu gorsel, `ILIM` pininin ideal bir "soyut akim limiti" degil; ya `RDS(on)` tabanli ya da shunt tabanli bir current-sensing mantiginin parcasi olarak dusunuldugunu gosteren iyi bir arka-plan referansi. `W.17-W.19` grubunun yaninda current-limit hesabinin fiziksel baglamini guclendiriyor.
 
 ![RDS(on) modundaki `ILIM` akim kaynaginin jonksiyon sicakligina gore degisimini gosteren datasheet grafigi](images/foto_selected/p60_ilim_current_vs_temperature.jpg)
 
 Bu ikinci gorsel, onceki current-sensing referansina daha kritik bir ayrinti ekliyor: `RDS(on)` modunda `ILIM` akisinin `T_J` ile degistigi acikca goruluyor. Bu da `R_{ilim}` hesabinin yalnizca tek bir oda sicakligi katsayisi degil, sicakliga bagli bir current-source davranisiyla iliskili oldugunu hatirlatarak `W.17-W.19` hattini teknik olarak daha saglam bagliyor.
 
 Ek not (ikinci tur netlestirme - `W.1`):
+
+![W.1'den kucuk kirpim: `|F(jwt)| = 0.045356` uzerinden gerekli `|G3(jwt)| = 1.46985 = 3.3454 dB` sonucuna giden hesap](images/defter_snippets_web/d162_w1_required_g3_gain_result.jpg)
 
 `W.1`, artik daha net bicimde su kaynak zincirine oturuyor:
 
@@ -9832,14 +9209,27 @@ Kisa yorum:
 
 Bu sayfanin anlattigi sey su: `35 kHz` crossover noktasinda, modulator kazanci ve plant kazanci birlikte dusunuldugunde, kompanzatorun o frekansta yaklasik `1.46985 V/V` ya da `3.3454 dB` kazanc vermesi gerekiyor.
 
-Buradaki ara sayisal adimlarin bazilarinin son basamaklari foto uzerinden cok net okunmasa da, sayfanin yaptigi islem ve vardigi sonuc kaynak yontemle tutarlidir. Bu nedenle `W.1`, serbest bir karalama degil; `EX7.1 / G2` yonteminin kullanicinin kendi `35 kHz` tasarim hedefiyle uygulanmis ilk temiz kazanc sayfasi olarak korunmalidir.
+Buradaki ara sayisal adimlarin bazilarinin son basamaklari foto uzerinden cok net okunmasa da, sayfanin yaptigi islem ve vardigi sonuc kaynak yontemle tutarlidir. `W.1` bu yuzden serbest bir karalama degil; `EX7.1 / G2` yonteminin kullanicinin kendi `35 kHz` tasarim hedefiyle uygulanmis ilk temiz kazanc sayfasi gibi duruyor.
 
-Tutarlilik kontrolu:
+Bu ilk kontrol / kompanzasyon batch'inden secilen bazi ek el yazisi parcalar da ayni problemi farkli acilardan kurdugunu gosteriyor:
 
-- bu batch'in tamami ayni kronolojik iterasyon degil; ayni konu uzerinde birkac farkli deneme ve yaklasim var
-- `W.13` ile `W.15-W.16` ayni nihai komponent setini vermiyor; bu nedenle `W.13` alternatif / ara iterasyon olarak etiketlenmeli
-- `W.23-W.24` icindeki bazi `Kmid` ve `RFB1` iliskileri eski `16.5 kOhm` bolucu uzerinden ilerliyor olabilir
-- `W.14-W.16` ile BOM daha guclu bicimde uyusuyor; bu nedenle bunlar su an icin "nihai adaya en yakin" sayfalar
+![W.2'den kucuk kirpim: plant fazi, loop faz toplami ve `PM = 55 deg` hedefi arasindaki iliski](images/defter_snippets_web/d163_w2_phase_sum_and_pm_result.jpg)
+
+![W.3'ten kucuk kirpim: paralel `R-C` ve esdeger empedans uzerinden yapilan ara karalama](images/defter_snippets_web/d164_w3_parallel_impedance_sketch.jpg)
+
+![W.4'ten kucuk kirpim: Type-III `G3(s)` ifadesinin sadeletilmis hali ve kullanilan referans sekil](images/defter_snippets_web/d165_w4_type3_simplified_transfer.jpg)
+
+![W.5'ten kucuk kirpim: hedef faz marjindan gereken kompanzator faz katkisini cikaran not](images/defter_snippets_web/d166_w5_required_compensator_phase.jpg)
+
+![W.6'dan kucuk kirpim: crossover'da `|L(jwt)| = 1` ve `|G(jwt)|` buyuklugu icin ara kontrol](images/defter_snippets_web/d167_w6_unity_gain_magnitude_check.jpg)
+
+![W.7'den kucuk kirpim: hata yukseltecinin acik-cevrim modeli ve `fpe = GBW/Adc` iliskisi](images/defter_snippets_web/d168_w7_error_amp_open_loop_pole.jpg)
+
+![W.8'den kucuk kirpim: `KFF = 15 V/V`, `Vm/Vramp` ve LM5146 modulasyon sezgisi notu](images/defter_snippets_web/d169_w8_kff_and_vm_ramp_note.jpg)
+
+![W.9'dan kucuk kirpim: ilk kutup/sifir kirilim frekanslarini tablo halinde toplayan ara sayfa](images/defter_snippets_web/d170_w9_break_frequency_table.jpg)
+
+Bu batch'in tamami tek bir kronolojik iterasyon degil; ayni konu uzerinde birkac farkli deneme ve yaklasim var. `W.13` ile `W.15-W.16` ayni nihai komponent setini vermiyor; `W.13` daha cok alternatif/ara iterasyon gibi. `W.23-W.24` icindeki bazi `Kmid` ve `RFB1` iliskileri de eski `16.5 kOhm` bolucu uzerinden gidiyor olabilir. Buna karsilik `W.14-W.16` BOM'la daha guclu bicimde uyusuyor ve nihai adaya en yakin kisim gibi duruyor.
 
 Bu batch'ten su ilk aday komponent seti cikiyor:
 
@@ -9854,7 +9244,7 @@ Bu batch'ten su ilk aday komponent seti cikiyor:
 
 Ek not:
 
-Bu grup, projedeki kontrolcu bolumunun artik yalnizca "Type-III kullanilacak" seviyesinde olmadigini gosteriyor. Gercek resistor ve capacitor secimlerine yaklasilmis durumda. Ancak burada yine ayni ayrim korunmali:
+Bu grup, projedeki kontrolcu bolumunun artik yalnizca "Type-III kullanilacak" seviyesinde olmadigini gosteriyor. Gercek resistor ve capacitor secimlerine yaklasilmis durumda. Ama burada yine ayni ayrim akilda tutulmali:
 
 - dogru ama nihai olmayan hesap
 - nihai tasarima yaklasan hesap
@@ -9898,7 +9288,7 @@ ODT'den aktarilan metin (`Compensator`):
 
 Type 3 Compensator Devresi
 
-Bu ekran goruntusu dogrudan LM5146 devresine ait degil; ancak Type-III kompanzatorun kutup / sifir / egim mantigini daha genel bir analog kompanzator ornegi uzerinden dusundugunu gosterdigi icin burada destekleyici bir gorsel olarak korunmali. Yani "ayni controller" degil, ama "ayni kompanzasyon sezgisi" vardir. Sonraki iki ekran goruntusu ise bu sezginin artik LM5146 tarafi icin daha sistematik okunmaya baslandigini gosteriyor: biri kutup/sifir konumlarini topoloji uzerinde acikca isaretliyor, digeri de `Rc1`, `Rc2`, `RFB1`, `RFB2`, `Cc1`, `Cc2`, `Cc3` gibi sembollerle gercek komponent adlarinin nasil eslestirildigini daha okunur hale getiriyor.
+Bu ekran goruntusu dogrudan LM5146 devresine ait degil; ama Type-III kompanzatorun kutup / sifir / egim mantigini daha genel bir analog kompanzator ornegi uzerinden dusundugunu gosterdigi icin burada destekleyici bir gorsel olarak iyi calisiyor. Yani "ayni controller" degil, ama "ayni kompanzasyon sezgisi" var. Sonraki iki ekran goruntusu ise bu sezginin artik LM5146 tarafi icin daha sistematik okunmaya baslandigini gosteriyor: biri kutup/sifir konumlarini topoloji uzerinde acikca isaretliyor, digeri de `Rc1`, `Rc2`, `RFB1`, `RFB2`, `Cc1`, `Cc2`, `Cc3` gibi sembollerle gercek komponent adlarinin nasil eslestirildigini daha okunur hale getiriyor.
 
 Bu yeni ekran goruntusu ise ayni Type-III agin daha sade bir op-amp realizasyonunu veriyor. Ozellikle `V_{sense}`, `V_{control}`, `V_{ref}`, `Rfb1`, `Rc1`, `Rc2`, `Cc1`, `Cc2`, `Cc3` etiketlerinin ayni cizim uzerinde birlikte gorulmesi, `W.73`, `W.84`, `W.85` ve `W.113` tarafinda gecen notasyonun hangi fiziksel dala karsilik geldigini daha okunur hale getiriyor.
 
@@ -9926,7 +9316,9 @@ H_{\text{error-amp,ol}}(s)
 
 Defterden aktarilan not (`W.201`):
 
-Bu sayfa, hata yukseltecinin acik-cevrim modelini ve `GBW / A_{VOL}` iliskisini ayri bir defter sayfasinda tekrar kuruyor.
+Burada hata yukseltecinin acik-cevrim modeli ve `GBW / A_{VOL}` iliskisi ayri bir defter sayfasinda tekrar kuruluyor.
+
+![W.201'den kucuk kirpim: `Avol = 94 dB`, `GBW = 6.5 MHz` ve acik-cevrim kutup hesabi](images/defter_snippets_web/d186_w201_error_amp_open_loop_gain_and_pole.jpg)
 
 Sayfanin ustunde su notlar yer aliyor:
 
@@ -9995,11 +9387,7 @@ Sayfanin altina da:
 
 notu dusulmus.
 
-Tutarlilik kontrolu:
-
-- `W.201`, yukaridaki `H_{\text{error-amp,ol}}(s)` ve `\omega_{\text{opamp}} = 2\pi\,GBW/A_{VOL}` iliskisinin defterde ayri bir sayfada tekrar kuruldugunu gosteriyor
-- bu sayfa yeni bir `R-C` secimi vermiyor
-- ama hata yukseltecinin sonlu acik-cevrim kazancinin ve baskin kutbunun nasil dusunuldugunu gosterdigi icin, `6.2.5` altinda korunmali
+`W.201`, yukaridaki `H_{\text{error-amp,ol}}(s)` ve `\omega_{\text{opamp}} = 2\pi\,GBW/A_{VOL}` iliskisinin defterde ayri bir sayfada tekrar kuruldugunu gosteriyor. Yeni bir `R-C` secimi vermiyor; ama hata yukseltecinin sonlu acik-cevrim kazancinin ve baskin kutbunun nasil dusunuldugunu gostermesi burada onemli.
 
 > Bu kompanzator hesabinda kullanilan cikis filtresi ve yuk transfer fonksiyonu:
 
@@ -10082,7 +9470,9 @@ Buradaki Type-III topoloji mantiklidir; ancak bu, komponent degerlerinin otomati
 
 Defterden aktarilan not (`W.84`):
 
-Bu sayfa, artik Type-III kompanzatorun yalnizca topolojik olarak cizilmesinden cikilip kutup-sifir yerlestirmesi ve komponent iliskileri tarafina gecildigini gosteriyor. Sayfanin ust kismina genel kompanzator formu yazilmis; el yazisindaki isaretler tam net olmamakla birlikte ana fikir su:
+Burada artik Type-III kompanzatorun yalnizca topolojik olarak cizilmesinden cikilip kutup-sifir yerlestirmesi ve komponent iliskileri tarafina gecildigi goruluyor. Sayfanin ust kismina genel kompanzator formu yazilmis; el yazisindaki isaretler tam net olmamakla birlikte ana fikir su:
+
+![W.84'ten kucuk kirpim: Type-III denklemi, hedef kirilimlar ve ilk sayisal yerlestirme](images/defter_snippets_web/d187_w84_type3_equations_and_breaks.jpg)
 
 ```math
 G_c(s)
@@ -10129,17 +9519,13 @@ H = \frac{1}{14} \approx 0.12857
 
 notu da yer aliyor; bu, geri besleme bolucusu / sense orani ile kompanzator kazanci arasindaki baglantiya isaret ediyor olabilir.
 
-Tutarlilik kontrolu:
-
-- `W.84`, `W.73`teki "Type-III agin yapisi nedir?" sorusundan sonra gelen ilk ciddi kutup-sifir yerlestirme sayfasi gibi duruyor
-- bu sayfa yeni nihai komponent setini tek basina kesinlestirmiyor
-- ama `f_{z1}`, `f_{z2}` ve `f_{p2}` gibi hedef frekanslarin artik komponent iliskilerine baglandigini gosteriyor
-- sayfadaki bazi sayisal ayrintilar silik oldugu icin, yalnizca guvenle okunan frekans etiketleri ve iliski tipleri korunmali
-- bu nedenle `W.84`, kompanzator topolojisinden gercek `R-C` secimine gecis yapan degerli bir ara kontrol sayfasi olarak korunmali
+`W.84`, `W.73`teki "Type-III agin yapisi nedir?" sorusundan sonra gelen ilk ciddi kutup-sifir yerlestirme sayfasi. Yeni nihai komponent setini tek basina kesinlestirmiyor; ama `f_{z1}`, `f_{z2}` ve `f_{p2}` gibi hedef frekanslarin artik komponent iliskilerine baglandigini gosteriyor. Sayfadaki bazi sayisal ayrintilar silik oldugu icin, burada en guvenli olan frekans etiketlerini ve iliski tiplerini korumak.
 
 Defterden aktarilan not (`W.85`):
 
-Bu sayfa, `W.84`teki kutup-sifir yerlestirmesini bu kez belirli bir aday kompanzator komponent seti ile sayisal olarak kontrol etmeye calisiyor. Sayfanin sol tarafinda okunan aday degerler sunlar:
+Burada `W.84`teki kutup-sifir yerlestirmesi bu kez belirli bir aday kompanzator komponent seti ile sayisal olarak kontrol edilmeye calisiliyor. Sayfanin sol tarafinda okunan aday degerler sunlar:
+
+![W.85'ten kucuk kirpim: aday `Rc1/Rc2/Cc1/Cc2/Cc3` degerleri ve kutup denklemleri](images/defter_snippets_web/d188_w85_candidate_type3_values.jpg)
 
 - `R_{c2} \approx 100 \Omega`
 - `R_{FB1} \approx 21 k\Omega`
@@ -10186,16 +9572,13 @@ f_{z1} \approx 4.334\,kHz
 
 gibi bir sonuc not edilmis.
 
-Tutarlilik kontrolu:
-
-- `W.85`, `W.84`te teorik olarak yerlestirilen kutup-sifirlari bu kez belirli bir aday `R-C` setiyle kontrol ediyor
-- bu sayfa, "hangi formula hangi komponent ciftiyle bagli?" sorusunu daha somut hale getiriyor
-- sayfadaki komponent degerleri dogrudan nihai kabul edilmemeli; ama bu grup, kompanzator tasariminin artik kavramsal seviyeden cikarak gercek eleman degerleriyle sinanmaya basladigini gosteriyor
-- `f_{z1} \approx 4.334 kHz` sonucu, `W.84`teki `3.44 kHz` notuyla ayni buyukluk mertebesindedir; bu nedenle bu sayfa, onceki sayfadaki hedef yerlestirmeyi sayisal olarak tekrar yoklayan degerli bir takip sayfasi olarak korunmali
+`W.85`, `W.84`te teorik olarak yerlestirilen kutup-sifirlari bu kez belirli bir aday `R-C` setiyle kontrol ediyor. "Hangi formula hangi komponent ciftiyle bagli?" sorusunu daha somut hale getiriyor. Sayfadaki komponent degerlerini dogrudan nihai kabul etmemek gerek; ama kompanzator tasariminin artik kavramsal seviyeden cikarak gercek eleman degerleriyle sinanmaya basladigi cok net. `f_{z1} \approx 4.334 kHz` sonucu da `W.84`teki `3.44 kHz` notuyla ayni buyukluk mertebesinde.
 
 Defterden aktarilan not (`W.142`):
 
-Bu sayfa, `W.85`te sayisal olarak yoklanan aday Type-III kompanzator komponent setinin bu kez frekans ekseninde renkli bir Bode-insasi gibi cizildigini gosteriyor. Bu nedenle yeni nihai sonuc sayfasi degil; secilen `R-C` aginin kutup ve sifir katkilarinin nasil ust uste bindigini gorsellestiren teknik iz notu olarak korunmalidir.
+Burada `W.85`te sayisal olarak yoklanan aday Type-III kompanzator komponent setinin bu kez frekans ekseninde renkli bir Bode-insasi gibi cizildigi goruluyor. Yeni nihai sonuc sayfasi degil; secilen `R-C` aginin kutup ve sifir katkilarinin nasil ust uste bindigini gorsellestiren teknik bir iz.
+
+![W.142'den kucuk kirpim: aday komponent seti icin renkli Bode-insasi](images/defter_snippets_web/d189_w142_bode_sketch_candidate_breaks.jpg)
 
 Sayfanin ust kismina yazilan aday komponent seti, okunabildigi kadariyla, su sekilde:
 
@@ -10215,7 +9598,7 @@ Sayfadaki renkli dogrularin ve notlarin anlattigi ana seyler sunlar:
 - yuksek frekans kutuplari geldikce egimin tekrar asagi donmesi
 - boylece toplam Type-III ag cevabinin, tek tek `R-C` parcalarinin cebirsel toplami degil frekans-alaninda ust uste binmis hali oldugu
 
-Sayfada ayrica bazi frekans isaretleri de goruluyor; ancak rakamlarin bir kismi tam net olmadigi icin burada yalnizca su guvenli fikir korunmali:
+Sayfada ayrica bazi frekans isaretleri de goruluyor; ancak rakamlarin bir kismi tam net olmadigi icin burada yalnizca su guvenli fikir alinmali:
 
 - birden fazla kirilim frekansi ayni sayfada isaretlenmis
 - bunlar `W.84-W.85`te hesaplanan kutup/sifir noktalarinin grafik karsiliklari gibi dusunulmus
@@ -10228,16 +9611,13 @@ Sayfanin alt kismina dusulen:
 
 notu da, kullanicinin bu agi yalnizca frekans olarak degil iletkenlik/empedans seviyeleri acisindan da gozunden gecirdigini gosteriyor.
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni bir `f_z` veya `f_p` sonucu vermiyor; daha cok `W.84-W.85`teki sayisal yerlestirmenin grafik/egim tarafini kuruyor
-- bu acidan cok degerlidir; cunku kompanzatorun yalnizca formullerle degil, Bode egimleri ustunden de dusunuldugunu gosterir
-- sayfadaki komponent degerleri ve frekans etiketleri, okunabildigi kadariyla aday bir iterasyona aittir; nihai BOM gibi ele alinmamali
-- bu nedenle `W.142`, Type-III kompanzatorun renkli Bode-insasini gosteren teknik defter sayfasi olarak korunmalidir
+Burada yeni bir `f_z` veya `f_p` sonucu yok; daha cok `W.84-W.85`teki sayisal yerlestirmenin grafik/egim tarafi kuruluyor. Bu acidan guclu; cunku kompanzatorun yalnizca formullerle degil, Bode egimleri ustunden de dusunuldugunu gosteriyor. Sayfadaki komponent degerleri ve frekans etiketleri okunabildigi kadariyla aday bir iterasyona ait; nihai BOM gibi ele alinmamali.
 
 Defterden aktarilan not (`W.143`):
 
-Bu sayfa, `W.142`nin hemen devami gibi duruyor. Burada artik aday kompanzator komponentlerinden dogrudan kirilim frekanslari cekiliyor ve altta bunlar renkli Bode parcalari uzerinde tekrar yerlestiriliyor. Yani yeni bir nihai tasarim sayfasi degil; `W.142`te renkli cizilen egimlerin hangi `R-C` ciftlerinden geldiginin daha somut yazildigi takip sayfasidir.
+Burada `W.142`nin hemen devami var. Artik aday kompanzator komponentlerinden dogrudan kirilim frekanslari cekiliyor ve altta bunlar renkli Bode parcalari uzerinde tekrar yerlestiriliyor. Yeni bir nihai tasarim sayfasi degil; `W.142`te renkli cizilen egimlerin hangi `R-C` ciftlerinden geldiginin daha somut yazildigi bir takip sayfasi.
+
+![W.143'ten kucuk kirpim: `f1-f4` kirilim frekanslarini komponent ciftlerinden ceken sayfa](images/defter_snippets_web/d190_w143_bode_break_frequencies.jpg)
 
 Sayfanin ust tarafinda, okunabildigi kadariyla, su esitlikler yazilmis:
 
@@ -10276,18 +9656,13 @@ Sayfanin alt kisminda ise bu frekanslar renkli egimlerle tekrar yerlestiriliyor.
 - `f_1` ile orta frekansta egimin sekillenmesi
 - `f_3` ve `f_2` ile yuksek frekans tarafinda kutup/sifir etkilerinin gorulmesi
 
-Bu sayfada yazilan frekanslar, `W.142`teki renkli Bode insasinin "hangi komponent cifti hangi frekansi veriyor?" sorusuna cevap arayan teknik iz notu gibi okunmalidir.
-
-Tutarlilik kontrolu:
-
-- `W.143`, `W.142`deki grafik sezgiyi bu kez dogrudan `R-C` ciftlerinden cikan frekanslarla destekliyor
-- burada yazilan `f_1`, `f_2`, `f_3`, `f_4` etiketleri aday kompanzator iterasyonuna aittir; nihai secim gibi ele alinmamali
-- `R_2-C_1`, `R_2-C_3`, `R_3-C_2`, `R_1-C_2` eslestirmeleri, Type-III kompanzatorun farkli dallarinin hangi kirilimlari urettigini anlamak icin tutulmus degerli bir defter izidir
-- bu nedenle `W.143`, `W.142`nin devaminda kompanzator kirilim frekanslarini grafiksel olarak yerlestiren destek sayfasi olarak korunmalidir
+Bu sayfada yazilan frekanslar, `W.142`teki renkli Bode insasinin "hangi komponent cifti hangi frekansi veriyor?" sorusuna cevap arayan teknik iz notu gibi okunmali. `f_1`, `f_2`, `f_3`, `f_4` etiketleri aday kompanzator iterasyonuna ait; nihai secim gibi okunmamali. Buna ragmen `R_2-C_1`, `R_2-C_3`, `R_3-C_2`, `R_1-C_2` eslestirmeleri, Type-III kompanzatorun farkli dallarinin hangi kirilimlari urettigini anlamak icin guclu bir defter izi.
 
 Defterden aktarilan not (`W.113`):
 
-Bu sayfa, kompanzator kutuplari tarafinda ozellikle `\omega_{p1}` ve `\omega_{p2}` ifadelerinin neden bu sekilde yaklasiklandigini daha ayrintili not ediyor. Yani `W.85`te sonuc olarak yazilan kutup denklemlerinin cebirsel arka planini gosteriyor.
+Burada kompanzator kutuplari tarafinda ozellikle `\omega_{p1}` ve `\omega_{p2}` ifadelerinin neden bu sekilde yaklasiklandigi daha ayrintili not edilmis. Yani `W.85`te sonuc olarak yazilan kutup denklemlerinin cebirsel arka plani goruluyor.
+
+![W.113'ten kucuk kirpim: `\omega_{p1} \approx 1/(Rc1 Cc2)` yaklasimi ve `Cc2 << Cc1` notu](images/defter_snippets_web/d191_w113_pole_approximation_note.jpg)
 
 Sayfanin ustunde `Compensator Poles` basligi altinda su ifade yazilmis:
 
@@ -10323,20 +9698,17 @@ Sayfanin altinda ikinci kutup icin de kisa not yer aliyor:
 \omega_{p2} = \frac{1}{R_{c2}\,C_{c3}}
 ```
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni nihai sayisal deger vermiyor; daha cok `W.85`te kullanilan yaklasik kutup denklemlerinin neden makul oldugunu acikliyor
-- burada kritik olan sey, Type-III aginda bazi basitlestirmelerin bilincli olarak yapildiginin gorunmesidir
-- ozellikle `C_{c2} << C_{c1}` varsayimi, `\omega_{p1}` hesabinin neden `1/(R_{c1}C_{c2})` bicimine indirgendigini acikliyor
-- bu nedenle `W.113`, `W.84-W.85` zincirinde kompanzator kutuplarinin yaklasiklanmasini gerekcelendiren destek sayfasi olarak korunmalidir
+Burada yeni bir nihai sayisal deger yok; ama `W.85`te kullanilan yaklasik kutup denklemlerinin neden makul oldugu aciklaniyor. Buradaki kritik sey, Type-III aginda bazi basitlestirmelerin bilincli olarak yapildiginin gorunmesi. Ozellikle `C_{c2} << C_{c1}` varsayimi, `\omega_{p1}` hesabinin neden `1/(R_{c1}C_{c2})` bicimine indigini netlestiriyor.
 
 Defterden aktarilan not (`W.114`):
 
-Bu sayfa, kompanzator tarafindan once plant tarafinda gorulen iki onemli sifiri cok kisa bir ozet halinde yaziyor. Baslikta dogrudan:
+Burada kompanzator tarafindan once plant tarafinda gorulen iki onemli sifir cok kisa bir ozet halinde yaziliyor. Baslikta dogrudan:
 
 - `Power Stage Zeros`
 
 yaziyor.
+
+![W.114'ten kucuk kirpim: `\omega_{ESR}` ve dampingten gelen ikinci sifir notu](images/defter_snippets_web/d192_w114_power_stage_zeros.jpg)
 
 Sayfada ilk olarak ESR sifiri tekrar not edilmis:
 
@@ -10353,12 +9725,7 @@ Yan tarafta ise `inverted zero` notuyla birlikte ikinci bir ifade yazilmis:
 Not:
 - sayfadaki el yazisi nedeniyle ifade ilk bakista farkli okunabilir; ancak fiziksel boyut ve onceki sayfalardaki mantik acisindan burada kastedilen iliski buyuk olasilikla `R_{damp}/L_F` tipindeki sifirdir
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni sayisal yerlesim vermiyor; ama power-stage tarafinda kompanzatorun gormesi gereken sifirlarin hangileri oldugunu sade bicimde hatirlatiyor
-- `\omega_{ESR}` zaten onceki sayfalarda da geciyordu; burada tekrar ozetlenmesi, frekans yerlesiminde onun merkezi rolunu guclendiriyor
-- `R_{damp}` ile gelen sifir notu ise, damping / kayip elemanlarinin plant'i yalnizca sönumlemedigini, ayni zamanda frekans cevabini da degistirdigini gosteren faydali bir izdir
-- bu nedenle `W.114`, frekans yerlesimi ve plant sifirlari baglaminda kisa bir defter ozet sayfasi olarak korunmalidir
+Burada yeni bir sayisal yerlesim yok; ama power-stage tarafinda kompanzatorun gormesi gereken sifirlar kisa ve sade bicimde toparlaniyor. `\omega_{ESR}` zaten onceki sayfalarda da geciyordu; burada tekrar ozetlenmesi, frekans yerlesiminde merkezi rolunu guclendiriyor. `R_{damp}` ile gelen sifir notu da damping / kayip elemanlarinin plant'i yalnizca sönumlemedigini, frekans cevabini da degistirdigini hatirlatiyor.
 
 
 
@@ -10404,19 +9771,17 @@ Defterden aktarilan not:
 - ayni sayfalarda `f_o ~= 7.309 kHz` ve `f_{esr} ~= 8.74 kHz` civari notlar da yer aliyor
 - bu notlar, `f_c = 35 kHz` seciminin defterde kullanilan yerel hedefle uyumlu oldugunu gosteriyor
 
-Tutarlilik kontrolu:
-
-- bu frekans yerlestirmesi mantikli bir ilk aday
-- ancak `W.23-W.24` sayfalari eski geri besleme bolucusu notlariyla da karismis durumda
-- bu nedenle frekanslarin kendisi faydali olsa da, oradaki tum ara cebir dogrudan nihai kabul edilmemeli
+Bu frekans yerlestirmesi mantikli bir ilk aday. Ama `W.23-W.24` sayfalari eski geri besleme bolucusu notlariyla da karismis durumda; o yuzden frekanslarin kendisi faydali olsa da oradaki tum ara cebir dogrudan nihai kabul edilmemeli.
 
 Defterden aktarilan not (`W.115`):
 
-Bu sayfa, Type-III kompanzator frekans yerlesimi icin yapilmis daha eski bir iterasyon gibi duruyor. Sayfada acikca:
+Burada Type-III kompanzator frekans yerlesimi icin yapilmis daha eski bir iterasyon var. Sayfada acikca:
 
 - `f_c = 60 kHz`
 
 notu var. Bu nedenle, mevcut projede sik tekrar eden `f_c \approx 35 kHz` cizgisiyle birebir uyumlu gorunmuyor; yani dogrudan nihai kabul edilmemeli.
+
+![W.115'ten kucuk kirpim: eski `f_c = 60 kHz` iterasyonu ve buna bagli aday frekanslar](images/defter_snippets_web/d193_w115_old_fc_60k_candidate.jpg)
 
 Sayfada korunan ana notlar sunlar:
 
@@ -10456,12 +9821,7 @@ Sayfada ayrica eski iterasyona ait frekans yerlesimleri not edilmis:
 
 ![K-factor'den cikan degerler dogrudan kullanildiginda `35 kHz / 53 deg` civarini veren calculator snapshot'i](images/foto_selected/p97_kfactor_direct_values_pm53.jpg)
 
-Tutarlilik kontrolu:
-
-- bu sayfa, kompanzator icin "bir onceki yerlesim denemesi" gibi gorunuyor
-- `R_{FB1} = 16.5 k\Omega` kullanmasi ve `f_c = 60 kHz` secmesi nedeniyle, satin alinmis BOM ve sonraki `35 kHz` cizgisiyle tam uyusmuyor
-- buna ragmen teknik olarak cok degerli: eski iterasyonda `Kmid`, `f_0`, `f_{ESR}`, `f_{z1}`, `f_{z2}`, `f_{p1}`, `f_{p2}` arasindaki frekans kurgusunun nasil yapildigini gosteriyor
-- bu nedenle `W.115`, `6.3.2` altinda "eski / alternatif frekans yerlesimi iterasyonu" olarak korunmalidir
+Bu sayfa, kompanzator icin bir onceki yerlesim denemesi gibi gorunuyor. `R_{FB1} = 16.5 k\Omega` kullanmasi ve `f_c = 60 kHz` secmesi nedeniyle satin alinmis BOM ve sonraki `35 kHz` cizgisiyle tam uyusmuyor. Yine de teknik olarak degerli; cunku eski iterasyonda `Kmid`, `f_0`, `f_{ESR}`, `f_{z1}`, `f_{z2}`, `f_{p1}`, `f_{p2}` arasindaki frekans kurgusunun nasil yapildigini acikca gosteriyor.
 
 Bu iki calculator ekran goruntusu, `W.115`te yazili eski iterasyon mantigini sayisal sonuc tarafinda da destekliyor. `p56`, eski `R_{FB1}=16.5 k\Omega` / `R_{FB2}=1 k\Omega` cizgisinde `f_c \approx 23 kHz` ve yalnizca `4 deg` faz marji gibi zayif bir sonucu gosterdigi icin "erken ve sorunlu deneme" olarak degerli. `p59` ise ayni eski geri besleme oranina ragmen bu kez `35 kHz` ve `53 deg` bandina yaklasan daha olgun bir calculator checkpoint'i gibi duruyor. Yani kompanzator tasariminin bir anda degil, gozle gorulur iterasyonlar uzerinden sikilastigini acikca gosteriyorlar.
 
@@ -10469,7 +9829,9 @@ Bu iki calculator ekran goruntusu, `W.115`te yazili eski iterasyon mantigini say
 
 Defterden aktarilan not (`W.112`):
 
-Bu sayfa, LM5146 ve Type-III kompanzator baglaminda frekans yerlesimini tek bir yerde toparlamaya calisan ozet bir defter sayfasi gibi duruyor. Ust kisimdaki notlardan anlasildigi kadariyla amac, "hangi frekans / hangi kutup / hangi sifir nereye denk gelir?" sorusunu tek cercevede toplamaktir.
+Burada LM5146 ve Type-III kompanzator baglaminda frekans yerlesimini tek bir yerde toparlamaya calisan ozet bir defter sayfasi var. Ust kisimdaki notlardan anlasildigi kadariyla amac, "hangi frekans / hangi kutup / hangi sifir nereye denk gelir?" sorusunu tek cercevede toplamak.
+
+![W.112'den kucuk kirpim: `\omega_0`, `\omega_{ESR}`, `\omega_{p1}`, `\omega_{p2}`, `\omega_{z1}`, `\omega_{z2}` ozet sayfasi](images/defter_snippets_web/d194_w112_frequency_placement_summary.jpg)
 
 Sayfada guvenle okunabilen ana iliskiler sunlar:
 
@@ -10513,7 +9875,7 @@ Compensator tarafinda:
 \frac{1}{(R_{FB1}+R_{c2})\,C_{c3}}
 ```
 
-Sayfadaki renkli kutulara dusulen hedef/niyet notlari da korunmali:
+Sayfadaki renkli kutulara dusulen hedef/niyet notlari da onemli:
 
 - `\omega_{p2} = \omega_{sw} / 2`
 - `\omega_{z2} = \omega_0`
@@ -10531,12 +9893,7 @@ Yan notta ayrica klasik ilk yaklasim tekrar edilmis:
 Erik Hoca: f_c \approx f_{sw}/10
 ```
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.84-W.85`te parcali duran kutup-sifir yerlestirme mantigini bu kez tek ozet sayfada topluyor
-- burada yazilan esitliklerin bir kismi nihai sayisal secim degil; daha cok tasarim kurali / hedef yerlestirme niyeti gibi okunmali
-- buna ragmen sayfa cok degerli; cunku plant (`\omega_0`, `\omega_{ESR}`) ile kompanzator kutup/sifirlarini ayni cizgide dusundugunu acikca gosteriyor
-- bu nedenle `W.112`, `6.3 Hedef frekans yerlestirmesi` altinda frekans yerlesimi ve Type-III kutup-sifir baglantilarini toparlayan ozet defter sayfasi olarak korunmalidir
+Bu sayfa, `W.84-W.85`te parcali duran kutup-sifir yerlestirme mantigini bu kez tek ozet sayfada topluyor. Burada yazilan esitliklerin bir kismi nihai sayisal secim degil; daha cok tasarim kurali / hedef yerlestirme niyeti gibi okunmali. Ama plant (`\omega_0`, `\omega_{ESR}`) ile kompanzator kutup/sifirlarini ayni cizgide dusundugunu gostermesi acisindan cok guclu.
 
 
 
@@ -10581,6 +9938,8 @@ Buradaki sayilar su an "tasarim niyeti" seviyesindedir. Gercek `L`, `C`, `ESR`, 
 Defter taramasi `W.1-W.2`, `W.5`, `W.11` ve `W.12` icinde de `PM = 55 deg` hedefinin tekrarlandigi goruluyor. Yani bu hedef sadece eski ODT taslaginda gecen bir niyet degil; ilk 24 sayfalik defter batch'inde de aktif olarak kullanilmis bir tasarim hedefi.
 
 Defterden aktarilan not (`W.25`):
+
+![W.25'ten kucuk kirpim: birim kazanc frekansi, faz marji ve kazanc marji tanimlarini ozetleyen not](images/defter_snippets_web/d161_w25_phase_and_gain_margin_note.jpg)
 
 Bu sayfa, faz marji ve kazanc marji tanimlarini genel kontrol diliyle tekrar ozetliyor:
 
@@ -10753,9 +10112,11 @@ Bu bolumde ileride sayisal olarak eklenecek ana maddeler:
 
 Defterden aktarilan not (`W.103`):
 
-Bu sayfa, diferansiyel-mod EMI filtresinin ne kadar `attenuation` saglamasi gerektigini ilk harmonik yaklasimi ile kestirmeye calisiyor. Baslikta dogrudan su soru yazili:
+Burada diferansiyel-mod EMI filtresinin ne kadar `attenuation` saglamasi gerektigi ilk harmonik yaklasimi ile kestirilmeye calisiliyor. Baslikta dogrudan su soru yazili:
 
 - `EMI suzgecinin ne kadar attenuation saglamasi gerektigi`
+
+![W.103'ten kucuk kirpim: ilk harmonik yaklasimi ile gereken EMI attenuation hesabi](images/defter_snippets_web/d195_w103_required_emi_attenuation.jpg)
 
 Sayfadaki ifade, giris akiminin ilk harmonik bileseninden hareketle olusan gerilim seviyesini `dBµV` cinsinden okuyup, izin verilen ust sinir ile karsilastiriyor. Formul satiri tam temiz degil; ama sayfada korunacak ana iliski su mantikta:
 
@@ -10791,15 +10152,13 @@ Sayfadaki yan notlarin ana fikri su:
 - bu harmonik yeterince kucultulmezse EMI limitini asabilir
 - dolayisiyla filtre, yalnizca "var olsun" diye degil; belirli bir `dB` bastirma hedefiyle boyutlandirilmalidir
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `7.2 Differential-mode EMI` bolumunde eksik duran "nicel attenuation hedefi" fikrini ilk kez sayisal olarak yaziyor
-- formuldaki bazi semboller hafif silik oldugu icin onu temkinli korumak gerekir; ama ana sonuc nettir: bu iterasyonda filtre tarafindan kabaca `46.8 dB` mertebesinde bastirma bekleniyor
-- bu nedenle `W.103`, giris EMI filtresinin attenuation hedefini hesaplamaya calisan ilk sayisal defter sayfasi olarak bu bolumde korunmalidir
+Bu sayfa, `7.2 Differential-mode EMI` bolumunde eksik duran "nicel attenuation hedefi" fikrini ilk kez sayisal olarak yaziyor. Formuldaki bazi semboller hafif silik; o yuzden orayi temkinli okumak gerekiyor. Ama ana sonuc net: bu iterasyonda filtre tarafindan kabaca `46.8 dB` mertebesinde bastirma bekleniyor.
 
 Defterden aktarilan not (`W.137`):
 
-Bu sayfa, `W.103`teki diferansiyel-mod EMI attenuation hesabinin daha dikkatli bir tekrar denemesi gibi duruyor. Bu kez kullanici, hesapta hangi `C_{in}` degerinin kullanildigina ozellikle dikkat cekiyor ve "bulk capacitor ihmal edilirse attenuation hesabinin kayabilecegi" fikrini not ediyor. Bu nedenle `7.2 Differential-mode EMI` altinda, attenuation hedefini giris kapasitesi secimiyle baglayan ikinci sayisal defter sayfasi olarak korunmalidir.
+Burada `W.103`teki diferansiyel-mod EMI attenuation hesabinin daha dikkatli bir tekrar denemesi var. Bu kez hesapta hangi `C_{in}` degerinin kullanildigina ozellikle dikkat cekiliyor ve "bulk capacitor ihmal edilirse attenuation hesabinin kayabilecegi" fikri not ediliyor.
+
+![W.137'den kucuk kirpim: etkin `C_{in}` secimine gore attenuation hesabinin degistigini gosteren not](images/defter_snippets_web/d196_w137_attenuation_vs_effective_cin.jpg)
 
 Sayfanin ustunde yine ayni mantikla su tip bir ifade yazilmis:
 
@@ -10842,12 +10201,7 @@ ve kullanici en altta da kisa bir ters yon sezgiyi not ediyor:
 - `C_{in}` azalirsa
 - gereken `Attn` artar
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.103`e gore daha rafine; cunku attenuation hesabinda kullanilan `C_{in}` degerinin ne oldugu ve bulk capacitorun bu hesaba nasil dahil / haric tutulacagi sorununu acikca gundeme getiriyor
-- `46.8 dB` ile `43.14 dB` arasindaki fark, buyuk olasilikla secilen `C_{in}` taniminin farkli olmasindan kaynaklanmaktadir; bu nedenle bu iki sayfa birlikte korunmalidir
-- yeni sayfanin asil degeri, sayisal sonuc kadar "EMI attenuation hesabinda etkili giris kapasitesi hangi gruptur?" sorusunu acikca sormasidir
-- bu nedenle `W.137`, `7.2 Differential-mode EMI` altinda attenuation hesabini etkin `C_{in}` secimiyle baglayan ikinci sayisal defter sayfasi olarak korunmalidir
+Bu sayfa, `W.103`e gore daha rafine; cunku attenuation hesabinda kullanilan `C_{in}` degerinin ne oldugu ve bulk capacitorun bu hesaba nasil dahil / haric tutulacagi sorununu acikca gundeme getiriyor. `46.8 dB` ile `43.14 dB` arasindaki fark da buyuk olasilikla secilen `C_{in}` taniminin farkli olmasindan geliyor. Buradaki asil deger, sayisal sonuctan cok "EMI attenuation hesabinda etkili giris kapasitesi hangi gruptur?" sorusunu acikca sormasi.
 
 
 
@@ -10889,17 +10243,15 @@ Giris EMI filtresi eklendiginde mesele yalnizca bastirma elde etmek degil, donus
 
 
 
-Bu bolumde korunacak ana fikir su olmali:
+Bu bolumde asil fikir su:
 
 - EMI filtresinin cikis empedansi ile donusturucunun giris tarafi dinamik davranisi tehlikeli bir etkilesime girmemelidir
-
 - filtre rezonansi kontrol dongusu ve guc kati ile problemli bir cift kutup / negatif empedans etkisi olusturmamalidir
-
 - gerekli ise elektrolitik parallel damping veya ayri damping agi kullanilmalidir
 
 
 
-Bu kisimda henuz final esitlik ve sayisal kontrol yoktur. Final turda su adimlar eklenecek:
+Bu kisimda henuz final esitlik ve sayisal kontrol yok. Sonraki turda su adimlar eklenecek:
 
 1. secilen `L_f` ve `C_in,filter` ile rezonans frekansi hesaplanacak
 
@@ -10911,9 +10263,11 @@ Bu kisimda henuz final esitlik ve sayisal kontrol yoktur. Final turda su adimlar
 
 Defterden aktarilan not (`W.100`):
 
-Bu sayfa dogrudan giris EMI filtresi ile donusturucunun etkileşimine odaklaniyor. Baslikta acikca su soru yazilmis:
+Burada dogrudan giris EMI filtresi ile donusturucunun etkilesimine odaklaniliyor. Baslikta acikca su soru yazilmis:
 
 - `Filterin EMI resonance frekansini nasil belirleriz?`
+
+![W.100'den kucuk kirpim: `f_res = 1/(2\pi\sqrt{L_{IN}C_F})` ve Middlebrook uyumu notu](images/defter_snippets_web/d200_w100_middlebrook_and_filter_resonance.jpg)
 
 Sayfada filtre rezonans frekansi icin temel iliski not edilmis:
 
@@ -10958,18 +10312,15 @@ Sayfadaki son mesaj su yone cikiyor:
 - phase margin azalabilir
 - sistem osilasyona gidebilir
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `7.4 Giris filtresi kararliligi` basliginin defterdeki en net omurgalarindan biri
-- filtre rezonans frekansinin yalnizca EMI bastirma acisindan degil, kararlilik acisindan da kontrol edilmesi gerektigini acikca gosteriyor
-- `f_{res} \approx 22.46 kHz` notu, secilecek EMI filter tarafinda `f_c` ve plant davranisiyla etkileşim riski oldugunu gosteren yararli bir ilk izdir
-- bu nedenle `W.100`, Middlebrook uyumu ve filtre rezonansi dusuncesini birlikte gosteren guclu bir defter sayfasi olarak bu bolumde korunmalidir
+Bu not, `7.4 Giris filtresi kararliligi` basliginin defterdeki en net omurgalarindan biri. Filtre rezonans frekansinin yalnizca EMI bastirma acisindan degil, kararlilik acisindan da kontrol edilmesi gerektigini acikca gosteriyor. `f_{res} \approx 22.46 kHz` notu da secilecek EMI filter tarafinda `f_c` ve plant davranisiyla etkilesim riski oldugunu gosteren yararli bir ilk iz.
 
 Defterden aktarilan not (`W.101`):
 
-Bu sayfa, `W.100`deki filtre rezonansi problemine karsi kullanilan damping agina geciyor. Baslikta acikca su ifade var:
+Burada `W.100`deki filtre rezonansi problemine karsi kullanilan damping agina geciliyor. Baslikta acikca su ifade var:
 
 - `EMI line resonance-type impedance bastirmak icin kullanilan ... damping`
+
+![W.101'den kucuk kirpim: `C_D >> 4 C_{IN}` damping kurali](images/defter_snippets_web/d205_w101_cd_much_greater_than_4cin.jpg)
 
 Sayfanin orta kismina kutu icinde su tasarim kurali yazilmis:
 
@@ -10991,16 +10342,13 @@ Alt satirlarda `C_D` secimi icin su sezgiler not edilmis:
   - ama rezonans frekansinda da devreye girebilmeli
 - bu nedenle `C_D`, `C_{IN}`'den "cok daha buyuk" secilmek istenmis
 
-Tutarlilik kontrolu:
-
-- bu sayfa, filtre rezonansina karsi klasik seri `R_D - C_D` damping kolu dusuncesinin defterde not edildigini gosteriyor
-- burada yazilan `C_D \gg 4C_{IN}` kurali, tam nihai esitlik gibi degil; daha cok kaynak anlatimdan alinmis bir tasarim yonlendirmesi gibi okunmali
-- ama teknik niyet net: `C_D`, `DC`'de acik devreye yakin kalirken rezonans civarinda damping etkisi uretebilmeli
-- bu nedenle `W.101`, `W.100`den hemen sonra, giris filtresi rezonansi ve damping agi dusuncesini gosteren defter sayfasi olarak korunmalidir
+Bu not, filtre rezonansina karsi klasik seri `R_D - C_D` damping kolu dusuncesinin defterde not edildigini gosteriyor. Burada yazilan `C_D \gg 4C_{IN}` kurali, tam nihai esitlik gibi degil; daha cok kaynak anlatimdan alinmis bir tasarim yonlendirmesi. Ama teknik niyet net: `C_D`, `DC`'de acik devreye yakin kalirken rezonans civarinda damping etkisi uretebilmeli.
 
 Defterden aktarilan not (`W.102`):
 
-Bu sayfa, `W.100-W.101` zincirini bir adim ileri goturup EMI filtresi icin ilk `L_{IN}` ve `C_F` boyutlandirma notlarini yaziyor.
+Burada `W.100-W.101` zinciri bir adim ileri gidip EMI filtresi icin ilk `L_{IN}` ve `C_F` boyutlandirma notlari yaziliyor.
+
+![W.102'den kucuk kirpim: `L_{IN} = 4.7 uH` secimi ve `C_F \approx 10.68 uF` ilk boyutlandirma notu](images/defter_snippets_web/d197_w102_lin_cf_initial_sizing.jpg)
 
 Sayfanin ustunde su iliski not edilmis:
 
@@ -11036,16 +10384,13 @@ C_F
 10.68\,\mu F
 ```
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.100`de not edilen `f_{res}` iliskisinden once veya onunla birlikte dusunulmus ilk EMI filtre boyutlandirma adimi gibi gorunuyor
-- `L_{IN} = 4.7 uH` ve `C_F \approx 10.68 uF` cifti, `W.100`deki rezonans ornegine de zemin hazirliyor
-- sayfanin bazi cumleleri silik olsa da ana fikir nettir: giris EMI filtresi, buck'in darbeli giris akimi ve ilk harmonik icerigi dusunulerek secilmelidir
-- bu nedenle `W.102`, `7.4` altinda ilk EMI filtre boyutlandirma notu olarak korunmalidir
+Burada `W.100`de not edilen `f_{res}` iliskisiyle birlikte dusunulmus ilk EMI filtre boyutlandirma adimi var. `L_{IN} = 4.7 uH` ve `C_F \approx 10.68 uF` cifti, `W.100`deki rezonans ornegine de zemin hazirliyor. Sayfanin bazi cumleleri silik olsa da ana fikir net: giris EMI filtresi, buck'in darbeli giris akimi ve ilk harmonik icerigi dusunulerek secilmeli.
 
 Defterden aktarilan not (`W.138`):
 
-Bu sayfa, `W.100` ve `W.102`de kurulan EMI filtre rezonansi dusuncesinin baska bir `L_{IN} - C_F` adayi uzerinden yeniden kontrol edilmis hali gibi duruyor. Bu nedenle `7.4 Giris filtresi kararliligi` altinda, ikinci bir filtre adayi icin `f_{res}` dogrulamasi yapan kisa defter sayfasi olarak korunmalidir.
+Burada `W.100` ve `W.102`de kurulan EMI filtre rezonansi dusuncesi baska bir `L_{IN} - C_F` adayi uzerinden yeniden kontrol ediliyor.
+
+![W.138'den kucuk kirpim: alternatif `L_{IN}-C_F` cifti icin `f_{EMI}` kontrolu](images/defter_snippets_web/d198_w138_alt_filter_resonance_freq.jpg)
 
 Sayfanin ustunde yine filtre rezonans frekansi iliskisi yazilmis:
 
@@ -11076,18 +10421,15 @@ Sayfanin altinda ayrica kisa bir kural notu var:
 
 - `f_{EMI}` icin `0.7 f_s` benzeri bir taslak / hizli kontrol notu dusulmus
 
-Bu satir tam baglamiyla net okunmadigi icin, onu nihai tasarim kurali gibi degil kullanicinin hizli bir kontrol notu olarak ele almak daha dogrudur.
+Bu satir tam baglamiyla net okunmadigi icin, onu nihai tasarim kurali diye degil kullanicinin hizli bir kontrol notu olarak ele almak daha dogru.
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.100`deki `22.46 kHz` ornegine alternatif bir filtre adayi daha denendigini gosteriyor
-- en degerli tarafi, filtre rezonans frekansinin yalnizca tek kez hesaplanmadigini; secilen `L_{IN}` ve `C_F` ciftine gore tekrar tekrar kontrol edildigini gostermesidir
-- `f_{EMI} \approx 19.21 kHz` notu, filtre rezonansinin `f_c` civarina yaklasabilecegini ve bu nedenle Middlebrook / damping tarafinin dikkatle ele alinmasi gerektigini destekler
-- bu nedenle `W.138`, `7.4 Giris filtresi kararliligi` altinda ikinci EMI filtre rezonansi dogrulama sayfasi olarak korunmalidir
+Bu sayfa, `W.100`deki `22.46 kHz` ornegine alternatif bir filtre adayi daha denendigini gosteriyor. En degerli tarafi, filtre rezonans frekansinin yalnizca tek kez hesaplanmadigini; secilen `L_{IN}` ve `C_F` ciftine gore tekrar tekrar kontrol edildigini gostermesi. `f_{EMI} \approx 19.21 kHz` notu da filtre rezonansinin `f_c` civarina yaklasabilecegini ve bu nedenle Middlebrook / damping tarafinin dikkatle ele alinmasi gerektigini destekliyor.
 
 Defterden aktarilan not (`W.139`):
 
-Bu sayfa, `W.138`deki ayni EMI filtre adayi icin bu kez karakteristik empedans benzeri `R_0` buyuklugunu hesaplayan tek satirlik bir kontrol notu gibi duruyor. Bu nedenle `7.4 Giris filtresi kararliligi` altinda, filtre rezonans frekansina ek olarak filtre empedans olcegini veren kisa defter sayfasi olarak korunmalidir.
+Burada `W.138`deki ayni EMI filtre adayi icin bu kez karakteristik empedans benzeri `R_0` buyuklugu hesaplanmis tek satirlik bir kontrol notu var.
+
+![W.139'dan kucuk kirpim: `R_0 = \sqrt{L_{IN}/C_{IN}}` ile karakteristik empedans notu](images/defter_snippets_web/d199_w139_filter_characteristic_impedance.jpg)
 
 Sayfada yazilan temel iliski su:
 
@@ -11112,16 +10454,13 @@ R_0
 0.296\,\Omega
 ```
 
-Tutarlilik kontrolu:
-
-- bu sayfa yeni topoloji veya yeni filtre adayi getirmiyor; `W.138`deki aday icin bir ek parametre cikariyor
-- `R_0` benzeri bu buyukluk, damping kolu secimi ve filtre empedansinin buyukluk mertebesini sezmek icin yararlidir
-- sayfa tek satir olsa da, filtreyi yalnizca `f_{res}` ile degil karakteristik empedans olcegi ile de dusundugunu gosterdigi icin degerlidir
-- bu nedenle `W.139`, `7.4 Giris filtresi kararliligi` altinda EMI filtre adayinin karakteristik empedansini veren kisa defter sayfasi olarak korunmalidir
+Burada yeni topoloji veya yeni filtre adayi yok; `W.138`deki aday icin bir ek parametre cikariliyor. `R_0` benzeri bu buyukluk, damping kolu secimi ve filtre empedansinin buyukluk mertebesini sezmek icin yararli. Tek satir olsa da, filtreyi yalnizca `f_{res}` ile degil karakteristik empedans olcegi ile de dusundugunu gostermesi iyi.
 
 Defterden aktarilan not (`W.104`):
 
-Bu sayfa, `W.101`de anlatilan damping kolunu EMI filtresi semasina acikca yerlestiriyor ve filtre tarafinin toplam empedansini yaziyor.
+Burada `W.101`de anlatilan damping kolu EMI filtresi semasina acikca yerlestiriliyor ve filtre tarafinin toplam empedansi yaziliyor.
+
+![W.104'ten kucuk kirpim: EMI filtresi, `C_F` ve seri `R_D-C_D` damping kolunun topolojik cizimi](images/defter_snippets_web/d201_w104_filter_impedance_expression.jpg)
 
 Sayfadaki cizimde:
 
@@ -11151,15 +10490,13 @@ Bu ifadenin anlattigi ana fikir su:
 - `C_F` ve `L_{IN}` tarafinin tek basina uretecegi keskin rezonans, bu ek kolla daha yumusak hale getirilebilir
 - dolayisiyla Middlebrook uyumu ve filtre kararliligi yalnizca `L` ve `C` ile degil, damping kolunun empedansi ile birlikte degerlendirilmelidir
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.101`deki tasarim kurali seviyesindeki damping notunu artık dogrudan devre ve empedans ifadesi seviyesine tasiyor
-- burada yazilan `Z_{Filter}` ifadesi, daha sonra `|Z_{filter,out}| < |Z_{in}|` kontrolunde hangi agin karsilastirildigini netlestirmesi acisindan cok degerli
-- bu nedenle `W.104`, `7.4 Giris filtresi kararliligi` altinda damping kolu dahil filtre empedansini kuran temel defter sayfasi olarak korunmalidir
+Bu sayfa, `W.101`deki tasarim kurali seviyesindeki damping notunu artık dogrudan devre ve empedans ifadesi seviyesine tasiyor. Burada yazilan `Z_{Filter}` ifadesi, daha sonra `|Z_{filter,out}| < |Z_{in}|` kontrolunde hangi agin karsilastirildigini netlestirdigi icin cok degerli.
 
 Defterden aktarilan not (`W.105`):
 
-Bu sayfa, giris filtresi kararliligi konusunun neden dikkat gerektirdigini kavramsal olarak acikliyor: donusturucunun giris tarafi bazi kosullarda `negative input impedance` gibi davranabilir.
+Burada giris filtresi kararliligi konusunun neden dikkat gerektirdigi kavramsal olarak aciklaniyor: donusturucunun giris tarafi bazi kosullarda `negative input impedance` gibi davranabilir.
+
+![W.105'ten kucuk kirpim: negatif giris empedansi ve `Z_0`, `Z_{in}` notlari](images/defter_snippets_web/d202_w105_negative_input_impedance_note.jpg)
 
 Sayfanin ust kisiminda su temel iliski yazili:
 
@@ -11179,25 +10516,23 @@ Sayfanin orta bolgesinde su kavram acikca vurgulanmis:
 
 ve bu durumun filtre ile etkisi su mantikta anlatilmis:
 
-- LC filtresinin giris / cikis empedansi ile converter'in `Z_{in}` davranişi tehlikeli bicimde ust uste gelirse
+- LC filtresinin giris / cikis empedansi ile converter'in `Z_{in}` davranisi tehlikeli bicimde ust uste gelirse
 - salinim veya osilasyon riski artabilir
 
-Sayfada alti cizili kiyas notu korunmali:
+Sayfada alti cizili kiyas notu da onemli:
 
 ```text
 Z0 > Zin ise
 LC filtresinin giris empedansi, converter'in negatif empedansi ile etkilesir
 ```
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.100`de not edilen `|Z_{filter,out}| < |Z_{in}|` iliskisinin arkasindaki fiziksel nedeni acikliyor
-- burada ana fikir, EMI filtresinin yalnizca pasif bir bastirma agi olmadigi; converter'in giris tarafindaki dinamik davranisla etkilesime girdigidir
-- bu nedenle `W.105`, `7.4` altinda Middlebrook uyumu ve negatif giris empedansi sezgisini aciklayan kavramsal bir defter sayfasi olarak korunmalidir
+Bu sayfa, `W.100`de not edilen `|Z_{filter,out}| < |Z_{in}|` iliskisinin arkasindaki fiziksel nedeni acikliyor. Ana fikir su: EMI filtresi yalnizca pasif bir bastirma agi degil; converter'in giris tarafindaki dinamik davranisla da etkilesime giriyor.
 
 Defterden aktarilan not (`W.106`):
 
-Bu sayfa, `W.105`te kavramsal olarak anlatilan negatif / dinamik giris empedansi dusuncesini bu kez worst-case bir buyukluk ifadesiyle yaziyor.
+Burada `W.105`te kavramsal olarak anlatilan negatif / dinamik giris empedansi dusuncesi bu kez worst-case bir buyukluk ifadesiyle yaziliyor.
+
+![W.106'dan kucuk kirpim: `|Z_{in}| = |-V_{in(min)}^2 / P_{in}|` worst-case iliskisi](images/defter_snippets_web/d203_w106_zin_min_equation.jpg)
 
 Sayfanin ustunde denklem `(17)` olarak su ifade not edilmis:
 
@@ -11227,19 +10562,17 @@ En alttaki yorumdan korunacak ana fikir su:
 - denklemde daha dusuk empedans, daha buyuk enerji emme egilimi anlamina gelir
 - bu da giris filtresi ile etkilesimde daha kritik / daha zorlayici bir durum olabilir
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.105`te anlatilan negatif giris empedansi fikrini ilk kez dogrudan hesaplanabilir bir buyukluge indiriyor
-- `V_{IN(min)}` ile yazilmis olmasi, Middlebrook turu karsilastirmada neden genellikle minimum giris gerilimi / worst-case kosulun kullanildigini da acikliyor
-- bu nedenle `W.106`, `7.4 Giris filtresi kararliligi` altinda `Z_{in}` buyuklugunun nasil tahmin edilecegini gosteren temel defter sayfasi olarak korunmalidir
+Bu sayfa, `W.105`te anlatilan negatif giris empedansi fikrini ilk kez dogrudan hesaplanabilir bir buyukluge indiriyor. `V_{IN(min)}` ile yazilmis olmasi da Middlebrook turu karsilastirmada neden genellikle minimum giris gerilimi / worst-case kosulun kullanildigini acikliyor.
 
 ![Negatif giris empedansi ve `|Z_{filter}(f_res)| < |Z_{IN(min)}|` kriterini notladigin ekran](images/foto_selected/p95_input_filter_middlebrook_note.jpg)
 
-Bu ekran goruntusu, `7.4` altinda anlatilan Middlebrook mantigini kullanicinin kendi cümleleriyle toparladigini gosteriyor. Uzerinde acikca "daha dusuk empedans = daha buyuk enerji emme egilimi" notu var ve alt kisimda `|Z_{Filter}(f_{res})| < |Z_{IN(min)}|` karsilastirmasi kirmizi/mavi isaretlerle vurgulanmis. Bu nedenle `W.105-W.106-W.136` zincirindeki negatif giris empedansi dusuncesini gorsel ve kavramsal olarak destekleyen guclu bir ara not olarak burada korunmaya degerdir.
+Bu ekran goruntusu, `7.4` altinda anlatilan Middlebrook mantigini kendi cümlelerinle toparladigini gosteriyor. Uzerinde acikca "daha dusuk empedans = daha buyuk enerji emme egilimi" notu var ve alt kisimda `|Z_{Filter}(f_{res})| < |Z_{IN(min)}|` karsilastirmasi kirmizi/mavi isaretlerle vurgulanmis. `W.105-W.106-W.136` zincirindeki negatif giris empedansi dusuncesini gorsel ve kavramsal olarak iyi destekliyor.
 
 Defterden aktarilan not (`W.136`):
 
-Bu sayfa, `W.106`daki negatif / dinamik giris empedansi denkleminin bu kez dogrudan proje sayilariyla uygulanmis hali gibi duruyor. Bu nedenle `7.4 Giris filtresi kararliligi` altinda, EMI filtresiyle karsilastirilacak worst-case `|Z_{in}|` buyuklugunu sayisal olarak veren temel defter sayfasi olarak korunmalidir.
+Burada `W.106`daki negatif / dinamik giris empedansi denklemi bu kez dogrudan proje sayilariyla uygulanmis.
+
+![W.136'dan kucuk kirpim: projeye gore sayisal `|Z_{in}|` sonucu](images/defter_snippets_web/d204_w136_numeric_zin_result.jpg)
 
 Sayfanin ustunde denklem tekrar yazilmis:
 
@@ -11287,11 +10620,7 @@ Sayfanin yan notunda bu sonuc acikca isaretlenmis:
 
 - "Bu `Z_N = 4.15 \Omega` degerimiz"
 
-Tutarlilik kontrolu:
-
-- bu sayfa, `W.106`ya gore daha ileri; cunku artik yalnizca denklem degil, ikinci projenin gercek `24 V / 125 W / %90` varsayimlariyla net sayisal sonuc da veriyor
-- `|Z_{in}| \approx 4.15 \Omega` degeri, daha sonra `Z_{filter,out}` ile karsilastirilacak ana referans buyukluklerden biri olarak korunmalidir
-- bu nedenle `W.136`, `7.4 Giris filtresi kararliligi` altinda sayisal `|Z_{in}|` hesabini veren temel proje defter sayfasi olarak korunmalidir
+Bu sayfa, `W.106`ya gore daha ileri; cunku artik yalnizca denklem degil, ikinci projenin gercek `24 V / 125 W / %90` varsayimlariyla net sayisal sonuc da veriyor. `|Z_{in}| \approx 4.15 \Omega` degeri de daha sonra `Z_{filter,out}` ile karsilastirilacak ana referanslardan biri haline geliyor.
 
 
 
@@ -11349,7 +10678,7 @@ YENI klasorunde simdiden kullanilabilecek bazi aday dosyalar bulunuyor:
 
 
 
-Bu dosyalar dogrudan final tasarim modeli kabul edilmemelidir. Ancak giris filtresi etkisi, averaged / switching model farki ve uretici makromodelinin davranisi icin iyi birer baslangic noktasi olabilirler.
+Bu dosyalari nihai tasarimin birebir modeli gibi gormemek daha dogru olur. Yine de giris filtresi etkisini, averaged / switching model farkini ve uretici makromodelinin nasil davrandigini anlamak icin iyi bir baslangic sagliyorlar.
 
 
 
@@ -11357,7 +10686,7 @@ Bu dosyalar dogrudan final tasarim modeli kabul edilmemelidir. Ancak giris filtr
 
 
 
-Bu proje icin en temiz siralama su olabilir:
+Bu proje icin en temiz sira su gibi duruyor:
 
 1. averaged model ile ilk kontrol ve giris filtresi etkisini anlamak
 
@@ -11369,7 +10698,7 @@ Bu proje icin en temiz siralama su olabilir:
 
 
 
-Bu sira, sorun oldugunda hangi katmanda bozulma basladigini ayirmayi kolaylastirir.
+Boyle gidince bir sorun ciktiginda bunun hangi katmanda basladigini ayirmak daha kolay oluyor.
 
 
 
@@ -11377,7 +10706,7 @@ Bu sira, sorun oldugunda hangi katmanda bozulma basladigini ayirmayi kolaylastir
 
 
 
-Ilk tur steady-state dogrulamada en az su koseler bakilmalidir:
+Ilk tur steady-state kontrolunde en az su koselere bakmak gerekir:
 
 - $V_{in} = 24\,\text{V}$, minimum yuk
 
@@ -11409,7 +10738,7 @@ Bu koselerde kaydedilecek temel buyuklukler:
 
 
 
-Bu tasarimin asil karakteri, yalnizca steady-state degil transientlerde ortaya cikacagi icin asagidaki testler zorunlu gorulmelidir:
+Bu tasarimin asil karakteri yalnizca steady-state'te degil transientlerde ortaya cikiyor. O yuzden asagidaki testleri atlamamak gerekiyor:
 
 - load step: `3.571 A -> 9 A`
 
@@ -11439,7 +10768,7 @@ Burada ozellikle izlenecek ciktilar:
 
 
 
-Giris EMI filtresi eklenecegi icin filtreli ve filtresiz durumlar birlikte karsilastirilmalidir:
+Giris EMI filtresi eklenecegi icin filtreli ve filtresiz durumlari birlikte gormek gerekiyor:
 
 - filtre yokken temel davranis
 
@@ -11453,11 +10782,11 @@ Giris EMI filtresi eklenecegi icin filtreli ve filtresiz durumlar birlikte karsi
 
 
 
-Bu kisimda hedef, tam standart EMI olcumu yapmak degil; tasarim karari vermeye yetecek ilk elektronik dogrulamayi elde etmektir.
+Buradaki hedef tam standart EMI olcumu yapmak degil. Asil amac, tasarim karari vermeye yetecek ilk elektronik resmi gormek.
 
 ![LISN dugumunde `200 kHz` civarinda cursor ile okunan ilk LTspice benzeri EMI taramasi](images/foto_selected/p90_lisn_sim_cursor_200khz.jpg)
 
-Bu ekran goruntusu, LISN benzeri bir olcum dugumu uzerinden differential-mode EMI'yi simulasyonda izlemeye basladigini gosteren guclu bir ara izdir. Cursor penceresinde `200.0001 kHz` civarinda `|V(lisn)| \approx 31.87 dB` buyuklugu okunuyor. Bu tek basina standart uyum kaniti degildir; ancak `8.5` altindaki "ilk iletilen EMI fikir taramasi" maddesinin gercekte de denendigini gosteren faydali bir simulasyon snapshot'i olarak korunabilir.
+Bu ekran goruntusu, LISN benzeri bir olcum dugumu uzerinden differential-mode EMI'yi simulasyonda izlemeye basladigini gosteren iyi bir ara iz. Cursor penceresinde `200.0001 kHz` civarinda `|V(lisn)| \approx 31.87 dB` okunuyor. Tek basina standart uyum kaniti degil; ama `8.5` altindaki "ilk iletilen EMI fikir taramasi" maddesinin gercekte de denendigini gostermesi acisindan faydali.
 
 
 
@@ -11465,7 +10794,7 @@ Bu ekran goruntusu, LISN benzeri bir olcum dugumu uzerinden differential-mode EM
 
 
 
-Specification notuna gore `44 V for up to 1 ms` olayi bir "survive" kosuludur; donusturucunun bu anda regule calismasi zorunlu degildir. Bu nedenle bu test ayri bir kategori gibi ele alinmalidir:
+Specification notuna gore `44 V for up to 1 ms` olayi bir "survive" kosulu. Donusturucunun bu anda regule calismasi zorunlu degil. O yuzden bu testi ayri bir kategori gibi dusunmek daha dogru:
 
 - asiri gerilim stresini gormek
 
@@ -11479,7 +10808,7 @@ Specification notuna gore `44 V for up to 1 ms` olayi bir "survive" kosuludur; d
 
 
 
-Her simulasyon turu bir hesap maddesine baglanmalidir. En saglikli yontem su olur:
+Her simulasyon turunu bir hesap maddesine baglamak en saglikli yol gibi gorunuyor:
 
 - her grafik icin hangi hesap veya spesifikasyon kontrol ediliyor acik yaz
 
@@ -11521,18 +10850,23 @@ Simulasyon dosyalari notlari:
 
 ## 9. Secilmis Gorseller
 
-Bu belgedeki ilk gorsel seti `yeni.odt` icinden cikartilan `26` gomulu gorselden olusur ve hepsi ilgili teknik bolumlere dagitilmistir.
+Bu belgede birden fazla gorsel kaynagi birlikte kullanildi:
 
-Not:
-- `/foto` dizinindeki arsiv gorselleri simdilik `yeni.md` icinde kullanilmiyor.
-- ODT icinden cikartilan gorsellerin envanteri ve hedef bolumleri `tracking/odt_embedded_images.md` dosyasinda tutuluyor.
-- Defter fotograflari sonraki fazda secilerek ayrica degerlendirilecek.
+- `yeni.odt` icinden cikartilan gomulu gorseller
+- `foto_selected` altina alinan secilmis ekran goruntuleri ve kaynak gorseller
+- `defter_snippets_web` altina alinan kucuk defter kirpimlari
+
+Bu secimin mantigi su oldu:
+
+- tam sayfa yerine, mumkun oldugunca konuya tam oturan kucuk parcalari kullanmak
+- hesaplarin ve kararlarin elde ciktigi izleri korumak
+- ama belgeyi gereksiz gorsel kalabalikla doldurmamak
+
+Gorsel envanteri ve takip notlari `tracking/` altindaki ilgili dosyalarda tutuluyor.
 
 ## 10. Acik Sorular
 
-
-
-Ayrintili takip icin `tracking/open_questions.md` dosyasini kullan.
+Ayrintili takip icin `tracking/open_questions.md` dosyasini kullanmak daha iyi olur.
 
 
 
@@ -11562,7 +10896,7 @@ Kisa liste:
 
 - GitHub uyumlu ilk Markdown iskeleti olusturuldu.
 
-- Bu belge, tez formati yerine yasayan muhendislik dokumani mantigina cevirdi.
+- Bu belge, tez formati yerine yasayan bir muhendislik dokumani mantigina cekildi.
 
 - Ana calisma plani belgeye eklendi.
 
@@ -11582,7 +10916,7 @@ Kisa liste:
 
 - EMI, giris filtresi kararliligi ve layout bolumune ilk teknik omurga eklendi.
 
-- LTspice/PSpice baslangic dosyalari taranarak simulasyon plani detaylandirildi.
+- LTspice/PSpice baslangic dosyalari taranarak simulasyon plani daha gorunur hale getirildi.
 
 - Cikis kapasiteleri bolumu, transient / output impedance / slew-rate mantigiyla genisletildi.
 
@@ -11592,11 +10926,11 @@ Kisa liste:
 
 - `yeni.odt -> yeni.md` teknik aktarimi tamamlandi; acik kalan maddeler tasarim dogrulama fazina tasindi.
 
-- Defter notlari fazi icin `foto/defter_raw/` ve `tracking/notebook_*` takip yapisi olusturuldu.
+- Defter notlari fazi icin `foto/defter_raw/` ve `tracking/notebook_*` takip yapisi kuruldu.
 
 - Mevcut `foto/` arsivi icin ilk triage envanteri ve `B001` batch kaydi olusturuldu.
 
-- Gorsel kullanim kurali netlestirildi: ilk secimler `yeni.odt` icindeki gomulu gorsellerden yapilacak, `/foto` simdilik kullanilmayacak.
+- Gorsel kullanim kurali ilk asamada netlestirildi: once `yeni.odt` icindeki gomulu gorseller duzenlendi, sonra secilmis arsiv gorselleri ve defter kirpimlari eklendi.
 
 - `yeni.odt` icindeki 26 gomulu gorsel `images/odt_embedded/` altina cikarildi.
 - Bu 26 gorsel ilgili teknik bolumlere dagitildi; `/foto` arsivi ilk asamada disarida tutuldu.
