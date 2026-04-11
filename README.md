@@ -318,13 +318,13 @@ Bu hizli teyitte guclu bicimde tekrar eden ana noktalar sunlardir:
 
 Kontrol kararliligi acisindan `WEBENCH` loop-response verisi de tasarim hedefiyle uyumludur. `amCharts.json` icindeki sayisal Bode verisine gore ana loop icin:
 
-$$
+```math
 f_c \approx 34.83 \,\text{kHz}
-$$
+```
 
-$$
+```math
 PM \approx 55.75^\circ
-$$
+```
 
 Bu sonuc, defterde ve kompanzator hesabinda hedeflenen `f_c \approx 35 \,\text{kHz}` cizgisiyle iyi ortusur ve kapali cevrimin kararlilik acisindan makul oldugunu gosterir.
 
@@ -9155,19 +9155,19 @@ Sayfada guvenle okunan ana akis sunlardir:
 
 Crossover frekansi:
 
-$$
+```math
 f_t = 35\,\text{kHz}
-$$
+```
 
 Modulator kazanci:
 
-$$
+```math
 M = \frac{V_s}{V_{ramp}} = 15
-$$
+```
 
 Crossover noktasinda toplam loop gain'in `1` olmasi gerekiyor. Sayfadaki ana iliski:
 
-$$
+```math
 \lvert L(j\omega_t)\rvert
 =
 \lvert M(j\omega_t)\rvert
@@ -9177,17 +9177,17 @@ $$
 \lvert G_3(j\omega_t)\rvert
 =
 1
-$$
+```
 
 Sayfada bulunan plant / filter buyuklugu:
 
-$$
+```math
 \lvert F(j\omega_t)\rvert \approx 0.045356
-$$
+```
 
 Unity-gain kosulu kullanilarak gerekli kompanzator kazanci:
 
-$$
+```math
 \lvert G_3(j\omega_t)\rvert
 =
 \frac{1}{\lvert M(j\omega_t)\rvert \cdot \lvert F(j\omega_t)\rvert}
@@ -9195,15 +9195,15 @@ $$
 \frac{1}{15 \cdot 0.045356}
 \approx
 1.46985
-$$
+```
 
 Bu buyuklugun `dB` cinsinden karsiligi:
 
-$$
+```math
 20\log_{10}\!\big(\lvert G_3(j\omega_t)\rvert\big)
 \approx
 3.3454\,\text{dB}
-$$
+```
 
 Kisa yorum:
 
