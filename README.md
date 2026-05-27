@@ -1,73 +1,74 @@
-# LM5146-Q1 Tabanli Buck Converter Tasarimi
+
+# LM5146-Q1 Tabanlı Buck Converter Tasarımı
 
 
 
-Bu belge, ikinci buck converter tasarimim icin ana calisma dokumani.
+Bu belge, ikinci buck converter tasarımım için ana çalışma dokümanı.
 
-Bu dosyada iki sey ayni anda duruyor:
+Bu dosyada iki şey aynı anda duruyor:
 
-- nihai tasarima giden teknik omurgayi
-- o omurgaya nasil ulasildigini gosteren secilmis tasarim izlerini
+- nihai tasarıma giden teknik omurgayı
+- o omurgaya nasıl ulaşıldığını gösteren seçilmiş tasarım izlerini
 
-Hesaplarin ana omurgasi dogrudan defterimden geliyor. O yuzden bu belgede yan yana sunlar bulunabiliyor:
+Hesapların ana omurgası doğrudan defterimden geliyor. O yüzden bu belgede yan yana şunlar bulunabiliyor:
 
-- nihaiye yakin hesap
-- alternatif yontem
-- capraz teyit
+- nihaiye yakın hesap
+- alternatif yöntem
+- çapraz teyit
 - eski iterasyon
-- hata zinciri nedeniyle sonradan zayiflayan hesap
+- hata zinciri nedeniyle sonradan zayıflayan hesap
 
-Bu, belgeyi zayiflatan bir sey degil. Tersine, tasarim surecinin gercek izini koruyan kisim.
+Bu, belgeyi zayıflatan bir şey değil. Tersine, tasarım sürecinin gerçek izini koruyan kısım.
 
 Bu belge:
 
-- yalnizca "temiz final sonuc" metni gibi okunmamali
-- ama ham defter yigini gibi de okunmamali
+- yalnızca "temiz final sonuç" metni gibi okunmamalı
+- ama ham defter yığını gibi de okunmamalı
 
-En rahat su sirayla okunur:
+En rahat şu sırayla okunur:
 
 - `2. Durum Ozeti` ve `3. Tasarim Hedefleri` repo'nun mevcut seviyesini ve hedefini verir
-- `4. Kullanilan Ana Kaynaklar` tasarim kararlarini hangi belge ailesine dayandirdigimi gosterir
-- `5` ve `6` numarali bolumler guc katini ve kontrol tasarimini tasir
-- `7` numarali bolum EMI, giris filtresi ve yerlesim tarafini toplar
+- `4. Kullanilan Ana Kaynaklar` tasarım kararlarını hangi belge ailesine dayandırdığımı gösterir
+- `5` ve `6` numaralı bölümler güç katını ve kontrol tasarımını taşır
+- `7` numaralı bölüm EMI, giriş filtresi ve yerleşim tarafını toplar
 
-Ana yol haritasi: `tracking/master_plan.md`
+Ana yol haritası: `tracking/master_plan.md`
 
-Temel belge kurallari:
+Temel belge kuralları:
 
-- yalnizca gercekten kullandigim kaynaklari govdeye tasimak
-- ham notlari oldugu gibi yigmak yerine izlerini koruyarak okunur hale getirmek
-- belgede gorunecek gorselleri mumkunse `images/` altinda temiz isimlerle kullanmak
-
-
-
-## 0. Calisma Plani
+- yalnızca gerçekten kullandığım kaynakları gövdeye taşımak
+- ham notları olduğu gibi yığmak yerine izlerini koruyarak okunur hale getirmek
+- belgede görünecek görselleri mümkünse `images/` altında temiz isimlerle kullanmak
 
 
 
-Bu belge icin ana sira su:
-
-1. `yeni.odt` icerigini bolum bolum `yeni.md` dosyasina aktarmak
-
-2. Defter notlarini ve hesaplamalari foto ile dijitale almak
-
-3. Defter icerigini secerek ve temizleyerek ana belgeye tasimak
-
-4. Tum belgeyi butuncul sekilde gozden gecirip sadeleştirmek, duzeltmek ve kaynaklari toparlamak
-
-5. En son asamada MATLAB, LTspice ve gerekiyorsa OrCAD/PSpice ile teknik dogrulama yapmak
-
-6. Sorun bulunursa hesaplari ve tasarimi revize edip belgeyi guncellemek
+## 0. Çalışma Planı
 
 
 
-Ayrintili surum: `tracking/master_plan.md`
+Bu belge için ana sıra şu:
 
-Su anki durum:
+1. `yeni.odt` içeriğini bölüm bölüm `yeni.md` dosyasına aktarmak
 
-- `yeni.odt -> yeni.md` aktarimi tamamlandi
-- aktif faz: defter notlarinin `foto/defter_raw/` uzerinden batch batch dijitale alinmasi
-- takip dosyalari: `tracking/notebook_ingestion.md`, `tracking/notebook_batches.md`
+2. Defter notlarını ve hesaplamaları foto ile dijitale almak
+
+3. Defter içeriğini seçerek ve temizleyerek ana belgeye taşımak
+
+4. Tüm belgeyi bütüncül şekilde gözden geçirip sadeleştirmek, düzeltmek ve kaynakları toparlamak
+
+5. En son aşamada MATLAB, LTspice ve gerekiyorsa OrCAD/PSpice ile teknik doğrulama yapmak
+
+6. Sorun bulunursa hesapları ve tasarımı revize edip belgeyi güncellemek
+
+
+
+Ayrıntılı sürüm: `tracking/master_plan.md`
+
+Şu anki durum:
+
+- `yeni.odt -> yeni.md` aktarımı tamamlandı
+- aktif faz: defter notlarının `foto/defter_raw/` üzerinden batch batch dijitale alınması
+- takip dosyaları: `tracking/notebook_ingestion.md`, `tracking/notebook_batches.md`
 
 
 
@@ -75,85 +76,85 @@ Su anki durum:
 
 
 
-Ilk donemdeki tasarim, onceki tez calismasinda tamamladigim ve simulasyonla hedef spesifikasyonlari sagladigini gosterdigim buck converter tasarimiydi.
+İlk dönemdeki tasarım, önceki tez çalışmasında tamamladığım ve simülasyonla hedef spesifikasyonları sağladığını gösterdiğim buck converter tasarımıydı.
 
-Buradaki yeni calisma ise onun uzerine kurdugum ikinci iterasyon. Daha ayrintili hesaplar, ek teknik gereksinimler ve daha bilincli komponent secimleri var.
+Buradaki yeni çalışma ise onun üzerine kurduğum ikinci iterasyon. Daha ayrıntılı hesaplar, ek teknik gereksinimler ve daha bilinçli komponent seçimleri var.
 
-Bu iterasyonda amac devreyi oldugu gibi tekrar etmek degil. Tasarim kararlarini daha guclu kaynaklarla ve daha sistematik hesaplarla destekliyorum.
+Bu iterasyonda amac devreyi olduğu gibi tekrar etmek değil. Tasarım kararlarını daha güçlü kaynaklarla ve daha sistematik hesaplarla destekliyorum.
 
-Ozellikle kontrolcu tasarimi, kapasitör secimi, giris filtresi, EMI, MOSFET kayiplari ve bootstrap davranisini daha derin ele aliyorum.
-
-
-
-## 2. Durum Ozeti
+Özellikle kontrolcü tasarımı, kapasitör seçimi, giriş filtresi, EMI, MOSFET kayıpları ve bootstrap davranışını daha derin ele aliyorum.
 
 
 
-### 2.1 Ilk tasarim
+## 2. Durum Özeti
 
 
 
-Ilk tasarim tamamlanmis bir referans noktasi:
-
-- simulasyonlari alinmistir
-
-- temel spesifikasyonlari sagladigi gosterilmistir
-
-- ilk donem raporunda anlatilmistir
+### 2.1 İlk tasarım
 
 
 
-Bu yuzden ilk tasarim, yeni calisma icin hem karsilastirma tabani hem de dogrulanmis baslangic noktasi.
+İlk tasarım tamamlanmis bir referans noktasi:
+
+- simülasyonları alinmistir
+
+- temel spesifikasyonları sağladığı gosterilmistir
+
+- ilk dönem raporunda anlatilmistir
 
 
 
-### 2.2 Yeni tasarim
+Bu yüzden ilk tasarım, yeni çalışma için hem karşılaştırma tabani hem de doğrulanmış başlangıç noktasi.
 
 
 
-Yeni tasarim daha ileri bir noktayi hedefliyor:
+### 2.2 Yeni tasarım
+
+
+
+Yeni tasarım daha ileri bir noktayi hedefliyor:
 
 - ek spesifikasyonlar tanimlanmistir
 
-- ayrintili hesaplamalar yapilmistir
+- ayrıntılı hesaplamalar yapilmistir
 
-- notlarin bir kismi dijital dosyalarda, bir kismi fiziksel defterde kalmistir
+- notlarin bir kısmı dijital dosyalarda, bir kısmı fiziksel defterde kalmistir
 
-- simulasyon dogrulamasi henuz tamamlanmamistir
-
-
-
-Kisa ozet su: tasarim dusuncesi olgun, belge ve dogrulama ise hala toparlaniyor.
+- simülasyon doğrulaması henüz tamamlanmamistir
 
 
 
-### 2.3 Tasarim yaklasimindaki degisim
+Kısa özet şu: tasarım düşüncesi olgun, belge ve doğrulama ise hala toparlaniyor.
 
 
 
-`yeni.odt` taslagina gore ilk donemde kontrolcu tasarimini daha once ogrendigim yaklasimla kurmustum.
-
-Bu iterasyonda ise Can Hoca'dan ogrendigim K-factor yontemini merkeze aldim. Bu degisim sadece kompanzasyon devresini degil, tum tasarim mantigini daha sistematik kurma istegimi de gosteriyor.
+### 2.3 Tasarım yaklasimindaki değişim
 
 
 
-Bu turda agirlik verilen basliklar:
+`yeni.odt` taslagina göre ilk donemde kontrolcü tasarımını daha önce ogrendigim yaklaşımla kurmustum.
 
-- LM5146-Q1 ve EVM referanslarinin ayrintili incelenmesi
-
-- dusuk EMI tasarim yaklasimi
-
-- giris ve cikis kapasitelerinin daha bilincli secimi
-
-- pratik komponent ve yerlesim kararlarinin gerekcelendirilmesi
+Bu iterasyonda ise Can Hoca'dan ogrendigim K-factor yontemini merkeze aldim. Bu değişim sadece kompanzasyon devresini değil, tüm tasarım mantığını daha sistematik kurma istegimi de gösteriyor.
 
 
 
-## 3. Tasarim Hedefleri
+Bu turda ağırlık verilen başlıklar:
+
+- LM5146-Q1 ve EVM referanslarinin ayrıntılı incelenmesi
+
+- düşük EMI tasarım yaklaşımı
+
+- giriş ve çıkış kapasitelerinin daha bilinçli seçimi
+
+- pratik komponent ve yerleşim kararlarinin gerekcelendirilmesi
 
 
 
-Bu bolumu tek bir dogruluk kaynagi gibi kullaniyorum.
+## 3. Tasarım Hedefleri
+
+
+
+Bu bölümü tek bir dogruluk kaynagi gibi kullaniyorum.
 
 
 
@@ -161,57 +162,57 @@ Bu bolumu tek bir dogruluk kaynagi gibi kullaniyorum.
 
 | --- | --- | --- |
 
-| Giris gerilimi | `24 V - 36 V` | ana calisma araligi |
+| Giriş gerilimi | `24 V - 36 V` | ana çalışma aralığı |
 
-| Giris gerilimi transient dayanim | `44 V`, `1 ms` | hayatta kalma siniri, bu aralikta regule calisma zorunlu degil |
+| Giriş gerilimi transient dayanim | `44 V`, `1 ms` | hayatta kalma sınırı, bu aralıkta regule çalışma zorunlu değil |
 
-| Cikis gerilimi, statik | `14 V +- 3%` | ana setpoint |
+| Çıkış gerilimi, statik | `14 V +- 3%` | ana setpoint |
 
-| Cikis gerilimi, transient | `14 V +- 20%` | minimum ve maksimum yuk adimlari sirasinda |
+| Çıkış gerilimi, transient | `14 V +- 20%` | minimum ve maksimum yük adimlari sırasında |
 
-| Cikis gucu | `50 W - 125 W` | rezistif yuk |
+| Çıkış gücü | `50 W - 125 W` | rezistif yük |
 
-| Cikis akimi, turetilmis | `3.571 A - 8.929 A` | $I_{out} = \dfrac{P_{out}}{V_{out}}$ |
+| Çıkış akımı, turetilmis | `3.571 A - 8.929 A` | $I_{out} = \dfrac{P_{out}}{V_{out}}$ |
 
-| Yuk adimi | `3.571 A -> 9 A` | taslakta `5.429 A` load-step olarak not edilmis |
+| Yük adimi | `3.571 A -> 9 A` | taslakta `5.429 A` load-step olarak not edilmiş |
 
-![Statik `14 V +- 3%` ve transient `14 V +- 20%` pencerelerini ayni cizimde gosteren notlu ekran](images/foto_selected/p93_output_voltage_spec_windows.jpg)
+![Statik `14 V +- 3%` ve transient `14 V +- 20%` pencerelerini aynı çizimde gösteren notlu ekran](images/foto_selected/p93_output_voltage_spec_windows.jpg)
 
-Buradaki notlu gorsel, cikis gerilimi spesifikasyonunu iki farkli zarf icinde dusundugumu netlestiriyor. Dar mavi zarf statik regulasyonu (`14 V +- 3%`), daha genis kirmizi zarf ise transient sirasindaki kabul alanini (`14 V +- 20%`) temsil ediyor.
+Buradaki notlu görsel, çıkış gerilimi spesifikasyonunu iki farklı zarf içinde düşündüğümü netlestiriyor. Dar mavi zarf statik regulasyonu (`14 V +- 3%`), daha genis kirmizi zarf ise transient sırasındaki kabul alanini (`14 V +- 20%`) temsil ediyor.
 
-Defterde bu iki kriteri ayri ayri kullanmis olmam, daha sonra `W.58-W.59` tarafinda neden farkli `C_{out}` alt-sinirlarina baktigimi da daha okunur hale getiriyor.
+Defterde bu iki kriteri ayrı ayrı kullanmis olmam, daha sonra `W.58-W.59` tarafında neden farklı `C_{out}` alt-sınırlarına baktigimi da daha okunur hale getiriyor.
 
-| Anahtarlama frekansi | `332 kHz` | mevcut tasarim secimi, orijinal zorunlu spec degil |
+| Anahtarlama frekansı | `332 kHz` | mevcut tasarım seçimi, orijinal zorunlu spec değil |
 
-| Izin verilen `Vout` ripple | `100 mVpp` | herhangi bir `Rload` icin |
+| Izin verilen `Vout` ripple | `100 mVpp` | herhangi bir `Rload` için |
 
-| Izin verilen `Vin` ripple | `0.24 Vpp` | giris gerilimi peak-to-peak |
+| Izin verilen `Vin` ripple | `0.24 Vpp` | giriş gerilimi peak-to-peak |
 
 | Izin verilen `Vin` transient | `0.36 V` | undershoot veya overshoot limiti |
 
-| Izin verilen giris akimi ripple | `50 mApp` | ideal kaynak varsayimi |
+| Izin verilen giriş akımı ripple | `50 mApp` | ideal kaynak varsayımı |
 
-| Minimum verim | `90%` | gerilim ve yuk boyunca |
+| Minimum verim | `90%` | gerilim ve yük boyunca |
 
-| Sicaklik hedefi | `76 degC` board worst-case | taslak spec notu |
+| Sıcaklık hedefi | `76 degC` board worst-case | taslak spec notu |
 
-| EMI hedefi | `CISPR 25 Class 5` | `pi-stage` giris EMI filtresi ve elektrolitik parallel damping hedefi |
+| EMI hedefi | `CISPR 25 Class 5` | `pi-stage` giriş EMI filtresi ve elektrolitik parallel damping hedefi |
 
-| Harici bias/VCC | kullanilmayacak | harici bias secenegi bulunuyor ama bu iterasyonda kullanilmiyor |
-
-
-
-## 4. Kullanilan Ana Kaynaklar
+| Harici bias/VCC | kullanilmayacak | harici bias seçeneği bulunuyor ama bu iterasyonda kullanilmiyor |
 
 
 
-Gercek kaynak listesi icin `references/used_sources.md` dosyasini guncelle.
-
-PDF kaynaklari bu belge icinde tiklanabilir olacaksa, dosyalari `references/pdfs/` altinda tut.
+## 4. Kullanılan Ana Kaynaklar
 
 
 
-Su an icin cekirdek adaylar:
+Gerçek kaynak listesi için `references/used_sources.md` dosyasini güncelle.
+
+PDF kaynakları bu belge içinde tiklanabilir olacaksa, dosyaları `references/pdfs/` altında tut.
+
+
+
+Şu an için cekirdek adaylar:
 
 - `G94_SPEC.txt`
 
@@ -239,27 +240,27 @@ Su an icin cekirdek adaylar:
 
 
 
-### 4.1 `LM5146` quickstart calculator ile capraz teyit
+### 4.1 `LM5146` quickstart calculator ile çapraz teyit
 
 
 
 Ek not (calculator teyidi):
 
-Bu Excel dosyasi, defterde yaptigim hesaplarin yerine gecen tek kaynak degil. Daha cok nihai tasarim omurgasini capraz teyit etmek icin kullandigim bir arac.
+Bu Excel dosyasi, defterde yaptigim hesapların yerine geçen tek kaynak değil. Daha çok nihai tasarım omurgasını çapraz teyit etmek için kullandığım bir arac.
 
-Workbook'ta guclu bicimde tekrar eden ana tasarim omurgasi sunlardir:
+Workbook'ta güçlü biçimde tekrar eden ana tasarım omurgası şunlardır:
 
 - `V_{IN} = 24 / 30 / 36 V`
 - `V_{OUT} = 14 V`
 - `I_{OUT,max} = 9 A`
 - `f_{sw} = 332 kHz`
 - `R_{RT} = 30.1 kOhm`
-- secilen bobin: `6.8 uH`
+- seçilen bobin: `6.8 uH`
 - bobin `DCR`: `0.88 mOhm`
 - `C_{SS} = 47 nF`
 - `t_{SS} = 4 ms`
 
-Kompanzator tarafinda da workbook ile defterin nihaiye yakin gorunen cizgisi ayni aileye oturuyor:
+Kompanzator tarafında da workbook ile defterin nihaiye yakın gorunen çizgisi aynı aileye oturuyor:
 
 - `RFB1 = 26.4 kOhm`
 - `RFB2 = 1.58 kOhm`
@@ -271,50 +272,50 @@ Kompanzator tarafinda da workbook ile defterin nihaiye yakin gorunen cizgisi ayn
 - `f_c = 35 kHz`
 - `f_{p2} = 166 kHz`
 
-Bu nedenle, workbook ile bu Markdown belge arasindaki iliski su sekilde okunmali:
+Bu nedenle, workbook ile bu Markdown belge arasındaki ilişki şu şekilde okunmalı:
 
-- workbook, tasarimin cekirdek nihai omurgasini guclu bicimde teyit ediyor
-- defter ve `yeni.md` ise bunun uzerine eski iterasyonlari, alternatif yontemleri, komponent secim mantigini ve sonraki rafineleri de tasiyor
-- ozellikle giris kapasitörü, UVLO ve bazi kayip parametrelerinde workbook daha erken / daha sade bir checkpoint olabilir; defterin sonraki sayfalarinda ise gercek komponent, `dc-bias`, `ESR` ve alternatif senaryolarla daha ileri rafine edilmis notlar bulunur
+- workbook, tasarımın cekirdek nihai omurgasını güçlü biçimde teyit ediyor
+- defter ve `yeni.md` ise bunun üzerine eski iterasyonları, alternatif yöntemleri, komponent seçim mantığını ve sonraki rafineleri de taşıyor
+- özellikle giriş kapasitörü, UVLO ve bazı kayıp parametrelerinde workbook daha erken / daha sade bir checkpoint olabilir; defterin sonraki sayfalarinda ise gerçek komponent, `dc-bias`, `ESR` ve alternatif senaryolarla daha ileri rafine edilmiş notlar bulunur
 
-Bu yuzden workbook ile `yeni.md` iliskisi "birebir ayni tek iterasyon" gibi degil, "ayni tasarimin nihai omurgasi + defterde korunmus tasarim izi" seklinde dusunulmelidir
+Bu yüzden workbook ile `yeni.md` ilişkisi "birebir aynı tek iterasyon" gibi değil, "aynı tasarımın nihai omurgası + defterde korunmus tasarım izi" seklinde dusunulmelidir
 
 
-### 4.2 `WEBENCH` ile hizli simulasyon teyidi
+### 4.2 `WEBENCH` ile hızlı simülasyon teyidi
 
 
 
 Ek not (`WEBENCH` teyidi):
 
-`WBDesign21.pdf`, nihai tasarimin yerine gecen tek ve mutlak dogrulama belgesi gibi okunmamalidir. Daha dogru okuma bicimi sunlardir:
+`WBDesign21.pdf`, nihai tasarımın yerine geçen tek ve mutlak doğrulama belgesi gibi okunmamalidir. Daha doğru okuma bicimi şunlardır:
 
 Kaynak dosya:
 
 - [WBDesign21.pdf](./WBDesign21.pdf)
 - [amCharts.json](./BOM/amCharts.json)
 
-- kendi hesaplarimla kurdugum tasarim omurgasinin hizli davranis teyidi
-- secilen komponent ailesinin ilk simulasyon tabanli sagduyu kontrolu
-- statik calisma, ripple, verim ve loop davranisi icin hizli referans goruntu paketi
+- kendi hesaplarimla kurduğum tasarım omurgasinin hızlı davranış teyidi
+- seçilen komponent ailesinin ilk simülasyon tabanlı sağduyu kontrolu
+- statik çalışma, ripple, verim ve loop davranışı için hızlı referans görüntü paketi
 
-Bu nedenle `WEBENCH` ciktilari, "tek basina final kanit" degil; defter, hesap, calculator ve BOM secimi ile birlikte okunan hizli bir capraz teyit katmani olarak kullanilmalidir.
+Bu nedenle `WEBENCH` ciktilari, "tek başına final kanit" değil; defter, hesap, calculator ve BOM seçimi ile birlikte okunan hızlı bir çapraz teyit katmani olarak kullanılmalıdır.
 
-Bu raporun belge icinde en kullanisli kisimlari sunlardir:
+Bu raporun belge içinde en kullanisli kisimlari şunlardır:
 
-- kapak / BOM ozeti (`24-36 V -> 14 V @ 9 A`, secilen ana komponent ailesi)
+- kapak / BOM özeti (`24-36 V -> 14 V @ 9 A`, seçilen ana komponent ailesi)
 - operating values tablosu
 - loop-response / bode verisi
-- steady-state ve input-transient simulasyon ciktilari
+- steady-state ve input-transient simülasyon ciktilari
 
-![WEBENCH raporundan EMI sonrasi spektrum, filtre / converter empedans karsilastirmasi ve operating values ozeti](images/foto_selected/p106_webench_emi_and_operating_values.png)
+![WEBENCH raporundan EMI sonrasi spektrum, filtre / converter empedans karsilastirmasi ve operating values özeti](images/foto_selected/p106_webench_emi_and_operating_values.png)
 
-![WEBENCH raporundan ayrintili operating values tablosu](images/foto_selected/p107_webench_operating_values_detail.png)
+![WEBENCH raporundan ayrıntılı operating values tablosu](images/foto_selected/p107_webench_operating_values_detail.png)
 
-Bu iki sayfa, `WEBENCH` raporunda benim icin en faydali kisimlar oldu. Ilk sayfa filtre oncesi / sonrasi ripple spektrumu, filtre-empedans karsilastirmasi ve kisa operating-values ozetini birlikte veriyor.
+Bu iki sayfa, `WEBENCH` raporunda benim için en faydali kısımlar oldu. İlk sayfa filtre öncesi / sonrasi ripple spektrumu, filtre-empedans karsilastirmasi ve kısa operating-values ozetini birlikte veriyor.
 
-Ikinci sayfa ise ayni tasarim icin ayrintili sayisal sonuclari tek tabloda topluyor. `I_{L,pp}`, ripple yuzdesi, MOSFET kayiplari, toplam guc kaybi, verim, `V_{out}`, `V_{out,pp}` ve `V_{in,pp}` gibi maddeleri burada dogrudan okuyabiliyorum.
+İkinci sayfa ise aynı tasarım için ayrıntılı sayısal sonuçları tek tabloda topluyor. `I_{L,pp}`, ripple yuzdesi, MOSFET kayıpları, toplam güç kaybı, verim, `V_{out}`, `V_{out,pp}` ve `V_{in,pp}` gibi maddeleri burada doğrudan okuyabiliyorum.
 
-Bu hizli teyitte guclu bicimde tekrar eden ana noktalar sunlardir:
+Bu hızlı teyitte güçlü biçimde tekrar eden ana noktalar şunlardır:
 
 - `V_{IN} = 24 - 36 V`
 - `V_{OUT} = 14 V`
@@ -323,10 +324,10 @@ Bu hizli teyitte guclu bicimde tekrar eden ana noktalar sunlardir:
 - `Mode = FCCM`
 - `SoftStart = 3.8 ms`
 - `I_{L,pp} = 3.805 A`
-- bobin ripple orani `42.277%`
+- bobin ripple oranı `42.277%`
 - `Efficiency = 97.877%`
 
-Kontrol kararliligi acisindan `WEBENCH` loop-response verisi de tasarim hedefiyle uyumludur. `amCharts.json` icindeki sayisal Bode verisine gore ana loop icin:
+Kontrol kararlılığı açısından `WEBENCH` loop-response verisi de tasarım hedefiyle uyumludur. `amCharts.json` içindeki sayısal Bode verisine göre ana loop için:
 
 $$
 f_c \approx 34.83 \,\text{kHz}
@@ -334,107 +335,95 @@ $$
 $$
 PM \approx 55.75^\circ
 $$
-Bu sonuc, defterde ve kompanzator hesabinda hedeflenen `f_c \approx 35 \,\text{kHz}` cizgisiyle iyi ortusur ve kapali cevrimin kararlilik acisindan makul oldugunu gosterir.
+Bu sonuç, defterde ve kompanzatör hesabinda hedeflenen `f_c \approx 35 \,\text{kHz}` cizgisiyle iyi ortusur ve kapalı cevrimin kararlılık açısından makul olduğunu gösterir.
 
-`WBDesign21.pdf` icinde statik calisma tarafinda olumlu gorunen basliklar da vardir:
+`WBDesign21.pdf` içinde statik çalışma tarafında olumlu gorunen başlıklar da vardir:
 
-- `Vout Actual = 13.8 V`, yani `14 V +- 3%` bandi icinde
+- `Vout Actual = 13.8 V`, yani `14 V +- 3%` bandi içinde
 - verim `%90` hedefinin belirgin ustundedir
-- filtre sonrasi giris gurultusu `61.79 dBuV` olup, ayni raporda verilen `67.75 dBuV` sinirinin altindadir
+- filtre sonrasi giriş gurultusu `61.79 dBuV` olup, aynı raporda verilen `67.75 dBuV` sinirinin altindadir
 
-Buna karsilik, ayni `WEBENCH` snapshot'inda henuz hedefe tam oturmayan veya dikkatli yorumlanmasi gereken noktalar da vardir:
+Buna karşılık, aynı `WEBENCH` snapshot'inda henüz hedefe tam oturmayan veya dikkatli yorumlanmasi gereken noktalar da vardir:
 
-- `Vout p-p = 122.002 mV`, yani `100 mVpp` hedefinin biraz ustunde
-- `Vin p-p = 2.951 V`, yani defterdeki `0.24 Vpp` hedefi ile uyumlu degildir
-- rapordaki ortam sicakligi `Ta = 30 degC` oldugu icin, `76 degC board worst-case` hedefini tek basina dogrulamaz
+- `Vout p-p = 122.002 mV`, yani `100 mVpp` hedefinin biraz üstünde
+- `Vin p-p = 2.951 V`, yani defterdeki `0.24 Vpp` hedefi ile uyumlu değildir
+- rapordaki ortam sıcaklığı `Ta = 30 degC` olduğu için, `76 degC board worst-case` hedefini tek başına dogrulamaz
 
-Bu nedenle `WEBENCH` sonucu icin en dogru ozet sudur:
+Bu nedenle `WEBENCH` sonucu için en doğru özet sudur:
 
-- tasarimin temel calisma noktasi saglikli gorunmektedir
-- loop response kararlidir ve `35 kHz` civari crossover hedefiyle uyumludur
-- ancak ripple ve sicaklik gibi bazi hedefler icin bu snapshot tek basina nihai kanit olarak kullanilmamalidir
-
-
-
-## 5. Guc Katinin Tasarimi
-
-Bu bolumde guc katini adim adim kuruyorum. Topoloji varsayimlari, duty sinirlari, bobin, cikis ve giris kapasiteleri, MOSFET secimi ve bootstrap agi burada ayni zincirin parcasi gibi ilerliyor.
+- tasarımın temel çalışma noktasi sağlıklı gorunmektedir
+- loop response kararlidir ve `35 kHz` civarı crossover hedefiyle uyumludur
+- ancak ripple ve sıcaklık gibi bazı hedefler için bu snapshot tek başına nihai kanit olarak kullanilmamalidir
 
 
 
-### 5.1 Topoloji ve temel varsayimlar
+## 5. Güç Katının Tasarımı
+
+Bu bölümde güç katını adım adım kuruyorum. Topoloji varsayımları, duty sınırları, bobin, çıkış ve giriş kapasiteleri, MOSFET seçimi ve bootstrap ağı burada aynı zincirin parçası gibi ilerliyor.
 
 
 
-#### 5.1.1 LM5146-Q1 dahili LDO siniri
+### 5.1 Topoloji ve temel varsayımlar
 
 
-ODT'den aktarilan metin (`4.2. Giriş Gerilimi Vin`):
 
-> Lm’nin içinde bir LDO (Low Dropout Regulator) barındırır. Bu LDO, 7.5V Vcc beslemesi sağlar, Mosfet kapı sürücülerini ve kontrol devrelerini besler.
+#### 5.1.1 LM5146-Q1 dahili LDO sınırı
 
-![Giris gerilimi / dahili LDO civari](images/odt_embedded/fig_02_vin_ldo_vcc.png)
 
-> VVCC-LDO VIN to VCC dropout voltage = 0.25V(typ) - 0.72V(max)
+ODT’den aktarılan metin (`4.2. Giriş Gerilimi Vin`):
+
+> LM5146-Q1 içinde bir LDO (Low Dropout Regulator) bulunur. Bu LDO, yaklaşık `7.5 V` seviyesinde `VCC` beslemesi sağlar; MOSFET kapı sürücülerini (gate drivers) ve kontrol devrelerini besler.
+
+![Giriş gerilimi / dahili LDO civarı](images/odt_embedded/fig_02_vin_ldo_vcc.png)
+
+> `V_{VCC-LDO}` için `VIN` → `VCC` dropout gerilimi yaklaşık `0.25 V` tipik, `0.72 V` maksimum olarak alınmıştır.
 >
-> Harici Vcc kullanılmayacaksa, LDO’nun düzgün çalışabilmesi için Giriş gerilimi Vin’in en az 7.5 V + 0.72V(max) = 8.22V olmalıdır.
+> Harici `VCC` kullanılmayacaksa, LDO’nun düzgün regülasyonda kalması için giriş geriliminin en az şu seviyede olması gerekir:
 >
-> Yani Vin > 7.5V + dropout voltage olursa, Vcc gerilimi 7.5V sabitlenir. Vin = 9V iken de Vin = 50 V iken de Vcc = 7.5V olur. :*
+> $$V_{in,\min}=7.5\,V+0.72\,V=8.22\,V$$
 >
-> Eğer Vin < 7.5V + dropout voltage olursa
-> LDO regulatorü, 7.5V’u çıkaramaz. Denklem geçerlidir.
-> Örneğin giriş gerilimi Vin = 6V olsun.
-> Vcc gerilimi en iyi ihtimalle 6V-0.25V= 5.75 V olur.
-> Vcc gerilimi, Vin’i takip eder.
-> Bu düşük Vcc gerilimi gate sürücüleri için yeterli olmayabilir, mosfetler tam açılmaz, Rdson artar (İleride göreceğiz), verim düşer.
+> Yani `V_{in} > 7.5 V + V_{dropout}` olduğunda `VCC` yaklaşık `7.5 V` seviyesinde regüle edilir. Bu durumda `V_{in}=9 V` iken de, `V_{in}=50 V` iken de `VCC` yaklaşık `7.5 V` olur.
 >
-> Özetle, Vin < 7,5 V çalıştığınızda:
+> `V_{in} < 7.5 V + V_{dropout}` olduğunda ise LDO regülatörü `7.5 V` seviyesini üretemez; `VCC` gerilimi giriş gerilimini takip etmeye başlar.
 >
-> Regülatör Dropout’u
+> Örneğin `V_{in}=6 V` ve tipik dropout `0.25 V` kabul edilirse:
 >
-> LDO’nun giriş–çıkış arasındaki “dropout” gerilimi devreye girer. Örneğin, Vin = 6 V iken LDO çıkışı 5,8 V’a düşer.
+> $$V_{CC}\approx 6.00\,V-0.25\,V=5.75\,V$$
 >
-> Artan İletim Kayıpları
+> Bu düşük `VCC` gerilimi MOSFET kapı sürücüleri (gate drivers) için yeterli olmayabilir. MOSFET’ler tam açılamazsa `R_{DS(on)}` artar, iletim kayıpları yükselir ve verim düşer.
 >
-> Düşük VGS → MOSFET kanalı tam açılmaz → RDS(on) ↑ → iletim kayıpları (I²·R) artar.
+> Özetle `V_{in} < 8.22 V` bölgesinde şu riskler oluşabilir:
 >
-> Aynı zamanda aşırı akım koruması (OCP) voltaj ölçümü yanıltabilir.
->
-> Artan Anahtarlama Kayıpları
->
-> Düşük gate gerilimi → gate şarj/deşarjı yavaşlar → geçiş süreleri uzar → switching kayıpları ↑.
->
-> MOSFET Seçim Kısıtı
->
-> Standart tipler yerine “logic-level” (RDS(on) @ VGS = 4,5 V garantili) MOSFET kullanmak gerekir.
->
-> Çözüm Önerisi
->
-> Vin ≥ 7,5 V sağlamak veya 8 – 13 V’luk harici VCC rail’ı Şekil 8-2’deki gibi DVCC ile bağlayarak LDO’yu bay-pas etmek, hem verimi hem termal performansı iyileştirir.
+> - LDO dropout bölgesine girer.
+> - `VCC`, `7.5 V` seviyesinde regüle edilemez.
+> - Düşük `V_{GS}` nedeniyle MOSFET kanalı tam açılamayabilir.
+> - `R_{DS(on)}` artarsa iletim kayıpları (`I^2R`) yükselir.
+> - Kapı şarj/deşarj süreleri uzarsa anahtarlama kayıpları (switching losses) artabilir.
+> - Gerekirse logic-level MOSFET veya `8 V - 13 V` aralığında harici `VCC` beslemesi değerlendirilmelidir.
 
-Ilgili kaynak-foto notu:
+İlgili kaynak-foto notu:
 
-![LM5146 functional block diagram uzerine alinmis LDO ve referans notu](images/foto_selected/p02_lm5146_functional_block.jpg)
+![LM5146 functional block diagram üzerine alınmış LDO ve referans notu](images/foto_selected/p02_lm5146_functional_block.jpg)
 
-![LM5146 icindeki 7.5 V LDO regulatorunun daha temiz yakin plani](images/foto_selected/p32_lm5146_ldo_block.jpg)
+![LM5146 içindeki 7.5 V LDO regülatörünün daha temiz yakın planı](images/foto_selected/p32_lm5146_ldo_block.jpg)
 
-Bu foto, `LM5146` fonksiyonel blok diyagrami uzerinde ozellikle:
+Bu foto, `LM5146` fonksiyonel blok diyagramı üzerinde özellikle:
 
 - `7.5 V` dahili `LDO`
-- `FB` / `0.8 V` referans dugumu
+- `FB` / `0.8 V` referans düğümü
 - `COMP` ve `SS/TRK`
 
-arasindaki iliskiyi not etmek icin alinmis. `5.1.1` altinda durmasi da bu yuzden yerinde; kontrolcunun ic yapisinin tasarim notlarina nasil tasindigini gosteren iyi bir destek gorseli.
+arasındaki iliskiyi not etmek için alınmış. `5.1.1` altında durması da bu yüzden yerinde; kontrolcünün iç yapısının tasarım notlarına nasıl taşındığını gösteren iyi bir destek görseli.
 
 
 
 
 
-#### 5.1.2 Ek notlar: dusuk `Vin` bolgesinin etkisi
+#### 5.1.2 Ek notlar: düşük `Vin` bolgesinin etkisi
 
 
 
-Bu ODT parcasi, dahili LDO'nun tam regulasyon ve dropout bolgeleri arasindaki tasarim farkini netlestiriyor. GitHub uyumlu matematik bicimiyle bu sinirlar su sekilde yazilabilir:
+Bu ODT parçası, dahili LDO'nun tam regulasyon ve dropout bolgeleri arasındaki tasarım farkini netlestiriyor. GitHub uyumlu matematik biçimiyle bu sinirlar şu şekilde yazılabilir:
 
 $$
 V_{in,\min} = 7.5\,\text{V} + 0.72\,\text{V} = 8.22\,\text{V}
@@ -442,54 +431,54 @@ $$
 $$
 V_{CC} \approx V_{in} - V_{dropout}
 $$
-Ornegin tipik dropout ile $V_{in} = 6\,\text{V}$ icin:
+Ornegin tipik dropout ile $V_{in} = 6\,\text{V}$ için:
 
 $$
 V_{CC} \approx 6.00\,\text{V} - 0.25\,\text{V} = 5.75\,\text{V}
 $$
-Bu bolgede teknik olarak su riskler one cikar:
+Bu bolgede teknik olarak şu riskler one cikar:
 
 - $R_{DS(on)} \approx 8.2\,\text{m}\Omega$
-- gate sarj / desarj surelerinin uzamasi nedeniyle switching kayiplari
-- koruma ve akim algilama marjlarinin degismesi
+- gate sarj / desarj surelerinin uzamasi nedeniyle switching kayıpları
+- koruma ve akım algilama marjlarinin degismesi
 - gerekirse logic-level MOSFET veya harici `VCC` kullanim ihtiyaci
 
-Burada tasarimda iki yol acik:
+Burada tasarımda iki yol açık:
 
-- sistemi yalnizca $V_{in} \ge 8.22\,\text{V}$ bolgesinde optimize etmek
-- veya `DVCC` uzerinden harici $8\,\text{V} - 13\,\text{V}$ $V_{CC}$ rayi ile LDO'yu baypas etmek
+- sistemi yalnızca $V_{in} \ge 8.22\,\text{V}$ bolgesinde optimize etmek
+- veya `DVCC` üzerinden harici $8\,\text{V} - 13\,\text{V}$ $V_{CC}$ rayi ile LDO'yu baypas etmek
 
-Harici `VCC` seceneginin not edildigi kaynak-fotolar:
+Harici `VCC` seçeneğinin not edildiği kaynak-fotolar:
 
-![DVCC ve harici VCC yolu uzerine alinmis not](images/foto_selected/p06_external_vcc_markup.jpg)
+![DVCC ve harici VCC yolu üzerine alınmış not](images/foto_selected/p06_external_vcc_markup.jpg)
 
-![VCC enable dugumu ve harici VCC notu](images/foto_selected/p05_lm5146_vcc_enable_detail.jpg)
+![VCC enable düğümü ve harici VCC notu](images/foto_selected/p05_lm5146_vcc_enable_detail.jpg)
 
-![Dahili LDO dropout siniri ve 8.22 V minimum Vin notu](images/foto_selected/p33_ldo_dropout_8v22_note.jpg)
+![Dahili LDO dropout sınırı ve 8.22 V minimum Vin notu](images/foto_selected/p33_ldo_dropout_8v22_note.jpg)
 
-![Fonksiyonel blok diyagram uzerinde `DVCC`, `-VCC`, `BST` ve harici VCC yolu notu](images/foto_selected/p105_vcc_external_note_block_diagram.jpg)
+![Fonksiyonel blok diyagram üzerinde `DVCC`, `-VCC`, `BST` ve harici VCC yolu notu](images/foto_selected/p105_vcc_external_note_block_diagram.jpg)
 
-Bu iki foto birlikte bakildiginda, dahili `LDO` yolu ile harici `VCC` / `DVCC` secenegini ayni blok diyagram uzerinde ayirmaya calistigim net goruluyor. Nihai tasarimda dahili yolu kullandim; yine de alternatifi bilincli olarak dusunmus olmam burada degerli.
+Bu iki foto birlikte bakıldığında, dahili `LDO` yolu ile harici `VCC` / `DVCC` secenegini aynı blok diyagram üzerinde ayirmaya calistigim net görülüyor. Nihai tasarımda dahili yolu kullandim; yine de alternatifi bilinçli olarak dusunmus olmam burada değerli.
 
-Ucuncu ekran goruntusu ayni ayrimi daha genis bir blok diyagram uzerinde tekrarliyor. `DVCC`, `-VCC`, `BST` ve harici `8-13 V` ray notu ayni cizim uzerinde goruldugu icin, `5.1.1-5.1.2` altinda gecen "harici VCC ile dahili LDO'yu baypas etme" secenegini kontrolcunun kendi blok yapisi uzerinden dusundugum de destekleniyor.
+Ucuncu ekran görüntüsü aynı ayrimi daha genis bir blok diyagram üzerinde tekrarliyor. `DVCC`, `-VCC`, `BST` ve harici `8-13 V` ray notu aynı çizim üzerinde görüldüğü için, `5.1.1-5.1.2` altında geçen "harici VCC ile dahili LDO'yu baypas etme" secenegini kontrolcünün kendi blok yapisi üzerinden düşündüğüm de destekleniyor.
 
-Defterden aktarilan not (`W.108`):
+Defterden aktarılan not (`W.108`):
 
-Burada daha cok kontrolcu datasheet'indeki sicaklik ve termal koruma notlari toplanmis. Proje-ozel bir kayip hesabi degil; cihazin mutlak calisma ve koruma sinirlarini hatirlatan bir defter ozeti gibi okunuyor.
+Burada daha çok kontrolcü datasheet'indeki sıcaklık ve termal koruma notları toplanmis. Proje-özel bir kayıp hesabı değil; cihazin mutlak çalışma ve koruma sınırlarını hatırlatan bir defter özeti gibi okunuyor.
 
-![W.108'den secilen el yazisi parca: kontrolcunun junction temperature, thermal shutdown ve exposed pad notlari](images/defter_snippets_web/d06_w108_thermal_controller_limits.jpg)
+![W.108'den seçilen el yazısı parça: kontrolcünün junction temperature, thermal shutdown ve exposed pad notları](images/defter_snippets_web/d06_w108_thermal_controller_limits.jpg)
 
-Sayfada korunacak ana basliklar sunlar:
+Sayfada korunacak ana başlıklar şunlar:
 
 **Device temp grade**
 
-- otomotiv / genis sicaklik araligina isaret eden not
-- ortamin ve cihazin izin verilen sicaklik araliklarinin birlikte dusunulmesi gerektigi vurgulaniyor
+- otomotiv / genis sıcaklık araligina işaret eden not
+- ortamin ve cihazin izin verilen sıcaklık araliklarinin birlikte düşünülmesi gerektiği vurgulaniyor
 
 **Operating junction temp**
 
-- notlarda yaklasik `-40 C` ile `+150 C` araligina isaret ediliyor
-- hemen altina temel termal iliski yazilmis:
+- notlarda yaklaşık `-40 C` ile `+150 C` araligina işaret ediliyor
+- hemen altına temel termal ilişki yazılmış:
 
 $$
 T_J = T_A + P_{diss} \cdot R_{\theta JA}
@@ -501,30 +490,30 @@ T_J \approx T_{case} + P_{diss} \cdot R_{\theta JC}
 $$
 **Thermal shutdown protection with hysteresis**
 
-- thermal shutdown esigi olarak `175 C` not edilmis
-- hysteresis icin yaklasik `20 C` notu var
-- bu da koruma devresinin kapanma / yeniden acilma davranisini belirleyen sinirlari hatirlatiyor
+- thermal shutdown eşiği olarak `175 C` not edilmiş
+- hysteresis için yaklaşık `20 C` notu var
+- bu da koruma devresinin kapanma / yeniden acilma davranışını belirleyen sınırları hatırlatıyor
 
 **EP (Exposed Pad)**
 
-- alt taraftaki metal pad'in termal ve elektriksel rolu not edilmis
-- PCB bakiri / GND / isi dagitma acisindan exposed pad'in onemi vurgulaniyor
+- alt taraftaki metal pad'in termal ve elektriksel rolu not edilmiş
+- PCB bakiri / GND / ısı dagitma açısından exposed pad'in önemi vurgulaniyor
 
 **Storage temperature**
 
-- yaklasik `-55 C` ile `150 C` araligi not edilmis
+- yaklaşık `-55 C` ile `150 C` aralığı not edilmiş
 
-Buradaki asil deger, sectigim kontrolcu IC'nin yalnizca elektriksel degil termal sinirlarini da erken asamada not etmis olmam. Burada henuz proje-ozel guc kaybi hesabi yok; ama `T_J`, thermal shutdown ve exposed pad dusuncesinin erkenden gorunur hale gelmesi bence yeterince degerli.
+Buradaki asil değer, seçtiğim kontrolcü IC'nin yalnızca elektriksel değil termal sınırlarını da erken aşamada not etmis olmam. Burada henüz proje-özel güç kaybı hesabı yok; ama `T_J`, thermal shutdown ve exposed pad dusuncesinin erkenden gorunur hale gelmesi bence yeterince değerli.
 
-Defterden aktarilan not (`W.111`):
+Defterden aktarılan not (`W.111`):
 
-Burada `5.1.1-5.1.2`de tartisilan dahili `VCC` / LDO konusu bu kez termal guc kaybi tarafindan ele aliniyor. Ust satirda acikca su ifade yazilmis:
+Burada `5.1.1-5.1.2`de tartisilan dahili `VCC` / LDO konusu bu kez termal güç kaybı tarafından ele aliniyor. Ust satirda açıkça şu ifade yazılmış:
 
-![W.111'den secilen el yazisi parca: dahili VCC regulatorunun guc kaybi ve harici DVCC secenegi notu](images/defter_snippets_web/d07_w111_vcc_ldo_loss_note.jpg)
+![W.111'den seçilen el yazısı parça: dahili VCC regülatörünün güç kaybı ve harici DVCC seçeneği notu](images/defter_snippets_web/d07_w111_vcc_ldo_loss_note.jpg)
 
 - `VCC regulatorunun guc tuketimi`
 
-Sayfanin ortasinda, dahili regulator uzerinde harcanan guc su sekilde not edilmis:
+Sayfanın ortasinda, dahili regülatör üzerinde harcanan güç şu şekilde not edilmiş:
 
 $$
 P_{diss,\;VCC}
@@ -533,102 +522,102 @@ P_{diss,\;VCC}
 $$
 Yan notlardan korunacak ana fikirler:
 
-- eger `V_{in}` yuksekse, dahili LDO uzerindeki dusum de buyur
-- ayni `I_{VCC}` akiminda bu, daha fazla isi kaybi anlamina gelir
-- dolayisiyla yuksek `Vin` tarafinda dahili `VCC` regulatoru daha fazla isinabilir
+- eğer `V_{in}` yuksekse, dahili LDO üzerindeki dusum de büyür
+- aynı `I_{VCC}` akımında bu, daha fazla ısı kaybı anlamına gelir
+- dolayısıyla yüksek `Vin` tarafında dahili `VCC` regülatörü daha fazla ısınabilir
 
-Sayfanin alt kismina dusulen tasarim karari notu su:
+Sayfanın alt kismina dusulen tasarım kararı notu şu:
 
-- asiri isinma sonucunda problem yasanirsa
-- dahili `VCC` rayi yerine `8 V - 13 V` araliginda harici bir kaynak kullanilabilir
-- ve `DVCC` uzerinden `VCC` pinleri beslenebilir
+- asiri ısınma sonucunda problem yasanirsa
+- dahili `VCC` rayi yerine `8 V - 13 V` aralığında harici bir kaynak kullanılabilir
+- ve `DVCC` üzerinden `VCC` pinleri beslenebilir
 
-Burada daha once `W.108`de genel termal sinir olarak yazdigim seyler, bu kez LM5146'nin dahili regulatorune ozel bir guc kaybi iliskisiyle somutlasiyor. Ayni zamanda `5.1.1`de gecen "harici VCC ile LDO'yu baypas etme" secenegine de dogrudan muhendislik gerekcesi veriyor.
+Burada daha önce `W.108`de genel termal sınır olarak yazdığım seyler, bu kez LM5146'nin dahili regulatorune özel bir güç kaybı iliskisiyle somutlasiyor. Aynı zamanda `5.1.1`de geçen "harici VCC ile LDO'yu baypas etme" secenegine de doğrudan mühendislik gerekçesi veriyor.
 
-Defterden aktarilan not (`W.170`):
+Defterden aktarılan not (`W.170`):
 
-Burada `5.1.1`deki dahili `VCC` / LDO siniri kendi cumlelerinle yeniden kuruluyor. Yeni bir nihai hesap degil; minimum `V_{in}` sinirinin defterde elle tekrar edildigi ve tasarim niyetinin netlestigi bir not.
+Burada `5.1.1`deki dahili `VCC` / LDO sınırı kendi cumlelerinle yeniden kuruluyor. Yeni bir nihai hesap değil; minimum `V_{in}` sinirinin defterde elle tekrar edildiği ve tasarım niyetinin netlestigi bir not.
 
-![W.170'den secilen el yazisi parca: minimum Vin = 8.22 V ve dahili VCC kullanimi niyeti](images/defter_snippets_web/d08_w170_internal_vcc_min_vin.jpg)
+![W.170'den seçilen el yazısı parça: minimum Vin = 8.22 V ve dahili VCC kullanimi niyeti](images/defter_snippets_web/d08_w170_internal_vcc_min_vin.jpg)
 
-Sayfanin basliginda okunabildigi kadariyla:
+Sayfanın basliginda okunabildigi kadariyla:
 
 - `8.3.1 Input Range Vin`
 
-yaziyor.
+yazıyor.
 
-Ust kisimda, LM5146'nin icinde bir `LDO` bulundugunu ve bunun:
+Ust kısımda, LM5146'nin içinde bir `LDO` bulundugunu ve bunun:
 
-- `7.5 V` civarinda bir `VCC` beslemesi sagladigini
+- `7.5 V` civarında bir `VCC` beslemesi sağladığını
 - kontrol devrelerini ve MOSFET gate suruculerini besledigini
 
 not ettim.
 
-Ardindan en kritik tasarim siniri tekrar vurgulaniyor:
+Ardindan en kritik tasarım sınırı tekrar vurgulaniyor:
 
-- eger harici `VCC` kullanilmiyorsa
-- giris gerilimi `V_{in}`, dahili `LDO`'nun dropout sinirinin ustunde kalmalidir
+- eğer harici `VCC` kullanilmiyorsa
+- giriş gerilimi `V_{in}`, dahili `LDO`'nun dropout sinirinin üstünde kalmalidir
 
-Sayfadaki sayisal yerleştirme, `5.1.1` ile uyumlu olacak sekilde su sonuca gidiyor:
+Sayfadaki sayısal yerleştirme, `5.1.1` ile uyumlu olacak şekilde şu sonuca gidiyor:
 
 $$
 V_{in,\min} \approx 7.5\,V + 0.72\,V \approx 8.22\,V
 $$
-Yani sayfanin ana mesaji:
+Yani sayfanın ana mesaji:
 
 - `V_{in} < 8.22 V` olursa
-- dahili `LDO` tam regulasyonda calisamaz
-- `VCC` dusmeye baslar
+- dahili `LDO` tam regulasyonda çalışamaz
+- `VCC` dusmeye başlar
 
-Sayfanin orta-alt kisminda kendi tasarim niyetimi de acikca not ediyorum:
+Sayfanın orta-alt kısmında kendi tasarım niyetimi de açıkça not ediyorum:
 
 - `Harici VCC kullanmayi kastetmiyorum`
 - `Dahiliyi kullaniyorum`
 
-Buradaki not degerli; cunku bu projede en azindan bu iterasyonda:
+Buradaki not değerli; çünkü bu projede en azindan bu iterasyonda:
 
-- `DVCC` ile harici bypass secenegi bilinmesine ragmen
-- mevcut tasarim mantiginin dahili `VCC/LDO` uzerinden ilerledigi anlasiliyor
+- `DVCC` ile harici bypass seçeneği bilinmesine ragmen
+- mevcut tasarım mantığının dahili `VCC/LDO` üzerinden ilerledigi anlasiliyor
 
-Sayfanin en altinda ayrica:
+Sayfanın en altında ayrıca:
 
 - `Word'de biraz seyler de var`
 
-notu var. Bu, bu konunun ayri bir yazili belgede de toparlanmaya baslandigini gosteren kisa bir aktarim izi olarak korunabilir.
+notu var. Bu, bu konunun ayrı bir yazili belgede de toparlanmaya baslandigini gösteren kısa bir aktarim izi olarak korunabilir.
 
-Buradaki not `5.1.1`deki ODT cizgisini degistirmiyor; ayni `8.22 V` sinirini defterde yeniden teyit ediyor. En degerli yani da, bu projede harici `VCC` secenegini degil dahili `LDO` yolunu esas aldigimi acikca not etmesi.
-
-
-
-#### 5.1.3 Cikis gerilimi setpoint direncleri FB
+Buradaki not `5.1.1`deki ODT cizgisini değiştirmiyor; aynı `8.22 V` sinirini defterde yeniden teyit ediyor. En değerli yani da, bu projede harici `VCC` secenegini değil dahili `LDO` yolunu esas aldigimi açıkça not etmesi.
 
 
 
-ODT'den aktarilan metin (`4.1. Çıkış gerilimi setpoint dirençleri FB`):
+#### 5.1.3 Çıkış gerilimi setpoint dirençleri FB
 
-> = 14V yapmak istiyoruz.  
-> 0402 boyutlarında.  
-> R14 Ohm R14 = 16.5 kΩ (RFB1)  
-> R10 = 1.00 kΩ (RFB2)  
-> Dirençleri % 0.1 tolerance’lı seçmek….
+
+
+ODT’den aktarılan metin (`4.1. Çıkış gerilimi setpoint dirençleri FB`):
+
+> Çıkış gerilimini `14 V` yapmak istiyoruz.  
+> Direnç paketleri için hedef boyut `0402` olarak düşünülmüştür.  
+> `R14 = 16.5 kΩ` (`RFB1`)  
+> `R10 = 1.00 kΩ` (`RFB2`)  
+> Geri besleme dirençleri için `%0.1` toleranslı parça seçmek uygun olur.
 
 
 
 Ek not:
 
-Burada geri besleme bolucusunu `14 V` cikis hedefi icin sectigimi ve fiziksel paket hedefinin `0402` oldugunu kaydediyorum. Ancak ilk ODT taslagindaki `16.5 kOhm / 1.00 kOhm` secimi, sonraki defter iterasyonlari ve satin alinmis BOM ile karsilastirildiginda artik nihai secim gibi durmuyor.
+Burada geri besleme bölücüsünü `14 V` çıkış hedefi için seçtiğimi ve fiziksel paket hedefinin `0402` olduğunu kaydediyorum. Ancak ilk ODT taslağındaki `16.5 kOhm / 1.00 kOhm` seçimi, sonraki defter iterasyonları ve satın alınmış BOM ile karşılaştırıldığında artık nihai seçim gibi durmuyor.
 
-Temel setpoint iliskisi su sekilde yazilabilir:
+Temel setpoint ilişkisi şu şekilde yazılabilir:
 
 $$
 V_{out} = V_{FB}\left(1 + \frac{R_{FB1}}{R_{FB2}}\right)
 $$
-Ilk taslaktaki eski aday secim:
+İlk taslaktaki eski aday seçim:
 
 $$
 V_{out} = 0.8\left(1 + \frac{16.5}{1.0}\right) = 14.0\,\text{V}
 $$
-Defter taramasi `W.14-W.16` ve BOM'daki satin alinmis parcalar ise su guncel adayi gosteriyor:
+Defter taraması `W.14-W.16` ve BOM'daki satın alınmış parçalar ise şu güncel adayı gösteriyor:
 
 - `R11 / R1 / RFB1 = 26.4 kOhm`
 - `R10 / RFB2 = 1.6 kOhm`
@@ -638,46 +627,46 @@ Bu durumda:
 $$
 V_{out} = 0.8\left(1 + \frac{26.4}{1.6}\right) = 14.0\,\text{V}
 $$
-Burada iki farkli iterasyon ust uste duruyor. Eski `16.5 kOhm / 1.00 kOhm` secimi matematiksel olarak yanlis degil; ama sonraki defter sayfalari ve satin alinmis BOM artik `26.4 kOhm / 1.6 kOhm` cizgisini isaret ediyor.
+Burada iki farklı iterasyon üst uste duruyor. Eski `16.5 kOhm / 1.00 kOhm` seçimi matematiksel olarak yanlis değil; ama sonraki defter sayfalari ve satın alınmış BOM artık `26.4 kOhm / 1.6 kOhm` cizgisini işaret ediyor.
 
-O yuzden eski secimi silmek yerine ilk aday olarak birakmak, bundan sonraki setpoint hesabinda ise guncel varsayim olarak `26.4 kOhm / 1.6 kOhm` kullanmak daha dogru.
+O yüzden eski seçimi silmek yerine ilk aday olarak birakmak, bundan sonraki setpoint hesabinda ise güncel varsayım olarak `26.4 kOhm / 1.6 kOhm` kullanmak daha doğru.
 
 Ek not (calculator teyidi):
 
-`LM5146_quickstart_calculator_revB1.xlsm` dosyasinda da geri besleme bolucusu ayni nihai aileye oturuyor:
+`LM5146_quickstart_calculator_revB1.xlsm` dosyasinda da geri besleme bolucusu aynı nihai aileye oturuyor:
 
 - `RFB1 = 26.4 kOhm`
 - `RFB2 = 1.58 kOhm`
 - `Actual Vout = 14.167 V`
 
-Calculator da ayni yone bakiyor. Yani `16.5 kOhm / 1.00 kOhm` eski adayi tamamen gecersiz kilmiyor; ama `W.14-W.16` ve satin alinmis BOM ile uyumlu gorunen `26.4 kOhm / 1.6 kOhm` secimini daha guclu bicimde destekliyor.
+Calculator da aynı yone bakiyor. Yani `16.5 kOhm / 1.00 kOhm` eski adayı tamamen gecersiz kilmiyor; ama `W.14-W.16` ve satın alınmış BOM ile uyumlu gorunen `26.4 kOhm / 1.6 kOhm` seçimini daha güçlü biçimde destekliyor.
 
-Bu bolume ait kaynak-foto:
+Bu bölüme ait kaynak-foto:
 
-![WEBENCH benzeri devre uzerinde FB bolucusu ve kompanzator notlari](images/foto_selected/p04_feedback_and_compensation_markup.jpg)
+![WEBENCH benzeri devre üzerinde FB bolucusu ve kompanzatör notları](images/foto_selected/p04_feedback_and_compensation_markup.jpg)
 
-Bu foto, geri besleme bolucusunun `RFB1 / RFB2` kimligini ve kompanzator kolunun hangi elemanlardan olustugunu hizli gormek icin iyi bir gorsel eslik veriyor. `5.1.3` altinda durmasinin nedeni bu.
+Bu foto, geri besleme bolucusunun `RFB1 / RFB2` kimligini ve kompanzatör kolunun hangi elemanlardan oluştuğunu hızlı gormek için iyi bir görsel eslik veriyor. `5.1.3` altında durmasinin nedeni bu.
 
-Defterden aktarilan not (`W.202`):
+Defterden aktarılan not (`W.202`):
 
-`W.202`, bu konunun ilk kuruldugu sayfalardan biri. LM5146 datasheet'indeki `Output Voltage Setpoint and Accuracy FB` basligina bakip `FB` dugumunun referansla iliskisini kisa yoldan not etmissin.
+`W.202`, bu konunun ilk kuruldugu sayfalardan biri. LM5146 datasheet'indeki `Output Voltage Setpoint and Accuracy FB` basligina bakip `FB` dugumunun referansla iliskisini kısa yoldan not etmissin.
 
-![W.202'den secilen el yazisi parca: FB bolucu denklemi ve 14 V icin oran hesabi](images/defter_snippets_web/d09_w202_fb_divider_equation.jpg)
+![W.202'den seçilen el yazısı parça: FB bolucu denklemi ve 14 V için oran hesabı](images/defter_snippets_web/d09_w202_fb_divider_equation.jpg)
 
-Guvenle okunan ana notlar sunlar:
+Guvenle okunan ana notlar şunlar:
 
 - `VREF = 0.8 V`
-- geri besleme orani:
+- geri besleme oranı:
 
 $$
 H_{Vout} = \frac{R_2}{R_3 + R_5} \approx 0.12857
 $$
-- temel setpoint iliskisi:
+- temel setpoint ilişkisi:
 
 $$
 V_{out} = V_{REF}\left(1 + \frac{R_{FB1}}{R_{FB2}}\right)
 $$
-Sayfada `14 V` hedefi icin su oran kurulmus:
+Sayfada `14 V` hedefi için şu oran kurulmus:
 
 $$
 \frac{14\,V}{0.8\,V} - 1 = \frac{R_{FB1}}{R_{FB2}} = 16.5
@@ -687,7 +676,7 @@ Bu da eski aday bolucuyu destekliyor:
 - `RFB1 = 16.5 k\Omega`
 - `RFB2 = 1.00 k\Omega`
 
-Sayfanin alt kismina, referans geriliminin toleransi ile ilgili su not da dusulmus:
+Sayfanın alt kismina, referans geriliminin toleransi ile ilgili şu not da düşülmüş:
 
 - `Vref 792 mV ile 808 mV arasinda degisebilir`
 
@@ -696,92 +685,92 @@ Buradan da:
 $$
 \frac{808\,mV - 800\,mV}{800\,mV} = \frac{8\,mV}{800\,mV} = \frac{1}{100}
 $$
-yani yaklasik:
+yani yaklaşık:
 
 - `Vout'ta ±1%`lik bir sapma olabilecegi
 
-not edilmis.
+not edilmiş.
 
-Buradaki sayfa, `5.1.3`teki eski `16.5 k\Omega / 1.00 k\Omega` setpoint iterasyonunu dogrudan destekliyor. Nihai BOM ile uyumlu gorunen `26.4 k\Omega / 1.6 k\Omega` secimini degistirmiyor; ama bu bolucuyu ilk kez nasil kurdugumu gosterdigi icin degerli.
+Buradaki sayfa, `5.1.3`teki eski `16.5 k\Omega / 1.00 k\Omega` setpoint iterasyonunu doğrudan destekliyor. Nihai BOM ile uyumlu gorunen `26.4 k\Omega / 1.6 k\Omega` seçimini değiştirmiyor; ama bu bolucuyu ilk kez nasıl kurdugumu gösterdiği için değerli.
 
-`VREF` toleransinin cikis gerilimine tasinacagini erken asamada not etmem de buradaki notun guclu yani.
-
-
-#### 5.1.4 `EN/UVLO`, `SS/TRK` ve startup notlari
+`VREF` toleransinin çıkış gerilimine tasinacagini erken aşamada not etmem de buradaki notun güçlü yani.
 
 
+#### 5.1.4 `EN/UVLO`, `SS/TRK` ve startup notları
 
-Bu bolume ait kaynak-fotolar:
 
-![LM5146 genel fonksiyonel blok diyagrami](images/foto_selected/p40_functional_block_full.jpg)
 
-![Enable logic ve startup yolunu gosteren genel blok diyagram](images/foto_selected/p35_enable_logic_overview.jpg)
+Bu bölüme ait kaynak-fotolar:
 
-![Enable / UVLO ve PWM logic akislarini isaretleyen notlu blok diyagram](images/foto_selected/p39_enable_pwm_logic_highlight.jpg)
+![LM5146 genel fonksiyonel blok diyagramı](images/foto_selected/p40_functional_block_full.jpg)
 
-Bu uc gorsel birlikte, `EN/UVLO`, `VCC UVLO`, `thermal shutdown`, `PWM logic` ve `driver` arasindaki ic akis mantigini tek yerde gormemi sagliyor. `W.204-W.209` notlarinda parca parca yazdigim startup / enable dusuncesi burada kontrolcunun kendi blok diyagrami uzerinden toparlaniyor.
+![Enable logic ve startup yolunu gösteren genel blok diyagram](images/foto_selected/p35_enable_logic_overview.jpg)
 
-Defterden aktarilan not (`W.204`):
+![Enable / UVLO ve PWM logic akislarini işaretleyen notlu blok diyagram](images/foto_selected/p39_enable_pwm_logic_highlight.jpg)
 
-`W.204`, datasheet'in `8.3.7` civarindaki `EN/UVLO`, `SS/TRK` ve startup/soft-start davranisini anlamaya calistigin sayfalardan biri. Sayfanin ust kismina aldigin net notlar sunlar:
+Bu üç görsel birlikte, `EN/UVLO`, `VCC UVLO`, `thermal shutdown`, `PWM logic` ve `driver` arasındaki iç akış mantığını tek yerde gormemi sağlıyor. `W.204-W.209` notlarında parça parça yazdığım startup / enable düşüncesi burada kontrolcünün kendi blok diyagramı üzerinden toparlaniyor.
 
-![W.204'ten secilen el yazisi parca: EN/UVLO, ISS, SS/TRK ve startup rampasi notlari](images/defter_snippets_web/d10_w204_ss_trk_startup_note.jpg)
+Defterden aktarılan not (`W.204`):
+
+`W.204`, datasheet'in `8.3.7` civarındaki `EN/UVLO`, `SS/TRK` ve startup/soft-start davranışını anlamaya calistigin sayfalardan biri. Sayfanın üst kismina aldigin net notlar şunlar:
+
+![W.204'ten seçilen el yazısı parça: EN/UVLO, ISS, SS/TRK ve startup rampasi notları](images/defter_snippets_web/d10_w204_ss_trk_startup_note.jpg)
 
 - `EN(UVLO) 1.2 V` oldugunda `IC active olur`
 - bundan sonra:
-  - `I_{SS}` akimi `C_{SS}`'i doldurmaya baslar
+  - `I_{SS}` akımı `C_{SS}`'i doldurmaya başlar
 - `I_{SS} = 10 \mu A` degerinde bir `current source`
 
-Sayfadaki en degerli teknik ayrim su:
+Sayfadaki en değerli teknik ayrım şu:
 
 - `SS/TRK < 0.8 V` iken, hata kuvvetlendiricisinin gordugu referansi sabit `0.8 V` gibi almiyorum
-- startup sirasinda referansi, `SS/TRK` dugumundeki rampa ile birlikte degisiyormus gibi ele aliyorum
+- startup sırasında referansi, `SS/TRK` dugumundeki rampa ile birlikte degisiyormus gibi ele aliyorum
 
-Sayfada bunun icin kendi test/benzetim notum da var:
+Sayfada bunun için kendi test/benzetim notum da var:
 
 - `PWL` ile bir rampa kullanilarak
-- referansin `0 V -> 0.8 V` benzeri gecisi emule edilmeye calisilmis
-- zaman ekseninde yaklasik `45 us` notu dusulmus
+- referansin `0 V -> 0.8 V` benzeri geçişi emule edilmeye calisilmis
+- zaman ekseninde yaklaşık `45 us` notu düşülmüş
 
 ![`PWL(0 0 1u 1.8V)` benzeri startup rampasi ile referansi emule etmeye calistigin notlu ekran](images/foto_selected/p101_pwl_startup_emulation.jpg)
 
-Sayfanin orta kismina ayrica kisa bir op-amp hatirlatmasi da cizilmis:
+Sayfanın orta kismina ayrıca kısa bir op-amp hatırlatması da cizilmis:
 
 $$
 V_{out} = A_{OL}(V_+ - V_-)
 $$
-Bu, startup sirasinda sabit bir referans yerine degisen bir referans gormenin hata kuvvetlendiricisi davranisini nasil etkileyebilecegini kendi dilinle dusundugunu gosteriyor.
+Bu, startup sırasında sabit bir referans yerine değişen bir referans gormenin hata kuvvetlendiricisi davranışını nasıl etkileyebilecegini kendi dilinle düşündüğünü gösteriyor.
 
-Sayfanin altindaki diger maddeler tam net okunmuyor; ama ana yon gayet belirgin:
+Sayfanın altındaki diğer maddeler tam net okunmuyor; ama ana yon gayet belirgin:
 
-- soft-start sirasinda `SS/TRK` pinini aktif bir rampa / takip dugumu gibi dusunuyorum
-- sabit `0.8 V` referansin en basindan dogrudan uygulanmadigini varsayiyorum
+- soft-start sırasında `SS/TRK` pinini aktif bir rampa / takip düğümü gibi dusunuyorum
+- sabit `0.8 V` referansin en basindan doğrudan uygulanmadigini varsayiyorum
 - takip (`tracking`) modunda bu pine disaridan bir referans / rampa verilebilmesi fikrini de not ettim
 
-`W.204` yeni bir parca secimi ya da nihai sayisal sonuc vermiyor. Burada startup davranisini "bir anda 0.8 V referans uygulanmasi" diye degil, `SS/TRK` rampasi uzerinden dusunmeye basladigim goruluyor.
+`W.204` yeni bir parça seçimi ya da nihai sayısal sonuç vermiyor. Burada startup davranışını "bir anda 0.8 V referans uygulanmasi" diye değil, `SS/TRK` rampasi üzerinden dusunmeye basladigim görülüyor.
 
-`PWL` ile startup referansi olusturma notu da bunu LTspice tarafinda taklit etmeye calistigimi gosteriyor. O yuzden buradaki not yerinde duruyor.
+`PWL` ile startup referansi olusturma notu da bunu LTspice tarafında taklit etmeye calistigimi gösteriyor. O yüzden buradaki not yerinde duruyor.
 
-Defterden aktarilan not (`W.206`):
+Defterden aktarılan not (`W.206`):
 
-`W.206`, `SS/TRK` pinine bagladigim soft-start kapasitörunun degerini ve buna karsilik gelen soft-start suresini hesapladigim kisa bir uygulama sayfasi.
+`W.206`, `SS/TRK` pinine bagladigim soft-start kapasitörunun değerini ve buna karşılık gelen soft-start süresini hesapladigim kısa bir uygulama sayfası.
 
-![W.206'dan secilen el yazisi parca: CSS secimi ve tSS hesabinin defterden kisa gorunumu](images/defter_snippets_web/d11_w206_soft_start_time.jpg)
+![W.206'dan seçilen el yazısı parça: CSS seçimi ve tSS hesabinin defterden kısa gorunumu](images/defter_snippets_web/d11_w206_soft_start_time.jpg)
 
-Sayfanin ustunde, soft-start'in amaci kisaca su sekilde not edilmis:
+Sayfanın üstünde, soft-start'in amaci kisaca şu şekilde not edilmiş:
 
-- cikis geriliminin yavasca yukselmesini saglamak
-- asiri akim / `inrush current` olusumunu onlemek
+- çıkış geriliminin yavasca yukselmesini sağlamak
+- asiri akım / `inrush current` olusumunu onlemek
 
-Ardindan, LM5146'nin `SS/TRK` pinine bagli kapasitörü dahili sabit bir akimla sarj ettigini not ediyorum:
+Ardindan, LM5146'nin `SS/TRK` pinine bağlı kapasitörü dahili sabit bir akimla sarj ettigini not ediyorum:
 
 - `I_{SS} = 10 \mu A`
 
-Sayfada secilen soft-start kapasitörü:
+Sayfada seçilen soft-start kapasitörü:
 
 - `C_{SS} = C26 = 0.047 uF = 47 nF`
 
-ve buna karsilik klasik soft-start iliskisi yazilmis:
+ve buna karşılık klasik soft-start ilişkisi yazılmış:
 
 $$
 t_{SS} = \frac{C_{SS}\,V_{REF}}{I_{SS}}
@@ -800,51 +789,51 @@ t_{SS} \approx 3.76\,ms
 $$
 sonucu elde edilir.
 
-Sayfanin altindaki kucuk cizimde:
+Sayfanın altındaki küçük çizimde:
 
 - `SS/TRK` pini
 - `RT` pini
 - ve `C_{SS} = 47 nF`
 
-![SS/TRK, FB ve RT pinlerinin birbirine gore konumunu gosteren notlu yakin plan](images/foto_selected/p41_sstrk_rt_relation.jpg)
+![SS/TRK, FB ve RT pinlerinin birbirine göre konumunu gösteren notlu yakın plan](images/foto_selected/p41_sstrk_rt_relation.jpg)
 
-Bu yakin plan, `C_{SS}` secimini tek basina degil; `SS/TRK`, `FB` ve `RT` pinlerinin kart uzerindeki fiziksel komsulugu ile birlikte dusundugumu da gosteriyor.
+Bu yakın plan, `C_{SS}` seçimini tek başına değil; `SS/TRK`, `FB` ve `RT` pinlerinin kart üzerindeki fiziksel komsulugu ile birlikte düşündüğümü da gösteriyor.
 
-Burada artik `W.204`teki kavramsal `SS/TRK` notu, dogrudan sayisal bir `t_{SS}` hesabina donusuyor. Yeni bir kontrol yasasi kurmuyorum; sadece `C26 = 47 nF` seciminin nedenini acik ediyorum. O nedenle `5.1.4` icinde dogal bir devam.
+Burada artık `W.204`teki kavramsal `SS/TRK` notu, doğrudan sayısal bir `t_{SS}` hesabina donusuyor. Yeni bir kontrol yasasi kurmuyorum; sadece `C26 = 47 nF` seçiminin nedenini açık ediyorum. O nedenle `5.1.4` içinde dogal bir devam.
 
 Ek not (calculator teyidi):
 
-`LM5146_quickstart_calculator_revB1.xlsm` dosyasinda da startup tarafi su sekilde gorunuyor:
+`LM5146_quickstart_calculator_revB1.xlsm` dosyasinda da startup tarafı şu şekilde görünüyor:
 
 - `C_{SS} = 47 nF`
 - `t_{SS} = 4 ms`
 
-Bu, defterdeki `47 nF -> 3.76 ms` hesabinin ayni tasarim cizgisinde oldugunu gosteriyor. Burada ciddi bir celiski yok; daha cok yuvarlama / hedef sure farki var.
+Bu, defterdeki `47 nF -> 3.76 ms` hesabinin aynı tasarım cizgisinde olduğunu gösteriyor. Burada ciddi bir celiski yok; daha çok yuvarlama / hedef süre farkı var.
 
-Defterden aktarilan not (`W.207`):
+Defterden aktarılan not (`W.207`):
 
-`W.207`, datasheet'in `8.3.2 Precision Enable` tarafina ait bir `EN/UVLO` notu. Sayfanin ustunde, `VIN` ile `EN/UVLO` pini arasinda bir direnç bolucusu cizdim:
+`W.207`, datasheet'in `8.3.2 Precision Enable` tarafina ait bir `EN/UVLO` notu. Sayfanın üstünde, `VIN` ile `EN/UVLO` pini arasında bir direnç bolucusu cizdim:
 
-![W.207'den secilen el yazisi parca: Precision Enable denklemleri ve VCC UVLO notlari](images/defter_snippets_web/d12_w207_precision_enable_and_vcc_uvlo.jpg)
+![W.207'den seçilen el yazısı parça: Precision Enable denklemleri ve VCC UVLO notları](images/defter_snippets_web/d12_w207_precision_enable_and_vcc_uvlo.jpg)
 
-- ust direnç: `R_{UV1}`
+- üst direnç: `R_{UV1}`
 - alt direnç: `R_{UV2}`
-- orta dugum: `EN/UVLO`
+- orta düğüm: `EN/UVLO`
 
-Sayfada guvenle okunan iki temel denklem su:
+Sayfada güvenle okunan iki temel denklem şu:
 
 $$
 R_{UV1} = \frac{V_{IN(ON)} - V_{IN(OFF)}}{I_{HYS}}
 $$
-ve ikinci denklem, `R_{UV1}`, `R_{UV2}`, `V_{EN}` ve `V_{IN(ON)}` arasindaki precision-enable bolucu iliskisini kuruyor. El yazisi tam net degil ama ana fikir su:
+ve ikinci denklem, `R_{UV1}`, `R_{UV2}`, `V_{EN}` ve `V_{IN(ON)}` arasındaki precision-enable bolucu iliskisini kuruyor. El yazısı tam net değil ama ana fikir şu:
 
-- `VIN(ON)` ve `VIN(OFF)` esikleri
+- `VIN(ON)` ve `VIN(OFF)` eşikleri
 - `EN/UVLO` pinindeki etkinlesme gerilimi
-- ve histerezis akimi
+- ve histerezis akımı
 
 beraber kullanilarak `R_{UV1}` ve `R_{UV2}` boyutlandiriliyor.
 
-Sayfanin orta kisminda `EN/UVLO` pininin bolgelere ayrildigi bir tablo var. Guvenle okunan esikler sunlar:
+Sayfanın orta kısmında `EN/UVLO` pininin bolgelere ayrildigi bir tablo var. Guvenle okunan esikler şunlar:
 
 - `< 0.4 V`:
   - `shutdown`
@@ -853,56 +842,56 @@ Sayfanin orta kisminda `EN/UVLO` pininin bolgelere ayrildigi bir tablo var. Guve
 - `> 1.2 V`:
   - `active`
 
-![EN/UVLO pinindeki shutdown bolgesini gosteren 0.4 V notu](images/foto_selected/p34_en_uvlo_shutdown_threshold.jpg)
+![EN/UVLO pinindeki shutdown bolgesini gösteren 0.4 V notu](images/foto_selected/p34_en_uvlo_shutdown_threshold.jpg)
 
-Sayfanin alt kisminda ayrica `VCC` UVLO notu yer aliyor:
+Sayfanın alt kısmında ayrıca `VCC` UVLO notu yer aliyor:
 
 - `VCC-UV` (`VCC undervoltage threshold`) `≈ 4.93 V (typ)`
 - `VCC-UVHYS` (`VCC undervoltage hysteresis`) `≈ 0.26 V`
 
-![VCC UVLO ve enable esiklerini gosteren datasheet tablosu](images/foto_selected/p36_vcc_uvlo_table.jpg)
+![VCC UVLO ve enable esiklerini gösteren datasheet tablosu](images/foto_selected/p36_vcc_uvlo_table.jpg)
 
-![VCC-UV tipik 4.93 V esigini isaretleyen notlu goruntu](images/foto_selected/p37_vcc_uvlo_threshold_markup.jpg)
+![VCC-UV tipik 4.93 V esigini işaretleyen notlu görüntü](images/foto_selected/p37_vcc_uvlo_threshold_markup.jpg)
 
-![VCC UVLO hysteresis degerini isaretleyen yakin plan goruntu](images/foto_selected/p38_vcc_uvlo_hysteresis_markup.jpg)
+![VCC UVLO hysteresis değerini işaretleyen yakın plan görüntü](images/foto_selected/p38_vcc_uvlo_hysteresis_markup.jpg)
 
-Bu yakin plan gorseller, `W.207`de yazdigin iki sayiyi dogrudan datasheet tarafinda da gormeyi sagliyor:
+Bu yakın plan görseller, `W.207`de yazdigin iki sayiyi doğrudan datasheet tarafında da gormeyi sağlıyor:
 
 - `VCC-UV \approx 4.93 V`
 - `VCC-UVHYS \approx 0.26 V`
 
-Burada not ettigin startup sezgisi de acik:
+Burada not ettigin startup sezgisi de açık:
 
-- guc verildiginde `C_{VCC}` kapasitörü doldurulur
-- yalnizca `EN/UVLO > 1.2 V` olmasi tek basina yetmez
+- güç verildiginde `C_{VCC}` kapasitörü doldurulur
+- yalnızca `EN/UVLO > 1.2 V` olmasi tek başına yetmez
 - `VCC` tarafinin da kendi UVLO esigini gecmesi gerekir
 
-Burada yeni bir nihai direnç secimi yok. Daha cok etkinlesme mantigini ve esik bolgelerini kaynak uzerinden anlamaya calistigin bir not var. En degerli yani da su: `EN/UVLO > 1.2 V` tek basina yetmez, `VCC` UVLO da asilmalidir.
+Burada yeni bir nihai direnç seçimi yok. Daha çok etkinlesme mantığını ve eşik bolgelerini kaynak üzerinden anlamaya calistigin bir not var. En değerli yani da şu: `EN/UVLO > 1.2 V` tek başına yetmez, `VCC` UVLO da asilmalidir.
 
-Defterden aktarilan not (`W.209`):
+Defterden aktarılan not (`W.209`):
 
-`W.209`, `Precision Enable` denklemlerini kullanarak `EN/UVLO` pinine giden direnç bolucuyu sayisal olarak boyutlandiran bir uygulama sayfasi.
+`W.209`, `Precision Enable` denklemlerini kullanarak `EN/UVLO` pinine giden direnç bolucuyu sayısal olarak boyutlandiran bir uygulama sayfası.
 
-![W.209'dan secilen el yazisi parca: RUV1 ve RUV2 icin sayisal UVLO ornegi](images/defter_snippets_web/d13_w209_uvlo_resistor_example.jpg)
+![W.209'dan seçilen el yazısı parça: RUV1 ve RUV2 için sayısal UVLO örneği](images/defter_snippets_web/d13_w209_uvlo_resistor_example.jpg)
 
-Sayfanin ustunde, `Vin(on)` ve `Vin(off)` hedefleri not edilmis ve yaklasik `1 V` histerezis dusunulmus.
+Sayfanın üstünde, `Vin(on)` ve `Vin(off)` hedefleri not edilmiş ve yaklaşık `1 V` histerezis dusunulmus.
 
-Sayfada kullanilan temel datasheet buyuklukleri:
+Sayfada kullanılan temel datasheet büyüklükleri:
 
 - `I_{EN-HYS} = 10 \mu A`
 - `V_{EN} = 1.2 V`
 
-Ilk denklemle ust direnç hesaplanmis:
+İlk denklemle üst direnç hesaplanmış:
 
 $$
 R_{UV1} = \frac{V_{IN(ON)} - V_{IN(OFF)}}{I_{HYS}}
 $$
-Sayfadaki sayisal yerlestirme:
+Sayfadaki sayısal yerlestirme:
 
 $$
 R_{UV1} = \frac{24V - 23V}{10\mu A} = 100 k\Omega
 $$
-Ikinci denklemle alt direnç icin:
+İkinci denklemle alt direnç için:
 
 $$
 R_{UV2} = R_{UV1}\,\frac{V_{EN}}{V_{IN(ON)} - V_{EN}}
@@ -916,47 +905,47 @@ R_{UV2}
 \approx
 5.263k\Omega
 $$
-ve alt tarafta bu degere yakin standart bir deger kullanma notu dusulmus.
+ve alt tarafta bu degere yakın standart bir değer kullanma notu düşülmüş.
 
-Burada `W.207`de kavramsal olarak kurdugum `Precision Enable` bolucusu bu kez sayisal bir ornege donusuyor.
+Burada `W.207`de kavramsal olarak kurduğum `Precision Enable` bolucusu bu kez sayısal bir ornege donusuyor.
 
-Yalniz sayfanin ustundeki `Vin(on) / Vin(off)` el yazisi ile alttaki sayisal yerlestirme arasinda kucuk bir tutarsizlik olabilir; ustteki hedefler tam net okunmasa da alttaki denklem acikca `24V` ve `23V` ile kurulmus.
+Yalniz sayfanın ustundeki `Vin(on) / Vin(off)` el yazısı ile alttaki sayısal yerlestirme arasında küçük bir tutarsizlik olabilir; ustteki hedefler tam net okunmasa da alttaki denklem açıkça `24V` ve `23V` ile kurulmus.
 
-O yuzden bunu "nihai dogrulanmis direnç secimi" diye degil, boyutlandirma mantigini gosteren bir ara uygulama gibi okumak daha dogru.
+O yüzden bunu "nihai doğrulanmış direnç seçimi" diye değil, boyutlandirma mantığını gösteren bir ara uygulama gibi okumak daha doğru.
 
 Ek not (calculator teyidi):
 
-`LM5146_quickstart_calculator_revB1.xlsm` dosyasinda `EN/UVLO` tarafi icin su secim gorunuyor:
+`LM5146_quickstart_calculator_revB1.xlsm` dosyasinda `EN/UVLO` tarafı için şu seçim görünüyor:
 
 - `V_{IN,on} = 30 V`
 - `V_{IN,off} = 28 V`
 - `R_{UV1} = 200 kOhm`
 - `R_{UV2} = 8.25 kOhm`
 
-Bu da `W.209` icindeki `24 V / 23 V` yerlestirmesinin su asamada nihai UVLO secimi gibi degil, ayni denklemi anlamaya yonelik bir ornek / ara uygulama gibi okunmasi gerektigini destekliyor.
+Bu da `W.209` içindeki `24 V / 23 V` yerlestirmesinin şu aşamada nihai UVLO seçimi gibi değil, aynı denklemi anlamaya yonelik bir örnek / ara uygulama gibi okunması gerektiğini destekliyor.
 
 
-#### 5.1.5 `RT` pini ve anahtarlama frekansi
+#### 5.1.5 `RT` pini ve anahtarlama frekansı
 
 
 
-Defterden aktarilan not (`W.208`):
+Defterden aktarılan not (`W.208`):
 
-Burada datasheet'in `8.3.6.1 Frequency Adjust` kuralini kullanarak `RT` direncinden anahtarlama frekansi belirleniyor.
+Burada datasheet'in `8.3.6.1 Frequency Adjust` kuralini kullanarak `RT` direncinden anahtarlama frekansı belirleniyor.
 
-![W.208'den secilen el yazisi parca: RT direnci ile 332 kHz switching frequency baglantisi](images/defter_snippets_web/d14_w208_rt_frequency_formula.jpg)
+![W.208'den seçilen el yazısı parça: RT direnci ile 332 kHz switching frequency baglantisi](images/defter_snippets_web/d14_w208_rt_frequency_formula.jpg)
 
-Sayfada guvenle okunan temel iliski su:
+Sayfada güvenle okunan temel ilişki şu:
 
 $$
 R_{RT}[k\Omega] = \frac{10^4}{f_{SW}[kHz]}
 $$
-Ardindan secilen anahtarlama frekansi:
+Ardindan seçilen anahtarlama frekansı:
 
 $$
 f_{SW} = 332\,kHz
 $$
-icin yerine koyma yapiliyor:
+için yerine koyma yapiliyor:
 
 $$
 R_{RT}[k\Omega] = \frac{10^4}{332}
@@ -968,33 +957,33 @@ R_{RT} \approx 30.12\,k\Omega
 $$
 sonucu bulunuyor.
 
-Sayfanin sag tarafina da kisaca:
+Sayfanın sag tarafina da kisaca:
 
 - `Rrt = 30.1 k`
 
-notu dusulmus.
+notu düşülmüş.
 
-`W.208`, projede kullandigim `332 kHz` anahtarlama frekansinin `RT` pinindeki direnç secimiyle nasil baglandigini netlestiriyor. Burada yeni bir karma denetim sonucu yok; daha cok sade bir `frequency adjust` uygulama notu var.
+`W.208`, projede kullandığım `332 kHz` anahtarlama frekansinin `RT` pinindeki direnç secimiyle nasıl baglandigini netlestiriyor. Burada yeni bir karma denetim sonucu yok; daha çok sade bir `frequency adjust` uygulama notu var.
 
-`W.203`teki "`FPWM`'de sabit switching frequency var, `R13` burada kullaniyoruz" notuyla da dogrudan uyusuyor.
-
-
-### 5.2 Duty cycle, `tON(min)`, `tOFF(min)` ve sinir durumlari
+`W.203`teki "`FPWM`'de sabit switching frequency var, `R13` burada kullaniyoruz" notuyla da doğrudan uyuşuyor.
 
 
-
-#### 5.2.1 Birinci yaklasim ideal duty hesabi
+### 5.2 Duty cycle, `tON(min)`, `tOFF(min)` ve sınır durumlari
 
 
 
-Nominal ilk yaklasimda senkron buck donusturucu icin duty orani su sekilde alinabilir:
+#### 5.2.1 Birinci yaklaşım ideal duty hesabı
+
+
+
+Nominal ilk yaklaşımda senkron buck dönüştürücü için duty oranı şu şekilde alinabilir:
 
 
 
 $$
 D \approx \frac{V_{out}}{V_{in}}
 $$
-Buna gore mevcut spesifikasyonlarla:
+Buna göre mevcut spesifikasyonlarla:
 
 - $D_{\max,\text{ideal}} = \dfrac{14}{24} = 0.583$
 
@@ -1002,29 +991,29 @@ Buna gore mevcut spesifikasyonlarla:
 
 
 
-Bu degerler, nominal `24 V - 36 V` giris araliginda high-side anahtarin iletim orani icin ilk taslak sinirlari verir.
+Bu degerler, nominal `24 V - 36 V` giriş aralığında high-side anahtarin iletim oranı için ilk taslak sınırları verir.
 
 
 
-#### 5.2.2 `332 kHz` icin zaman alanina ceviri
+#### 5.2.2 `332 kHz` için zaman alanina ceviri
 
 
 
-Mevcut tasarim seciminde:
+Mevcut tasarım seciminde:
 
 
 
 $$
 f_{sw} = 332\,\text{kHz}
 $$
-Buna gore periyot:
+Buna göre periyot:
 
 
 
 $$
 T_{sw} = \frac{1}{f_{sw}} \approx 3.01\,\mu\text{s}
 $$
-Ideal duty degerleri zaman alanina cevrilirse:
+Ideal duty değerleri zaman alanina cevrilirse:
 
 - $t_{ON,\max,\text{ideal}} = 0.583 \times 3.01\,\mu\text{s} \approx 1.76\,\mu\text{s}$
 
@@ -1036,20 +1025,20 @@ Ideal duty degerleri zaman alanina cevrilirse:
 
 
 
-#### 5.2.3 `D_{max}` donanimsal sinirlari ve minimum on/off sureleri
+#### 5.2.3 `D_{max}` donanımsal sınırları ve minimum ön/off sureleri
 
 
 
-ODT'den aktarilan metin (`6.1.4. Dmax,donanımsal..?`):
+ODT’den aktarılan metin (`6.1.4. Dmax,donanımsal..?`):
 
-> LM5146-Q1’nun
-> - 40-ns tON(min) for high VIN / VOUT ratio
-> - 140-ns tOFF(min) for low dropout
-> Main mosfet’ın iletimde olma süresi 40ns’den daha kısa olmaz.
-> … Dikkat burası tam doğru olmayabilir. *** Bakarsın bir video vardı. Eklersin.
-> Arada başka zamanlar da var. Ölü zaman gibi…
+> LM5146-Q1 için temel zaman sınırları:
 >
-> ODT'deki denklem notasyonu bozuk aktarilmis; temiz matematik yazimi asagida verilmistir.
+> - `t_{ON(min)} = 40 ns` — yüksek `V_{IN}/V_{OUT}` oranı için minimum ön-time.
+> - `t_{OFF(min)} = 140 ns` — düşük dropout çalışma bölgesi için minimum off-time.
+>
+> Bu nedenle ana MOSFET’in (main MOSFET) iletim süresi `40 ns` değerinden daha kısa olamaz. Benzer şekilde, düşük dropout bölgesinde high-side anahtarın kapalı kalması gereken minimum süre de `140 ns` civarındadır.
+>
+> Not: Bu ilk yaklaşımda ölü zaman (dead time), yayılma gecikmesi (propagation delay) ve sürücüye özgü diğer zamanlar ayrıca hesaba katılmamıştır. Bu nedenle aşağıdaki hesap, donanımsal sınırı görmek için kullanılan ilk kontrol olarak okunmalıdır.
 
 
 
@@ -1057,9 +1046,9 @@ ODT'den aktarilan metin (`6.1.4. Dmax,donanımsal..?`):
 
 Ek not:
 
-Burada, denetleyicinin ideal duty hesabindan ayri olarak donanimsal zaman sinirlarini hatirlatiyorum. ODT notunda da isaret edildigi gibi bu hesap, olu zaman ve diger ayrintilar ihmal edilirse yalnizca ilk yaklasim olarak kullanilmalidir.
+Burada, denetleyicinin ideal duty hesabindan ayrı olarak donanımsal zaman sınırlarını hatırlatıyorum. ODT notunda da işaret edildiği gibi bu hesap, ölü zaman ve diğer ayrıntılar ihmal edilirse yalnızca ilk yaklaşım olarak kullanılmalıdır.
 
-GitHub uyumlu matematik bicimiyle donanimsal ust duty siniri su sekilde yazilabilir:
+GitHub uyumlu matematik biçimiyle donanımsal üst duty sınırı şu şekilde yazılabilir:
 
 $$
 D_{\max,\text{donanimsal}} \approx \frac{T_{sw} - t_{OFF(\min)}}{T_{sw}}
@@ -1067,14 +1056,14 @@ $$
 $$
 D_{\max,\text{donanimsal}} \approx \frac{\frac{1}{f_{sw}} - t_{OFF(\min)}}{\frac{1}{f_{sw}}}
 $$
-$f_{sw} = 332\,\text{kHz}$ ve $t_{OFF(\min)} = 140\,\text{ns}$ icin:
+$f_{sw} = 332\,\text{kHz}$ ve $t_{OFF(\min)} = 140\,\text{ns}$ için:
 
 $$
 D_{\max,\text{donanimsal}} \approx
 \frac{\frac{1}{332\,\text{kHz}} - 140\,\text{ns}}{\frac{1}{332\,\text{kHz}}}
 \approx 0.953
 $$
-Ayni yaklasimla en kucuk on-time sinirindan bir alt duty tahmini de elde edilebilir:
+Aynı yaklaşımla en küçük ön-time sınırından bir alt duty tahmini de elde edilebilir:
 
 $$
 D_{\min,\text{donanimsal}} \approx \frac{t_{ON(\min)}}{T_{sw}}
@@ -1082,26 +1071,26 @@ D_{\min,\text{donanimsal}} \approx \frac{t_{ON(\min)}}{T_{sw}}
 \approx 40\,\text{ns} \times 332\,\text{kHz}
 \approx 0.013
 $$
-Nominal $V_{in} = 24\,\text{V} - 36\,\text{V}$ giris gerilimi araliginda gereken duty degerleri, ilk yaklasimda bu donanimsal sinirlarin icinde gorunuyor.
+Nominal $V_{in} = 24\,\text{V} - 36\,\text{V}$ giriş gerilimi aralığında gereken duty değerleri, ilk yaklaşımda bu donanımsal sinirlarin içinde görünüyor.
 
-Ama olu zaman, propagation delay ve kontrolcuye ozgu diger zamanlari nihai yorumdan once ayrica dogrulamam gerekiyor.
+Ama ölü zaman, propagation delay ve kontrolcuye ozgu diğer zamanlari nihai yorumdan önce ayrıca dogrulamam gerekiyor.
 
 
-Defterden aktarilan not (`W.203`):
+Defterden aktarılan not (`W.203`):
 
-Burada datasheet'in `Description` kismindan alinmis kisa bir ozet not var. Icerik dogrudan `duty cycle`, `t_{ON(min)}`, `t_{OFF(min)}` ve `FPWM` davranisina baglaniyor.
+Burada datasheet'in `Description` kismindan alınmış kısa bir özet not var. Icerik doğrudan `duty cycle`, `t_{ON(min)}`, `t_{OFF(min)}` ve `FPWM` davranisina baglaniyor.
 
-![W.203'ten secilen el yazisi parca: duty cycle, tON(min), tOFF(min) ve FPWM notu](images/defter_snippets_web/d15_w203_ton_toff_fpwm_note.jpg)
+![W.203'ten seçilen el yazısı parça: duty cycle, tON(min), tOFF(min) ve FPWM notu](images/defter_snippets_web/d15_w203_ton_toff_fpwm_note.jpg)
 
-Sayfada guvenle okunan ana notlar sunlar:
+Sayfada güvenle okunan ana notlar şunlar:
 
-1. dusuk giris geriliminde yuksek duty:
+1. düşük giriş geriliminde yüksek duty:
 
 - `Vin = 5.5 V'e kadar inebilir`
 - bu durumda:
   - `Duty cycle %100'e kadar cikabilir neredeyse`
 
-2. minimum on/off sureleri:
+2. minimum ön/off sureleri:
 
 - `40-ns tON(min) for high Vin / Vout ratio`
 - `140-ns tOFF(min) for low Vin / Vout ratio`
@@ -1112,25 +1101,25 @@ Sayfada guvenle okunan ana notlar sunlar:
 - yan not:
   - `R13 burada kullaniyoruz`
 
-Sayfanin sagina da:
+Sayfanın sagina da:
 
 - `Burasiyla ilgili defterde yazdiklarim vardi, bulunca eklerim`
 
-notu dusulmus.
+notu düşülmüş.
 
-`W.203`, yukaridaki `40 ns / 140 ns` donanimsal zaman sinirlarini defterde tekrar eden kisa bir kaynak-ozet sayfasi.
+`W.203`, yukaridaki `40 ns / 140 ns` donanımsal zaman sınırlarını defterde tekrar eden kısa bir kaynak-özet sayfası.
 
-`Vin = 5.5 V` notu, kontrolcunun genis duty bolgesine cikabilecegini hatirlatiyor; ama bu ikinci projenin nominal `24-36 V` spesifikasyonunu degistiren bir tasarim karari degil, cihazin genel davranis notu.
+`Vin = 5.5 V` notu, kontrolcünün genis duty bolgesine cikabilecegini hatırlatıyor; ama bu ikinci projenin nominal `24-36 V` spesifikasyonunu degistiren bir tasarım kararı değil, cihazin genel davranış notu.
 
-`FPWM` ile sabit anahtarlama frekansi notu da daha sonra `R13` uzerinden yaptigim `f_{sw}` secimiyle baglaniyor.
-
-
-
-#### 5.2.4 Taslaktaki duty notlari ile fark
+`FPWM` ile sabit anahtarlama frekansı notu da daha sonra `R13` üzerinden yaptigim `f_{sw}` secimiyle baglaniyor.
 
 
 
-Bootstrap hesabinin icinde ayrica su duty notlari bulunuyor:
+#### 5.2.4 Taslaktaki duty notları ile fark
+
+
+
+Bootstrap hesabinin içinde ayrıca şu duty notları bulunuyor:
 
 - $D_{\text{high,max}} = 0.648$
 
@@ -1140,48 +1129,48 @@ Bootstrap hesabinin icinde ayrica su duty notlari bulunuyor:
 
 
 
-Bu degerler ideal `Vout / Vin` yaklasimindan daha yuksek gorunuyor. Farkin kaynagi su ihtimallerden biri olabilir:
+Bu degerler ideal `Vout / Vin` yaklasimindan daha yüksek görünüyor. Farkin kaynagi şu ihtimallerden biri olabilir:
 
-- kayiplar ve gercek duty ihtiyaci dahil edilmistir
-- farkli bir worst-case senaryo alinmistir
-- ara notlarda muhafazakar bir bootstrap varsayimi kullanilmistir
+- kayıplar ve gerçek duty ihtiyaci dahil edilmiştir
+- farklı bir worst-case senaryo alinmistir
+- ara notlarda muhafazakar bir bootstrap varsayımı kullanilmistir
 - notlarda tekrar kontrol gerektiren bir tutarsizlik vardir
 
 
 
-Su an icin en dogru tavir, bu iki duty kumesini yan yana tutmak ve daha sonra datasheet, secilen komponentler ve gerekirse simulasyonla tek bir nihai duty zarfina indirmek. Bu bolumde acik kalan temel soru da su:
+Şu an için en doğru tavir, bu iki duty kumesini yan yana tutmak ve daha sonra datasheet, seçilen komponentler ve gerekirse simülasyonla tek bir nihai duty zarfina indirmek. Bu bölümde açık kalan temel soru da şu:
 
-- Bootstrap hesabinda kullanilan `0.648 / 0.432` duty degerleri hangi varsayimdan turetildi?
-
-
-
-### 5.3 Bobin secimi
+- Bootstrap hesabinda kullanılan `0.648 / 0.432` duty değerleri hangi varsayimdan turetildi?
 
 
 
-#### 5.3.1 Cikis bobini
+### 5.3 Bobin seçimi
 
 
 
-ODT'den aktarilan metin (`5. çıkış bobini`):
+#### 5.3.1 Çıkış bobini
 
-Bu alt baslikta ODT'den gelen eski metni govdeye oldugu gibi tasimadim. Bobin secimini burada agirlikli olarak defter sayfalari, sectigim gercek parca ve sonraki notlar uzerinden yeniden kuruyorum.
 
-O yuzden bobin bolumu bos gecilmek yerine, asagidaki `W.54-W.56` hattindan itibaren yeniden insa ediliyor.
 
-Defterden aktarilan not (`W.54`):
+ODT’den aktarılan metin (`5. çıkış bobini`):
 
-Burada secilen `L = 6.8 uH` degeri, bobin akimi dalgalanmasi ve alternatif ust sinir dusuncesi uzerinden tekrar kontrol ediliyor.
+Bu alt baslikta ODT'den gelen eski metni gövdeye olduğu gibi tasimadim. Bobin seçimini burada agirlikli olarak defter sayfalari, seçtiğim gerçek parça ve sonraki notlar üzerinden yeniden kuruyorum.
 
-![W.54'ten secilen el yazisi parca: 6.8 uH secimi, 9.6 uH ust siniri ve DCR araligi notu](images/defter_snippets_web/d16_w54_inductor_range_selection.jpg)
+O yüzden bobin bölümü bos gecilmek yerine, aşağıdaki `W.54-W.56` hattindan itibaren yeniden insa ediliyor.
 
-Sayfada not edilen ana bilgiler sunlar:
+Defterden aktarılan not (`W.54`):
 
-- mevcut secim olarak `L = 6.8 uH`
-- bu secimde bobin akimi dalgalanmasi yaklasik `\Delta I_L \approx 3.8 A_{p-p}` gibi okunuyor
-- daha dusuk dalgalanma icin `%30` civari bir hedef dusunulurse, ust sinir tarafinda `\Delta I_L \approx 2.7 A_{p-p}` mertebesi yaziliyor
+Burada seçilen `L = 6.8 uH` değeri, bobin akımı dalgalanmasi ve alternatif üst sınır düşüncesi üzerinden tekrar kontrol ediliyor.
 
-Sayfada kullanilan iliski su sekilde okunuyor:
+![W.54'ten seçilen el yazısı parça: 6.8 uH seçimi, 9.6 uH üst sınırı ve DCR aralığı notu](images/defter_snippets_web/d16_w54_inductor_range_selection.jpg)
+
+Sayfada not edilen ana bilgiler şunlar:
+
+- mevcut seçim olarak `L = 6.8 uH`
+- bu secimde bobin akımı dalgalanmasi yaklaşık `\Delta I_L \approx 3.8 A_{p-p}` gibi okunuyor
+- daha düşük dalgalanma için `%30` civarı bir hedef dusunulurse, üst sınır tarafında `\Delta I_L \approx 2.7 A_{p-p}` mertebesi yaziliyor
+
+Sayfada kullanılan ilişki şu şekilde okunuyor:
 
 $$
 L
@@ -1197,40 +1186,40 @@ Defterdeki yerlestirmede:
 - $\Delta I_L \approx 2.7\,\text{A}_{p-p}$
 - $f_{sw} \approx 330\,\text{kHz}$
 
-alininca yaklasik:
+alininca yaklaşık:
 
 $$
 L_{\text{ust}}
 \approx
 9.6\,\mu\text{H}
 $$
-Sayfa sonunda su aralik ozellikle kutu icine alinmis:
+Sayfa sonunda şu aralık özellikle kutu içine alınmış:
 
 $$
 6.8\,\mu\text{H} < L < 9.6\,\mu\text{H}
 $$
-ve bunun yanina ayrica bobin `DCR` degeri icin de bir aralik not edilmis:
+ve bunun yanina ayrıca bobin `DCR` değeri için de bir aralık not edilmiş:
 
 $$
 0.38\,m\Omega < DCR < 13.3\,m\Omega
 $$
-Buradaki ana fikir su: `6.8 uH` secimi tamamen keyfi degil; daha dusuk ripple hedefiyle kiyaslandiginda mantikli bir alt tarafta kaliyor. `9.6 uH` civari, "daha dusuk ripple ama daha buyuk L" alternatifi olarak okunabilir.
+Buradaki ana fikir şu: `6.8 uH` seçimi tamamen keyfi değil; daha düşük ripple hedefiyle kiyaslandiginda mantikli bir alt tarafta kaliyor. `9.6 uH` civarı, "daha düşük ripple ama daha büyük L" alternatifi olarak okunabilir.
 
-`DCR` araligi notu da bunu guclendiriyor; cunku secimde yalnizca `uH` degeri degil kayip ve isinma tarafi da dusunulmus.
+`DCR` aralığı notu da bunu guclendiriyor; çünkü secimde yalnızca `uH` değeri değil kayıp ve ısınma tarafı da dusunulmus.
 
-Son notuma gore bu hesap zincirinin gercek / nihai tasarimda kullanilmis olma olasiligi yuksek; bu yuzden burada yalnizca alternatif bir deneme degil, guclu bir `nihai aday` izi var.
+Son notuma göre bu hesap zincirinin gerçek / nihai tasarımda kullanilmis olma olasılığı yüksek; bu yüzden burada yalnızca alternatif bir deneme değil, güçlü bir `nihai aday` izi var.
 
-Defterden aktarilan not (`W.55`):
+Defterden aktarılan not (`W.55`):
 
-Burada `W.54`teki bobin secimi dusuncesi daha derli toplu kriterlerle devam ediyor. Baslikta dogrudan `Bobin secimi L1` yaziyor.
+Burada `W.54`teki bobin seçimi düşüncesi daha derli toplu kriterlerle devam ediyor. Baslikta doğrudan `Bobin secimi L1` yazıyor.
 
-![W.55'ten secilen el yazisi parca: ripple yuzdesi, ILpeak ve bobin secim kriterleri](images/defter_snippets_web/d17_w55_inductor_ripple_and_peak_current.jpg)
+![W.55'ten seçilen el yazısı parça: ripple yuzdesi, ILpeak ve bobin seçim kriterleri](images/defter_snippets_web/d17_w55_inductor_ripple_and_peak_current.jpg)
 
-Sayfada not edilen secim kriterleri sunlar:
+Sayfada not edilen seçim kriterleri şunlar:
 
-- bobin akimi dalgalanmasi, maksimum cikis akiminin yaklasik `%30-%40`i civarinda tutulmak isteniyor
-- `I_{sat}` / doyma akimi, bobinden gececek tepe akim ve transient sirasinda olusabilecek ek yuklenmenin ustunde olmali
-- `DCR` dusuk olmali; boylece bakir kayiplari ve isinma azalir
+- bobin akımı dalgalanmasi, maksimum çıkış akımının yaklaşık `%30-%40`i civarında tutulmak isteniyor
+- `I_{sat}` / doyma akımı, bobinden gececek tepe akım ve transient sırasında olusabilecek ek yuklenmenin üstünde olmali
+- `DCR` düşük olmali; boylece bakir kayıpları ve ısınma azalir
 
 Sayfada tekrar yazilan temel iliskiler:
 
@@ -1248,7 +1237,7 @@ I_{out}
 +
 \frac{\Delta I_L}{2}
 $$
-Defterdeki notlara gore en kotu ripple durumu, giris gerilimi buyukken yani `V_{in} = 36 V` iken kontrol ediliyor:
+Defterdeki notlara göre en kotu ripple durumu, giriş gerilimi buyukken yani `V_{in} = 36 V` iken kontrol ediliyor:
 
 - $V_{out} = 14\,\text{V}$
 - $V_{in,\max} = 36\,\text{V}$
@@ -1266,7 +1255,7 @@ $$
 \approx
 3.8\,\text{A}_{p-p}
 $$
-Tam yukte `I_{out,\max} = 9 A` icin tepe bobin akimi:
+Tam yükte `I_{out,\max} = 9 A` için tepe bobin akımı:
 
 $$
 I_{L,\text{peak}}
@@ -1277,7 +1266,7 @@ I_{L,\text{peak}}
 \approx
 10.9\,\text{A}
 $$
-ve ripple orani yaklasik:
+ve ripple oranı yaklaşık:
 
 $$
 \frac{\Delta I_L}{I_{out,\max}}
@@ -1286,7 +1275,7 @@ $$
 \approx
 0.42
 $$
-Sayfada ayrica `V_{in} = 24 V` icin ripple'in daha kucuk oldugu not edilmis:
+Sayfada ayrıca `V_{in} = 24 V` için ripple'in daha küçük olduğu not edilmiş:
 
 $$
 \Delta I_{L,24V}
@@ -1297,36 +1286,36 @@ $$
 \approx
 2.6\,\text{A}_{p-p}
 $$
-Bu da yaklasik `%28.9` ripple oranina karsilik geliyor.
+Bu da yaklaşık `%28.9` ripple oranına karşılık geliyor.
 
-Burada `W.54`teki `6.8 uH` secimi bu kez daha net bir `ripple yuzdesi + I_{L,peak} + I_{sat} + DCR` diliyle somutlasiyor. `36 V`'u en kotu durum olarak almam da yerinde; buck'ta giris arttikca ripple buyuyor.
+Burada `W.54`teki `6.8 uH` seçimi bu kez daha net bir `ripple yuzdesi + I_{L,peak} + I_{sat} + DCR` diliyle somutlasiyor. `36 V`'u en kotu durum olarak almam da yerinde; buck'ta giriş arttikca ripple buyuyor.
 
-Cikan `I_{L,\text{peak}} \approx 10.9 A` sonucu, sececegim bobinin doyma akimi icin dogrudan kullanilabilecek bir sayi. Son notumla birlikte dusununce `W.54-W.55` hattinin gercek bobin secimine iyice yaklastigi anlasiliyor.
+Cikan `I_{L,\text{peak}} \approx 10.9 A` sonucu, sececegim bobinin doyma akımı için doğrudan kullanilabilecek bir sayi. Son notumla birlikte dusununce `W.54-W.55` hattının gerçek bobin secimine iyice yaklaştığı anlasiliyor.
 
-Defterden aktarilan not (`W.56`):
+Defterden aktarılan not (`W.56`):
 
-Burada `W.55`te hesapladigim tepe bobin akimini, sectigim gercek bobin parcasi ile dogrudan eslestiriyorum.
+Burada `W.55`te hesapladigim tepe bobin akimini, seçtiğim gerçek bobin parçası ile doğrudan eslestiriyorum.
 
-![W.56'dan secilen el yazisi parca: secilen gercek bobin parcasi, Isat, rated current ve DCR teyidi](images/defter_snippets_web/d18_w56_selected_inductor_check.jpg)
+![W.56'dan seçilen el yazısı parça: seçilen gerçek bobin parçası, Isat, rated current ve DCR teyidi](images/defter_snippets_web/d18_w56_selected_inductor_check.jpg)
 
-Sayfada okunan ana bilgiler sunlar:
+Sayfada okunan ana bilgiler şunlar:
 
-- tepe bobin akimi:
+- tepe bobin akımı:
 $$
 I_{L,\text{peak}} \approx 9\,\text{A} + 1.9\,\text{A} \approx 10.9\,\text{A}
 $$
-- secilen Würth `L1` bobininin `saturation current` degeri:
+- seçilen Würth `L1` bobininin `saturation current` değeri:
 $$
 I_{sat} \approx 36.3\,\text{A}
 $$
-- sayfada ayrica `rated current` / `RMS` akim notu da var; okunan deger tam net degil ama `10.9 A` tepe akiminin ustunde oldugu acikca vurgulaniyor
+- sayfada ayrıca `rated current` / `RMS` akım notu da var; okunan değer tam net değil ama `10.9 A` tepe akımının üstünde olduğu açıkça vurgulaniyor
 
-Sayfada bobin `DCR` degeri de daha somut bir secilen parca parametresi olarak yazilmis:
+Sayfada bobin `DCR` değeri de daha somut bir seçilen parça parametresi olarak yazılmış:
 
 $$
 DCR \approx 0.88\,m\Omega
 $$
-ve buna bagli bakir kaybi yaklasik su sekilde not edilmis:
+ve buna bağlı bakir kaybı yaklaşık şu şekilde not edilmiş:
 
 $$
 P_{\text{bakir}}
@@ -1334,46 +1323,46 @@ P_{\text{bakir}}
 \approx 9^2 \cdot 0.88\,m\Omega
 \approx 0.071\,\text{W}
 $$
-`W.56` ile is artik soyut kriterlerden gercek parcaya geliyor. `I_{sat} \approx 36.3 A` notu, `I_{L,\text{peak}} \approx 10.9 A` sonucuna gore cok rahat bir doyma marji oldugunu gosteriyor.
+`W.56` ile iş artık soyut kriterlerden gerçek parcaya geliyor. `I_{sat} \approx 36.3 A` notu, `I_{L,\text{peak}} \approx 10.9 A` sonucuna göre çok rahat bir doyma marji olduğunu gösteriyor.
 
-`DCR \approx 0.88 m\Omega` bilgisi de onceki sayfalardaki "DCR dusuk olmali" fikrini secilen parca uzerinde somutlastiriyor. Bu yuzden `W.54-W.56` zinciri, bobin seciminde elde kurdugum en guclu kisimlardan biri.
+`DCR \approx 0.88 m\Omega` bilgisi de önceki sayfalardaki "DCR düşük olmali" fikrini seçilen parça üzerinde somutlastiriyor. Bu yüzden `W.54-W.56` zinciri, bobin seciminde elde kurduğum en güçlü kisimlardan biri.
 
 Ek not (calculator teyidi):
 
-`LM5146_quickstart_calculator_revB1.xlsm` dosyasinda da bobin tarafi su sekilde gorunuyor:
+`LM5146_quickstart_calculator_revB1.xlsm` dosyasinda da bobin tarafı şu şekilde görünüyor:
 
-- onerilen `L_O \approx 7.504 uH`
-- secilen `L_O = 6.8 uH`
+- önerilen `L_O \approx 7.504 uH`
+- seçilen `L_O = 6.8 uH`
 - `DCR = 0.88 mOhm`
-- nominal girdide ripple akimi `\approx 3.373 A_{p-p}`
+- nominal girdide ripple akımı `\approx 3.373 A_{p-p}`
 
-Bu nedenle calculator da, defterde nihaiye yakin gorunen `6.8 uH / 0.88 mOhm` secimini guclu bicimde destekliyor. Workbook'taki `7.504 uH` degeri ise secilen standard deger olan `6.8 uH` oncesindeki teorik oneriyi temsil ediyor
-
-
-
-#### 5.3.2 Slew-rate mantigi
+Bu nedenle calculator da, defterde nihaiye yakın gorunen `6.8 uH / 0.88 mOhm` seçimini güçlü biçimde destekliyor. Workbook'taki `7.504 uH` değeri ise seçilen standard değer olan `6.8 uH` oncesindeki teorik öneriyi temsil ediyor
 
 
 
-Taslakta `Slew Rate Hesabi` basligi altinda vurgulanan ana fikir dogrudur:
-
-- regulator, yuk aniden arttiginda bobin akimini sonsuz hizla artiramaz
-
-- ilk anda gereken ek akim cikis kapasitelerinden gelir
-
-- bobin akiminin yukselme hizi birinci yaklasimda $\dfrac{dI_L}{dt} \approx \dfrac{V_L}{L}$ ile sinirlanir
+#### 5.3.2 Slew-rate mantığı
 
 
 
-Bu nedenle bobin secimi dogrudan su iki buyuklugu etkiler:
+Taslakta `Slew Rate Hesabi` başlığı altında vurgulanan ana fikir dogrudur:
 
-- cikis ripple akimi
+- regülatör, yük aniden arttiginda bobin akimini sonsuz hızla artiramaz
 
-- yuk adiminda gereken toparlanma suresi
+- ilk anda gereken ek akım çıkış kapasitelerinden gelir
+
+- bobin akımının yükselme hızı birinci yaklaşımda $\dfrac{dI_L}{dt} \approx \dfrac{V_L}{L}$ ile sınırlanır
 
 
 
-Taslak notlarda ayrica gercek devrede MOSFET `RDS(on)`, bobin `DCR` ve yerlesim kaynakli kayiplarin ideal slew-rate hesabini azaltacagi da fark edilmis. Bu gozlem yerinde; nihai hesapta da akilda tutulmasi gereken noktalardan biri bu.
+Bu nedenle bobin seçimi doğrudan şu iki büyüklüğü etkiler:
+
+- çıkış ripple akımı
+
+- yük adiminda gereken toparlanma süresi
+
+
+
+Taslak notlarda ayrıca gerçek devrede MOSFET `RDS(on)`, bobin `DCR` ve yerleşim kaynakli kayiplarin ideal slew-rate hesabini azaltacagi da fark edilmiş. Bu gozlem yerinde; nihai hesapta da akilda tutulmasi gereken noktalardan biri bu.
 
 
 
@@ -1381,273 +1370,275 @@ Taslak notlarda ayrica gercek devrede MOSFET `RDS(on)`, bobin `DCR` ve yerlesim 
 
 
 
-`yeni.odt` taslaginda bobin seciminin sayisal son hali temiz bicimde yer almiyor. Buna ragmen proje klasorundeki BOM, somut bir cikis bobini adayinin daha once secildigini gosteriyor:
+`yeni.odt` taslaginda bobin seçiminin sayısal son hali temiz biçimde yer almiyor. Buna ragmen proje klasorundeki BOM, somut bir çıkış bobini adayinin daha önce secildigini gösteriyor:
 
 - `BOM/L1_Wurth_Elektronik_7443640680B_7443640680B.pdf`
 
 
 
-Bu, bobin seciminin tamamen sifirdan acikta olmadigini; ancak sayisal gerekcesinin henuz `yeni.md` icine duzgun tasinmadigini gosteriyor.
+Bu, bobin seçiminin tamamen sifirdan açıkta olmadığını; ancak sayısal gerekcesinin henüz `yeni.md` içine düzgün tasinmadigini gösteriyor.
 
 
 
-#### 5.3.4 Bu bolumde acik tuttugum maddeler
+#### 5.3.4 Bu bölümde açık tuttugum maddeler
 
 
 
-Bu bolum tamamlanirken su maddeler netlestirilecek:
+Bu bölüm tamamlanırken şu maddeler netlestirilecek:
 
-- secilen `L` degeri
+- seçilen `L` değeri
 
-- secilen bobinin `DCR` degeri
+- seçilen bobinin `DCR` değeri
 
-- saturation akimi ve RMS akim uygunlugu
+- saturation akımı ve RMS akım uygunlugu
 
-- ripple akimi hesabi
+- ripple akımı hesabı
 
-- yuk adimi altinda gereken minimum akim slew-rate ile uyumu
+- yük adimi altında gereken minimum akım slew-rate ile uyumu
 
-- secilen BOM parcasi ile hesaplarin birebir eslestirilmesi
-
-
-
-### 5.4 Cikis kapasiteleri
+- seçilen BOM parçası ile hesapların birebir eslestirilmesi
 
 
 
-#### 5.4.1 Cikis sigaçlari
+### 5.4 Çıkış kapasiteleri
 
 
 
-ODT'den aktarilan metin (`6. çıkış sığaçları`):
+#### 5.4.1 Çıkış kapasitörleri
 
-> Çıkış sığaçlarının iki temel işlevi vardır.
-> • Enerji depolamak: Yük geçişlerinde (load transients), ani akım taleplerine anında cevap verebilmek için, Yeteri kadar hızlı cevap veremezse artar.
-> • Çıkış Impedance’sını düşürmek: Böylece hem hem de gerilimlerini düşürür.
+
+
+ODT’den aktarılan metin (`6. çıkış sığaçları`):
+
+> Çıkış kapasitörlerinin (output capacitors) iki temel görevi vardır:
 >
-> 6.1. Yük altındaki Çıkış Gerilimi Değişimleri ve Çözüm Yolları
+> - Enerji depolamak: Yük geçişlerinde (load transients), ani akım talebinin ilk kısmını karşılar. Denetleyici ve bobin akımı yeterince hızlı cevap veremezse çıkış geriliminde undershoot/overshoot oluşur.
+> - Çıkış empedansını (output impedance) düşürmek: Böylece hem anahtarlama ripple’ı hem de yük geçişi sırasında oluşan gerilim sapması azaltılır.
+>
+> 6.1. Yük altındaki çıkış gerilimi değişimleri ve çözüm yolları
 
 
 
 Ek not:
 
-Burada cikis kapasitelerinin iki ana rolunu ayiriyorum: transient sirasinda kisa sureli enerji tamponu olmak ve frekansa bagli cikis empedansini dusurmek.
+Burada çıkış kapasitelerinin iki ana rolünü ayırıyorum: transient sırasında kısa süreli enerji tamponu olmak ve frekansa bağlı çıkış empedansını düşürmek.
 
-ODT kopyasinda bazi semboller eksik gorunse de teknik olarak korunmak istenen ana fikir net: kapasitör bankasi hem `load transient` sirasindaki gerilim sapmasini hem de ripple davranisini birlikte etkiliyor.
+ODT kopyasında bazı semboller eksik görünse de teknik olarak korunmak istenen ana fikir net: kapasitör bankası hem `load transient` sırasındaki gerilim sapmasını hem de ripple davranışını birlikte etkiliyor.
 
-![EVM uzerindeki cikis kapasitör bankinin yakin plani: `5 x 22 uF` MLCC ve `C28 = 0.1 uF`](images/foto_selected/p88_evm_output_cap_bank_closeup.jpg)
+![EVM üzerindeki çıkış kapasitör bankının yakın planı: `5 x 22 uF` MLCC ve `C28 = 0.1 uF`](images/foto_selected/p88_evm_output_cap_bank_closeup.jpg)
 
-Bu yakin plan, cikis tarafinda gercekten `C18-C22 = 22 uF` MLCC grubunun ve buna paralel `C28 = 0.1 uF` yardimci kapasitörun yer aldigini acikca gosteriyor.
+Bu yakın plan, çıkış tarafında gerçekten `C18-C22 = 22 uF` MLCC grubunun ve buna paralel `C28 = 0.1 uF` yardımcı kapasitörün yer aldığını açıkça gösteriyor.
 
-Bu nedenle defterde ve `W.116` tarafinda gecen "cikis banki + C28 = 0.1 uF" cizgisi yalnizca teorik bir model degil; gercek EVM topolojisine de dayanan fiziksel bir yerlesim notu olarak okunabilir.
-
-
-
-#### 5.4.2 Bu iterasyondaki tasarim karari
+Bu nedenle defterde ve `W.116` tarafında geçen "çıkış bankı + C28 = 0.1 uF" çizgisi yalnızca teorik bir model değil; gerçek EVM topolojisine de dayanan fiziksel bir yerleşim notu olarak okunabilir.
 
 
 
-Taslakta mevcut yaklasim su sekilde olgunlasmis gorunuyor:
-
-- cikista ana agirlik MLCC'ler uzerinden kurulacak
-
-- mevcut iterasyonda cikisa bulk kapasitör eklemekten kacinilacak
-
-- bunun temel gerekcesi, bulk kapasitörlerin cikis empedansini ve dolayisiyla kompanzasyon davranisini etkilemesidir
+#### 5.4.2 Bu iterasyondaki tasarım kararı
 
 
 
-Bu karar, `bulk kesinlikle kullanilmaz` anlamina gelmiyor. Su anki anlami daha dar ve daha muhendislik odakli:
+Taslakta mevcut yaklaşım şu şekilde olgunlaşmış görünüyor:
 
-- eger MLCC tabanli cikis agi ripple ve transient kriterlerini sagliyorsa, cikisa ek bulk koymayip kontrol tasarimini daha sade tutmak tercih edilir
+- çıkışta ana ağırlık MLCC'ler üzerinden kurulacak
 
-- eger daha sonra transient hedefleri sikilasirsa, cikis bulk kapasitörü yeniden degerlendirilir
+- mevcut iterasyonda çıkışa bulk kapasitör eklemekten kaçınılacak
 
-
-
-#### 5.4.3 Overshoot / Undershoot gerilimi ve acik-cevrim cikis impedance
+- bunun temel gerekçesi, bulk kapasitörlerin çıkış empedansını ve dolayısıyla kompanzasyon davranışını etkilemesidir
 
 
-ODT'den aktarilan metin (`6.1.1. Overshoot/Undershoot Gerilimi`):
 
-> Çıkış yük akımında büyüklüğünde bir değişim olduğunda*? Çıkış geriliminin değişim miktarı kadar.
-> : Açık Çevrim Çıkış Impedance’nin crossover frequency’ındaki büyüklüğü.
+Bu karar, `bulk kesinlikle kullanilmaz` anlamına gelmiyor. Şu anki anlamı daha dar ve daha mühendislik odaklı:
+
+- eğer MLCC tabanlı çıkış ağı ripple ve transient kriterlerini sagliyorsa, çıkışa ek bulk koymayıp kontrol tasarımını daha sade tutmak tercih edilir
+
+- eğer daha sonra transient hedefleri sıkılaşırsa, çıkış bulk kapasitörü yeniden değerlendirilir
+
+
+
+#### 5.4.3 Overshoot / Undershoot gerilimi ve açık-çevrim çıkış impedance
+
+
+ODT’den aktarılan metin (`6.1.1. Overshoot/Undershoot Gerilimi`):
+
+> Çıkış yük akımında `\Delta I_{load}` büyüklüğünde ani bir değişim olduğunda, çıkış gerilimindeki sapma yaklaşık olarak crossover frekansı (crossover frequency) civarındaki açık çevrim çıkış empedansı (open-loop output impedance) ile ilişkilidir.
 >
-> ( Hata: Başvuru kaynağı bulunamadı.4 )
+> $$\Delta V_{out} \approx \Delta I_{load}\,\left|Z_{out}(f_c)\right|$$
 >
-> miktarını düşürmek için, crossover frequency’ındaki açık-çevrim çıkış impedance’sını düşürmemiz şarttır.
-> Bunu iki yolla yapabiliriz:
-> a. Zou Şekil Hata: Başvuru kaynağı bulunamadı.1’e bakarsak, C’nin artmasıyla,vssss Zout’un düşürerek.***
-> b. Fc frekansını arttırarak, (tasarım felsefemiz gereği süreç ilerlerken değiştirmeyeceğiz**)
+> Bu sapmayı azaltmak için `f_c` civarındaki açık çevrim çıkış empedansını düşürmek gerekir. Bunun iki temel yolu vardır:
+>
+> a. Çıkış kapasitansını artırarak `Z_{out}` değerini düşürmek.  
+> b. Crossover frekansını (`f_c`) artırmak.
+>
+> Bu tasarımda `f_c`, süreç ilerledikçe rastgele değiştirilecek bir ayar parametresi gibi değil; kompanzasyon tasarımının parçası olarak kontrollü biçimde ele alınacaktır.
 
 
 
 Ek not:
 
-ODT kopyasinda formül sembollerinin bir kismi eksik gelmis gorunuyor; bu nedenle kaynak metni oldugu gibi korudum. Teknik anlam olarak burada anlatilan iliski buyuk olasilikla asagidaki sezgiye karsilik geliyor:
+ODT kopyasında formül sembollerinin bir kısmı eksik gelmiş görünüyor; bu nedenle kaynak metni olduğu gibi korudum. Teknik anlam olarak burada anlatılan ilişki büyük olasılıkla aşağıdaki sezgiye karşılık geliyor:
 
 $$
 \Delta V_{out} \approx \Delta I_{load}\,\bigl|Z_{out}(f_c)\bigr|
 $$
 Burada:
 
-- $\Delta I_{load}$, yuk akimindaki ani degisim
-- $\Delta V_{out}$, cikis gerilimindeki overshoot veya undershoot buyuklugu
-- $\lvert Z_{out}(f_c)\rvert$, crossover frekansi civarinda gorulen cikis empedansi buyuklugu
+- $\Delta I_{load}$, yük akımındaki ani değişim
+- $\Delta V_{out}$, çıkış gerilimindeki overshoot veya undershoot büyüklüğü
+- $\lvert Z_{out}(f_c)\rvert$, crossover frekansı civarında görülen çıkış empedansı büyüklüğü
 
-Bu nedenle bu alt bolumde korunacak iki temel tasarim fikri sunlardir:
+Bu nedenle bu alt bölümde korunacak iki temel tasarım fikri şunlardır:
 
-- etkin cikis kapasitansini artirarak `Zout`'u dusurmek
-- `f_c` degerini arttirarak dongunun yuk degisimine daha hizli cevap vermesini saglamak
+- etkin çıkış kapasitansını artırarak `Zout`'u düşürmek
+- `f_c` değerini artırarak döngünün yük değişimine daha hızlı cevap vermesini sağlamak
 
-Ancak mevcut tasarim felsefesinde `f_c` sonradan rastgele oynanacak bir parametre gibi ele alinmadigi icin, pratik agirlik daha cok kapasitör aginin sekillendirilmesine kaymaktadir.
-
-
-
-![Acik-cevrim cikis impedance civari](images/odt_embedded/fig_01_acik_cevrim_cikis_impedance.jpg)
+Ancak mevcut tasarım felsefesinde `f_c` sonradan rastgele oynanacak bir parametre gibi ele alınmadığı için, pratik ağırlık daha çok kapasitör ağının şekillendirilmesine kaymaktadır.
 
 
 
+![Açık-çevrim çıkış impedance civarı](images/odt_embedded/fig_01_acik_cevrim_cikis_impedance.jpg)
 
 
-#### 5.4.4 Vripple ve `fsw` civarindaki `Zout`
 
 
-ODT'den aktarilan metin (`6.1.2. Vripple Gerilimi`):
 
-> Çıkış gerilimini düşürmek için, bobin akımının tepeden tepeye değerini düşürmek gerekir. Bunu da L’yi arttırarak yapabiliriz. Çıkış bobinin inductance’ı artarsa tepeden tepeye bobin akımının dalgalanması azalır. Eğer inductance çok artarsa, dalgalanmayı düşürürüz fakat, maliyet artar, fiziksel boyut artar, transient response bozulabilir.
+#### 5.4.4 Vripple ve `fsw` civarındaki `Zout`
+
+
+ODT’den aktarılan metin (`6.1.2. Vripple Gerilimi`):
+
+> Çıkış gerilimi ripple (output voltage ripple) bileşenini azaltmanın bir yolu, bobin akımının tepeden tepeye dalgalanmasını (`I_{L(p-p)}`) düşürmektir. Bunun için `L` değeri artırılabilir. Ancak bobin endüktansı (inductance) çok artırılırsa maliyet, fiziksel boyut ve transient cevap (transient response) olumsuz etkilenebilir.
 >
-> gerilimini düşürmenin daha etkili bir yolu, fsw frekansındaki çıkış impedance’sını düşürmektir. Şekil Hata: Başvuru kaynağı bulunamadı.1’a bakarsak; Zout, Daha yüksek capacitance ve daha düşük bir esr direncinden oluşursa; Capacitance eğrisi sola kayar, yatayda düz bir eğri olan esr direnci de azaldığı için daha aşağıda olur. fsw frekansında Zout‘u etkin oldüşürdüğünü görebiliriz.****?
+> Ripple gerilimini azaltmanın ikinci yolu, `f_{sw}` frekansı civarındaki çıkış empedansını (`Z_{out}`) düşürmektir. Daha yüksek etkin kapasitans (effective capacitance) ve daha düşük ESR (equivalent series resistance), `Z_{out}` eğrisini bu frekans bölgesinde aşağı çeker.
+>
+> Bu nedenle çıkış ripple gerilimi ilk yaklaşımda şu şekilde okunabilir:
 >
 $$
-V_{ripple} = I_{L(P-P)} \cdot Z_{OUT}(f_{sw})
+V_{ripple} \approx I_{L(p-p)} \cdot \left|Z_{out}(f_{sw})\right|
 $$
->
-> ( Hata: Başvuru kaynağı bulunamadı.5 )
 
 
 
 Ek not:
 
-Burada `Vripple` dusuncesini iki ayri tasarim koluna ayiriyorum:
+Burada `Vripple` düşüncesini iki ayrı tasarım koluna ayırıyorum:
 
-- bobin akimi dalgalanmasini azaltmak icin `L` degerini buyutmek
-- anahtarlama frekansi civarinda `Zout`'u dusurmek
+- bobin akımı dalgalanmasını azaltmak için `L` değerini büyütmek
+- anahtarlama frekansı civarında `Zout`'u düşürmek
 
-GitHub uyumlu matematik bicimiyle ilk sezgi su sekilde yazilabilir:
+GitHub uyumlu matematik biçimiyle ilk sezgi şu şekilde yazılabilir:
 
 $$
 \Delta I_L \propto \frac{1}{L}
 $$
-Yani `L` arttikca bobin akiminin tepeden tepeye dalgalanmasi azalir. Ancak ODT'de dogru sezildigi gibi, bunun karsiliginda hacim, maliyet ve transient cevap hizi etkilenebilir.
+Yani `L` arttikca bobin akımının tepeden tepeye dalgalanmasi azalir. Ancak ODT'de doğru sezildigi gibi, bunun karşılığında hacim, maliyet ve transient cevap hızı etkilenebilir.
 
-Ikinci yol ise $f_{sw}$ civarindaki cikis empedansini dusurmektir. Bunun pratik anlami sunlardir:
+İkinci yol ise $f_{sw}$ civarındaki çıkış empedansını dusurmektir. Bunun pratik anlamı şunlardır:
 
-- daha yuksek etkin kapasitans
-- daha dusuk `ESR`
-- uygun yerlesim ile daha dusuk parasitikler
+- daha yüksek etkin kapasitans
+- daha düşük `ESR`
+- uygun yerleşim ile daha düşük parasitikler
 
-Bu nedenle bu alt bolumde korunacak ana fikir sunudur: $V_{ripple}$ yalnizca bobin akim dalgalanmasi problemi degil, ayni zamanda $f_{sw}$ civarindaki $Z_{out}$'un sekillendirilmesi problemidir.
+Bu nedenle bu alt bölümde korunacak ana fikir sunudur: $V_{ripple}$ yalnızca bobin akım dalgalanmasi problemi değil, aynı zamanda $f_{sw}$ civarındaki $Z_{out}$'un sekillendirilmesi problemidir.
 
-Defterden aktarilan not (`W.68`):
+Defterden aktarılan not (`W.68`):
 
-Burada cikis sığaçlariyla ilgili dusunceyi iki ayri performans metriğine ayiriyor ve bunlari `Zout` ile bagliyorum:
+Burada çıkış sığaçlariyla ilgili dusunceyi iki ayrı performans metriğine ayiriyor ve bunlari `Zout` ile bagliyorum:
 
-![W.68'den secilen el yazisi parca: load transientte Zout(fc) ve ripple tarafinda Zout(fsw) ayrimi](images/defter_snippets_web/d38_w68_zout_fc_vs_fsw.jpg)
+![W.68'den seçilen el yazısı parça: load transientte Zout(fc) ve ripple tarafında Zout(fsw) ayrimi](images/defter_snippets_web/d38_w68_zout_fc_vs_fsw.jpg)
 
-1. load-step / transient sirasindaki `undershoot-overshoot`
-2. surekli anahtarlama sirasindaki `Vripple`
+1. load-step / transient sırasındaki `undershoot-overshoot`
+2. sürekli anahtarlama sırasındaki `Vripple`
 
-Sayfada ilk olarak su iliski not edilmis:
+Sayfada ilk olarak şu ilişki not edilmiş:
 
 $$
 V_{out,\text{undershoot}}
 \approx
 \Delta I_{out}\,\lvert Z_{out}(f_c)\rvert
 $$
-ve bunun "dusurmek gerekir" notu eklenmis. Yani yuk akimi bir anda degistiginde gorulen gerilim sapmasi, crossover civarindaki cikis empedansiyla iliskilendiriliyor.
+ve bunun "düşürmek gerekir" notu eklenmis. Yani yük akımı bir anda degistiginde görülen gerilim sapmasi, crossover civarındaki çıkış empedansiyla iliskilendiriliyor.
 
-Sayfada daha sonra ripple icin su iliski tekrar yaziliyor:
+Sayfada daha sonra ripple için şu ilişki tekrar yaziliyor:
 
 $$
 V_{ripple}
 \approx
 I_{L(p-p)} \, \lvert Z_{out}(f_{sw})\rvert
 $$
-Bu bolumdeki ana dusunce izi sunlar:
+Bu bölümdeki ana düşünce izi şunlar:
 
-- `V_{ripple}`'i azaltmak icin ya bobin akimi dalgalanmasi `\Delta I_L` dusurulur
-- ya da `f_{sw}` civarindaki `Zout` daha dusuk hale getirilir
-- bunu saglamak icin:
-  - daha dusuk `ESR`
-  - daha yuksek etkin `C`
-  - uygun frekans davranisina sahip bir kapasitör agi
-  kullanilabilir
+- `V_{ripple}`'i azaltmak için ya bobin akımı dalgalanmasi `\Delta I_L` dusurulur
+- ya da `f_{sw}` civarındaki `Zout` daha düşük hale getirilir
+- bunu sağlamak için:
+  - daha düşük `ESR`
+  - daha yüksek etkin `C`
+  - uygun frekans davranisina sahip bir kapasitör ağı
+  kullanılabilir
 
-Sayfanin ust tarafinda ayrica su notlar korunmaya deger:
+Sayfanın üst tarafında ayrıca şu notlar korunmaya değer:
 
-- cikis sığaci ani yuk degisimlerinde enerji tamponu gibi davranir
-- dusuk cikis empedansi, yuk degisimlerine hizli ve kararlı gerilim cevabi icin gereklidir
-- spike'lar icin ise ek kucuk MLCC / dusuk `ESL` dusuncesi not edilmis
+- çıkış sığaci ani yük değişimlerinde enerji tamponu gibi davranir
+- düşük çıkış empedansı, yük degisimlerine hızlı ve kararlı gerilim cevabi için gereklidir
+- spike'lar için ise ek küçük MLCC / düşük `ESL` düşüncesi not edilmiş
 
-`W.68`, `5.4.3` ve `5.4.4` alt bolumlerinde yazdigim iki farkli `Zout` bakisini ayni sayfada birlestiriyor. Yeni ve nihai bir sayisal sonuc vermiyor; daha cok transient ile ripple tarafini `Zout(fc)` ve `Zout(fsw)` uzerinden zihnimde ayiran bir tasarim notu.
+`W.68`, `5.4.3` ve `5.4.4` alt bolumlerinde yazdığım iki farklı `Zout` bakışını aynı sayfada birleştiriyor. Yeni ve nihai bir sayısal sonuç vermiyor; daha çok transient ile ripple tarafını `Zout(fc)` ve `Zout(fsw)` üzerinden zihnimde ayiran bir tasarım notu.
 
-Defterden aktarilan not (`W.69`):
+Defterden aktarılan not (`W.69`):
 
-Burada, Bode grafiklerine bakilmadiginda kapasitans degisiminin etkisinin tam anlasilmadigi not edilmis ve konu tek basina kapasitör empedansi uzerinden aciklanmaya calisiliyor.
+Burada, Bode grafiklerine bakilmadiginda kapasitans degisiminin etkisinin tam anlasilmadigi not edilmiş ve konu tek başına kapasitör empedansı üzerinden aciklanmaya calisiliyor.
 
-![W.69'dan secilen el yazisi parca: Zc(f)=1/(2pi f C) ile frekans sezgisinin kisa notu](images/defter_snippets_web/d39_w69_basic_zc_frequency_note.jpg)
+![W.69'dan seçilen el yazısı parça: Zc(f)=1/(2pi f C) ile frekans sezgisinin kısa notu](images/defter_snippets_web/d39_w69_basic_zc_frequency_note.jpg)
 
-Sayfada yazilan temel iliski:
-
-$$
-Z_C(f) = \frac{1}{2\pi f C}
-$$
-Bu iliskiye bagli olarak sayfada su sezgiler yazilmis:
-
-- dusuk frekansta buyuk `Z_C`
-- yuksek frekansta dusuk `Z_C`
-
-ve buna bagli yorumlar:
-
-- dusuk frekansta enerji depolama rolu daha on plandadir
-- yuksek frekansta ise kapasitör, gerilim baskilama / destekleme rolunde daha etkindir
-
-Sayfanin ana amaci, kapasitans degeri degistiginde bunun frekans cevabina neden dogrudan yansidigini sezgisel olarak gostermek.
-
-`W.69`, `W.68`in dogal kavramsal devami. `Zout(fc)` ve `Zout(fsw)` dusuncesinin arkasindaki en temel `Z_C(f)` sezgisini yeniden yaziyor.
-
-Yeni bir sayisal sonuc cikarmiyor; ama "neden Bode / frekans bakisi olmadan ayni kapasitans degisiminin tum etkisini goremiyorum?" sorusuna iyi bir defter cevabi veriyor.
-
-Defterden aktarilan not (`W.70`):
-
-Burada kapasitörun frekansa bagli empedansi ile klasik ripple-tabanli `C` hesabinin nereden geldigi ayni yerde birlesiyor.
-
-![W.70'ten secilen el yazisi parca: Zc, ESR/ESL etkisi ve DeltaQ=CDeltaV uzerinden ripple denklemi](images/defter_snippets_web/d40_w70_zc_and_ripple_equations.jpg)
-
-Sayfada once temel kapasitör empedansi tekrar yaziliyor:
+Sayfada yazilan temel ilişki:
 
 $$
 Z_C(f) = \frac{1}{2\pi f C}
 $$
-Ardindan su kavramsal not eklenmis:
+Bu iliskiye bağlı olarak sayfada şu sezgiler yazılmış:
 
-- dusuk frekansta kapasitörun `ESR/ESL` etkileri genellikle daha az baskindir
+- düşük frekansta büyük `Z_C`
+- yüksek frekansta düşük `Z_C`
+
+ve buna bağlı yorumlar:
+
+- düşük frekansta enerji depolama rolu daha ön plandadir
+- yüksek frekansta ise kapasitör, gerilim baskilama / destekleme rolunde daha etkindir
+
+Sayfanın ana amaci, kapasitans değeri degistiginde bunun frekans cevabina neden doğrudan yansidigini sezgisel olarak göstermek.
+
+`W.69`, `W.68`in dogal kavramsal devamı. `Zout(fc)` ve `Zout(fsw)` dusuncesinin arkasindaki en temel `Z_C(f)` sezgisini yeniden yazıyor.
+
+Yeni bir sayısal sonuç cikarmiyor; ama "neden Bode / frekans bakisi olmadan aynı kapasitans degisiminin tüm etkisini goremiyorum?" sorusuna iyi bir defter cevabi veriyor.
+
+Defterden aktarılan not (`W.70`):
+
+Burada kapasitörün frekansa bağlı empedansı ile klasik ripple-tabanlı `C` hesabinin nereden geldigi aynı yerde birlesiyor.
+
+![W.70'ten seçilen el yazısı parça: Zc, ESR/ESL etkisi ve DeltaQ=CDeltaV üzerinden ripple denklemi](images/defter_snippets_web/d40_w70_zc_and_ripple_equations.jpg)
+
+Sayfada önce temel kapasitör empedansı tekrar yaziliyor:
+
+$$
+Z_C(f) = \frac{1}{2\pi f C}
+$$
+Ardindan şu kavramsal not eklenmis:
+
+- düşük frekansta kapasitörün `ESR/ESL` etkileri genellikle daha az baskindir
 - frekans arttikca ideal kapasitif davranisin yanina `ESR` ve sonra `ESL` etkileri daha gorunur hale gelir
-- dolayisiyla tek bir `C` degeriyle tum frekans davranisini anlatmak yeterli degildir
+- dolayısıyla tek bir `C` degeriyle tüm frekans davranışını anlatmak yeterli değildir
 
-Sayfadaki cizim de bunu destekliyor:
+Sayfadaki çizim de bunu destekliyor:
 
 - bir bolgede ideal kapasitif egim
-- sonra `ESR` nedeniyle daha yatay davranis
-- daha da yuksek frekansta parasitiklerin devreye girmesi
+- sonra `ESR` nedeniyle daha yatay davranış
+- daha da yüksek frekansta parasitiklerin devreye girmesi
 
-Sayfanin altinda klasik ripple baglantisi da not edilmis:
+Sayfanın altında klasik ripple baglantisi da not edilmiş:
 
 $$
 \Delta Q = C\,\Delta V
 $$
-ve buradan, bobin akim dalgalanmasi ile iliskili klasik yaklasima gecis yapiliyor:
+ve buradan, bobin akım dalgalanmasi ile iliskili klasik yaklasima geçiş yapiliyor:
 
 $$
 \Delta V
@@ -1656,24 +1647,24 @@ $$
 \qquad \Longrightarrow \qquad
 C \approx \frac{\Delta I_L \, T_{switch}}{8\,\Delta V}
 $$
-Yani burada, cikis ripple denklemindeki `8 f C` yapisinin nereden geldigini hatirlatan bir not var.
+Yani burada, çıkış ripple denklemindeki `8 f C` yapısının nereden geldigini hatırlatan bir not var.
 
-`W.70`, `W.68-W.69` hattinin dogal devami. Yeni bir nihai sayisal sonuc vermiyor; ama `Zout` ve frekans bakisina klasik `\Delta Q = C\Delta V` ripple sezgisini ekliyor.
+`W.70`, `W.68-W.69` hattının dogal devamı. Yeni bir nihai sayısal sonuç vermiyor; ama `Zout` ve frekans bakisina klasik `\Delta Q = C\Delta V` ripple sezgisini ekliyor.
 
-Cikis sığaci seciminde hem frekans-temelli empedans dusuncesini hem de zaman-duzlemindeki ripple yaklasimini birlikte nasil tuttugum burada gorunuyor.
+Çıkış sığaci seciminde hem frekans-temelli empedans düşüncesini hem de zaman-duzlemindeki ripple yaklasimini birlikte nasıl tuttugum burada görünüyor.
 
-Defterden aktarilan not (`W.71`):
+Defterden aktarılan not (`W.71`):
 
-Burada `W.68-W.70` hattindaki dusunce cok kisa bir ozet halinde tekrar ediliyor.
+Burada `W.68-W.70` hattindaki düşünce çok kısa bir özet halinde tekrar ediliyor.
 
-![W.71'den secilen el yazisi parca: Zout(fc) ile transient, Zout(fsw) ile ripple ayriminin kisa ozeti](images/defter_snippets_web/d41_w71_zout_summary_note.jpg)
+![W.71'den seçilen el yazısı parça: Zout(fc) ile transient, Zout(fsw) ile ripple ayriminin kısa özeti](images/defter_snippets_web/d41_w71_zout_summary_note.jpg)
 
-Sayfada korunacak ana fikir su:
+Sayfada korunacak ana fikir şu:
 
-- `f_c` civarinda cikis empedansi, `undershoot/overshoot` davranisi icin belirleyicidir
-- `f_{sw}` civarinda ise cikis empedansi, `V_{ripple}` davranisi icin belirleyicidir
+- `f_c` civarında çıkış empedansı, `undershoot/overshoot` davranışı için belirleyicidir
+- `f_{sw}` civarında ise çıkış empedansı, `V_{ripple}` davranışı için belirleyicidir
 
-Sayfadaki iliskiler su sekilde yeniden not edilmis:
+Sayfadaki iliskiler şu şekilde yeniden not edilmiş:
 
 $$
 V_{out,\text{undershoot}}
@@ -1685,63 +1676,63 @@ V_{ripple}
 \approx
 I_{L(p-p)} \times Z_{out}(f_{sw})
 $$
-Sayfanin altindaki not, bu iliskilerin Bode / empedans egileri uzerinden dusunulmesi gerektigini yeniden vurguluyor.
+Sayfanın altındaki not, bu iliskilerin Bode / empedans egileri üzerinden düşünülmesi gerektiğini yeniden vurguluyor.
 
-`W.71` yeni bir sayisal sonuc vermiyor; daha cok `W.68-W.70`teki ana ayrimi kisaltilmis bir ozet halinde tekrar ediyor. Kisa olmasina ragmen transient ve ripple problemlerini frekans ekseninde ayri takip ettigini gosterdigi icin degerli.
+`W.71` yeni bir sayısal sonuç vermiyor; daha çok `W.68-W.70`teki ana ayrimi kisaltilmis bir özet halinde tekrar ediyor. Kısa olmasina ragmen transient ve ripple problemlerini frekans ekseninde ayrı takip ettigini gösterdiği için değerli.
 
-Defterden aktarilan not (`W.72`):
+Defterden aktarılan not (`W.72`):
 
-Burada tek bir kapasitörun ideal bir `C` elemani gibi degil, gercek esdeger modeli ile dusunulmeye baslandigi goruluyor.
+Burada tek bir kapasitörün ideal bir `C` elemani gibi değil, gerçek eşdeğer modeli ile dusunulmeye baslandigi görülüyor.
 
-![W.72'den secilen el yazisi parca: kapasitörun ESR, ESL ve sizinti dahil esdeger modeli](images/defter_snippets_web/d22_w72_capacitor_equivalent_model.jpg)
+![W.72'den seçilen el yazısı parça: kapasitörün ESR, ESL ve sizinti dahil eşdeğer modeli](images/defter_snippets_web/d22_w72_capacitor_equivalent_model.jpg)
 
-Sayfada cizilen model su sekilde okunuyor:
+Sayfada cizilen model şu şekilde okunuyor:
 
 - ideal kapasitans `C`
-- buna paralel buyuk bir sizinti direnci (`R_{leak}` benzeri)
-- bunlarin uzerine seri bagli `ESL`
-- ve seri bagli `ESR`
+- buna paralel büyük bir sizinti direnci (`R_{leak}` benzeri)
+- bunlarin üzerine seri bağlı `ESL`
+- ve seri bağlı `ESR`
 
-Sayfadaki toplam empedans notu su sekilde yazilmis:
+Sayfadaki toplam empedans notu şu şekilde yazılmış:
 
 $$
 Z = \left(Z_C \parallel Z_{Rleak}\right) + Z_{ESL} + Z_{ESR}
 $$
-hemen altinda da ilk yaklasim olarak:
+hemen altında da ilk yaklaşım olarak:
 
 $$
 Z \approx Z_C + Z_{ESL} + Z_{ESR}
 $$
-notu dusulmus. Sayfa kenarindaki aciklamadan, `R_{leak}`'in genelde cok buyuk oldugu ve bu nedenle ilk yaklasimda ihmal edilebildigi dusuncesi anlasiliyor.
+notu düşülmüş. Sayfa kenarindaki aciklamadan, `R_{leak}`'in genelde çok büyük olduğu ve bu nedenle ilk yaklaşımda ihmal edilebildigi düşüncesi anlasiliyor.
 
-Buradaki ana deger su:
+Buradaki ana değer şu:
 
-- kapasitörun empedansi frekansa gore yalnizca `1/(sC)` gibi davranmaz
-- `ESR` ve `ESL` de modele girince, cikis sığaci secimi frekans cevabini ve spike davranisini dogrudan etkiler
-- dolayisiyla `Zout` dusuncesi kurulurken gercek komponent modeli gereklidir
+- kapasitörün empedansı frekansa göre yalnızca `1/(sC)` gibi davranmaz
+- `ESR` ve `ESL` de modele girince, çıkış sığaci seçimi frekans cevabini ve spike davranışını doğrudan etkiler
+- dolayısıyla `Zout` düşüncesi kurulurken gerçek komponent modeli gereklidir
 
-`W.72`, `W.57`, `W.69` ve `W.70` ile ayni hatta duruyor; bu kez frekansa bagli davranisi daha dogrudan esdeger devre modeli uzerinden yaziyor. Yeni bir nihai sayisal sonuc vermiyor ama cikis sığaci / MLCC davranisinin neden sadece ideal `C` ile aciklanamayacagini iyi gosteriyor.
+`W.72`, `W.57`, `W.69` ve `W.70` ile aynı hatta duruyor; bu kez frekansa bağlı davranışı daha doğrudan eşdeğer devre modeli üzerinden yazıyor. Yeni bir nihai sayısal sonuç vermiyor ama çıkış sığaci / MLCC davranisinin neden sadece ideal `C` ile aciklanamayacagini iyi gösteriyor.
 
-Defterden aktarilan not (`W.73`):
+Defterden aktarılan not (`W.73`):
 
-Burada artik output filter / control-to-output ve Type-III kompanzator topolojisi ayni cizim uzerinde dusunulmeye basliyor.
+Burada artık output filter / control-to-output ve Type-III kompanzatör topolojisi aynı çizim üzerinde dusunulmeye basliyor.
 
-![W.73'ten secilen el yazisi parca: control-to-output Bode sezgisi ve Type-III topoloji cizimi](images/defter_snippets_web/d42_w73_type3_topology_and_bode.jpg)
+![W.73'ten seçilen el yazısı parça: control-to-output Bode sezgisi ve Type-III topoloji cizimi](images/defter_snippets_web/d42_w73_type3_topology_and_bode.jpg)
 
-Sayfanin ust tarafinda `control-to-output` notu ve buna ait kavramsal bir Bode sekli var:
+Sayfanın üst tarafında `control-to-output` notu ve buna ait kavramsal bir Bode şekli var:
 
-- `\omega_0` civarinda LC cift kutbu
-- `\omega_z` civarinda `ESR` sifiri
-- bunlara gore kompanzator kutup ve sifirlarinin yerlestirilmesi gerektigi seziliyor
+- `\omega_0` civarında LC cift kutbu
+- `\omega_z` civarında `ESR` sifiri
+- bunlara göre kompanzatör kutup ve sifirlarinin yerlestirilmesi gerektiği seziliyor
 
-Sayfanin orta kismina cizilen op-amp topolojisi ise Type-III kompanzatorun fiziksel `R-C` agini gosteren bir ara devre cizimi gibi okunuyor.
+Sayfanın orta kismina cizilen op-amp topolojisi ise Type-III kompanzatorun fiziksel `R-C` agini gösteren bir ara devre cizimi gibi okunuyor.
 
-Bu cizimde iki empedans blogu etiketlenmis:
+Bu çizimde iki empedans blogu etiketlenmis:
 
 $$
 H(s) = \frac{V_c}{V_o} = -\frac{Z_F}{Z_1}
 $$
-ve altta bunlarin acilimi not edilmis:
+ve altta bunlarin acilimi not edilmiş:
 
 $$
 Z_1 = R_1 \parallel \left(R_3 + \frac{1}{sC_2}\right)
@@ -1749,19 +1740,19 @@ $$
 $$
 Z_F = \frac{1}{sC_3} \parallel \left(R_2 + \frac{1}{sC_1}\right)
 $$
-Sayfanin alttaki ifadesi de, kompanzator transfer fonksiyonunu bu iki empedansin orani olarak kurma denemesidir.
+Sayfanın alttaki ifadesi de, kompanzatör transfer fonksiyonunu bu iki empedansin oranı olarak kurma denemesidir.
 
-`W.73`, cikis sığaci / plant modelinden kompanzator topolojisine gecis yapan onemli bir kopru sayfa. Nihai komponent degerlerini tek basina vermiyor; daha cok "planti gordukten sonra Type-III agi nasil kurulur?" sorusunun ilk defter cevabi gibi.
+`W.73`, çıkış sığaci / plant modelinden kompanzatör topolojisine geçiş yapan önemli bir kopru sayfa. Nihai komponent degerlerini tek başına vermiyor; daha çok "planti gordukten sonra Type-III ağı nasıl kurulur?" sorusunun ilk defter cevabi gibi.
 
-Defterden aktarilan not (`W.141`):
+Defterden aktarılan not (`W.141`):
 
-Burasi, `W.73`te tanimladigim Type-III kompanzator agindaki `Z_F` ve `Z_1` empedanslarinin cebirsel olarak nasil acildigini gosteren bir ara islem sayfasi.
+Burasi, `W.73`te tanimladigim Type-III kompanzatör agindaki `Z_F` ve `Z_1` empedanslarinin cebirsel olarak nasıl acildigini gösteren bir ara işlem sayfası.
 
-Yeni kutup/sifir hedefi ya da yeni nihai komponent sonucu vermiyor; ama kompanzator transfer fonksiyonunun ara matematik adimlarini gosterdigi icin teknik izi guclendiriyor.
+Yeni kutup/sifir hedefi ya da yeni nihai komponent sonucu vermiyor; ama kompanzatör transfer fonksiyonunun ara matematik adimlarini gösterdiği için teknik izi guclendiriyor.
 
-![W.141'den secilen el yazisi parca: Type-III ZF/Z1 oraninin ara cebir adimlari](images/defter_snippets_web/d43_w141_type3_algebra_steps.jpg)
+![W.141'den seçilen el yazısı parça: Type-III ZF/Z1 oraninin ara cebir adimlari](images/defter_snippets_web/d43_w141_type3_algebra_steps.jpg)
 
-Sayfanin ust tarafinda, `H(s) = -Z_F/Z_1` ifadesindeki iki paralel empedansin orani tekrar yazilmis gorunuyor:
+Sayfanın üst tarafında, `H(s) = -Z_F/Z_1` ifadesindeki iki paralel empedansin oranı tekrar yazılmış görünüyor:
 
 $$
 H(s)
@@ -1773,7 +1764,7 @@ H(s)
 R_1\parallel\left(\dfrac{sR_3C_2+1}{sC_2}\right)
 }
 $$
-Sayfanin orta kismina dogru ise, ozellikle paydaki `Z_F` blogunun paralel empedans formulu ile acilmaya baslandigi goruluyor. Yani:
+Sayfanın orta kismina doğru ise, özellikle paydaki `Z_F` blogunun paralel empedans formulu ile acilmaya baslandigi görülüyor. Yani:
 
 $$
 Z_F
@@ -1785,112 +1776,111 @@ ifadesi, klasik
 $$
 Z_a \parallel Z_b = \frac{Z_a Z_b}{Z_a + Z_b}
 $$
-mantigiyla duzenleniyor.
+mantigiyla düzenleniyor.
 
 Sayfadaki cebir tam sonuca kadar gitmiyor; ancak ana niyet net:
 
 - `Z_F` ve `Z_1` tek tek sadeletilecek
 - sonra `H(s) = -Z_F/Z_1` ifadesi pay/payda polinom formuna cekilecek
-- boylece kutup ve sifirlar daha acik okunabilir hale gelecek
+- boylece kutup ve sifirlar daha açık okunabilir hale gelecek
 
-Burada yeni frekans yerlesimi yok. Ama `W.73`te topolojik olarak kurdugum Type-III agin bu kez cebirsel olarak da acilmaya basladigi goruluyor.
+Burada yeni frekans yerleşimi yok. Ama `W.73`te topolojik olarak kurduğum Type-III agin bu kez cebirsel olarak da acilmaya basladigi görülüyor.
 
-`W.84-W.85`te gordugum kutup-sifir hedeflerinin arkasinda yalnizca ezber iliski degil, bu tur ara cebir adimlari oldugu da netlesiyor.
+`W.84-W.85`te gördüğüm kutup-sifir hedeflerinin arkasinda yalnızca ezber ilişki değil, bu tur ara cebir adimlari olduğu da netlesiyor.
 
-Defterden aktarilan not (`W.42`):
+Defterden aktarılan not (`W.42`):
 
-Burada bobin ve kapasitörun gorevini daha temel bir dille ozetliyorum:
+Burada bobin ve kapasitörün gorevini daha temel bir dille ozetliyorum:
 
-![W.42'den secilen el yazisi parca: bobin ve kapasitör rolleri, enerji ve ripple/transient ayrimi](images/defter_snippets_web/d19_w42_l_c_role_ripple_vs_transient.jpg)
+![W.42'den seçilen el yazısı parça: bobin ve kapasitör rolleri, enerji ve ripple/transient ayrimi](images/defter_snippets_web/d19_w42_l_c_role_ripple_vs_transient.jpg)
 
-- bobin, akimi bir anda degistirmek istemez
-- kapasitör, gerilimi bir anda degistirmek istemez
+- bobin, akımı bir anda değiştirmek istemez
+- kapasitör, gerilimi bir anda değiştirmek istemez
 
-Sayfadaki ana fikirler su sekilde okunabilir:
+Sayfadaki ana fikirler şu şekilde okunabilir:
 
-- bobin icin:
+- bobin için:
 $$
 V_L = L\frac{di_L}{dt}
 $$
-  Bu nedenle akimi hizla degistirmek icin buyuk gerilim gerekir.
-- kapasitör icin:
+  Bu nedenle akımı hızla değiştirmek için büyük gerilim gerekir.
+- kapasitör için:
 $$
 E = \frac{1}{2} C V^2
 $$
-  Daha buyuk `C`, ayni gerilim seviyesinde daha fazla enerji tutabilir; bu da ani yuk degisimlerinde gerilimin daha zor dusmesi anlamina gelir.
+  Daha büyük `C`, aynı gerilim seviyesinde daha fazla enerji tutabilir; bu da ani yük değişimlerinde gerilimin daha zor düşmesi anlamına gelir.
 
-Sayfa sonunda ayrica su pratik ayrim not edilmis:
+Sayfa sonunda ayrıca şu pratik ayrım not edilmiş:
 
-- `ripple`: surekli tekrar eden kucuk dalgalanma
-- `transient`: ani ve buyuk degisim
+- `ripple`: sürekli tekrar eden küçük dalgalanma
+- `transient`: ani ve büyük değişim
 
-Burada yeni bir sayisal hesap yok. Ama `W.34-W.41` araligindaki cikis / giris kapasitörü secim mantiginin temel fiziksel sezgisini acikca yazmisim. Degeri de burada; sadece sonucu degil, dusunce bicimini de gosteriyor.
+Burada yeni bir sayısal hesap yok. Ama `W.34-W.41` aralığındaki çıkış / giriş kapasitörü seçim mantığının temel fiziksel sezgisini açıkça yazmışım. Değeri de burada; sadece sonucu değil, düşünce biçimini de gösteriyor.
 
-Defterden aktarilan not (`W.46`):
+Defterden aktarılan not (`W.46`):
 
-Burada kapasitör secimini yalnizca `uF` degerine bakarak yapamayacagimi, frekansa bagli davranisi da dusunmem gerektigini not ediyorum.
+Burada kapasitör seçimini yalnızca `uF` değerine bakarak yapamayacağımı, frekansa bağlı davranışı da düşünmem gerektiğini not ediyorum.
 
-![W.46'dan secilen el yazisi parca: kapasitör empedansi, frekans davranisi ve secim kriterleri](images/defter_snippets_web/d20_w46_capacitor_frequency_tradeoffs.jpg)
+![W.46'dan seçilen el yazısı parça: kapasitör empedansı, frekans davranışı ve seçim kriterleri](images/defter_snippets_web/d20_w46_capacitor_frequency_tradeoffs.jpg)
 
-Sayfada gorulen ana fikirler sunlar:
+Sayfada görülen ana fikirler şunlar:
 
-- kapasitör empedansi frekansa gore degisir
-- belirli bir noktadan sonra parasitik enduktans etkisi on plana cikabilir
-- dolayisiyla kapasitör, her frekansta ayni eleman gibi davranmaz
+- kapasitör empedansı frekansa göre değişir
+- belirli bir noktadan sonra parasitik endüktans etkisi ön plana çıkabilir
+- dolayısıyla kapasitör, her frekansta aynı eleman gibi davranmaz
 
-Sayfadaki cizim, empedansin frekansla once azaldigi, sonra parasitik / enduktif davranis nedeniyle yeniden artabildigi dusuncesini gosteren kavramsal bir not gibi okunabilir.
+Sayfadaki çizim, empedansin frekansla önce azaldığı, sonra parasitik / endüktif davranış nedeniyle yeniden artabildiği düşüncesini gösteren kavramsal bir not gibi okunabilir.
 
-Alt tarafta ayrica secim kriterleri kisa maddeler halinde yazilmis:
+Alt tarafta ayrıca seçim kriterleri kısa maddeler halinde yazılmış:
 
 - power loss
 - boyut
 - device lifetime
-- cikis regulation kalitesi
-- hiz
-- kararlilik
-- bant genisligi (`BW`)
+- çıkış regulation kalitesi
+- hız
+- kararlılık
+- bant genişliği (`BW`)
 - load transient response
 
-`W.46` yeni bir son denklem vermiyor; ama kapasitör seciminin neden tek boyutlu bir `C` secimi olmadigini acikca yaziyor. O yuzden hem cikis kapasitörü hem de genel olarak power-stage dusunce akisini gosteren iyi bir kavramsal sayfa olarak burada duruyor.
+`W.46` yeni bir son denklem vermiyor; ama kapasitör seçiminin neden tek boyutlu bir `C` seçimi olmadığını açıkça yazıyor. O yüzden hem çıkış kapasitörü hem de genel olarak power-stage düşünce akışını gösteren iyi bir kavramsal sayfa olarak burada duruyor.
 
-Defterden aktarilan not (`W.57`):
+Defterden aktarılan not (`W.57`):
 
-Burada cikis sığaçlari seciminde yalnizca toplam kapasitansi degil, `ESR`, `dc-bias` altindaki etkin kapasitansi ve frekansa bagli davranisi da birlikte dusunmem gerektigini toparliyorum.
+Burada çıkış sığaçları seciminde yalnızca toplam kapasitansı değil, `ESR`, `dc-bias` altındaki etkin kapasitansı ve frekansa bağlı davranışı da birlikte düşünmem gerektiğini toparlıyorum.
 
-![W.57'den secilen el yazisi parca: cikis kapasitelerinde frekansa gore gorev paylasimi ve MLCC notlari](images/defter_snippets_web/d21_w57_output_caps_frequency_notes.jpg)
+![W.57'den seçilen el yazısı parça: çıkış kapasitelerinde frekansa göre görev paylaşımı ve MLCC notları](images/defter_snippets_web/d21_w57_output_caps_frequency_notes.jpg)
 
-Sayfada gorulen ana fikirler sunlar:
+Sayfada görülen ana fikirler şunlar:
 
-- sığaçlari paralel baglamak:
-  - toplam kapasitansi arttirir
-  - etkin `ESR`'yi dusurur
-- farkli `C` degerlerindeki sığaçlar, farkli frekanslarda daha iyi performans verebilir
-- bu nedenle paralel ag, frekansa gore daha iyi bir toplam davranis verebilir
+- sığaçları paralel bağlamak:
+  - toplam kapasitansı artırır
+  - etkin `ESR`'yi düşürür
+- farklı `C` değerlerindeki sığaçlar, farklı frekanslarda daha iyi performans verebilir
+- bu nedenle paralel ağ, frekansa göre daha iyi bir toplam davranış verebilir
 
-Sayfada ayrica MLCC'ler icin cok kritik bir not var:
+Sayfada ayrıca MLCC'ler için çok kritik bir not var:
 
-- yuksek gerilim altinda MLCC'lerin etkin kapasitansi ciddi oranda dusebilir
-- bu nedenle `2 x 22 uF` katalog degerli iki parcadan olusan bir bank, pratikte `44 uF` gibi degil, daha dusuk etkin bir deger gibi davranabilir
+- yüksek gerilim altında MLCC'lerin etkin kapasitansı ciddi oranda düşebilir
+- bu nedenle `2 x 22 uF` katalog değerli iki parçadan oluşan bir bank, pratikte `44 uF` gibi değil, daha düşük etkin bir değer gibi davranabilir
 
-Bir diger not da cikis ripple akimiyle iliskili:
+Bir diğer not da çıkış ripple akimiyle iliskili:
 
-- bobinden gelen `\Delta I_L \approx 3.8 A` dalgalanmanin buyuk kismi cikis sığaçlari tarafindan karsilanir
-- bu nedenle cikis sığaç secimi yalnizca `Cout` degeri degil, ayni zamanda ripple akimi tasima ve `ESR` dusuklugu problemidir
+- bobinden gelen `\Delta I_L \approx 3.8 A` dalgalanmanın büyük kısmı çıkış sığaçları tarafından karşılanır
+- bu nedenle çıkış sığaç seçimi yalnızca `Cout` değeri değil, aynı zamanda ripple akımı taşıma ve `ESR` düşüklüğü problemidir
 
-![Cikis MLCC'sinin switching frekansi civarindaki ESR davranisini gosteren ekran goruntusu](images/foto_selected/p50_output_mlcc_esr_graph_dup.jpg)
+![Çıkış MLCC'sinin switching frekansı civarındaki ESR davranışını gösteren ekran görüntüsü](images/foto_selected/p50_output_mlcc_esr_graph_dup.jpg)
 
-Bu ekran goruntusu, `W.57`te yazdigim "frekansa bagli davranis" fikrini daha somut hale getiriyor. Ornek MLCC icin `326.554 kHz` civarinda `ESR \approx 1.321 m\Omega` okunmasi, daha sonra `W.116` tarafinda kullandigim `ESR_{Ceq} \approx 1.3 m\Omega` mertebesinin rastgele secilmedigini gosteriyor.
+Bu ekran görüntüsü, `W.57`te yazdığım "frekansa bağlı davranış" fikrini daha somut hale getiriyor. Örnek MLCC için `326.554 kHz` civarında `ESR \approx 1.321 m\Omega` okunması, daha sonra `W.116` tarafında kullandığım `ESR_{Ceq} \approx 1.3 m\Omega` mertebesinin rastgele seçilmediğini gösteriyor.
 
-Sayfa sonunda ayrica yuksek frekans davranisi icin su fikir not edilmis:
+Sayfa sonunda ayrıca yüksek frekans davranışı için şu fikir not edilmiş:
 
-- MLCC'ler ile yuksek frekansli sorunlar bastirilabilir
-- `400 kHz - 1 MHz` civarinda parasitik enduktans (`ESL`) etkisi on plana cikmaya baslayabilir
-- bu noktada cok farkli degerli veya kucuk degerli MLCC'ler spike bastirma amacli fayda saglayabilir
+- MLCC'ler ile yüksek frekanslı sorunlar bastırılabilir
+- `400 kHz - 1 MHz` civarında parasitik endüktans (`ESL`) etkisi ön plana çıkmaya başlayabilir
+- bu noktada çok farklı değerli veya küçük değerli MLCC'ler spike bastırma amaçlı fayda sağlayabilir
 
-`W.57`, `W.46` ile ayni kavramsal hatta duruyor; ikisi birlikte kapasitör seciminin neden tek boyutlu olmadigini guclu bicimde gosteriyor.
+`W.57`, `W.46` ile aynı kavramsal hatta duruyor; ikisi birlikte kapasitör seçiminin neden tek boyutlu olmadığını güçlü biçimde gösteriyor.
 
-Yeni bir sayisal sonuc vermiyor; daha cok sectigim cikis MLCC bankini nasil dusunmem gerektigine dair tasarim mantigi veriyor. `dc-bias` altinda etkin kapasitans dususu notu da sayfanin en guclu yani; katalog `uF` toplami ile gercek etkin `Cout` arasindaki farki acikca hatirlatiyor.
-
+Yeni bir sayısal sonuç vermiyor; daha çok seçtiğim çıkış MLCC bankını nasıl düşünmem gerektiğine dair tasarım mantığı veriyor. `dc-bias` altında etkin kapasitans düşüşü notu da sayfanın en güçlü yani; katalog `uF` toplamı ile gerçek etkin `Cout` arasındaki farkı açıkça hatırlatıyor.
 
 
 Defterden aktarilan not (`W.28`):
