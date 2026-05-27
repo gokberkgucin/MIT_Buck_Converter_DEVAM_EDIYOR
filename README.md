@@ -195,40 +195,40 @@ Bu yuzden tabloyu kullanirken satirin rolunu da koruyacagim. Ornegin `44 V / 1 m
 
 
 | Parametre | Hedef / Sinir | Not |
-
 | --- | --- | --- |
-
 | Giris gerilimi | `24 V - 36 V` | ana calisma araligi |
-
 | Giris gerilimi transient dayanim | `44 V`, `1 ms` | hayatta kalma siniri, bu aralikta regule calisma zorunlu degil |
-
 | Cikis gerilimi, statik | `14 V +- 3%` | ana setpoint |
-
 | Cikis gerilimi, transient | `14 V +- 20%` | minimum ve maksimum yuk adimlari sirasinda |
-
 | Cikis gucu | `50 W - 125 W` | rezistif yuk |
-
-| Cikis akimi, turetilmis | `3.571 A - 8.929 A` | $I_{out} = \dfrac{P_{out}}{V_{out}}$ |
-
+| Cikis akimi, turetilmis | `3.571 A - 8.929 A` | asagidaki `Pout / Vout` hesabindan geliyor |
 | Yuk adimi | `3.571 A -> 9 A` | taslakta `5.429 A` load-step olarak not edilmis |
-
 | Anahtarlama frekansi | `332 kHz` | mevcut tasarim secimi, orijinal zorunlu spec degil |
-
 | Izin verilen `Vout` ripple | `100 mVpp` | herhangi bir `Rload` icin |
-
 | Izin verilen `Vin` ripple | `0.24 Vpp` | giris gerilimi peak-to-peak |
-
 | Izin verilen `Vin` transient | `0.36 V` | undershoot veya overshoot limiti |
-
 | Izin verilen giris akimi ripple | `50 mApp` | ideal kaynak varsayimi |
-
 | Minimum verim | `90%` | gerilim ve yuk boyunca |
-
 | Sicaklik hedefi | `76 degC` board worst-case | taslak spec notu |
-
 | EMI hedefi | `CISPR 25 Class 5` | `pi-stage` giris EMI filtresi ve elektrolitik parallel damping hedefi |
-
 | Harici bias/VCC | kullanilmayacak | harici bias secenegi bulunuyor ama bu iterasyonda kullanilmiyor |
+
+Cikis akimi satirindaki aralik su hesaptan geliyor:
+
+$$
+I_{out} = \frac{P_{out}}{V_{out}}
+$$
+
+$$
+\begin{aligned}
+I_{out,\min}
+&= \frac{50\,\mathrm{W}}{14\,\mathrm{V}}
+\approx 3.571\,\mathrm{A} \\
+I_{out,\max}
+&= \frac{125\,\mathrm{W}}{14\,\mathrm{V}}
+\approx 8.929\,\mathrm{A}
+\end{aligned}
+$$
 
 Bu tablo bittikten sonra, cikis gerilimi zarflarini ayri gorselle tekrar sabitliyorum:
 
