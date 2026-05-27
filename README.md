@@ -195,40 +195,37 @@ Bu yuzden tabloyu kullanirken satirin rolunu da koruyacagim. Ornegin `44 V / 1 m
 
 
 | Parametre | Hedef / Sinir | Not |
-
 | --- | --- | --- |
-
 | Giris gerilimi | `24 V - 36 V` | ana calisma araligi |
-
 | Giris gerilimi transient dayanim | `44 V`, `1 ms` | hayatta kalma siniri, bu aralikta regule calisma zorunlu degil |
-
 | Cikis gerilimi, statik | `14 V +- 3%` | ana setpoint |
-
 | Cikis gerilimi, transient | `14 V +- 20%` | minimum ve maksimum yuk adimlari sirasinda |
-
 | Cikis gucu | `50 W - 125 W` | rezistif yuk |
-
-| Cikis akimi, turetilmis | `3.571 A - 8.929 A` | $I_{out} = \dfrac{P_{out}}{V_{out}}$ |
-
+| Cikis akimi, turetilmis | `3.571 A - 8.929 A` | asagidaki `Pout / Vout` hesabindan geliyor |
 | Yuk adimi | `3.571 A -> 9 A` | taslakta `5.429 A` load-step olarak not edilmis |
-
 | Anahtarlama frekansi | `332 kHz` | mevcut tasarim secimi, orijinal zorunlu spec degil |
-
 | Izin verilen `Vout` ripple | `100 mVpp` | herhangi bir `Rload` icin |
-
 | Izin verilen `Vin` ripple | `0.24 Vpp` | giris gerilimi peak-to-peak |
-
 | Izin verilen `Vin` transient | `0.36 V` | undershoot veya overshoot limiti |
-
 | Izin verilen giris akimi ripple | `50 mApp` | ideal kaynak varsayimi |
-
 | Minimum verim | `90%` | gerilim ve yuk boyunca |
-
 | Sicaklik hedefi | `76 degC` board worst-case | taslak spec notu |
-
 | EMI hedefi | `CISPR 25 Class 5` | `pi-stage` giris EMI filtresi ve elektrolitik parallel damping hedefi |
-
 | Harici bias/VCC | kullanilmayacak | harici bias secenegi bulunuyor ama bu iterasyonda kullanilmiyor |
+
+Cikis akimi satirindaki aralik su hesaptan geliyor:
+
+$$
+I_{out} = \frac{P_{out}}{V_{out}}
+$$
+
+$$
+I_{out,\min} = \frac{50\,\text{W}}{14\,\text{V}} \approx 3.571\,\text{A}
+$$
+
+$$
+I_{out,\max} = \frac{125\,\text{W}}{14\,\text{V}} \approx 8.929\,\text{A}
+$$
 
 Bu tablo bittikten sonra, cikis gerilimi zarflarini ayri gorselle tekrar sabitliyorum:
 
@@ -614,10 +611,9 @@ Burada `5.1.1-5.1.2`de tartisilan dahili `VCC` / LDO konusu bu kez termal guc ka
 Sayfanin ortasinda, dahili regulator uzerinde harcanan guc su sekilde not edilmis:
 
 $$
-P_{diss,\;VCC}
-=
-(V_{in} - 7.5\,V)\, I_{VCC}
+P_{diss,VCC} = (V_{in} - 7.5\,\text{V})\,I_{VCC}
 $$
+
 Yan notlardan korunacak ana fikirler:
 
 - eger `V_{in}` yuksekse, dahili LDO uzerindeki dusum de buyur
@@ -893,15 +889,15 @@ $$
 Sayfadaki yerlestirme:
 
 $$
-t_{SS}
-=
-\frac{47\,nF \times 0.8\,V}{10\,\mu A}
+t_{SS} = \frac{47\,\text{nF} \times 0.8\,\text{V}}{10\,\mu\text{A}}
 $$
+
 Buradan:
 
 $$
-t_{SS} \approx 3.76\,ms
+t_{SS} \approx 3.76\,\text{ms}
 $$
+
 sonucu elde edilir.
 
 Sayfanin altindaki kucuk cizimde:
@@ -1014,12 +1010,9 @@ $$
 Sayfadaki yerlestirme:
 
 $$
-R_{UV2}
-=
-100k\Omega \cdot \frac{1.2V}{24V - 1.2V}
-\approx
-5.263k\Omega
+R_{UV2} = 100\,\text{k}\Omega \cdot \frac{1.2\,\text{V}}{24\,\text{V} - 1.2\,\text{V}} \approx 5.263\,\text{k}\Omega
 $$
+
 ve alt tarafta bu degere yakin standart bir deger kullanma notu dusulmus.
 
 Burada `W.207`de kavramsal olarak kurdugum `Precision Enable` bolucusu bu kez sayisal bir ornege donusuyor.
@@ -1178,44 +1171,45 @@ Burada, ideal duty hesabindan ayri olarak kontrolcunun donanimsal zaman sinirlar
 Donanimsal ust duty sinirini bu sekilde okuyorum:
 
 $$
-\begin{aligned}
-D_{\max,\mathrm{donanimsal}}
-&\approx \frac{T_{sw} - t_{OFF,\min}}{T_{sw}} \\
-&\approx \frac{\frac{1}{f_{sw}} - t_{OFF,\min}}{\frac{1}{f_{sw}}}
-\end{aligned}
+D_{\max,\text{donanimsal}} \approx \frac{T_{sw} - t_{OFF,\min}}{T_{sw}}
+$$
+
+$$
+D_{\max,\text{donanimsal}} \approx \frac{\frac{1}{f_{sw}} - t_{OFF,\min}}{\frac{1}{f_{sw}}}
 $$
 
 Bu hesapta kullandigim sayilar:
 
 $$
-\begin{aligned}
-f_{sw} &= 332\,\mathrm{kHz} \\
-t_{OFF,\min} &= 140\,\mathrm{ns}
-\end{aligned}
+f_{sw} = 332\,\text{kHz}
+$$
+
+$$
+t_{OFF,\min} = 140\,\text{ns}
 $$
 
 Bu degerlerle:
 
 $$
-\begin{aligned}
-D_{\max,\mathrm{donanimsal}}
-&\approx
-\frac{\frac{1}{332\,\mathrm{kHz}} - 140\,\mathrm{ns}}
-{\frac{1}{332\,\mathrm{kHz}}} \\
-&\approx 0.953
-\end{aligned}
+D_{\max,\text{donanimsal}} \approx \frac{\frac{1}{332\,\text{kHz}} - 140\,\text{ns}}{\frac{1}{332\,\text{kHz}}}
+$$
+
+$$
+D_{\max,\text{donanimsal}} \approx 0.953
 $$
 
 Ayni yaklasimla en kucuk on-time sinirindan bir alt duty tahmini de elde edilebilir:
 
 $$
-\begin{aligned}
-D_{\min,\mathrm{donanimsal}}
-&\approx \frac{t_{ON,\min}}{T_{sw}} \\
-&= t_{ON,\min} f_{sw} \\
-&\approx 40\,\mathrm{ns} \times 332\,\mathrm{kHz} \\
-&\approx 0.013
-\end{aligned}
+D_{\min,\text{donanimsal}} \approx \frac{t_{ON,\min}}{T_{sw}}
+$$
+
+$$
+D_{\min,\text{donanimsal}} = t_{ON,\min} f_{sw}
+$$
+
+$$
+D_{\min,\text{donanimsal}} \approx 40\,\text{ns} \times 332\,\text{kHz} \approx 0.013
 $$
 
 Nominal $V_{in} = 24\,\text{V} - 36\,\text{V}$ giris gerilimi araliginda gereken duty degerleri, ilk yaklasimda bu donanimsal sinirlarin icinde kaliyor.
