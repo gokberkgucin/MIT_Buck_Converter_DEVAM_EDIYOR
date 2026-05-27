@@ -1178,26 +1178,46 @@ Burada, ideal duty hesabindan ayri olarak kontrolcunun donanimsal zaman sinirlar
 Donanimsal ust duty sinirini bu sekilde okuyorum:
 
 $$
-D_{\max,\text{donanimsal}} \approx \frac{T_{sw} - t_{OFF(\min)}}{T_{sw}}
+\begin{aligned}
+D_{\max,\mathrm{donanimsal}}
+&\approx \frac{T_{sw} - t_{OFF,\min}}{T_{sw}} \\
+&\approx \frac{\frac{1}{f_{sw}} - t_{OFF,\min}}{\frac{1}{f_{sw}}}
+\end{aligned}
 $$
-$$
-D_{\max,\text{donanimsal}} \approx \frac{\frac{1}{f_{sw}} - t_{OFF(\min)}}{\frac{1}{f_{sw}}}
-$$
-$f_{sw} = 332\,\text{kHz}$ ve $t_{OFF(\min)} = 140\,\text{ns}$ icin:
+
+Bu hesapta kullandigim sayilar:
 
 $$
-D_{\max,\text{donanimsal}} \approx
-\frac{\frac{1}{332\,\text{kHz}} - 140\,\text{ns}}{\frac{1}{332\,\text{kHz}}}
-\approx 0.953
+\begin{aligned}
+f_{sw} &= 332\,\mathrm{kHz} \\
+t_{OFF,\min} &= 140\,\mathrm{ns}
+\end{aligned}
 $$
+
+Bu degerlerle:
+
+$$
+\begin{aligned}
+D_{\max,\mathrm{donanimsal}}
+&\approx
+\frac{\frac{1}{332\,\mathrm{kHz}} - 140\,\mathrm{ns}}
+{\frac{1}{332\,\mathrm{kHz}}} \\
+&\approx 0.953
+\end{aligned}
+$$
+
 Ayni yaklasimla en kucuk on-time sinirindan bir alt duty tahmini de elde edilebilir:
 
 $$
-D_{\min,\text{donanimsal}} \approx \frac{t_{ON(\min)}}{T_{sw}}
-= t_{ON(\min)} f_{sw}
-\approx 40\,\text{ns} \times 332\,\text{kHz}
-\approx 0.013
+\begin{aligned}
+D_{\min,\mathrm{donanimsal}}
+&\approx \frac{t_{ON,\min}}{T_{sw}} \\
+&= t_{ON,\min} f_{sw} \\
+&\approx 40\,\mathrm{ns} \times 332\,\mathrm{kHz} \\
+&\approx 0.013
+\end{aligned}
 $$
+
 Nominal $V_{in} = 24\,\text{V} - 36\,\text{V}$ giris gerilimi araliginda gereken duty degerleri, ilk yaklasimda bu donanimsal sinirlarin icinde kaliyor.
 
 Ama bu "tamam, duty kesin sorun degil" demek degil. Olu zaman, propagation delay ve kontrolcuye ozgu diger zamanlari son yorumdan once ayrica dogrulamam gerekiyor.
