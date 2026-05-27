@@ -394,15 +394,16 @@ Bu hizli teyitte guclu bicimde tekrar eden ana noktalar sunlardir:
 - bobin ripple orani `42.277%`
 - `Efficiency = 97.877%`
 
-Kontrol kararliligi acisindan `WEBENCH` loop-response verisi de tasarim hedefiyle uyumludur. `amCharts.json` icindeki sayisal Bode verisine gore ana loop icin:
+Kontrol kararliligi acisindan `WEBENCH` loop-response verisi de tasarim hedefiyle uyumludur. `amCharts.json` icindeki sayisal Bode verisinden okudugum ana iki sayi su:
 
 $$
-f_c \approx 34.83 \,\text{kHz}
+\begin{aligned}
+f_c &\approx 34.83\,\mathrm{kHz} \\
+PM &\approx 55.75^\circ
+\end{aligned}
 $$
-$$
-PM \approx 55.75^\circ
-$$
-Bu sonuc, defterde ve kompanzator hesabinda hedeflenen `f_c \approx 35 \,\text{kHz}` cizgisiyle iyi ortusur ve kapali cevrimin kararlilik acisindan makul oldugunu gosterir.
+
+Bu sonuc, defterde ve kompanzator hesabinda hedeflenen `f_c \approx 35 kHz` cizgisiyle iyi ortusur ve kapali cevrimin kararlilik acisindan makul oldugunu gosterir.
 
 `WBDesign21.pdf` icinde statik calisma tarafinda olumlu gorunen basliklar da vardir:
 
@@ -520,27 +521,41 @@ Bu yuzden bu alt basligi sadece "dusuk `Vin` notu" gibi okumuyorum. Dahili `VCC/
 Bu ODT parcasi, dahili LDO'nun tam regulasyon ve dropout bolgeleri arasindaki tasarim farkini anlatiyor. Buradaki hesap benim icin su basit sinira iniyor:
 
 $$
-V_{in,\min} = 7.5\,\text{V} + 0.72\,\text{V} = 8.22\,\text{V}
+\begin{aligned}
+V_{in,\min}
+&= V_{CC,\mathrm{reg}} + V_{dropout,\max} \\
+&= 7.5\,\mathrm{V} + 0.72\,\mathrm{V} \\
+&= 8.22\,\mathrm{V}
+\end{aligned}
 $$
+
+Dropout bolgesinde `VCC` artik `7.5 V` sabit kalmaz; yaklasik olarak girisi takip eder:
+
 $$
 V_{CC} \approx V_{in} - V_{dropout}
 $$
-Ornegin tipik dropout ile $V_{in} = 6\,\text{V}$ icin:
+
+Ornegin tipik dropout ile `Vin = 6 V` icin:
 
 $$
-V_{CC} \approx 6.00\,\text{V} - 0.25\,\text{V} = 5.75\,\text{V}
+\begin{aligned}
+V_{CC}
+&\approx 6.00\,\mathrm{V} - 0.25\,\mathrm{V} \\
+&= 5.75\,\mathrm{V}
+\end{aligned}
 $$
+
 Bu bolgede teknik olarak su riskler one cikar:
 
-- $R_{DS(on)} \approx 8.2\,\text{m}\Omega$
+- dusuk `VGS` nedeniyle `RDS(on)` artisi ve iletim kaybi
 - gate sarj / desarj surelerinin uzamasi nedeniyle switching kayiplari
 - koruma ve akim algilama marjlarinin degismesi
 - gerekirse logic-level MOSFET veya harici `VCC` kullanim ihtiyaci
 
 Burada teorik olarak iki yol acik:
 
-- sistemi yalnizca $V_{in} \ge 8.22\,\text{V}$ bolgesinde optimize etmek
-- veya `DVCC` uzerinden harici $8\,\text{V} - 13\,\text{V}$ $V_{CC}$ rayi ile LDO'yu baypas etmek
+- sistemi yalnizca `Vin >= 8.22 V` bolgesinde optimize etmek
+- veya `DVCC` uzerinden harici `8 V - 13 V` `VCC` rayi ile LDO'yu baypas etmek
 
 Bu projede simdilik ana yolum dahili `VCC/LDO` kullanmak. Harici `VCC` secenegini siliyor degilim; sadece bu iterasyonun ana secimi degil.
 
