@@ -1349,11 +1349,7 @@ Sayfada not edilen ana bilgiler sunlar:
 Sayfada kullanilan iliski su sekilde okunuyor:
 
 $$
-L
-=
-\frac{V_{out}}{V_{in}}
-\cdot
-\frac{V_{in}-V_{out}}{\Delta I_L \, f_{sw}}
+L = \frac{V_{out}}{V_{in}} \cdot \frac{V_{in}-V_{out}}{\Delta I_L \, f_{sw}}
 $$
 Defterdeki yerlestirmede:
 
@@ -1365,9 +1361,7 @@ Defterdeki yerlestirmede:
 alininca yaklasik:
 
 $$
-L_{\text{ust}}
-\approx
-9.6\,\mu\text{H}
+L_{\text{ust}} \approx 9.6\,\mu\text{H}
 $$
 Sayfa sonunda su aralik ozellikle kutu icine alinmis:
 
@@ -1400,18 +1394,10 @@ Sayfada not edilen secim kriterleri sunlar:
 Sayfada tekrar yazilan temel iliskiler:
 
 $$
-L_1
-=
-\frac{V_{out}}{V_{in}}
-\cdot
-\frac{V_{in}-V_{out}}{\Delta I_L \, f_{sw}}
+L_1 = \frac{V_{out}}{V_{in}} \cdot \frac{V_{in}-V_{out}}{\Delta I_L \, f_{sw}}
 $$
 $$
-I_{L,\text{peak}}
-=
-I_{out}
-+
-\frac{\Delta I_L}{2}
+I_{L,\text{peak}} = I_{out} + \frac{\Delta I_L}{2}
 $$
 Defterdeki notlara gore en kotu ripple durumu, giris gerilimi buyukken yani `V_{in} = 36 V` iken kontrol ediliyor:
 
@@ -1423,44 +1409,22 @@ Defterdeki notlara gore en kotu ripple durumu, giris gerilimi buyukken yani `V_{
 Bu yerlestirmede:
 
 $$
-\Delta I_{L,36V}
-\approx
-\frac{14}{36}
-\cdot
-\frac{36-14}{6.8\,\mu\text{H}\cdot 330\,\text{kHz}}
-\approx
-3.8\,\text{A}_{p-p}
+\Delta I_{L,36V} \approx \frac{14}{36} \cdot \frac{36-14}{6.8\,\mu\text{H}\cdot 330\,\text{kHz}} \approx 3.8\,\text{A}_{p-p}
 $$
 Tam yukte `I_{out,\max} = 9 A` icin tepe bobin akimi:
 
 $$
-I_{L,\text{peak}}
-\approx
-9
-+
-\frac{3.8}{2}
-\approx
-10.9\,\text{A}
+I_{L,\text{peak}} \approx 9 + \frac{3.8}{2} \approx 10.9\,\text{A}
 $$
 ve ripple orani yaklasik:
 
 $$
-\frac{\Delta I_L}{I_{out,\max}}
-\approx
-\frac{3.8}{9}
-\approx
-0.42
+\frac{\Delta I_L}{I_{out,\max}} \approx \frac{3.8}{9} \approx 0.42
 $$
 Sayfada ayrica `V_{in} = 24 V` icin ripple'in daha kucuk oldugu not edilmis:
 
 $$
-\Delta I_{L,24V}
-\approx
-\frac{14}{24}
-\cdot
-\frac{24-14}{6.8\,\mu\text{H}\cdot 330\,\text{kHz}}
-\approx
-2.6\,\text{A}_{p-p}
+\Delta I_{L,24V} \approx \frac{14}{24} \cdot \frac{24-14}{6.8\,\mu\text{H}\cdot 330\,\text{kHz}} \approx 2.6\,\text{A}_{p-p}
 $$
 Bu da yaklasik `%28.9` ripple oranina karsilik geliyor.
 
@@ -1494,10 +1458,7 @@ $$
 ve buna bagli bakir kaybi yaklasik su sekilde not edilmis:
 
 $$
-P_{\text{bakir}}
-= I^2 \cdot R_{DCR}
-\approx 9^2 \cdot 0.88\,m\Omega
-\approx 0.071\,\text{W}
+P_{\text{bakir}} = I^2 \cdot R_{DCR} \approx 9^2 \cdot 0.88\,m\Omega \approx 0.071\,\text{W}
 $$
 `W.56` ile is artik soyut kriterlerden gercek parcaya geliyor. `I_{sat} \approx 36.3 A` notu, `I_{L,\text{peak}} \approx 10.9 A` sonucuna gore cok rahat bir doyma marji oldugunu gosteriyor.
 
@@ -1770,18 +1731,14 @@ Burada cikis sığaçlariyla ilgili dusunceyi iki ayri performans metriğine ayi
 Sayfada ilk olarak su iliski not edilmis:
 
 $$
-V_{out,\text{undershoot}}
-\approx
-\Delta I_{out}\,\lvert Z_{out}(f_c)\rvert
+V_{out,\text{undershoot}} \approx \Delta I_{out}\,\lvert Z_{out}(f_c)\rvert
 $$
 ve bunun "dusurmek gerekir" notu eklenmis. Yani yuk akimi bir anda degistiginde gorulen gerilim sapmasi, crossover civarindaki cikis empedansiyla iliskilendiriliyor.
 
 Sayfada daha sonra ripple icin su iliski tekrar yaziliyor:
 
 $$
-V_{ripple}
-\approx
-I_{L(p-p)} \, \lvert Z_{out}(f_{sw})\rvert
+V_{ripple} \approx I_{L(p-p)} \, \lvert Z_{out}(f_{sw})\rvert
 $$
 Bu bolumdeki ana dusunce izi sunlar:
 
@@ -1861,11 +1818,7 @@ $$
 ve buradan, bobin akim dalgalanmasi ile iliskili klasik yaklasima gecis yapiliyor:
 
 $$
-\Delta V
-\approx
-\frac{\Delta I_L \, T_{switch}}{8\,C}
-\qquad \Longrightarrow \qquad
-C \approx \frac{\Delta I_L \, T_{switch}}{8\,\Delta V}
+\Delta V \approx \frac{\Delta I_L \, T_{switch}}{8\,C} \qquad \Longrightarrow \qquad C \approx \frac{\Delta I_L \, T_{switch}}{8\,\Delta V}
 $$
 Yani burada, cikis ripple denklemindeki `8 f C` yapisinin nereden geldigini hatirlatan bir not var.
 
@@ -1893,14 +1846,10 @@ Sayfada korunacak ana fikir su:
 Sayfadaki iliskiler su sekilde yeniden not edilmis:
 
 $$
-V_{out,\text{undershoot}}
-\approx
-\Delta I_{out} \times Z_{out}(f_c)
+V_{out,\text{undershoot}} \approx \Delta I_{out} \times Z_{out}(f_c)
 $$
 $$
-V_{ripple}
-\approx
-I_{L(p-p)} \times Z_{out}(f_{sw})
+V_{ripple} \approx I_{L(p-p)} \times Z_{out}(f_{sw})
 $$
 Sayfanin altindaki not, bu iliskilerin Bode / empedans egileri uzerinden dusunulmesi gerektigini yeniden vurguluyor.
 
@@ -1989,21 +1938,12 @@ Yeni kutup/sifir hedefi ya da yeni nihai komponent sonucu vermiyor. Burada oneml
 Sayfanin ust tarafinda, `H(s) = -Z_F/Z_1` ifadesindeki iki paralel empedansin orani tekrar yazilmis gorunuyor:
 
 $$
-H(s)
-=
--
-\frac{
-\left(\dfrac{1}{sC_3}\right)\parallel\left(\dfrac{sR_2C_1+1}{sC_1}\right)
-}{
-R_1\parallel\left(\dfrac{sR_3C_2+1}{sC_2}\right)
-}
+H(s) = - \frac{ \left(\dfrac{1}{sC_3}\right)\parallel\left(\dfrac{sR_2C_1+1}{sC_1}\right) }{ R_1\parallel\left(\dfrac{sR_3C_2+1}{sC_2}\right) }
 $$
 Sayfanin orta kismina dogru ise, ozellikle paydaki `Z_F` blogunun paralel empedans formulu ile acilmaya baslandigi goruluyor. Yani:
 
 $$
-Z_F
-=
-\left(\frac{1}{sC_3}\right)\parallel\left(\frac{sR_2C_1+1}{sC_1}\right)
+Z_F = \left(\frac{1}{sC_3}\right)\parallel\left(\frac{sR_2C_1+1}{sC_1}\right)
 $$
 ifadesi, klasik
 
@@ -2170,10 +2110,7 @@ Burada cikis ripple denklemini daha acik yazarak `Cout` alt sinirini bobin rippl
 Sayfada kullanilan iliski su sekilde okunuyor:
 
 $$
-C_{out}
-\gg
-\frac{\Delta I_L}
-{8\,f_{sw}\,\sqrt{\Delta V_{out}^2 - \left(R_{ESR}\Delta I_L\right)^2}}
+C_{out} \gg \frac{\Delta I_L} {8\,f_{sw}\,\sqrt{\Delta V_{out}^2 - \left(R_{ESR}\Delta I_L\right)^2}}
 $$
 Defterde bu denklem iki farkli bobin ripple senaryosu icin yerlestirilmis:
 
@@ -2198,9 +2135,7 @@ Burada cikis ripple'inin kapasitif bilesenini daha sade bir ifadeyle tekrar yazi
 ![W.93'ten secilen el yazisi parca: Delta Vout(C) ve Ipp/8fswCout iliskisinin kisa teyidi](images/defter_snippets_web/d27_w93_capacitive_ripple_component.jpg)
 
 $$
-\Delta V_{out(C)}
-\approx
-\frac{I_{pp}}{8\,f_{sw}\,C_{out}}
+\Delta V_{out(C)} \approx \frac{I_{pp}}{8\,f_{sw}\,C_{out}}
 $$
 ve `I_{pp}`'nin, bobin akiminin tepeden-tepeye ripple'i yani `\Delta I_{L(p-p)}` oldugu not edilmis.
 
@@ -2213,9 +2148,7 @@ Sayfanin yan notlarinda, onceki bobin sayfalarina baglanan iki ripple senaryosu 
 Sayfanin ortasindaki yerlestirme, `3.8 A` ile kapasitif ripple teriminin hesaplanmaya calisildigini gosteriyor:
 
 $$
-\Delta V_{out(C)}
-\approx
-\frac{3.8}{8 \times 332\times 10^3 \times C_{out}}
+\Delta V_{out(C)} \approx \frac{3.8}{8 \times 332\times 10^3 \times C_{out}}
 $$
 `W.93`, `W.58`in cok kisa bir teyit / kaynak-ustu-not devami. Burada `ESR` teriminden ayri olarak yalnizca kapasitif ripple bileseni yaziliyor. Yeni bir nihai `Cout` sonucu vermiyor; ama `\Delta I_L = 3.8 A` ve `2.7 A` senaryolarinin cikis ripple hesabina nasil girdigini gostererek bobin secimi ile cikis ripple'i arasindaki bagi tekrar kuruyor.
 
@@ -2239,10 +2172,7 @@ Burada, yuk akiminin azalmasi sirasinda olusabilecek cikis gerilimi `overshoot` 
 Sayfada kullanilan iliski su sekilde okunuyor:
 
 $$
-C_{out}
-\gg
-\frac{L_F \, \Delta I_{out}^{\,2}}
-{\left(V_{out} + \Delta V_{overshoot}\right)^2 - V_{out}^{\,2}}
+C_{out} \gg \frac{L_F \, \Delta I_{out}^{\,2}} {\left(V_{out} + \Delta V_{overshoot}\right)^2 - V_{out}^{\,2}}
 $$
 Defterde yuk adimi su sekilde not edilmis:
 
@@ -2293,16 +2223,12 @@ Sayfada daha sonra cikis LC yapisinin `Q` faktorunu yuk ve kayiplar uzerinden ok
 Yuk bagimli `Q` notu su sekilde okunuyor:
 
 $$
-Q_{load}
-=
-\frac{R}{\sqrt{L/C}}
+Q_{load} = \frac{R}{\sqrt{L/C}}
 $$
 Sayfadaki dusunceye gore, yalnizca yuk direncine bakmak yeterli degildir; `L` ve `C` tarafindaki kayiplar da bu `Q` degerini dusurur. Bu nedenle ikinci bir kayip-kaynakli `Q` notu yazilmis:
 
 $$
-Q_{loss}
-\approx
-\frac{\sqrt{L/C}}{R_{\text{kayip,toplam}}}
+Q_{loss} \approx \frac{\sqrt{L/C}}{R_{\text{kayip,toplam}}}
 $$
 Sayfadaki ornek yerlestirmede:
 
@@ -2323,22 +2249,12 @@ $$
 ve buna bagli:
 
 $$
-Q_{load}
-=
-\frac{0.36}{\sqrt{1\,\mu\text{H}/200\,\mu\text{F}}}
-\approx
-5.09
+Q_{load} = \frac{0.36}{\sqrt{1\,\mu\text{H}/200\,\mu\text{F}}} \approx 5.09
 $$
 Sayfanin sonunda bu iki etkinin birlikte dusunulmesi icin su iliski not edilmis:
 
 $$
-Q
-=
-Q_{loss} \parallel Q_{load}
-=
-\frac{Q_{loss}\,Q_{load}}{Q_{loss}+Q_{load}}
-\approx
-1.55
+Q = Q_{loss} \parallel Q_{load} = \frac{Q_{loss}\,Q_{load}}{Q_{loss}+Q_{load}} \approx 1.55
 $$
 `W.60` benim icin "Cout sadece `uF` ve `ESR` degil, LC filtresinin `Q` davranisi da var" dedigim sayfa. Sayisal olarak ikinci projenin tum nihai degerleriyle birebir kurulmus bir sonuc sayfasi olmayabilir; bu yuzden nihai secim gibi degil, control-loop tarafina gecis notu gibi okunmali.
 
@@ -2357,22 +2273,12 @@ Sayfada korunacak ana fikir sunlar:
 Sayfada ilk olarak, cok hafif yuk / buyuk `R` durumunda `Q_{load}`'in cok buyuk olabildigi not edilmis:
 
 $$
-Q_{load}
-=
-\frac{R}{\sqrt{L/C}}
-\approx
-25465
+Q_{load} = \frac{R}{\sqrt{L/C}} \approx 25465
 $$
 Bu durumda `Q_{loss} \approx 2.3` ile paralel alindiginda:
 
 $$
-Q
-=
-Q_{loss} \parallel Q_{load}
-\approx
-\frac{2.3 \times 25465}{2.3 + 25465}
-\approx
-2.299
+Q = Q_{loss} \parallel Q_{load} \approx \frac{2.3 \times 25465}{2.3 + 25465} \approx 2.299
 $$
 Yani cok hafif yukte toplam `Q`, neredeyse tamamen `Q_{loss}` tarafindan belirleniyor gibi okunuyor.
 
@@ -2386,11 +2292,7 @@ $$
 Buradan:
 
 $$
-Q_{load}
-=
-\frac{9\,m\Omega}{\sqrt{1\,\mu\text{H}/200\,\mu\text{F}}}
-\approx
-0.127
+Q_{load} = \frac{9\,m\Omega}{\sqrt{1\,\mu\text{H}/200\,\mu\text{F}}} \approx 0.127
 $$
 ve `Q_{loss} \approx 2.3` ile paralel alindiginda yaklasik:
 
@@ -2410,35 +2312,17 @@ Burada `W.60-W.61` tarafindaki `Q` dusuncesini daha formel bir cikis filtresi / 
 Sayfada ilk olarak, LC birlikte calisirken cikis gerilim dalgalanmasini azaltma fikri not edilmis ve efektif sönum direnci benzeri bir ifade yazilmis:
 
 $$
-R_{damp}
-=
-D \, R_{DS(on),HS}
-+
-(1-D)\,R_{DS(on),LS}
-+
-R_{DCR}
+R_{damp} = D \, R_{DS(on),HS} + (1-D)\,R_{DS(on),LS} + R_{DCR}
 $$
 Ardindan control-to-output benzeri ikinci dereceden bir ifade not edilmis:
 
 $$
-G_{vd}(s)
-=
-V_g \cdot
-\frac{1 + s/\omega_{ESR}}
-{1 + \frac{1}{Q}\frac{s}{\omega_0} + \left(\frac{s}{\omega_0}\right)^2}
+G_{vd}(s) = V_g \cdot \frac{1 + s/\omega_{ESR}} {1 + \frac{1}{Q}\frac{s}{\omega_0} + \left(\frac{s}{\omega_0}\right)^2}
 $$
 Sayfada dogal frekans icin de daha ayrintili bir ifade yaziliyor:
 
 $$
-\omega_0
-=
-\frac{1}
-\sqrt{
-L_F C_{out}
-\cdot
-\frac{1 + R_{ESR}/R_{load}}
-{1 + R_{ESR}/R_{damp}}
-}}
+\omega_0 = \frac{1} \sqrt{ L_F C_{out} \cdot \frac{1 + R_{ESR}/R_{load}} {1 + R_{ESR}/R_{damp}} }}
 $$
 hemen altinda ise ilk yaklasim olarak:
 
@@ -2478,11 +2362,7 @@ Sayfanin alt tarafinda ise ayrica baska bir ornek / harici devre notu goruluyor:
 ve buna bagli dogal frekans hesabı:
 
 $$
-f_0
-=
-\frac{1}{2\pi\sqrt{LC}}
-\approx
-4\,\text{kHz}
+f_0 = \frac{1}{2\pi\sqrt{LC}} \approx 4\,\text{kHz}
 $$
 `W.63` iki parcali okunmali. Ustteki satir ikinci projedeki `P1` / `Q` calismasinin kisa ozeti gibi duruyor. Alttaki `180 uF` ve `9 uH` ile yapilan `f_0 \approx 4 kHz` hesabi ise buyuk ihtimalle harici bir ornek devreye veya excel/web uzerindeki baska bir calismaya ait. O yuzden burada iki parcayi ayri tutuyorum:
 
@@ -2498,24 +2378,12 @@ Basligindan anlasildigi kadariyla burada harici bir ornekten yararlanmisim: `Ano
 Sayfada ornek devre icin su buyuklukler yazilmis:
 
 $$
-f_0
-=
-\frac{1}{2\pi\sqrt{LC}}
-=
-\frac{1}{2\pi\sqrt{1\,\mu\text{H}\cdot 200\,\mu\text{F}}}
-\approx
-11\,\text{kHz}
+f_0 = \frac{1}{2\pi\sqrt{LC}} = \frac{1}{2\pi\sqrt{1\,\mu\text{H}\cdot 200\,\mu\text{F}}} \approx 11\,\text{kHz}
 $$
 ve ESR sifiri icin:
 
 $$
-f_{ESR}
-=
-\frac{1}{2\pi C R_{ESR}}
-=
-\frac{1}{2\pi \cdot 200\,\mu\text{F}\cdot 0.8\,m\Omega}
-\approx
-1\,\text{MHz}
+f_{ESR} = \frac{1}{2\pi C R_{ESR}} = \frac{1}{2\pi \cdot 200\,\mu\text{F}\cdot 0.8\,m\Omega} \approx 1\,\text{MHz}
 $$
 Sayfada ayrica:
 
@@ -2571,19 +2439,12 @@ Burada, `W.64-W.65`teki ayni harici ornegi biraz daha formel hale getirip `Zout`
 Sayfada once ESR sifiri bir kez daha yaziliyor:
 
 $$
-f_{ESR}
-=
-\frac{1}{2\pi R_{ESR} C}
-\approx
-1\,\text{MHz}
+f_{ESR} = \frac{1}{2\pi R_{ESR} C} \approx 1\,\text{MHz}
 $$
 Ardindan bobin koluna ait karakteristik bir frekans noktasi su sekilde not edilmis:
 
 $$
-R_L = \omega L
-\;\Rightarrow\;
-f_2 = \frac{R_L}{2\pi L}
-\approx 4.7\,\text{kHz}
+R_L = \omega L \;\Rightarrow\; f_2 = \frac{R_L}{2\pi L} \approx 4.7\,\text{kHz}
 $$
 Sayfadaki en onemli not ise toplam cikis empedansinin iki kolun paraleli olarak dusunulmesi:
 
@@ -2600,11 +2461,7 @@ temsil eden bilesen empedanslari gibi dusunulmustur.
 Sayfanin alt tarafinda `f_0` icin iki yazim notu var:
 
 $$
-f_0
-\approx
-\frac{1}{2\pi\sqrt{L_F C_{out}}}
-\approx
-11.25\,\text{kHz}
+f_0 \approx \frac{1}{2\pi\sqrt{L_F C_{out}}} \approx 11.25\,\text{kHz}
 $$
 ve `R_{yuk}` sonlu oldugunda daha ayrintili ifadeyle:
 
@@ -2772,15 +2629,7 @@ Sayfadaki metne gore:
 Sayfada yazilan ornek slew-rate hesabi:
 
 $$
-\frac{d i_L}{dt}
-=
-\frac{\Delta I_L}{dt}
-=
-\frac{V_L}{L}
-=
-\frac{5-2}{1\,\mu\text{H}}
-=
-3\,\text{A}/\mu\text{s}
+\frac{d i_L}{dt} = \frac{\Delta I_L}{dt} = \frac{V_L}{L} = \frac{5-2}{1\,\mu\text{H}} = 3\,\text{A}/\mu\text{s}
 $$
 `W.98` burada proje-ozel `24-36 V / 14 V` sayilarini veren bir nihai hesap sayfasi degil; elde kurulmus egitsel bir ornek. Ama anlattigi fizik cok net: load transient sirasinda dongu tepki verse bile bobin akimi ancak sonlu bir `A/us` egimiyle yukselebilir, ilk anda gereken fark akim da cikis kapasitörlerinden gelir. O yuzden `5.4.6` altinda yerinde duruyor.
 
@@ -2895,20 +2744,12 @@ Sayfada bastan sona not edilen temel proje girdileri sunlar:
 Sayfanin ortasinda once ideal buck duty araligi yaziliyor:
 
 $$
-\frac{V_{out}}{V_{in,\max}}
-\le
-D
-\le
-\frac{V_{out}}{V_{in,\min}}
+\frac{V_{out}}{V_{in,\max}} \le D \le \frac{V_{out}}{V_{in,\min}}
 $$
 ve buna gore:
 
 $$
-\frac{14}{36}
-\le
-D
-\le
-\frac{14}{24}
+\frac{14}{36} \le D \le \frac{14}{24}
 $$
 sonucu olarak su degerleri not ettim:
 
@@ -2918,20 +2759,12 @@ sonucu olarak su degerleri not ettim:
 Sayfanin altinda ise verim etkisi de dahil edilerek daha muhafazakar bir duty araligi kuruluyor:
 
 $$
-\frac{V_{out}}{V_{in,\max}\,\eta}
-\le
-D_\eta
-\le
-\frac{V_{out}}{V_{in,\min}\,\eta}
+\frac{V_{out}}{V_{in,\max}\,\eta} \le D_\eta \le \frac{V_{out}}{V_{in,\min}\,\eta}
 $$
 `V_{out} = 14 V` ve `\eta \approx 0.9` ile:
 
 $$
-\frac{14}{36\times 0.9}
-\le
-D_\eta
-\le
-\frac{14}{24\times 0.9}
+\frac{14}{36\times 0.9} \le D_\eta \le \frac{14}{24\times 0.9}
 $$
 ve sayfadaki sonuc:
 
@@ -2977,16 +2810,12 @@ Defterde daha sonra, verimi yaklasik $\eta = 0.9$ kabul ederek giris akimi sinir
 En kotu durum:
 
 $$
-I_{IN,\max}
-= \frac{125\,\text{W}}{0.9 \cdot 24\,\text{V}}
-\approx 5.79\,\text{A}
+I_{IN,\max} = \frac{125\,\text{W}}{0.9 \cdot 24\,\text{V}} \approx 5.79\,\text{A}
 $$
 En iyi durum:
 
 $$
-I_{IN,\min}
-= \frac{125\,\text{W}}{0.9 \cdot 36\,\text{V}}
-\approx 3.86\,\text{A}
+I_{IN,\min} = \frac{125\,\text{W}}{0.9 \cdot 36\,\text{V}} \approx 3.86\,\text{A}
 $$
 `W.53`, `W.26` ile ayni ozet-parametre hattina ait. Buradaki `I_{IN}` degerleri, giris kapasitörü ve input filter hesabinda kullanilacak sinirlari veriyor. `50 mA` giris ripple hedefi icin dusulen "EMI / input filter eklenmesiyle karsilanir" notu da onemli: bu requirement'i yalnizca kapasitör secimiyle kapatmaya calismiyorum, daha genis bir giris filter tasarimina bagliyorum.
 
@@ -3064,9 +2893,7 @@ Sayfada gorulen ana fikirler sunlar:
 Sayfada bu dusunceye bagli olarak kullanilan temel iliski su sekilde yaziliyor:
 
 $$
-\Delta V_{ripple}
-\approx
-\frac{I_{out}\,D(1-D)}{f_{sw}\,C_{IN}}
+\Delta V_{ripple} \approx \frac{I_{out}\,D(1-D)}{f_{sw}\,C_{IN}}
 $$
 Bu denklemi ilk etkin `CIN` alt siniri gibi kullaniyorum. Yani burada asil bakis kapasitif ripple tarafinda; `ESR/ESL`, kaynak / `LISN` empedansi, hot-loop yerlesim parazitleri ve input filter etkisi bu tek satirla kapanmis sayilmiyor. Bu yuzden `W.35`te `ESR` ekleniyor, `W.51`te gercek parca / `dc-bias` kontrolu geliyor, `W.48` ve `7.4` tarafinda da EMI / kaynak empedansi baglami geri donuyor.
 
@@ -3239,9 +3066,7 @@ Bu grup tek bir temiz final satiri degil. Giris kapasitörü boyutlandirmasinda 
 `W.27` tarafinda, ripple gerilimi hedefinden minimum etkin `Cin` icin su iliski kullaniliyor:
 
 $$
-C_{in}
-\ge
-\frac{D(1-D)\,I_{out}}{\Delta V_{IN,PP}\,f_{sw}}
+C_{in} \ge \frac{D(1-D)\,I_{out}}{\Delta V_{IN,PP}\,f_{sw}}
 $$
 Defterdeki ilk yerlestirmede:
 
@@ -3253,10 +3078,7 @@ Defterdeki ilk yerlestirmede:
 alininca yaklasik:
 
 $$
-C_{in,\text{eff}}
-\gtrsim
-\frac{0.5(1-0.5)\cdot 9}{0.24 \cdot 332\,\text{kHz}}
-\approx 28.4\,\mu\text{F}
+C_{in,\text{eff}} \gtrsim \frac{0.5(1-0.5)\cdot 9}{0.24 \cdot 332\,\text{kHz}} \approx 28.4\,\mu\text{F}
 $$
 `W.30-W.31` sayfalarinda ayni problem biraz daha gercekci okunuyor:
 
@@ -3270,11 +3092,7 @@ $$
 Bu yaklasimin temiz yazimi su sekilde ozetlenebilir:
 
 $$
-\Delta V_{IN}
-\approx
-\frac{I_{out}\,D(1-D)}{f_{sw}\,C_{in}}
-\, + \,
-I_{out}\,R_{ESR}
+\Delta V_{IN} \approx \frac{I_{out}\,D(1-D)}{f_{sw}\,C_{in}} \, + \, I_{out}\,R_{ESR}
 $$
 `W.32` sayfasi, daha sikı bir ornek olarak `\Delta V_{IN} = 50\,\text{mV}` gibi bir hedefle tekrar deneme yapiyor. Bu, mevcut ikinci proje spesifikasyonundaki `0.24 V` ile ayni sey degil; dolayisiyla final hedef degil, daha sert bir tasarim egzersizi / ara deneme.
 
@@ -3295,19 +3113,12 @@ Bu sayfayi yine de silmiyorum; cunku `Cin` hesabinin hedef ripple'a ne kadar has
 ![W.35'ten secilen el yazisi parca: ESR terimini acikca ekleyip minimum Cin'i 31.1 uF civarina tasiyan hesap](images/defter_snippets_web/d51_w35_esr_including_min_cin.jpg)
 
 $$
-\Delta V_{IN}
-=
-\frac{I_{out}\,D(1-D)}{f_{sw}\,C_{in}}
- + I_{out}R_{ESR}
+\Delta V_{IN} = \frac{I_{out}\,D(1-D)}{f_{sw}\,C_{in}} + I_{out}R_{ESR}
 $$
 ve `R_{ESR} = 3 mOhm`, `I_{out} = 9 A`, `D = 0.5`, `f_{sw} = 332 kHz`, `\Delta V_{IN} = 0.24 V` kabul edilince:
 
 $$
-C_{in}
-\gtrsim
-\frac{0.5(1-0.5)\cdot 9}
-{332\,\text{kHz}\cdot(0.24 - 0.003\cdot 9)}
-\approx 31.1\,\mu\text{F}
+C_{in} \gtrsim \frac{0.5(1-0.5)\cdot 9} {332\,\text{kHz}\cdot(0.24 - 0.003\cdot 9)} \approx 31.1\,\mu\text{F}
 $$
 Bu grup tek bir sonuca vurmuyor; ayni input-capacitor problemini farkli acilardan kuruyor. `W.27`deki `28.4 uF` ilk minimum etkin `Cin` adayi gibi duruyor. `W.30-W.31` ayni probleme `ESR` ve `RMS` tarafini ekliyor. `W.35` bunu sayisal olarak `31.1 uF` civarina tasiyor. `W.32` mevcut `0.24 V` hedefine gore daha sert bir egzersiz, `W.33`teki `50 mA` yorumu ise daha cok kaynagin gordugu kalite metriği. Yani bu sayfalari birbirini bozan hesaplar gibi degil, ayni soruya bakilan farkli pencereler gibi okuyorum.
 
@@ -3407,39 +3218,20 @@ ODT notundaki kaba $D = 0.5$ yaklasimi ilk kontrol icin kullanilabilir. Mavi egr
 Kaba yaklasimin temiz yazimi:
 
 $$
-\frac{I_{in,RMS}}{I_{load}} \approx 0.5
-\qquad (D = 0.5)
+\frac{I_{in,RMS}}{I_{load}} \approx 0.5 \qquad (D = 0.5)
 $$
 $$
-I_{in,RMS}
-= I_{load}\cdot 0.5
-= 9\,\text{A}\cdot 0.5
-= 4.5\,\text{A}_{RMS}
+I_{in,RMS} = I_{load}\cdot 0.5 = 9\,\text{A}\cdot 0.5 = 4.5\,\text{A}_{RMS}
 $$
 Daha ayrintili ifade ise su sekilde tutulabilir:
 
 $$
-I_{in,RMS,\max}
-= I_{LOAD,\max}
-\sqrt{
-D(1-D)
-+ \frac{1}{12}\cdot
-\left(\frac{V_{OUT}}{L\,f_{sw}\,I_{\max}}\right)^2
-\cdot (1-D)^2 \cdot D
-}
+I_{in,RMS,\max} = I_{LOAD,\max} \sqrt{ D(1-D) + \frac{1}{12}\cdot \left(\frac{V_{OUT}}{L\,f_{sw}\,I_{\max}}\right)^2 \cdot (1-D)^2 \cdot D }
 $$
 ODT notasyonundaki sayisal yerlestirme korunursa:
 
 $$
-I_{in,RMS,\max}
-= 9\,\text{A}\,
-\sqrt{
-0.5(1-0.5)
-+ \frac{1}{12}\cdot
-\left(\frac{14\,\text{V}}{6.8\,\mu\text{H}\cdot 332\,\text{kHz}\cdot 9\,\text{A}}\right)^2
-\cdot (1-0.5)^2 \cdot 0.5
-}
-\approx 4.55\,\text{A}_{RMS}
+I_{in,RMS,\max} = 9\,\text{A}\, \sqrt{ 0.5(1-0.5) + \frac{1}{12}\cdot \left(\frac{14\,\text{V}}{6.8\,\mu\text{H}\cdot 332\,\text{kHz}\cdot 9\,\text{A}}\right)^2 \cdot (1-0.5)^2 \cdot 0.5 } \approx 4.55\,\text{A}_{RMS}
 $$
 Bu sonuc, giris MLCC bankasinin yalnizca ripple gerilimini degil, RMS akim tasima ve sicaklik artisi tarafini da karsilamasi gerektigini gosteriyor.
 
@@ -3457,15 +3249,7 @@ Burada, giris kapasitörü RMS akimi icin daha ayrintili bir sayisal deneme var:
 kabul edilerek:
 
 $$
-I_{Cin,RMS}
-\approx
-\sqrt{
-D \left(
-I_{out}^2 (1-D)
- + \frac{\Delta I_L^2}{12}
-\right)
-}
-\approx 4.94\,\text{A}
+I_{Cin,RMS} \approx \sqrt{ D \left( I_{out}^2 (1-D) + \frac{\Delta I_L^2}{12} \right) } \approx 4.94\,\text{A}
 $$
 Bu sonuc, yukaridaki `4.55 A_RMS` hesabiyla birebir ayni degil. Farkin nedeni kullanilan form, `\Delta I_L` teriminin dahil edilmesi ve sayfadaki varsayimlar olabilir. Su asamada birini silmiyorum: `4.55 A_RMS` kaba ilk tahmin, `4.94 A_RMS` ise daha ayrintili / daha korunmaci tahmin gibi duruyor.
 
@@ -3476,13 +3260,7 @@ Burada ayni `I_{Cin,RMS}` hesabi daha temiz ve daha duz bir yerlestirmeyle tekra
 ![W.36'dan secilen el yazisi parca: temiz yeniden yerlestirmeyle 4.566 Arms sonucunu veren I_Cin,RMS teyidi](images/defter_snippets_web/d58_w36_clean_input_rms_result.jpg)
 
 $$
-I_{Cin,RMS}
-\approx
-\sqrt{
-D\left(
-I_{out}^2(1-D) + \frac{\Delta I_L^2}{12}
-\right)
-}
+I_{Cin,RMS} \approx \sqrt{ D\left( I_{out}^2(1-D) + \frac{\Delta I_L^2}{12} \right) }
 $$
 `D = 0.5`, `I_{out} = 9 A`, `\Delta I_L = 3.8 A` ile defterde:
 
@@ -3500,17 +3278,7 @@ Burada giris kapasitörü `RMS` akimi hesabi bir kez daha toparlaniyor ve hem ay
 Sayfanin ust kismina yazilan ayrintili ifade, onceki sayfalardaki denklemin ayni ailesine ait gorunuyor:
 
 $$
-I_{in,RMS,\max}
-=
-I_0
-\sqrt{
-D(1-D)
- + \frac{1}{12}
-\left(
-\frac{V_0}{L\,f_{sw}\,I_0}
-\right)^2
-(1-D)^2 D
-}
+I_{in,RMS,\max} = I_0 \sqrt{ D(1-D) + \frac{1}{12} \left( \frac{V_0}{L\,f_{sw}\,I_0} \right)^2 (1-D)^2 D }
 $$
 Sayfadaki yerlestirmede:
 
@@ -3530,17 +3298,12 @@ sonucu yazilmis.
 Sayfanin orta kismina ise, ayni sonucun daha hizli/ezber bir yaklasimla tekrar not edildigi goruluyor:
 
 $$
-\frac{I_{in,RMS}}{I_{load}} \approx 0.5
-\qquad (D = 0.5)
+\frac{I_{in,RMS}}{I_{load}} \approx 0.5 \qquad (D = 0.5)
 $$
 buradan:
 
 $$
-I_{in,RMS,\max}
-\approx
-0.5 \times 9\,A
-=
-4.5\,A
+I_{in,RMS,\max} \approx 0.5 \times 9\,A = 4.5\,A
 $$
 Sayfanin en altindaki kisa not da, bu `RMS` sonucu ile fiziksel karar arasindaki baglantiya dikkat cekiyor:
 
@@ -3796,9 +3559,7 @@ $$
 ve buradan buyukluk icin:
 
 $$
-|Z|
-=
-\sqrt{R_{ESR}^{\,2} + (X_L + X_C)^2}
+|Z| = \sqrt{R_{ESR}^{\,2} + (X_L + X_C)^2}
 $$
 ifadesine geciliyor.
 
@@ -3835,9 +3596,7 @@ Sayfada iki farkli aday yan yana dusunulmus:
 Sayfada bunlar icin klasik ikinci dereceden esitger buyuklukler hesaplanmis:
 
 $$
-f_0 = \frac{1}{2\pi\sqrt{LC}}
-\qquad
-R_0 = \sqrt{\frac{L}{C}}
+f_0 = \frac{1}{2\pi\sqrt{LC}} \qquad R_0 = \sqrt{\frac{L}{C}}
 $$
 MLCC tarafi icin defterde yaklasik su sonuc yazilmis:
 
@@ -3891,33 +3650,15 @@ Sayfanin ustunde yazilan ornek:
 Sayfada karakteristik empedans benzeri buyukluk su sekilde yazilmis:
 
 $$
-R_0
-=
-\sqrt{\frac{L_{ESL}}{C}}
-\approx
-\sqrt{\frac{2.5\,nH}{4\,uF}}
-\approx
-7.29\,m\Omega
+R_0 = \sqrt{\frac{L_{ESL}}{C}} \approx \sqrt{\frac{2.5\,nH}{4\,uF}} \approx 7.29\,m\Omega
 $$
 Ardindan iki farkli durum icin `Q` benzeri oran hesaplanmis:
 
 $$
-Q_1
-=
-\frac{R_0}{ESR_1}
-\approx
-\frac{7.29\,m\Omega}{250\,m\Omega}
-\approx
-0.029
+Q_1 = \frac{R_0}{ESR_1} \approx \frac{7.29\,m\Omega}{250\,m\Omega} \approx 0.029
 $$
 $$
-Q_2
-=
-\frac{R_0}{ESR_2}
-\approx
-\frac{7.29\,m\Omega}{1\,m\Omega}
-\approx
-7.29
+Q_2 = \frac{R_0}{ESR_2} \approx \frac{7.29\,m\Omega}{1\,m\Omega} \approx 7.29
 $$
 Sayfadaki el cizimi de bu ayrimi gorsellestiriyor:
 
@@ -4071,9 +3812,7 @@ Sayfadaki ana fikirler:
 Defterde, bulk kapasitör uzerindeki ripple akimi icin yaklasik olarak su tip bir iliski yazilmaya calisiliyor:
 
 $$
-I_{CB,RMS}
-\approx
-\frac{\Delta V_{IN,PP}}{2\sqrt{3}\,ESR_B}
+I_{CB,RMS} \approx \frac{\Delta V_{IN,PP}}{2\sqrt{3}\,ESR_B}
 $$
 ![Bulk capacitor RMS akimi ile ESR/ripple iliskisini gosteren notlu ekran goruntusu](images/foto_selected/p23_bulk_rms_esr_constraint.jpg)
 
@@ -4108,9 +3847,7 @@ Burada bulk kapasitör secimine bir ucuncu kosul daha ekleniyor: bulk kapasitör
 Defterde okunan iliski su sekilde:
 
 $$
-ESR_B
-\lesssim
-\frac{\Delta V_{IN,tran}}{I_{step}\,D_{\max}}
+ESR_B \lesssim \frac{\Delta V_{IN,tran}}{I_{step}\,D_{\max}}
 $$
 Sayfadaki yerlestirmede:
 
@@ -4260,22 +3997,12 @@ Sayfanin ust kisminda, bulk kapasitörun ideal bir bypass elemani olmadigi; anca
 Sayfada yazilan yaklasik iliski su sekilde okunuyor:
 
 $$
-I_{CB,RMS}
-\approx
-\frac{1}{2\sqrt{3}}
-\cdot
-\frac{\Delta V_{IN,PP}}{ESR_B}
+I_{CB,RMS} \approx \frac{1}{2\sqrt{3}} \cdot \frac{\Delta V_{IN,PP}}{ESR_B}
 $$
 ve sayfadaki yerlestirmede:
 
 $$
-I_{CB,RMS}
-\approx
-\frac{1}{2\sqrt{3}}
-\cdot
-\frac{0.24\,\text{V}}{0.103\,\Omega}
-\approx
-0.677\,\text{A}_{RMS}
+I_{CB,RMS} \approx \frac{1}{2\sqrt{3}} \cdot \frac{0.24\,\text{V}}{0.103\,\Omega} \approx 0.677\,\text{A}_{RMS}
 $$
 Sayfanin alt kisminda ise `\Delta V_{IN,PP}` hedefi bu kez toplam etkili giris kapasitansi uzerinden tekrar kontrol edilmeye calisiliyor. Buradaki ana dusunce su:
 
@@ -4299,11 +4026,7 @@ Burada `W.74`teki bulk-uzerinden `RMS` akim dusuncesi tekrar ediliyor; fakat bu 
 Sayfanin ust kismina yine su yaklasik iliski yazilmis:
 
 $$
-I_{CB,RMS}
-\approx
-\frac{1}{2\sqrt{3}}
-\cdot
-\frac{\Delta V_{IN,PP}}{ESR_B}
+I_{CB,RMS} \approx \frac{1}{2\sqrt{3}} \cdot \frac{\Delta V_{IN,PP}}{ESR_B}
 $$
 Ancak sayfanin ana fikri sayisal sonuc vermekten cok su ayrimi kuruyor:
 
@@ -4350,20 +4073,12 @@ Sayfanin orta ve alt kisimlarinda, paralel MLCC grubu icin kaba bir `ESR` kontro
 ve tek bir kapasitör icin dusunulen `ESR` degerinin, `4 adet` paralel kullanildiginda yaklasik dorde bolunecegi yazilmis. Sayfadaki okunan ara notlar su sekilde:
 
 $$
-ESR_{\text{eq}}
-\approx
-\frac{2.1\,\Omega}{4}
-\approx
-0.525\,\Omega
+ESR_{\text{eq}} \approx \frac{2.1\,\Omega}{4} \approx 0.525\,\Omega
 $$
 ve daha yuksek frekansli kisim icin:
 
 $$
-ESR_{\text{eq}}
-\approx
-\frac{0.5\,\Omega}{4}
-\approx
-0.125\,\Omega
+ESR_{\text{eq}} \approx \frac{0.5\,\Omega}{4} \approx 0.125\,\Omega
 $$
 `W.76`, `W.75`te kurulan "MLCC yuksek frekansta daha etkilidir" fikrini bu kez gercek aday komponentlere indiriyor. Buradaki `ESR` sayilari buyuk ihtimalle datasheet/grafik ustunden okunmus kaba ara degerler; o yuzden tek basina nihai sonuc gibi alinmamali. Bende kalan asil iz, paralel MLCC ile etkin `ESR`'i dusurme mantigi ve `C10-C14` ile `C29` tarafina giden parca secim dusuncesi.
 
@@ -4422,11 +4137,7 @@ I_{RMS} \approx 4.54\,A_{RMS}
 $$
 - `5 adet` kapasitör arasinda esit dagilim varsayimiyla:
 $$
-I_{RMS,\text{cap}}
-\approx
-\frac{4.54}{5}
-\approx
-0.908\,A_{RMS}
+I_{RMS,\text{cap}} \approx \frac{4.54}{5} \approx 0.908\,A_{RMS}
 $$
 
 Sayfada ayrica tek bir `4.7 uF` MLCC icin azami `ESL` benzeri bir deger not edilmis:
@@ -4437,13 +4148,7 @@ $$
 ve `5 adet` paralel kullanim icin toplam etkin `ESL`'in kabaca:
 
 $$
-ESL_{\text{toplam}}
-\approx
-\frac{0.0007\,\mu H}{5}
-\approx
-1.4 \times 10^{-4}\,\mu H
-\approx
-0.14\,nH
+ESL_{\text{toplam}} \approx \frac{0.0007\,\mu H}{5} \approx 1.4 \times 10^{-4}\,\mu H \approx 0.14\,nH
 $$
 olacagi yazilmis.
 
@@ -4458,11 +4163,7 @@ C_{\text{etkin,tek}} \approx 1.639\,\mu F
 $$
 - `5 adet` icin toplam etkin kapasitans:
 $$
-C_{\text{toplam,etkin}}
-\approx
-5 \times 1.639\,\mu F
-\approx
-8.195\,\mu F
+C_{\text{toplam,etkin}} \approx 5 \times 1.639\,\mu F \approx 8.195\,\mu F
 $$
 
 Bu secim hattini destekleyen somut datasheet / arac ekran goruntuleri de burada kaliyor:
@@ -4498,11 +4199,7 @@ $$
 ESR_{\text{tek}} \approx 0.004\,\Omega = 4\,m\Omega
 $$
 $$
-ESR_{\text{eq}}
-\approx
-\frac{4\,m\Omega}{5}
-\approx
-0.8\,m\Omega
+ESR_{\text{eq}} \approx \frac{4\,m\Omega}{5} \approx 0.8\,m\Omega
 $$
 
   ![Secilen `4.7 uF` giris MLCC icin `0.3 MHz` civarinda okunan `ESR \approx 4 m\Omega` ekrani](images/foto_selected/p72_input_mlcc_esr_300khz.jpg)
@@ -4512,11 +4209,7 @@ $$
 ESR_{\text{tek}} \approx 0.01\,\Omega = 10\,m\Omega
 $$
 $$
-ESR_{\text{eq}}
-\approx
-\frac{10\,m\Omega}{5}
-\approx
-2\,m\Omega
+ESR_{\text{eq}} \approx \frac{10\,m\Omega}{5} \approx 2\,m\Omega
 $$
 
   ![Secilen `4.7 uF` giris MLCC icin `0.03 MHz` civarinda okunan `ESR \approx 10 m\Omega` ekrani](images/foto_selected/p73_input_mlcc_esr_30khz.jpg)
@@ -4528,9 +4221,7 @@ Bu ekran goruntulerinin kullandigi parcanin temel kimligi de ayrica korunabilir:
 Sayfanin alt kismina ise, kucuk yardimci kapasitörler ile ana `4.7 uF x 5` grubunun birlikte dusunuldugu ve toplam `derated` MLCC kapasitesinin kabaca:
 
 $$
-C_{\text{MLCC,toplam,etkin}}
-\approx
-8.228\,\mu F
+C_{\text{MLCC,toplam,etkin}} \approx 8.228\,\mu F
 $$
 seviyesinde not edildigi goruluyor.
 
@@ -4555,23 +4246,15 @@ Sayfada yazilan ana izler sunlar:
 
 - ilk / ideal minimum giris kapasitansi hesabi:
 $$
-C_{IN,\text{ideal}}
-\approx
-28.4\,\mu F
+C_{IN,\text{ideal}} \approx 28.4\,\mu F
 $$
 - bias sonrasi etkin MLCC kapasitesi:
 $$
-C_{\text{MLCC,etkin}}
-\approx
-8.195\,\mu F
+C_{\text{MLCC,etkin}} \approx 8.195\,\mu F
 $$
 - bunlar arasindaki acik:
 $$
-\Delta C
-\approx
-28.4 - 8.195
-\approx
-20\,\mu F
+\Delta C \approx 28.4 - 8.195 \approx 20\,\mu F
 $$
 
 Sayfada bunun hemen altinda, bu acigi kapatmak icin:
@@ -4625,11 +4308,7 @@ ESR_B \approx 0.004\,\Omega = 4\,m\Omega
 $$
 - `2 tane paralel` kullanim icin esit dagilim varsayimiyla:
 $$
-ESR_{B,\text{eq}}
-\approx
-\frac{4\,m\Omega}{2}
-\approx
-2\,m\Omega
+ESR_{B,\text{eq}} \approx \frac{4\,m\Omega}{2} \approx 2\,m\Omega
 $$
 
 Sayfada, onceki bulk kosuluyla karsilastirma da acikca yazilmis:
@@ -4649,11 +4328,7 @@ C_{\text{etkin,tek}} \approx 17\,\mu F
 $$
 - `2 adet` icin toplam etkin kapasite:
 $$
-C_{B,\text{toplam}}
-\approx
-17\,\mu F \times 2
-\approx
-34\,\mu F
+C_{B,\text{toplam}} \approx 17\,\mu F \times 2 \approx 34\,\mu F
 $$
 
 Bu gorsellerin birlikte verdigi ek dayanak su:
@@ -4688,10 +4363,7 @@ Burada giris kapasitörü bankasi icin bir ozet / kontrol sayfasi var. Sol taraf
 Sol sayfadaki ana hesap su sekilde okunuyor:
 
 $$
-\Delta V_{IN,PP,\text{hesap}}
-\approx
-\frac{D(1-D) I_{out,\max}}
-{C_{CE,\text{total}} \, f_{sw}\, (1-TOL)}
+\Delta V_{IN,PP,\text{hesap}} \approx \frac{D(1-D) I_{out,\max}} {C_{CE,\text{total}} \, f_{sw}\, (1-TOL)}
 $$
 Sayfadaki yerlestirmede:
 
@@ -4704,9 +4376,7 @@ Sayfadaki yerlestirmede:
 kullanilarak yaklasik:
 
 $$
-\Delta V_{IN,PP,\text{hesap}}
-\approx
-0.2006\,V
+\Delta V_{IN,PP,\text{hesap}} \approx 0.2006\,V
 $$
 sonucu yazilmis ve bunun:
 
@@ -4747,27 +4417,19 @@ Burada bulk giris kapasitörü icin transient-response tarafi iki ayri kosula ay
 Sayfanin orta kismina, onceki sayfalardan tanidik olan `ESR_B` transient kosulu yeniden yazilmis:
 
 $$
-ESR_B
-<
-\frac{\Delta V_{IN,tran}}{I_{step}\,D_{\max}}
+ESR_B < \frac{\Delta V_{IN,tran}}{I_{step}\,D_{\max}}
 $$
 ve yanina da bu kosulun daha once hesaplandigi not edilmis.
 
 Sayfanin asil yeni katki yapan kismi ise, `C_B` hesabinda kullanilacak zaman olcegini secmeye calismasi. Sayfada:
 
 $$
-T_{rip}
-\approx
-\frac{1}{f_{BW}\cdot 4}
+T_{rip} \approx \frac{1}{f_{BW}\cdot 4}
 $$
 iliskisi yaziliyor ve `f_c \approx f_{sw}/10` varsayimiyla:
 
 $$
-T_{rip}
-\approx
-\frac{1}{33.2\,kHz \cdot 4}
-\approx
-7.53\,\mu s
+T_{rip} \approx \frac{1}{33.2\,kHz \cdot 4} \approx 7.53\,\mu s
 $$
 gibi bir ara sonuc not ediliyor.
 
@@ -4782,9 +4444,7 @@ Burada `W.83`te kurulan bulk transient hesabi daha net ve daha sayisal bir bicim
 ![W.91'den secilen el yazisi parca: 0.1023 ohm ESR_B siniri ve 7.14 us T_rips notunu daha temiz veren sayfa](images/defter_snippets_web/d84_w91_clean_esrb_and_trips.jpg)
 
 $$
-ESR_B
-<
-\frac{V_{IN-tran}}{I_{step}\,D_{\max,\text{verimli}}}
+ESR_B < \frac{V_{IN-tran}}{I_{step}\,D_{\max,\text{verimli}}}
 $$
 Sayfadaki yerlestirmede:
 
@@ -4795,20 +4455,14 @@ Sayfadaki yerlestirmede:
 kullanilarak:
 
 $$
-ESR_B
-<
-\frac{0.36}{5.429 \times 0.6481}
-\approx
-0.1023\,\Omega
+ESR_B < \frac{0.36}{5.429 \times 0.6481} \approx 0.1023\,\Omega
 $$
 sonucu tekrar yazilmis.
 
 Sayfanin orta kisminda bu kosul bir de ters yonden okunmus:
 
 $$
-V_{IN-tran}
-<
-ESR_B \times I_{step} \times D_{\max}
+V_{IN-tran} < ESR_B \times I_{step} \times D_{\max}
 $$
 ve mevcut secimin bu acidan makul oldugu not edilmis.
 
@@ -4819,13 +4473,7 @@ Sayfanin alt kisminda ise, `T_{rips}` / gecis suresi hesabina geri donuluyor. Bu
 secimi kullanilarak:
 
 $$
-T_{rips}
-\approx
-\frac{1}{f_{BW}\times 4}
-\approx
-\frac{1}{35\,kHz \times 4}
-\approx
-7.14\,\mu s
+T_{rips} \approx \frac{1}{f_{BW}\times 4} \approx \frac{1}{35\,kHz \times 4} \approx 7.14\,\mu s
 $$
 sonucu yazilmis.
 
@@ -4849,11 +4497,7 @@ Guvenle okunabilen ana not su:
 icin, bir zaman olcegi olarak:
 
 $$
-\tau \approx \frac{1}{2\pi f_c}
-\approx
-\frac{1}{2\pi \cdot 33.2\,kHz}
-\approx
-4.8\,\mu s
+\tau \approx \frac{1}{2\pi f_c} \approx \frac{1}{2\pi \cdot 33.2\,kHz} \approx 4.8\,\mu s
 $$
 gibi bir sonuc not edilmis.
 
@@ -4878,11 +4522,7 @@ Burada yine bir kaynak / uygulama-notu figuru uzerine alinmis kisa bir not var. 
 Sayfadaki basili ifade su tip bir iliskiyi gosteriyor:
 
 $$
-\Delta V_{OUT(pp)}
-\approx
-\frac{I_{pp}}{8\,f_{sw}\,C_{OUT}}
-+
-I_{pp}\,ESR
+\Delta V_{OUT(pp)} \approx \frac{I_{pp}}{8\,f_{sw}\,C_{OUT}} + I_{pp}\,ESR
 $$
 Sayfa uzerine dustugum notta ise:
 
@@ -5187,9 +4827,7 @@ Sayfanin ust kisminda su problemi sozel olarak yazdim:
 Sayfanin ortasinda bu fiziksel mekanizma, kapasitif bolucu sezgisiyle yaziliyor. Okunabildigi kadariyla kullanilan temel iliski su:
 
 $$
-V_{GS}
-\approx
-V_{DS}\,\frac{C_{GD}}{C_{GS}+C_{GD}}
+V_{GS} \approx V_{DS}\,\frac{C_{GD}}{C_{GS}+C_{GD}}
 $$
 Sayfada bunun hemen altina da kritik kontrol notu yaziliyor:
 
@@ -5257,9 +4895,7 @@ sonucuna gidiyor.
 Ardindan `W.179`daki esitligin tersine cevrilmis hali gibi duran bir kontrol yaziliyor:
 
 $$
-V_{DS,max}
-\lesssim
-V_{TH}\,\frac{C_{gs}+C_{gd}}{C_{gd}}
+V_{DS,max} \lesssim V_{TH}\,\frac{C_{gs}+C_{gd}}{C_{gd}}
 $$
 Bu, su anlama geliyor:
 
@@ -5287,9 +4923,7 @@ Burada `W.178`te not edilen "3 senaryo" fikrinin `2. senaryo` sayfasi var. Odak 
 Sayfanin ustunde okunabildigi kadariyla su iliski yaziliyor:
 
 $$
-\left(\frac{dV}{dt}\right)_{N\text{-}limit}
-\approx
-\frac{V_{TH}}{R_{Gi}\,C_{GD}}
+\left(\frac{dV}{dt}\right)_{N\text{-}limit} \approx \frac{V_{TH}}{R_{Gi}\,C_{GD}}
 $$
 Burada sayfada guvenle okunabilen ara notlar sunlar:
 
@@ -5300,12 +4934,7 @@ Burada sayfada guvenle okunabilen ara notlar sunlar:
 Sayfadaki sayisal yerlestirme, okunabildigi kadariyla, su yone cikiyor:
 
 $$
-\left(\frac{dV}{dt}\right)_{N\text{-}limit}
-\approx
-\frac{2.41\,\text{V}}
-{0.7\,\Omega \cdot 6 \times 10^{-12}\,\text{F}}
-\approx
-5.7 \times 10^{11}\,\text{V/s}
+\left(\frac{dV}{dt}\right)_{N\text{-}limit} \approx \frac{2.41\,\text{V}} {0.7\,\Omega \cdot 6 \times 10^{-12}\,\text{F}} \approx 5.7 \times 10^{11}\,\text{V/s}
 $$
 Sayfanin sag tarafindaki not da, bu sonucun:
 
@@ -5337,10 +4966,7 @@ Burada `W.181`deki daha sade `dv/dt` limitinin fiziksel olarak nasil olustugu ac
 Sayfanin ustunde, onceki `dv/dt` limitine benzeyen ama bu kez daha gercekci gate yolu ile yazilmis su iliski okunuyor:
 
 $$
-\left(\frac{dV}{dt}\right)_{limit}
-\approx
-\frac{V_{TH}}
-{\left(R_{Gi}+R_{Gext}+R_{LO}\right)\,C_{GD}}
+\left(\frac{dV}{dt}\right)_{limit} \approx \frac{V_{TH}} {\left(R_{Gi}+R_{Gext}+R_{LO}\right)\,C_{GD}}
 $$
 Sayfanin orta kismina dogru yazilan fiziksel aciklama zinciri de, okunabildigi kadariyla, su yone cikiyor:
 
@@ -5377,10 +5003,7 @@ Burada `W.182`de yazilan fiziksel `dv/dt` limiti bu kez daha pratik bir gate dir
 Sayfanin ustunde ayni iliski tekrar yaziliyor:
 
 $$
-\left(\frac{dV}{dt}\right)_{limit}
-\approx
-\frac{V_{TH}}
-{\left(R_{Gi}+R_{Gext}+R_{LO}\right)\,C_{GD}}
+\left(\frac{dV}{dt}\right)_{limit} \approx \frac{V_{TH}} {\left(R_{Gi}+R_{Gext}+R_{LO}\right)\,C_{GD}}
 $$
 Bu kez sayfada guvenle okunabilen daha pratik secim notlari da var:
 
@@ -5392,12 +5015,7 @@ Bu kez sayfada guvenle okunabilen daha pratik secim notlari da var:
 Sayfadaki sayisal yerlestirme, okunabildigi kadariyla, su yone cikiyor:
 
 $$
-\left(\frac{dV}{dt}\right)_{limit}
-\approx
-\frac{2.172\,\text{V}}
-{\left(1\,\Omega + 0.9\,\Omega\right)\cdot 6\,\text{pF}}
-\approx
-190.6 \times 10^{9}\,\text{V/s}
+\left(\frac{dV}{dt}\right)_{limit} \approx \frac{2.172\,\text{V}} {\left(1\,\Omega + 0.9\,\Omega\right)\cdot 6\,\text{pF}} \approx 190.6 \times 10^{9}\,\text{V/s}
 $$
 Bu da:
 
@@ -5430,22 +5048,14 @@ Sayfanin ortasinda, kapasitif bolucu mantiginin bu kez daha buyuk bir datasheet 
 Sayfadaki ara sonuc, okunabildigi kadariyla, su yone cikiyor:
 
 $$
-V_{DS,\max}
-\approx
-\left(3.157\,\text{V} + 1.34\,\text{V}\right)\,
-\frac{2600\,pF}{340\,pF}
-\approx
-26.12\,\text{V}
+V_{DS,\max} \approx \left(3.157\,\text{V} + 1.34\,\text{V}\right)\, \frac{2600\,pF}{340\,pF} \approx 26.12\,\text{V}
 $$
 Bu, onceki sayfalardaki daha yuksek `V_{DS,\max}` / `dv/dt` limitlerine gore daha korumaci bir sonuca isaret ediyor.
 
 Sayfanin alt kisminda, ayni konu bu kez `dv/dt` cinsinden de yeniden yazilmaya calisiliyor. Burada tam net okunamayan kisimlar olsa da, ana fikir su:
 
 $$
-\left(\frac{dV}{dt}\right)_{limit}
-\propto
-\frac{V_{TH} + \Delta V_{GS}}
-{R_{G,total}\,C_{GD}}
+\left(\frac{dV}{dt}\right)_{limit} \propto \frac{V_{TH} + \Delta V_{GS}} {R_{G,total}\,C_{GD}}
 $$
 Burada:
 
@@ -5476,20 +5086,12 @@ Burada `G88` (`Estimating MOSFET Parameters from the Data Sheet`) kaynagindan al
 Sayfada goruldugu kadariyla yazilan temel iliski su yone cikiyor:
 
 $$
-\left(\frac{dV}{dt}\right)_{limit}
-\approx
-\frac{V_{TH}}
-{C_{GD}\,\left(R_{Gext}+R_{Gint}+R_{pull-down}\right)}
+\left(\frac{dV}{dt}\right)_{limit} \approx \frac{V_{TH}} {C_{GD}\,\left(R_{Gext}+R_{Gint}+R_{pull-down}\right)}
 $$
 Sayfadaki sayisal yerlestirme de, okunabildigi kadariyla, su tip bir ornege isaret ediyor:
 
 $$
-\left(\frac{dV}{dt}\right)_{limit}
-\approx
-\frac{3.49\,\text{V}}
-{\left(17 + 0.90 + 12\right)\Omega \cdot 11\,\text{pF}}
-\approx
-10.64\,\text{V/ns}
+\left(\frac{dV}{dt}\right)_{limit} \approx \frac{3.49\,\text{V}} {\left(17 + 0.90 + 12\right)\Omega \cdot 11\,\text{pF}} \approx 10.64\,\text{V/ns}
 $$
 ![W.125'ten kucuk kirpim: G88 kaynakli dv/dt limit notu](images/defter_snippets_web/d98_w125_g88_dvdt_limit_note.jpg)
 
@@ -5502,20 +5104,12 @@ Burada `W.125`teki `dv/dt` notu daha kaba / hizli bir yaklasimla tekrar yazilmis
 Sayfada bu kez daha sade bir iliski yaziliyor:
 
 $$
-\left(\frac{dV}{dt}\right)_{N\text{-}limit}
-\approx
-\frac{V_{TH}}{R_{Gext}\,C_{iss}}
+\left(\frac{dV}{dt}\right)_{N\text{-}limit} \approx \frac{V_{TH}}{R_{Gext}\,C_{iss}}
 $$
 Sayfadaki sayisal yerlestirme, okunabildigi kadariyla, su yone cikiyor:
 
 $$
-\left(\frac{dV}{dt}\right)_{N\text{-}limit}
-\approx
-\frac{3.49\,\text{V}}{1\,\Omega \cdot 80\,\text{pF}}
-\approx
-4.36\times 10^{10}\,\text{V/s}
-\approx
-43.6\,\text{V/ns}
+\left(\frac{dV}{dt}\right)_{N\text{-}limit} \approx \frac{3.49\,\text{V}}{1\,\Omega \cdot 80\,\text{pF}} \approx 4.36\times 10^{10}\,\text{V/s} \approx 43.6\,\text{V/ns}
 $$
 Sayfanin sag tarafindaki not da, bunun:
 
@@ -5542,9 +5136,7 @@ $$
 Buradan, gate geriliminin esik degeri asilmadan once izin verilebilecek yaklasik `V_{DS}` ust siniri icin su tip bir iliski not edilmis:
 
 $$
-V_{DS,\max}
-\approx
-V_{TH}\,\frac{C_{GS}+C_{GD}}{C_{GD}}
+V_{DS,\max} \approx V_{TH}\,\frac{C_{GS}+C_{GD}}{C_{GD}}
 $$
 Sayfadaki okumaya gore kullanilan ara kapasite notlari sunlar:
 
@@ -5563,11 +5155,7 @@ $$
 Sayfadaki sayisal sonuc da, okunabildigi kadariyla, su yone cikiyor:
 
 $$
-V_{DS,\max}
-\approx
-3.49\,\text{V}\,\frac{1120\,\text{pF}+80\,\text{pF}}{80\,\text{pF}}
-\approx
-52.35\,\text{V}
+V_{DS,\max} \approx 3.49\,\text{V}\,\frac{1120\,\text{pF}+80\,\text{pF}}{80\,\text{pF}} \approx 52.35\,\text{V}
 $$
 Sayfanin altindaki not, bunun pratikte su soruyu cevaplamak icin kullanildigini gosteriyor:
 
@@ -5824,13 +5412,7 @@ Ardindan, sicakliga gore normalize edilmis grafik kullanilarak yaklasik bir carp
 ve buradan su duzeltilmis deger cikarilmis:
 
 $$
-R_{DS(on)}(75^\circ C)
-
-\approx
-15\,m\Omega \times 1.35
-
-=
-20.25\,m\Omega
+R_{DS(on)}(75^\circ C) \approx 15\,m\Omega \times 1.35 = 20.25\,m\Omega
 $$
 ![W.146'dan kucuk kirpim: 15 mOhm'dan 20.25 mOhm'a sicaklik duzeltmesi](images/defter_snippets_web/d106_w146_rdson_75c_result.jpg)
 
@@ -5976,9 +5558,7 @@ Korunmasi gereken ana fikirler sunlar:
 Sayfada isaretlenen saturation kosullari:
 
 $$
-V_{GS} > V_{GS(th)}
-\quad \text{ve} \quad
-V_{DS} > V_{GS} - V_{GS(th)}
+V_{GS} > V_{GS(th)} \quad \text{ve} \quad V_{DS} > V_{GS} - V_{GS(th)}
 $$
 - notuma gore `t_2 - t_3` araliginda:
   - yalniz Miller `C_{gd}` sarjlanir
@@ -6185,29 +5765,17 @@ $$
 Buradan:
 
 $$
-V_{gs(th)}
-\approx
-V_{gs1}
-\times
-\frac{\sqrt{I_{D2}/I_{D1}} - V_{gs2}/V_{gs1}}
-\sqrt{I_{D2}/I_{D1}} - 1
+V_{gs(th)} \approx V_{gs1} \times \frac{\sqrt{I_{D2}/I_{D1}} - V_{gs2}/V_{gs1}} \sqrt{I_{D2}/I_{D1}} - 1
 $$
 benzeri bir ara ifade ile `V_{GS(th)}` elde ediliyor; ardindan:
 
 $$
-K_n
-\approx
-\left(
-\frac{\sqrt{I_{D1}} - \sqrt{I_{D2}}}
-{V_{gs1} - V_{gs2}}
-\right)^2
+K_n \approx \left( \frac{\sqrt{I_{D1}} - \sqrt{I_{D2}}} {V_{gs1} - V_{gs2}} \right)^2
 $$
 ve son olarak:
 
 $$
-V_{PL}
-=
-\sqrt{\frac{I_D}{K_n}} + V_{gs(th)}
+V_{PL} = \sqrt{\frac{I_D}{K_n}} + V_{gs(th)}
 $$
 Sayfa uzerindeki yerlestirmemde, okunabildigi kadariyla, su ara sonuclar not edilmis:
 
@@ -6280,15 +5848,7 @@ Burada `G81` hattinda switching-loss hesabina girecek bircok ara parametre tek y
 Sayfanin ust kisminda once bobin akim dalgalanmasi tekrar yaziliyor:
 
 $$
-\Delta i_L
-
-=
-
-\frac{V_{in}-V_o}{L}
-\cdot
-\frac{V_o}{V_{in}}
-\cdot
-\frac{1}{f_{sw}}
+\Delta i_L = \frac{V_{in}-V_o}{L} \cdot \frac{V_o}{V_{in}} \cdot \frac{1}{f_{sw}}
 $$
 ve iki kosul icin yaklasik sayisal sonuclar not edilmis:
 
@@ -6319,13 +5879,7 @@ Bu kisimdaki tum rakamlar tam net olmasa da, ana fikir acik:
 Sayfanin alt kisminda `Q_{gd}` icin tekrar kaba charge iliskisi yaziliyor:
 
 $$
-Q_{gd}
-\approx
-C_{GD}\,V_{DS}
-\approx
-54\,\text{pF} \times 22\,\text{V}
-\approx
-1.2\,\text{nC}
+Q_{gd} \approx C_{GD}\,V_{DS} \approx 54\,\text{pF} \times 22\,\text{V} \approx 1.2\,\text{nC}
 $$
 Ardindan esik ve plateau gerilimleri tekrar not edilmis:
 
@@ -6335,9 +5889,7 @@ Ardindan esik ve plateau gerilimleri tekrar not edilmis:
 ve bunlardan hareketle altta `Q_{gs2}` benzeri bir ara buyukluk hesaplanmis:
 
 $$
-Q_{gs2}
-\approx
-C_{GS}\,\left(V_{miller} - V_{GS(th)}\right)
+Q_{gs2} \approx C_{GS}\,\left(V_{miller} - V_{GS(th)}\right)
 $$
 Sayfadaki sayisal sonuc, okunabildigi kadariyla, yaklasik:
 
@@ -6366,13 +5918,7 @@ $$
 Sayfadaki sayisal yerlestirmede okunabildigi kadariyla:
 
 $$
-Q_{gd}
-\approx
-11.21\,\text{pF} \times 22\,\text{V}
-\approx
-246.62\,\text{pC}
-\approx
-0.24662\,\text{nC}
+Q_{gd} \approx 11.21\,\text{pF} \times 22\,\text{V} \approx 246.62\,\text{pC} \approx 0.24662\,\text{nC}
 $$
 Sayfanin altindaki notlar ise, bu sonucun sezgisel olarak cok kucuk bulundugunu gosteriyor. Guvenle korunabilecek ana fikirler sunlar:
 
@@ -6427,18 +5973,10 @@ Sayfanin alt kisminda, onceki kapasitans uyarlama notlari bu kez daha dusuk buyu
 ve bunlardan:
 
 $$
-C_{rss,ave}
-\approx
-2\,C_{rss,spec}\sqrt{\frac{V_{DS,spec}}{V_{DS,app}}}
-\approx
-11.21\,\text{pF}
+C_{rss,ave} \approx 2\,C_{rss,spec}\sqrt{\frac{V_{DS,spec}}{V_{DS,app}}} \approx 11.21\,\text{pF}
 $$
 $$
-C_{oss,ave}
-\approx
-2\,C_{oss,spec}\sqrt{\frac{30\,V}{22\,V}}
-\approx
-39.2\,\text{pF}
+C_{oss,ave} \approx 2\,C_{oss,spec}\sqrt{\frac{30\,V}{22\,V}} \approx 39.2\,\text{pF}
 $$
 Sayfanin en altinda ise:
 
@@ -6508,19 +6046,7 @@ Sayfanin ustunde hesap kosulu net olarak yazilmis:
 Ardindan `P_{switching}` icin iki ucgen / iki gecis parcasi toplanarak yazilan ifade goruluyor. Sayfadaki notasyondan okunabildigi kadariyla ana fikir su:
 
 $$
-P_{switching}
-
-=
-
-\frac{V_{in}}{2}
-\left(I_0 - \frac{\Delta i_L}{2}\right)
-f_{sw}\,t_r
-
-+
-
-\frac{V_{in}}{2}
-\left(I_0 + \frac{\Delta i_L}{2}\right)
-f_{sw}\,t_f
+P_{switching} = \frac{V_{in}}{2} \left(I_0 - \frac{\Delta i_L}{2}\right) f_{sw}\,t_r + \frac{V_{in}}{2} \left(I_0 + \frac{\Delta i_L}{2}\right) f_{sw}\,t_f
 $$
 Sayfadaki sayisal yerlestirmede:
 
@@ -6559,19 +6085,7 @@ $$
 Sayfanin ortasinda yine ayni switching-loss formulu tekrar ediliyor. Sayfadaki notasyona gore ana fikir:
 
 $$
-P_{switching}
-
-=
-
-\frac{V_{in}}{2}
-\left(I_0 - \frac{\Delta i_L}{2}\right)
-t_r\,f_{sw}
-
-+
-
-\frac{V_{in}}{2}
-\left(I_0 + \frac{\Delta i_L}{2}\right)
-t_f\,f_{sw}
+P_{switching} = \frac{V_{in}}{2} \left(I_0 - \frac{\Delta i_L}{2}\right) t_r\,f_{sw} + \frac{V_{in}}{2} \left(I_0 + \frac{\Delta i_L}{2}\right) t_f\,f_{sw}
 $$
 Burada da `I_0 \pm \Delta i_L/2` kullanilarak iki anahtarlama gecisi ayri ayri dusunuluyor.
 
@@ -6654,15 +6168,7 @@ Sayfanin basili basligi su sekilde okunuyor:
 Sayfada guvenle okunabilen en onemli fikir, toplam kaybin parcalara ayrilmis olmasidir. Basili sekilde su toplama yapisi goruluyor:
 
 $$
-P_{total\_loss}
-=
-P_{switches}
-+
-P_{inductor}
-+
-P_{capacitors}
-+
-P_{other}
+P_{total\_loss} = P_{switches} + P_{inductor} + P_{capacitors} + P_{other}
 $$
 Yani kaynak, buck donusturucunun toplam kaybini:
 
@@ -6676,11 +6182,7 @@ seklinde parcalayarak ele aliyor.
 Sayfada ayrica genel verim ifadesi de basili olarak veriliyor:
 
 $$
-\eta
-=
-\frac{V_o I_o}
-{V_o I_o + P_{total\_loss}}
-\times 100\%
+\eta = \frac{V_o I_o} {V_o I_o + P_{total\_loss}} \times 100\%
 $$
 Bu, defterde daha once not ettigim:
 
@@ -6747,13 +6249,7 @@ Ardindan cok basit bir lineer-regülatör benzeri guc bakisi kuruyorum. Once ide
 Bu sezgiyi gostermek icin sayfada su temel iliski yazilmis:
 
 $$
-\eta
-=
-\frac{P_{out}}{P_{in}}
-=
-\frac{V_o I_{out}}{V_{in} I_{in}}
-\approx
-\frac{V_o}{V_{in}}
+\eta = \frac{P_{out}}{P_{in}} = \frac{V_o I_{out}}{V_{in} I_{in}} \approx \frac{V_o}{V_{in}}
 $$
 Sayfadaki somut ornek de su yone cikiyor:
 
@@ -6852,26 +6348,17 @@ Sayfanin ust kisminda, iletim kaybinin fiziksel tanimini defterde kendi kurdugum
 Sayfada, daha once `W.146`da cikan sicaklik duzeltmesi yeniden kullaniliyor:
 
 $$
-R_{DS(on)}(T_J \approx 75^\circ C)
-=
-R_{DS(on)}(T_J=25^\circ C)\times 1.35
+R_{DS(on)}(T_J \approx 75^\circ C) = R_{DS(on)}(T_J=25^\circ C)\times 1.35
 $$
 ve sayfadaki sayisal yerlestirme:
 
 $$
-20.25\,m\Omega
-=
-15\,m\Omega \times 1.35
+20.25\,m\Omega = 15\,m\Omega \times 1.35
 $$
 Ardindan high-side MOSFET icin iletim kaybi ifadesi yaziliyor. Okunabildigi kadariyla kullanilan form su yone cikiyor:
 
 $$
-P_{HS,\;conduction}
-\approx
-R_{DS(on)}(25^\circ C)\,(1+\delta)\,I_0^2\,D
-\left(
-1+\frac{1}{12}\left(\frac{\Delta I_{L,pp}}{I_0}\right)^2
-\right)
+P_{HS,\;conduction} \approx R_{DS(on)}(25^\circ C)\,(1+\delta)\,I_0^2\,D \left( 1+\frac{1}{12}\left(\frac{\Delta I_{L,pp}}{I_0}\right)^2 \right)
 $$
 Burada:
 
@@ -6884,14 +6371,7 @@ olarak kullaniliyor.
 Sayfanin ilk uygulamasi `V_{in}=36\,V` kosulu icin yapiliyor:
 
 $$
-P_{HS,\;cond}
-\approx
-15\,m\Omega \times (1+0.35)\times 9^2
-\times \frac{14}{36}
-\times
-\left(
-1+\frac{1}{12}\left(\frac{3.8}{9}\right)^2
-\right)
+P_{HS,\;cond} \approx 15\,m\Omega \times (1+0.35)\times 9^2 \times \frac{14}{36} \times \left( 1+\frac{1}{12}\left(\frac{3.8}{9}\right)^2 \right)
 $$
 ve sayfadaki sonuc:
 
@@ -6901,14 +6381,7 @@ $$
 Ikinci uygulama ise `V_{in}=24\,V` kosulu icin yapiliyor:
 
 $$
-P_{HS,\;cond}
-\approx
-15\,m\Omega \times (1+0.35)\times 9^2
-\times \frac{14}{24}
-\times
-\left(
-1+\frac{1}{12}\left(\frac{2.6}{9}\right)^2
-\right)
+P_{HS,\;cond} \approx 15\,m\Omega \times (1+0.35)\times 9^2 \times \frac{14}{24} \times \left( 1+\frac{1}{12}\left(\frac{2.6}{9}\right)^2 \right)
 $$
 ve sayfadaki sonuc:
 
@@ -6935,12 +6408,7 @@ notlari yer aliyor.
 Kullanilan form, `W.191`deki high-side ifadesinin tamamlayicisi:
 
 $$
-P_{LS,\;conduction}
-\approx
-R_{LS,DS(on)}\,(1+\delta)\,I_0^2\,(1-D)
-\left(
-1+\frac{1}{12}\left(\frac{\Delta I_{L,pp}}{I_0}\right)^2
-\right)
+P_{LS,\;conduction} \approx R_{LS,DS(on)}\,(1+\delta)\,I_0^2\,(1-D) \left( 1+\frac{1}{12}\left(\frac{\Delta I_{L,pp}}{I_0}\right)^2 \right)
 $$
 Yani bu kez duty'nin kendisi yerine:
 
@@ -6952,14 +6420,7 @@ terimi kullaniliyor; bu da low-side MOSFET'in iletim suresini temsil ediyor.
 Sayfanin ilk uygulamasi `V_{in}=36\,V` kosulu icin yapiliyor:
 
 $$
-P_{LS,\;cond}
-\approx
-15\,m\Omega \times (1+0.35)\times 9^2
-\times \left(1-\frac{14}{36}\right)
-\times
-\left(
-1+\frac{1}{12}\left(\frac{3.8}{9}\right)^2
-\right)
+P_{LS,\;cond} \approx 15\,m\Omega \times (1+0.35)\times 9^2 \times \left(1-\frac{14}{36}\right) \times \left( 1+\frac{1}{12}\left(\frac{3.8}{9}\right)^2 \right)
 $$
 ve sayfadaki sonuc:
 
@@ -6969,14 +6430,7 @@ $$
 Ikinci uygulama ise `V_{in}=24\,V` kosulu icin yapiliyor:
 
 $$
-P_{LS,\;cond}
-\approx
-15\,m\Omega \times (1+0.35)\times 9^2
-\times \left(1-\frac{14}{24}\right)
-\times
-\left(
-1+\frac{1}{12}\left(\frac{2.6}{9}\right)^2
-\right)
+P_{LS,\;cond} \approx 15\,m\Omega \times (1+0.35)\times 9^2 \times \left(1-\frac{14}{24}\right) \times \left( 1+\frac{1}{12}\left(\frac{2.6}{9}\right)^2 \right)
 $$
 ve sayfadaki sonuc:
 
@@ -7003,18 +6457,12 @@ $$
 Ardindan gate-drive kaybi icin temel iliski yaziliyor:
 
 $$
-P_{gate-drive}
-=
-Q_g \, V_{drive}\, f_{sw}
+P_{gate-drive} = Q_g \, V_{drive}\, f_{sw}
 $$
 Sayfadaki sayisal yerlestirme, okunabildigi kadariyla, su yone cikiyor:
 
 $$
-P_{gate-drive}
-\approx
-16\,nC \times 7.5\,V \times 332\,kHz
-\approx
-39.84\,mW
+P_{gate-drive} \approx 16\,nC \times 7.5\,V \times 332\,kHz \approx 39.84\,mW
 $$
 Sayfanin orta kisminda bu kaybin fiziksel anlami da yazilmis:
 
@@ -7025,13 +6473,7 @@ Sayfanin orta kisminda bu kaybin fiziksel anlami da yazilmis:
 Sayfanin altinda ayni mantigin low-side MOSFET icin de gecerli oldugu not edilmis ve toplam iki MOSFET icin:
 
 $$
-P_{gate-drive,\;total}
-=
-2 \times P_{gate-drive}
-\approx
-2 \times 39.84\,mW
-\approx
-79.68\,mW
+P_{gate-drive,\;total} = 2 \times P_{gate-drive} \approx 2 \times 39.84\,mW \approx 79.68\,mW
 $$
 sonucuna gidiyorum.
 
@@ -7106,18 +6548,14 @@ notlari yer aliyor.
 Sayfada `C_{oss}` kaybi icin standart enerji yaklasimina dayanan iki denklem var. El yazisi tam net olmasa da, not ettigim ana fikir su yone cikiyor:
 
 $$
-P_{Coss}
-\propto
-\frac{1}{2}\,C_{oss,\;ave}\,V^2\,f_{sw}
+P_{Coss} \propto \frac{1}{2}\,C_{oss,\;ave}\,V^2\,f_{sw}
 $$
 Bu sayfanin asil isi, `C_{oss,ave}` degerlerini proje kosuluna gore yeniden bulmak:
 
 Once genel ortalama kapasite iliskisini not ediyorum:
 
 $$
-C_{oss,\;ave}
-\approx
-2\,C_{oss,\;spec}\sqrt{\frac{V_{DS,spec}}{V_{DS,app}}}
+C_{oss,\;ave} \approx 2\,C_{oss,\;spec}\sqrt{\frac{V_{DS,spec}}{V_{DS,app}}}
 $$
 Buradan high-side MOSFET icin daha onceki sayfalarda kullanilan deger tekrar hatirlatiliyor:
 
@@ -7133,11 +6571,7 @@ Yani low-side MOSFET icin `C_{oss}` ortalamasini ayrica, kendi `off-state` geril
 Sayfadaki sayisal yerlestirme, okunabildigi kadariyla, su yone cikiyor:
 
 $$
-C_{oss,LS,\;ave}
-\approx
-2 \times 265\,pF \times \sqrt{\frac{50\,V}{14\,V}}
-\approx
-982.8\,pF
+C_{oss,LS,\;ave} \approx 2 \times 265\,pF \times \sqrt{\frac{50\,V}{14\,V}} \approx 982.8\,pF
 $$
 Bu sayfada benim icin asil not su: bu kayip kolunda nominal / ezber kapasite degerlerini dogrudan almamam gerekiyor. Sayfa kabaca su uyarilari tasiyor:
 
@@ -7163,52 +6597,32 @@ Ardindan `W.195`ten gelen ortalama kapasite degerleriyle iki MOSFET icin ayri yu
 High-side icin:
 
 $$
-Q_{oss,HS}
-=
-783\,pF \times 22\,V
-\approx
-17.23\,nC
+Q_{oss,HS} = 783\,pF \times 22\,V \approx 17.23\,nC
 $$
 Low-side icin:
 
 $$
-Q_{oss,LS}
-=
-983\,pF \times 14\,V
-\approx
-13.76\,nC
+Q_{oss,LS} = 983\,pF \times 14\,V \approx 13.76\,nC
 $$
 Sayfanin devaminda, bu kez `W.195`te not edilen `(10)` ve `(11)` tipindeki denklemler kullanilarak guce geciliyor. High-side MOSFET icin:
 
 $$
-P_{HS,Coss}
-=
-\frac{1}{2}\,Q_{oss,HS}\,V_{in}\,f_{sw}
+P_{HS,Coss} = \frac{1}{2}\,Q_{oss,HS}\,V_{in}\,f_{sw}
 $$
 Sayfadaki sayisal yerlestirme:
 
 $$
-P_{HS,Coss}
-=
-\frac{1}{2}\times 17.23\,nC \times 36\,V \times 332\,kHz
-\approx
-102.86\,mW
+P_{HS,Coss} = \frac{1}{2}\times 17.23\,nC \times 36\,V \times 332\,kHz \approx 102.86\,mW
 $$
 Low-side MOSFET icin de benzer sekilde:
 
 $$
-P_{LS,Coss}
-=
-\frac{1}{2}\,Q_{oss,LS}\,V_{in}\,f_{sw}
+P_{LS,Coss} = \frac{1}{2}\,Q_{oss,LS}\,V_{in}\,f_{sw}
 $$
 ve sayfadaki sonuc:
 
 $$
-P_{LS,Coss}
-\approx
-\frac{1}{2}\times 13.76\,nC \times 36\,V \times 332\,kHz
-\approx
-82.15\,mW
+P_{LS,Coss} \approx \frac{1}{2}\times 13.76\,nC \times 36\,V \times 332\,kHz \approx 82.15\,mW
 $$
 Burada `W.195`teki ortalama `C_{oss}` degerlerini artik dogrudan kayip gucune ceviriyorum. Iki MOSFET icin farkli `Q_{oss}` bulunmasi, low-side ve high-side'i ayni kapasite / ayni gerilim gibi ele almadigimi gosteriyor. Bu kol iletim kaybi kadar buyuk degil; ama sifir da degil, yani `other losses` basligi bosuna durmuyor.
 
@@ -7226,9 +6640,7 @@ Sayfanin ustunde once bir onceki sayfadan gelen ara sonuclar hatirlatiliyor:
 Ardindan, uygulama notundaki daha toplu bir ifadeyi not ediyorum:
 
 $$
-P_{Coss}
-=
-f_{sw}\,\left(V_{in}\,Q_{oss2} + E_{oss1} - E_{oss2}\right)
+P_{Coss} = f_{sw}\,\left(V_{in}\,Q_{oss2} + E_{oss1} - E_{oss2}\right)
 $$
 Sayfanin ortasinda `E_{oss}` terimleri de tek tek yaziliyor. Okunabildigi kadariyla:
 
@@ -7240,13 +6652,7 @@ $$
 ve:
 
 $$
-E_{oss1}
-\approx
-\frac{1}{2}\,Q_{oss1}\,V_{in}
-\approx
-\frac{1}{2}\times 17.23\,nC \times 36\,V
-\approx
-0.310\,\mu J
+E_{oss1} \approx \frac{1}{2}\,Q_{oss1}\,V_{in} \approx \frac{1}{2}\times 17.23\,nC \times 36\,V \approx 0.310\,\mu J
 $$
 Low-side icin:
 
@@ -7256,24 +6662,12 @@ $$
 ve sayfadaki enerji terimi, okunabildigi kadariyla, su yone cikiyor:
 
 $$
-E_{oss2}
-\approx
-\frac{1}{2}\,Q_{oss2}\,V_{in}
-\approx
-0.248\,\mu J
+E_{oss2} \approx \frac{1}{2}\,Q_{oss2}\,V_{in} \approx 0.248\,\mu J
 $$
 Ardindan toplam ifade icine yerlestirme yapiliyor:
 
 $$
-P_{Coss}
-\approx
-332\,kHz
-\times
-\left[
-(36\,V)(13.76\,nC)
-0.310\,\mu J
--0.248\,\mu J
-\right]
+P_{Coss} \approx 332\,kHz \times \left[ (36\,V)(13.76\,nC) 0.310\,\mu J -0.248\,\mu J \right]
 $$
 ve sayfadaki toplam sonuc:
 
@@ -7301,11 +6695,7 @@ Sayfanin ustunde acik bir teyit notu yer aliyor:
 Hemen altinda da onceki iki sonucu tekrar topluyorum:
 
 $$
-P_{HS,Coss} + P_{LS,Coss}
-=
-102.9\,mW + 82.2\,mW
-\approx
-185.1\,mW
+P_{HS,Coss} + P_{LS,Coss} = 102.9\,mW + 82.2\,mW \approx 185.1\,mW
 $$
 ve bunun:
 
@@ -7348,9 +6738,7 @@ Yani bu noktada govde diyoduna bagli ek kayiplar ayri baslik olmaya basliyor.
 Sayfanin ust kutusunda once `reverse recovery` tarafi yaziliyor. Okunabildigi kadariyla temel iliski su yone cikiyor:
 
 $$
-P_{RR}
-\approx
-V_{in}\,f_{sw}\,Q_{rr}
+P_{RR} \approx V_{in}\,f_{sw}\,Q_{rr}
 $$
 ve sayfadaki sayisal yerlestirme, okunabildigi kadariyla, su yone isaret ediyor:
 
@@ -7374,11 +6762,7 @@ Sayfanin alt yarisinda ikinci kayip kalemi olarak `body diode dead-time loss` ya
 Okunabildigi kadariyla kullanilan ifade su yone cikiyor:
 
 $$
-P_{dead}
-\approx
-V_F\left(I_0-\frac{\Delta I_{L,pp}}{2}\right)t_{dr}f_{sw}
-+
-V_F\left(I_0+\frac{\Delta I_{L,pp}}{2}\right)t_{df}f_{sw}
+P_{dead} \approx V_F\left(I_0-\frac{\Delta I_{L,pp}}{2}\right)t_{dr}f_{sw} + V_F\left(I_0+\frac{\Delta I_{L,pp}}{2}\right)t_{df}f_{sw}
 $$
 Sayfadaki net gorunen parametreler:
 
@@ -7412,11 +6796,7 @@ $$
 ve sayfadaki uygulama:
 
 $$
-P_{IC}
-=
-36\,V \times 1.8\,mA
-=
-64.8\,mW
+P_{IC} = 36\,V \times 1.8\,mA = 64.8\,mW
 $$
 Buradaki `I_{Q\text{-}RUN}` notu, bunu:
 
@@ -7427,12 +6807,7 @@ gibi bir datasheet satirindan aldigimi gosteriyor.
 Sayfanin orta kismina dogru, buyuk bir not kutusu icinde, `R_{sense}` kaybina da ayrica donecegimi yazdim. Okunabildigi kadariyla su tip bir iliskiyi daha sonra hesaplamak uzere not ettim:
 
 $$
-P_{sense}
-=
-R_{sense}\,I_{out}^2\,D
-\left(
-1+\frac{1}{12}\,\Delta I_{L,pp}^{2}
-\right)
+P_{sense} = R_{sense}\,I_{out}^2\,D \left( 1+\frac{1}{12}\,\Delta I_{L,pp}^{2} \right)
 $$
 Bu ifadenin notasyonu hizli yazilmis olabilir; burada asil mesaj, `R_{sense}` kaybini ayri bir kalem olarak unutmadigim. Sayfanin en kritik mesaji da bunun:
 
@@ -7491,10 +6866,7 @@ $$
 Buradan, iki farkli `I_D - V_{GS}` noktasindan esik gerilimi cikarmak icin su tip bir ifade yaziyorum:
 
 $$
-V_{GS(th)}
-\approx
-\frac{V_{GS2}\sqrt{I_{D1}/I_{D2}} - V_{GS1}}
-{\sqrt{I_{D1}/I_{D2}} - 1}
+V_{GS(th)} \approx \frac{V_{GS2}\sqrt{I_{D1}/I_{D2}} - V_{GS1}} {\sqrt{I_{D1}/I_{D2}} - 1}
 $$
 Sayfadaki sayisal yerlestirme okunabildigi kadariyla yaklasik su yone cikiyor:
 
@@ -7509,9 +6881,7 @@ Ardindan doygunluk kosullarini kisa bir kontrol notu olarak ayri kutuya aldim:
 Sonra ayni sayfada, yukaridaki `V_{GS(th)}` kullanilarak `K_n` katsayisi icin su tip bir ifade yaziliyor:
 
 $$
-K_n
-\approx
-\frac{I_D}{\left(V_{GS} - V_{GS(th)}\right)^2}
+K_n \approx \frac{I_D}{\left(V_{GS} - V_{GS(th)}\right)^2}
 $$
 ve sayfadaki sonuc, okunabildigi kadariyla:
 
@@ -7521,9 +6891,7 @@ $$
 Devaminda da `Miller plateau` gerilimi icin su tip bir iliskiyi kuruyorum:
 
 $$
-V_{PL}
-\approx
-\sqrt{\frac{I_D}{K_n}} + V_{GS(th)}
+V_{PL} \approx \sqrt{\frac{I_D}{K_n}} + V_{GS(th)}
 $$
 Sayfadaki sayisal sonuc burada tam net degil; yazim `4.95 V` ile `6 V` bandinda bir ara degeri hedefliyor gibi. Burada asil alinacak sey kesin rakamdan cok yontemin kendisi.
 
@@ -7611,10 +6979,7 @@ $$
 Buradan `V_{TH}` icin sayfada su tip bir ifade turetiyorum:
 
 $$
-V_{TH}
-=
-\frac{V_{GS1}\sqrt{I_{D2}} - V_{GS2}\sqrt{I_{D1}}}
-{\sqrt{I_{D2}} - \sqrt{I_{D1}}}
+V_{TH} = \frac{V_{GS1}\sqrt{I_{D2}} - V_{GS2}\sqrt{I_{D1}}} {\sqrt{I_{D2}} - \sqrt{I_{D1}}}
 $$
 ve sayfadaki sonuc okunabildigi kadariyla:
 
@@ -7624,9 +6989,7 @@ $$
 Sonra ayni sayfada `K` katsayisini hesapliyorum:
 
 $$
-K
-\approx
-\frac{I_{D1}}{\left(V_{GS1} - V_{TH}\right)^2}
+K \approx \frac{I_{D1}}{\left(V_{GS1} - V_{TH}\right)^2}
 $$
 ve sayfadaki sayisal sonuc:
 
@@ -7649,9 +7012,7 @@ Sayfanin alt kisminda sicaklik duzeltmesine ozellikle dikkat cekiyorum:
 Bu nedenle bir sicaklik katsayisi ile duzeltme uyguluyorum. Okunabildigi kadariyla mantik su:
 
 $$
-\Delta V_{th}
-=
-\left(T_J - 150^\circ C\right)\cdot T.C.
+\Delta V_{th} = \left(T_J - 150^\circ C\right)\cdot T.C.
 $$
 ve sayfada bu fark yaklasik:
 
@@ -7681,10 +7042,7 @@ Sayfanin ust kismina secilen MOSFET'in ilgili `I_D - V_{GS}` egrisinden iki nokt
 Ardindan `V_{TH}` icin yine ayni tip ifadeyi kullaniyorum:
 
 $$
-V_{TH}
-=
-\frac{V_{GS1}\sqrt{I_{D2}} - V_{GS2}\sqrt{I_{D1}}}
-{\sqrt{I_{D2}} - \sqrt{I_{D1}}}
+V_{TH} = \frac{V_{GS1}\sqrt{I_{D2}} - V_{GS2}\sqrt{I_{D1}}} {\sqrt{I_{D2}} - \sqrt{I_{D1}}}
 $$
 ve sayfadaki sayisal sonuc:
 
@@ -7694,9 +7052,7 @@ $$
 Sonra `K` katsayisini ayni mantikla hesapliyorum:
 
 $$
-K
-\approx
-\frac{I_{D1}}{\left(V_{GS1} - V_{TH}\right)^2}
+K \approx \frac{I_{D1}}{\left(V_{GS1} - V_{TH}\right)^2}
 $$
 ve sayfadaki sayisal sonuc okunabildigi kadariyla:
 
@@ -7724,11 +7080,7 @@ notunu yazmis.
 Ve buna gore duzeltme gerilimi:
 
 $$
-\Delta V
-=
-\left(76.39^\circ C - 25^\circ C\right)\cdot (-0.003 V/^\circ C)
-\approx
--0.154 V
+\Delta V = \left(76.39^\circ C - 25^\circ C\right)\cdot (-0.003 V/^\circ C) \approx -0.154 V
 $$
 olarak hesaplanmis.
 
@@ -7774,11 +7126,7 @@ $$
 yaklasimi yazilmis ve sayfadaki sayisal yerlestirme, okunabildigi kadariyla, su yone cikiyor:
 
 $$
-Q_{GD}
-\approx
-54\,\text{pF}\times 22\,\text{V}
-\approx
-1.2\,\text{nC}
+Q_{GD} \approx 54\,\text{pF}\times 22\,\text{V} \approx 1.2\,\text{nC}
 $$
 Sayfanin en altinda kisa bir not daha var:
 
@@ -7863,34 +7211,22 @@ Yanina da su kosullar yazilmis:
 Sayfada yaptigim temel is, bu kapasitanslari projedeki farkli `V_{DS}` seviyesine kabaca uyarlamak. Okunabildigi kadariyla, burada tam bir fizik turetimi gibi degil, datasheet / grafik uyarlamasi gibi dusundugum su yaklasimi kullandim:
 
 $$
-C_{rss,ave}
-\approx
-2\,C_{rss,spec}\sqrt{\frac{V_{DS,spec}}{V_{DS,ave}}}
+C_{rss,ave} \approx 2\,C_{rss,spec}\sqrt{\frac{V_{DS,spec}}{V_{DS,ave}}}
 $$
 Sayfadaki sayisal yerlestirme:
 
 $$
-C_{rss,ave}
-\approx
-2 \times 18\,\text{pF}\times \sqrt{\frac{50\,\text{V}}{22\,\text{V}}}
-\approx
-54\,\text{pF}
+C_{rss,ave} \approx 2 \times 18\,\text{pF}\times \sqrt{\frac{50\,\text{V}}{22\,\text{V}}} \approx 54\,\text{pF}
 $$
 Benzer sekilde `C_{oss}` icin de:
 
 $$
-C_{oss,ave}
-\approx
-2\,C_{oss,spec}\sqrt{\frac{V_{DS,spec}}{V_{DS,ave}}}
+C_{oss,ave} \approx 2\,C_{oss,spec}\sqrt{\frac{V_{DS,spec}}{V_{DS,ave}}}
 $$
 ve sayfadaki sayisal sonuc:
 
 $$
-C_{oss,ave}
-\approx
-2 \times 260\,\text{pF}\times \sqrt{\frac{50\,\text{V}}{22\,\text{V}}}
-\approx
-783\,\text{pF}
+C_{oss,ave} \approx 2 \times 260\,\text{pF}\times \sqrt{\frac{50\,\text{V}}{22\,\text{V}}} \approx 783\,\text{pF}
 $$
 Sayfanin altinda, MOSFET'in temel parasitiklerini su sekilde ayiriyorum:
 
@@ -8019,13 +7355,7 @@ Burada, `G88` hattinda switching-loss hesabina girecek toplam gate-yolu direncin
 Sayfanin ust kisminda toplam gate yolu direnci su sekilde yazilmis:
 
 $$
-R_{total}
-=
-R_{driver}
-+
-R_{g,external}
-+
-R_{g,internal}
+R_{total} = R_{driver} + R_{g,external} + R_{g,internal}
 $$
 Sayfa uzerine not ettigim sayilar okunabildigi kadariyla sunlar:
 
@@ -8047,11 +7377,7 @@ ve `R_{g,internal}` icin de:
 Bu varsayimlarla sayfada su toplam sonuc yaziliyor:
 
 $$
-R_{total}
-=
-1.5\,\Omega + 0\,\Omega + 0.7\,\Omega
-=
-2.2\,\Omega
+R_{total} = 1.5\,\Omega + 0\,\Omega + 0.7\,\Omega = 2.2\,\Omega
 $$
 Sayfanin altinda bu toplam direncin hangi konularda kullanildigini da not ediyorum:
 
@@ -8277,30 +7603,22 @@ Buradaki `0.648` degerini ideal duty'nin kendisi gibi okumuyorum. `5.2` tarafind
 ODT notunda bu adim, `R_{boot} = 2.2 \Omega` ve `C_{boot} = 0.1 \mu F` secimiyle tartisiliyor. Ben burada once standart RC zaman sabitiyle temiz okuyorum:
 
 $$
-\tau = R_{boot} C_{boot}
-= 2.2\,\Omega \times 0.1\,\mu\text{F}
-= 0.22\,\mu\text{s}
+\tau = R_{boot} C_{boot} = 2.2\,\Omega \times 0.1\,\mu\text{F} = 0.22\,\mu\text{s}
 $$
 PWM frekansi `332 kHz` icin:
 
 $$
-T_{sw} = \frac{1}{f_{sw}}
-= \frac{1}{332\,\text{kHz}}
-\approx 3.01\,\mu\text{s}
+T_{sw} = \frac{1}{f_{sw}} = \frac{1}{332\,\text{kHz}} \approx 3.01\,\mu\text{s}
 $$
 Bu durumda worst-case bootstrap sarj penceresi:
 
 $$
-t_{\text{charge,min}} = D_{\text{low,min}} T_{sw}
-= 0.352 \times 3.01\,\mu\text{s}
-\approx 1.06\,\mu\text{s}
+t_{\text{charge,min}} = D_{\text{low,min}} T_{sw} = 0.352 \times 3.01\,\mu\text{s} \approx 1.06\,\mu\text{s}
 $$
 Dolayisiyla:
 
 $$
-\frac{t_{\text{charge,min}}}{\tau}
-= \frac{1.06}{0.22}
-\approx 4.82
+\frac{t_{\text{charge,min}}}{\tau} = \frac{1.06}{0.22} \approx 4.82
 $$
 ODT notunda gecen `0.625\,\mu\text{s}` degeri burada eski / zayif bir ara iz gibi duruyor; standart `\tau = R C` tanimi degil. Standart tanimla bakildiginda, sarj penceresi yaklasik `4.8\tau` suruyor. Bu da ideal RC modelinde bootstrap kondansatorunun bu pencere icinde buyuk oranda dolabilecegini gosteriyor.
 
@@ -8309,17 +7627,12 @@ ODT notunda gecen `0.625\,\mu\text{s}` degeri burada eski / zayif bir ara iz gib
 ODT notunda `V_{DD} = 8.4\,\text{V}` ve bootstrap diyot dusumu yaklasik `0.5\,\text{V}` alinmis. Bu satiri, high-side surucunun gorecegi yaklasik bootstrap gerilimini bulmak icin kullaniyorum:
 
 $$
-V_{C_{boot}} \approx V_{DD} - V_{\text{BootDiode}}
-= 8.4\,\text{V} - 0.5\,\text{V}
-= 7.9\,\text{V}
+V_{C_{boot}} \approx V_{DD} - V_{\text{BootDiode}} = 8.4\,\text{V} - 0.5\,\text{V} = 7.9\,\text{V}
 $$
 Eger bootstrap kondansatoru worst-case pencerenin basinda tamamen bos kabul edilirse, ideal RC modeliyle bu pencere sonunda ulasilan gerilim:
 
 $$
-V_{C_{boot}}(t_{\text{charge,min}})
-\approx 7.9\left(1 - e^{-t_{\text{charge,min}}/\tau}\right)
-\approx 7.9\left(1 - e^{-4.82}\right)
-\approx 7.84\,\text{V}
+V_{C_{boot}}(t_{\text{charge,min}}) \approx 7.9\left(1 - e^{-t_{\text{charge,min}}/\tau}\right) \approx 7.9\left(1 - e^{-4.82}\right) \approx 7.84\,\text{V}
 $$
 Bu, ODT notundaki "bootstrap voltaji yeterince hizli olusuyor" sonucunu destekliyor. Burada sonucu abartmiyorum; ideal RC modeliyle ilk kontrol yeterli gorunuyor demek daha dogru.
 
@@ -8328,10 +7641,7 @@ Bu, ODT notundaki "bootstrap voltaji yeterince hizli olusuyor" sonucunu destekli
 Bootstrap kondansatorunde, yaklasik `7.9 V` seviyesinde depolanan enerji:
 
 $$
-E_{\text{cap}}
-= \frac{1}{2} C_{boot} V_{C_{boot}}^2
-= \frac{1}{2}\cdot 0.1\,\mu\text{F}\cdot (7.9\,\text{V})^2
-\approx 3.12\,\mu\text{J}
+E_{\text{cap}} = \frac{1}{2} C_{boot} V_{C_{boot}}^2 = \frac{1}{2}\cdot 0.1\,\mu\text{F}\cdot (7.9\,\text{V})^2 \approx 3.12\,\mu\text{J}
 $$
 Bu, kondansator tam bu seviyeye sarj oldugunda uzerinde duran enerjiyi verir. Yani bu satir once `C_{boot}`un enerji mertebesini gormek icin yazilmis.
 
@@ -8340,9 +7650,7 @@ Bu, kondansator tam bu seviyeye sarj oldugunda uzerinde duran enerjiyi verir. Ya
 ODT notunda dirençte yakilan enerji icin ayrica bir hesap niyeti bulunuyor. Bu kisim korunuyor ama nihai direnç gucu hesabi gibi okunmamali. Tam `0 V -> 7.9 V` RC sarj adiminda ideal seri dirençte harcanan enerji, ayni buyukluk mertebesinde:
 
 $$
-E_{R,\text{full-step}}
-\approx \frac{1}{2} C_{boot} V_{C_{boot}}^2
-\approx 3.12\,\mu\text{J}
+E_{R,\text{full-step}} \approx \frac{1}{2} C_{boot} V_{C_{boot}}^2 \approx 3.12\,\mu\text{J}
 $$
 olur. Ama gercek devrede bootstrap kondansatoru her cevrimde sifirdan sarj olmuyor; high-side surucu ne kadar charge cektiyse onun yerine konuyor. Bu yuzden bu `3.12 uJ` degeri direnç watt secimi icin tek basina kullanilacak nihai sonuc degil, full-step ust sinir / buyukluk mertebesi izi gibi okunmali.
 
@@ -8351,10 +7659,7 @@ olur. Ama gercek devrede bootstrap kondansatoru her cevrimde sifirdan sarj olmuy
 Bootstrap sarjinin ilk anindaki yaklasik tepe akimi:
 
 $$
-I_{\text{pk}}
-= \frac{V_{DD} - V_{\text{BootDiode}}}{R_{boot}}
-= \frac{8.4\,\text{V} - 0.5\,\text{V}}{2.2\,\Omega}
-\approx 3.59\,\text{A}
+I_{\text{pk}} = \frac{V_{DD} - V_{\text{BootDiode}}}{R_{boot}} = \frac{8.4\,\text{V} - 0.5\,\text{V}}{2.2\,\Omega} \approx 3.59\,\text{A}
 $$
 Bu da bana sunu hatirlatiyor: `R_{boot}` sadece sarj hizini belirlemiyor, ilk pik akimi da belirliyor. `3.59 A` degeri ideal ilk an tahmini; gercek dalga sekli parazitikler ve diyot/iz empedanslariyla yumusar ama bootstrap diyotu, izler ve ringing acisindan bu mertebe yine de kontrol edilmeli.
 
@@ -8544,13 +7849,7 @@ Ardindan bootstrap kapasitorunun her anahtarlama cevriminde yerine koymasi gerek
 Sayfadaki toplama mantigi okunabildigi kadariyla su:
 
 $$
-Q_{total}
-=
-Q_g
-+
-I_{HBS}\,\frac{D_{max}}{f_{sw}}
-+
-I_{HB}\,\frac{1}{f_{sw}}
+Q_{total} = Q_g + I_{HBS}\,\frac{D_{max}}{f_{sw}} + I_{HB}\,\frac{1}{f_{sw}}
 $$
 Burada not ettigim bilesenler:
 
@@ -8566,13 +7865,7 @@ ve bunlari bu kontrol icin su kosulla yerine koyuyorum:
 Sayfadaki ara sayisal yerlestirmeler okunabildigi kadariyla:
 
 $$
-Q_{total}
-\approx
-16\,nC
-+
-5\,uA\cdot \frac{0.95}{332\,kHz}
-+
-80\,uA\cdot \frac{1}{332\,kHz}
+Q_{total} \approx 16\,nC + 5\,uA\cdot \frac{0.95}{332\,kHz} + 80\,uA\cdot \frac{1}{332\,kHz}
 $$
 ve sonucta:
 
@@ -8874,10 +8167,7 @@ Sayfanin ustundeki ana fikir okunabildigi kadariyla su:
 Sayfanin ortasinda yazilan temel iliski okunabildigi kadariyla su sekilde:
 
 $$
-C_{bypass}
-\approx
-\frac{Q_{B,HI}\,\dfrac{D_{max}}{f_{drive}} + Q_g}
-{\Delta V}
+C_{bypass} \approx \frac{Q_{B,HI}\,\dfrac{D_{max}}{f_{drive}} + Q_g} {\Delta V}
 $$
 Sayfadaki notlardan guvenle okunabilen degisken anlamlari sunlardir:
 
@@ -8887,12 +8177,7 @@ Sayfadaki notlardan guvenle okunabilen degisken anlamlari sunlardir:
 Sayfada yaptigim sayisal yerlestirme su yone cikiyor:
 
 $$
-C_{bypass}
-\approx
-\frac{2.5\,mA \cdot \dfrac{0.95}{400\,kHz} + 15\,nC}
-{0.1\,V}
-\approx
-27.1\,nF
+C_{bypass} \approx \frac{2.5\,mA \cdot \dfrac{0.95}{400\,kHz} + 15\,nC} {0.1\,V} \approx 27.1\,nF
 $$
 Burada notasyon biraz hizli: ustte `Q_{B,HI}` gibi yazdigim bilesen sayisal yerlestirmede akim-zaman carpimi gibi kullanilmis. Bu yuzden bu satiri hassas nihai denklem degil, "surucu akimi + gate charge / izin verilen dusum" seklinde kurulmus bir alt-sinir kontrolu olarak okuyorum.
 
@@ -8919,10 +8204,7 @@ Burada `W.186`da kurdugum `driver / CVCC bypass capacitor` hesabini tek satirda 
 Sayfada okunabildigi kadariyla su iliski yeniden yaziliyor:
 
 $$
-C_{bypass} = C_{VCC}
-\approx
-\frac{I_{xxHI}\,\dfrac{D_{max}}{f_{drive}} + Q_g}
-{\Delta V}
+C_{bypass} = C_{VCC} \approx \frac{I_{xxHI}\,\dfrac{D_{max}}{f_{drive}} + Q_g} {\Delta V}
 $$
 Burada sembollerin yazimi sayfada biraz kisaltilmis. `I_{xxHI}` gibi duran ifade, `W.186`daki surucu / high-side akim bileseninin kisa yazimi gibi okunmali. Form yine ayni alt-sinir mantigina gidiyor:
 
@@ -8975,10 +8257,7 @@ ODT'den aktarilan metin (`9.2. Modulator Bloğu`):
 > Modulator bloğunun transfer function'ı:
 
 $$
-H_{\text{mod}}(s)
-= \frac{V_{in}}{V_{\text{ramp}}}
-= k_{FF}
-= 15\,\text{V/V}
+H_{\text{mod}}(s) = \frac{V_{in}}{V_{\text{ramp}}} = k_{FF} = 15\,\text{V/V}
 $$
 > Kullandığımız LM5146-Q1'ın input voltage feedforward özelliği var. Bu özellik sayesinde modülatör kazancı sabit kalıyor. Örneğin giriş gerilimi $V_{in}$ artarsa, $V_{\text{ramp}}$ da artarak $k_{FF} = 15\,\text{V/V}$ değerinin sabit kalmasını sağlıyor.
 
@@ -8998,9 +8277,7 @@ $$
 ve dolayisiyla
 
 $$
-H_{\text{mod}}(s)
-= \frac{V_{in}}{V_{\text{ramp}}}
-\approx 15
+H_{\text{mod}}(s) = \frac{V_{in}}{V_{\text{ramp}}} \approx 15
 $$
 alinabilir. Son okuma yine datasheet'teki feedforward / ramp bilgisiyle eslestirilmeli; ama kontrol hesabinin omurgasinda modulatoru bu sabit kazanc gibi kullanmamın nedeni bu.
 
@@ -9021,9 +8298,7 @@ Boyle yazinca `6.1.3` altinda kullandigim kutup, sifir ve sonum notlari havada k
 > Cikis filtresi ve yuk icin kullanilan transfer fonksiyonu:
 
 $$
-H_{\text{filter}}(s)
-= \frac{V_{out}}{V_{in}}
-= \frac{1 + C_{out} R_{esr} s}{a_0 + a_1 s + a_2 s^2}
+H_{\text{filter}}(s) = \frac{V_{out}}{V_{in}} = \frac{1 + C_{out} R_{esr} s}{a_0 + a_1 s + a_2 s^2}
 $$
 Buradaki `V_{in}` yazimini kontrol dongusundeki iki farkli anlamla karistirmamak gerekiyor. Modulator tarafinda gercek giris gerilimi ve ramp feedforward var; burada ise cikis filtresinin averaged switch-node / guc-kati girdisine gore normalize edilmis aktarimini yaziyorum. Bu yuzden `H_{filter}(s)` tek basina duty-to-output sonucu gibi degil, `H_{mod}` ile carpilinca loop hesabina giren LC + yuk parcasi gibi okunmali.
 
@@ -9033,8 +8308,7 @@ $$
 a_0 = 1 + \frac{R_{Damp}}{R_{load}}
 $$
 $$
-a_1 = \frac{L_F}{R_{load}} + R_{esr} C_{out} + R_{Damp} C_{out}
-+ \frac{R_{Damp} R_{esr} C_{out}}{R_{load}}
+a_1 = \frac{L_F}{R_{load}} + R_{esr} C_{out} + R_{Damp} C_{out} + \frac{R_{Damp} R_{esr} C_{out}}{R_{load}}
 $$
 $$
 a_2 = \left(\frac{R_{load} + R_{esr}}{R_{load}}\right)L_F C_{out}
@@ -9045,18 +8319,10 @@ $$
 a_0 = 1 + \frac{21.13\,\text{m}\Omega}{1.59\,\Omega} = 1.01329
 $$
 $$
-a_1 =
-\frac{6.8\,\mu\text{H}}{1.59\,\Omega}
-+ (0.26\,\text{m}\Omega)(70\,\mu\text{F})
-+ (21.13\,\text{m}\Omega)(70\,\mu\text{F})
-+ \frac{(21.13\,\text{m}\Omega)(0.26\,\text{m}\Omega)(70\,\mu\text{F})}{1.59\,\Omega}
-= 5.774 \times 10^{-6}
+a_1 = \frac{6.8\,\mu\text{H}}{1.59\,\Omega} + (0.26\,\text{m}\Omega)(70\,\mu\text{F}) + (21.13\,\text{m}\Omega)(70\,\mu\text{F}) + \frac{(21.13\,\text{m}\Omega)(0.26\,\text{m}\Omega)(70\,\mu\text{F})}{1.59\,\Omega} = 5.774 \times 10^{-6}
 $$
 $$
-a_2 =
-\left(\frac{1.59\,\Omega + 0.26\,\text{m}\Omega}{1.59\,\Omega}\right)
-(6.8\,\mu\text{H})(70\,\mu\text{F})
-= 4.761 \times 10^{-10}
+a_2 = \left(\frac{1.59\,\Omega + 0.26\,\text{m}\Omega}{1.59\,\Omega}\right) (6.8\,\mu\text{H})(70\,\mu\text{F}) = 4.761 \times 10^{-10}
 $$
 $$
 C_{out} R_{esr} = (70\,\mu\text{F})(0.26\,\text{m}\Omega) = 1.82 \times 10^{-8}
@@ -9064,10 +8330,7 @@ $$
 > Yaklasik katsayi bicimi:
 
 $$
-H_{\text{filter}}(s)
-\approx
-\frac{1 + 1.82 \times 10^{-8} s}
-{1.01329 + 5.774 \times 10^{-6} s + 4.761 \times 10^{-10} s^2}
+H_{\text{filter}}(s) \approx \frac{1 + 1.82 \times 10^{-8} s} {1.01329 + 5.774 \times 10^{-6} s + 4.761 \times 10^{-10} s^2}
 $$
 ![Tasarimimizda kullandigimiz cikis capacitorleri](images/odt_embedded/fig_24_output_capacitor_bank.png)
 
@@ -9323,15 +8586,7 @@ $$
 Crossover noktasinda toplam loop gain `1` olmali. Sayfadaki ana iliski:
 
 $$
-\lvert L(j\omega_t)\rvert
-=
-\lvert M(j\omega_t)\rvert
-\cdot
-\lvert F(j\omega_t)\rvert
-\cdot
-\lvert G_3(j\omega_t)\rvert
-=
-1
+\lvert L(j\omega_t)\rvert = \lvert M(j\omega_t)\rvert \cdot \lvert F(j\omega_t)\rvert \cdot \lvert G_3(j\omega_t)\rvert = 1
 $$
 Sayfada bulunan plant / filter buyuklugu:
 
@@ -9341,20 +8596,12 @@ $$
 Unity-gain kosulu kullanilarak gerekli kompanzator kazanci:
 
 $$
-\lvert G_3(j\omega_t)\rvert
-=
-\frac{1}{\lvert M(j\omega_t)\rvert \cdot \lvert F(j\omega_t)\rvert}
-=
-\frac{1}{15 \cdot 0.045356}
-\approx
-1.46985
+\lvert G_3(j\omega_t)\rvert = \frac{1}{\lvert M(j\omega_t)\rvert \cdot \lvert F(j\omega_t)\rvert} = \frac{1}{15 \cdot 0.045356} \approx 1.46985
 $$
 Bu buyuklugun `dB` cinsinden karsiligi:
 
 $$
-20\log_{10}\!\big(\lvert G_3(j\omega_t)\rvert\big)
-\approx
-3.3454\,\text{dB}
+20\log_{10}\!\big(\lvert G_3(j\omega_t)\rvert\big) \approx 3.3454\,\text{dB}
 $$
 Bu hesabin anlami:
 
@@ -9448,21 +8695,15 @@ Bu gorselleri burada toplama sebebim su: once ODT'deki Type-III agi gosteriyorum
 > Compensator transfer function:
 
 $$
-H_{\text{compensator}}(s)
-= \frac{V_{\text{control}}}{V_{\text{sense}}}
-= \frac{H_{\text{error-amp,ol}}(s)}
-{1 + H_{\text{error-amp,ol}}(s)\,\beta(s)}
+H_{\text{compensator}}(s) = \frac{V_{\text{control}}}{V_{\text{sense}}} = \frac{H_{\text{error-amp,ol}}(s)} {1 + H_{\text{error-amp,ol}}(s)\,\beta(s)}
 $$
 > Error amplifier open-loop modeli:
 
 $$
-H_{\text{error-amp,ol}}(s)
-= \frac{A_{VOL}}
-{1 + \dfrac{s}{\omega_{\text{opamp}}}}
+H_{\text{error-amp,ol}}(s) = \frac{A_{VOL}} {1 + \dfrac{s}{\omega_{\text{opamp}}}}
 $$
 $$
-\omega_{\text{opamp}}
-= 2\pi\,\frac{GBW}{A_{VOL}}
+\omega_{\text{opamp}} = 2\pi\,\frac{GBW}{A_{VOL}}
 $$
 Defterden aktarilan not (`W.201`):
 
@@ -9478,9 +8719,7 @@ Sayfanin ustunde su notlar yer aliyor:
 Sayfada acik-cevrim hata yukselteci davranisi su bicimde not edilmis:
 
 $$
-A_{\text{op-amp}}(f)
-\approx
-\frac{A_{low}}{1 + \dfrac{f}{f_{unity}}}
+A_{\text{op-amp}}(f) \approx \frac{A_{low}}{1 + \dfrac{f}{f_{unity}}}
 $$
 ve yanina da:
 
@@ -9543,9 +8782,7 @@ Bu sayfa, yukaridaki `H_{\text{error-amp,ol}}(s)` ve `\omega_{\text{opamp}} = 2\
 Kompanzator hesabinda tekrar kullandigim plant modeli (`6.1.3` ile ayni cikis filtresi / yuk modeli):
 
 $$
-H_{\text{filter}}(s)
-= \frac{V_{out}}{V_{in}}
-= \frac{1 + C_{out} R_{esr} s}{a_0 + a_1 s + a_2 s^2}
+H_{\text{filter}}(s) = \frac{V_{out}}{V_{in}} = \frac{1 + C_{out} R_{esr} s}{a_0 + a_1 s + a_2 s^2}
 $$
 Burada:
 
@@ -9553,8 +8790,7 @@ $$
 a_0 = 1 + \frac{R_{Damp}}{R_{load}}
 $$
 $$
-a_1 = \frac{L_F}{R_{load}} + R_{esr} C_{out} + R_{Damp} C_{out}
-+ \frac{R_{Damp} R_{esr} C_{out}}{R_{load}}
+a_1 = \frac{L_F}{R_{load}} + R_{esr} C_{out} + R_{Damp} C_{out} + \frac{R_{Damp} R_{esr} C_{out}}{R_{load}}
 $$
 $$
 a_2 = \left(\frac{R_{load} + R_{esr}}{R_{load}}\right)L_F C_{out}
@@ -9565,27 +8801,16 @@ $$
 a_0 = 1 + \frac{21.13\,\text{m}\Omega}{1.59\,\Omega} = 1.01329
 $$
 $$
-a_1 =
-\frac{6.8\,\mu\text{H}}{1.59\,\Omega}
-+ (0.26\,\text{m}\Omega)(70\,\mu\text{F})
-+ (21.13\,\text{m}\Omega)(70\,\mu\text{F})
-+ \frac{(21.13\,\text{m}\Omega)(0.26\,\text{m}\Omega)(70\,\mu\text{F})}{1.59\,\Omega}
-= 5.774 \times 10^{-6}
+a_1 = \frac{6.8\,\mu\text{H}}{1.59\,\Omega} + (0.26\,\text{m}\Omega)(70\,\mu\text{F}) + (21.13\,\text{m}\Omega)(70\,\mu\text{F}) + \frac{(21.13\,\text{m}\Omega)(0.26\,\text{m}\Omega)(70\,\mu\text{F})}{1.59\,\Omega} = 5.774 \times 10^{-6}
 $$
 $$
-a_2 =
-\left(\frac{1.59\,\Omega + 0.26\,\text{m}\Omega}{1.59\,\Omega}\right)
-(6.8\,\mu\text{H})(70\,\mu\text{F})
-= 4.761 \times 10^{-10}
+a_2 = \left(\frac{1.59\,\Omega + 0.26\,\text{m}\Omega}{1.59\,\Omega}\right) (6.8\,\mu\text{H})(70\,\mu\text{F}) = 4.761 \times 10^{-10}
 $$
 $$
 C_{out} R_{esr} = (70\,\mu\text{F})(0.26\,\text{m}\Omega) = 1.82 \times 10^{-8}
 $$
 $$
-H_{\text{filter}}(s)
-\approx
-\frac{1 + 1.82 \times 10^{-8} s}
-{1.01329 + 5.774 \times 10^{-6} s + 4.761 \times 10^{-10} s^2}
+H_{\text{filter}}(s) \approx \frac{1 + 1.82 \times 10^{-8} s} {1.01329 + 5.774 \times 10^{-6} s + 4.761 \times 10^{-10} s^2}
 $$
 Bu tekrar yeni bir ikinci plant modeli degil. `6.1.3`te kurdugum `H_{filter}(s)` ifadesini, burada kompanzator hesabinin icine giren blok olarak yeniden yaziyorum. Bu yuzden `70 uF`, `6.8 uH`, `R_{damp}` ve `ESR` degerleri `W.116` ile ayni cizgide tutulmali.
 
@@ -9602,8 +8827,7 @@ Bu bolumde artik sadece "Type-III kompanzator kullanilacak" demekle yetinmiyorum
 Bu nedenle kompanzator tasarimi yalnizca `R` ve `C` secimi degil; ayni zamanda su uc ifadenin birlikte dusunulmesidir:
 
 $$
-H_{\text{open-loop}}(s)
-= H_{\text{mod}}(s)\,H_{\text{filter}}(s)\,H_{\text{compensator}}(s)
+H_{\text{open-loop}}(s) = H_{\text{mod}}(s)\,H_{\text{filter}}(s)\,H_{\text{compensator}}(s)
 $$
 Burada referans dugumunu kaybetmemek gerekiyor. `H_{\text{compensator}}(s)` ifadesini `V_control / V_sense` olarak yaziyorsam, feedback bolucu / sense orani bu tanimin girisinde duruyor. Open-loop'u dogrudan `Vout` uzerinden yazarsam ayrica `H_{FB}(s)` veya `RFB2/(RFB1+RFB2)` carpani gerekir. Calculator tarafinda bu oran cogunlukla kompanzator / feedback aginin icinde ele aliniyor. Bu yuzden `W.84`teki `H = 1/14` notu ve `RFB1/RFB2` satirlari final loop modelinde tek kez sayilmali; unutulmamali ama iki kere de carpilmamali.
 
@@ -9616,11 +8840,7 @@ Burada Type-III kompanzator artik yalnizca topoloji olarak durmuyor; kutup-sifir
 ![W.84'ten kucuk kirpim: Type-III denklemi, hedef kirilimlar ve ilk sayisal yerlestirme](images/defter_snippets_web/d187_w84_type3_equations_and_breaks.jpg)
 
 $$
-G_c(s)
-\sim
-G_{cm}
-\cdot
-\frac{\text{sifir terimleri}}{\text{kutup terimleri}}
+G_c(s) \sim G_{cm} \cdot \frac{\text{sifir terimleri}}{\text{kutup terimleri}}
 $$
 ve altinda da bu ifadenin belirli frekans yerlestirmeleriyle sayisal hale getirilmeye calisildigi goruluyor.
 
@@ -9678,29 +8898,17 @@ Bu degerler `W.14-W.16` / calculator tarafinda finale daha yakin duran `RFB1 = 2
 Sayfanin ust notunda, `\omega_{p1}` icin su tip bir yaklasim yazilmis:
 
 $$
-\omega_{p1}
-\approx
-\frac{1}{R_{c1}\,(C_{c1}\parallel C_{c2})}
-\approx
-\frac{1}{R_{c1}\,C_{c2}}
+\omega_{p1} \approx \frac{1}{R_{c1}\,(C_{c1}\parallel C_{c2})} \approx \frac{1}{R_{c1}\,C_{c2}}
 $$
 Bu yaklasim, `C_{c1} \gg C_{c2}` oldugu icin paralel esitgerin yaklasik `C_{c2}` tarafindan belirlendigini soyluyor.
 
 Sayfada bundan hareketle yuksek frekans kutuplari icin su ara sonuclar not edilmis:
 
 $$
-\omega_{p1}
-\approx
-\frac{1}{8.06k \cdot 100p}
-\approx
-1.24 \times 10^6 \, \text{rad/s}
+\omega_{p1} \approx \frac{1}{8.06k \cdot 100p} \approx 1.24 \times 10^6 \, \text{rad/s}
 $$
 $$
-\omega_{p2}
-\approx
-\frac{1}{100 \cdot 1n}
-\approx
-10^7 \, \text{rad/s}
+\omega_{p2} \approx \frac{1}{100 \cdot 1n} \approx 10^7 \, \text{rad/s}
 $$
 Bu iki sonuc rad/s cinsinden yazilmis. Hz'e cevirince kabaca `f_{p1} \approx 197 kHz` ve `f_{p2} \approx 1.59 MHz` mertebesine gelir. Bu nedenle `W.84`te gecen `f_{p2} \approx 29 kHz` notuyla dogrudan ayni aday gibi okunmamali; burada farkli bir komponent denemesi veya farkli etiketleme olma ihtimali var.
 
@@ -9764,28 +8972,16 @@ Burada `W.142`nin hemen devami var. Aday kompanzator aginda kirilim frekanslarin
 Sayfanin ust tarafinda, okunabildigi kadariyla, su esitlikler yazilmis:
 
 $$
-\frac{1}{j\omega C_1} = R_2
-\;\Rightarrow\;
-f_1 = \frac{1}{2\pi R_2 C_1}
-\approx 10.526\,kHz
+\frac{1}{j\omega C_1} = R_2 \;\Rightarrow\; f_1 = \frac{1}{2\pi R_2 C_1} \approx 10.526\,kHz
 $$
 $$
-\frac{1}{j\omega C_3} = R_2
-\;\Rightarrow\;
-f_2 = \frac{1}{2\pi R_2 C_3}
-\approx 152.4\,kHz
+\frac{1}{j\omega C_3} = R_2 \;\Rightarrow\; f_2 = \frac{1}{2\pi R_2 C_3} \approx 152.4\,kHz
 $$
 $$
-\frac{1}{j\omega C_2} = R_3
-\;\Rightarrow\;
-f_3 = \frac{1}{2\pi R_3 C_2}
-\approx 89.934\,kHz
+\frac{1}{j\omega C_2} = R_3 \;\Rightarrow\; f_3 = \frac{1}{2\pi R_3 C_2} \approx 89.934\,kHz
 $$
 $$
-\frac{1}{j\omega C_2} = R_1
-\;\Rightarrow\;
-f_4 = \frac{1}{2\pi R_1 C_2}
-\approx 1.57\,kHz
+\frac{1}{j\omega C_2} = R_1 \;\Rightarrow\; f_4 = \frac{1}{2\pi R_1 C_2} \approx 1.57\,kHz
 $$
 Burada kucuk bir tutarsizlik notu birakiyorum: `W.142`de okunan `18 k\Omega / 2.74 k\Omega / 31.6 \Omega / 56 nF / 5600 pF / 290 pF` seti aynen kullanilinca `f_4 \approx 1.58 kHz` iyi oturuyor; ama `f_1`, `f_2`, `f_3` ayni netlikte oturmuyor. Hizli kontrolle sirasiyla yaklasik `1.04 kHz`, `200 kHz`, `899 kHz` gibi degerler cikiyor. Bu buyuk olasilikla el yazisinda `C_1-C_2-C_3` degerlerinin `5.6/56/5600` veya `pF/nF` olarak okunmasindan, ya da sayfalar arasinda farkli aday setinden geliyor.
 
@@ -9809,18 +9005,12 @@ Bu sayfa `W.85`te kullandigim kutup yaklasimlarini geriye donup aciyor. Yeni kom
 Sayfanin ustunde `Compensator Poles` basligi altinda su ifade yazilmis:
 
 $$
-\omega_{p1}
-=
-\frac{1}{R_{c1}\,(C_{c1}\parallel C_{c2})}
-\approx
-\frac{1}{R_{c1}\,C_{c2}}
+\omega_{p1} = \frac{1}{R_{c1}\,(C_{c1}\parallel C_{c2})} \approx \frac{1}{R_{c1}\,C_{c2}}
 $$
 Hemen altindaki notlarda paralel kapasite iliskisi tekrar kurulmus:
 
 $$
-C_{c1}\parallel C_{c2}
-=
-\frac{C_{c1}C_{c2}}{C_{c1}+C_{c2}}
+C_{c1}\parallel C_{c2} = \frac{C_{c1}C_{c2}}{C_{c1}+C_{c2}}
 $$
 ve bu noktada su tasarim varsayimi yazili:
 
@@ -9866,8 +9056,7 @@ Okuma notu:
 `W.116` sayilariyla hizli buyukluk kontrolu yapinca:
 
 $$
-\omega_L \approx \frac{21.13\,m\Omega}{6.8\,\mu H}
-\approx 3.1 \times 10^3\,rad/s
+\omega_L \approx \frac{21.13\,m\Omega}{6.8\,\mu H} \approx 3.1 \times 10^3\,rad/s
 $$
 
 $$
@@ -10013,26 +9202,16 @@ $$
 Compensator tarafinda:
 
 $$
-\omega_{p1}
-\approx
-\frac{1}{R_{c1}\,(C_{c1}\parallel C_{c2})}
-\approx
-\frac{1}{R_{c1} C_{c2}}
+\omega_{p1} \approx \frac{1}{R_{c1}\,(C_{c1}\parallel C_{c2})} \approx \frac{1}{R_{c1} C_{c2}}
 $$
 $$
-\omega_{p2}
-\approx
-\frac{1}{R_{c2} C_{c3}}
+\omega_{p2} \approx \frac{1}{R_{c2} C_{c3}}
 $$
 $$
-\omega_{z1}
-\approx
-\frac{1}{R_{c1} C_{c1}}
+\omega_{z1} \approx \frac{1}{R_{c1} C_{c1}}
 $$
 $$
-\omega_{z2}
-\approx
-\frac{1}{(R_{FB1}+R_{c2})\,C_{c3}}
+\omega_{z2} \approx \frac{1}{(R_{FB1}+R_{c2})\,C_{c3}}
 $$
 Sayfadaki renkli kutulara dusulen hedef/niyet notlari da onemli:
 
@@ -10149,25 +9328,18 @@ Bu eski ODT parcasinda asil saklamak istedigim sey, load-step sirasinda `Vout` c
 GitHub uyumlu matematik bicimiyle:
 
 $$
-H_{\text{system}}(s)
-= \frac{V_{out}}{V_{ref}}
-= \frac{\text{Ileri Yol}}{1 + \text{Acik Cevrim}}
+H_{\text{system}}(s) = \frac{V_{out}}{V_{ref}} = \frac{\text{Ileri Yol}}{1 + \text{Acik Cevrim}}
 $$
 $$
-H_{\text{system}}(s)
-= \frac{H_{\text{mod}}(s)\,H_{\text{filter}}(s)}
-{1 + H_{\text{mod}}(s)\,H_{\text{filter}}(s)\,H_{\text{compensator}}(s)}
+H_{\text{system}}(s) = \frac{H_{\text{mod}}(s)\,H_{\text{filter}}(s)} {1 + H_{\text{mod}}(s)\,H_{\text{filter}}(s)\,H_{\text{compensator}}(s)}
 $$
 $$
-H_{\text{open-loop}}(s)
-= H_{\text{mod}}(s)\,H_{\text{filter}}(s)\,H_{\text{compensator}}(s)
+H_{\text{open-loop}}(s) = H_{\text{mod}}(s)\,H_{\text{filter}}(s)\,H_{\text{compensator}}(s)
 $$
 Dolayisiyla kapali cevrim ifade su sekilde de yazilabilir:
 
 $$
-H_{\text{system}}(s)
-= \frac{H_{\text{mod}}(s)\,H_{\text{filter}}(s)}
-{1 + H_{\text{open-loop}}(s)}
+H_{\text{system}}(s) = \frac{H_{\text{mod}}(s)\,H_{\text{filter}}(s)} {1 + H_{\text{open-loop}}(s)}
 $$
 Bu denklemleri eski ODT blok diyagraminin diliyle koruyorum; final hesapta ise ayni yerde loop kirilmasi, ayni `H_FB` tanimi ve ayni kompanzator isaret/kazanc konvansiyonu kullanilmali. `Vout/Vref`, `Vout/Vcontrol` ve load-disturbance cevabini birbirine karistirirsam faz marji sayisi dogru gorunse bile aslinda baska bir transfer fonksiyonunu okumus olurum.
 
@@ -10294,15 +9466,7 @@ Burada diferansiyel-mod EMI filtresinin ne kadar `attenuation` saglamasi gerekti
 Sayfadaki ifade, giris akiminin ilk harmonik bileseninden hareketle olusan gerilim seviyesini `dBµV` cinsinden okuyup, izin verilen ust sinir ile karsilastiriyor. Formul satiri tam temiz degil; ama sayfada korunacak ana iliski su mantikta:
 
 $$
-Attn
-\approx
-20\log_{10}\!\left(
-\frac{I_{L,\text{peak}}}{\pi^2 f_{sw} C_{in}}
-\sin(\pi D_{max})
-\frac{1}{1\,\mu V}
-\right)
--
-V_{max}
+Attn \approx 20\log_{10}\!\left( \frac{I_{L,\text{peak}}}{\pi^2 f_{sw} C_{in}} \sin(\pi D_{max}) \frac{1}{1\,\mu V} \right) - V_{max}
 $$
 Sayfanin altinda kullanilan sayisal girdiler su sekilde not edilmis:
 
@@ -10334,15 +9498,7 @@ Burada `W.103`teki diferansiyel-mod EMI attenuation hesabinin daha dikkatli bir 
 Sayfanin ustunde yine ayni mantikla su tip bir ifade yazilmis:
 
 $$
-Attn
-\approx
-20\log_{10}\!\left(
-\frac{I_{L,\text{peak}}}{\pi^2 f_{sw} C_{in,\text{etkin}}}
-\sin(\pi D_{max})
-\frac{1}{1\,\mu V}
-\right)
--
-V_{max}
+Attn \approx 20\log_{10}\!\left( \frac{I_{L,\text{peak}}}{\pi^2 f_{sw} C_{in,\text{etkin}}} \sin(\pi D_{max}) \frac{1}{1\,\mu V} \right) - V_{max}
 $$
 Bu kez sayfadaki ara notlardan korunacak ana girdiler sunlar:
 
@@ -10449,18 +9605,12 @@ Burada dogrudan giris EMI filtresi ile donusturucunun etkilesimine odaklaniliyor
 Sayfada filtre rezonans frekansi icin temel iliski not edilmis:
 
 $$
-f_{res}
-=
-\frac{1}{2\pi\sqrt{L_{IN}\,C_F}}
+f_{res} = \frac{1}{2\pi\sqrt{L_{IN}\,C_F}}
 $$
 Sayfadaki sayisal yerlestirmede su tip bir ornek yazili:
 
 $$
-f_{res}
-\approx
-\frac{1}{2\pi\sqrt{10.68\,\mu H \times 4.7\,\mu F}}
-\approx
-22.46\,kHz
+f_{res} \approx \frac{1}{2\pi\sqrt{10.68\,\mu H \times 4.7\,\mu F}} \approx 22.46\,kHz
 $$
 Sayfanin orta kisminin ana fikri su:
 
@@ -10471,9 +9621,7 @@ Sayfanin orta kisminin ana fikri su:
 Sayfanin altinda Middlebrook uyumuna giden not bulunuyor:
 
 $$
-\left|Z_{filter,out}(j\omega)\right|
-<
-\left|Z_{in}(j\omega)\right|
+\left|Z_{filter,out}(j\omega)\right| < \left|Z_{in}(j\omega)\right|
 $$
 yanina da su aciklama dusulmus:
 
@@ -10526,10 +9674,7 @@ Burada `W.100-W.101` zinciri bir adim ileri gidip EMI filtresi icin ilk `L_{IN}`
 Sayfanin ustunde su iliski not edilmis:
 
 $$
-C_F
-=
-\frac{1}{L_{IN}}
-\left(\frac{10}{2\pi f_{sw}}\right)^2
+C_F = \frac{1}{L_{IN}} \left(\frac{10}{2\pi f_{sw}}\right)^2
 $$
 Bu iliski, EMI suppress tasariminda giris akiminin ozellikle ilk harmonik bileseni etrafinda dusunuldugunu ima eden bir notla birlikte yazilmis.
 
@@ -10548,12 +9693,7 @@ Sayfanin altindaki sayisal yerlestirmede su secim yaziyor:
 ve buna bagli olarak:
 
 $$
-C_F
-\approx
-\frac{1}{4.7\,\mu H}
-\left(\frac{10}{2\pi\cdot 332\,kHz}\right)^2
-\approx
-10.68\,\mu F
+C_F \approx \frac{1}{4.7\,\mu H} \left(\frac{10}{2\pi\cdot 332\,kHz}\right)^2 \approx 10.68\,\mu F
 $$
 Burada `W.100`de not edilen `f_{res}` iliskisiyle birlikte dusunulmus ilk EMI filtre boyutlandirma adimi var. `L_{IN} = 4.7 uH` ve `C_F \approx 10.68 uF` cifti, `W.100`deki rezonans ornegine de zemin hazirliyor. Bunu final BOM diye degil, `W.100-W.101` hattindaki ilk filtre adayi olarak tutuyorum. Sayfanin bazi cumleleri silik olsa da ana fikir net: giris EMI filtresi, buck'in darbeli giris akimi ve ilk harmonik icerigi dusunulerek secilmeli; secim de damping ve Middlebrook kontroluyle kapanmali.
 
@@ -10568,9 +9708,7 @@ Burada `W.100` ve `W.102`de kurulan EMI filtre rezonansi dusuncesi baska bir `L_
 Sayfanin ustunde yine filtre rezonans frekansi iliskisi yazilmis:
 
 $$
-f_{EMI}
-=
-\frac{1}{2\pi\sqrt{L_{IN}\,C_F}}
+f_{EMI} = \frac{1}{2\pi\sqrt{L_{IN}\,C_F}}
 $$
 Sayfadaki sayisal yerlestirme, okunabildigi kadariyla, onceki adaydan farkli bir filtre kombinasyonuna isaret ediyor:
 
@@ -10605,9 +9743,7 @@ Burada `W.138`deki ayni EMI filtre adayi icin bu kez karakteristik empedans benz
 Sayfada yazilan temel iliski su:
 
 $$
-R_0
-=
-\sqrt{\frac{L_{IN}}{C_{IN}}}
+R_0 = \sqrt{\frac{L_{IN}}{C_{IN}}}
 $$
 Sayfadaki sayisal yerlestirme, okunabildigi kadariyla, su aday filtre ciftine isaret ediyor:
 
@@ -10617,11 +9753,7 @@ Sayfadaki sayisal yerlestirme, okunabildigi kadariyla, su aday filtre ciftine is
 ve buradan su sonucu not etmisim:
 
 $$
-R_0
-\approx
-\sqrt{\frac{2.2\,\mu H}{25\,\mu F}}
-\approx
-0.296\,\Omega
+R_0 \approx \sqrt{\frac{2.2\,\mu H}{25\,\mu F}} \approx 0.296\,\Omega
 $$
 Burada yeni topoloji veya yeni filtre adayi yok; `W.138`deki aday icin bir ek parametre cikariliyor. `R_0` benzeri bu buyukluk, damping kolu secimi ve filtre empedansinin buyukluk mertebesini sezmek icin yararli. Tek satir olsa da, filtreyi yalnizca `f_{res}` ile degil karakteristik empedans olcegi ile de dusundugumu gosteriyor. Final `R_D` secimi buradan dogrudan cikmiyor; ama damping kolunun hangi mertebede aranacagini hissettiren iyi bir ara kontrol.
 
@@ -10644,15 +9776,7 @@ Yani giris filtresi artik yalnizca ideal `L_{IN} - C_F` cifti olarak degil, damp
 Sayfanin altinda filtre empedansi su sekilde yazilmis:
 
 $$
-Z_{Filter}
-=
-\left(
-R_D + \frac{1}{j\omega C_D}
-\right)
-\parallel
-\left(
-j\omega L_{IN} + \frac{1}{j\omega C_F}
-\right)
+Z_{Filter} = \left( R_D + \frac{1}{j\omega C_D} \right) \parallel \left( j\omega L_{IN} + \frac{1}{j\omega C_F} \right)
 $$
 Bu ifadenin anlattigi ana fikir su:
 
@@ -10710,11 +9834,7 @@ Burada `W.105`te kavramsal olarak anlatilan negatif / dinamik giris empedansi du
 Sayfanin ustunde denklem `(17)` olarak su ifade not edilmis:
 
 $$
-\left| Z_{IN} \right|_{min}
-=
-\left|\,
--\frac{V_{IN(min)}^2}{P_{IN}}
-\right|
+\left| Z_{IN} \right|_{min} = \left|\, -\frac{V_{IN(min)}^2}{P_{IN}} \right|
 $$
 Sayfanin altindaki aciklamalarda:
 
@@ -10751,9 +9871,7 @@ Burada `W.106`daki negatif / dinamik giris empedansi denklemi bu kez dogrudan pr
 Sayfanin ustunde denklem tekrar yazilmis:
 
 $$
-\left| Z_{IN} \right|
-=
-\left| -\frac{V_{IN(min)}^2}{P_{IN}} \right|
+\left| Z_{IN} \right| = \left| -\frac{V_{IN(min)}^2}{P_{IN}} \right|
 $$
 Sayfadaki aciklamalarda bu ifadenin neden kullanildigi da not edilmis:
 
@@ -10770,22 +9888,12 @@ Sayfada proje kosullarini su sekilde yerlestiriyorum:
 Buradan once giris gucunu hesapliyor:
 
 $$
-P_{IN}
-=
-\frac{P_{out}}{\eta}
-=
-\frac{125\,\text{W}}{0.9}
-\approx
-138.88\,\text{W}
+P_{IN} = \frac{P_{out}}{\eta} = \frac{125\,\text{W}}{0.9} \approx 138.88\,\text{W}
 $$
 Ardindan da worst-case giris empedansi:
 
 $$
-\left| Z_{IN} \right|
-=
-\left| -\frac{24^2}{138.88} \right|
-\approx
-4.15\,\Omega
+\left| Z_{IN} \right| = \left| -\frac{24^2}{138.88} \right| \approx 4.15\,\Omega
 $$
 Sayfanin yan notunda bu sonuc acikca isaretlenmis:
 
