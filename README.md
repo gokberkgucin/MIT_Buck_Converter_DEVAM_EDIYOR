@@ -591,16 +591,17 @@ Sayfada korunacak ana basliklar sunlar:
 **Operating junction temp**
 
 - notlarda yaklasik `-40 C` ile `+150 C` araligina isaret ediliyor
-- hemen altina temel termal iliski yazilmis:
+- hemen altina temel termal iliski yazilmis
 
 $$
-T_J = T_A + P_{diss} \cdot R_{\theta JA}
+\begin{aligned}
+T_J &= T_A + P_{diss}\,R_{\theta JA} \\
+T_J &\approx T_{case} + P_{diss}\,R_{\theta JC}
+\end{aligned}
 $$
-veya benzer niyetle:
 
-$$
-T_J \approx T_{case} + P_{diss} \cdot R_{\theta JC}
-$$
+Ilk satir ortamdan junction'a, ikinci satir ise case uzerinden junction'a gitme niyetini gosteriyor. Finalde hangi termal direnc kullaniliyorsa olcum noktasi da onunla uyumlu secilmeli.
+
 **Thermal shutdown protection with hysteresis**
 
 - thermal shutdown esigi olarak `175 C` not edilmis
@@ -629,10 +630,11 @@ Burada `5.1.1-5.1.2`de tartisilan dahili `VCC` / LDO konusu bu kez termal guc ka
 Sayfanin ortasinda, dahili regulator uzerinde harcanan guc su sekilde not edilmis:
 
 $$
-P_{diss,\;VCC}
+P_{diss,VCC}
 =
-(V_{in} - 7.5\,V)\, I_{VCC}
+\left(V_{in} - 7.5\,\mathrm{V}\right) I_{VCC}
 $$
+
 Yan notlardan korunacak ana fikirler:
 
 - eger `V_{in}` yuksekse, dahili LDO uzerindeki dusum de buyur
@@ -674,8 +676,13 @@ Ardindan en kritik tasarim siniri tekrar vurgulaniyor:
 Sayfadaki sayisal yerleştirme, `5.1.1` ile uyumlu olacak sekilde su sonuca gidiyor:
 
 $$
-V_{in,\min} \approx 7.5\,V + 0.72\,V \approx 8.22\,V
+\begin{aligned}
+V_{in,\min}
+&\approx 7.5\,\mathrm{V} + 0.72\,\mathrm{V} \\
+&\approx 8.22\,\mathrm{V}
+\end{aligned}
 $$
+
 Yani sayfanin ana mesaji:
 
 - `V_{in} < 8.22 V` olursa
@@ -729,11 +736,17 @@ Temel setpoint iliskisi su sekilde yazilabilir:
 $$
 V_{out} = V_{FB}\left(1 + \frac{R_{FB1}}{R_{FB2}}\right)
 $$
+
 Ilk taslaktaki eski aday secim:
 
 $$
-V_{out} = 0.8\left(1 + \frac{16.5}{1.0}\right) = 14.0\,\text{V}
+\begin{aligned}
+V_{out}
+&= 0.8\,\mathrm{V}\left(1 + \frac{16.5}{1.0}\right) \\
+&= 14.0\,\mathrm{V}
+\end{aligned}
 $$
+
 Defter taramasi `W.14-W.16` ve BOM'daki satin alinmis parcalar ise su guncel adayi gosteriyor:
 
 - `R11 / R1 / RFB1 = 26.4 kOhm`
@@ -742,8 +755,13 @@ Defter taramasi `W.14-W.16` ve BOM'daki satin alinmis parcalar ise su guncel ada
 Bu durumda:
 
 $$
-V_{out} = 0.8\left(1 + \frac{26.4}{1.6}\right) = 14.0\,\text{V}
+\begin{aligned}
+V_{out}
+&= 0.8\,\mathrm{V}\left(1 + \frac{26.4}{1.6}\right) \\
+&= 14.0\,\mathrm{V}
+\end{aligned}
 $$
+
 Benim burada tutmak istedigim sey su:
 
 - `16.5 kOhm / 1.00 kOhm`: ilk aday / eski iterasyon
@@ -782,16 +800,23 @@ Guvenle okunan ana notlar sunlar:
 $$
 H_{Vout} = \frac{R_2}{R_3 + R_5} \approx 0.12857
 $$
+
 - temel setpoint iliskisi:
 
 $$
 V_{out} = V_{REF}\left(1 + \frac{R_{FB1}}{R_{FB2}}\right)
 $$
+
 Sayfada `14 V` hedefi icin su oran kurulmus:
 
 $$
-\frac{14\,V}{0.8\,V} - 1 = \frac{R_{FB1}}{R_{FB2}} = 16.5
+\begin{aligned}
+\frac{R_{FB1}}{R_{FB2}}
+&= \frac{14\,\mathrm{V}}{0.8\,\mathrm{V}} - 1 \\
+&= 16.5
+\end{aligned}
 $$
+
 Bu da eski aday bolucuyu destekliyor:
 
 - `RFB1 = 16.5 k\Omega`
@@ -804,8 +829,13 @@ Sayfanin alt kismina, referans geriliminin toleransi ile ilgili su not da dusulm
 Buradan da:
 
 $$
-\frac{808\,mV - 800\,mV}{800\,mV} = \frac{8\,mV}{800\,mV} = \frac{1}{100}
+\begin{aligned}
+\frac{808\,\mathrm{mV} - 800\,\mathrm{mV}}{800\,\mathrm{mV}}
+&= \frac{8\,\mathrm{mV}}{800\,\mathrm{mV}} \\
+&= 0.01 \approx 1\%
+\end{aligned}
 $$
+
 yani yaklasik:
 
 - `Vout'ta ±1%`lik bir sapma olabilecegi
@@ -903,21 +933,15 @@ Sayfada secilen soft-start kapasitörü:
 ve buna karsilik klasik soft-start iliskisi yazilmis:
 
 $$
-t_{SS} = \frac{C_{SS}\,V_{REF}}{I_{SS}}
-$$
-Sayfadaki yerlestirme:
-
-$$
+\begin{aligned}
 t_{SS}
-=
-\frac{47\,nF \times 0.8\,V}{10\,\mu A}
+&= \frac{C_{SS}\,V_{REF}}{I_{SS}} \\
+&= \frac{47\,\mathrm{nF} \times 0.8\,\mathrm{V}}{10\,\mu\mathrm{A}} \\
+&\approx 3.76\,\mathrm{ms}
+\end{aligned}
 $$
-Buradan:
 
-$$
-t_{SS} \approx 3.76\,ms
-$$
-sonucu elde edilir.
+Yani `C26 = 47 nF` secimi yaklasik `3.76 ms` soft-start suresine gidiyor.
 
 Sayfanin altindaki kucuk cizimde:
 
@@ -955,6 +979,7 @@ Sayfada guvenle okunan iki temel denklem su:
 $$
 R_{UV1} = \frac{V_{IN(ON)} - V_{IN(OFF)}}{I_{HYS}}
 $$
+
 ve ikinci denklem, `R_{UV1}`, `R_{UV2}`, `V_{EN}` ve `V_{IN(ON)}` arasindaki precision-enable bolucu iliskisini kuruyor. El yazisi tam net degil ama ana fikir su:
 
 - `VIN(ON)` ve `VIN(OFF)` esikleri
@@ -965,12 +990,11 @@ beraber kullanilarak `R_{UV1}` ve `R_{UV2}` boyutlandiriliyor.
 
 Sayfanin orta kisminda `EN/UVLO` pininin bolgelere ayrildigi bir tablo var. Guvenle okunan esikler sunlar:
 
-- `< 0.4 V`:
-  - `shutdown`
-- `0.4 V - 1.2 V`:
-  - `standby`
-- `> 1.2 V`:
-  - `active`
+| `EN/UVLO` pin araligi | Durum |
+| --- | --- |
+| `< 0.4 V` | `shutdown` |
+| `0.4 V - 1.2 V` | `standby` |
+| `> 1.2 V` | `active` |
 
 ![EN/UVLO pinindeki shutdown bolgesini gosteren 0.4 V notu](images/foto_selected/p34_en_uvlo_shutdown_threshold.jpg)
 
@@ -1016,25 +1040,34 @@ Ilk denklemle ust direnç hesaplanmis:
 $$
 R_{UV1} = \frac{V_{IN(ON)} - V_{IN(OFF)}}{I_{HYS}}
 $$
+
 Sayfadaki sayisal yerlestirme:
 
 $$
-R_{UV1} = \frac{24V - 23V}{10\mu A} = 100 k\Omega
+\begin{aligned}
+R_{UV1}
+&= \frac{24\,\mathrm{V} - 23\,\mathrm{V}}{10\,\mu\mathrm{A}} \\
+&= 100\,\mathrm{k\Omega}
+\end{aligned}
 $$
+
 Ikinci denklemle alt direnç icin:
 
 $$
 R_{UV2} = R_{UV1}\,\frac{V_{EN}}{V_{IN(ON)} - V_{EN}}
 $$
+
 Sayfadaki yerlestirme:
 
 $$
+\begin{aligned}
 R_{UV2}
-=
-100k\Omega \cdot \frac{1.2V}{24V - 1.2V}
-\approx
-5.263k\Omega
+&= 100\,\mathrm{k\Omega} \cdot
+\frac{1.2\,\mathrm{V}}{24\,\mathrm{V} - 1.2\,\mathrm{V}} \\
+&\approx 5.263\,\mathrm{k\Omega}
+\end{aligned}
 $$
+
 ve alt tarafta bu degere yakin standart bir deger kullanma notu dusulmus.
 
 Burada `W.207`de kavramsal olarak kurdugum `Precision Enable` bolucusu bu kez sayisal bir ornege donusuyor.
@@ -1070,23 +1103,25 @@ Burada datasheet'in `8.3.6.1 Frequency Adjust` kuralini kullanarak `RT` direncin
 Sayfada guvenle okunan temel iliski su:
 
 $$
-R_{RT}[k\Omega] = \frac{10^4}{f_{SW}[kHz]}
+R_{RT}[\mathrm{k\Omega}] = \frac{10^4}{f_{SW}[\mathrm{kHz}]}
 $$
+
 Ardindan secilen anahtarlama frekansi:
 
 $$
-f_{SW} = 332\,kHz
+f_{SW} = 332\,\mathrm{kHz}
 $$
+
 icin yerine koyma yapiliyor:
 
 $$
-R_{RT}[k\Omega] = \frac{10^4}{332}
+\begin{aligned}
+R_{RT}
+&= \frac{10^4}{332}\,\mathrm{k\Omega} \\
+&\approx 30.12\,\mathrm{k\Omega}
+\end{aligned}
 $$
-ve buradan:
 
-$$
-R_{RT} \approx 30.12\,k\Omega
-$$
 sonucu bulunuyor.
 
 Sayfanin sag tarafina da kisaca:
