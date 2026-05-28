@@ -17,12 +17,15 @@ Hesaplarin ana omurgasi dogrudan defterimden geliyor. O yuzden ayni bolum icinde
 
 Bunu belgenin kusuru gibi gormuyorum. Tam tersine, tasarimi nasil dusundugumu gosteren kisim burasi. Her seyi son haline gelmis gibi temizlemek istemiyorum.
 
-Okurken ayrimi soyle yapmak daha dogru:
+Okurken ayrimi su etiketlerle yapmak daha dogru:
 
-- `nihai omurga` dedigim yerler, simdilik uzerinde durdugum ana tasarim yolunu gosterir
-- `tasarim izi` dedigim yerler, o sonuca nasil geldigimi veya nerede yanildigimi gosterir
-- `eski iterasyon` dedigim yerler, bugunku karari tek basina temsil etmeyebilir; ama sureci anlamak icin kalir
-- `acik kontrol` dedigim yerler, hesap fikrinin kuruldugu ama final BOM, simulasyon, termal veya yerlesimle kapanmasi gereken noktalardir
+- `[Güncel Omurga]`: simdilik uzerinde durdugum ana tasarim yolu
+- `[Tasarım İzi]`: o sonuca nasil geldigimi veya nerede yanildigimi gosteren hesap / kaynak izi
+- `[Eski İterasyon]`: bugunku karari tek basina temsil etmeyen, ama sureci anlamak icin kalan eski aday
+- `[Çapraz Teyit]`: datasheet, EVM, calculator, WEBENCH veya simulasyonla yapilan karsilastirma
+- `[Açık Kontrol]`: hesap fikrinin kuruldugu ama final BOM, simulasyon, termal veya yerlesimle kapanmasi gereken nokta
+
+Uzun teknik anlatimlarda tek bir primary owner basligi olacak. Ayni hesap baska yerde tekrar gerekiyorsa orada tam anlatim degil, en fazla kisa bir yonlendirme / referans notu kalacak.
 
 Defter sayfalari bu nedenle belgede kalacak. Bir sayfadaki hesabi metne ceksem bile, o sayfayi tamamen silmek istemiyorum. Cunku bazen sadece bulunan sayi degil, o sayiya nasil gittigim de onemli.
 
@@ -146,9 +149,9 @@ Yeni tasarim daha ileri bir noktayi hedefliyor:
 
 Kisa ozet su: tasarim dusuncesinin ana omurgasi olustu; belge, defter aktarimi ve dogrulama taraflari hala toparlaniyor. Bunu su sekilde okuyorum:
 
-- guncel omurga: `24-36 V` giris, `14 V` cikis, `50-125 W` yuk araligi, `332 kHz` anahtarlama, secilmis bobin / kapasitör / MOSFET / bootstrap ve `35 kHz` civari kontrol hedefi
-- destek izleri: LM5146 calculator, WEBENCH, EVM/datasheet gorselleri ve defter sayfalari ayni tasarim yolunu farkli acilardan kontrol ediyor
-- acik kalan kapanis: final BOM derating, LTspice/PSpice loop ve transient dogrulamasi, giris filtresi / Middlebrook kontrolu, termal ve layout etkileri
+- `[Güncel Omurga]`: `24-36 V` giris, `14 V` cikis, `50-125 W` yuk araligi, `332 kHz` anahtarlama, secilmis bobin / kapasitör / MOSFET / bootstrap ve `35 kHz` civari kontrol hedefi
+- `[Çapraz Teyit]`: LM5146 calculator, WEBENCH, EVM/datasheet gorselleri ve defter sayfalari ayni tasarim yolunu farkli acilardan kontrol ediyor
+- `[Açık Kontrol]`: final BOM derating, LTspice/PSpice loop ve transient dogrulamasi, giris filtresi / Middlebrook kontrolu, termal ve layout etkileri
 
 Bu uc satiri bitmis pass/fail tablosu gibi degil, okuma haritasi gibi tutuyorum. Guncel omurga calisma noktasini, destek izleri neden o noktaya guvendigimi, acik kapanis ise hangi kanitlar gelmeden "final" diyemeyecegimi gosteriyor.
 
@@ -178,7 +181,7 @@ Bu turda agirlik verilen basliklar:
 
 
 
-## 3. Tasarim Hedefleri
+## 3. Güncel Tasarım Omurgası ve Paylaşılan Tasarım Girdileri
 
 
 
@@ -236,6 +239,106 @@ Buradaki notlu gorsel, cikis gerilimi spesifikasyonunu iki farkli zarf icinde du
 Defterde bu iki kriteri ayri ayri kullanmis olmam, daha sonra `W.58-W.59` tarafinda neden farkli `C_{out}` alt-sinirlarina baktigimi da daha okunur hale getiriyor.
 
 
+### 3.1 Paylaşılan `fsw`, duty ve zaman alanı owner'ı
+
+[Güncel Omurga] Bu alt başlık, aynı duty hesabının `5.2`, `5.5` ve `5.7` altında tekrar tekrar kurulmasını engelleyen tek owner'dır. Aşağıdaki sayılar bobin, `Cin`, `Cout`, MOSFET, bootstrap ve kontrol hesabına buradan referans olarak dağılır.
+
+Ortak anahtarlama frekansı ve periyot:
+
+$$
+f_{sw} = 332\,\text{kHz}
+$$
+
+$$
+T_{sw} = \frac{1}{f_{sw}} \approx 3.01\,\mu\text{s}
+$$
+
+[Güncel Omurga] İdeal senkron buck ilk yaklaşımı:
+
+$$
+D_{\text{ideal}} \approx \frac{V_{out}}{V_{in}}
+$$
+
+Mevcut `24 V - 36 V -> 14 V` zarfı için:
+
+- $D_{\min,\text{ideal}} = \dfrac{14}{36} \approx 0.389$
+- $D_{\max,\text{ideal}} = \dfrac{14}{24} \approx 0.583$
+
+[Tasarım İzi] Defterde verim etkisiyle daha korumacı duty ailesi de kullanılmış:
+
+$$
+D_{\eta} \approx \frac{V_{out}}{V_{in}\eta}
+$$
+
+`Vout = 14 V` ve minimum verim varsayımı `\eta \approx 0.9` ile:
+
+- $D_{\min,\eta} \approx \dfrac{14}{36 \times 0.9} \approx 0.432$
+- $D_{\max,\eta} \approx \dfrac{14}{24 \times 0.9} \approx 0.648$
+
+Bu `0.432 / 0.648` ailesi ideal duty'nin yerine sessizce geçirilmez. `Cin` RMS, bazı EMI/hızlı kontrol hesapları ve bootstrap sarj penceresi gibi korunmacı alt kontrollerde kullanılan tasarım izi olarak etiketlenir.
+
+[Tasarım İzi] `D = 0.5`, final duty sınırı değil; duty aralığının ortasına yakın pratik bir kontrol noktasıdır. Defterde özellikle giriş kapasitörü, RMS ve hızlı EMI tarafında kullanılmıştır. Bu değer, owner dışında yeniden türetilmeyecek; ilgili bölüm yalnızca "`D = 0.5` pratik kontrol noktası için bkz. `3.1`" diye referans verecek.
+
+Duty'nin zaman alanına çevrimi:
+
+$$
+t_{ON} = D T_{sw}
+$$
+
+$$
+t_{OFF} = (1-D)T_{sw}
+$$
+
+İdeal duty zarfı `332 kHz` için zaman alanında şu aralığa karşılık gelir:
+
+- $t_{ON,\max,\text{ideal}} = 0.583 \times 3.01\,\mu\text{s} \approx 1.76\,\mu\text{s}$
+- $t_{ON,\min,\text{ideal}} = 0.389 \times 3.01\,\mu\text{s} \approx 1.17\,\mu\text{s}$
+- $t_{OFF,\min,\text{ideal}} = (1 - 0.583) \times 3.01\,\mu\text{s} \approx 1.25\,\mu\text{s}$
+- $t_{OFF,\max,\text{ideal}} = (1 - 0.389) \times 3.01\,\mu\text{s} \approx 1.84\,\mu\text{s}$
+
+[Çapraz Teyit] LM5146 zaman sınırları, normal duty zarfının kontrolcü minimum zamanlarıyla çakışıp çakışmadığını görmek için ayrı okunur:
+
+- `tON(min) = 40 ns`
+- `tOFF(min) = 140 ns`
+- $D_{\max,\text{donanımsal}} \approx \dfrac{T_{sw} - t_{OFF,\min}}{T_{sw}} \approx 0.953$
+- $D_{\min,\text{donanımsal}} \approx t_{ON,\min} f_{sw} \approx 0.013$
+
+Bu donanımsal sınırlar proje duty ailesi değildir; yalnızca `332 kHz` ve LM5146 zaman limitleriyle büyüklük kontrolüdür. Ölüm zamanı, propagation delay ve gerçek kontrolcü davranışı ayrıca doğrulanacak.
+
+[Eski İterasyon] / [Tasarım İzi] Bootstrap tarafında görülen:
+
+- $D_{\text{high,max}} = 0.648$
+- $D_{\text{high,min}} = 0.432$
+- $D_{\text{low,min}} = 1 - 0.648 = 0.352$
+
+değerleri bu owner altında `\eta \approx 0.9` ile uyumlu korumacı duty ailesi olarak tutulur. Bootstrap hesabında ayrıca görülen `Dmax \approx 0.95` notu ise proje duty'si değil, kontrolcü/zaman sınırı ve bootstrap bias-leakage bağlamındaki ayrı bir üst sınır kontrolüdür.
+
+Defter kaynak izleri:
+
+![W.26'dan secilen el yazisi parca: temel tasarim girdileri, cikis akimi ve load-step notlari](images/defter_snippets_web/d01_w26_specs_and_load_step.jpg)
+
+![W.140'tan secilen el yazisi parca: duty araligi, verim dahil duty notlari ve D = 0.5 secimi](images/defter_snippets_web/d03_w140_duty_and_design_inputs.jpg)
+
+![W.203'ten secilen el yazisi parca: duty cycle, tON(min), tOFF(min) ve FPWM notu](images/defter_snippets_web/d15_w203_ton_toff_fpwm_note.jpg)
+
+Bu üç görsel, shared owner'ın kaynak izidir: `W.26` ana girdileri ve load-step'i, `W.140` ideal/verim-dahil duty ailesini ve `D = 0.5` kontrol noktasını, `W.203` ise `tON(min)`, `tOFF(min)` ve `FPWM` notunu gösterir.
+
+
+### 3.2 Startup / pin-programming handoff özeti
+
+[Güncel Omurga] `internal VCC/LDO`, `EN/UVLO`, `SS/TRK` ve `RT` kararları tek startup akışı gibi okunacak. Bu akışın ayrıntılı owner'ı `5.1`dir; burada ortak tasarım omurgasına bağlanan kısa karar özeti durur.
+
+- `VCC/LDO`: LM5146 dahili `7.5 V` LDO kullanılıyor; harici `8 V - 13 V` `VCC/DVCC` yolu biliniyor ama bu iterasyonda ana seçim değil.
+- `VCC` dropout: `0.25 V typ - 0.72 V max`; harici `VCC` yoksa normal LDO regülasyonu için erken sınır `7.5 V + 0.72 V = 8.22 V`.
+- `8.22 V`: normal çalışma hedefi değil; proje çalışma zarfı hâlâ `24 V - 36 V`. Bu değer startup / UVLO / dahili LDO sanity sınırı olarak okunacak.
+- `EN/UVLO`: `<0.4 V` shutdown, `0.4 V - 1.2 V` standby, `>1.2 V` active.
+- `VCC UVLO`: `VCC-UV ≈ 4.93 V typ`, hysteresis `≈0.26 V`; `EN/UVLO > 1.2 V` tek başına yeterli kabul edilmeyecek.
+- `SS/TRK`: `I_{SS} = 10 uA`, `C_{SS} = C26 = 0.047 uF = 47 nF`, defter hesabı `tSS ≈ 3.76 ms`; calculator `4 ms`, WEBENCH `3.8 ms` çapraz teyit.
+- `RT`: `332 kHz` için `RRT ≈ 30.12 kOhm`, pratik not `Rrt = 30.1 k`; calculator `30.1 kOhm`, WEBENCH `f_sw = 332.226 kHz`, `Mode = FCCM`.
+
+[Açık Kontrol] `VCC/LDO` kaybı `Vin`, `7.5 V` dahili regülasyon seviyesi ve `I_{VCC}` bağıyla `5.9 Termal ve Kayıp Kapanışı` owner'ına taşınır; final sıcaklık kararı orada kapanır.
+
+
 
 ## 4. Kullanilan Ana Kaynaklar
 
@@ -285,141 +388,62 @@ Bu kaynaklari tek seviye gibi okumuyorum:
 - `G112`, `G113` ve `G114`: EMI, input filter ve Middlebrook tarafinda geri dondugum kaynaklar
 - `LM5146` calculator ve `WEBENCH`: defterdeki sayilari hizli capraz teyit etmek icin kullandigim araclar
 
-Bir kaynakla defter notu farkli gorunurse once rolune bakacagim. `G94_SPEC.txt` ve datasheet sinir koyar; calculator / `WEBENCH` hizli checkpoint verir; defter sayfalari ise secim izini ve neden o noktaya geldigimi tasir. Ayni sayi farkli yerde baska degerle geciyorsa sessizce birlestirmek yerine `erken checkpoint`, `guncel omurga` veya `capraz teyit` diye isaretlemek daha dogru.
+Kaynaklarin guven / rol seviyesini boyle ayiriyorum:
+
+| Kaynak sinifi | Rol | Guven seviyesi | Tek basina neyi kapatmaz? |
+| --- | --- | --- | --- |
+| `G94_SPEC.txt` | hedefleri ve sinir degerleri koyar | yuksek, tasarim girdisi | komponent secimi ve dogrulama |
+| datasheet / EVM (`G32`, `G46`) | parca sinirlari, pin/topoloji ve fiziksel referans verir | yuksek, teknik dayanak | proje kosulundaki final performans |
+| temel guc kati / kontrol kaynaklari (`G31`, `G35`, `G101`, `G103`, `G95`) | denklem ve yontem dayanaklarini verir | orta-yuksek, yontem dayanakli | secilen BOM ile final sayisal sonuc |
+| EMI / input-filter kaynaklari (`G112`, `G113`, `G114`) | filtre, layout ve Middlebrook mantigini kurar | orta-yuksek, tasarim rehberi | gercek LISN/PCB/olcum sonucu |
+| `LM5146` calculator | hizli komponent ailesi ve loop checkpoint'i verir | capraz teyit, guncel omurga adayi | MLCC `dc-bias`, ESR/ESL, termal, layout ve EMI etkileri |
+| `WEBENCH` | operating-values, ripple, verim, EMI ve loop snapshot'i verir | capraz teyit / erken simulasyon | final LTspice/PSpice, termal ve kose kosul dogrulamasi |
+
+Bir kaynakla defter notu farkli gorunurse once rolune bakacagim. `G94_SPEC.txt` ve datasheet sinir koyar; calculator / `WEBENCH` hizli checkpoint verir; defter sayfalari ise secim izini ve neden o noktaya geldigimi tasir. Ayni sayi farkli yerde baska degerle geciyorsa sessizce birlestirmek yerine `[Eski İterasyon]`, `[Güncel Omurga]`, `[Çapraz Teyit]` veya `[Açık Kontrol]` diye isaretlemek daha dogru.
 
 
 
-### 4.1 `LM5146` quickstart calculator ile capraz teyit
+### 4.1 Cross-check ciktılarinin owner haritasi
 
 
 
-Calculatoru bu calismada tek basina karar veren arac gibi kullanmadim.
+`LM5146` quickstart calculator ve `WEBENCH` ciktılarini burada final komponent sahibi gibi tutmuyorum. Bu bolumun owner'i yalnizca kaynak izi ve okuma kurali. Sayisal sonuc veya komponent karari ilgili teknik baslikta duracak.
 
-Benim icin yeri su: defterde kurdugum ana omurganin LM5146 quickstart tarafinda da benzer sayilara oturup oturmadigini kontrol etmek.
+[Çapraz Teyit] Kaynak dosyalar:
 
-Buradaki "teyit" iki sinirla okunmali:
-
-- guclu oldugu yer: `Vin/Vout/Iout`, `fsw`, bobin, soft-start ve finale yakin kompanzator ailesinin ayni hizada olup olmadigini gormek
-- tek basina kapatmadigi yer: MLCC `dc-bias`, gercek ESR/ESL, UVLO ayrintilari, MOSFET kayip/termal hesabi, EMI filtresi ve layout etkileri
-
-Workbook'ta tekrar eden ana tasarim omurgasi sunlar:
-
-- `V_{IN} = 24 / 30 / 36 V`
-- `V_{OUT} = 14 V`
-- `I_{OUT,max} = 9 A`
-- `f_{sw} = 332 kHz`
-- `R_{RT} = 30.1 kOhm`
-- secilen bobin: `6.8 uH`
-- bobin `DCR`: `0.88 mOhm`
-- `C_{SS} = 47 nF`
-- `t_{SS} = 4 ms`
-
-Kompanzator tarafinda da workbook ile defterin nihaiye yakin gorunen cizgisi ayni aileye oturuyor:
-
-- `RFB1 = 26.4 kOhm`
-- `RFB2 = 1.58 kOhm`
-- `RC1 = 6.65 kOhm`
-- `RC2 = 768 Ohm`
-- `CC1 = 4.7 nF`
-- `CC2 = 120 pF`
-- `CC3 = 1.0 nF`
-- `f_c = 35 kHz`
-- `f_{p2} = 166 kHz`
-
-Bu listeyi final BOM satiri gibi degil, calculator snapshot'i gibi tutuyorum. Mesela `RFB2 = 1.58 kOhm` ile metnin bazi yerlerinde gecen `1.6 kOhm` ayni aile / standart deger yuvarlama baglaminda okunmali; son karar verilirken `5.1.3` ve `6.2` icindeki tek komponent setiyle eslestirilecek.
-
-Bu nedenle workbook ile bu Markdown belge arasindaki iliskiyi boyle okuyorum:
-
-- workbook, tasarimin cekirdek nihai omurgasini guclu bicimde teyit ediyor
-- defter ve `yeni.md` ise bunun uzerine eski iterasyonlari, alternatif yontemleri, komponent secim mantigini ve sonraki rafineleri de tasiyor
-- ozellikle giris kapasitörü, UVLO ve bazi kayip parametrelerinde workbook daha erken / daha sade bir checkpoint olabilir; defterin sonraki sayfalarinda ise gercek komponent, `dc-bias`, `ESR` ve alternatif senaryolarla daha ileri rafine edilmis notlar bulunur
-
-Bu yuzden workbook ile `yeni.md` birebir ayni tek iterasyon gibi okunmamali. Daha dogru okuma su: ayni tasarimin nihaiye yakin omurgasi + defterde korunmus tasarim izi.
-
-
-### 4.2 `WEBENCH` ile hizli simulasyon teyidi
-
-
-
-`WEBENCH` ciktilarini da ayni sekilde kullaniyorum: hizli kontrol, tek basina final kanit degil.
-
-`WBDesign21.pdf` benim nihai tasarimimin yerine gecmiyor. Buradaki dosyalari su sekilde okuyorum:
-
-Kaynak dosya:
-
+- [LM5146_quickstart_calculator_revB1.xlsm](./references/pdfs/LM5146_quickstart_calculator_revB1.xlsm)
 - [WBDesign21.pdf](./WBDesign21.pdf)
 - [amCharts.json](./BOM/amCharts.json)
 
-Bu dosyalardan bekledigim sey daha cok su:
+Bu uc kaynak icin owner dagilimi:
 
-- kendi hesaplarimla kurdugum tasarim omurgasinin hizli davranis teyidi
-- secilen komponent ailesinin ilk simulasyon tabanli sagduyu kontrolu
-- statik calisma, ripple, verim ve loop davranisi icin hizli referans goruntu paketi
+| Cikti / konu | Primary owner |
+| --- | --- |
+| `fsw`, duty ailesi ve `tON/tOFF` zaman penceresi | `3.1 Paylaşılan fsw, duty ve zaman alanı owner'ı` |
+| `RT`, FCCM calisma noktasi ve startup/pin programlama | `5.1 Controller pin programming ve startup owner` |
+| `SS/TRK`, `C_{SS}`, soft-start suresi | `5.1.4 EN/UVLO, SS/TRK ve startup notlari` |
+| `FB` bolucusu | `6.1 Feedback divider owner` |
+| bobin, `DCR`, ripple akimi | `5.3 Bobin secimi` |
+| cikis kapasiteleri, `Vout` ripple | `5.4 Cikis kapasiteleri` |
+| giris kapasiteleri, `Vin` ripple | `5.5 Giris kapasiteleri` |
+| MOSFET secimi ve elektriksel kayip kalemleri | `5.6 MOSFET secimi ve kayiplar` |
+| controller `VCC/LDO`, MLCC RMS sicaklik, MOSFET `T_J/Rth`, board worst-case termal kapanis | `5.9 Termal ve Kayıp Kapanışı` |
+| kompanzator komponent ailesi, `f_c`, `f_{p2}` | `6.3 Hedef fc ve faz marji owner ozeti`, `6.4 K-factor mantigi ve Type-III komponent seti`, `6.5 Calculator / defter frekans yerlestirme cross-checkleri` |
+| faz marji / loop response | `6.3 Hedef fc ve faz marji owner ozeti` ve `6.6 Faz, kazanc marji ve WEBENCH cross-checkleri` |
+| EMI spektrumu ve filtre notlari | `7.2 Differential-mode EMI` ve `8.5 Giris filtresi ve EMI ile baglantili testler` |
 
-Burada bakisi uc parcaya ayiriyorum:
+Bu yuzden calculator veya `WEBENCH` icinde gecen bir sayi, burada tek basina final kabul edilmeyecek. Ilgili owner bolumde `[Çapraz Teyit]` notu olarak duracak; defter veya BOM ile fark varsa ayni owner altinda `[Eski İterasyon]`, `[Tasarım İzi]` veya `[Açık Kontrol]` etiketiyle ayrilacak.
 
-- `WBDesign21.pdf`: rapor goruntuleri, operating-values tablosu, ripple / verim / EMI ekranlari
-- `amCharts.json`: loop-response sayisal izi, ozellikle `f_c` ve faz marji
-- defter ve calculator: ayni sayilarin hangi elle hesap / parca secimi hattindan geldigini gosteren ana iz
 
-Bu nedenle `WEBENCH` ciktilari, defter, hesap, calculator ve BOM secimi ile birlikte okunan hizli bir capraz teyit katmani.
+### 4.2 Arac ciktisi okuma kurali
 
-Bu raporun belge icinde en kullanisli kisimlari sunlardir:
 
-- kapak / BOM ozeti (`24-36 V -> 14 V @ 9 A`, secilen ana komponent ailesi)
-- operating values tablosu
-- loop-response / bode verisi
-- steady-state ve input-transient simulasyon ciktilari
 
-![WEBENCH raporundan EMI sonrasi spektrum, filtre / converter empedans karsilastirmasi ve operating values ozeti](images/foto_selected/p106_webench_emi_and_operating_values.png)
+[Çapraz Teyit] Calculator guclu oldugu yerde cekirdek omurgayi hizli yokluyor: `Vin/Vout/Iout`, `fsw`, bobin, soft-start ve kompanzator ailesi. Tek basina kapatmadigi yerler ise MLCC `dc-bias`, gercek ESR/ESL, UVLO ayrintilari, MOSFET kayip/termal hesabi, EMI filtresi ve layout etkileri.
 
-![WEBENCH raporundan ayrintili operating values tablosu](images/foto_selected/p107_webench_operating_values_detail.png)
+[Çapraz Teyit] `WEBENCH` de ayni sekilde hizli simulasyon snapshot'i. `WBDesign21.pdf` ve `amCharts.json`; statik calisma, ripple, verim, EMI ve loop-response icin ilk kontrol goruntusu verir. Bunlar nihai LTspice/PSpice, termal veya layout kaniti yerine gecmez.
 
-Bu iki sayfa, `WEBENCH` raporunda benim icin en faydali kisimlar oldu. Ilk sayfa filtre oncesi / sonrasi ripple spektrumu, filtre-empedans karsilastirmasi ve kisa operating-values ozetini birlikte veriyor.
-
-Ikinci sayfa ise ayni tasarim icin ayrintili sayisal sonuclari tek tabloda topluyor. `I_{L,pp}`, ripple yuzdesi, MOSFET kayiplari, toplam guc kaybi, verim, `V_{out}`, `V_{out,pp}` ve `V_{in,pp}` gibi maddeleri burada dogrudan okuyabiliyorum.
-
-Bu hizli teyitte guclu bicimde tekrar eden ana noktalar sunlardir:
-
-- `V_{IN} = 24 - 36 V`
-- `V_{OUT} = 14 V`
-- `I_{OUT,max} = 9 A`
-- `f_{sw} = 332.226 kHz`
-- `Mode = FCCM`
-- `SoftStart = 3.8 ms`
-- `I_{L,pp} = 3.805 A`
-- bobin ripple orani `42.277%`
-- `Efficiency = 97.877%`
-
-Kontrol kararliligi acisindan `WEBENCH` loop-response verisi de tasarim hedefiyle uyumludur. `amCharts.json` icindeki sayisal Bode verisine gore ana loop icin:
-
-$$
-f_c \approx 34.83 \,\text{kHz}
-$$
-$$
-PM \approx 55.75^\circ
-$$
-Bu sonuc, defterde ve kompanzator hesabinda hedeflenen `f_c \approx 35 \,\text{kHz}` cizgisiyle iyi ortusur ve kapali cevrimin kararlilik acisindan makul oldugunu gosterir.
-
-`WBDesign21.pdf` icinde statik calisma tarafinda olumlu gorunen basliklar da vardir:
-
-- `Vout Actual = 13.8 V`, yani `14 V +- 3%` bandi icinde
-- verim `%90` hedefinin belirgin ustundedir
-- filtre sonrasi giris gurultusu `61.79 dBuV` olup, ayni raporda verilen `67.75 dBuV` sinirinin altindadir
-
-Buna karsilik, ayni `WEBENCH` snapshot'inda henuz hedefe tam oturmayan veya dikkatli yorumlanmasi gereken noktalar da vardir:
-
-- `Vout p-p = 122.002 mV`, yani `100 mVpp` hedefinin biraz ustunde
-- `Vin p-p = 2.951 V`, yani defterdeki `0.24 Vpp` hedefi ile uyumlu degildir
-- rapordaki ortam sicakligi `Ta = 30 degC` oldugu icin, `76 degC board worst-case` hedefini tek basina dogrulamaz
-
-Bu iki ripple satirini ozellikle kirmizi bayrak gibi tutuyorum. `WEBENCH` tarafinda hangi input-filter modeli, kaynak empedansi ve olcum noktasi kullanildigi benim LTspice planimdaki `Vin_src / Vin_post_filter / Vout` ayrimiyla birebir ayni degil. O yuzden `122 mVpp` ve `2.951 Vpp` sayilari "tasarim bitti" ya da "tasarim olmadi" sonucu degil; `8.3-8.5`te ayni kosul setiyle tekrar olculecek isaretler.
-
-Bu nedenle `WEBENCH` sonucu icin en dogru ozet sudur:
-
-- tasarimin temel calisma noktasi saglikli gorunmektedir
-- loop response kararlidir ve `35 kHz` civari crossover hedefiyle uyumludur
-- ancak ripple ve sicaklik gibi bazi hedefler icin bu snapshot tek basina nihai kanit olarak kullanilmamalidir
+[Açık Kontrol] Bu kaynaklardan gelen ripple, sicaklik veya EMI uyumsuzluklari sessizce birlestirilmeyecek. `Vout`, `Vin`, loop marji ve EMI tarafindaki sayilar sirasiyla `5.4`, `5.5`, `6.6`, `7.2` ve `8.3-8.5` altinda ayni kosul setiyle tekrar kontrol edilecek.
 
 
 
@@ -429,16 +453,24 @@ Bu bolumde guc katini adim adim kuruyorum. Topoloji varsayimlari, duty sinirlari
 
 4. bolumde kaynaklari ve hizli teyitleri ayirdiktan sonra burada artik asil tasarim zincirine geciyorum: once sinirlar, sonra pasifler, sonra anahtarlama elemanlari. Amac eski notlari temizlemek degil; hangi notun bugunku tasarima nasil baglandigini gostermek.
 
+[Güncel Omurga - güç katı dependency sırası] Bu bölümde teknik okuma sırası şu olacak: önce ortak sabitler / duty / timing (`3.1` primary owner, `5.2` kısa geçit), sonra indüktör (`5.3`), sonra çıkış kapasiteleri (`5.4`), sonra giriş kapasiteleri (`5.5`). `5.1` controller pin programming / startup owner'ı bu zincirin destekleyici kontrolcü varsayımıdır; `L/C/Cin/Cout` owner'ı gibi okunmayacak.
+
+Bu sırayı özellikle koruyorum: bobin ripple'ı `Cout` alt sınırına girer; `Cout` plant ve transient davranışını belirler; `Cin` ise aynı duty/timing girdilerini kullanır ama giriş hot-loop, RMS, EMI ve transient enerji tamponu tarafında ayrı owner'dır. Çıkış bulk kararı ile giriş bulk kararı aynı karar değildir.
+
 Sirasi tam olarak "once final sonuc, sonra ekler" seklinde degil. Bazi yerlerde once ODT'den gelen eski metin, sonra defterden gelen düzeltme veya teyit var. Bu bolumu okurken benim icin onemli ayrim su:
 
-- `gecerli omurga`: bugunku tasarimda kullandigim ana yol
-- `eski aday`: silmedigim, cunku nasil basladigimi gosteren ilk secim
-- `capraz teyit`: datasheet, EVM, calculator veya defter uzerinden ayni fikrin kontrolu
-- `acik kontrol`: hesap var ama LTspice / PSpice / termal dogrulama ile tekrar bakilacak nokta
+- `[Güncel Omurga]`: bugunku tasarimda kullandigim ana yol
+- `[Eski İterasyon]`: silmedigim, cunku nasil basladigimi gosteren ilk secim
+- `[Çapraz Teyit]`: datasheet, EVM, calculator veya defter uzerinden ayni fikrin kontrolu
+- `[Açık Kontrol]`: hesap var ama LTspice / PSpice / termal dogrulama ile tekrar bakilacak nokta
 
 
 
-### 5.1 Topoloji ve temel varsayimlar
+### 5.1 Controller pin programming ve startup owner
+
+[Güncel Omurga] Bu bölümün primary owner'ı LM5146 pin programlama ve startup varsayımlarıdır: dahili `VCC/LDO`, `EN/UVLO`, `SS/TRK` ve `RT` burada tek akış olarak okunur. `fsw`, duty ailesi ve zaman alanı hesabı `3.1` altında ortak tasarım girdisi olarak sabitlendi; burada ise bu frekansın `RT` pini ve startup zinciriyle nasıl programlandığı korunur.
+
+[Çapraz Teyit] Aşağıdaki alt başlıklar defter, kaynak görseli ve calculator izlerini saklar. Başka bölümlerde bu pin/startup denklemleri yeniden baştan kurulmayacak; yalnızca bu owner'a kısa referans verilecek.
 
 
 
@@ -557,76 +589,7 @@ Bu gorseller birlikte bakildiginda, dahili `LDO` yolu ile harici `VCC` / `DVCC` 
 
 Ozellikle `p105` goruntusu bu ayrimi daha genis bir blok diyagram uzerinde tekrarliyor. `DVCC`, `-VCC`, `BST` ve harici `8-13 V` ray notu ayni cizimde goruldugu icin, "harici VCC ile dahili LDO'yu baypas etme" fikrini kontrolcunun kendi blok yapisi uzerinden dusundugumu da gosteriyor.
 
-Defterden aktarilan not (`W.108`):
-
-Burada daha cok kontrolcu datasheet'indeki sicaklik ve termal koruma notlarini toplamisim. Bu sayfa proje-ozel bir kayip hesabi degil; cihazin mutlak calisma ve koruma sinirlarini hatirlatan bir defter ozeti.
-
-![W.108'den secilen el yazisi parca: kontrolcunun junction temperature, thermal shutdown ve exposed pad notlari](images/defter_snippets_web/d06_w108_thermal_controller_limits.jpg)
-
-Sayfada korunacak ana basliklar sunlar:
-
-**Device temp grade**
-
-- otomotiv / genis sicaklik araligina isaret eden not
-- ortamin ve cihazin izin verilen sicaklik araliklarinin birlikte dusunulmesi gerektigi vurgulaniyor
-
-**Operating junction temp**
-
-- notlarda yaklasik `-40 C` ile `+150 C` araligina isaret ediliyor
-- hemen altina temel termal iliski yazilmis:
-
-$$
-T_J = T_A + P_{diss} \cdot R_{\theta JA}
-$$
-veya benzer niyetle:
-
-$$
-T_J \approx T_{case} + P_{diss} \cdot R_{\theta JC}
-$$
-**Thermal shutdown protection with hysteresis**
-
-- thermal shutdown esigi olarak `175 C` not edilmis
-- hysteresis icin yaklasik `20 C` notu var
-- bu da koruma devresinin kapanma / yeniden acilma davranisini belirleyen sinirlari hatirlatiyor
-
-**EP (Exposed Pad)**
-
-- alt taraftaki metal pad'in termal ve elektriksel rolu not edilmis
-- PCB bakiri / GND / isi dagitma acisindan exposed pad'in onemi vurgulaniyor
-
-**Storage temperature**
-
-- yaklasik `-55 C` ile `150 C` araligi not edilmis
-
-Buradaki asil deger, sectigim kontrolcu IC'nin yalnizca elektriksel degil termal sinirlarini da erken asamada not etmis olmam. Burada henuz proje-ozel guc kaybi hesabi yok; ama `T_J`, thermal shutdown ve exposed pad dusuncesi daha bastan masaya gelmis.
-
-Defterden aktarilan not (`W.111`):
-
-Burada `5.1.1-5.1.2`de tartisilan dahili `VCC` / LDO konusu bu kez termal guc kaybi tarafindan ele aliniyor. Ust satirda su ifade var:
-
-![W.111'den secilen el yazisi parca: dahili VCC regulatorunun guc kaybi ve harici DVCC secenegi notu](images/defter_snippets_web/d07_w111_vcc_ldo_loss_note.jpg)
-
-- `VCC regulatorunun guc tuketimi`
-
-Sayfanin ortasinda, dahili regulator uzerinde harcanan guc su sekilde not edilmis:
-
-$$
-P_{diss,VCC} = (V_{in} - 7.5\,\text{V})\,I_{VCC}
-$$
-
-Yan notlardan korunacak ana fikirler:
-
-- eger `V_{in}` yuksekse, dahili LDO uzerindeki dusum de buyur
-- ayni `I_{VCC}` akiminda bu, daha fazla isi kaybi anlamina gelir
-- dolayisiyla yuksek `Vin` tarafinda dahili `VCC` regulatoru daha fazla isinabilir
-
-Sayfanin alt kismina dusulen tasarim karari notu su:
-
-- asiri isinma sonucunda problem yasanirsa
-- dahili `VCC` rayi yerine `8 V - 13 V` araliginda harici bir kaynak kullanilabilir
-- ve `DVCC` uzerinden `VCC` pinleri beslenebilir
-
-Burada daha once `W.108`de genel termal sinir olarak yazdigim seyler, LM5146'nin dahili regulatorune ozel bir guc kaybi iliskisine baglaniyor. Harici `VCC` seceneginin neden akilda tutuldugu da burada daha anlasilir oluyor.
+[Yönlendirme - termal owner] `W.108` kontrolcü junction temperature / thermal shutdown / exposed pad notlari ve `W.111` dahili `VCC/LDO` guc kaybi hesabı artik `5.9 Termal ve Kayıp Kapanışı` altinda tutulur. Bu bolumde yalniz startup/pin-programming baglami kalir: dahili `VCC/LDO` ana secimdir, harici `8 V - 13 V` `DVCC` yolu ise termal veya kayip kapanisinda gerekirse yeniden acilacak alternatiftir.
 
 Defterden aktarilan not (`W.170`):
 
@@ -685,117 +648,11 @@ Bu bolumun kapanisinda kendime bir kontrol notu birakiyorum: `8.22 V` siniri dus
 
 
 
-#### 5.1.3 Cikis gerilimi setpoint direncleri FB
+#### 5.1.3 FB divider referans notu
 
+[Yönlendirme] `FB` bolucusunun primary owner'i artik `6.1 Feedback divider owner` altindadir. Bu startup / pin-programming akisi icinde yalniz `FB` pininin `0.8 V` referansa bagli oldugunu ve cikis setpoint'inin kontrol dongusuna buradan girdigini hatirlatiyorum.
 
-Bu alt baslikta iki FB bolucusu ust uste duruyor. ODT'deki `16.5 kOhm / 1.00 kOhm` hesabi ilk dogru setpoint izi; bugunku README omurgasinda ise BOM, calculator ve kompanzator notlari `26.4 kOhm / 1.6 kOhm` ailesine daha yakin duruyor.
-
-
-ODT'den aktarilan metin (`4.1. Çıkış gerilimi setpoint dirençleri FB`):
-
-> = 14V yapmak istiyoruz.  
-> 0402 boyutlarında.  
-> R14 Ohm R14 = 16.5 kΩ (RFB1)  
-> R10 = 1.00 kΩ (RFB2)  
-> Dirençleri % 0.1 tolerance’lı seçmek….
-
-
-
-Benim bu bolumdeki ayrimim:
-
-Geri besleme bolucusunu `14 V` cikis hedefi icin sectim. Fiziksel tarafta da `0402` paket ve dusuk tolerans hedefi var. Fakat burada iki farkli iterasyon ust uste duruyor. Ilk ODT taslagindaki `16.5 kOhm / 1.00 kOhm` secimi matematiksel olarak dogru; ama sonraki defter sayfalari ve satin alinmis BOM artik `26.4 kOhm / 1.6 kOhm` cizgisine kayiyor.
-
-Temel setpoint iliskisi su sekilde yazilabilir:
-
-$$
-V_{out} = V_{FB}\left(1 + \frac{R_{FB1}}{R_{FB2}}\right)
-$$
-Ilk taslaktaki eski aday secim:
-
-$$
-V_{out} = 0.8\left(1 + \frac{16.5}{1.0}\right) = 14.0\,\text{V}
-$$
-Defter taramasi `W.14-W.16` ve BOM'daki satin alinmis parcalar ise su guncel adayi gosteriyor:
-
-- `R11 / R1 / RFB1 = 26.4 kOhm`
-- `R10 / RFB2 = 1.6 kOhm`
-
-Bu durumda:
-
-$$
-V_{out} = 0.8\left(1 + \frac{26.4}{1.6}\right) = 14.0\,\text{V}
-$$
-Benim burada tutmak istedigim sey su:
-
-- `16.5 kOhm / 1.00 kOhm`: ilk aday / eski iterasyon
-- `26.4 kOhm / 1.6 kOhm`: bu README icinde bundan sonra ana varsayim gibi okunacak guncel aday
-- iki deger de `14 V` sonucuna gidiyor; fark daha cok direnç ailesi, BOM ve sonraki kompanzator baglantisinda ortaya cikiyor
-
-Calculator teyidi:
-
-`LM5146_quickstart_calculator_revB1.xlsm` dosyasinda da geri besleme bolucusu ayni nihai aileye oturuyor:
-
-- `RFB1 = 26.4 kOhm`
-- `RFB2 = 1.58 kOhm`
-- `Actual Vout = 14.167 V`
-
-Calculator da ayni yone bakiyor. Yani `16.5 kOhm / 1.00 kOhm` eski adayi tamamen yanlis degil; ama `W.14-W.16` ve satin alinmis BOM ile uyumlu gorunen `26.4 kOhm / 1.6 kOhm` secimi daha guclu duruyor.
-
-Bu ayrimi sadece BOM notu gibi degil, kontrol hesabi icin de tutuyorum. Feedback bolucu degistiginde `H_{FB} = RFB2/(RFB1+RFB2)` ve `COMP` aginin referans aldigi oran da degisir. Bu yuzden eski `16.5 kOhm / 1.00 kOhm` iziyle bulunan bir kompanzator degeri, guncel `26.4 kOhm / 1.6 kOhm` setine sessizce tasinmayacak; `6.2` tarafinda tek bolucu seti secilip loop hesabi onunla kapanacak.
-
-Bu bolume ait kaynak-foto:
-
-![WEBENCH benzeri devre uzerinde FB bolucusu ve kompanzator notlari](images/foto_selected/p04_feedback_and_compensation_markup.jpg)
-
-Bu foto burada duruyor, cunku geri besleme bolucusunun `RFB1 / RFB2` kimligini ve kompanzator kolundaki elemanlari tek bakista bagliyor.
-
-Defterden aktarilan not (`W.202`):
-
-`W.202`, bu konunun ilk kuruldugu sayfalardan biri. LM5146 datasheet'indeki `Output Voltage Setpoint and Accuracy FB` basligina bakip `FB` dugumunun referansla iliskisini kisa yoldan not etmisim.
-
-![W.202'den secilen el yazisi parca: FB bolucu denklemi ve 14 V icin oran hesabi](images/defter_snippets_web/d09_w202_fb_divider_equation.jpg)
-
-Guvenle okunan ana notlar sunlar:
-
-- `VREF = 0.8 V`
-- geri besleme orani:
-
-$$
-H_{Vout} = \frac{R_2}{R_3 + R_5} \approx 0.12857
-$$
-- temel setpoint iliskisi:
-
-$$
-V_{out} = V_{REF}\left(1 + \frac{R_{FB1}}{R_{FB2}}\right)
-$$
-Sayfada `14 V` hedefi icin su oran kurulmus:
-
-$$
-\frac{14\,V}{0.8\,V} - 1 = \frac{R_{FB1}}{R_{FB2}} = 16.5
-$$
-Bu da eski aday bolucuyu destekliyor:
-
-- `RFB1 = 16.5 k\Omega`
-- `RFB2 = 1.00 k\Omega`
-
-Sayfanin alt kismina, referans geriliminin toleransi ile ilgili su not da dusulmus:
-
-- `Vref 792 mV ile 808 mV arasinda degisebilir`
-
-Buradan da:
-
-$$
-\frac{808\,mV - 800\,mV}{800\,mV} = \frac{8\,mV}{800\,mV} = \frac{1}{100}
-$$
-yani yaklasik:
-
-- `Vout'ta ±1%`lik bir sapma olabilecegi
-
-not edilmis.
-
-Buradaki sayfa, `5.1.3`teki eski `16.5 k\Omega / 1.00 k\Omega` setpoint iterasyonunu dogrudan destekliyor. Nihaiye yakin BOM ile uyumlu gorunen `26.4 k\Omega / 1.6 k\Omega` secimini degistirmiyor; ama bu bolucuyu ilk kez nasil kurdugumu gosterdigi icin degerli.
-
-`VREF` toleransinin cikis gerilimine tasinacagini erken asamada not etmem de buradaki notun guclu yani.
+[Eski İterasyon] `16.5 kOhm / 1.00 kOhm`; [Güncel Omurga] `26.4 kOhm / 1.6 kOhm`; [Çapraz Teyit] calculator `RFB1 = 26.4 kOhm`, `RFB2 = 1.58 kOhm`, `Actual Vout = 14.167 V` icin ayrintili denklem, gorsel ve defter izi `6.1` altinda tutulur.
 
 
 #### 5.1.4 `EN/UVLO`, `SS/TRK` ve startup notlari
@@ -920,6 +777,8 @@ Calculator teyidi:
 - `t_{SS} = 4 ms`
 
 Bu, defterdeki `47 nF -> 3.76 ms` hesabiyla ayni cizgide. Burada ciddi bir celiski yok; daha cok yuvarlama / hedef sure farki var.
+
+[Çapraz Teyit] `WEBENCH` snapshot'inda da soft-start sonucu ayni ailede gorunuyor: `SoftStart = 3.8 ms`. Bu sayiyi yeni bir soft-start karari gibi degil, `47 nF -> 3.76-4 ms` hattinin hizli simulasyon teyidi gibi okuyorum.
 
 Defterden aktarilan not (`W.207`):
 
@@ -1073,6 +932,8 @@ Sayfanin sag tarafina da kisaca:
 
 notu dusulmus.
 
+[Çapraz Teyit] `LM5146` quickstart calculator tarafinda ayni frekans ayari `R_{RT} = 30.1 kOhm` olarak gorunuyor. `WEBENCH` operating-values snapshot'i da ayni calisma noktasini `f_{sw} = 332.226 kHz` ve `Mode = FCCM` olarak isaretliyor. Burada owner `RT/fsw` basligi; bu sayilar bobin, kapasitör, MOSFET ve kontrol hedeflerine buradan dagiliyor.
+
 `W.208`, projede kullandigim `332 kHz` anahtarlama frekansinin `RT` pinindeki direnç secimiyle nasil baglandigini netlestiriyor. Burada yeni bir karma denetim sonucu yok; daha cok sade bir `frequency adjust` uygulama notu var.
 
 `W.203`teki "`FPWM`'de sabit switching frequency var, `R13` burada kullaniyoruz" notuyla da dogrudan uyusuyor.
@@ -1080,74 +941,15 @@ notu dusulmus.
 Bu satiri da sabit proje verisi gibi degil, guncel tasarim ankraji gibi tutuyorum. `332 kHz` degisirse sadece `R_{RT}` degismez; `T_{sw}`, duty zamanlari, bobin ripple'i, `Cin/Cout` ripple hesaplari, MOSFET switching/gate-drive kayiplari, bootstrap sarj penceresi ve `35 kHz` civari loop hedefi de beraber yeniden acilir. O yuzden frekans degisikligi tek satirlik BOM duzeltmesi degil.
 
 
-### 5.2 Duty cycle, `tON(min)`, `tOFF(min)` ve sinir durumlari
+### 5.2 Ortak sabitler, duty ve timing referans geçidi
 
-Bu bolumde iki farkli sey karismasin diye ayri tutuyorum:
+Duty, `fsw`, `Tsw`, `tON/tOFF`, ideal duty ailesi, verim-dahil korumacı duty ailesi, `D = 0.5` kontrol noktası ve LM5146 `tON(min) / tOFF(min)` büyüklük kontrolünün primary owner'ı artık `3.1 Paylaşılan fsw, duty ve zaman alanı owner'ı`.
 
-- ideal buck hesabi: `D \approx Vout / Vin`
-- LM5146'nin izin verdigi donanimsal `tON(min)` / `tOFF(min)` sinirlari
-- defterde bootstrap hesabi icinde tekrar karsima cikan daha yuksek duty adaylari
-
-Yani burasi tek satirlik bir "duty budur" bolumu degil. Once basit duty araligini yaziyorum, sonra kontrolcunun zaman sinirlarina bakiyorum, en sonda da defterdeki farkli duty notunu isaretliyorum.
-
-Son okumada bu uc sinifi birbirine karistirmamak gerekiyor: `D_{ideal}` normal `24-36 V -> 14 V` calisma zarfini, `D_{donanimsal}` LM5146'nin zaman limitlerinden gelen buyukluk kontrolunu, `D_{bootstrap}` ise bootstrap hesabinda kullanilmis daha korumaci ara izi temsil ediyor. Final tabloda bunlar tek "duty" satirina indirilmeyecek; her birinin hangi hesapta kullanildigi yanina yazilacak.
+[Güncel Omurga] Bu bölüm duty hesabını yeniden kurmaz; güç katı alt hesaplarının hangi shared duty ailesine baktığını hatırlatan bağlantı olarak kalır. Bobin ripple ve akım penceresi ideal `0.389 / 0.583` zarfına; `Cin` RMS/ripple ve hızlı EMI kontrolleri defterdeki `D = 0.5` pratik kontrol noktasına; bootstrap ise `D_high,max = 0.648` ve `D_low,min = 0.352` değerlerine `3.1` üzerinden referans verir.
 
 
 
-#### 5.2.1 Birinci yaklasim ideal duty hesabi
-
-
-
-Nominal ilk yaklasimda senkron buck icin duty orani su sekilde alinabilir:
-
-
-
-$$
-D \approx \frac{V_{out}}{V_{in}}
-$$
-Buna gore mevcut spesifikasyonlarla:
-
-- $D_{\max,\text{ideal}} = \dfrac{14}{24} = 0.583$
-
-- $D_{\min,\text{ideal}} = \dfrac{14}{36} = 0.389$
-
-
-
-Bu degerler, nominal `24 V - 36 V` giris araliginda high-side anahtarin ideal iletim orani icin ilk sinirlari veriyor. Burada henuz kayiplar, dead-time, MOSFET gerilim dusumleri ve kontrolcunun kendi zaman sinirlari yok.
-
-
-
-#### 5.2.2 `332 kHz` icin zaman alanina ceviri
-
-
-
-Mevcut tasarim seciminde:
-
-
-
-$$
-f_{sw} = 332\,\text{kHz}
-$$
-Buna gore periyot:
-
-
-
-$$
-T_{sw} = \frac{1}{f_{sw}} \approx 3.01\,\mu\text{s}
-$$
-Ideal duty degerleri zaman alanina cevrilirse:
-
-- $t_{ON,\max,\text{ideal}} = 0.583 \times 3.01\,\mu\text{s} \approx 1.76\,\mu\text{s}$
-
-- $t_{ON,\min,\text{ideal}} = 0.389 \times 3.01\,\mu\text{s} \approx 1.17\,\mu\text{s}$
-
-- $t_{OFF,\min,\text{ideal}} = (1 - 0.583) \times 3.01\,\mu\text{s} \approx 1.25\,\mu\text{s}$
-
-- $t_{OFF,\max,\text{ideal}} = (1 - 0.389) \times 3.01\,\mu\text{s} \approx 1.84\,\mu\text{s}$
-
-
-
-#### 5.2.3 `D_{max}` donanimsal sinirlari ve minimum on/off sureleri
+#### 5.2.1 Donanımsal zaman sınırı kaynak notu
 
 
 
@@ -1164,141 +966,18 @@ ODT'den aktarilan metin (`6.1.4. Dmax,donanımsal..?`):
 
 
 
-Denklem aktarimi:
-
-Burada, ideal duty hesabindan ayri olarak kontrolcunun donanimsal zaman sinirlarini hatirlatiyorum. ODT notunda zaten "tam dogru olmayabilir" diye kendime uyari dusmusum. Yani bu kisim final kanit degil; minimum on-time / off-time sinirinin buyukluk olarak problem yaratip yaratmadigina baktigim ilk kontrol.
-
-Donanimsal ust duty sinirini bu sekilde okuyorum:
-
-$$
-D_{\max,\text{donanimsal}} \approx \frac{T_{sw} - t_{OFF,\min}}{T_{sw}}
-$$
-
-$$
-D_{\max,\text{donanimsal}} \approx \frac{\frac{1}{f_{sw}} - t_{OFF,\min}}{\frac{1}{f_{sw}}}
-$$
-
-Bu hesapta kullandigim sayilar:
-
-$$
-f_{sw} = 332\,\text{kHz}
-$$
-
-$$
-t_{OFF,\min} = 140\,\text{ns}
-$$
-
-Bu degerlerle:
-
-$$
-D_{\max,\text{donanimsal}} \approx \frac{\frac{1}{332\,\text{kHz}} - 140\,\text{ns}}{\frac{1}{332\,\text{kHz}}}
-$$
-
-$$
-D_{\max,\text{donanimsal}} \approx 0.953
-$$
-
-Ayni yaklasimla en kucuk on-time sinirindan bir alt duty tahmini de elde edilebilir:
-
-$$
-D_{\min,\text{donanimsal}} \approx \frac{t_{ON,\min}}{T_{sw}}
-$$
-
-$$
-D_{\min,\text{donanimsal}} = t_{ON,\min} f_{sw}
-$$
-
-$$
-D_{\min,\text{donanimsal}} \approx 40\,\text{ns} \times 332\,\text{kHz} \approx 0.013
-$$
-
-Nominal $V_{in} = 24\,\text{V} - 36\,\text{V}$ giris gerilimi araliginda gereken duty degerleri, ilk yaklasimda bu donanimsal sinirlarin icinde kaliyor.
-
-Ama bu "tamam, duty kesin sorun degil" demek degil. Olu zaman, propagation delay ve kontrolcuye ozgu diger zamanlari son yorumdan once ayrica dogrulamam gerekiyor.
+Denklem aktarimi artık `3.1` altında tek kez duruyor. Burada yalnız ODT uyarısının bağlamı korunuyor: `40 ns / 140 ns` zaman sınırları, `0.953 / 0.013` donanımsal duty büyüklük kontrolü ve ölü zaman / propagation delay ihtiyacı final kanıt değil, açık kontrol notudur.
 
 
 Defterden aktarilan not (`W.203`):
 
-Burada datasheet'in `Description` kismindan aldigim kisa bir ozet not var. Icerik dogrudan `duty cycle`, `t_{ON(min)}`, `t_{OFF(min)}` ve `FPWM` davranisina baglaniyor.
-
-![W.203'ten secilen el yazisi parca: duty cycle, tON(min), tOFF(min) ve FPWM notu](images/defter_snippets_web/d15_w203_ton_toff_fpwm_note.jpg)
-
-Sayfada guvenle okunan ana notlar sunlar:
-
-1. dusuk giris geriliminde yuksek duty:
-
-- `Vin = 5.5 V'e kadar inebilir`
-- bu durumda:
-  - `Duty cycle %100'e kadar cikabilir neredeyse`
-
-2. minimum on/off sureleri:
-
-- `40-ns tON(min) for high Vin / Vout ratio`
-- `140-ns tOFF(min) for low Vin / Vout ratio`
-
-3. `FPWM` modu:
-
-- `FPWM'de sabit switching frequency var`
-- yan not:
-  - `R13 burada kullaniyoruz`
-
-Sayfanin sagina da:
-
-- `Burasiyla ilgili defterde yazdiklarim vardi, bulunca eklerim`
-
-notu dusulmus.
-
-`W.203`, yukaridaki `40 ns / 140 ns` donanimsal zaman sinirlarini defterde tekrar eden kisa bir kaynak-ozet sayfasi.
-
-`Vin = 5.5 V` notu, kontrolcunun genis duty bolgesine cikabilecegini hatirlatiyor; ama bu ikinci projenin nominal `24-36 V` spesifikasyonunu degistiren bir tasarim karari degil, cihazin genel davranis notu.
-
-`FPWM` ile sabit anahtarlama frekansi notu da daha sonra `R13` uzerinden yaptigim `f_{sw}` secimiyle baglaniyor.
+[Çapraz Teyit] W.203 görseli ve tam duty/zaman yorumu `3.1`e taşındı. Burada yalnız kaynak izi kalır: `Vin = 5.5 V'e kadar inebilir`, neredeyse `%100 duty`, `40 ns / 140 ns`, `FPWM'de sabit switching frequency var`, `R13 burada kullaniyoruz` ve "Burasiyla ilgili defterde yazdiklarim vardi, bulunca eklerim" notları LM5146 genel davranışını anlatır; projenin nominal `24-36 V` çalışma zarfını değiştirmez.
 
 
 
-#### 5.2.4 Taslaktaki duty notlari ile fark
+#### 5.2.2 Bootstrap duty referans notu
 
-
-
-Bootstrap hesabinin icinde ayrica su duty notlari bulunuyor:
-
-- $D_{\text{high,max}} = 0.648$
-
-- $D_{\text{high,min}} = 0.432$
-
-- buradan $D_{\text{low,min}} = 1 - 0.648 = 0.352$
-
-
-
-Bu degerler ideal `Vout / Vin` yaklasimindan daha yuksek gorunuyor. Ben bunlari hemen silmiyorum, cunku bootstrap hesabinda neden daha korumaci duty kullandigimi gosterebilir. Ama su an icin bu farkin kaynagi net degil. Ihtimaller:
-
-- kayiplar ve gercek duty ihtiyaci dahil edilmistir
-- farkli bir worst-case senaryo alinmistir
-- ara notlarda muhafazakar bir bootstrap varsayimi kullanilmistir
-- notlarda tekrar kontrol gerektiren bir tutarsizlik vardir
-
-Kisa sanity check yapinca bu iki sayinin buyuk olasilikla verim dahil bir duty denemesinden geldigini goruyorum:
-
-$$
-D_{\text{high,max}} \approx \frac{14}{24 \times 0.9} \approx 0.648
-$$
-$$
-D_{\text{high,min}} \approx \frac{14}{36 \times 0.9} \approx 0.432
-$$
-Yani `0.648 / 0.432` cizgisi simdilik "verim dahil / korumaci duty" gibi okunabilir. Yine de hangi verim, hangi kosul ve hangi hesap icin kullanildigi yazilmadan normal `D_{ideal}` zarfiyla karistirilmayacak.
-
-Simdilik okuma etiketi:
-
-- `0.583 / 0.389`: `24-36 V -> 14 V` normal calisma araligi icin ideal duty zarfi
-- `0.648 / 0.432`: bootstrap / worst-case tarafinda korunacak ara duty izi; final duty zarfi gibi tek basina alinmayacak
-
-
-
-Su anki tavrim: bu iki duty kumesini yan yana tutmak. Sonra datasheet, secilen komponentler ve gerekirse simulasyonla tek bir duty zarfi cikarmak.
-
-Bu bolumde acik kalan temel soru su:
-
-- Bootstrap hesabinda kullanilan `0.648 / 0.432` duty degerleri hangi varsayimdan turetildi?
+[Tasarım İzi] Bootstrap içinde kullanılan `D_high,max = 0.648`, `D_high,min = 0.432` ve `D_low,min = 0.352` değerleri `3.1`deki verim-dahil korumacı duty ailesinin uygulama izidir. Bu bölüm artık bu sayıları türetmez; bootstrap hesabı `5.7`de yalnız gereken sarj penceresi için kullanır.
 
 
 
@@ -1314,6 +993,17 @@ Bobin tarafinda artik ana cizgi oldukca net:
 Yine de burada yalnizca sonucu yazmak istemedim. `W.54-W.56` sayfalari, `6.8 uH` seciminin nasil geldigini gosteriyor: ripple yuzdesi, tepe akim, `I_sat`, `DCR` ve calculator teyidi ayni zincirde duruyor.
 
 Bu bolumu okurken `6.8 uH` guncel aday, `9.6 uH` ise daha dusuk ripple icin korunmus alternatif iz gibi durmali. Son karar yalniz ripple yuzdesiyle degil; tepe/doyma akimi, `DCR` kaynakli kayip, sicaklik ve load-step sirasinda bobin akiminin yetisme hizi birlikte kapaninca verilecek.
+
+[Güncel Omurga - indüktör owner özeti] Bu bölüm `L` ve bobin kaynaklı plant girdilerinin primary owner'ıdır. Kontrol ve kompanzasyon bölümleri bu sayıları yeniden sahiplenmeyecek; yalnızca buradan alıp kendi modelinde kullanacak.
+
+| Konu | Bu owner'daki okuma |
+| --- | --- |
+| Ana indüktans | `L_F = 6.8 uH` güncel aday |
+| Alternatif iz | `9.6 uH` daha düşük ripple / daha yavaş transient alternatifi |
+| Ripple izi | `36 V` tarafında yaklaşık `3.8 A_p-p`, `24 V` tarafında yaklaşık `2.6 A_p-p`; calculator tarafında `I_L,pp = 3.805 A` / `%42.277` çapraz teyit |
+| Tepe / doyma | `I_L,peak ≈ 10.9 A`, seçilen bobin `I_sat ≈ 36.3 A` |
+| Kayıp / plant girdisi | `DCR ≈ 0.88 mOhm`; termal/rated RMS akım hâlâ final BOM datasheet kontrolü ister |
+| Sonraki owner'a giden veri | `Cout` alt sınırı ve `Zout(f_sw)` hesabı bu `L = 6.8 uH` ve `ΔI_L ≈ 3.8 A_p-p` hattından beslenir |
 
 
 
@@ -1477,6 +1167,8 @@ Calculator teyidi:
 
 Bu nedenle calculator da, defterde nihaiye yakin gorunen `6.8 uH / 0.88 mOhm` secimini destekliyor. Workbook'taki `7.504 uH` degeri ise secilen standart deger olan `6.8 uH` oncesindeki teorik oneriyi temsil ediyor.
 
+[Çapraz Teyit] `WEBENCH` operating-values tarafinda bobin akimi icin `I_{L,pp} = 3.805 A` ve ripple orani `42.277%` okunuyor. Bu, `W.55`teki `3.8 A_{p-p}` ve `3.8/9 \approx 0.42` hesabiyla ayni owner altinda duracak hizli teyit.
+
 
 
 #### 5.3.2 Slew-rate mantigi
@@ -1565,6 +1257,27 @@ Su anki ana omurga, cikista agirligi MLCC bankina vermek ve cikis bulk kapasitö
 
 
 
+[Güncel Omurga - `Cout` owner özeti] Bu bölüm çıkış kapasitelerinin primary owner'ıdır. `6.2.3` kontrol plant modeli bu sayıları kullanır; `Cout`, `ESR` veya plant `L/C` sayıları orada yeniden final komponent owner'ı olmayacak.
+
+| Konu | Bu owner'daki karar / iz |
+| --- | --- |
+| Statik `Vout` window | Statik hedef `14 V +- 3%`; WEBENCH cross-check `Vout Actual = 13.8 V` bu zarf icinde |
+| Transient `Vout` window | Load-step kabul zarfı `14 V +- 20%`; defterde daha siki kontrol icin `+-10%` denemesi de korunur |
+| Steady-state ripple window | `Vout` ripple hedefi `100 mVpp`; WEBENCH `Vout p-p = 122.002 mV` ayni owner altinda `[Açık Kontrol]` |
+| Fiziksel / etkin kapasite dili | EVM izi `5 x 22 uF` MLCC + `C28 = 0.1 uF`; kontrol / plant hesabında derated-etkin ana `Cout ≈ 70 uF` |
+| `Cout` alt sınırı | `W.34` ripple hesabı `Cout ≳ 14.57 uF`; `W.58` ile `6.8 uH / 3.8 A_p-p` için `≈14 uF`, `9.6 uH / 2.7 A_p-p` için `≈10 uF`; quickstart minimum ideal `COUT ≈ 12.699 uF` |
+| Overshoot / undershoot | `3.571 A -> 9 A` load-step, `I_step ≈ 5.429 A`; `W.37/W.59` transient alt sınırı `≈2.3 uF`, daha sıkı `+-10%` denemede `≈4.86 uF` |
+| `Zout(fc)` | Load-step sapması `Zout(f_c)` ve `35 kHz` civarı crossover ile okunur; overshoot/undershoot burada takip edilir |
+| `Zout(fsw)` | Steady-state ripple `Zout(f_sw)`, `332 kHz`, bobin `ΔI_L` ve MLCC `ESR/ESL` davranışıyla okunur |
+| Energy buffer rolü | Çıkış kapasiteleri yük geçişinde enerji tamponudur; bu rol ripple hesabıyla aynı denklemde eritilmeyecek |
+| ESR / ESL / bulk etkisi | `ESR` ripple ve ESR-zero tarafını, `ESL` spike/ringing tarafını etkiler; çıkış bulk'u bu iterasyonda varsayılan ana karar değil, eklenirse plant ve kompanzasyon yeniden açılır |
+| Eski denemeler / çapraz teyit | `2 x 22 uF`, `10-14 uF` alt-sınır hesapları, `W.28-W.59`, quickstart `70 uF / 18.17 mVpp`, WEBENCH `Vout p-p = 122.002 mV` açık kontrol olarak korunur |
+
+[Açık Kontrol - plant ESR farkı] Aynı owner altında üç ESR izi yan yana tutuluyor: quickstart toplam `ESR ≈ 0.28 mOhm`, kontrol transfer fonksiyonu yerleştirmesinde `0.26 mOhm`, W.116 / MLCC ESR ekranlarında `ESR_Ceq ≈ 1.3 mOhm`. Bunlar sessizce tek sayıya birleştirilmeyecek; final BOM/derating ve AC/switching simülasyonda hangi `ESR_Ceq` kullanılıyorsa plant tablosu onunla kapanacak.
+
+[Güncel Omurga - plant handoff] Kontrol bölümüne gidecek sayılar bu owner zincirinden okunur: `L_F = 6.8 uH` ve `DCR ≈ 0.88 mOhm` için `5.3`; `Cout ≈ 70 uF`, `ESR_Ceq` açık kontrolü ve `C28 = 0.1 uF` ihmal/yardımcı rolü için `5.4`; `R_damp ≈ 21.13 mOhm` ve `f0 ≈ 7.309 kHz` ise bu L/C/ESR setinin kontrol modeline aktarılmış plant izidir.
+
+
 #### 5.4.1 Cikis sigaçlari
 
 
@@ -1588,6 +1301,10 @@ ODT kopyasinda bazi semboller eksik gelmis. Buna ragmen korunacak ana fikir net:
 ![EVM uzerindeki cikis kapasitör bankinin yakin plani: `5 x 22 uF` MLCC ve `C28 = 0.1 uF`](images/foto_selected/p88_evm_output_cap_bank_closeup.jpg)
 
 Bu yakin plan, cikis tarafinda gercekten `C18-C22 = 22 uF` MLCC grubunun ve buna paralel `C28 = 0.1 uF` yardimci kapasitörun yer aldigini gosteriyor.
+
+![Tasarimimizda kullandigimiz cikis capacitorleri](images/odt_embedded/fig_24_output_capacitor_bank.png)
+
+Bu ODT gorseli ayni kararın sema tarafindaki izidir: ana cikis MLCC banki ile `C28 = 0.1 uF` yardimci kapasitör birlikte gorunur. `C28`, ilk `H_{filter}(s)` transfer fonksiyonu hesabinda ana enerji depolama elemani gibi sayilmadi; yuksek frekansli spike / ringing tarafinda yardimci rol olarak tutulacak.
 
 Bu nedenle defterde ve `W.116` tarafinda gecen "cikis banki + C28 = 0.1 uF" cizgisi yalnizca teorik bir model degil; gercek EVM topolojisine de dayanan fiziksel bir yerlesim notu.
 
@@ -1925,7 +1642,7 @@ Sayfanin alttaki ifadesi de, kompanzator transfer fonksiyonunu bu iki empedansin
 
 `W.73`, cikis sığaci / plant modelinden kompanzator topolojisine gecen ilk kopru sayfa. Nihai komponent degerlerini tek basina vermiyor; daha cok "planti gordukten sonra Type-III agi nasil kurulur?" sorusunun ilk defter cevabi gibi.
 
-Bu sayfayi `6.2`deki nihai kompanzator setinin yerine koymuyorum. Buradaki asil deger, plantten Type-III agina gecisi kaybetmemek: once `70 uF / 6.8 uH / ESR / R_damp` planti netlesecek, sonra `RFB1/RFB2 = 26.4 kOhm / 1.6 kOhm` ailesiyle tek kompanzator seti hesaplanacak. `Z_F/Z_1` cebiri bu kopruyu gosteriyor; final BOM satiri degil.
+Bu sayfayi `6.4`teki nihai kompanzator setinin yerine koymuyorum. Buradaki asil deger, plantten Type-III agina gecisi kaybetmemek: once `70 uF / 6.8 uH / ESR / R_damp` planti netlesecek, sonra `RFB1/RFB2 = 26.4 kOhm / 1.6 kOhm` ailesiyle tek kompanzator seti hesaplanacak. `Z_F/Z_1` cebiri bu kopruyu gosteriyor; final BOM satiri degil.
 
 Defterden aktarilan not (`W.141`):
 
@@ -2065,6 +1782,33 @@ Yeni bir sayisal sonuc vermiyor; daha cok sectigim cikis MLCC bankini nasil dusu
 Buradaki `2 x 22 uF` notu, guncel `5 x 22 uF` fiziksel bankin tam sayisi gibi degil; MLCC derating sezgisini anlatan kucuk ornek gibi duruyor. Son kontrolde `5.4.1`deki fiziksel bank, `70 uF` etkin `Cout` kabulu ve `W.116` plant satiri ayni BOM/derating kontrolunde birlestirilecek.
 
 
+Defterden aktarilan not (`W.116`):
+
+Burada kontrol hesabina giden output-filter sayilarini tek sayfada toplamisim. Bu sayfa `Cout` owner'i icin kritik cunku fiziksel MLCC bankini, etkin `70 uF` kabulunu, `C28 = 0.1 uF` yardimci rolunu ve `ESR_Ceq` farkini ayni yerde gorunur yapiyor.
+
+![W.116'dan secilen el yazisi parca: output filter sayilari, ESR, DCR, Rdamp ve f0 ozeti](images/defter_snippets_web/d30_w116_output_filter_parameter_summary.jpg)
+
+Sayfada okunabilen ana `Cout` notlari sunlar:
+
+- `C10-C22` grubu ve `22 uF` notu, capacitor bank'in parca deger izini verir
+- `C28 = 0.1 uF`, daha kucuk yuksek-frekans yardimci kapasitör olarak ayrilir
+- plant hesabina giren toplam etkin ana kapasite `70 uF` olarak tutulmustur
+
+Buradaki `22 uF` ve `70 uF` satirlari birbirinin yerine gecmiyor. `22 uF` parca / banka izini, `70 uF` ise derating ve paralel bank sonrasi transfer fonksiyonunda kullanilan etkin degeri temsil ediyor. Son BOM kontrolunde bu iki satir tekrar eslestirilmeli.
+
+`ESR_Ceq` icin yaklasik:
+
+$$
+ESR_{Ceq} \approx 1.3\,m\Omega
+$$
+![Secilen 22 uF MLCC icin switching frekansi civarinda ESR grafigi](images/foto_selected/p49_output_mlcc_esr_graph.jpg)
+
+![Ayni 22 uF MLCC icin `326.554 kHz` noktasinda okunmus ikinci ESR ekran goruntusu](images/foto_selected/p52_output_mlcc_esr_326k.jpg)
+
+Iki ayri ekran goruntusunde de ayni mertebede `ESR \approx 1.3 m\Omega` okunmasi, `ESR_Ceq` buyuklugunun tek bir rastgele cursor okumasina degil, tekrar eden bir datasheet / arac teyidine dayandigini gosteren destek katmani olusturuyor.
+
+Sayfada bobin ve damping tarafina giden plant handoff da var: `L_F = 6.8 uH`, `DCR \approx 0.88 m\Omega`, `R_{damp} \approx 21.13 m\Omega` ve `f_0 \approx 7.309 kHz`. Bu sayilarin komponent owner'i bobin icin `5.3`, cikis kapasitörü icin bu bolumdur; `6.2.3` bunlari yalniz `H_{filter}(s)` icine yerlestirir.
+
 
 Defterden aktarilan not (`W.28`):
 
@@ -2162,6 +1906,8 @@ Ek not (calculator teyidi):
 - hesaplanan ripple `\approx 18.17 mV_{p-p}`
 
 Bu kisim guncel omurgaya daha yakin duruyor: calculator tarafinda `70 uF` derated cikis banki gorunuyor. Defterdeki `10-14 uF` civari alt sinir hesaplari ise, secilen `70 uF` bankin neden rahat marjli gorundugunu aciklayan asama notlari olarak okunmali.
+
+[Çapraz Teyit] `WEBENCH` snapshot'inda `Vout Actual = 13.8 V` ile statik hedef (`14 V +- 3%`) icinde kaliniyor; fakat `Vout p-p = 122.002 mV` olarak okunuyor ve bu `100 mVpp` hedefinin biraz ustunde. Bu sayi cikis kapasitörü owner'i altinda `[Açık Kontrol]` olarak kaliyor; ayni kosul setiyle LTspice'ta `Vout` olcum penceresi tekrar kurulmadan final kabul sayilmiyor.
 
 Defterden aktarilan not (`W.59`):
 
@@ -2642,10 +2388,10 @@ Bu bolum burada tamamen kapanmis gibi davranmiyorum. Cikis kapasitörü tarafind
 
 Bu kapanis listesini final BOM onayi gibi degil, sonraki `LTspice` / BOM / derating kontrolune tasinan is listesi gibi okuyorum. Yani guncel omurga simdilik calisma noktasi; eski/ara izler bu noktaya nasil geldigimi gosteriyor; acik maddeler ise simulasyon ve parca teyidiyle kapanacak.
 
-- guncel omurga: cikista agirlik MLCC bankinda, derated toplam `Cout` yaklasik `70 uF`
-- eski/ara izler: `2 x 22 uF`, `10-14 uF` alt-sinir hesaplari, `W.28-W.59` arasindaki farkli denemeler
-- tekrar kontrol edilecekler: etkin kapasitans, `dc-bias`, `ESR`, `ESL`, MLCC sayisi ve de-rating hesabi
-- kontrol tarafina baglananlar: cikis sapmasi ile kapali-cevrim `Zout` arasindaki bag, bulk eklenirse power-stage sifirlarinin ve kompanzasyonun nasil degisecegi
+- `[Güncel Omurga]`: cikista agirlik MLCC bankinda, derated toplam `Cout` yaklasik `70 uF`
+- `[Eski İterasyon]` / `[Tasarım İzi]`: `2 x 22 uF`, `10-14 uF` alt-sinir hesaplari, `W.28-W.59` arasindaki farkli denemeler
+- `[Açık Kontrol]`: etkin kapasitans, `dc-bias`, `ESR`, `ESL`, MLCC sayisi ve de-rating hesabi
+- `[Tasarım İzi]`: cikis sapmasi ile kapali-cevrim `Zout` arasindaki bag, bulk eklenirse power-stage sifirlarinin ve kompanzasyonun nasil degisecegi
 - kapanis sirasi: once BOM/derating ile `70 uF` ve `ESR_{Ceq}` ayni satira oturacak; sonra LTspice'ta steady-state ripple, `3.571 A -> 9 A` load-step ve gerekirse bulk eklenirse kompanzasyon tekrar bakilacak
 - acik karar: G71 benzeri hizli-yuk yaklasimlari bu tasarima ne kadar gerekli, cikista bulk kapasitör gercekten gerekecek mi?
 
@@ -2655,6 +2401,24 @@ Bu notla cikis kapasitörü bolumunu kapatip giris kapasitörlerine geciyorum. G
 ### 5.5 Giris kapasiteleri
 
 Buradan itibaren konu, buck katinin giristen cektigi darbeli akimi nasil karsilayacagim. Cikis tarafinda bulk eklemek kontrol tasarimini karistirabildigi icin daha temkinliydim; giriste ise MLCC + bulk kombinasyonu daha dogal bir tasarim karari gibi duruyor.
+
+
+[Güncel Omurga - `Cin` owner özeti] Bu bölüm giriş kapasitelerinin primary owner'ıdır. `Cin` hesabı, giriş MLCC bankı, bulk, RMS, ESR/ESL, damping sezgisi ve helper MLCC'ler burada tek yerde tutulur; EMI / input-filter bölümleri bu sayıları yeniden komponent owner'ı gibi sahiplenmeyecek.
+
+| Konu | Bu owner'daki karar / iz |
+| --- | --- |
+| Neden `Cin` gerekli | Buck giriş akımı darbeli çekilir; kaynak bu ani akımı tek başına sağlayamaz, hot-loop akımı ve `Vin` ripple'ı giriş kapasiteleriyle kapanır |
+| MLCC `Cin` hesabı | `0.24 Vpp` hedefi için ilk minimum etkin `Cin` izleri `28.4 uF / 31.1 uF`; `W.82` toplam ağ kontrolünde `0.2006 V < 0.24 V` |
+| DC-bias / derating / tolerance | `5 x 4.7 uF / 50 V / X7R` ana MLCC grubu katalogda `23.5 uF`, bias altında yaklaşık `8.2 uF`; `1 - 0.20` tolerans/derating faktörü W.82 kontrolünde kullanılmış |
+| RMS akımı | Ana çizgi `4.5-4.6 A_RMS`; korunmacı alternatif `4.94 A_RMS`; `5` paralel MLCC varsayımında kabaca `0.91-0.99 A_RMS` / parça |
+| Sıcaklık artışı | MLCC başına düşen RMS akım datasheet `temperature-rise` grafiğiyle okunur; EVM `48 V / 8 A -> 73.9 degC`, `24 V / 8 A -> 64.8 degC` izlerinden `~70 degC` board tahmini açık kontrol olarak korunur |
+| ESR / ESL | Büyük MLCC'ler düşük `ESR`, küçük paketler düşük `ESL` tarafında güçlü; paralelleme hem `ESR` hem `ESL`'yi düşürür ama akım paylaşımı layout'a bağlı kalır |
+| Helper MLCC'ler | `10 nF`, `0.1 uF`, `1 uF` gibi küçük / düşük `ESL` destekler enerji deposu değil; spike, ringing, phase-node davranışı ve EMI için hot-loop'a yakın bypass elemanlarıdır |
+| Bulk mantığı | Ana aday izi `2 x 47 uF / 50 V / X7R`; `36 V` bias altında yaklaşık `34 uF` etkin kapasite, tek parça `ESR ≈ 4 mOhm`, paralelde `≈2 mOhm`; `68 uF / 50 V / 20 mOhm` ve `100 uF polymer` eski/alternatif izlerdir |
+| Transient enerji tamponu | MLCC bankının bias sonrası `~8.2 uF` kalması `~20 uF` açık doğuruyor; bulk tarafında `C_B > 27.93 uF`, `ESR_B < 0.1023 ohm`, `T_rips ≈ 7.14 us` izleri transient enerji penceresini kuruyor |
+| Damping sezgisi | Giriş bulk'u çıkış bulk'u gibi kontrol plant'ini doğrudan değiştiren karar değildir; burada kaynak ripple'ı, hot-loop, input transient, EMI filtresi ve rezonans damping'iyle birlikte okunur |
+
+[Açık Kontrol] EMI hesabında hangi `C_in` etkin sayılacak sorusu bu owner'dan gider: yalnız ana MLCC etkin kapasitesi (`~8.2 uF`) ile W.82'de `8.228 uF + 34 uF` olarak not edilen MLCC+bulk ağı aynı frekansta aynı işi yapmaz. Bulk düşük frekans / transientte güçlüdür; yüksek frekans EMI ve hot-loop tarafında helper MLCC ve yerleşim daha belirleyici olabilir.
 
 
 #### 5.5.1 Giris sigaçlari
@@ -2700,93 +2464,11 @@ Bu iki siniri ayni hesap kalemi gibi kullanmiyorum:
 - `50 mA` ideal-source giris akim ripple hedefi de yalnizca kapasitör secimiyle kapanacak bir madde degil; EMI / input filter hattina bagli bir kalite hedefi gibi duruyor
 
 
-Defterden aktarilan not (`W.26`):
+Defterden aktarilan not (`W.26`, `W.140`):
 
-`W.26`, `W.140` ve `W.53` ayni paketin parcasi gibi okunmali. Burada once giris kapasitörü hesabinda kullanacagim proje girdilerini ve yeni eklenen ripple/transient hedeflerini topluyorum.
+[Kaynak İzi] `W.26` ve `W.140` görselleri ile tam `Vin/Vout/Pout/Iout`, load-step, ideal duty, verim-dahil duty ve `D = 0.5` anlatımı `3.1`e taşındı. Bu bölümde bu iki sayfa yalnız `Cin` hesabının hangi shared girdilere dayandığını gösteren kaynak izi olarak okunacak.
 
-`W.26`deki o anki ozet parametreler:
-
-![W.26'dan secilen el yazisi parca: temel tasarim girdileri, cikis akimi ve load-step notlari](images/defter_snippets_web/d01_w26_specs_and_load_step.jpg)
-
-- $V_{in,\min} = 24\,\text{V}$
-- $V_{in,\max} = 36\,\text{V}$
-- $V_{out} = 14\,\text{V}$
-- $P_{out,\max} = 125\,\text{W} \Rightarrow I_{out,\max} \approx 8.93\,\text{A} \approx 9\,\text{A}$
-- $P_{out,\min} = 50\,\text{W} \Rightarrow I_{out,\min} \approx 3.57\,\text{A}$
-- `load-step` yaklasik $9 - 3.57 = 5.43\,\text{A}$
-- giris tarafi icin yeni eklenen hedefler:
-  - `Allowed input current ripple (p-p, ideal source): 50 mA`
-  - $\Delta V_{IN,PP} \le 0.24\,\text{V}$
-  - $\Delta V_{IN,Tran} \le 0.36\,\text{V}$
-
-Burada ayrica giris kapasitörü hesabinda kullanilan duty notlari da goruluyor:
-
-- $D_{\max} \approx 0.648$
-- $D_{\min} \approx 0.432$
-
-Bu duty degerleri yalnizca ideal $V_{out}/V_{in}$ oranindan gelmiyor; verim ve gercek tasarim kabulune dayali bir iterasyon izi de var. O yuzden input capacitor hesabinda kullanilan duty araligi olarak burada duruyor.
-
-Defterden aktarilan not (`W.140`):
-
-Burada ayni temel tasarim girdileri ve duty araligi daha duz, daha toplu bicimde tekrar ediliyor. `W.26`daki parametre ozetinin devam sayfasi gibi. En onemli tarafi da `D = 0.5` seciminin nereden geldigini gostermesi.
-
-![W.140'tan secilen el yazisi parca: duty araligi, verim dahil duty notlari ve D = 0.5 secimi](images/defter_snippets_web/d03_w140_duty_and_design_inputs.jpg)
-
-Sayfada bastan sona not edilen temel proje girdileri sunlar:
-
-- `V_{in,\min} = 24\,\text{V}`
-- `V_{in,\max} = 36\,\text{V}`
-- nominal cikis gerilimi: `14 V`
-- `I_{out,\max} = 125\,\text{W} / 14\,\text{V} \approx 8.92\,\text{A} \approx 9\,\text{A}`
-- `I_{out,\min} = 50\,\text{W} / 14\,\text{V} \approx 3.571\,\text{A}`
-- `step load = 9 - 3.571 \approx 5.429\,\text{A}`
-
-Sayfanin ortasinda once ideal buck duty araligi yaziliyor:
-
-$$
-\frac{V_{out}}{V_{in,\max}} \le D \le \frac{V_{out}}{V_{in,\min}}
-$$
-ve buna gore:
-
-$$
-\frac{14}{36} \le D \le \frac{14}{24}
-$$
-sonucu olarak su degerleri not ettim:
-
-- `D_{\min} \approx 0.3888`
-- `D_{\max} \approx 0.5833`
-
-Sayfanin altinda ise verim etkisi de dahil edilerek daha muhafazakar bir duty araligi kuruluyor:
-
-$$
-\frac{V_{out}}{V_{in,\max}\,\eta} \le D_\eta \le \frac{V_{out}}{V_{in,\min}\,\eta}
-$$
-`V_{out} = 14 V` ve `\eta \approx 0.9` ile:
-
-$$
-\frac{14}{36\times 0.9} \le D_\eta \le \frac{14}{24\times 0.9}
-$$
-ve sayfadaki sonuc:
-
-- `D_{\min,\eta} \approx 0.4321`
-- `D_{\max,\eta} \approx 0.6481`
-
-Sayfanin en altindaki cok onemli not da su:
-
-- hesaplamalarda kullanilan duty degeri olarak:
-  - `D_{\max,\eta} = 0.6481`
-  - `D_{\min} = 0.3888`
-  - bu araligin ortasina yakin bir nokta olarak
-  - `D = 0.5`
-  secilmis
-
-Burada `W.26`daki `0.648 / 0.432` duty degerlerinin rastgele gelmedigi anlasiliyor. Ayni zamanda neden bircok giris kapasitörü ve EMI hesabinda `D = 0.5` kullandigimi da acikliyor: secilen araligin orta noktasi gibi, ama ayni zamanda hizli hesaplarda kullanilabilecek pratik bir tasarim noktasi.
-
-Bu duty notlarini burada su sekilde ayiriyorum:
-
-- `0.3888 / 0.5833`: `24-36 V -> 14 V` ideal buck duty zarfi
-- `0.4321 / 0.6481`: verim eklenince ortaya cikan daha korunmaci ara iz; input-cap, RMS ve bootstrap kontrollerinde tekrar karsima cikiyor
-- `D = 0.5`: giris kapasitörü ve RMS hesaplarinda pratik ilk kontrol noktasi; final duty siniri gibi tek basina okunmayacak
+[Güncel Omurga] Giriş kapasitörü hesabı burada `3.1`den gelen `24-36 V`, `14 V`, `50-125 W`, `3.571-8.929 A`, `5.429 A` load-step, `332 kHz`, `\eta \approx 0.9`, `0.24 Vpp`, `0.36 V`, `50 mApp`, ideal `0.389 / 0.583`, korumacı `0.432 / 0.648` ve `D = 0.5` kontrol noktalarını referans alır; bu değerleri yeniden türetmez.
 
 Defterden aktarilan not (`W.53`):
 
@@ -3140,6 +2822,8 @@ Bu checkpoint'i burada "ilk alt sinir dogru mertebede mi?" sorusunun cevabi gibi
 
 Calculator burada defterdeki ilk `28.4 uF` cizgisine yakin duruyor. Ama bu erken bir checkpoint. Sonraki defter sayfalarinda MLCC `dc-bias` dususu ve ek bulk secimi daha ayrintili dusunuldugu icin, `8.228 uF + 34 uF` ve `0.2006 V` gibi daha rafine sonuc cizgileri bu checkpoint'in uzerine geliyor. Bu celiski degil; ideal/erken hesaptan gercek komponentli hesaba gecis.
 
+[Çapraz Teyit] `WEBENCH` snapshot'inda giris ripple sonucu `Vin p-p = 2.951 V` olarak gorunuyor; bu, defterdeki `0.24 Vpp` hedefiyle uyumlu degil. Bunu giris kapasitörü owner'i altinda `[Açık Kontrol]` diye tutuyorum: input-filter modeli, kaynak empedansi ve olcum noktasi `Vin_src / Vin_post_filter / converter input` ayrimiyla tekrar kurulmadan bu sayi final fail/pass sonucu degil.
+
 Defterden aktarilan not (`W.51`):
 
 Burada minimum `Cin` hesabindan sonra gercek kapasitör seciminde kontrol edilmesi gereken ikinci adimlar toplaniyor.
@@ -3312,7 +2996,15 @@ Sayfanin en altindaki kisa not da, bu `RMS` sonucu ile fiziksel karar arasindaki
 
 `W.90`, `W.36` ile neredeyse ayni sonucu (`4.544 A` vs `4.566 A`) veriyor. Bu yuzden `4.5-4.6 A_RMS` bandi ana cizgi gibi duruyor. `W.29`daki `4.94 A` ise korunmaci alternatif olarak kaliyor. Sondaki not da sayisal `RMS` hesabini fiziksel karara bagliyor: tek buyuk kapasitör yerine coklu paralel MLCC ve dusuk `ESL`.
 
-Termal okuma icin bundan sonra iki sayiyi ayri tutuyorum: ana banka akimi `~4.55 A_RMS`, stres / margin kontrolu `~4.94 A_RMS`. `5` paralel MLCC varsayiminda bunlar kabaca `0.91 A_RMS` ve `0.99 A_RMS` kapasitör-basina akima denk gelir. Bu paylasim esit empedans varsayimi; gercek kartta iz uzunlugu, `ESR/ESL` farki ve hot-loop yerlesimi akimi esit bolmeyebilir.
+[Güncel Omurga - sıcaklık artışı] `Cin` MLCC bankasının sıcaklık artışı da bu owner altında kapanır. Termal kapanış bölümü toplam kayıp / board sıcaklığı çerçevesine referans verebilir; fakat giriş MLCC başına RMS akım, datasheet `temperature-rise` grafiği, `X7R/X5R` notu ve EVM sıcaklık izi burada tutulur.
+
+Termal okuma icin iki RMS sayisi ayri tutuluyor:
+
+- [Güncel Omurga] ana banka akimi `~4.55 A_RMS`
+- [Tasarım İzi / korunmaci kontrol] stres / margin kontrolu `~4.94 A_RMS`
+- `5` paralel MLCC varsayiminda kabaca `0.91 A_RMS` ve `0.99 A_RMS` kapasitör-basina akim
+
+Bu paylasim esit empedans varsayimidir; gercek kartta iz uzunlugu, `ESR/ESL` farki ve hot-loop yerlesimi akimi esit bolmeyebilir.
 
 ODT'den aktarilan metin (`7.1.3. MLCC Sığaçlarının Sıcaklıkla RMS Akımıı?`):
 
@@ -3341,24 +3033,15 @@ ODT'den aktarilan metin (`7.1.3. MLCC Sığaçlarının Sıcaklıkla RMS Akımı
 >
 > Paralel capacitor kullanarak Iin_rms_max = 4.55Arms’yi böleriz. TEMP.rise da az olur.
 
-
-
 Benim buradaki okuma:
 
-Burada MLCC seciminde yalnizca elektriksel degerlere bakmadigimi, sicaklik dayanimini da hesaba katmam gerektigini not ediyorum. ODT notundaki ana fikirler sunlar:
+- `X7R`, `X5R`'ye gore sicaklik davranisi acisindan daha guvenli bir tercihtir.
+- giris MLCC'leri high-side drain ile low-side source arasindaki sicak donguye olabildigince yakin yerlestirilmelidir.
+- `I_{in,RMS,max} = 4.55 A_RMS` akimini birden fazla paralel kapasitore paylastirmak, her bir kapasitordeki `temp rise` degerini azaltir.
 
-- $X7R$, $X5R$'ye gore sicaklik davranisi acisindan daha guvenli bir tercihtir
-- giris MLCC'leri high-side drain ile low-side source arasindaki sicak donguye olabildigince yakin yerlestirilmelidir
-- $I_{in,RMS,\max} = 4.55\,\text{A}_{RMS}$ akimini birden fazla paralel kapasitore paylastirmak, her bir kapasitordeki `temp rise` degerini azaltir
-
-`48 V / 8 A` ve `24 V / 8 A` EVM gozlemlerinden yaptigim `~70 degC` kart sicakligi tahmini burada sadece ilk muhendislik referansi. Nihai kanit degil. Son secimde su ikisi beraber kontrol edilmeli:
-
-- secilen MLCC datasheet'indeki ripple-current / temperature-rise grafigi
-- gercek kart sicakligi ve ortam sicakligi varsayimi
+`48 V / 8 A` ve `24 V / 8 A` EVM gozlemlerinden yaptigim `~70 degC` kart sicakligi tahmini burada sadece ilk muhendislik referansi. Nihai kanit degil. Son secimde secilen MLCC datasheet'indeki ripple-current / temperature-rise grafigi ile gercek kart sicakligi ve ortam sicakligi varsayimi birlikte kontrol edilmeli.
 
 Bu termal zinciri soyle okuyorum: once kart / ortam sicakligi icin bir taban tahmin var (`~70 degC` gibi), sonra kapasitör-basina dusen RMS akim datasheet'teki `temperature-rise` grafigine goturuluyor, sonra bu iki sicaklik ust uste konuyor. `X7R / X5R` notu tek basina yeterlilik kaniti degil; sadece sicaklik davranisi icin malzeme secim tarafini isaret ediyor.
-
-Bu yuzden bu bolumun cikardigi sonuc su: `4.5-4.6 A_RMS` bandi toplam giris MLCC banki icin ana akim hedefi gibi duruyor; ama tek kapasitör seciminde bu akim paralel sayisina bolunmeli ve her parcanin sicaklik artisi ayrica kontrol edilmeli.
 
 
 
@@ -5418,7 +5101,7 @@ $$
 
 `W.146`, `W.145`te yazilan "sicaklik ve gercek gate-drive kosulunda bak" kuralinin dogrudan uygulanmis hali. Artik `RDS(on)` icin datasheet'in tek nominal sayisi degil, proje jonksiyon sicakligina uyarlanmis deger kullaniliyor. `15 m\Omega -> 20.25 m\Omega` gecisi de tam olarak bunu gosteriyor; secim mantigi ile iletim kaybi hesabi burada birbirine baglaniyor.
 
-`75^\circ C` degerini de son termal kapanis gibi degil, bu iterasyondaki calisma varsayimi gibi tutuyorum. Daha sonra `W.132` tarafinda `T_J \approx 76^\circ C` notu ve `W.191-W.192` iletim kaybi hesaplari ayni sicaklik cizgisine baglaniyor. PCB termal yolu, toplam kayip veya sogutma kosulu degisirse `20.25 m\Omega` degeri de yeniden okunmali; yani `RDS(on)` secimi ile `5.6.4` termal yorumu geri beslemeli ilerliyor.
+`75^\circ C` degerini de son termal kapanis gibi degil, bu iterasyondaki calisma varsayimi gibi tutuyorum. Daha sonra `W.132` tarafinda `T_J \approx 76^\circ C` notu ve `W.191-W.192` iletim kaybi hesaplari ayni sicaklik cizgisine baglaniyor. PCB termal yolu, toplam kayip veya sogutma kosulu degisirse `20.25 m\Omega` degeri de yeniden okunmali; yani `RDS(on)` secimi `5.9` termal kapanisina geri besleme verir.
 
 Bu iki ekran goruntusu bu yuzden kalmali: `W.146` tarafindaki `15 m\Omega @ 7.5 V` ve `1.35` katsayisi notlarinin hangi datasheet egrilerinden okundugunu gosteriyor. Yani `20.25 m\Omega` iletim-kaybi girdisi ezbere degil; iki farkli grafikten okunup birlestirilmis.
 
@@ -6329,6 +6012,8 @@ Benim notum da burada su yone cikiyor:
 
 Bu `100 W / 10 W -> %90` satirini proje verim sonucu gibi almiyorum. Burada yaptigim sey, kayip butcesinin verim uzerindeki buyuk etkisini hizli bir olcekle gormek. Bu proje icin `90%` hedefi tasarim gereksinimi olarak yukarida duruyor, `WEBENCH` tarafinda da ayri bir hizli teyit var; ama son kabul yine ayni kosul setinde toplanmis gercek kayip kalemleriyle yapilacak.
 
+[Çapraz Teyit] `WEBENCH` operating-values snapshot'i toplam davranis icin `Efficiency = 97.877%` gosteriyor. Bu, `%90` minimum verim hedefi acisindan olumlu bir hizli kontrol; fakat `Ta = 30 degC` kosulundaki snapshot, `76 degC board worst-case` sicaklik hedefini veya MOSFET/bobin/kontrolcu termal kapanisini tek basina dogrulamaz.
+
 ![W.119'dan kucuk kirpim: kayip kategorilerini ve verim baglantisini gosteren kaynak sayfa](images/defter_snippets_web/d121_w119_loss_article_and_contributors.jpg)
 
 Bu yuzden `W.118-W.119` bu bolumde kalmali: once kaybin enerji/guc tarafini, sonra MOSFET kayiplarinin daha buyuk bir verim butcesinin parcasi oldugunu hatirlatiyor. Buradan sonra gelen `W.191-W.200` zinciri ise bu basliklari artik sayiya dokuyor.
@@ -6782,51 +6467,7 @@ Burada `C_{oss}` kaybindan farkli olarak body-diode ile iliskili iki ek kaybi ay
 
 Bu sayfayi low-side MOSFET'in normal `1-D` iletim kaybinin yerine koymuyorum. `W.192` kanal iletimi icin; buradaki `P_{RR}` ve `P_{dead}` ise anahtar degisimleri sirasindaki kisa diyot / recovery pencereleri icin ek kalem. Ozellikle `130 mW` sonucunu `V_F`, `t_{dr}`, `t_{df}`, `Q_{rr}`, sicaklik ve gercek LM5146 dead-time davranisina bagli ara sonuc gibi okumak lazim. LTspice veya olcumde body diode iletim suresi azalirsa bu kalem de degisecek.
 
-Defterden aktarilan not (`W.200`):
-
-![W.200'den kucuk kirpim: `PIC = 64.8 mW` notu ve sonraya birakilan kayip kalemleri listesi](images/defter_snippets_web/d149_w200_pic_and_todo_losses.jpg)
-
-Burada `other losses` zincirinde MOSFET'e bagli kalemlerden sonra kontrolcu / yardimci devre tuketimini ve kalan kayip kalemlerini not dusuyorum. Yeni nihai verim sonucu degil; daha cok durum notu.
-
-Sayfanin ustunde once LM5146'nin kendi calisma akimindan dogan kayip hesaplanmis. Okunabildigi kadariyla iliski su:
-
-$$
-P_{IC} = V_{in}\,I_{Q\text{-}RUN}
-$$
-ve sayfadaki uygulama:
-
-$$
-P_{IC} = 36\,V \times 1.8\,mA = 64.8\,mW
-$$
-Buradaki `I_{Q\text{-}RUN}` notu, bunu:
-
-- `Operating input current, no switching`
-
-gibi bir datasheet satirindan aldigimi gosteriyor.
-
-Sayfanin orta kismina dogru, buyuk bir not kutusu icinde, `R_{sense}` kaybina da ayrica donecegimi yazdim. Okunabildigi kadariyla su tip bir iliskiyi daha sonra hesaplamak uzere not ettim:
-
-$$
-P_{sense} = R_{sense}\,I_{out}^2\,D \left( 1+\frac{1}{12}\,\Delta I_{L,pp}^{2} \right)
-$$
-Bu ifadenin notasyonu hizli yazilmis olabilir; burada asil mesaj, `R_{sense}` kaybini ayri bir kalem olarak unutmadigim. Sayfanin en kritik mesaji da bunun:
-
-- `SONRA`
-
-yapilacak bir hesap oldugu ve henuz burada tamamlanmadigi.
-
-Sayfanin alt kisminda ayrica, sonra ele alinacak baska kayip kalemleri de kisa liste halinde not edilmis:
-
-- `inductor losses calculation`
-- `input and output capacitor losses / ESR`
-
-Yani burada MOSFET'e bagli kayip kalemleri buyuk olcude toparlanmis; ama `R_{sense}`, bobin ve kapasitör/ESR tarafinda hala acik isler var.
-
-Burada yeni bir toplam verim sonucu yok. Ama `P_{IC} \approx 64.8\,mW` ile kontrolcunun kendi tuketimini de kayip butcesine katiyorum. Daha onemlisi, `R_{sense}`, bobin ve kapasitör/ESR kayiplarinin o asamada hala "sonra yapilacaklar" listesinde oldugunu acikca birakiyor.
-
-Bu `64.8 mW` degerini MOSFET kayiplarinin parcasi gibi okumuyorum; kontrolcunun `36 V` giristeki kendi calisma akimi icin ayri bir yardimci kayip kalemi. `Operating input current, no switching` satiri kullanildigi icin, W.193'teki gate-drive enerjisiyle ve W.111'deki dahili `VCC/LDO` dusuncesiyle ayni kapsami paylasip paylasmadigi son tabloda datasheet tanimlariyla tekrar kontrol edilmeli. Yani `P_{IC}`, `P_{gate-drive}` ve `VCC/driver` tarafini toplarken cift sayim yapmadan ilerlemek gerekiyor.
-
-`R_{sense}` satirini de burada final denklem gibi degil, "unutma" notu olarak tutuyorum. Yazilan parantezdeki ripple terimi boyutsal olarak hizli yazilmis olabilir; son hesapta `R_{sense}` uzerindeki kayip, sense direncinden gecen gercek RMS akimla yazilmali. Bobin `DCR`, sense direnci, giris/cikis kapasitör ESR kayiplari ve kontrolcu kaybi ayni kosul setinde birlestirilmeden toplam verim kapanmis sayilmayacak.
+[Yönlendirme - termal/kayip owner] `W.200` icindeki `P_{IC} = 36 V x 1.8 mA = 64.8 mW`, `R_{sense}` kaybi, bobin ve kapasitör/ESR acik kalemleri `5.9 Termal ve Kayıp Kapanışı` altina tasindi. Bu kisim MOSFET kayip zincirinin sonunda sadece su ayrimi hatirlatir: kontrolcu yardimci kaybi MOSFET junction kaybi degildir; son verim/termal tablosunda ayri satirda kapanacak.
 
 Buradan sonra defter sayfa numarasi geri sariyor gibi gorunuyor: `W.124`, `W.128` ve devamindaki sayfalar `W.191-W.200`den sonra yazilmis yeni toplam sonuclar degil. Bunlari burada tutuyorum cunku `W.191-W.200` kayip zincirinde kullandigim kaynak/yontem arka planini ve G81/G90 ayrimini anlatiyorlar. Yani akista bu kisim kronoloji degil, kayip hesabinin metod defteri gibi okunmali.
 
@@ -7394,123 +7035,9 @@ Son kayip / hiz kapanisinda bu satiri da kenar yonune gore okumam gerekiyor. Tur
 
 
 
-#### 5.6.4 Thermal ve datasheet yorumu acisindan dikkatler
+#### 5.6.4 Thermal ve datasheet yorumu referans notu
 
-Bu alt bolumde MOSFET'in datasheet akim degerine nasil bakacagimi ayiriyorum. Buradaki ana fikir basit: `continuous current` satiri tek basina "bu parca yeter" demiyor; o sayinin arkasinda test karti, bakir alan, ortam sicakligi ve termal yol varsayimlari var.
-
-O yuzden bu bolumden tasinacak ilke su:
-
-- MOSFET'in datasheet continuous current degeri dogrudan yeterlilik kaniti olarak kullanilmayacak
-- bunun yerine gercek kayip hesabi ve termal varsayim zinciri kurulacak
-- `RthetaJA`, `RthetaJC`, kart sicakligi ve tahmini junction sicakligi birlikte yorumlanacak
-
-![Exposed pad ve paket alt termal yolunu gosteren ekran goruntusu](images/foto_selected/p25_exposed_pad_package.jpg)
-
-Bu gorsel, `W.108-W.110` hattinda tekrar tekrar vurgulanan exposed pad meselesini hizli anlatiyor. Termal performans yalnizca paketin kendisi degil; alt pad'in PCB'ye nasil baglandigi, bakir alan ve via yapisi da isin icinde.
-
-Defterden aktarilan not (`W.107`):
-
-Burada, TI'nin `Understanding MOSFET Data Sheets, Part 6 - Thermal Impedance` makalesinin ilk sayfasi uzerine aldigim bir not var. Proje-ozel hesap sayfasindan cok, MOSFET datasheet yorumunu dogru zemine oturtan bir kaynak notu gibi okunmali.
-
-Sayfada alti cizilmis ana teknik fikir su:
-
-- `R_{theta JA}` tek parca, mutlak ve her yerde gecerli bir sabit gibi dusunulmemelidir
-- junction-to-ambient termal yol, paket ustunden havaya giden yol ile PCB uzerinden dagilan yolun bileskesidir
-- bu nedenle datasheet'teki termal metrikler, gercek kart ve sogutma kosullarindan bagimsiz okunmamalidir
-
-Sayfada altta not ettigim temel termal iliski su:
-
-$$
-T_J = T_A + P_D \cdot R_{\theta JA}
-$$
-ve yan notta su dusunce one cikiyor:
-
-- `R_{theta JA}` ve kart yapisi, MOSFET'in gercekte ne kadar akim tasiyabilecegini belirleyen temel unsurlardandir
-- bu nedenle datasheet'teki "continuous current" degeri, paket / PCB / sogutma varsayimlari disinda tek basina yorumlanmamalidir
-
-![W.107'den kucuk kirpim: termal empedans makalesi ustune Tj notu](images/defter_snippets_web/d107_w107_thermal_impedance_article_and_tj.jpg)
-
-Bu sayfa, `5.6.4` altindaki "datasheet current rating dogrudan yeterlilik kaniti degildir" ilkesinin kaynak dayanaklarindan biri. Henuz proje-ozel `T_J` hesabi yok; ama MOSFET kaybini sonunda mutlaka termal limite baglamam gerektigini burada tekrar not ediyorum.
-
-Defterden aktarilan not (`W.109`):
-
-Burada, `W.107`deki termal impedance makalesinin devaminda `R_{\theta JA}`'nin hangi fiziksel yollarin bileskesi oldugunu daha acik anlatan bir sayfa var.
-
-Sayfanin ust tarafinda junction'dan ortama giden termal yolun esdeger agi cizilmis. Ana fikir su:
-
-- isi, tek bir yoldan degil birden fazla paralel / seri termal yoldan dagilir
-- paket ustunden ortama giden yol ayri
-- PCB ve exposed pad uzerinden dagilan yol ayri
-- bu nedenle tek bir `R_{\theta JA}` sayisini, karttan bagimsiz mutlak bir sabit gibi okumak yanlistir
-
-Sayfadaki notlardan korunacak ana teknik fikirler:
-
-- `R_{\theta JA}` aslinda bir bileske / esdeger buyukluktur
-- PCB bakiri, via sayisi, exposed pad baglantisi ve hava akis kosullari bu buyuklugu ciddi bicimde degistirebilir
-- bu yuzden datasheet'teki `R_{\theta JA}` degeri, "gercek devrede aynen olacak" bir sayi degil; belirli bir test kurulumuna ait bir referans olarak alinmalidir
-
-Sayfadaki sekil, kabaca su ayrimi destekliyor:
-
-- junction -> package top -> ambient yolu
-- junction -> package bottom / exposed pad -> PCB -> ambient yolu
-
-![W.109'dan kucuk kirpim: RthJA esdeger agi ve isaretlenmis termal yol](images/defter_snippets_web/d108_w109_rthja_network_marked.jpg)
-
-Burada, `W.107`deki `T_J = T_A + P_D \cdot R_{\theta JA}` iliskisinin neden dikkatle yorumlanmasi gerektigini daha net goruyorum. Ayni guc kaybinda bile `T_J`, yalnizca MOSFET'e degil PCB yerlesimine, exposed pad baglantisina ve isi dagitma yapisina da bagli.
-
-Defterden aktarilan not (`W.110`):
-
-Burada, `W.107-W.109` hattindaki termal yorumun pratik sonucunu goruyorum: datasheet'te verilen `R_{\theta JA}` degeri, olcum duzenine ve PCB bakir alanina ciddi bicimde baglidir.
-
-Sayfadaki basili sekillerde iki farkli olcum baglami gosteriliyor:
-
-- `TO-220` paketin havada asili oldugu / hava icinde olculen bir durum
-- `SON 5 mm x 6 mm` benzeri bir pakette, farkli PCB bakir alanlariyla elde edilen `R_{\theta JA}` degerleri
-
-Sayfadaki basili notlardan korunacak ana fikirler:
-
-- ayni paket icin bile `R_{\theta JA}` sabit bir tek sayi degildir
-- altindaki bakir alan arttikca isi dagitma iyilesir ve `R_{\theta JA}` degisir
-- exposed pad ve PCB alani, termal performansin temel belirleyicilerindendir
-
-![W.110'dan kucuk kirpim: olcum kurulumu ve PCB alanina gore RthJA degisimi](images/defter_snippets_web/d109_w110_measurement_setup_and_layout_effect.jpg)
-
-Burada, `W.109`daki "termal yol PCB'ye baglidir" fikrini gorsel ve deneysel bir baglamla tekrar goruyorum. Yani termal hesapta datasheet'teki `R_{\theta JA}` degerini koru korune almak yerine, kullanilan paket ve kart yerlesimiyle birlikte yorumlamak gerekiyor.
-
-Defterden aktarilan not (`W.117`):
-
-Burada, termal datasheet parametrelerini tek tek isimlendirip hangisinin neyi temsil ettigini ayirmaya calistigim ozet bir sayfa var.
-
-Sayfada not edilen ana termal buyuklukler sunlar:
-
-- `R_{\theta JA} = 36.8 ^\circ C/W`
-- `R_{\theta JC(top)} = 28 ^\circ C/W`
-- `R_{\theta JC(bot)} = 2.1 ^\circ C/W`
-- `R_{\theta JB} = 11.8 ^\circ C/W`
-- `\Psi_{JT} = 0.4 ^\circ C/W`
-- `\Psi_{JB} = 11.7 ^\circ C/W`
-
-Sayfadaki kisa aciklamalardan korunacak ana fikirler:
-
-- `R_{\theta JC(top)}` : junction-to-case(top) thermal resistance
-- `R_{\theta JC(bot)}` : junction-to-case(bottom)
-- `R_{\theta JB}` : junction-to-board thermal resistance
-- `\Psi_{JT}` ve `\Psi_{JB}` ise klasik thermal resistance degil, karakterizasyon parametreleri olarak not edilmis
-
-Sayfanin altindaki cok degerli pratik not:
-
-- `Thermocouple kullanacagin zaman kullanacaksin bu iki parametreyi`
-
-Yani burada acikca su ayrimi not ediyorum:
-
-- her termal buyukluk ayni anlamda degildir
-- ozellikle olcum / termokupl ile pratik sicaklik yorumu yaparken `\Psi` parametreleri farkli bir rolde kullanilir
-
-![W.117'den kucuk kirpim: termal parametrelerin elle ozetlendigi liste](images/defter_snippets_web/d110_w117_thermal_parameter_list.jpg)
-
-Burada, `W.107-W.110` zincirindeki genel termal fikri bu kez belirli datasheet parametre isimlerine indiriyorum. Yeni proje-ozel guc kaybi hesabi yok; ama termal hesapta hangi parametrenin ne zaman kullanilacagini ayirmak icin bu liste gerekli. Bir nevi kendi termal parametre sozlugum gibi duruyor.
-
-Son kapanista bu listeyi iki ayri is icin kullanacagim. Birincisi hesap yolu: MOSFET kaybi biliniyorsa, kart varsayimi ile `T_J` tahmini yapmak. Ikincisi olcum yolu: termokupl / case / board sicakligi varsa, buradan junction'a geri gitmek. Bu ikisinde ayni sembolleri rastgele karistirmamak lazim. `R_{\theta JA}` daha cok belirli test karti icin kayip -> ortam sicaklik artisina bakiyor; `R_{\theta JC(bot)}` exposed pad / alt termal yolun ne kadar guclu oldugunu gosteriyor; `\Psi_{JT}` ve `\Psi_{JB}` ise olcum noktalarindan junction tahmini icin daha pratik karakterizasyon sayilari. `W.132`deki `T_J \approx T_{case} + P_{loss}R_{\theta JC}` satiri finalde kullanilacaksa, o `T_{case}` noktasinin paket ustu mu, alt pad / board tarafi mi oldugu acik yazilmali.
+[Yönlendirme - termal owner] MOSFET `R_{\theta JA}`, `R_{\theta JC}`, `T_J`, exposed pad, datasheet continuous-current yorumu ve olcum/h hesap parametre ayrimi artik `5.9 Termal ve Kayıp Kapanışı` altinda primary owner olarak tutulur. Bu bolumde yalniz MOSFET secimi ve kayip hesaplarinin termal kapanisa gidecegi hatirlatilir: `continuous current` satiri tek basina yeterlilik kaniti degildir; `5.6.3`teki kayiplar, kart sicakligi, PCB bakiri/via yapisi ve termal parametre secimiyle birlikte kapanacak.
 
 
 
@@ -7526,17 +7053,17 @@ Yukarida omurgasi kurulanlar:
 - high-side ve low-side iletim kaybi hesabi
 - `24 V` ve `36 V` kosullari icin switching kaybi izi
 - gate-drive kaybi, `C_{oss}` kaybi, body-diode / dead-time kaybi
-- termal parametrelerin ne anlama geldigi
+- termal kapanisa gidecek `RDS(on)`, kayip ve `T_J` girdileri
 
 Son teyit isteyenler:
 
 - secilen MOSFET'in nihai datasheet ozeti tek tabloda toparlanacak
 - `VDS` spike / layout / snubber ihtiyaci LTspice ve yerlesimle tekrar kontrol edilecek
-- toplam MOSFET kaybi ve verim tablosu tek yerde toplanacak
-- tahmini junction sicakligi gercek PCB termal varsayimlariyla tekrar okunacak
+- toplam MOSFET kaybi ve verim tablosu `5.9` termal/kayip kapanisina beslenecek
+- tahmini junction sicakligi gercek PCB termal varsayimlariyla `5.9` altinda tekrar okunacak
 - common-source inductance ve gate parasitikleri layout tarafinda ayrica gozden gecirilecek
 
-Bu son tabloyu yaparken her satirin ayni kosul setine ait oldugunu acik tutmam gerekiyor: `Vin`, `Iout`, `f_sw`, `Vdrive`, `T_J`, secilen `RDS(on)`, `Q_g` ve kapasitans seti. `W.191-W.200` zincirindeki sayilar ayni kosula cekilmeden toplanirsa verim sayisi temiz gorunur ama yaniltir. Ayrica gate-drive / `VCC` / kontrolcu kayiplarini MOSFET junction termaline otomatik yuklememek, hangi isin hangi parca uzerinde dagildigini son tabloda ayri gostermek lazim.
+Bu son tabloyu yaparken her satirin ayni kosul setine ait oldugunu acik tutmam gerekiyor: `Vin`, `Iout`, `f_sw`, `Vdrive`, `T_J`, secilen `RDS(on)`, `Q_g` ve kapasitans seti. `W.191-W.200` zincirindeki sayilar ayni kosula cekilmeden toplanirsa verim sayisi temiz gorunur ama yaniltir. Ayrica gate-drive / `VCC` / kontrolcu kayiplarini MOSFET junction termaline otomatik yuklememek, hangi isin hangi parca uzerinde dagildigini `5.9` kapanis tablosunda ayri gostermek lazim.
 
 
 
@@ -7544,17 +7071,13 @@ Bu son tabloyu yaparken her satirin ayni kosul setine ait oldugunu acik tutmam g
 
 
 
-#### 5.7.1 ODT'den aktarilan metin (`8. mosfetler`)
-
-Bu alt baslikta ODT'deki eski metni govdeye oldugu gibi tasimadim. Bootstrap ve gate-drive tarafinda asil iz, defter sayfalari ve kaynak gorsellerle birlikte `5.7.2` altinda daha okunur hale geliyor.
-
-
-
-#### 5.7.2 Bootstrap direncini (`R_{boot}`) hesaplama ve secim mantigi
+#### 5.7.1 Bootstrap direncini (`R_{boot}`) hesaplama ve secim mantigi
 
 
 
 ODT'deki `8.1. Bootstrap Direncini (Rboot) Hesaplama ve Seçim Mantığı` notunu burada daha okunur denklem akisiyle yeniden kuruyorum.
+
+[Güncel Omurga - gate-drive komsulugu] Bootstrap agi MOSFET gate-drive beslemesinin komsusudur; duty hesabinin owner'i degildir. `D_high,max = 0.648`, `D_low,min = 0.352`, `T_sw ≈ 3.01 us` gibi sayilar `3.1`den gelir; burada yalniz `C_{BST}`, `R_{boot}`, `CVCC`, `Qg/Qtotal`, diyot dusumu ve `BST-SW` UVLO yeterliligi kontrol edilir.
 
 Bu kisimda kullandigim kaynak / defter gorselleri:
 
@@ -7574,6 +7097,8 @@ Bu kisimda kullandigim kaynak / defter gorselleri:
 
 ![Gercek sema uzerinde Cbst ve Rilim civari](images/foto_selected/p13_actual_cbst_rilim_markup.jpg)
 
+Bu gorselde `Rilim` ayni fiziksel yakin planda gorunse de current-limit / sensing hesabinin owner'i `5.8`dir. Bootstrap bolumu bu gorseli yalniz `C_{BST}`, `R_{boot}`, `CVCC`, `BST-HO-SW` ve gate-drive enerji yolu baglaminda kullanir.
+
 ![LM5146 pinleri uzerinden bootstrap ve CVCC baglantisi](images/foto_selected/p14_lm5146_bootstrap_pinout.jpg)
 
 ![Bootstrap supply konseptini anlatan kaynak sekil](images/foto_selected/p15_bootstrap_supply_concept.jpg)
@@ -7586,17 +7111,9 @@ Bu gorseller burada bosuna durmuyor. Bootstrap hesabini sadece `R`, `C` ve duty 
 
 **Hangi duty?**
 
-PWM'de high-side MOSFET'in en uzun sure acik kaldigi durum, bootstrap kondansatorunun en kisa sarj penceresini verir. Burada kullandigim `0.648` duty degeri daha onceki duty notlariyla ayni cizgide duran worst-case bootstrap kontrolu gibi okunmali:
+Duty ailesinin primary owner'ı `3.1 Paylaşılan fsw, duty ve zaman alanı owner'ı`. Burada duty yeniden türetilmez; bootstrap hesabı yalnız o owner'dan gelen korumacı proje-duty penceresini kullanır: `D_high,max = 0.648` ve `D_low,min = 0.352`.
 
-$$
-D_{\text{high,max}} = 0.648
-$$
-$$
-D_{\text{low,min}} = 1 - D_{\text{high,max}} = 1 - 0.648 = 0.352
-$$
-Yani bootstrap sarji icin kullandigim worst-case pencere, periyodun `%35.2`'lik low-side iletim araligi oluyor. Bu pencere ne kadar kisa olursa, `C_{boot}` o kadar az surede toparlanmak zorunda kalir.
-
-Buradaki `0.648` degerini ideal duty'nin kendisi gibi okumuyorum. `5.2` tarafinda ideal `24 V -> 14 V` duty yaklasik `0.583` iken burada daha korumaci / verim dahil bir worst-case sarj penceresi kullanilmis. Final duty zarfi degisirse bu satirla birlikte `D_low,min`, `t_charge,min`, `t_charge/tau` ve ilk bootstrap yeterlilik yorumu da ayni anda guncellenmeli.
+Yani bootstrap sarji icin kullanılan worst-case pencere, periyodun `%35.2`'lik low-side iletim aralığıdır. `0.648` ideal duty değil; `3.1`de etiketlenen verim-dahil / korumacı duty izinin bootstrap uygulamasıdır. Final duty owner'ı değişirse burada yalnız `D_low,min`, `t_charge,min`, `t_charge/tau` ve ilk bootstrap yeterlilik yorumu güncellenir.
 
 **Sarj penceresi ve zaman sabiti**
 
@@ -7605,11 +7122,7 @@ ODT notunda bu adim, `R_{boot} = 2.2 \Omega` ve `C_{boot} = 0.1 \mu F` secimiyle
 $$
 \tau = R_{boot} C_{boot} = 2.2\,\Omega \times 0.1\,\mu\text{F} = 0.22\,\mu\text{s}
 $$
-PWM frekansi `332 kHz` icin:
-
-$$
-T_{sw} = \frac{1}{f_{sw}} = \frac{1}{332\,\text{kHz}} \approx 3.01\,\mu\text{s}
-$$
+PWM frekansi `332 kHz` icin `3.1` owner'inda sabitlenen `T_{sw} \approx 3.01 us` kullanilir.
 Bu durumda worst-case bootstrap sarj penceresi:
 
 $$
@@ -7727,7 +7240,7 @@ Buradaki not, onceki bootstrap hesabinda kullandigim diyot dusumunun harici degi
 - `BST` ile `SW` arasinda
 - `CBST` ile seri
 
-Bu, `5.7.2` altinda hesaplanan `R_{boot}=2.2\Omega` degerinin semadaki gercek eleman karsiligini netlestiriyor.
+Bu, `5.7.1` altinda hesaplanan `R_{boot}=2.2\Omega` degerinin semadaki gercek eleman karsiligini netlestiriyor.
 
 **CVCC**
 
@@ -8216,15 +7729,380 @@ Burada yeni bir sayi yok. Bu sayfa `W.186`nin devam notu gibi duruyor: hesap son
 
 
 
-## 6. Kontrolcu ve Kompanzasyon
+### 5.8 Protection, current-limit ve sensing owner
+
+[Güncel Omurga] `ILIM`, `Rilim` ve `Cilim` ailesinin primary owner'i burasidir. Bu kume, `COMP` / Type-III kompanzator komponent setinin parcasi degil; LM5146'nin current-limit ve current-sensing zincirinde okunacak protection ayaridir. Bootstrap bolumundeki `p13` gorselinde `Cbst` ve `Rilim` ayni fiziksel yakin planda gorunebilir, ama owner olarak biri bootstrap, digeri protection tarafindadir.
+
+[Güncel Omurga - startup / protection / sensing zinciri] Bu baslik `5.1` startup varsayimlari ve `5.7` bootstrap / gate-drive agiyla komsudur; ama duty, kompanzasyon veya termal owner'i degildir. `RDS(on)` tabanli sensing, `ILIM` akimi, `Rilim`, `Cilim` ve protection zaman sabiti burada okunur; sicaklik etkisi ise `5.9` termal kapanisa referans verir.
+
+[Tasarım İzi] `W.17-W.19`, current-limit / `Rilim` hesabinin defterdeki ana izidir. EVM'deki `619 Ohm` referans degeri ile yerel hesap karsilastiriliyor; finale yakin yerel satirda `R4 / R_{ilim} = 576 Ohm` gorunuyor. Bu iki deger sessizce birlestirilmeyecek; son sema/BOM kontrolunde hangi referans designator ve hangi standart deger kullanildigi ayni owner altinda kapanacak.
+
+![W.17'den kucuk kirpim: `Rilim` icin ilk kaba dusunce akisi](images/defter_snippets_web/d178_w17_initial_rilim_reasoning.jpg)
+
+![W.18'den kucuk kirpim: sicak `RDS(on)` ve `ILIM` akimi uzerinden `Rilim` kontrolu](images/defter_snippets_web/d179_w18_rilim_from_rds_on_hot.jpg)
+
+![W.19'dan kucuk kirpim: `Cilim` secimi ve `tau = Cilim * Rilim ≈ 6 ns` kontrolu](images/defter_snippets_web/d180_w19_cilim_tau_and_rilim.jpg)
+
+Bu uc sayfa, `W.17-W.19` grubunun yalnizca "bir direnç sectim" notu olmadigini aciyor. `RDS(on)` tabanli current-sensing icinde `Rilim` ve `Cilim` tarafini birlikte kurmaya calismisim. `Cilim` icin gorunen `tau = Cilim * Rilim ≈ 6 ns` kontrolu burada kalir; kompanzasyon kutup/sifir yerlestirmesine tasinmaz.
+
+`R_{ilim}` / current sensing baglamini destekleyen kaynak-fotolar:
+
+![MOSFET RDS(on) current sensing ve shunt current sensing karsilastirmasi](images/foto_selected/p17_rds_on_current_sensing.jpg)
+
+Bu gorsel, `ILIM` pininin ideal bir "soyut akim limiti" degil; ya `RDS(on)` tabanli ya da shunt tabanli bir current-sensing mantiginin parcasi olarak dusunuldugunu gosteren iyi bir arka-plan referansi. `W.17-W.19` grubunun yaninda current-limit hesabinin fiziksel baglamini guclendiriyor.
+
+![RDS(on) modundaki `ILIM` akim kaynaginin jonksiyon sicakligina gore degisimini gosteren datasheet grafigi](images/foto_selected/p60_ilim_current_vs_temperature.jpg)
+
+Bu ikinci gorsel, onceki current-sensing referansina daha kritik bir ayrinti ekliyor: `RDS(on)` modunda `ILIM` akisinin `T_J` ile degistigi acikca goruluyor. Bu da `R_{ilim}` hesabinin yalnizca tek bir oda sicakligi katsayisi degil, sicakliga bagli bir current-source davranisiyla iliskili oldugunu hatirlatarak `W.17-W.19` hattini teknik olarak daha saglam bagliyor.
+
+[Açık Kontrol] `R4 / R_{ilim} = 576 Ohm`, EVM `619 Ohm` referansi, sicak `RDS(on)`, `ILIM` akimi ve `Cilim` zaman sabiti ayni final current-limit tablosunda tekrar kapanacak. Bu kapanis MOSFET sicakligi, `RDS(on)` toleransi ve datasheet current-source kosulu ile yapilmadan protection ayari final sayilmayacak.
+
+
+### 5.9 Termal ve Kayıp Kapanışı
+
+[Güncel Omurga] Ayrintili termal hesaplarin primary owner'i burasidir. `5.1`, `5.5`, `5.6`, `5.7` ve `5.8` kendi elektriksel / fonksiyonel kararlarini verir; sicaklik, kayip kapanisi, `T_J`, board sicakligi, olcum parametreleri ve exposed-pad yorumu burada tek yerde toplanir.
+
+Bu owner'in topladigi zincir:
+
+| Termal / kayip konusu | Bu owner'daki rol |
+| --- | --- |
+| Controller `VCC/LDO` | dahili regulator guc kaybi, thermal shutdown, exposed pad ve harici `DVCC` alternatifinin termal gerekcesi |
+| Giriş MLCC RMS | primary hesap ve `temperature-rise` zinciri `5.5.5` altindadir; burada yalniz toplam termal/kayip kapanisina referans verir |
+| MOSFET kayiplari | `5.6.3`te hesaplanan kayiplari `RDS(on)`, `T_J`, `Rth` ve PCB termal yoluyla kapatma |
+| Board worst-case | taslak hedef `76 degC` board worst-case; EVM / WEBENCH / defter sicaklik izleriyle karsilastirma |
+| Olcum vs hesap | `R_{\theta}` ve `\Psi` parametrelerini, termokupl / case / board olcumleriyle karistirmadan kullanma |
+
+
+#### 5.9.1 Controller `VCC/LDO`, thermal shutdown ve exposed pad
+
+Defterden aktarilan not (`W.108`):
+
+Burada daha cok kontrolcu datasheet'indeki sicaklik ve termal koruma notlarini toplamisim. Bu sayfa proje-ozel bir kayip hesabi degil; cihazin mutlak calisma ve koruma sinirlarini hatirlatan bir defter ozeti.
+
+![W.108'den secilen el yazisi parca: kontrolcunun junction temperature, thermal shutdown ve exposed pad notlari](images/defter_snippets_web/d06_w108_thermal_controller_limits.jpg)
+
+Sayfada korunacak ana basliklar:
+
+- **Device temp grade**: otomotiv / genis sicaklik araligina isaret eden not; ortamin ve cihazin izin verilen sicaklik araliklari birlikte dusunulmeli.
+- **Operating junction temp**: yaklasik `-40 C` ile `+150 C` araligina isaret ediliyor.
+- **Thermal shutdown protection with hysteresis**: thermal shutdown esigi `175 C`; hysteresis yaklasik `20 C`.
+- **EP (Exposed Pad)**: alt metal pad'in termal ve elektriksel rolu, PCB bakiri / GND / isi dagitma acisindan onemi.
+- **Storage temperature**: yaklasik `-55 C` ile `150 C` araligi.
+
+Temel termal iliski defterde iki okuma yolu ile korunuyor:
+
+$$
+T_J = T_A + P_{diss} \cdot R_{\theta JA}
+$$
+
+veya benzer niyetle:
+
+$$
+T_J \approx T_{case} + P_{diss} \cdot R_{\theta JC}
+$$
+
+Buradaki asil deger, sectigim kontrolcu IC'nin yalnizca elektriksel degil termal sinirlarini da erken asamada not etmis olmam. Burada henuz proje-ozel guc kaybi hesabi yok; ama `T_J`, thermal shutdown ve exposed pad dusuncesi daha bastan masaya gelmis.
+
+Defterden aktarilan not (`W.111`):
+
+Burada `5.1.1-5.1.2`de tartisilan dahili `VCC` / LDO konusu bu kez termal guc kaybi tarafindan ele aliniyor.
+
+![W.111'den secilen el yazisi parca: dahili VCC regulatorunun guc kaybi ve harici DVCC secenegi notu](images/defter_snippets_web/d07_w111_vcc_ldo_loss_note.jpg)
+
+Sayfanin ortasinda, dahili regulator uzerinde harcanan guc su sekilde not edilmis:
+
+$$
+P_{diss,VCC} = (V_{in} - 7.5\,\text{V})\,I_{VCC}
+$$
+
+Yan notlardan korunacak ana fikirler:
+
+- eger `V_{in}` yuksekse, dahili LDO uzerindeki dusum de buyur
+- ayni `I_{VCC}` akiminda bu, daha fazla isi kaybi anlamina gelir
+- dolayisiyla yuksek `Vin` tarafinda dahili `VCC` regulatoru daha fazla isinabilir
+- asiri isinma sonucunda problem yasanirsa dahili `VCC` rayi yerine `8 V - 13 V` araliginda harici bir kaynak kullanilabilir ve `DVCC` uzerinden `VCC` pinleri beslenebilir
+
+Burada `W.108`deki genel termal sinirlar, LM5146'nin dahili regulatorune ozel bir guc kaybi iliskisine baglaniyor. Harici `VCC` seceneginin neden akilda tutuldugu da burada daha anlasilir oluyor.
+
+Defterden aktarilan not (`W.200` - kontrolcu yardimci kaybi ve acik kayip kalemleri):
+
+![W.200'den kucuk kirpim: `PIC = 64.8 mW` notu ve sonraya birakilan kayip kalemleri listesi](images/defter_snippets_web/d149_w200_pic_and_todo_losses.jpg)
+
+Burada `other losses` zincirinde MOSFET'e bagli kalemlerden sonra kontrolcu / yardimci devre tuketimini ve kalan kayip kalemlerini not dusuyorum. Yeni nihai verim sonucu degil; daha cok durum notu.
+
+LM5146'nin kendi calisma akimindan dogan kayip icin iliski su:
+
+$$
+P_{IC} = V_{in}\,I_{Q\text{-}RUN}
+$$
+
+ve sayfadaki uygulama:
+
+$$
+P_{IC} = 36\,V \times 1.8\,mA = 64.8\,mW
+$$
+
+Buradaki `I_{Q\text{-}RUN}` notu, bunu `Operating input current, no switching` gibi bir datasheet satirindan aldigimi gosteriyor. Bu `64.8 mW` degerini MOSFET kayiplarinin parcasi gibi okumuyorum; kontrolcunun `36 V` giristeki kendi calisma akimi icin ayri bir yardimci kayip kalemi.
+
+[Açık Kontrol] `Operating input current, no switching` satiri kullanildigi icin, `W.193`teki gate-drive enerjisiyle ve `W.111`deki dahili `VCC/LDO` dusuncesiyle ayni kapsami paylasip paylasmadigi son tabloda datasheet tanimlariyla tekrar kontrol edilmeli. Yani `P_{IC}`, `P_{gate-drive}` ve `VCC/driver` tarafini toplarken cift sayim yapmadan ilerlemek gerekiyor.
+
+Sayfanin orta kismina dogru, `R_{sense}` kaybina da ayrica donecegimi yazdim. Okunabildigi kadariyla su tip bir iliskiyi daha sonra hesaplamak uzere not ettim:
+
+$$
+P_{sense} = R_{sense}\,I_{out}^2\,D \left( 1+\frac{1}{12}\,\Delta I_{L,pp}^{2} \right)
+$$
+
+Bu ifade final denklem gibi degil, "unutma" notu olarak kalir. Yazilan parantezdeki ripple terimi boyutsal olarak hizli yazilmis olabilir; son hesapta `R_{sense}` uzerindeki kayip, sense direncinden gecen gercek RMS akimla yazilmali. Sayfanin altindaki `inductor losses calculation` ve `input and output capacitor losses / ESR` notlari da ayni kapanis listesine girer.
+
+
+#### 5.9.2 Giriş MLCC RMS kaynaklı sıcaklık artışı
+
+[Yönlendirme - `Cin` owner] Giriş MLCC RMS akımı, kapasitör başına akım paylaşımı, `temperature-rise` grafikleri, `X7R/X5R` notu ve EVM `~70 degC` board tahmini artık `5.5.5 RMS akimi ve termal bakis` altında tutulur. Bu termal kapanış bölümünde yalnız toplam board/kayıp kapanışına giderken o owner'daki sonucun kullanılacağı hatırlatılır.
+
+
+#### 5.9.3 MOSFET termal yolu, datasheet current ve `T_J`
+
+[Güncel Omurga] MOSFET secimi ve kayip mekanizmalari `5.6` altinda kalir; bu alt baslik o kayiplari datasheet termal parametreleri, board sicakligi ve olcum yontemiyle kapatir. `continuous current` satiri tek basina "bu parca yeter" demiyor; o sayinin arkasinda test karti, bakir alan, ortam sicakligi ve termal yol varsayimlari var.
+
+Termal kapanisa gelen MOSFET sicaklik izleri:
+
+- [Tasarım İzi] `RDS(on)` sicaklik duzeltmesi icin `T_J = 75 degC` civari ve `1.35` katsayisi kullanildi; `15 mOhm -> 20.25 mOhm`.
+- [Tasarım İzi] `W.132`: `T_J \approx 75.964 degC \approx 76 degC`.
+- [Tasarım İzi] `W.163`: `T_J \approx 76.35 degC`.
+- [Tasarım İzi] `W.175`: `T_J \approx 76.39 degC` ile `25 degC` egrisi arasinda `\Delta V \approx -0.154 V` duzeltmesi.
+- [Eski / farkli kosul izi] `W.128` tarafinda `T_J \approx 73.9 degC` gibi bir tahmin; `W.174` tarafinda ise `150 C` egrisinden yaklasik `100 C` tarafina duzeltme denemesi var.
+
+Bu sayilar sessizce tek `T_J` degerine indirilmeyecek. Hepsi ayni kosul setine cekilecek: `Vin`, `Iout`, `f_sw`, `Vdrive`, gate yolu, secilen MOSFET, kayip toplami ve kart termal modeli.
+
+![Exposed pad ve paket alt termal yolunu gosteren ekran goruntusu](images/foto_selected/p25_exposed_pad_package.jpg)
+
+Bu gorsel, exposed pad meselesini hizli anlatiyor. Termal performans yalnizca paketin kendisi degil; alt pad'in PCB'ye nasil baglandigi, bakir alan ve via yapisi da isin icinde.
+
+Defterden aktarilan not (`W.107`):
+
+Burada, TI'nin `Understanding MOSFET Data Sheets, Part 6 - Thermal Impedance` makalesinin ilk sayfasi uzerine aldigim bir not var. Proje-ozel hesap sayfasindan cok, MOSFET datasheet yorumunu dogru zemine oturtan bir kaynak notu gibi okunmali.
+
+Sayfada alti cizilmis ana teknik fikir su:
+
+- `R_{\theta JA}` tek parca, mutlak ve her yerde gecerli bir sabit gibi dusunulmemelidir
+- junction-to-ambient termal yol, paket ustunden havaya giden yol ile PCB uzerinden dagilan yolun bileskesidir
+- datasheet'teki termal metrikler, gercek kart ve sogutma kosullarindan bagimsiz okunmamalidir
+
+Sayfada altta not ettigim temel termal iliski:
+
+$$
+T_J = T_A + P_D \cdot R_{\theta JA}
+$$
+
+![W.107'den kucuk kirpim: termal empedans makalesi ustune Tj notu](images/defter_snippets_web/d107_w107_thermal_impedance_article_and_tj.jpg)
+
+Bu sayfa, "datasheet current rating dogrudan yeterlilik kaniti degildir" ilkesinin kaynak dayanaklarindan biri. MOSFET kaybi sonunda mutlaka termal limite baglanacak.
+
+Defterden aktarilan not (`W.109`):
+
+Burada, `W.107`deki termal impedance makalesinin devaminda `R_{\theta JA}`'nin hangi fiziksel yollarin bileskesi oldugunu daha acik anlatan bir sayfa var.
+
+Ana fikir:
+
+- isi, tek bir yoldan degil birden fazla paralel / seri termal yoldan dagilir
+- paket ustunden ortama giden yol ayri
+- PCB ve exposed pad uzerinden dagilan yol ayri
+- tek bir `R_{\theta JA}` sayisini, karttan bagimsiz mutlak bir sabit gibi okumak yanlistir
+
+![W.109'dan kucuk kirpim: RthJA esdeger agi ve isaretlenmis termal yol](images/defter_snippets_web/d108_w109_rthja_network_marked.jpg)
+
+Burada, `T_J = T_A + P_D \cdot R_{\theta JA}` iliskisinin neden dikkatle yorumlanmasi gerektigini daha net goruyorum. Ayni guc kaybinda bile `T_J`, yalnizca MOSFET'e degil PCB yerlesimine, exposed pad baglantisina ve isi dagitma yapisina da bagli.
+
+Defterden aktarilan not (`W.110`):
+
+Burada, datasheet'te verilen `R_{\theta JA}` degerinin olcum duzenine ve PCB bakir alanina ciddi bicimde bagli oldugunu goruyorum.
+
+Sayfadaki basili sekillerde iki farkli olcum baglami gosteriliyor:
+
+- `TO-220` paketin havada asili oldugu / hava icinde olculen bir durum
+- `SON 5 mm x 6 mm` benzeri bir pakette, farkli PCB bakir alanlariyla elde edilen `R_{\theta JA}` degerleri
+
+![W.110'dan kucuk kirpim: olcum kurulumu ve PCB alanina gore RthJA degisimi](images/defter_snippets_web/d109_w110_measurement_setup_and_layout_effect.jpg)
+
+Yani termal hesapta datasheet'teki `R_{\theta JA}` degerini koru korune almak yerine, kullanilan paket ve kart yerlesimiyle birlikte yorumlamak gerekiyor.
+
+Defterden aktarilan not (`W.117`):
+
+Burada, termal datasheet parametrelerini tek tek isimlendirip hangisinin neyi temsil ettigini ayirmaya calistigim ozet bir sayfa var.
+
+Sayfada not edilen ana termal buyuklukler:
+
+- `R_{\theta JA} = 36.8 ^\circ C/W`
+- `R_{\theta JC(top)} = 28 ^\circ C/W`
+- `R_{\theta JC(bot)} = 2.1 ^\circ C/W`
+- `R_{\theta JB} = 11.8 ^\circ C/W`
+- `\Psi_{JT} = 0.4 ^\circ C/W`
+- `\Psi_{JB} = 11.7 ^\circ C/W`
+
+Sayfadaki kisa aciklamalardan korunacak ana fikirler:
+
+- `R_{\theta JC(top)}`: junction-to-case(top) thermal resistance
+- `R_{\theta JC(bot)}`: junction-to-case(bottom)
+- `R_{\theta JB}`: junction-to-board thermal resistance
+- `\Psi_{JT}` ve `\Psi_{JB}` klasik thermal resistance degil, karakterizasyon parametreleri olarak not edilmis
+- `Thermocouple kullanacagin zaman kullanacaksin bu iki parametreyi`
+
+![W.117'den kucuk kirpim: termal parametrelerin elle ozetlendigi liste](images/defter_snippets_web/d110_w117_thermal_parameter_list.jpg)
+
+Son kapanista bu liste iki ayri is icin kullanilacak. Birincisi hesap yolu: MOSFET kaybi biliniyorsa, kart varsayimi ile `T_J` tahmini yapmak. Ikincisi olcum yolu: termokupl / case / board sicakligi varsa, buradan junction'a geri gitmek. Bu ikisinde ayni sembolleri rastgele karistirmamak lazim. `R_{\theta JA}` belirli test karti icin kayip -> ortam sicaklik artisina bakar; `R_{\theta JC(bot)}` exposed pad / alt termal yolun ne kadar guclu oldugunu gosterir; `\Psi_{JT}` ve `\Psi_{JB}` ise olcum noktalarindan junction tahmini icin daha pratik karakterizasyon sayilari. `T_J \approx T_{case} + P_{loss}R_{\theta JC}` kullanilacaksa, `T_{case}` noktasinin paket ustu mu, alt pad / board tarafi mi oldugu acik yazilmali.
+
+
+#### 5.9.4 Board worst-case ve kayıp kapanış sırası
+
+[Güncel Omurga] Taslak hedef tablosunda sicaklik hedefi `76 degC board worst-case` olarak duruyor. Bu hedef, MOSFET `T_J` ile ayni dugum degil; board sicakligi, komponent junction sicakligi, case sicakligi ve ortam sicakligi ayri ayri yazilacak.
+
+[Çapraz Teyit] `WEBENCH` operating-values snapshot'i `Efficiency = 97.877%` gosteriyor; bu `%90` minimum verim hedefi acisindan olumlu bir hizli kontrol. Fakat `Ta = 30 degC` kosulundaki snapshot, `76 degC board worst-case` sicaklik hedefini veya MOSFET/bobin/kontrolcu termal kapanisini tek basina dogrulamaz.
+
+[Açık Kontrol] Kayıp ve termal kapanis sirasi:
+
+- `5.6.3` MOSFET kayip kalemleri ayni kosul setine cekilecek: conduction, switching, gate-drive, `C_{oss}`, body-diode/dead-time.
+- `5.1` controller `VCC/LDO` kaybi, `P_{diss,VCC} = (V_{in}-7.5V) I_{VCC}` ile ayrica kontrol edilecek; bu kayip MOSFET junction sicakligina otomatik yuklenmeyecek.
+- `5.5` giris MLCC RMS akimi, parca basina akim ve temperature-rise grafigiyle board sicakligina eklenecek.
+- bobin `DCR` / rated RMS akim ve bakir kaybi da ayni board sicaklik varsayimina baglanacak.
+- olcum yapilacaksa `R_{\theta}` ve `\Psi` parametreleri hangi olcum noktasi icin kullanildigi yazilarak secilecek.
+
+Bu owner kapanmadan "verim iyi gorunuyor" veya "datasheet current yetiyor" demek yeterli degil. Final tablo, hangi isin hangi parca uzerinde dagildigini ayri gosterecek: kontrolcu `VCC/LDO`, high-side MOSFET, low-side MOSFET, bobin, giris MLCC/bulk ve gerekirse damping/snubber elemanlari.
+
+
+
+## 6. Kontrolcu ve Kompanzasyon Owner
 
 Burada guc katindan kontrol tarafina geciyorum. Modulator, power-stage modeli, K-factor yaklasimi ve frekans yerlestirmesi ayni kapali cevrim resminin parcalari. Bu bolumdeki izlerin bir kismi nihaiye yakin komponent secimine gidiyor, bir kismi da Type-III mantigini nasil kurdugumu gosteren ara defter notlari.
 
 Bir onceki bootstrap / gate-drive bolumu burada kaybolmuyor; sadece ilk kontrol modelinde daha ideal bir sekilde temsil ediliyor. Averaged kontrol modelinde asil bloklar modulator, cikis filtresi, yuk ve kompanzator. `VCC`, `BST`, gate-drive gucu, dead-time ve gercek anahtarlama kenarlari ise kayip, startup, transient ve switching-model dogrulamasinda geri gelecek. Bu yuzden `6` numarali bolumde bulunan loop sayilari, `5.6-5.7` tarafindaki driver/bootstrap varsayimlariyla sonradan tekrar eslestirilmeli.
 
-### 6.1 Modulator ve power stage modeli
+[Güncel Omurga - tek kontrol owner akisi] Bu bolumun okuma sirasi tek zincirdir; ayni kontrol hesabinin parcalari baska ana owner'a dagitilmez:
 
-#### 6.1.1 Genel kontrol yapisi
+| Sira | Bu owner'daki blok | Primary icerik |
+| --- | --- | --- |
+| 1 | Feedback divider | `RFB1/RFB2`, `VFB = 0.8 V`, eski/guncel bolucu ayrimi ve calculator teyidi |
+| 2 | Plant modeli | modulator kazanci, `H_filter(s)`, cikis filtresi/yuk modeli ve plant girdilerinin nasil kullanildigi |
+| 3 | Crossover ve faz marji | hedef `f_c`, hedef `PM`, `GM` okuma kurali ve kose kosul uyarilari |
+| 4 | K-factor | hedef frekansta gereken kazanc/faz katkisi ve `K` mantigi |
+| 5 | Type-III komponent seti | `RC/CC` ailesi, kutup/sifir yerlestirme ve aday/final ayrimi |
+| 6 | Cross-check | calculator, WEBENCH, defter ve eski iterasyon ekranlarinin ayni kontrol zincirinde okunmasi |
+
+
+### 6.1 Feedback divider
+
+[Güncel Omurga] `RFB1/RFB2` ailesinin primary owner'i burasidir. `5.1.3` artik sadece startup / pin-programming akisi icinde kisa referans birakir; geri besleme bolucusunun denklemi, eski/guncel aday ayrimi, calculator teyidi ve kompanzasyonla baglantisi burada tutulur.
+
+ODT'den aktarilan metin (`4.1. Çıkış gerilimi setpoint dirençleri FB`):
+
+> = 14V yapmak istiyoruz.
+> 0402 boyutlarında.
+> R14 Ohm R14 = 16.5 kΩ (RFB1)
+> R10 = 1.00 kΩ (RFB2)
+> Dirençleri % 0.1 tolerance’lı seçmek….
+
+Geri besleme bolucusunu `14 V` cikis hedefi icin sectim. Fiziksel tarafta `0402` paket ve dusuk tolerans hedefi var. Fakat bu belgede iki farkli iterasyon ust uste duruyor: ilk ODT taslagindaki `16.5 kOhm / 1.00 kOhm` secimi matematiksel olarak dogru; sonraki defter sayfalari ve satin alinmis BOM ise `26.4 kOhm / 1.6 kOhm` cizgisine kayiyor.
+
+Temel setpoint iliskisi:
+
+$$
+V_{out} = V_{FB}\left(1 + \frac{R_{FB1}}{R_{FB2}}\right)
+$$
+
+[Eski İterasyon] Ilk taslaktaki aday:
+
+$$
+V_{out} = 0.8\left(1 + \frac{16.5}{1.0}\right) = 14.0\,\text{V}
+$$
+
+[Güncel Omurga] Defter taramasi `W.14-W.16` ve BOM'daki satin alinmis parcalar su adayi gosteriyor:
+
+- `R11 / R1 / RFB1 = 26.4 kOhm`
+- `R10 / RFB2 = 1.6 kOhm`
+
+Bu durumda:
+
+$$
+V_{out} = 0.8\left(1 + \frac{26.4}{1.6}\right) = 14.0\,\text{V}
+$$
+
+Bu owner altinda ayrim su:
+
+- [Eski İterasyon] `16.5 kOhm / 1.00 kOhm`: ilk aday / eski setpoint iterasyonu
+- [Güncel Omurga] `26.4 kOhm / 1.6 kOhm`: bu README icinde bundan sonra ana varsayim gibi okunacak guncel aday
+- [Açık Kontrol] iki deger de `14 V` sonucuna gidiyor; fark direnç ailesi, BOM ve sonraki kompanzator baglantisinda ortaya cikiyor
+
+[Çapraz Teyit - quickstart calculator] `LM5146_quickstart_calculator_revB1.xlsm` dosyasinda geri besleme bolucusu ayni nihai aileye oturuyor:
+
+- `RFB1 = 26.4 kOhm`
+- `RFB2 = 1.58 kOhm`
+- `Actual Vout = 14.167 V`
+
+Calculator da ayni yone bakiyor. Yani `16.5 kOhm / 1.00 kOhm` eski adayi tamamen yanlis degil; ama `W.14-W.16` ve satin alinmis BOM ile uyumlu gorunen `26.4 kOhm / 1.6 kOhm` secimi daha guclu duruyor.
+
+Bu ayrimi sadece BOM notu gibi degil, kontrol hesabi icin de tutuyorum. Feedback bolucu degistiginde `H_{FB} = RFB2/(RFB1+RFB2)` ve `COMP` aginin referans aldigi oran da degisir. Bu yuzden eski `16.5 kOhm / 1.00 kOhm` iziyle bulunan bir kompanzator degeri, guncel `26.4 kOhm / 1.6 kOhm` setine sessizce tasinmayacak; `6.4` tarafinda tek bolucu seti secilip loop hesabi onunla kapanacak.
+
+Bu bolume ait kaynak-foto:
+
+![WEBENCH benzeri devre uzerinde FB bolucusu ve kompanzator notlari](images/foto_selected/p04_feedback_and_compensation_markup.jpg)
+
+Bu foto burada duruyor, cunku geri besleme bolucusunun `RFB1 / RFB2` kimligini ve kompanzator kolundaki elemanlari tek bakista bagliyor.
+
+Defterden aktarilan not (`W.202`):
+
+`W.202`, bu konunun ilk kuruldugu sayfalardan biri. LM5146 datasheet'indeki `Output Voltage Setpoint and Accuracy FB` basligina bakip `FB` dugumunun referansla iliskisini kisa yoldan not etmisim.
+
+![W.202'den secilen el yazisi parca: FB bolucu denklemi ve 14 V icin oran hesabi](images/defter_snippets_web/d09_w202_fb_divider_equation.jpg)
+
+Guvenle okunan ana notlar:
+
+- `VREF = 0.8 V`
+- geri besleme orani:
+
+$$
+H_{Vout} = \frac{R_2}{R_3 + R_5} \approx 0.12857
+$$
+
+- temel setpoint iliskisi:
+
+$$
+V_{out} = V_{REF}\left(1 + \frac{R_{FB1}}{R_{FB2}}\right)
+$$
+
+Sayfada `14 V` hedefi icin su oran kurulmus:
+
+$$
+\frac{14\,V}{0.8\,V} - 1 = \frac{R_{FB1}}{R_{FB2}} = 16.5
+$$
+
+Bu da eski aday bolucuyu destekliyor:
+
+- `RFB1 = 16.5 k\Omega`
+- `RFB2 = 1.00 k\Omega`
+
+Sayfanin alt kismina, referans geriliminin toleransi ile ilgili su not da dusulmus:
+
+- `Vref 792 mV ile 808 mV arasinda degisebilir`
+
+Buradan da:
+
+$$
+\frac{808\,mV - 800\,mV}{800\,mV} = \frac{8\,mV}{800\,mV} = \frac{1}{100}
+$$
+
+yani yaklasik:
+
+- `Vout'ta ±1%`lik bir sapma olabilecegi
+
+not edilmis.
+
+Bu sayfa eski `16.5 k\Omega / 1.00 k\Omega` setpoint iterasyonunu dogrudan destekliyor. Nihaiye yakin BOM ile uyumlu gorunen `26.4 k\Omega / 1.6 k\Omega` secimini degistirmiyor; ama bu bolucuyu ilk kez nasil kurdugumu gosterdigi icin degerli.
+
+`VREF` toleransinin cikis gerilimine tasinacagini erken asamada not etmem de buradaki notun guclu yani.
+
+
+### 6.2 Plant modeli ve modulator referansi
+
+#### 6.2.1 Genel kontrol yapisi
 
 Defterde kontrol dongusunu su bloklar uzerinden dusunuyorum:
 
@@ -8243,7 +8121,7 @@ Bu benim icin voltage-mode control cizgisi. Kompanzatorun isi de power stage'in 
 
 Ilk gorsel temel buck semasini hatirlatmak icin duruyor. `p85`, en sade haliyle `Vref -> compensator -> modulator -> filter -> Vout` dongusunu gosteriyor. `p86` ise ayni mantigi buck guc katina daha yakindan bagliyor: modulator, adaptive gate driver, `L_f`, `C_out`, `R_{ESR}`, `R_{DAMP}` ve geri besleme bolucusu ayni cizim uzerinde birlikte okunabiliyor. Bu uc gorsel bu yuzden burada kaliyor; kontrol bolumundeki soyut blok dili ile altta gelecek Type-III / plant denklemleri arasindaki gecisi aciyor.
 
-#### 6.1.2 Modulator blogunun rolu
+#### 6.2.2 Modulator blogunun rolu
 
 
 ODT'den aktarilan metin (`9.2. Modulator Bloğu`):
@@ -8281,7 +8159,11 @@ H_{\text{mod}}(s) = \frac{V_{in}}{V_{\text{ramp}}} \approx 15
 $$
 alinabilir. Son okuma yine datasheet'teki feedforward / ramp bilgisiyle eslestirilmeli; ama kontrol hesabinin omurgasinda modulatoru bu sabit kazanc gibi kullanmamın nedeni bu.
 
-#### 6.1.3 Cikis filtresi ve yuk
+#### 6.2.3 Cikis filtresi ve yuk
+
+[Referans Notu] Bu alt başlık artık plant `L/C/ESR` sayılarının primary owner'ı değildir. `L_F`, `DCR` ve ripple için `5.3`; `Cout`, `ESR_Ceq`, çıkış bulk kararı ve `Zout` ayrımı için `5.4` primary owner'dır. Burada yalnız bu owner'lardan gelen sayılarla kontrol transfer fonksiyonunun nasıl kurulduğu gösterilir.
+
+[Açık Kontrol] Aşağıdaki transfer fonksiyonunda görülen `0.26 mOhm` ESR yerleştirmesi, `5.4` altında açıkça etiketlenen `0.28 mOhm / 0.26 mOhm / 1.3 mOhm` ESR fark ailesinin bir üyesidir. Final plant modeli tek `ESR_Ceq` değeri seçilmeden kapanmış sayılmayacak.
 
 
 
@@ -8293,7 +8175,7 @@ ODT'den aktarilan metin (`Çıkış Filtresi ve Yük`):
 
 Bu sade esdeger devre, `H_{filter}(s)` ifadesini hangi fiziksel varsayimla yazdigimi gosteriyor. Seri kolda `L_f` ve `R_{damp}` var; cikis dugumunde ise `C_{out} + R_{esr}` kolu ile `R_{load}` birlikte dusunuluyor.
 
-Boyle yazinca `6.1.3` altinda kullandigim kutup, sifir ve sonum notlari havada kalmiyor; belirli bir esdeger devre varsayimina baglaniyor.
+Boyle yazinca `6.2.3` altinda kullandigim kutup, sifir ve sonum notlari havada kalmiyor; belirli bir esdeger devre varsayimina baglaniyor.
 
 > Cikis filtresi ve yuk icin kullanilan transfer fonksiyonu:
 
@@ -8332,12 +8214,6 @@ $$
 $$
 H_{\text{filter}}(s) \approx \frac{1 + 1.82 \times 10^{-8} s} {1.01329 + 5.774 \times 10^{-6} s + 4.761 \times 10^{-10} s^2}
 $$
-![Tasarimimizda kullandigimiz cikis capacitorleri](images/odt_embedded/fig_24_output_capacitor_bank.png)
-
-> Iki farkli turde cikis capacitor'u mevcut. $H_{\text{filter}}(s)$ transfer fonksiyonu hesabinda $0.1\,\mu\text{F}$ degerindeki `C28` capacitor'unu ihmal ettik.
->
-> Sebebi: ihmal edilmis bicimi yeterince dogru; bu capacitor esas olarak daha yuksek frekans bolgesinde etkili.
-
 Bu bolume ait kaynak-fotolar:
 
 ![Control-to-output transfer function Gvd ornegi](images/foto_selected/p08_control_to_output_transfer.jpg)
@@ -8353,67 +8229,13 @@ Burada ana fikir su: kontrol dongusunun plant kismi yalnizca bobinden gelmiyor. 
 - $R_{esr}$ ESR sifirini olusturur
 - $R_{load}$ ve varsa sönumle ilgili direncler kutup yerlerini degistirir
 
-$C_{28} = 0.1\,\mu\text{F}$ gibi cok kucuk bir MLCC'nin ilk transfer fonksiyonu hesabinda ihmal edilmesi ancak bu elemanin etkisi crossover civarinda gercekten kucukse kabul edilebilir. Genelde bu tip kucuk kapasiteler ana enerji depolama elemani olmaktan cok, daha yuksek frekansli spike ve ringing bastirma tarafinda etkili olur. Bu nedenle kompanzator hesabinda ilk yaklasimda ihmal edilmesi makul olabilir; yine de son karar Bode / AC sweep ile dogrulanmali.
+`C28 = 0.1 uF` ihmal / yardimci rol ayrintisi `5.4.1`de tutulur; burada yalniz ilk plant hesabinin ana `Cout = 70 uF` kabulüyle kuruldugu hatirlatilir.
 
-Bu kaynak fotolari plant dusuncesini yalnizca denklemler uzerinden degil; ornek buck guc kati, `G_{vd}` ifadesi ve buna ait Bode sezgisi uzerinden de kurdugumu gosteriyor. O yuzden `6.1.3` altinda cikis filtresi ve yuk modelinin gorsel arka plani olarak duruyorlar.
+Bu kaynak fotolari plant dusuncesini yalnizca denklemler uzerinden degil; ornek buck guc kati, `G_{vd}` ifadesi ve buna ait Bode sezgisi uzerinden de kurdugumu gosteriyor. O yuzden `6.2.3` altinda cikis filtresi ve yuk modelinin gorsel arka plani olarak duruyorlar.
 
-Defterden aktarilan not (`W.116`):
+[Referans Notu - `W.116`] `W.116` defter kırpımı, output MLCC ESR ekranları ve `70 uF / C28 / ESR_Ceq` ayrımı `5.4` Cout owner'ına taşındı. `6.2.3` burada yalnız bu değerlerin `H_{\text{filter}}(s)` içine nasıl girdiğini gösterir; ikinci bir `Cout` karar bloğu değildir.
 
-Burada kontrol hesabina giren power-stage sayilarini tek sayfada toplamisim. Yeni denklem uretmiyorum; `H_{filter}(s)` icine hangi `L`, `C`, `ESR`, `DCR` ve damping sayilarini koydugumu gosteriyorum.
-
-![W.116'dan secilen el yazisi parca: output filter sayilari, ESR, DCR, Rdamp ve f0 ozeti](images/defter_snippets_web/d30_w116_output_filter_parameter_summary.jpg)
-
-Sayfada okunabilen ana notlar sunlar:
-
-- cikis capacitor bankasi:
-  - `C10-C22` grubu ve `22 uF` notu, capacitor bank'in parca deger izini veriyor
-  - `C28 = 0.1 uF` daha kucuk yuksek-frekans yardimci kapasitör olarak ayriliyor
-  - plant hesabina giren toplam etkin ana kapasite `70 uF` olarak tutulmus
-
-Buradaki `22 uF` ve `70 uF` satirlari birbirinin yerine gecmiyor. `22 uF` parca / banka izini, `70 uF` ise derating ve paralel bank sonrasi transfer fonksiyonunda kullanilan etkin degeri temsil ediyor. Son BOM kontrolunde bu iki satir tekrar eslestirilmeli.
-
-- `ESR_{Ceq}` icin yaklasik:
-
-$$
-ESR_{Ceq} \approx 1.3\,m\Omega
-$$
-![Secilen 22 uF MLCC icin switching frekansi civarinda ESR grafigi](images/foto_selected/p49_output_mlcc_esr_graph.jpg)
-
-![Ayni 22 uF MLCC icin `326.554 kHz` noktasinda okunmus ikinci ESR ekran goruntusu](images/foto_selected/p52_output_mlcc_esr_326k.jpg)
-
-Iki ayri ekran goruntusunde de ayni mertebede `ESR \approx 1.3 m\Omega` okunmasi, burada kullanilan `ESR_{Ceq}` buyuklugunun tek bir rastgele cursor okumasina degil, tekrar eden bir datasheet / arac teyidine dayandigini gosteren iyi bir destek katmani olusturuyor.
-
-- bobin:
-  - `L_F = 6.8 uH`
-  - `DCR \approx 0.88 m\Omega`
-
-Sayfada ayrica damping / kayip tarafi icin su not yer aliyor:
-
-- `R_{damp}` ifadesi, high-side / low-side MOSFET iletim direnci ve bobin `DCR`'sinin duty ile agirliklandirilmis bileskesi gibi yaziliyor
-
-ve sayfa sonunda:
-
-$$
-R_{damp} \approx 21.13\,m\Omega
-$$
-sonucu not edilmis.
-
-Alt kisimda rezonans frekansi da tekrar yazilmis:
-
-$$
-\omega_0 \approx \frac{1}{\sqrt{L_F C_{out}}}
-$$
-ve buna bagli:
-
-$$
-f_0 \approx 7.309\,kHz
-$$
-`W.116`, `6.1.3 Cikis filtresi ve yuk` bolumunde kullanilan `70 uF`, `6.8 uH`, `R_{damp} \approx 21.13 m\Omega`, `f_0 \approx 7.309 kHz` gibi sayilari tek yerde topluyor. Yeni bir alternatif yontem degil; mevcut plant modelinin sayisal giris sayfasi. En kritik acik nokta, `70 uF` etkin kapasite ve `ESR_{Ceq}` degerlerinin son BOM / derating ekranlariyla ayni kalip kalmadigini tekrar baglamak.
-
-
-
-
-#### 6.1.4 Bu bolumde korunacak ayrim
+#### 6.2.4 Bu bolumde korunacak ayrim
 
 Burada iki katmani ayri tutuyorum:
 
@@ -8430,11 +8252,26 @@ Bu harita, modulator, power stage ve compensator kutup / sifirlarini ayni cizimd
 
 
 
-### 6.2 K-factor yaklasimi
+### 6.3 Hedef `fc` ve faz marji
+
+[Güncel Omurga] Hedef crossover ve faz marji icin ana okuma burasidir; ayrintili defter ve calculator ekranlari `6.5-6.6` altinda cross-check olarak kalir. Bu owner, plant sayilarini yeniden sahiplenmez; `L_F = 6.8 uH` ve `DCR ≈ 0.88 mOhm` icin `5.3`, `Cout ≈ 70 uF` ve ESR fark ailesi icin `5.4`, bu sayilarin transfer fonksiyonuna aktarimi icin `6.2.3` kullanilir.
+
+Bu iterasyondaki hedef cizgi:
+
+- ilk yerlestirme kuralı: `f_c ≈ f_sw/10`; `332 kHz` icin `33.2 kHz`
+- calisma hedefi: `f_c ≈ 35 kHz`
+- hedef faz marji: `50 deg - 60 deg` bandi; defterde aktif hedef olarak `PM = 55 deg`
+- [Çapraz Teyit] calculator ekranlari `35 kHz` civarinda `52-54 deg` bandina bakiyor
+- [Çapraz Teyit] WEBENCH / `amCharts.json`: `f_c ≈ 34.83 kHz`, `PM ≈ 55.75 deg`
+
+[Açık Kontrol] Bu sayilar tasarim niyeti ve merkez-nokta teyididir. Final kabul, ayni `RFB1/RFB2` ve Type-III komponent setiyle, ayni plant modeli uzerinde LTspice/PSpice AC sweep ve kose kosullarla kapanacak.
+
+
+### 6.4 K-factor mantigi ve Type-III komponent seti
 
 
 
-#### 6.2.1 Neden bu yontem?
+#### 6.4.1 Neden bu yontem?
 
 ODT'den aktarilan metin (`9. kontrolcü tasarımı`):
 
@@ -8448,7 +8285,7 @@ Bu ODT parcasi, ilk donemde kullandigim Type-III PID yolundan bu tasarimda K-fac
 
 
 
-#### 6.2.2 Taslaktaki akisin ozeti
+#### 6.4.2 Taslaktaki akisin ozeti
 
 Yerel notlar ve `G95_04_K_FACTOR_CAN_HOCA.txt` icindeki ornek akis su mantigi izliyor:
 
@@ -8460,11 +8297,11 @@ Yerel notlar ve `G95_04_K_FACTOR_CAN_HOCA.txt` icindeki ornek akis su mantigi iz
 6. buradan `K` faktoru hesaplanir
 7. Type-III agin `R` ve `C` degerleri turetilir
 
-Benim icin bu akisin asil faydasi, deneme-yanilma yerine hangi sayiyi neden sectigimi izletmesi. Burada listedeki adimlar genel yontem; bu projedeki sayilar ise `6.1.3` plant modeli ve `6.3` frekans hedefleriyle tekrar doldurulacak.
+Benim icin bu akisin asil faydasi, deneme-yanilma yerine hangi sayiyi neden sectigimi izletmesi. Burada listedeki adimlar genel yontem; bu projedeki sayilar ise `6.2.3` plant modeli ve `6.3` frekans hedefleriyle tekrar doldurulacak.
 
 
 
-#### 6.2.3 Scriptlerde gorulen ilk ipuclari
+#### 6.4.3 Scriptlerde gorulen ilk ipuclari
 
 Yerel scriptte su genel iliskiler kullaniliyor:
 
@@ -8483,7 +8320,7 @@ Yani bu script burada "sonuc ureten dosya" gibi degil, K-factor adimlarinin hang
 
 
 
-#### 6.2.4 Bu projede K-factor'un gorevi
+#### 6.4.4 Bu projede K-factor'un gorevi
 
 Bu tasarim ozelinde K-factor yontemi ile sonunda su ciktilar uretilmek isteniyor:
 
@@ -8504,7 +8341,6 @@ Bu tarama icin sayfalari su sekilde ayirdim:
 - `W.7-W.10`: op-amp acik-cevrim modeli, `GBW / A_{dc}` iliskisi, `KFF = 15 V/V` notu ve `G98` Figure 2 / Figure 3 kullanim izleri var. Bu grup modulator ve hata yukselteci modeline destek veriyor.
 - `W.11-W.12`: faz marji ve plant fazinin sayisal olarak tekrar hesaplandigi ara sayfalar. `PM = 55 deg` hedefinin bu iterasyonda da korundugu goruluyor.
 - `W.13-W.16`: Type-III kompanzator eleman degerleri icin sayisal hesaplar yapiliyor. Bu aralikta en az iki farkli iterasyon var.
-- `W.17-W.19`: current-limit / `R_{ilim}` hesabi. Kompanzator hesabinin dogrudan parcasi degil; ama ayni LM5146 ayar zincirinde durdugu icin burada kaliyor. EVM'deki `619 Ohm` referans degeri ile yerel hesap karsilastiriliyor.
 - `W.20-W.24`: Type-III kutup-sifir mantigi, `Kmid`, `f_c`, `f_o`, `f_{esr}` ve geri besleme bolucusunun kompanzatorla iliskisi uzerine kavramsal notlar var.
 
 Asagidaki kucuk el yazisi parcalar, kaynak notundan kendi sayisal kontrolume nasil gectigimi gosteriyor:
@@ -8527,15 +8363,7 @@ Bu ilk uc sayfada kaynak ozetinden cikilip faz marji ve plant fazi sayisal olara
 
 Bu dort sayfa, kompanzatorun tek hamlede secilmedigini gosteriyor. `26.4k / 1.6k / 6.65k / 768 / 4.7n / 120p / 1n` ailesine alternatif iterasyonlardan gecerek yaklasmisim.
 
-![W.17'den kucuk kirpim: `Rilim` icin ilk kaba dusunce akisi](images/defter_snippets_web/d178_w17_initial_rilim_reasoning.jpg)
-
-![W.18'den kucuk kirpim: sicak `RDS(on)` ve `ILIM` akimi uzerinden `Rilim` kontrolu](images/defter_snippets_web/d179_w18_rilim_from_rds_on_hot.jpg)
-
-![W.19'dan kucuk kirpim: `Cilim` secimi ve `tau = Cilim * Rilim ≈ 6 ns` kontrolu](images/defter_snippets_web/d180_w19_cilim_tau_and_rilim.jpg)
-
-Bu uc sayfa, `W.17-W.19` grubunun yalnizca "bir direnç sectim" notu olmadigini aciyor. `RDS(on)` tabanli current-sensing icinde `Rilim` ve `Cilim` tarafini birlikte kurmaya calismisim.
-
-Bu grubun son halkasinda ise `W.20-W.24`, current-limit tarafindan yeniden kompanzator ve frekans yerlestirme mantigina donuyor:
+`W.20-W.24`, kompanzator ve frekans yerlestirme mantigini devam ettiriyor:
 
 ![W.20'den kucuk kirpim: `Kmid`, `Vin/Vramp` ve modulator kazanci notu](images/defter_snippets_web/d181_w20_kmid_and_modulator_note.jpg)
 
@@ -8548,16 +8376,6 @@ Bu grubun son halkasinda ise `W.20-W.24`, current-limit tarafindan yeniden kompa
 ![W.24'ten kucuk kirpim: `f_c`, `f_o`, `f_{ESR}` ve `Kmid` ile ilgili ilk sayisal adaylar](images/defter_snippets_web/d185_w24_fc_fo_fesr_and_kmid.jpg)
 
 Bu bes sayfa ile tekrar kompanzator tarafina donuluyor. `Kmid`, `f_c`, `f_o`, `f_{ESR}` ve feedback bolucu orani ayni yerlesim probleminde bir araya geliyor; bu yuzden `W.1-W.24` tek tek formullerden cok bir kontrol yerlesimi izi gibi okunmali.
-
-`R_{ilim}` / current sensing baglamini destekleyen kaynak-foto:
-
-![MOSFET RDS(on) current sensing ve shunt current sensing karsilastirmasi](images/foto_selected/p17_rds_on_current_sensing.jpg)
-
-Bu gorsel, `ILIM` pininin ideal bir "soyut akim limiti" degil; ya `RDS(on)` tabanli ya da shunt tabanli bir current-sensing mantiginin parcasi olarak dusunuldugunu gosteren iyi bir arka-plan referansi. `W.17-W.19` grubunun yaninda current-limit hesabinin fiziksel baglamini guclendiriyor.
-
-![RDS(on) modundaki `ILIM` akim kaynaginin jonksiyon sicakligina gore degisimini gosteren datasheet grafigi](images/foto_selected/p60_ilim_current_vs_temperature.jpg)
-
-Bu ikinci gorsel, onceki current-sensing referansina daha kritik bir ayrinti ekliyor: `RDS(on)` modunda `ILIM` akisinin `T_J` ile degistigi acikca goruluyor. Bu da `R_{ilim}` hesabinin yalnizca tek bir oda sicakligi katsayisi degil, sicakliga bagli bir current-source davranisiyla iliskili oldugunu hatirlatarak `W.17-W.19` hattini teknik olarak daha saglam bagliyor.
 
 `W.1` - gerekli kompanzator kazanci:
 
@@ -8642,9 +8460,6 @@ Bu gruptan nihai adaya yakin su komponent seti cikiyor:
 - `C1 = 120 pF`
 - `C2 = 4.7 nF`
 - `C3 = 1.0 nF`
-- `R4 / R_{ilim} = 576 Ohm`
-
-`R4 / R_{ilim}` satiri Type-III kompanzatorun parcasi degil; current-limit ayarinin ayni sayfa grubunda geldigi icin bu listede duruyor.
 
 Bu grup, kontrolcu bolumunun artik yalnizca "Type-III kullanilacak" seviyesinde kalmadigini gosteriyor. Gercek resistor ve capacitor secimlerine yaklasilmis durumda. Ama burada yine ayni ayrim akilda tutulmali:
 
@@ -8654,7 +8469,7 @@ Bu grup, kontrolcu bolumunun artik yalnizca "Type-III kullanilacak" seviyesinde 
 
 Bu nedenle `W.1-W.24`, topluca tek bir "nihai sonuc" olarak degil, ayni kontrol problemi uzerinde olusan tasarim izi olarak okunmali.
 
-Calculator teyidi:
+[Çapraz Teyit - quickstart calculator]:
 
 `LM5146_quickstart_calculator_revB1.xlsm` dosyasinin `Design Regulator` sayfasi da ayni nihaiye yakin kompanzator ailesini veriyor:
 
@@ -8672,7 +8487,7 @@ Bu nedenle workbook, `W.13` veya `W.115` gibi eski `16.5 kOhm / 60 kHz` cizgiler
 
 
 
-#### 6.2.5 Compensator topolojisi ve temel model
+#### 6.4.5 Compensator topolojisi ve temel model
 
 
 
@@ -8779,40 +8594,7 @@ Bu `129.7 Hz` degerini loop crossover frekansi veya Type-III kutup/sifir hedefi 
 
 Bu sayfa, yukaridaki `H_{\text{error-amp,ol}}(s)` ve `\omega_{\text{opamp}} = 2\pi\,GBW/A_{VOL}` iliskisinin defterdeki karsiligi. Kompanzator `R/C` degerlerini secmiyor; ama hata yukseltecinin sonsuz kazanc gibi davranmadigini ve modele kendi kutbuyla girdigini hatirlatiyor.
 
-Kompanzator hesabinda tekrar kullandigim plant modeli (`6.1.3` ile ayni cikis filtresi / yuk modeli):
-
-$$
-H_{\text{filter}}(s) = \frac{V_{out}}{V_{in}} = \frac{1 + C_{out} R_{esr} s}{a_0 + a_1 s + a_2 s^2}
-$$
-Burada:
-
-$$
-a_0 = 1 + \frac{R_{Damp}}{R_{load}}
-$$
-$$
-a_1 = \frac{L_F}{R_{load}} + R_{esr} C_{out} + R_{Damp} C_{out} + \frac{R_{Damp} R_{esr} C_{out}}{R_{load}}
-$$
-$$
-a_2 = \left(\frac{R_{load} + R_{esr}}{R_{load}}\right)L_F C_{out}
-$$
-> Sayisal yerlestirme:
-
-$$
-a_0 = 1 + \frac{21.13\,\text{m}\Omega}{1.59\,\Omega} = 1.01329
-$$
-$$
-a_1 = \frac{6.8\,\mu\text{H}}{1.59\,\Omega} + (0.26\,\text{m}\Omega)(70\,\mu\text{F}) + (21.13\,\text{m}\Omega)(70\,\mu\text{F}) + \frac{(21.13\,\text{m}\Omega)(0.26\,\text{m}\Omega)(70\,\mu\text{F})}{1.59\,\Omega} = 5.774 \times 10^{-6}
-$$
-$$
-a_2 = \left(\frac{1.59\,\Omega + 0.26\,\text{m}\Omega}{1.59\,\Omega}\right) (6.8\,\mu\text{H})(70\,\mu\text{F}) = 4.761 \times 10^{-10}
-$$
-$$
-C_{out} R_{esr} = (70\,\mu\text{F})(0.26\,\text{m}\Omega) = 1.82 \times 10^{-8}
-$$
-$$
-H_{\text{filter}}(s) \approx \frac{1 + 1.82 \times 10^{-8} s} {1.01329 + 5.774 \times 10^{-6} s + 4.761 \times 10^{-10} s^2}
-$$
-Bu tekrar yeni bir ikinci plant modeli degil. `6.1.3`te kurdugum `H_{filter}(s)` ifadesini, burada kompanzator hesabinin icine giren blok olarak yeniden yaziyorum. Bu yuzden `70 uF`, `6.8 uH`, `R_{damp}` ve `ESR` degerleri `W.116` ile ayni cizgide tutulmali.
+[Referans Notu - plant handoff] Kompanzator hesabinda kullanilan plant modeli `6.2.3`te tam denklem ve sayisal yerlestirmeyle verildi. Burada ayni `H_{filter}(s)` ifadesini yeniden owner gibi yazmiyorum; K-factor ve Type-III hesabi o plantten gelen `70 uF`, `6.8 uH`, `R_{damp}`, `ESR`, yuk ve modulator kazanci setini girdi olarak kullanir.
 
 ![LM5146-Q1'nin Buck Regulator Poles and Zeros](images/odt_embedded/fig_26_compensator_related.png)
 
@@ -9065,18 +8847,20 @@ $$
 
 Bu deger `f_0 \approx 7.309 kHz` ve defterde gecen `f_{ESR} \approx 8.74 kHz` civarindan cok daha asagida kaliyor. O yuzden bunu Type-III kutup/sifir yerlestirmesinde dogrudan eslenecek bir `p1/p2` hedefi gibi degil, plant modelinde damping / kayip yolunun frekans cevabina etkisini hatirlatan bir iz gibi tutuyorum. Finalde bu terimin isareti ve etkisi AC sweep uzerinde gorulmeden kapatilmayacak.
 
-Buradan yeni bir sayisal yerlesim almiyorum. `W.114`u `6.1.3` plant modeli ile `6.3` frekans yerlestirmesi arasinda kucuk kopru gibi tutuyorum: `\omega_{ESR}` zaten ana plant sifiri, `R_{damp}/L_F` notu ise damping / kayip elemanlarinin frekans cevabina da girdigini hatirlatiyor. Bu ikinci sifir, `W.116` plant sayilari ve LTspice AC sweep ile tekrar baglanmali.
+Buradan yeni bir sayisal yerlesim almiyorum. `W.114`u `6.2.3` plant modeli ile `6.3` hedef frekans owner'i arasinda kucuk kopru gibi tutuyorum: `\omega_{ESR}` zaten ana plant sifiri, `R_{damp}/L_F` notu ise damping / kayip elemanlarinin frekans cevabina da girdigini hatirlatiyor. Bu ikinci sifir, `W.116` plant sayilari ve LTspice AC sweep ile tekrar baglanmali.
 
 
 
 
-### 6.3 Hedef frekans yerlestirmesi
+### 6.5 Calculator / defter frekans yerlestirme cross-checkleri
 
 Bu bolumde frekans hedefini tek bir satirdan degil, uc farkli izden okuyorum: `f_{sw}/10` ilk kural, defterdeki `W.23-W.24 / W.112` hedef yerlestirme notlari ve calculator ekranlarindaki `35 kHz` civari faz marji sonucu. `W.115` gibi `60 kHz` eski denemeler de burada kaliyor; ama ana hedef cizgisi su an `35 kHz` civari.
 
+[Referans Notu] Bu bolum `f_c`, faz marji ve calculator ekranlarini teyit eder; plant `L/C/ESR/R_damp/f_0` sayilarinin primary owner'i degildir. Bu sayilar icin `5.3`, `5.4` ve `6.2.3` referans alinacak; burada yalniz frekans yerlestirme / cross-check baglami korunur.
 
 
-#### 6.3.1 Ilk ilke
+
+#### 6.5.1 Ilk ilke
 
 
 
@@ -9101,7 +8885,7 @@ Bu sadece ilk yerlestirme tahminidir; son deger plant kutuplari, ESR sifiri, tra
 
 
 
-#### 6.3.2 Defterden gelen ilk sayisal adaylar
+#### 6.5.2 Defterden gelen ilk sayisal adaylar
 
 Defterden gelen ilk frekans bandi:
 
@@ -9112,7 +8896,7 @@ Defterden gelen ilk frekans bandi:
 
 Bu frekans yerlestirmesi `35 kHz` ana hedefi icin mantikli ilk dayanak. Ama `W.23-W.24` sayfalari eski geri besleme bolucusu notlariyla da karismis durumda; o yuzden frekanslarin kendisi faydali olsa da oradaki tum ara cebir dogrudan nihai kabul edilmemeli.
 
-Defterden aktarilan not (`W.115`):
+[Eski İterasyon] Defterden aktarilan not (`W.115`):
 
 Burada Type-III kompanzator frekans yerlesimi icin yapilmis daha eski bir iterasyon var. Sayfada acikca:
 
@@ -9165,21 +8949,21 @@ Burada, kompanzator icin onceki yerlesim denemelerimden biri var. `R_{FB1} = 16.
 
 Yine de teknik olarak degerli. Eski iterasyonda `Kmid`, `f_0`, `f_{ESR}`, `f_{z1}`, `f_{z2}`, `f_{p1}`, `f_{p2}` arasindaki frekans kurgusunu nasil yaptigimi acikca gosteriyor.
 
-Bu calculator ekranlarini iki grup gibi okuyorum: `p56-p83` eski geri besleme ailesi ve ara ayarlar, `p84-p102` ile `p97` ise `35 kHz` civarinda finale daha yakin kompanzator ailesi.
+[Eski İterasyon] `p56-p83` eski geri besleme ailesi ve ara ayarlardir. [Çapraz Teyit] `p84-p102` ile `p97` ise `35 kHz` civarinda finale daha yakin kompanzator ailesini kontrol eden calculator snapshot'lari olarak okunur.
 
-`p56`, eski `R_{FB1}=16.5 k\Omega` / `R_{FB2}=1 k\Omega` cizgisinde `f_c \approx 23 kHz` ve yalnizca `4 deg` faz marji gibi zayif bir sonucu gosteriyor. O yuzden bunu erken ve sorunlu denemelerden biri olarak sakladim.
+[Eski İterasyon] `p56`, eski `R_{FB1}=16.5 k\Omega` / `R_{FB2}=1 k\Omega` cizgisinde `f_c \approx 23 kHz` ve yalnizca `4 deg` faz marji gibi zayif bir sonucu gosteriyor. O yuzden bunu erken ve sorunlu denemelerden biri olarak sakladim.
 
 `p59` ise ayni eski geri besleme oranina ragmen bu kez `35 kHz` ve `53 deg` bandina yaklasan daha olgun bir calculator checkpoint'i veriyor. Yani kompanzator tasarimina bir anda degil, gozle gorulur iterasyonlar uzerinden yaklastigim acikca goruluyor.
 
 `p81`, `p82` ve `p83` bu ara hikayeyi daha da netlestiriyor. Eski `RFB1/RFB2` ailesini korurken `Cc1`, `Cc2`, `Rc2`, `Cc3` tarafinda tekrar tekrar oynadigim ve `35 kHz` civarinda kabul edilebilir faz marji aradigim goruluyor.
 
-`p84` ise artik `RFB1 = 26.4 k\Omega`, `RFB2 = 1.58 k\Omega`, `Rc1 = 6.65 k\Omega`, `Cc2 = 120 pF`, `Rc2 = 759 \Omega`, `Cc3 = 1 nF` gibi finale daha yakin degerlerle ayni `35 kHz` bandini tutturan cok daha olgun bir calculator snapshot'i veriyor.
+[Çapraz Teyit] `p84` ise artik `RFB1 = 26.4 k\Omega`, `RFB2 = 1.58 k\Omega`, `Rc1 = 6.65 k\Omega`, `Cc2 = 120 pF`, `Rc2 = 759 \Omega`, `Cc3 = 1 nF` gibi finale daha yakin degerlerle ayni `35 kHz` bandini tutturan cok daha olgun bir calculator snapshot'i veriyor.
 
 `p91` bunu bir adim daha ileri tasiyor. Standart degerlerle `PM \approx 54^\circ` bandina geldigini ve `V_{OUT} \approx 14.167 V` gibi cikis notunun da ayni ekranda goruldugunu gosteriyor. `p102` ise bu standard-value yuvarlamasinin bazen `PM \approx 52^\circ` civarina da kayabildigini, yani hedef bandin etrafinda kucuk oynamalar oldugunu gosteriyor.
 
 `p97` de K-factor'den gelen degerleri buyuk oynamalara gerek kalmadan dogrudan kullandigimda `35 kHz / 53^\circ` civarinda makul bir sonuc geldigini ima ediyor. Bu nedenle bu calculator ekranlari, nihai kompanzasyona bir anda degil, gorunur ve sayisal iterasyonlarla geldigimi iyi gosteriyor.
 
-Bu ekranlari uc-dort ayri final tasarim gibi degil, ayni aday ailesinin hassasiyet araligi gibi okuyorum. `p84`, `p91`, `p102` ve `p97` hep `35 kHz` civarinda `52-54 deg` faz marji bandina bakiyor; farklar daha cok standart deger yuvarlama, eski/yeni feedback bolucusu ve K-factor'den gelen ham degerlerin calculator'a nasil tasindigiyla ilgili. Final tablo yazilirken tek bir komponent seti secilip, bu ekranlar o setin capraz teyidi olarak isaretlenmeli.
+Bu ekranlari uc-dort ayri final tasarim gibi degil, ayni aday ailesinin hassasiyet araligi gibi okuyorum. `p84`, `p91`, `p102` ve `p97` hep `35 kHz` civarinda `52-54 deg` faz marji bandina bakiyor; farklar daha cok standart deger yuvarlama, eski/yeni feedback bolucusu ve K-factor'den gelen ham degerlerin calculator'a nasil tasindigiyla ilgili. Final tablo yazilirken tek bir komponent seti secilip, bu ekranlar o setin [Çapraz Teyit] izi olarak kalacak.
 
 Defterden aktarilan not (`W.112`):
 
@@ -9236,7 +9020,7 @@ Yine de burada kapatilmayan iki kontrol var: `\omega_{ESR} \approx \omega_{p1}` 
 
 
 
-#### 6.3.3 Sonraki sikilastirma hedefleri
+#### 6.5.3 Sonraki sikilastirma hedefleri
 
 
 
@@ -9254,11 +9038,11 @@ Bu tarafta sonraki netlestirme hedefleri sunlardir:
 
 
 
-### 6.4 Beklenen faz ve kazanc marjlari
+### 6.6 Faz, kazanc marji ve WEBENCH cross-checkleri
 
 
 
-#### 6.4.1 Taslak hedef bandi
+#### 6.6.1 Taslak hedef bandi
 
 
 
@@ -9270,9 +9054,11 @@ Bu bolumde kendi MATLAB/LTspice AC sweep ile alinmis nihai Bode sonucu henuz yok
 
 - defterde yerel ornek akislarda `55 deg` civari hedef kullaniliyor
 
-- calculator ekranlari `52-54 deg`, WEBENCH loop-response ise yaklasik `PM = 55.75 deg` gosteriyor
+- calculator ekranlari `52-54 deg`, WEBENCH loop-response ise `f_c \approx 34.83 kHz` ve yaklasik `PM = 55.75 deg` gosteriyor
 
 - kazanc marji da pozitif kalmali; nihai deger kendi Bode sonucumla raporlanmali
+
+[Çapraz Teyit - WEBENCH loop] `amCharts.json` / WEBENCH loop-response sonucu bu bolumun owner'i altinda yalnizca merkez-nokta teyidi olarak duruyor: `f_c \approx 34.83 kHz` ve `PM \approx 55.75 deg`. Bu sonuc, `35 kHz` hedefiyle uyumlu; ama final kabul icin ayni kompanzator setiyle LTspice/PSpice AC sweep ve kose kosullar gerekir.
 
 
 Bu hedef bandi nominal tek nokta icin degil. Son kapanista ayni kompanzator setiyle en az `Vin_min / Vin_max`, hafif-yuk / tam-yuk, derated `Cout/ESR` ve giris filtresi ekli/eksiz durumlarina da bakmak gerekiyor. Calculator ve WEBENCH bana iyi bir merkez nokta veriyor; ama margin yorumu kose kosullarda da ayni yone gitmedikce final kabul sayilmamali.
@@ -9294,7 +9080,7 @@ Burada yeni sayisal sonuc vermiyorum. Sadece `PM` ve `GM` okumasinin isaret mant
 
 
 
-#### 6.4.2 Neden bu kadar onemli?
+#### 6.6.2 Neden bu kadar onemli?
 
 
 
@@ -9312,7 +9098,7 @@ Bu nedenle nihai tasarimda hedef, yalnizca teorik olarak stabil bir dongu degil;
 
 
 
-#### 6.4.3 Kararlilik kriterinin bu projedeki anlami
+#### 6.6.3 Kararlilik kriterinin bu projedeki anlami
 
 
 ODT'den aktarilan not (`Kararlilik Kriteri`):
@@ -9440,6 +9226,12 @@ Bu nedenle differential-mode EMI yalnizca "sonradan filtre eklenir" mantigiyla e
 
 
 Buradaki notlu ekran goruntusu, differential-mode EMI'nin soyut degil; dogrudan giristen cekilen darbeli akim dalga sekliyle iliskili oldugunu gosteren iyi bir destek gorselidir. Uzerine dusulen notlarda `I_{L,peak} \approx 11 A` ve `T_{sw} \approx 3 us` yazilmis; bu da `1/T_{sw} \approx 333.3 kHz` sonucu ile proje `f_{sw}` cizgisi arasindaki iliskiyi zaman alaninda da gorunur hale getirir.
+
+[Çapraz Teyit] `WEBENCH` EMI snapshot'i bu owner altinda yalnizca hizli bir filtre/EMI kontrolu olarak okunacak:
+
+![WEBENCH raporundan EMI sonrasi spektrum, filtre / converter empedans karsilastirmasi ve operating values ozeti](images/foto_selected/p106_webench_emi_and_operating_values.png)
+
+Bu ekranda filtre sonrasi giris gurultusu `61.79 dBuV`, ayni raporda verilen `67.75 dBuV` sinirinin altinda gorunuyor. Bu olumlu bir checkpoint; ancak `W.103-W.137`deki attenuation hesabiyla birebir ayni sey degil. Final EMI yorumu, hangi LISN/olcum dugumu, hangi filtre oncesi/sonrasi oran ve hangi referans birim kullanildigi yazilarak `8.5`te tekrar kapatilacak.
 
 
 
@@ -10034,6 +9826,12 @@ Bu koselerde kaydedilecek temel buyuklukler:
 - tahmini verim veya kayip dagilimi
 
 Burada asil kabul zarfim `14 V +- 3%` statik hedefi, `100 mVpp` cikis ripple'i, `0.24 Vpp` giris ripple'i ve sicaklik / kayip tarafinin makul kalmasi. Eger bu koselerde temel dalga sekli zaten bozuksa, load-step veya EMI sonucunu yorumlamak anlamli olmaz.
+
+[Çapraz Teyit] `WEBENCH` operating-values tablosu bu steady-state kontrol listesinin erken snapshot'i olarak duruyor:
+
+![WEBENCH raporundan ayrintili operating values tablosu](images/foto_selected/p107_webench_operating_values_detail.png)
+
+Bu ekran tek bir final tablo degil; owner dagilimi su sekilde okunacak: `f_{sw}` / `Mode` notlari `5.1.5`, `I_{L,pp}` ve ripple orani `5.3`, `Vout Actual` ve `Vout p-p` `5.4`, `Vin p-p` `5.5`, verim snapshot'i `5.6`, loop-response sayilari ise `6.6` altinda kapatiliyor. Boylece `WEBENCH` goruntusu burada kaynak izi olarak kaliyor; final karar ilgili teknik owner basliginda.
 
 
 
