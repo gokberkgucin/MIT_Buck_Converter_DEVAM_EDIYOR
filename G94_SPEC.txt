@@ -1,0 +1,40 @@
+PROJE GG
+In this project you are to design a synchronous buck converter with the following specifications:
+Input voltage range: 24-36 V
+• Allowed input peak-to-peak ripple voltage, ΔVIN_PP ≤ 0.24V
+• Allowed input transient undershoot or overshoot, ΔVIN_Tran ≤ 0.36V
+• Input voltage transient limit*: 44 V for up to 1 ms
+• Output Power Range (resistive load): 50 - 125 W
+• Output Voltage (static requirement): 14 V ± 3%
+• Output Voltage (transient limits)**: 14 V ± 20%
+• Allowed output voltage ripple (p-p, any R load): 100 mV
+• Allowed input current ripple (p-p, ideal source): 50 mA
+• Minimum efficiency (across voltage, load): 90%
+• CISPR 25 Class 5 gereklillerini karşılayan giriş emi filtresi olacak.  Input π-stage EMI filter with electrolytic capacitor for parallel damping
+– Meets EN55025 / CISPR 25 EMI standards
+– Optional two-piece board-mounted shield for improved radiated EMI signature
+• Worst-case board temperature = 76°C
+• Transient load step, IStep = 3.571A’den 9A’e çıkma yani 5.429A
+• anahtarlama frekansı= 332kHz 
+• An external bias supply can be connected to the VCC pin to improve efficiency in high-voltage applications. olacak Kendi Vcc kaynağı kullanılmayacak. 
+
+İki tane LM5146-Q1 satın almıştım. Bunlardan bir tanesi tasarımı yapılacak buck converter synchronous buck converter  LM5146-Q1 kartının An external bias supply olacak.  
+
+* The converter must be able to survive this input voltage transient, but does not have to run during the transient. 
+** The voltage should not vary outside this range during steps between minimum and maximum load. 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
