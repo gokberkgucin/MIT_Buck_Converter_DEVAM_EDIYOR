@@ -33,7 +33,7 @@ Bu belge ne yalnizca temiz final sonuc metni, ne de ham defter yigini. Ikisinin 
 
 En rahat su sirayla okunur:
 
-- `2. Durum Ozeti` ve `3. Tasarim Hedefleri` belgenin mevcut seviyesini ve hedefini verir
+- `2. Durum Ozeti` ve `3. Güncel Tasarım Omurgası ve Paylaşılan Tasarım Girdileri` belgenin mevcut seviyesini ve hedefini verir
 - `4. Kullanilan Ana Kaynaklar` tasarim kararlarini hangi belge ailesine dayandirdigimi gosterir
 - `5` ve `6` numarali bolumler guc katini ve kontrol tasarimini tasir
 - `7` numarali bolum EMI, giris filtresi ve yerlesim tarafini toplar
@@ -415,6 +415,8 @@ Bir kaynakla defter notu farkli gorunurse once rolune bakacagim. `G94_SPEC.txt` 
 - [WBDesign21.pdf](./WBDesign21.pdf)
 - [amCharts.json](./BOM/amCharts.json)
 
+[Açık Kontrol - dosya yolu] `WBDesign21.pdf` ve `BOM/amCharts.json` kaynak izleri korunuyor; ancak mevcut çalışma alanında bu iki yol birebir bulunamadı. Bu not kaynak sonucunu geçersiz saymaz, yalnız yayın öncesi dosya yolu / arşiv konumu kontrolünün açık kaldığını gösterir.
+
 Bu uc kaynak icin owner dagilimi:
 
 | Cikti / konu | Primary owner |
@@ -422,15 +424,15 @@ Bu uc kaynak icin owner dagilimi:
 | `fsw`, duty ailesi ve `tON/tOFF` zaman penceresi | `3.1 Paylaşılan fsw, duty ve zaman alanı owner'ı` |
 | `RT`, FCCM calisma noktasi ve startup/pin programlama | `5.1 Controller pin programming ve startup owner` |
 | `SS/TRK`, `C_{SS}`, soft-start suresi | `5.1.4 EN/UVLO, SS/TRK ve startup notlari` |
-| `FB` bolucusu | `6.1 Feedback divider owner` |
+| `FB` bolucusu | `6.1 Feedback divider` |
 | bobin, `DCR`, ripple akimi | `5.3 Bobin secimi` |
 | cikis kapasiteleri, `Vout` ripple | `5.4 Cikis kapasiteleri` |
 | giris kapasiteleri, `Vin` ripple | `5.5 Giris kapasiteleri` |
 | MOSFET secimi ve elektriksel kayip kalemleri | `5.6 MOSFET secimi ve kayiplar` |
 | controller `VCC/LDO`, MLCC RMS sicaklik, MOSFET `T_J/Rth`, board worst-case termal kapanis | `5.9 Termal ve Kayıp Kapanışı` |
-| kompanzator komponent ailesi, `f_c`, `f_{p2}` | `6.3 Hedef fc ve faz marji owner ozeti`, `6.4 K-factor mantigi ve Type-III komponent seti`, `6.5 Calculator / defter frekans yerlestirme cross-checkleri` |
-| faz marji / loop response | `6.3 Hedef fc ve faz marji owner ozeti` ve `6.6 Faz, kazanc marji ve WEBENCH cross-checkleri` |
-| EMI spektrumu ve filtre notlari | `7.2 Differential-mode EMI` ve `8.5 Giris filtresi ve EMI ile baglantili testler` |
+| kompanzator komponent ailesi, `f_c`, `f_{p2}` | `6.3 Hedef fc ve faz marji`, `6.4 K-factor mantigi ve Type-III komponent seti`, `6.5 Calculator / defter frekans yerlestirme cross-checkleri` |
+| faz marji / loop response | `6.3 Hedef fc ve faz marji` ve `6.6 Faz, kazanc marji ve WEBENCH cross-checkleri` |
+| EMI spektrumu ve filtre notlari | `7.2 Differential-mode EMI`, `7.4 Giris filtresi kararliligi`; `8.5 Giris filtresi ve EMI ile baglantili testler` ise dogrulama/test listesidir |
 
 Bu yuzden calculator veya `WEBENCH` icinde gecen bir sayi, burada tek basina final kabul edilmeyecek. Ilgili owner bolumde `[Çapraz Teyit]` notu olarak duracak; defter veya BOM ile fark varsa ayni owner altinda `[Eski İterasyon]`, `[Tasarım İzi]` veya `[Açık Kontrol]` etiketiyle ayrilacak.
 
@@ -443,13 +445,13 @@ Bu yuzden calculator veya `WEBENCH` icinde gecen bir sayi, burada tek basina fin
 
 [Çapraz Teyit] `WEBENCH` de ayni sekilde hizli simulasyon snapshot'i. `WBDesign21.pdf` ve `amCharts.json`; statik calisma, ripple, verim, EMI ve loop-response icin ilk kontrol goruntusu verir. Bunlar nihai LTspice/PSpice, termal veya layout kaniti yerine gecmez.
 
-[Açık Kontrol] Bu kaynaklardan gelen ripple, sicaklik veya EMI uyumsuzluklari sessizce birlestirilmeyecek. `Vout`, `Vin`, loop marji ve EMI tarafindaki sayilar sirasiyla `5.4`, `5.5`, `6.6`, `7.2` ve `8.3-8.5` altinda ayni kosul setiyle tekrar kontrol edilecek.
+[Açık Kontrol] Bu kaynaklardan gelen ripple, sicaklik veya EMI uyumsuzluklari sessizce birlestirilmeyecek. `Vout`, `Vin`, loop marji ve EMI / input-filter tarafindaki sayilar sirasiyla `5.4`, `5.5`, `6.6`, `7.2`, `7.4` ve `8.3-8.5` altinda ayni kosul setiyle tekrar kontrol edilecek.
 
 
 
 ## 5. Guc Katinin Tasarimi
 
-Bu bolumde guc katini adim adim kuruyorum. Topoloji varsayimlari, duty sinirlari, bobin, cikis ve giris kapasiteleri, MOSFET secimi ve bootstrap agi burada ayni zincirin parcasi gibi ilerliyor.
+Bu bolumde guc katini adim adim kuruyorum. Topoloji varsayimlari ve `3.1`de sabitlenen duty / timing girdileri referans alinarak bobin, cikis ve giris kapasiteleri, MOSFET secimi ve bootstrap agi burada ayni zincirin parcasi gibi ilerliyor.
 
 4. bolumde kaynaklari ve hizli teyitleri ayirdiktan sonra burada artik asil tasarim zincirine geciyorum: once sinirlar, sonra pasifler, sonra anahtarlama elemanlari. Amac eski notlari temizlemek degil; hangi notun bugunku tasarima nasil baglandigini gostermek.
 
@@ -650,7 +652,7 @@ Bu bolumun kapanisinda kendime bir kontrol notu birakiyorum: `8.22 V` siniri dus
 
 #### 5.1.3 FB divider referans notu
 
-[Yönlendirme] `FB` bolucusunun primary owner'i artik `6.1 Feedback divider owner` altindadir. Bu startup / pin-programming akisi icinde yalniz `FB` pininin `0.8 V` referansa bagli oldugunu ve cikis setpoint'inin kontrol dongusuna buradan girdigini hatirlatiyorum.
+[Yönlendirme] `FB` bolucusunun primary owner'i artik `6.1 Feedback divider` altindadir. Bu startup / pin-programming akisi icinde yalniz `FB` pininin `0.8 V` referansa bagli oldugunu ve cikis setpoint'inin kontrol dongusuna buradan girdigini hatirlatiyorum.
 
 [Eski İterasyon] `16.5 kOhm / 1.00 kOhm`; [Güncel Omurga] `26.4 kOhm / 1.6 kOhm`; [Çapraz Teyit] calculator `RFB1 = 26.4 kOhm`, `RFB2 = 1.58 kOhm`, `Actual Vout = 14.167 V` icin ayrintili denklem, gorsel ve defter izi `6.1` altinda tutulur.
 
