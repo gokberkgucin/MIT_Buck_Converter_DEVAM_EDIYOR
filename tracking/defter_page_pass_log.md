@@ -120,3 +120,43 @@ Açık notlar:
 
 - Bu sayfalar final LM5146-Q1 buck komponent değerleri değildir; yüksek güçlü buck topolojisine geçiş motivasyonunu belgeleyen arka plan izidir.
 - `9 V - 16 V`, `5 V` ve `%33` değerleri proje G94 çalışma noktası olarak okunmamalıdır.
+
+## Pass 004 - Sayfa 6-7
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p006.jpg](../images/defter_full_pages/defter_p006.jpg)
+- [defter_p007.jpg](../images/defter_full_pages/defter_p007.jpg)
+
+Defter işaretleri:
+
+- `W.108`: controller junction sıcaklığı, device temperature grade, thermal shutdown, exposed pad ve storage temperature notları.
+- `W.111`: dahili `VCC` regulator kaybı, `P_loss,internal VCC = (Vin - 7.5 V) * I_VCC`, yüksek `Vin` ile LDO ısınması ve harici `8 V - 13 V` VCC/DVCC seçeneği.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `Defter Tam Sayfa Pass 4: W.108-W.111`.
+
+Kısa referans / owner dışı bağlantı:
+
+- [02_startup_pin_programlama_ve_ortak_sabitler.md](../02_startup_pin_programlama_ve_ortak_sabitler.md) dahili `VCC/LDO` ve harici `VCC/DVCC` seçeneğinin startup/pin-programming owner'ı olarak bırakıldı; bu pass'te oraya uzun tekrar eklenmedi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- ambient/device temperature grade bağlamı: `-40 C` ile `+125 C`
+- operating junction temperature: `-40 C` ile `+150 C`
+- `150 C` tasarım hedefi değil, limit sıcaklığı uyarısı
+- `T_J = T_A + P_diss*R_thetaJA`
+- `T_J = T_case + P_diss*R_thetaJC`
+- thermal shutdown threshold: `175 C`
+- thermal shutdown hysteresis: `20 C`
+- storage temperature: `-55 C` ile `150 C`
+- dahili `VCC` kaybı: `(Vin - 7.5 V) * I_VCC`
+- harici yardımcı `VCC` seçeneği: `8 V - 13 V`
+
+Açık notlar:
+
+- `I_VCC` için hangi datasheet satırının kullanılacağı açık kontrol olarak kalır; defterde bu nokta soru işaretiyle bırakılmıştır.
+- Bu pass controller/IC termal kapanışını destekler; MOSFET `T_J` ve board-level termal kapanış hâlâ aynı owner içindeki ayrı bloklarla birlikte okunmalıdır.

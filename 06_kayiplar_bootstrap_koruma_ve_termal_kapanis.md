@@ -526,6 +526,33 @@ Bu kalemler low-side normal kanal iletiminin yerine geçmez. `W.192` kanal ileti
 
 ## Controller `VCC/LDO`, Driver ve Yardımcı Kayıplar
 
+### Defter Tam Sayfa Pass 4: `W.108-W.111`
+
+[Tasarım İzi] Defterin 6. ve 7. tam sayfaları, daha önce kırpım olarak kullanılan `W.108` ve `W.111` notlarının tam sayfa bağlamını korur. Bu blok yeni final termal sayı üretmez; controller junction sınırları, thermal shutdown davranışı, exposed pad yorumu ve dahili `VCC/LDO` kaybının neden ayrı kapanması gerektiğini birlikte gösterir.
+
+![Defter p006 / W.108: controller junction sıcaklığı, thermal shutdown, exposed pad ve storage temperature notları](images/defter_full_pages/defter_p006.jpg)
+
+`W.108` üzerinde görünen ana izler:
+
+- device temperature grade 1 sınıflandırması ve ambient aralığı: `-40 C` ile `+125 C`,
+- operating junction temperature aralığı: `T_J = -40 C` ile `+150 C`,
+- `150 C` değerinin tasarım hedefi değil, sınır sıcaklığı olarak okunması gerektiği uyarısı,
+- `T_J = T_A + P_diss*R_thetaJA` ve `T_J = T_case + P_diss*R_thetaJC` ilişkileri,
+- thermal shutdown threshold `175 C` ve hysteresis `20 C`,
+- exposed pad'in termal yol ve elektriksel bağlantı açısından ayrı okunması,
+- storage temperature: `-55 C` ile `150 C`.
+
+![Defter p007 / W.111: dahili VCC regulator kaybı ve harici VCC/DVCC seçeneği notu](images/defter_full_pages/defter_p007.jpg)
+
+`W.111` üzerinde görünen ana izler:
+
+- dahili `VCC` regulator güç kaybı: `P_loss,internal VCC = (Vin - 7.5 V) * I_VCC`,
+- `I_VCC` akımının hangi datasheet koşulundan alınacağına dair soru işareti,
+- `Vin` yükseldikçe dahili LDO'nun daha çok ısınacağı uyarısı,
+- ısınma sorununu azaltmak için `VCC` pinine `8 V - 13 V` aralığında harici yardımcı kaynak bağlama seçeneği.
+
+[Çapraz Teyit] Startup/pin-programming tarafında dahili `VCC/LDO` ana varsayımı [02](02_startup_pin_programlama_ve_ortak_sabitler.md) içinde kalır. Bu dosyada korunan ana nokta, bu varsayımın kayıp ve sıcaklık kapanışının ayrıca yapılması gerektiğidir.
+
 ### Thermal Shutdown, Exposed Pad ve Kontrolcü Limitleri
 
 ![W.108'den seçilen el yazısı parça: kontrolcünün junction temperature, thermal shutdown ve exposed pad notları](images/defter_snippets_web/d06_w108_thermal_controller_limits.jpg)
