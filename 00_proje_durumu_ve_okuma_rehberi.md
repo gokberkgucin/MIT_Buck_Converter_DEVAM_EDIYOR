@@ -87,6 +87,32 @@ Bu iterasyonda özellikle şu başlıklar daha fazla açıldı:
 - giriş filtresi, EMI ve yerleşim etkileri,
 - LTspice/PSpice doğrulama planı.
 
+## Defter Tam Sayfa Pass 3: `W.134-W.135`
+
+[Tasarım İzi] Defterin 4. ve 5. tam sayfaları, final buck komponent hesabından önceki temel regülatör düşüncesini gösterir. Bu blok yeni final tasarım değeri vermez; lineer regülatör fikrinin neden yüksek güçlü bu projede ana yol olmadığına dair arka planı korur.
+
+![Defter p004 / W.134: lineer regülatör fikri, geçiş elemanı ve Vref ile çıkış kontrolü](images/defter_full_pages/defter_p004.jpg)
+
+`W.134` üzerinde görünen ana izler:
+
+- elde bir DC giriş gerilimi olduğu ve bunun basitçe bir seri eleman/direnç üzerinden yüke aktarıldığı düşüncesi,
+- `Vin = 9 V - 16 V` ve `Vo = 5 V` örnek bağlamı,
+- değişken direnç yerine MOS veya BJT kullanma fikri,
+- `Vref` ile çıkış gerilimini ölçüp geçiş elemanının gate/base tarafını kontrol etme fikri,
+- `Vin` değişse bile `5 V` çıkışı sabit tutma hedefi.
+
+![Defter p005 / W.135: lineer regülatör verim sınırı ve anahtarlamalı topoloji motivasyonu](images/defter_full_pages/defter_p005.jpg)
+
+`W.135` üzerinde görünen ana izler:
+
+- "neden soldaki devreler kullanılmıyor?" sorusuna verilen cevap: verim,
+- basitleştirilmiş kabul olarak `Iin = Iout` ve sıfır quiescent akımı,
+- `eta = Pout / Pin = (Vo*Iout) / (Vin*Iin) = Vo / Vin`,
+- örnek olarak `5 V / 15 V = 1/3`, yani yaklaşık `%33` verim,
+- bu kaybın ısınmaya döneceği ve lineer regülatörlerin daha çok küçük güçlü kullanımlar için uygun olduğu notu.
+
+[Çapraz Teyit] Bu iki sayfa, [01_tasarim_girdileri_ve_kaynaklar.md](01_tasarim_girdileri_ve_kaynaklar.md) içindeki `90%` minimum verim varsayımının teknik arka planını destekler; ancak o sayının primary owner'ı bu dosya değildir. Kayıp ve termal kapanış [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde yaşar.
+
 ## Durum Özeti
 
 [Güncel Omurga] Ana tasarım hedefleri ve seçilmiş çalışma noktaları belirlendi: 24-36 V giriş, 14 V çıkış, 50-125 W yük aralığı, 332 kHz anahtarlama ve 35 kHz civarında kontrol hedefi.
