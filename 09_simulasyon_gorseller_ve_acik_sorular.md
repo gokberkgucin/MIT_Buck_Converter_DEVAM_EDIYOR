@@ -400,6 +400,7 @@ Görsel kaynak aileleri:
 |---|---|
 | [images/odt_embedded/](images/odt_embedded/) | Eski ODT taslağından gelen şema, figür ve karar izleri |
 | [images/foto_selected/](images/foto_selected/) | Datasheet, calculator, WEBENCH, LTspice ve seçim ekran görüntüleri |
+| [images/defter_full_pages/](images/defter_full_pages/) | `tracking/defter_sira_ana_fotolu.docx` içinden pass pass çıkarılan tam defter sayfaları |
 | [images/defter_snippets_web/](images/defter_snippets_web/) | Defter sayfası kırpımları ve `W.xx` izleri |
 | [tracking/photo_archive_inventory.md](tracking/photo_archive_inventory.md) | Fotoğraf ve görsel arşiv envanteri |
 | [tracking/odt_embedded_images.md](tracking/odt_embedded_images.md) | ODT'den taşınan görsellerin takip izi |

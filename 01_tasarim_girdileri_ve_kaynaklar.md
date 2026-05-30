@@ -85,6 +85,35 @@ Iout = Pout / Vout
 
 Bu üç değer; bobin, çıkış kapasitörü, MOSFET kaybı, termal ve simülasyon dosyalarında tekrar kullanılabilir. Ancak primary tanım bu dosyadadır.
 
+## Defter Tam Sayfa Pass 1: `W.26-W.53`
+
+[Tasarım İzi] `tracking/defter_sira_ana_fotolu.docx` içindeki ilk iki gömülü defter fotoğrafı, global tasarım girdileri ve giriş gereksinimleri için tam sayfa bağlamı olarak çıkarıldı. Bunlar yeni teknik değer uydurmaz; yukarıdaki G94/spec tablosunun defterde nasıl ilk kez hesap zincirine sokulduğunu gösterir.
+
+![Defter p001 / W.26: power-stage girdileri, Iout aralığı, duty zarfı ve giriş akımı ilk notları](images/defter_full_pages/defter_p001.jpg)
+
+`W.26` üzerinde görünen ana izler:
+
+- `Vin(min) = 24 V`, `Vin(max) = 36 V`,
+- nominal çıkış `Vout = 14 V`,
+- `Iout,max = 125 W / 14 V = 8.92 A ≈ 9 A`,
+- `Iout,min = 50 W / 14 V = 3.571 A`,
+- load-step farkı `9 A - 3.571 A = 5.429 A`,
+- ideal duty aralığı `14/36 <= D <= 14/24`, yani yaklaşık `Dmin = 0.3888`, `Dmax = 0.5833`,
+- `eta = 0.9` ile giriş akımı kontrolü: `125 W / (0.9*24 V) = 5.79 A`, `125 W / (0.9*36 V) = 3.86 A`,
+- `control BW = fsw/10 = 33.2 kHz` notu; bu final kompanzasyon hedefi değil, kontrol owner'ına giden erken defter izidir.
+
+![Defter p002 / W.53: output ripple, input ripple/current, input transient ve giriş akımı sınırları](images/defter_full_pages/defter_p002.jpg)
+
+`W.53` üzerinde görünen ana izler:
+
+- output ripple hedefi: `100 mVpp`,
+- ideal source bağlamında input ripple current hedefi: `50 mA`,
+- input peak-to-peak ripple sınırı: `Delta_VIN_PP < 0.24 V`,
+- input transient undershoot/overshoot sınırı: `Delta_VIN_Tran < 0.36 V`,
+- `eta = 0.9` ile giriş akımı kontrolü: kötü durumda `5.79 A`, iyi durumda `3.86 A`.
+
+[Çapraz Teyit] Bu iki sayfa, bu dosyadaki global input owner'ını destekler. `Cin` seçimi [04](04_giris_kapasitorleri_ve_giris_agi.md), input-filter/EMI yorumu [08](08_emi_giris_filtresi_ve_yerlesim.md), `fsw/10` notundan türeyen loop hedefi ise [07](07_kontrolcu_ve_kompanzasyon.md) tarafında primary owner olarak ele alınır.
+
 ## Shared `fsw`, Duty ve Timing Owner Mantığı
 
 [Güncel Omurga] `fsw`, duty ailesi ve zaman alanı ilişkileri global girdidir. Bu dosyada tam tanımlanır; [02_startup_pin_programlama_ve_ortak_sabitler.md](02_startup_pin_programlama_ve_ortak_sabitler.md) bu değerleri RT pini, startup ve timing bağlamında kullanır.

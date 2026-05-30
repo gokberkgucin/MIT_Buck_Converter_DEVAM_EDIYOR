@@ -108,6 +108,8 @@ Bu iki sınır aynı hesap değildir:
 
 ![W.53'ten seçilen el yazısı parça: ripple hedefleri, transient limitleri ve giriş akımı hesabı](images/defter_snippets_web/d02_w53_requirements_summary.jpg)
 
+[Çapraz Teyit] Bu kırpımın tam sayfa bağlamı [01](01_tasarim_girdileri_ve_kaynaklar.md) içinde `Defter Tam Sayfa Pass 1: W.26-W.53` altında korunur: [defter_p002.jpg](images/defter_full_pages/defter_p002.jpg). Bu dosyada yalnız giriş kapasitörlerine etki eden kısmı sahiplenilir.
+
 `W.53`, ek gereksinimleri ve verim varsayımıyla giriş akımı sınırlarını yan yana tutar:
 
 ```text

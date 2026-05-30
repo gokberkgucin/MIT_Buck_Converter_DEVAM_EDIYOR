@@ -138,6 +138,7 @@ BOM ve satın alınan/seçilen parça izleri:
 Görseller:
 
 - [images/foto_selected/](images/foto_selected/) - seçilmiş datasheet/EVM/calculator/defter görselleri ve ekran kırpımları.
+- [images/defter_full_pages/](images/defter_full_pages/) - defter DOCX'inden iki sayfalık pass'lerle çıkarılan tam sayfa kaynak görseller.
 - [images/defter_snippets_web/](images/defter_snippets_web/) - defter sayfası kırpımları.
 - [images/odt_embedded/](images/odt_embedded/) - eski ODT aktarımından gelen gömülü görseller.
 - `images/project_status/` - henüz yok; rework öncesi/sonrası fiziksel kart fotoğrafları eklenirse burada tutulacak.

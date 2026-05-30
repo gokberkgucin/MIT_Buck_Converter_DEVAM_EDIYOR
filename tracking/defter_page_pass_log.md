@@ -1,0 +1,48 @@
+# Defter Page Pass Log
+
+Kaynak belge: [tracking/defter_sira_ana_fotolu.docx](defter_sira_ana_fotolu.docx)
+
+Bu dosya, fiziksel defterin ikişer sayfalık kontrollü entegrasyon turlarını izler. Amaç ham defteri olduğu gibi ana belgelere yığmak değil; her pass'ta sayfaların hangi teknik owner'ı desteklediğini, hangi görselin çıkarıldığını ve hangi dosyada kullanıldığını görünür bırakmaktır.
+
+## Pass 001 - Sayfa 1-2
+
+Durum: `used`
+
+Çıkarılan tam sayfa görseller:
+
+- [defter_p001.jpg](../images/defter_full_pages/defter_p001.jpg)
+- [defter_p002.jpg](../images/defter_full_pages/defter_p002.jpg)
+
+Defter işaretleri:
+
+- `W.26`: power-stage için gereken temel parametreler, `Vin`, `Vout`, `Iout`, load-step, duty zarfı ve giriş akımı ilk notları.
+- `W.53`: output ripple, input ripple current, input peak-to-peak ripple, input transient ve giriş akımı sınırları.
+
+Primary owner entegrasyonu:
+
+- [01_tasarim_girdileri_ve_kaynaklar.md](../01_tasarim_girdileri_ve_kaynaklar.md) içinde `Defter Tam Sayfa Pass 1: W.26-W.53`.
+
+Kısa referans / owner dışı bağlantı:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içindeki `W.53` bölümüne tam sayfa bağlamı için kısa pointer eklendi.
+- [README.md](../README.md) ve [09_simulasyon_gorseller_ve_acik_sorular.md](../09_simulasyon_gorseller_ve_acik_sorular.md) içinde `images/defter_full_pages/` klasörünün rolü görünür yapıldı.
+
+Okunan ana sayısal izler:
+
+- `Vin(min) = 24 V`, `Vin(max) = 36 V`
+- `Vout = 14 V`
+- `Iout,max = 125 W / 14 V = 8.92 A ≈ 9 A`
+- `Iout,min = 50 W / 14 V = 3.571 A`
+- load-step `9 A - 3.571 A = 5.429 A`
+- ideal duty aralığı `14/36 <= D <= 14/24`, yaklaşık `0.3888-0.5833`
+- `eta = 0.9` ile giriş akımı: `5.79 A` ve `3.86 A`
+- output ripple `100 mVpp`
+- ideal source input ripple current `50 mA`
+- `Delta_VIN_PP < 0.24 V`
+- `Delta_VIN_Tran < 0.36 V`
+- `control BW = fsw/10 = 33.2 kHz` erken kontrol notu
+
+Açık notlar:
+
+- `control BW = fsw/10` satırı final kompanzasyon hedefi değildir; [07](../07_kontrolcu_ve_kompanzasyon.md) içindeki kontrol owner'ına erken tasarım izi olarak bağlanır.
+- `50 mA` input ripple current hedefi yalnız MLCC `Cin` hesabıyla kapanmaz; [08](../08_emi_giris_filtresi_ve_yerlesim.md) içindeki EMI/input-filter owner'ına da bağlıdır.
