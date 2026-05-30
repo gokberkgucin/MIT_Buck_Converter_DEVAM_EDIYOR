@@ -114,6 +114,25 @@ Bu üç değer; bobin, çıkış kapasitörü, MOSFET kaybı, termal ve simülas
 
 [Çapraz Teyit] Bu iki sayfa, bu dosyadaki global input owner'ını destekler. `Cin` seçimi [04](04_giris_kapasitorleri_ve_giris_agi.md), input-filter/EMI yorumu [08](08_emi_giris_filtresi_ve_yerlesim.md), `fsw/10` notundan türeyen loop hedefi ise [07](07_kontrolcu_ve_kompanzasyon.md) tarafında primary owner olarak ele alınır.
 
+## Defter Tam Sayfa Pass 2: `W.53-W.140`
+
+[Tasarım İzi] Bu pass, kullanıcının isteğiyle 2. ve 3. defter sayfasını birlikte okur. `W.53` yukarıdaki pass içinde zaten tam sayfa olarak korunur; burada yeni eklenen tam sayfa, `W.140` olarak okunan duty/girdi sayfasıdır. Bu sayfa global inputların ideal duty, verim dahil duty ve `D = 0.5` pratik kontrol noktasına nasıl bağlandığını gösterir.
+
+![Defter p003 / W.140: Vin/Vout/Iout, ideal duty, verim dahil duty ve D=0.5 kontrol noktası](images/defter_full_pages/defter_p003.jpg)
+
+`W.140` üzerinde görünen ana izler:
+
+- `Vin(min) = 24 V`, `Vin(max) = 36 V`,
+- nominal çıkış gerilimi `14 V`,
+- `Iout,max = 125 W / 14 V = 8.92 A ≈ 9 A`,
+- `Iout,min = 50 W / 14 V = 3.571 A`,
+- load-step `9 A - 3.571 A = 5.429 A`,
+- verim hesaba katılmadan duty: `14/36 <= D <= 14/24`, yani `Dmin = 0.3888`, `Dmax = 0.5833`,
+- `eta = 0.9` ile duty: `14/(36*0.9) <= Dh <= 14/(24*0.9)`, yani `Dmin,h = 0.432`, `Dmax,h = 0.6481`,
+- hesaplarda kullanılacak duty kontrol noktaları olarak `Dmax,h = 0.6481`, `Dmin = 0.3888` ve `D = 0.5` notu.
+
+[Çapraz Teyit] Bu sayfa, aşağıdaki `Shared fsw, Duty ve Timing` owner bloğunu doğrudan destekler. `tON(min)` ifadesine giden pratik kullanım [02_startup_pin_programlama_ve_ortak_sabitler.md](02_startup_pin_programlama_ve_ortak_sabitler.md) içinde kısa referansla tutulur; duty hesabının primary owner'ı burada kalır.
+
 ## Shared `fsw`, Duty ve Timing Owner Mantığı
 
 [Güncel Omurga] `fsw`, duty ailesi ve zaman alanı ilişkileri global girdidir. Bu dosyada tam tanımlanır; [02_startup_pin_programlama_ve_ortak_sabitler.md](02_startup_pin_programlama_ve_ortak_sabitler.md) bu değerleri RT pini, startup ve timing bağlamında kullanır.

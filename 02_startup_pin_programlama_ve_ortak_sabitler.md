@@ -318,6 +318,8 @@ RRT ≈ 30.1 kOhm
 
 Diğer dosyalarda bu tablo yeniden uzun anlatılmayacak; yalnız ilgili kullanım noktası belirtilecek.
 
+[Tasarım İzi] `tracking/defter_sira_ana_fotolu.docx` içindeki 3. tam sayfa (`W.140` olarak okunan sayfa), ideal duty `0.3888-0.5833`, `eta = 0.9` ile `0.432-0.6481` ve `D = 0.5` pratik kontrol noktasını aynı yerde gösterir. Tam sayfa bağlamı ve global duty owner anlatımı [01](01_tasarim_girdileri_ve_kaynaklar.md) içindeki `Defter Tam Sayfa Pass 2: W.53-W.140` altında korunur.
+
 ## Donanımsal `tON(min)` / `tOFF(min)` Sınırları
 
 [Çapraz Teyit] LM5146 için ODT/datasheet notunda şu büyüklükler korunur:
