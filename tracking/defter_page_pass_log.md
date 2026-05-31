@@ -331,3 +331,47 @@ Açık notlar:
 
 - `W.208` el yazısı sonuç satırında birim `kHz` gibi görünür; bağlam ve denklem bunun `RRT` için `kOhm` olduğunu gösterir. Bu unit izi README'de `[Açık Kontrol]` olarak bırakıldı.
 - `W.203` içindeki “defterde yazdıklarım vardı, bulunca eklensin” notu açık takip izi olarak korunur; bu pass'te yeni ek defter sayfası aranmadı.
+
+## Pass 009 - Sayfa 16-17
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p016.jpg](../images/defter_full_pages/defter_p016.jpg)
+- [defter_p017.jpg](../images/defter_full_pages/defter_p017.jpg)
+
+Defter işaretleri:
+
+- `W.54`: `6.8 uH` bobin seçimi, `%42` ripple izi, `%30` ripple hedefinden `9.6 uH` alternatif üst sınırı ve `DCR` aralığı.
+- `W.55`: bobin seçimi `L1`, ripple oranı, `I_L,peak`, `I_sat`, `DCR`, `Vin = 36 V` ve `Vin = 24 V` ripple karşılaştırması.
+
+Primary owner entegrasyonu:
+
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.54: 6.8 uH Seçimi ve 9.6 uH Alternatif İzi`.
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.55: Ripple, Tepe Akım ve Doyma Marjı`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bobin `DCR`, RMS akım ve sıcaklık etkileri [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) tarafındaki termal kapanışa bağlıdır.
+- `Delta_IL` değerleri çıkış kapasitörü ripple hesabına aynı 03 owner dosyasında downstream girdi olarak geçer.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `L = 6.8 uH` için yaklaşık `%42` ripple
+- `%30` ripple hedefi: `Delta_IL,%30 = 9 A * 0.3 = 2.7 A_p-p`
+- `L_buyuk = (Vout / Vin) * ((Vin - Vout) / (Delta_IL,%30 * fsw))`
+- `Vin = 36 V`, `Vout = 14 V`, `fsw ≈ 330 kHz`, `Delta_IL = 2.7 A_p-p` ile `L_buyuk ≈ 9.6 uH`
+- kutulu aralık: `6.8 uH < L < 9.6 uH`
+- DCR aralığı tam sayfa p016 okumasıyla: `0.88 mOhm < DCR < 13.3 mOhm`
+- `I_L(peak) = Iout + Delta_IL/2`
+- `Vin = 36 V`, `L = 6.8 uH` için `Delta_IL ≈ 3.8 A_p-p`
+- `I_L,peak ≈ 9 A + 3.8 A/2`
+- `3.8 / 9 ≈ 0.42`, yani yaklaşık `%42` ripple
+- `Vin = 24 V` için `Delta_IL ≈ 2.6 A_p-p`
+- `2.6 / 9 ≈ 0.2888`, yani yaklaşık `%28.88` ripple
+
+Açık notlar:
+
+- Önceki kısa W.54 okumasında DCR alt sınırı `0.38 mOhm` gibi yazılmıştı; p016 tam sayfada bu satır `0.88 mOhm` olarak okunur. 03 dosyasında bu fark `[Açık Kontrol]` ile görünür bırakıldı.
+- p017 kaynak görseli DOCX içinde ters yönde geldi; okuma için geçici 180 derece döndürülmüş kopya kullanıldı, repo commit'ine yalnız orijinal tam sayfa `defter_p017.jpg` alındı.

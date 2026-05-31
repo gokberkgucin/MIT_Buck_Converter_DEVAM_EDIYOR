@@ -91,6 +91,8 @@ Bu owner, aşağıdaki değerleri [01](01_tasarim_girdileri_ve_kaynaklar.md) ve 
 
 [Tasarım İzi] `W.54`, `6.8 uH` seçiminin keyfi olmadığını gösteren ilk defter sayfasıdır. Aynı sayfada daha düşük ripple için `9.6 uH` üst taraf alternatifi korunur.
 
+![Defter p016 / W.54: 6.8 uH seçimi, 9.6 uH alternatif üst sınırı, ripple ve DCR aralığı](images/defter_full_pages/defter_p016.jpg)
+
 ![W.54'ten seçilen el yazısı parça: 6.8 uH seçimi, 9.6 uH üst sınırı ve DCR aralığı notu](images/defter_snippets_web/d16_w54_inductor_range_selection.jpg)
 
 Sayfada kullanılan ilişki:
@@ -113,8 +115,22 @@ Defterde kutulanan aralık:
 
 ```text
 6.8 uH < L < 9.6 uH
-0.38 mOhm < DCR < 13.3 mOhm
+0.88 mOhm < DCR < 13.3 mOhm
 ```
+
+[Tasarım İzi] `W.54` defter yazısının metne alınmış okuması:
+
+- `L = 6.8 uH` iken yaklaşık `%42` ripple olduğu not edilmiştir; bu taraf datasheet/hesap üst sınırı gibi okunur.
+- `%30` ripple hedefiyle alt ripple tarafı yeniden düşünülür: `Delta_IL,%30 = Iout,max * 0.3`.
+- `Iout,max ≈ 9 A` için `Delta_IL,%30 = 9 A * 0.3 = 2.7 A_p-p`.
+- `L_buyuk = (Vout / Vin) * ((Vin - Vout) / (Delta_IL,%30 * fsw))` ilişkisi kullanılır.
+- `Vin = 36 V`, `Vout = 14 V`, `fsw ≈ 330 kHz`, `Delta_IL = 2.7 A_p-p` ile `L_buyuk ≈ 9.6 uH` bulunur.
+- Sayfa, `6.8 uH < L < 9.6 uH` aralığını kutular.
+- Sol tarafta `6.8 uH -> %42 -> Delta_IL ≈ 3.8 A`, sağ tarafta `9.6 uH -> %30 -> Delta_IL ≈ 2.7 A` karşılaştırması korunur.
+- DCR için kutuda `0.88 mOhm < DCR < 13.3 mOhm` okunur.
+- Son not: `L` için `6.8 uH` seçildi; `9.6 uH` değerine kadar çıkılabilir.
+
+[Açık Kontrol] Önceki kısa kırpım okumasında DCR alt sınırı `0.38 mOhm` gibi yazılmıştı. Tam sayfa p016 üzerinde bu satır `0.88 mOhm` olarak okunur ve seçilen bobinin `DCR ≈ 0.88 mOhm` değeriyle uyumludur. Bu nedenle aralık burada `0.88 mOhm < DCR < 13.3 mOhm` olarak görünürleştirildi.
 
 Bu aralık, `6.8 uH` seçimini "ana güncel aday", `9.6 uH` değerini ise daha düşük ripple ama daha yavaş akım cevabı veren alternatif iz olarak tutar.
 
@@ -122,7 +138,24 @@ Bu aralık, `6.8 uH` seçimini "ana güncel aday", `9.6 uH` değerini ise daha d
 
 [Güncel Omurga] `W.55`, bobin seçimindeki ana kriterleri daha açık kurar: ripple oranı, `I_L,peak`, `I_sat` ve `DCR`.
 
+![Defter p017 / W.55: Bobin seçimi, ripple oranı, ILpeak, Isat ve DCR notları](images/defter_full_pages/defter_p017.jpg)
+
 ![W.55'ten seçilen el yazısı parça: ripple yüzdesi, ILpeak ve bobin seçim kriterleri](images/defter_snippets_web/d17_w55_inductor_ripple_and_peak_current.jpg)
+
+[Tasarım İzi] `W.55` defter yazısının metne alınmış okuması:
+
+- Seçilecek `L` değeri, maksimum çıkış akımı olan `9 A` civarında yaklaşık `%30-%40` ripple verecek şekilde düşünülür.
+- `I_sat`, bobinin doyma akımıdır; `I_L,peak` ve transientler dahil oluşabilecek en yüksek akımdan büyük olmalıdır.
+- Doyma akımı sıcaklıkla azalır; doyma durumunda bobinin `L` değeri keskin biçimde düşebileceği için akım kontrolü zorlaşabilir ve çıkış ripple'ı artabilir.
+- Bu nedenle güvenli bir oturma payı bırakılması gerektiği not edilir.
+- `DCR`, bobin sargısının direncidir; mOhm mertebesinde düşük olmalıdır.
+- `9 A` gibi yüksek akımlarda bakır kayıplarının küçük kalması için düşük `DCR` istenir.
+- Kullanılan ilişkiler: `L1 = (Vout / Vin) * ((Vin - Vout) / (Delta_IL * fsw))` ve `I_L(peak) = Iout + Delta_IL / 2`.
+- En kötü ripple durumu giriş gerilimi azami iken, yani `Vin = 36 V` tarafında görülür.
+- `Vout = 14 V`, `Vin,max = 36 V`, `fsw = 330 kHz`, `L = 6.8 uH` için `Delta_IL ≈ 3.8 A_p-p` bulunur.
+- Azami `9 A` yükte `I_L,peak = Iout,max + Delta_IL/2 = 9 A + 3.8 A/2` olarak kurulur.
+- `Delta_IL / Iout,max = 3.8 / 9 ≈ 0.42`, yani yaklaşık `%42` ripple not edilir.
+- `Vin = 24 V` iken ripple daha küçüktür: `Delta_IL ≈ 2.6 A_p-p`, `2.6 / 9 ≈ %28.88`.
 
 Temel ilişkiler:
 
