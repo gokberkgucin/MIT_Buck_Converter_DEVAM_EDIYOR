@@ -195,6 +195,8 @@ Bu görseller, enable logic ve `VCC UVLO` davranışının aynı startup zinciri
 
 [Tasarım İzi] `W.207`, precision enable mantığını ve `EN/UVLO` pinindeki direnç bölücüyü kurar.
 
+![Defter p012 / W.207: Precision Enable, EN/UVLO state table ve VCC UVLO notları](images/defter_full_pages/defter_p012.jpg)
+
 ![W.207'den seçilen el yazısı parça: Precision Enable denklemleri ve VCC UVLO notları](images/defter_snippets_web/d12_w207_precision_enable_and_vcc_uvlo.jpg)
 
 Temel ilişki:
@@ -205,11 +207,29 @@ RUV1 = (VIN(ON) - VIN(OFF)) / IHYS
 
 İkinci denklem, `RUV1`, `RUV2`, `VEN` ve `VIN(ON)` arasındaki bölücü ilişkisini kurar.
 
+[Tasarım İzi] `W.207` defter yazısının metne alınmış okuması:
+
+- Sayfa, datasheet `8.3.4 Precision Enable` başlığına bağlanır.
+- `VIN`, `RUV1`, `RUV2` ve `EN/UVLO` pininden oluşan direnç bölücü çizilir.
+- `RUV1 = (VIN(ON) - VIN(OFF)) / IHYS` ilişkisi yazılır.
+- `RUV2 = RUV1 * VEN / (VIN(ON) - VEN)` ilişkisi yazılır.
+- `EN/UVLO < 0.42 V` için shutdown bölgesi not edilir; chosen fonksiyonları devre dışıdır, çıkış tamamen kapalıdır.
+- `0.42 V < EN/UVLO < 1.2 V` için standby bölgesi not edilir; yalnızca `VCC` regülatörü çalışır, `HO/LO` çıkışlarında anahtarlama yapılmaz.
+- `EN/UVLO > 1.2 V` için active bölgesi not edilir; soft-start başlar ve `HO/LO` pinlerine PWM işareti gönderilir.
+- Bu eşiklerin IC iç özelliği olduğu, kullanıcı tarafından değiştirilmediği özellikle not edilmiştir.
+- Sayfadaki uyarı: `EN/UVLO` koşulları tek başına yeterli değildir; `VCC` tarafındaki UVLO koşulu da sağlanmalıdır.
+- `VCC-UV` tipik eşiği `4.93 V typ`, `VCC-UVHYS` değeri `0.26 V` olarak yazılmıştır.
+- Güç verildiğinde `CVCC` kapasitörü `40 mA` akımla doldurulur; bu sırada `EN/UVLO > 1.2 V` olsa bile `VCC` geriliminin `4.93 V` seviyesine ulaşması beklenir.
+- Aktif çalışma sırasında `VCC`, `4.67 V` ve altına düşerse shutdown veya standby davranışı oluşabilir.
+- `4.67 V` notu, `VCC-UV - VCC-UVHYS = 4.93 V - 0.26 V = 4.67 V` hesabından gelir; yani `VCC` için de hysteresis vardır.
+
 [Eski İterasyon] `W.209`, bu denklemleri sayısal bir örneğe indirir:
+
+![Defter p013 / W.209: Precision Enable sayısal örnek, RUV1/RUV2 ve eşik notları](images/defter_full_pages/defter_p013.jpg)
 
 ![W.209'dan seçilen el yazısı parça: RUV1 ve RUV2 için sayısal UVLO örneği](images/defter_snippets_web/d13_w209_uvlo_resistor_example.jpg)
 
-Defterdeki uygulama:
+Defterdeki yerine koyma satırı:
 
 ```text
 IHYS = 10 uA
@@ -219,6 +239,21 @@ VIN(OFF) = 23 V
 RUV1 = (24 V - 23 V) / 10 uA = 100 kOhm
 RUV2 = 100 kOhm * 1.2 V / (24 V - 1.2 V) ≈ 5.263 kOhm
 ```
+
+[Tasarım İzi] `W.209` defter yazısının metne alınmış okuması:
+
+- Sayfa yine datasheet `8.3.4 Precision Enable` başlığına bağlanır.
+- Üst satırda `VIN(ON) = 23 V`, `VIN(OFF) = 22 V` olarak belirleme notu görünür.
+- Aynı sayfadaki hesap satırında ise `RUV1 = (24 V - 23 V) / 10 uA = 100 kOhm` kullanılmıştır.
+- `IEN-HYS`, standby-to-operating hysteresis current olarak `10 uA` yazılmıştır.
+- `VEN` satırında `0.42 V` notu ve `8.2 Functional Block Diagram` tarafında `0.42 V` yerine `0.40 V` görüldüğü uyarısı vardır.
+- `RUV2` hesabında ise `1.2 V` aktif eşik değeri kullanılır: `RUV2 = 100 kOhm * 1.2 V / (24 V - 1.2 V)`.
+- Hesap sonucu `RUV2 = 5.263 kOhm` olarak çıkar; sayfadaki not pratik kullanımın `5.23 kOhm` yönünde olduğunu gösterir.
+- Alt çizim, `VIN -> RUV1 -> EN/UVLO -> RUV2 -> GND` bölücüsünü ve `RUV1 = 100 kOhm`, `RUV2 ≈ 5.23 kOhm` seçimini tekrar gösterir.
+
+[Açık Kontrol] `W.209` üst satırındaki `23 V / 22 V` hedef notu ile aynı sayfadaki `24 V / 23 V` yerine koyma hesabı sessizce birleştirilmez. Bu blok, final UVLO BOM kapanışı değil, precision-enable denklemini anlamaya dönük eski uygulama izi olarak kalır.
+
+[Açık Kontrol] `0.42 V / 0.40 V` notu shutdown-standby eşiğiyle ilişkilidir; `RUV2` hesabında kullanılan `1.2 V` ise operating/active eşiğidir. Bu iki eşik aynı `VEN` sembolü altında karışmamalıdır.
 
 [Çapraz Teyit] LM5146 quickstart calculator tarafında farklı bir UVLO örneği görülür:
 

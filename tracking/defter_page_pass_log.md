@@ -246,3 +246,47 @@ Açık notlar:
 
 - `p010 / W.204` davranış açıklaması, `p011 / W.206` ise `CSS/tSS` hesabıdır; ikisi aynı 02 dosyasında ardışık owner alt başlıklarında tutuldu.
 - `PWL 1 us / 1.8 V` notu tarihsel simülasyon/tez izi olarak korunur, LM5146 `SS/TRK` final parametresi değildir.
+
+## Pass 007 - Sayfa 12-13
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p012.jpg](../images/defter_full_pages/defter_p012.jpg)
+- [defter_p013.jpg](../images/defter_full_pages/defter_p013.jpg)
+
+Defter işaretleri:
+
+- `W.207`: datasheet `8.3.4 Precision Enable`, `RUV1/RUV2` bölücüsü, `EN/UVLO` state table, `VCC-UV`, `VCC-UVHYS` ve `CVCC` şarj sırası.
+- `W.209`: precision-enable sayısal uygulama örneği, `RUV1 = 100 kOhm`, `RUV2 = 5.263 kOhm` hesabı ve pratik `5.23 kOhm` notu.
+
+Primary owner entegrasyonu:
+
+- [02_startup_pin_programlama_ve_ortak_sabitler.md](../02_startup_pin_programlama_ve_ortak_sabitler.md) içinde `Precision Enable Direnç Bölücü İzleri`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `EN/UVLO` aktif olsa bile `VCC` UVLO koşulu sağlanmadan anahtarlama başlamaz; bu davranış startup owner'ında tutuldu.
+- UVLO direnç seçiminin final BOM kapanışı olmadığı not edildi; farklı calculator örneği aynı owner altında çapraz teyit olarak kalır.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `RUV1 = (VIN(ON) - VIN(OFF)) / IHYS`
+- `RUV2 = RUV1 * VEN / (VIN(ON) - VEN)`
+- `EN/UVLO < 0.42 V`: shutdown
+- `0.42 V < EN/UVLO < 1.2 V`: standby
+- `EN/UVLO > 1.2 V`: active / soft-start
+- `VCC-UV = 4.93 V typ`
+- `VCC-UVHYS = 0.26 V`
+- `CVCC` kapasitörü güç verildiğinde `40 mA` akımla doldurulur
+- `4.67 V = 4.93 V - 0.26 V`
+- `IHYS = 10 uA`
+- `RUV1 = (24 V - 23 V) / 10 uA = 100 kOhm`
+- `RUV2 = 100 kOhm * 1.2 V / (24 V - 1.2 V) = 5.263 kOhm`
+- pratik not: `RUV2 ≈ 5.23 kOhm`
+
+Açık notlar:
+
+- `W.209` üst satırında `VIN(ON) = 23 V`, `VIN(OFF) = 22 V` yazarken hesap satırı `24 V / 23 V` ile yapılmış görünüyor; sessizce harmonize edilmedi.
+- `0.42 V / 0.40 V` notu shutdown-standby eşiğiyle ilişkilidir; `RUV2` hesabındaki `1.2 V` active/operating eşiğiyle karıştırılmayacak.
