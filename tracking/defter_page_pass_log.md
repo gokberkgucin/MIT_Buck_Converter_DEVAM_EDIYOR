@@ -290,3 +290,44 @@ Açık notlar:
 
 - `W.209` üst satırında `VIN(ON) = 23 V`, `VIN(OFF) = 22 V` yazarken hesap satırı `24 V / 23 V` ile yapılmış görünüyor; sessizce harmonize edilmedi.
 - `0.42 V / 0.40 V` notu shutdown-standby eşiğiyle ilişkilidir; `RUV2` hesabındaki `1.2 V` active/operating eşiğiyle karıştırılmayacak.
+
+## Pass 008 - Sayfa 14-15
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p014.jpg](../images/defter_full_pages/defter_p014.jpg)
+- [defter_p015.jpg](../images/defter_full_pages/defter_p015.jpg)
+
+Defter işaretleri:
+
+- `W.208`: datasheet `8.3.6.1 Frequency Adjust`, `RRT[kOhm] = 10^4 / fsw[kHz]` denklemi ve `332 kHz` için `30.1 kOhm` RT seçimi.
+- `W.203`: datasheet `3. Description`, `Vin = 5.5 V` genel davranış notu, neredeyse `%100` duty, `40 ns tON(min)`, `140 ns tOFF(min)` ve `FPWM` sabit frekans notu.
+
+Primary owner entegrasyonu:
+
+- [02_startup_pin_programlama_ve_ortak_sabitler.md](../02_startup_pin_programlama_ve_ortak_sabitler.md) içinde `RT Pini ve Switching Frequency`.
+- [02_startup_pin_programlama_ve_ortak_sabitler.md](../02_startup_pin_programlama_ve_ortak_sabitler.md) içinde `W.203 Zaman Alanı Kaynak İzi`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Global `fsw`, duty ailesi ve zaman alanı owner'ı [01_tasarim_girdileri_ve_kaynaklar.md](../01_tasarim_girdileri_ve_kaynaklar.md) içinde kalır.
+- `W.203` içindeki `Vin = 5.5 V` LM5146 genel description notudur; G94 nominal `24-36 V` çalışma zarfını değiştirmez.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `RRT[kOhm] = 10^4 / fsw[kHz]`
+- `fsw = 332 kHz`
+- `RRT = 10^4 / 332 = 30.12 kOhm`
+- pratik RT seçimi: `30.1 kOhm`
+- LM5146 genel giriş davranışı: `Vin = 5.5 V'e kadar inebilir`
+- düşük giriş bağlamında duty cycle neredeyse `%100` olabilir
+- `tON(min) = 40 ns`
+- `tOFF(min) = 140 ns`
+- `FPWM` modunda sabit switching frequency vardır
+
+Açık notlar:
+
+- `W.208` el yazısı sonuç satırında birim `kHz` gibi görünür; bağlam ve denklem bunun `RRT` için `kOhm` olduğunu gösterir. Bu unit izi README'de `[Açık Kontrol]` olarak bırakıldı.
+- `W.203` içindeki “defterde yazdıklarım vardı, bulunca eklensin” notu açık takip izi olarak korunur; bu pass'te yeni ek defter sayfası aranmadı.

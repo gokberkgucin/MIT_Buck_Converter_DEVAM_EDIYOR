@@ -367,6 +367,21 @@ Pratik seçim / not:
 RRT ≈ 30.1 kOhm
 ```
 
+`W.208`, bu frequency-adjust hesabının tam sayfa defter izidir.
+
+![Defter p014 / W.208: Frequency Adjust, RRT denklemi ve 332 kHz için 30.1 kOhm seçimi](images/defter_full_pages/defter_p014.jpg)
+
+[Tasarım İzi] `W.208` defter yazısının metne alınmış okuması:
+
+- Sayfanın üstündeki not, PGOOD için ayrı/genel yol kullanılacağını gösteren kısa bir pin-programming hatırlatmasıdır.
+- Ana başlık `8.3.6.1 Frequency Adjust` olarak yazılmıştır.
+- Datasheet ilişkisi `RRT[kOhm] = 10^4 / fsw[kHz]` şeklinde alınmıştır.
+- `fsw = 332 kHz` için yerine koyma `10^4 / 332[kHz]` olarak yazılmıştır.
+- Sonuç `30.12 kOhm` olarak bulunur.
+- Pratik seçim `RRT = 30.1 kOhm` olarak okunur.
+
+[Açık Kontrol] Sayfadaki el yazısı sonuç satırında birim `kHz` gibi görünür; bağlam, denklem ve diğer cross-check'ler bunun `RRT` direnci için `kOhm` satırı olduğunu gösterir. Bu not sessizce silinmez; final teknik değer `30.1 kOhm` olarak tutulur.
+
 ![W.208'den seçilen el yazısı parça: RT direnci ile 332 kHz switching frequency bağlantısı](images/defter_snippets_web/d14_w208_rt_frequency_formula.jpg)
 
 [Çapraz Teyit]
@@ -418,7 +433,20 @@ Bu sayılar proje duty ailesi değildir. `24-36 V -> 14 V` için gerçek çalı�
 
 [Çapraz Teyit] `W.203`, duty cycle, `tON(min)`, `tOFF(min)` ve `FPWM` notunu aynı yerde tutar. Tam global duty yorumu [01](01_tasarim_girdileri_ve_kaynaklar.md) dosyasında yaşar; burada kaynak izi korunur.
 
+![Defter p015 / W.203: Description notları, Vin=5.5 V genel davranışı, tON/tOFF sınırları ve FPWM](images/defter_full_pages/defter_p015.jpg)
+
 ![W.203'ten seçilen el yazısı parça: duty cycle, tON(min), tOFF(min) ve FPWM notu](images/defter_snippets_web/d15_w203_ton_toff_fpwm_note.jpg)
+
+[Tasarım İzi] `W.203` defter yazısının metne alınmış okuması:
+
+- Başlık `3. Description` olarak yazılmıştır.
+- `Vin = 5.5 V'e kadar inebilir` notu LM5146'nın genel giriş aralığı davranışına ait okunur.
+- Bu durumda duty cycle'ın neredeyse `%100` seviyesine kadar çıkabileceği yazılmıştır.
+- `40 ns tON(min)` notu yüksek `Vin/Vout` oranı bağlamında korunur.
+- `140 ns tOFF(min)` notu `VIN/Vout` oranı bağlamında korunur.
+- Sağ taraftaki not, bu konuya ilişkin defterde başka yazılar bulunduğunda eklenmesi gerektiğini belirtir.
+- `FPWM'de sabit switching frequency var` notu yazılmıştır.
+- Bu tasarımda bu modun kullanıldığı belirtilmiştir.
 
 Buradaki `Vin = 5.5 V'e kadar inebilir`, neredeyse `%100 duty`, `40 ns / 140 ns`, `FPWM'de sabit switching frequency var` gibi notlar LM5146 genel davranışını anlatır; projenin nominal `24-36 V` çalışma zarfını değiştirmez.
 
