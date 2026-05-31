@@ -215,10 +215,12 @@ Defter işaretleri:
 
 - `W.204`: `EN/UVLO`, `ISS`, `CSS`, `SS/TRK` rampası, error amp referans geçişi ve soft-start davranışı.
 - `W.204` devamı: soft-start bitişinde `SS/TRK = FB + 0.115 V`, fault/standby durumunda `CSS` boşaltma ve tracking modu için dış referans notları.
+- `W.206`: configurable soft-start, `CSS = C26 = 0.047 uF = 47 nF`, `tSS = CSS * VREF / ISS`, `47 nF * 0.8 V / 10 uA` hesabı ve pin bağlantı çizimi.
 
 Primary owner entegrasyonu:
 
 - [02_startup_pin_programlama_ve_ortak_sabitler.md](../02_startup_pin_programlama_ve_ortak_sabitler.md) içinde `SS/TRK ve Soft-start`.
+- [02_startup_pin_programlama_ve_ortak_sabitler.md](../02_startup_pin_programlama_ve_ortak_sabitler.md) içinde `C_SS ve t_SS Hesabı`.
 
 Kısa referans / owner dışı bağlantı:
 
@@ -235,8 +237,12 @@ Okunan ana sayısal / kavramsal izler:
 - soft-start sonrası yaklaşık ilişki: `SS/TRK = FB + 0.115 V`
 - fault/standby durumunda `CSS` boşaltılır
 - tracking modu için `SS/TRK` pinine dışarıdan düşük empedanslı referans verilir
+- `CSS = C26 = 0.047 uF = 47 nF`
+- `tSS = CSS * VREF / ISS`
+- `tSS = 47 nF * 0.8 V / 10 uA`
+- `RRT = 30.1 kOhm` notu aynı pin-programlama çiziminde görünür
 
 Açık notlar:
 
-- Bu sayfalar `CSS = 47 nF` ve `tSS ≈ 3.76 ms` hesabının hemen öncesindeki davranış açıklamasıdır; sayısal `CSS/tSS` owner'ı aynı 02 dosyasındaki sonraki blokta kalır.
+- `p010 / W.204` davranış açıklaması, `p011 / W.206` ise `CSS/tSS` hesabıdır; ikisi aynı 02 dosyasında ardışık owner alt başlıklarında tutuldu.
 - `PWL 1 us / 1.8 V` notu tarihsel simülasyon/tez izi olarak korunur, LM5146 `SS/TRK` final parametresi değildir.

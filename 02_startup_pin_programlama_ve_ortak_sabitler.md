@@ -239,30 +239,26 @@ Bu fark sessizce birleştirilmez. `W.209` denklemi anlama / ara uygulama izidir;
 
 ![Defter p010 / W.204: EN/UVLO, ISS, CSS şarjı ve SS/TRK rampası](images/defter_full_pages/defter_p010.jpg)
 
-![Defter p011 / W.204 devamı: soft-start bitişi, FB+115 mV davranışı, fault/standby ve tracking notları](images/defter_full_pages/defter_p011.jpg)
+Tam sayfa bağlamında teknik sonuç: `W.204`, `EN/UVLO`, `ISS`, `CSS`, `SS/TRK`, error amp referans geçişi, soft-start sonrası `FB + 115 mV` izleme davranışı, fault/standby boşaltması ve tracking referansı notlarını aynı startup akışında toplar.
 
-Tam sayfa bağlamında korunan izler:
+[Tasarım İzi] Defter yazısının metne alınmış okuması:
 
-- `EN/UVLO = 1.2 V` olduğunda IC active olur ve `ISS`, `CSS` kapasitörünü doldurmaya başlar.
-- `ISS = 10 uA` sabit akım kaynağı olarak okunur.
-- `CSS` dolmaya başladıkça `SS/TRK` pin gerilimi artar.
-- `SS/TRK < 0.8 V` iken error amp'in pozitif girişinde sabit `VREF = 0.8 V` değil, `SS/TRK` rampası görülür.
-- `SS/TRK > 0.8 V` olduğunda error amp tekrar sabit `VREF = 0.8 V` referansa döner.
-- Soft-start bittikten sonra `SS/TRK`, `FB` pininden yaklaşık `115 mV` yukarıda tutulur: `SS/TRK = FB + 0.115 V`.
-- Fault/standby durumunda `CSS` boşaltılır; bir sonraki başlatma temiz soft-start ile yapılır.
-- Tracking modu istenirse `SS/TRK` pinine dışarıdan ayarlanmış, düşük empedanslı bir referans verilmesi gerekir.
+- `EN/UVLO > 1.2 V` olduğunda IC active olur; `ISS`, `CSS` kapasitörünü doldurmaya başlar.
+- `ISS = 10 uA` sabit akım kaynağıdır; `CSS` sığasını şarj eder.
+- `CSS` dolmaya başladıkça `SS/TRK` pinindeki gerilim artar.
+- `SS/TRK` pin gerilimi `0 V - 0.8 V` aralığında iken error amp'in gördüğü referans sabit `VREF = 0.8 V` değil, `SS/TRK` üzerindeki rampadır.
+- `SS/TRK > 0.8 V` olduğunda error amp'in pozitif girişi artık `SS/TRK` değil, sabit `VREF = 0.8 V` olur.
+- Sayfadaki küçük op-amp çizimi, bu geçişi `V+ / V-` karşılaştırması olarak hatırlatmak içindir; yeni bir kompanzasyon hesabı değildir.
+- Soft-start bittiğinde `SS/TRK` artık sabit kalmaz; her zaman `FB` pininden yaklaşık `115 mV` yukarıda tutulur: `SS/TRK = FB + 0.115 V`.
+- Eğer arıza sonucu `FB` düşerse, `SS/TRK` de onunla birlikte düşer; böylece sistem kendini daha yavaş ve kontrollü toparlar.
+- Sistem standby veya fault durumuna girerse `CSS` boşaltılır; sonraki başlatma temiz olur.
+- Tracking modu istenirse `SS/TRK` pinine dışarıdan ayarlanmış, düşük empedanslı bir referans verilmelidir.
 
 [Eski İterasyon] Sayfadaki `PWL (0 V, 1 us, 1.8 V)` notu, önceki tez/simülasyon alışkanlığından gelen referans-rampası sezgisidir; LM5146 için final soft-start dalga şekli değildir.
 
 ![W.204'ten seçilen el yazısı parça: EN/UVLO, ISS, SS/TRK ve startup rampası notları](images/defter_snippets_web/d10_w204_ss_trk_startup_note.jpg)
 
-Bu sayfadaki ana notlar:
-
-- `EN/UVLO ≈ 1.2 V` olduğunda IC active bölgeye geçer.
-- `I_SS`, `C_SS` kapasitörünü doldurur.
-- `I_SS = 10 uA`.
-- `SS/TRK < 0.8 V` iken referans davranışı startup rampasıyla ilişkilidir.
-- Soft-start sonrasında `SS/TRK`, `FB + 115 mV` civarında izlenir; fault/standby durumunda `CSS` boşaltılır.
+Bu kırpım, yukarıdaki defter okumasının `EN/UVLO`, `ISS`, `CSS` ve `SS/TRK < 0.8 V` kısmını görsel olarak destekler.
 
 ![PWL startup rampası ile referansı emule etmeye çalıştığım notlu ekran](images/foto_selected/p101_pwl_startup_emulation.jpg)
 
@@ -271,6 +267,10 @@ Bu sayfadaki ana notlar:
 ## `C_SS` ve `t_SS` Hesabı
 
 [Güncel Omurga] Seçilen soft-start kapasitörü:
+
+`W.206`, configurable soft-start hesabının tam sayfa izidir.
+
+![Defter p011 / W.206: configurable soft-start, CSS=47 nF ve tSS hesabı](images/defter_full_pages/defter_p011.jpg)
 
 ```text
 CSS = C26 = 0.047 uF = 47 nF
@@ -284,6 +284,16 @@ Soft-start süresi:
 tSS = CSS * VREF / ISS
 tSS = 47 nF * 0.8 V / 10 uA ≈ 3.76 ms
 ```
+
+[Tasarım İzi] Defter yazısının metne alınmış okuması:
+
+- Soft-start, çıkış geriliminin yavaşça yükselmesini sağlar.
+- Amaç, aşırı akım / inrush current oluşmasını önlemek ve giriş kaynağına fazla yük bindirmemektir.
+- LM5146, `SS/TRK` pinine bağlı `CSS` kapasitörünü `10 uA` sabit akımla şarj ederek soft-start uygular.
+- Seçilen kapasitör `CSS = C26 = 0.047 uF = 47 nF` olarak yazılmıştır; sayfada paket izi `0402` olarak not edilmiştir.
+- Hesap ilişkisi `tSS = CSS * VREF / ISS` şeklindedir.
+- Defterdeki yerine koyma `47 nF * 0.8 V / 10 uA` hesabıdır.
+- Sayfa altındaki çizim, `RT` pinini, `SS/TRK` pinini, `CSS = 47 nF` bağlantısını ve `RRT = 30.1 kOhm` notunu aynı pin-programlama bağlamında gösterir.
 
 ![W.206'dan seçilen el yazısı parça: CSS seçimi ve tSS hesabının defterden kısa görünümü](images/defter_snippets_web/d11_w206_soft_start_time.jpg)
 
