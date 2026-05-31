@@ -237,6 +237,23 @@ Bu fark sessizce birleştirilmez. `W.209` denklemi anlama / ara uygulama izidir;
 
 `W.204`, startup sırasında `SS/TRK` pinini sabit `0.8 V` referansın anında uygulanması gibi değil, rampalanan bir takip düğümü gibi okumaya başladığım sayfadır.
 
+![Defter p010 / W.204: EN/UVLO, ISS, CSS şarjı ve SS/TRK rampası](images/defter_full_pages/defter_p010.jpg)
+
+![Defter p011 / W.204 devamı: soft-start bitişi, FB+115 mV davranışı, fault/standby ve tracking notları](images/defter_full_pages/defter_p011.jpg)
+
+Tam sayfa bağlamında korunan izler:
+
+- `EN/UVLO = 1.2 V` olduğunda IC active olur ve `ISS`, `CSS` kapasitörünü doldurmaya başlar.
+- `ISS = 10 uA` sabit akım kaynağı olarak okunur.
+- `CSS` dolmaya başladıkça `SS/TRK` pin gerilimi artar.
+- `SS/TRK < 0.8 V` iken error amp'in pozitif girişinde sabit `VREF = 0.8 V` değil, `SS/TRK` rampası görülür.
+- `SS/TRK > 0.8 V` olduğunda error amp tekrar sabit `VREF = 0.8 V` referansa döner.
+- Soft-start bittikten sonra `SS/TRK`, `FB` pininden yaklaşık `115 mV` yukarıda tutulur: `SS/TRK = FB + 0.115 V`.
+- Fault/standby durumunda `CSS` boşaltılır; bir sonraki başlatma temiz soft-start ile yapılır.
+- Tracking modu istenirse `SS/TRK` pinine dışarıdan ayarlanmış, düşük empedanslı bir referans verilmesi gerekir.
+
+[Eski İterasyon] Sayfadaki `PWL (0 V, 1 us, 1.8 V)` notu, önceki tez/simülasyon alışkanlığından gelen referans-rampası sezgisidir; LM5146 için final soft-start dalga şekli değildir.
+
 ![W.204'ten seçilen el yazısı parça: EN/UVLO, ISS, SS/TRK ve startup rampası notları](images/defter_snippets_web/d10_w204_ss_trk_startup_note.jpg)
 
 Bu sayfadaki ana notlar:
@@ -245,6 +262,7 @@ Bu sayfadaki ana notlar:
 - `I_SS`, `C_SS` kapasitörünü doldurur.
 - `I_SS = 10 uA`.
 - `SS/TRK < 0.8 V` iken referans davranışı startup rampasıyla ilişkilidir.
+- Soft-start sonrasında `SS/TRK`, `FB + 115 mV` civarında izlenir; fault/standby durumunda `CSS` boşaltılır.
 
 ![PWL startup rampası ile referansı emule etmeye çalıştığım notlu ekran](images/foto_selected/p101_pwl_startup_emulation.jpg)
 

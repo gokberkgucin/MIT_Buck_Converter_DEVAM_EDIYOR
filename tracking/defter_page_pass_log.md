@@ -201,3 +201,42 @@ Açık notlar:
 
 - `8.22 V`, proje giriş aralığını `24 V - 36 V` altına çekmez; yalnız dahili LDO/dropout sanity sınırıdır.
 - `W.202` içindeki `16.5` oranı eski feedback iterasyonudur; güncel feedback divider ile sessizce birleştirilmeyecek.
+
+## Pass 006 - Sayfa 10-11
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p010.jpg](../images/defter_full_pages/defter_p010.jpg)
+- [defter_p011.jpg](../images/defter_full_pages/defter_p011.jpg)
+
+Defter işaretleri:
+
+- `W.204`: `EN/UVLO`, `ISS`, `CSS`, `SS/TRK` rampası, error amp referans geçişi ve soft-start davranışı.
+- `W.204` devamı: soft-start bitişinde `SS/TRK = FB + 0.115 V`, fault/standby durumunda `CSS` boşaltma ve tracking modu için dış referans notları.
+
+Primary owner entegrasyonu:
+
+- [02_startup_pin_programlama_ve_ortak_sabitler.md](../02_startup_pin_programlama_ve_ortak_sabitler.md) içinde `SS/TRK ve Soft-start`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Soft-start rampasının LTspice/PSpice karşılığı [09_simulasyon_gorseller_ve_acik_sorular.md](../09_simulasyon_gorseller_ve_acik_sorular.md) tarafında simülasyon planına bağlanabilir; bu pass'te simülasyon sonucu üretilmedi.
+- `PWL (0 V, 1 us, 1.8 V)` notu eski referans-rampası sezgisi olarak bırakıldı; LM5146 final soft-start dalgası gibi kullanılmayacak.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `EN/UVLO = 1.2 V` ile IC active geçişi
+- `ISS = 10 uA`
+- `SS/TRK` rampası: `0 V` ile `0.8 V` arası
+- `SS/TRK < 0.8 V` iken error amp referansı `SS/TRK` rampasını izler
+- `SS/TRK > 0.8 V` iken error amp referansı sabit `VREF = 0.8 V`
+- soft-start sonrası yaklaşık ilişki: `SS/TRK = FB + 0.115 V`
+- fault/standby durumunda `CSS` boşaltılır
+- tracking modu için `SS/TRK` pinine dışarıdan düşük empedanslı referans verilir
+
+Açık notlar:
+
+- Bu sayfalar `CSS = 47 nF` ve `tSS ≈ 3.76 ms` hesabının hemen öncesindeki davranış açıklamasıdır; sayısal `CSS/tSS` owner'ı aynı 02 dosyasındaki sonraki blokta kalır.
+- `PWL 1 us / 1.8 V` notu tarihsel simülasyon/tez izi olarak korunur, LM5146 `SS/TRK` final parametresi değildir.
