@@ -150,6 +150,18 @@ Bu foto, geri besleme bölücüsünün `RFB1/RFB2` kimliğini ve kompanzatör ko
 
 ### `W.202`: Setpoint Denklemi ve `VREF` Toleransı
 
+![Defter p009 / W.202: Output Voltage Setpoint and Accuracy FB tam sayfa bağlamı](images/defter_full_pages/defter_p009.jpg)
+
+[Tasarım İzi] `W.202` tam sayfası, `FB` bölücünün ilk kurulum mantığını ve referans toleransının çıkışa nasıl taşınacağını aynı yerde tutar. Sayfada görünen ana izler:
+
+- datasheet başlığı: `Output Voltage Setpoint and Accuracy FB`,
+- `FB` pininin `0.8 V` referansla karşılaştırıldığı kontrol sezgisi,
+- çıkıştan `FB` pinine giden direnç bölücü,
+- `Vout = VREF * (1 + RFB1/RFB2)` ilişkisi,
+- 14 V için ilk oran hedefi: `RFB1/RFB2 = 16.5`,
+- `R14/R10` veya `RFB1/RFB2` dirençlerinin `0402` ve `%0.1` tolerans bağlamında düşünülmesi,
+- `VREF = 792 mV ... 808 mV` aralığının yaklaşık `%1` çıkış toleransı etkisi.
+
 ![W.202'den seçilen el yazısı parça: FB bölücü denklemi ve 14 V için oran hesabı](images/defter_snippets_web/d09_w202_fb_divider_equation.jpg)
 
 `W.202`, LM5146 datasheet'indeki `Output Voltage Setpoint and Accuracy FB` başlığı üzerinden kurulan ilk feedback notudur:

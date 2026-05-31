@@ -143,9 +143,20 @@ Bu iterasyondaki karar:
 
 [Tasarım İzi] `W.170`, `8.22 V` minimum `Vin` sınırını defterde yeniden kurar ve tasarım niyetini açık yazar: harici `VCC` değil, dahili `VCC/LDO` yolu kullanılacak.
 
+![Defter p008 / W.170: input range, dahili LDO dropout ve 8.22 V minimum Vin notu](images/defter_full_pages/defter_p008.jpg)
+
+Tam sayfada korunan izler:
+
+- LM5146 içinde `LDO / low-dropout regulator` olduğu,
+- bu LDO'nun `7.5 V` `VCC` beslemesini sağlayıp MOSFET gate sürücülerini ve kontrol devresini beslediği,
+- dahili LDO'nun düzgün çalışması için giriş geriliminin en az `VCC + dropout` olması gerektiği,
+- dropout için `0.25 V typ` ve `0.72 V max` notu,
+- `Vin,min = 7.5 V + 0.72 V = 8.22 V` kontrolü,
+- "harici VCC kullanmayı kastetmiyorum; dahiliyi kullanıyoruz" niyeti.
+
 ![W.170'den seçilen el yazısı parça: minimum Vin = 8.22 V ve dahili VCC kullanımı niyeti](images/defter_snippets_web/d08_w170_internal_vcc_min_vin.jpg)
 
-Bu sayfa yeni bir final hesap değildir; `5.1.1-5.1.2` çizgisindeki LDO/dropout okumasını defterde teyit eden tasarım izidir.
+Bu sayfa yeni bir final hesap değildir; `5.1.1-5.1.2` çizgisindeki LDO/dropout okumasını defterde teyit eden tasarım izidir. Normal proje çalışma aralığı olan `24 V - 36 V` değişmez; `8.22 V` yalnız dahili VCC regülasyonunun alt sınır sanity kontrolüdür.
 
 ## `EN/UVLO` ve `VCC UVLO`
 

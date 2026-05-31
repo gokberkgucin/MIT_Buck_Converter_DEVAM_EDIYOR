@@ -160,3 +160,44 @@ Açık notlar:
 
 - `I_VCC` için hangi datasheet satırının kullanılacağı açık kontrol olarak kalır; defterde bu nokta soru işaretiyle bırakılmıştır.
 - Bu pass controller/IC termal kapanışını destekler; MOSFET `T_J` ve board-level termal kapanış hâlâ aynı owner içindeki ayrı bloklarla birlikte okunmalıdır.
+
+## Pass 005 - Sayfa 8-9
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p008.jpg](../images/defter_full_pages/defter_p008.jpg)
+- [defter_p009.jpg](../images/defter_full_pages/defter_p009.jpg)
+
+Defter işaretleri:
+
+- `W.170`: `8.3.1 Input Range Vin`; dahili `7.5 V` `VCC/LDO`, dropout ve `Vin,min = 8.22 V` kontrolü.
+- `W.202`: `8.3.2 Output Voltage Setpoint and Accuracy FB`; `FB` bölücü, `VREF = 0.8 V`, `RFB1/RFB2 = 16.5` ilk oranı ve `VREF` toleransı.
+
+Primary owner entegrasyonu:
+
+- [02_startup_pin_programlama_ve_ortak_sabitler.md](../02_startup_pin_programlama_ve_ortak_sabitler.md) içinde `Defter İzi: W.170 Dahili VCC Niyeti`.
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `W.202: Setpoint Denklemi ve VREF Toleransı`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `W.170` termal sonuç üretmez; dahili `VCC/LDO` kaybı ve sıcaklık kapanışı [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) tarafında kapanır.
+- `W.202` güncel feedback setini iptal etmez; eski `16.5 kOhm / 1.00 kOhm` oranının nasıl kurulduğunu gösterir. Güncel/satın alınmış çizgi [07](../07_kontrolcu_ve_kompanzasyon.md) içinde `26.4 kOhm / 1.6 kOhm` olarak ayrı tutulur.
+
+Okunan ana sayısal / kavramsal izler:
+
+- dahili `VCC = 7.5 V`
+- dropout: `0.25 V typ`, `0.72 V max`
+- `Vin,min = 7.5 V + 0.72 V = 8.22 V`
+- harici `VCC` değil, dahili `VCC/LDO` kullanma niyeti
+- `VREF = 0.8 V`
+- `Vout = VREF * (1 + RFB1/RFB2)`
+- `RFB1/RFB2 = 16.5`
+- `VREF = 792 mV ... 808 mV`
+- yaklaşık `%1` referans toleransı etkisi
+
+Açık notlar:
+
+- `8.22 V`, proje giriş aralığını `24 V - 36 V` altına çekmez; yalnız dahili LDO/dropout sanity sınırıdır.
+- `W.202` içindeki `16.5` oranı eski feedback iterasyonudur; güncel feedback divider ile sessizce birleştirilmeyecek.
