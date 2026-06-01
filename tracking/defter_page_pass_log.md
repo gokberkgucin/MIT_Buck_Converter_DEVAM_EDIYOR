@@ -582,3 +582,44 @@ Açık notlar:
 
 - p027 kaynak görseli DOCX içinde yan yönde geldi; okuma için geçici döndürülmüş kopyalar kullanıldı, repo commit'ine yalnız orijinal tam sayfa `defter_p027.jpg` alınacaktır.
 - Bu pass, W.58 ve W.93'ü W.34/W.58/W.93 ripple zincirinde tamamlar; `Cout` için yeni final değer uydurulmadı.
+
+## Pass 015 - Sayfa 28-29
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p028.jpg](../images/defter_full_pages/defter_p028.jpg)
+- [defter_p029.jpg](../images/defter_full_pages/defter_p029.jpg)
+
+Defter işaretleri:
+
+- `W.59`: yük azalmasında oluşabilecek çıkış gerilimi overshoot'unu sınırlamak için minimum `Cout` hesabı.
+- `W.98`: load transient sırasında regulator cevabı, kontrol loop gecikmesi, bobin `di/dt` sınırı ve çıkış kapasitörlerinin ilk akımı taşıması.
+
+Primary owner entegrasyonu:
+
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.37 ve W.59: Transient Tabanlı Minimum Cout`.
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.98: Defterdeki Slew-rate Örneği`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `W.59` transient `Cout` hesabı çıkış kapasitörü owner'ında kaldı; kontrol dosyasına yeni uzun anlatım taşınmadı.
+- `W.98` kontrol loop gecikmesine değinse de primary owner'ı `Cout` energy-buffer / bobin slew-rate zinciridir.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `W.59` formülü: `Cout >> L_F * Delta_Iout^2 / ((Vout + Delta_Vovershoot)^2 - Vout^2)`.
+- Load-step notu: `9 A -> 3.571 A`, `I_step = 9 A - 3.571 A = 5.429 A`.
+- `14 V ±20%` için `Delta_Vovershoot = 2.8 V`; sonuç `Cout >> 2.3 uF`.
+- Sayfa notu: transient limitin gevşek bulunduğu ve `±10%` denemenin açıldığı okunur.
+- `±10%` denemesinde `Delta_Vovershoot = 1.4 V`; sonuç `Cout >> 4.86 uF`.
+- `W.98` ana gerekçesi: ani yük değişiminde regulator hemen cevap veremez; bobin akımının yükselme oranı sınırlıdır.
+- `W.98` notu: feedback loop çıkış gerilimindeki değişimi algılar ve duty cycle'ı ayarlamaya başlar, ancak bobin akımı `dI_L/dt = V_L/L` ile sınırlıdır.
+- `W.98` örneği: `Vin = 5 V`, `Vout = 2 V`, `L = 1 uH`, `R_ESR = 10 mOhm`, `Delta_I = 6 A`, `t_loop = 2 us`, `(5 - 2) / 1 uH = 3 A/us`.
+- `W.98` üzerinde `fsw` ile `fc/crossover` ayrımı not edilir; örnek proje final değeri değildir.
+
+Açık notlar:
+
+- `W.98` içindeki `Vin = 5 V`, `Vout = 2 V`, `L = 1 uH` örneği güncel `24-36 V / 14 V` buck tasarımının final sayısı değildir; fiziksel tasarım izi olarak etiketlendi.
+- Bu pass yeni final komponent değeri üretmedi; W.59/W.98 sayfalarını mevcut output-cap / slew-rate owner zincirine bağladı.

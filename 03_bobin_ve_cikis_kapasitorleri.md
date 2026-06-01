@@ -591,6 +591,8 @@ I_step ≈ 5.429 A
 
 Sayfadaki yerine koyma `L_F = 6.8 uH`, `Delta_Iout = 5.429 A`, `Vout = 14 V` ve `Delta_Vovershoot = 14*0.2 = 2.8 V` izlerini kullanır; sonuç `Cout >> 2.32 uF` olarak okunur. Defterdeki "Denklem (9) ile hesaplanan yetiyor" notu, W.34'teki ripple tabanlı `~14.57 uF` alt sınırının bu transient alt sınırdan daha yüksek kalmasına bağlanır.
 
+![Defter p028 / W.59: yük azalmasında overshoot sınırı için Cout hesabı ve ±10% denemesi](images/defter_full_pages/defter_p028.jpg)
+
 ![W.59'dan seçilen el yazısı parça: yük azalmasında overshoot limiti için minimum Cout hesabı](images/defter_snippets_web/d28_w59_load_step_overshoot_cout.jpg)
 
 `W.59` daha açık formülle aynı konuyu tekrar kurar:
@@ -612,6 +614,8 @@ I_step ≈ 9 - 3.571 = 5.429 A
 |---|---:|---:|
 | `14 V ± 20%` | `2.8 V` | `Cout >> 2.3 uF` |
 | `14 V ± 10%` | `1.4 V` | `Cout >> 4.86 uF` |
+
+[Tasarım İzi] Tam sayfa notunda `±20%` transient limitin gevşek bulunduğu ve `±10%` denemenin bu yüzden açıldığı görülür. Bu satır final zarfı sessizce değiştirmez; iki zarfın neden birlikte korunduğunu açıklar.
 
 [Tasarım İzi] `W.58-W.59` birlikte okununca, bu iterasyonda çıkış kapasitesini baskın belirleyen tarafın ripple olduğu görülür. Bu, load-step'in kapandığı anlamına gelmez; gerçek transient cevap `Zout(fc)`, loop bandwidth, bobin `di/dt`, MLCC `ESR/ESL` ve simülasyon dalga şekliyle kapanır.
 
@@ -665,6 +669,8 @@ Bu iki foto proje-özel final veri değil; load-step ve slew-rate gereksinimleri
 
 ### `W.98`: Defterdeki Slew-rate Örneği
 
+![Defter p029 / W.98: load transient, kontrol loop gecikmesi, bobin di/dt sınırı ve Cout'un ilk akımı taşıması](images/defter_full_pages/defter_p029.jpg)
+
 ![W.98'den seçilen el yazısı parça: load transient sırasında dIL/dt ve çıkış kapasitörlerinin ilk anda akım sağlaması](images/defter_snippets_web/d29_w98_slew_rate_example.jpg)
 
 `W.98` proje-özel `24-36 V / 14 V` hesabı değil; fakat fizik nettir:
@@ -684,6 +690,8 @@ di_L/dt = V_L / L
 | `Delta_I` | `6 A` |
 | `t_loop` | `2 us` |
 | Örnek slew-rate | `(5 - 2) / 1 uH = 3 A/us` |
+
+[Tasarım İzi] Tam sayfada açık yazılan gerekçe şudur: ani yük değişiminde regulator ilk anda ekstra akımı sağlayamaz; feedback loop çıkış gerilimindeki değişimi algılayıp duty cycle'ı ayarlamaya başlasa bile bobin akımının yükselme hızı `dI_L/dt = V_L/L` ile sınırlıdır. Bu nedenle başlangıçtaki ekstra akım çıkış kapasitörlerinden sağlanır.
 
 [Tasarım İzi] Bu örnek güncel proje sayısı değildir; fakat `Cout` energy-buffer rolünü anlatan doğru fiziksel izdir.
 
