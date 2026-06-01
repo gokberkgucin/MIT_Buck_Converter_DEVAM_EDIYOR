@@ -765,12 +765,18 @@ Sayfa altındaki `Q ≈ 2.2999`, `1.584`, `0.1206` değerleri yük durumuna bağ
 
 ![W.63'ten seçilen el yazısı parça: Q factor aralığı ve harici örnek f0 notunun kısa özeti](images/defter_snippets_web/d34_w63_q_summary_note.jpg)
 
+![Defter p034 / W.63: Q aralığı özeti ve harici Cout/L/f0 karşılaştırma izi](images/defter_full_pages/defter_p034.jpg)
+
 `W.63` iki parçalı okunur:
 
 - proje için faydalı özet: buck akımı `0 A - 5 A` arasında değişirken `Q ≈ 2.2999 - 1.584`,
 - harici / karşılaştırma izi: `Cout = 180 uF`, `L = 9 uH`, derated notu ve `f0 ≈ 4 kHz`.
 
+[Tasarım İzi] Tam sayfada "P1'e bak" notuyla `0 A` ile `max 5 A` arasında `Q factor` değerinin yaklaşık `2.2999` ile `1.584` arasında kaldığı özetlenir. Sayfanın altındaki `Cout = 180 uF`, `L = 9 uH`, `f0 ≈ 4 kHz` satırı güncel `6.8 uH / 70 uF` kararını değiştirmez; önceki / harici karşılaştırma izi olarak korunur.
+
 ![W.64'ten seçilen el yazısı parça: harici plant-of-load örneğinde f0, fESR ve Q notları](images/defter_snippets_web/d35_w64_external_plant_example.jpg)
+
+![Defter p035 / W.64: harici POL örneği, f0, fESR, fs ve Q notları](images/defter_full_pages/defter_p035.jpg)
 
 `W.64` harici örnek olarak tutulur:
 
@@ -782,6 +788,8 @@ f_ESR ≈ 1 MHz
 fs = 1 MHz
 Q = 2.3
 ```
+
+[Eski İterasyon] Tam sayfada başlık `Another Example: Point-of-Load Regulator` olarak geçer. `f0 = 1/(2*pi*sqrt(1 uH*200 uF)) ≈ 11 kHz`, `f_ESR = 1/(2*pi*C*R_ESR) ≈ 1 MHz`, `fs = 1 MHz` ve `Q = 2.3` notları bu harici örneğe aittir; güncel plant frekansı veya final BOM değeri gibi okunmayacak.
 
 ![W.65'ten seçilen el yazısı parça: harici örnekte open-loop Zout eğrisinin kavramsal eskizi](images/defter_snippets_web/d36_w65_zout_sketch_example.jpg)
 

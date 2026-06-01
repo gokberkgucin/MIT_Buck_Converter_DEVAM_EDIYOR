@@ -712,3 +712,43 @@ Açık notlar:
 
 - p032 ve p033 kaynak görselleri DOCX içinde yan yönde geldi; okuma için geçici döndürülmüş kopyalar kullanıldı, repo commit'ine yalnız orijinal tam sayfa görseller alınacaktır.
 - Bu pass yeni final komponent değeri üretmedi; output filter / plant Q zincirindeki mevcut W.61-W.62 izlerini tam sayfa görsellerle tamamladı.
+
+## Pass 018 - Sayfa 34-35
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p034.jpg](../images/defter_full_pages/defter_p034.jpg)
+- [defter_p035.jpg](../images/defter_full_pages/defter_p035.jpg)
+
+Defter işaretleri:
+
+- `W.63`: `Q factor` aralığı özeti ve harici / karşılaştırma `Cout-L-f0` notu.
+- `W.64`: harici `Point-of-Load Regulator` örneği; `f0`, `f_ESR`, `fs` ve `Q` notları.
+
+Primary owner entegrasyonu:
+
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.60-W.66: Q, Gvd(s) ve Zout Tasarım İzleri`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `W.63-W.64` içindeki harici örnekler güncel kontrol plant değerleri olarak taşınmadı; output-filter tasarım izi olarak 03 dosyasında kaldı.
+- Kontrol dosyasında bu sayıların final `6.8 uH / 70 uF` plant'iyle karışmaması gerekir.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `W.63`: `P1'e bak` notu ile buck akımı `0 A` ile `max 5 A` arasında olduğunda `Q factor` yaklaşık `2.2999` ile `1.584` arasında okunur.
+- `W.63`: eski / harici Excel/Webench devresi için `f0 = 1/(2*pi*sqrt(C*L))` notu korunur.
+- `W.63`: harici karşılaştırma izi olarak `Cout = 180 uF`, `L = 9 uH`, `f0 ≈ 4 kHz` okunur.
+- `W.64`: başlık `Another Example: Point-of-Load Regulator`.
+- `W.64`: harici örnekte `L = 1 uH`, `C = 200 uF`.
+- `W.64`: `f0 = 1/(2*pi*sqrt(L*C)) ≈ 11 kHz`.
+- `W.64`: `ESR` sıfırı / zero notu; `f_ESR = 1/(2*pi*C*R_ESR) ≈ 1 MHz`.
+- `W.64`: `fs = 1 MHz`, `Q = 2.3`.
+- `W.64`: `Vref` girişinin çıkışın `V(s)` değerini ne kadar iyi takip ettiğini gösterir notu vardır.
+
+Açık notlar:
+
+- p035 kaynak görseli DOCX içinde yan yönde geldi; okuma için geçici döndürülmüş kopyalar kullanıldı, repo commit'ine yalnız orijinal tam sayfa `defter_p035.jpg` alınacaktır.
+- `W.64` içindeki `1 uH / 200 uF / 11 kHz / 1 MHz` örneği güncel final plant değeri değildir; eski/harici POL tasarım izi olarak etiketlendi.
