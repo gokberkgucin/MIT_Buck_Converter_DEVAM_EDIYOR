@@ -735,6 +735,8 @@ Q = Q_loss || Q_load
 
 ![W.61'den seçilen el yazısı parça: yük değiştikçe Qload ve toplam Q'nun nasıl değiştiğinin sayısal notu](images/defter_snippets_web/d32_w61_q_vs_load_cases.jpg)
 
+![Defter p032 / W.61: yük uçlarında Qload ve toplam Q hesapları](images/defter_full_pages/defter_p032.jpg)
+
 `W.61`, aynı `Q` fikrini yük uçlarında dener:
 
 | Durum | İz |
@@ -742,7 +744,11 @@ Q = Q_loss || Q_load
 | Çok hafif yük | `Q_load ≈ 25465`, `Q ≈ 2.299` |
 | Ağır yük örneği | `R = 9 mOhm`, `Q_load ≈ 0.127`, `Q ≈ 0.1206` |
 
+[Tasarım İzi] Tam sayfada `R = 1800 Ohm`, `I = 0.001 A`, `Q_load ≈ 25465` ve `Q = (2.3*25465)/(2.3+25465) ≈ 2.299` okunur. Orta örnekte `Q_load = 5.09`, `Q_loss = 2.3` ve `Q_total ≈ 1.584`; ağır yük örneğinde `200 A`, `R = 9 mOhm`, `Q_load ≈ 0.1272` ve `Q ≈ 0.1206` notu korunur. Bu sayılar Q sezgisinin yükle nasıl değiştiğini göstermek içindir; güncel final yük akımı gibi okunmayacak.
+
 ![W.62'den seçilen el yazısı parça: Gvd(s), Rdamp ve yük-bağımlı Q tablosu](images/defter_snippets_web/d33_w62_gvd_and_q_table.jpg)
+
+![Defter p033 / W.62: Rdamp, Gvd(s), omega0 yaklaşımı ve Q tablosu](images/defter_full_pages/defter_p033.jpg)
 
 `W.62`, `R_damp`, `omega_0`, `Q` ve `Gvd(s)` arasındaki bağı kurar:
 
@@ -754,6 +760,8 @@ omega_0 ≈ 1 / sqrt(L_F*Cout)
 ```
 
 Sayfa altındaki `Q ≈ 2.2999`, `1.584`, `0.1206` değerleri yük durumuna bağlı tasarım izidir.
+
+[Tasarım İzi] Tam sayfada `omega_0` için daha ayrıntılı ifade yazılır; ardından tüm sistemin tam halini bir hesapla açmanın bu notta gerekmediği belirtilip `omega_0 ≈ 1/sqrt(L_F*Cout)` yaklaşımı kullanılır. Aynı sayfadaki tablo `Q_loss = 2.3` için üç yük noktasını bir araya getirir: `R = 1800 Ohm`, `R = 0.36 Ohm` ve `R = 9 mOhm`.
 
 ![W.63'ten seçilen el yazısı parça: Q factor aralığı ve harici örnek f0 notunun kısa özeti](images/defter_snippets_web/d34_w63_q_summary_note.jpg)
 

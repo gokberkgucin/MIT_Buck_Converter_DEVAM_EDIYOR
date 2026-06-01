@@ -670,3 +670,45 @@ Açık notlar:
 - `W.116` üzerindeki `ESR` / `ESR_Ceq` okuması, 03 dosyasındaki mevcut `[Açık Kontrol - ESR farkı]` altında tutuldu; tek sayıya sessizce indirilmedi.
 - p031 kaynak görseli DOCX içinde yan yönde geldi; okuma için geçici döndürülmüş kopya kullanıldı, repo commit'ine yalnız orijinal tam sayfa `defter_p031.jpg` alınacaktır.
 - `W.60` içindeki `1 uH / 200 uF / 1.8 V / 5 A` örneği güncel final plant sayısı değildir; Q düşüncesinin eski/öğretici izi olarak korundu.
+
+## Pass 017 - Sayfa 32-33
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p032.jpg](../images/defter_full_pages/defter_p032.jpg)
+- [defter_p033.jpg](../images/defter_full_pages/defter_p033.jpg)
+
+Defter işaretleri:
+
+- `W.61`: farklı yük uçlarında `Q_load`, `Q_loss` ve toplam `Q` hesabı.
+- `W.62`: `R_damp`, `Gvd(s)`, `omega_0` yaklaşımı ve yük durumuna bağlı `Q` tablosu.
+
+Primary owner entegrasyonu:
+
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.60-W.66: Q, Gvd(s) ve Zout Tasarım İzleri`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `W.61-W.62` kontrol transfer fonksiyonuna değinir; fakat bu pass'te primary owner output filter / plant izi olarak 03 dosyasında kaldı.
+- Kontrol / kompanzasyon dosyası bu değerleri yeniden komponent owner'ı gibi anlatmamalı; plant girdisi olarak referans vermelidir.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Q_load = R / sqrt(L/C)` ilişkisi devam eder.
+- Hafif yük örneğinde `I = 0.001 A`, `Vout = 1.8 V`, `R = 1800 Ohm` ve `Q_load ≈ 25465`.
+- `Q = Q_loss || Q_load = (Q_loss*Q_load)/(Q_loss+Q_load)` olarak kullanılır.
+- `Q_loss = 2.3` ve `Q_load ≈ 25465` için toplam `Q ≈ 2.299`.
+- Not: toplam `Q`, paralel bağlama yaklaşımı nedeniyle en küçük bileşenden daha büyük olamaz.
+- Orta yük örneği: `Q_load = 5.09`, `Q_loss = 2.3`, `Q_total ≈ 1.584`.
+- Ağır yük örneği: `200 A`, `Vout = 1.8 V`, `R = 9 mOhm`, `Q_load ≈ 0.1272`, `Q ≈ 0.1206`.
+- `W.62` üzerinde `R_damp = D*RDS(on)_high-side + (1-D)*RDS(on)_low-side + R_DCR` ilişkisi okunur.
+- `Gvd(s) = Vg * (1 + s/w_ESR) / (1 + (1/Q)*(s/w0) + (s/w0)^2)` biçimi korunur.
+- `omega_0` için ayrıntılı ifade yazılır; fakat sayfada `omega_0 ≈ 1/sqrt(L_F*Cout)` yaklaşımının kullanılacağı belirtilir.
+- `W.62` tablosunda `Q_loss = 2.3` için `Q ≈ 2.2999`, `Q ≈ 1.584`, `Q ≈ 0.1206` yük durumları birlikte gösterilir.
+
+Açık notlar:
+
+- p032 ve p033 kaynak görselleri DOCX içinde yan yönde geldi; okuma için geçici döndürülmüş kopyalar kullanıldı, repo commit'ine yalnız orijinal tam sayfa görseller alınacaktır.
+- Bu pass yeni final komponent değeri üretmedi; output filter / plant Q zincirindeki mevcut W.61-W.62 izlerini tam sayfa görsellerle tamamladı.
