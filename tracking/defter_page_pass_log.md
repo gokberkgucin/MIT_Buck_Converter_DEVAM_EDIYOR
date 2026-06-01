@@ -375,3 +375,44 @@ Açık notlar:
 
 - Önceki kısa W.54 okumasında DCR alt sınırı `0.38 mOhm` gibi yazılmıştı; p016 tam sayfada bu satır `0.88 mOhm` olarak okunur. 03 dosyasında bu fark `[Açık Kontrol]` ile görünür bırakıldı.
 - p017 kaynak görseli DOCX içinde ters yönde geldi; okuma için geçici 180 derece döndürülmüş kopya kullanıldı, repo commit'ine yalnız orijinal tam sayfa `defter_p017.jpg` alındı.
+
+## Pass 010 - Sayfa 18-19
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p018.jpg](../images/defter_full_pages/defter_p018.jpg)
+- [defter_p019.jpg](../images/defter_full_pages/defter_p019.jpg)
+
+Defter işaretleri:
+
+- `W.56`: gerçek bobin seçimi, `I_L,peak`, saturation current, rated current, `DCR` ve bakır kaybı.
+- `W.42`: bobin akımı / kapasitör gerilimi fiziksel sezgisi, `V_L = L * di_L/dt`, `E = 1/2 * C * V^2`, ripple ve transient ayrımı.
+
+Primary owner entegrasyonu:
+
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.56: Gerçek Bobin, Isat, DCR ve Bakır Kaybı`.
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.42: Bobin ve Kapasitörün Fiziksel Rolü`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bobin `DCR` kaybının termal sonucu [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) tarafında kapanır.
+- `W.42` ripple/transient ayrımı, aynı 03 dosyasındaki `Zout(fsw)` ve `Zout(fc)` ayrımını destekler.
+
+Okunan ana sayısal / kavramsal izler:
+
+- bobin tepe akımı: `9 A + 1.9 A ≈ 10.9 A`
+- seçilen Würth `L1` bobin saturation current: `36.3 A`
+- rated current / RMS akım notu: `≈ 47 A`
+- `DCR = 0.88 mOhm`
+- `P_bakir = I^2 * R_DCR = 9^2 * 0.88 mOhm ≈ 0.071 W`
+- bobin ilişkisi: `V_L = L * di_L/dt`
+- kapasitör enerji ilişkisi: `E = 1/2 * C * V^2`
+- ripple: sürekli tekrar eden küçük dalgalanma
+- transient: ani ve büyük değişim
+
+Açık notlar:
+
+- p018 kaynak görseli DOCX içinde ters yönde geldi; okuma için geçici 180 derece döndürülmüş kopya kullanıldı, repo commit'ine yalnız orijinal tam sayfa `defter_p018.jpg` alındı.
+- `Rated Current ≈ 47 A` ve `Saturation Current = 36.3 A` aynı rol değildir; 03 dosyasında bu ayrım tekrar vurgulandı.

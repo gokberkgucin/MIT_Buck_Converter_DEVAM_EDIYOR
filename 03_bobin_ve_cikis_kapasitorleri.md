@@ -185,6 +185,8 @@ Bu sayfada `36 V` en kötü ripple tarafı olarak okunur; buck'ta giriş arttık
 
 [Güncel Omurga] `W.56`, defterdeki soyut kriteri gerçek bobin parçasına bağlar.
 
+![Defter p018 / W.56: gerçek bobin, tepe akım, saturation current, rated current, DCR ve bakır kaybı](images/defter_full_pages/defter_p018.jpg)
+
 ![W.56'dan seçilen el yazısı parça: seçilen gerçek bobin parçası, Isat, rated current ve DCR teyidi](images/defter_snippets_web/d18_w56_selected_inductor_check.jpg)
 
 Okunan ana değerler:
@@ -195,6 +197,16 @@ I_sat ≈ 36.3 A
 DCR ≈ 0.88 mOhm
 P_bakir ≈ I^2 * R_DCR ≈ 9^2 * 0.88 mOhm ≈ 0.071 W
 ```
+
+[Tasarım İzi] `W.56` defter yazısının metne alınmış okuması:
+
+- Bobin tepe akımı `9 A + 1.9 A ≈ 10.9 A` olarak yazılmıştır.
+- Seçilen Würth `L1` bobinin `Saturation Current = 36.3 A` değerine sahip olduğu not edilmiştir.
+- Bu değerin `10.9 A` akımın üstünde olduğu özellikle işaretlenir.
+- `RMS akım` notuyla `Rated Current ≈ 47 A` satırı korunur; bu değer `I_sat` ile aynı büyüklük gibi okunmayacak.
+- `DCR = 0.88 mOhm` olarak yazılmıştır.
+- Bakır kaybı `P = I^2 * R_DCR = 9^2 * 0.88 mOhm ≈ 0.071 W` olarak hesaplanır.
+- Sonuç, bobin DCR kaybının bu akım seviyesinde küçük olduğuna dair tasarım izidir; termal kapanış yine [06](06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) tarafına bağlıdır.
 
 `I_sat` ile rated / RMS current aynı şey gibi okunmayacak. `36.3 A` doyma marjı için rahat görünür; bobinin rated RMS akımı, sıcaklık artışı, DCR toleransı ve PCB üzerindeki termal yol [06](06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) tarafında kapanacak.
 
@@ -325,6 +337,8 @@ Bu değerler sessizce tek sayıya birleştirilmeyecek. Final BOM/derating ve AC/
 
 ### `W.42`: Bobin ve Kapasitörün Fiziksel Rolü
 
+![Defter p019 / W.42: bobin akımı, kapasitör gerilimi, enerji tamponu ve ripple/transient ayrımı](images/defter_full_pages/defter_p019.jpg)
+
 ![W.42'den seçilen el yazısı parça: bobin ve kapasitör rolleri, enerji ve ripple/transient ayrımı](images/defter_snippets_web/d19_w42_l_c_role_ripple_vs_transient.jpg)
 
 Bu sayfadaki iki temel ilişki:
@@ -333,6 +347,17 @@ Bu sayfadaki iki temel ilişki:
 V_L = L * di_L/dt
 E_C = 1/2 * C * V^2
 ```
+
+[Tasarım İzi] `W.42` defter yazısının metne alınmış okuması:
+
+- Bobin akımı sabitlemek ister; temel ilişki `V_L = L * di_L/dt` olarak yazılmıştır.
+- Bobin, kendi üzerinden geçen akımın aniden değiştirilmesini istemez.
+- Akımı aniden değiştirmek istersen çok büyük bir `V_L` gerekir.
+- Kapasitör gerilimi sabitlemek ister.
+- Kapasitör büyüdükçe daha çok enerji tutabilir; ani yük değişiminde gerilimi kolay kolay düşmez.
+- Kapasitör enerji ilişkisi `E = 1/2 * C * V^2` olarak yazılmıştır.
+- Sayfada ripple ve transient açıkça ayrılır: ripple, sürekli tekrar eden küçük dalgalanma; transient ise ani ve büyük değişimdir.
+- Bu ayrım, `Zout(fsw)` ripple hesabı ile `Zout(fc)` / load-step enerji tamponu hesabının neden ayrı tutulduğunu destekler.
 
 Bobin akımı bir anda değiştirmek istemez; kapasitör gerilimi bir anda değiştirmek istemez. Bu yüzden ripple ve transient iki ayrı kontrol kapısıdır:
 
