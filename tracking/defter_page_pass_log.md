@@ -543,3 +543,42 @@ Açık notlar:
 
 - `W.34` ve `W.37` güncel çıkış kapasitörü owner'ının parçasıdır; ayrı bir yeni owner açılmadı.
 - Bu pass yeni final komponent değeri üretmedi; mevcut `Cout` kararını destekleyen defter izlerini tam sayfa görsellerle görünür yaptı.
+
+## Pass 014 - Sayfa 26-27
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p026.jpg](../images/defter_full_pages/defter_p026.jpg)
+- [defter_p027.jpg](../images/defter_full_pages/defter_p027.jpg)
+
+Defter işaretleri:
+
+- `W.58`: çıkış kapasitörü ripple hesabının iki bobin/ripple senaryosu için karşılaştırılması.
+- `W.93`: kapasitif ripple bileşeni; `Delta_Vout(C)`, `Ipp`, `fsw`, `Cout` ve `Ipp = Delta_IL(p-p)` notu.
+
+Primary owner entegrasyonu:
+
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.34 ve W.58: Ripple Tabanlı Alt Sınır`.
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.93: Kapasitif Ripple Bileşeni`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `W.58` bobin owner'ından gelen `Delta_IL` senaryolarını kullanır; bobin seçimi yine aynı dosyanın bobin bölümünde kalır.
+- `W.93` yeni final komponent değeri üretmez; ripple hesabındaki kapasitif bileşeni teyit eden defter izidir.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `W.58` formülü W.34 ile aynı ripple alt sınırı ailesindedir.
+- `3.8 A` ripple için not: en yüksek / en kötü durumun seçilmesi daha düzgün görülmüştür.
+- `3.8 A` ve `2 mOhm` ile `Cout >> 14 uF`; bu satır yeni `6.8 uH` bobin senaryosuna bağlanır.
+- `2.7 A` ripple ve `2 mOhm` ile `Cout >> 10 uF`; bu satır `9.6 uH` alternatif senaryosuna bağlanır.
+- `W.93` notu: `Ipp -> Delta_IL(p-p) / inductor ripple current`.
+- `W.93` üzerinde `%42 -> 3.8 A` ve alternatif `2.7 A` ripple notları okunur.
+- Kapasitif ripple formu: `Delta_Vout(C) = Ipp / (8*fsw*Cout) + ...` şeklindedir; sayfada ek terim tam kapalı final hesap gibi kullanılmadı, tasarım izi olarak korundu.
+
+Açık notlar:
+
+- p027 kaynak görseli DOCX içinde yan yönde geldi; okuma için geçici döndürülmüş kopyalar kullanıldı, repo commit'ine yalnız orijinal tam sayfa `defter_p027.jpg` alınacaktır.
+- Bu pass, W.58 ve W.93'ü W.34/W.58/W.93 ripple zincirinde tamamlar; `Cout` için yeni final değer uydurulmadı.

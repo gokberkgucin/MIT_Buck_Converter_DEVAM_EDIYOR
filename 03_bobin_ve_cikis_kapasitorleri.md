@@ -525,6 +525,8 @@ Cout >= 14.57 uF
 
 [Tasarım İzi] Aynı sayfada `Delta_IL` azalırsa ve/veya `R_ESR` azalırsa gereken `Cout` değerinin azalacağı notu vardır. Üst nottaki `6.8 uH` bobin için yüksek ripple koşulu, bu hesabın kötümser / zorlayıcı taraf olduğunu gösterir.
 
+![Defter p026 / W.58: iki ripple senaryosu için Cout alt sınırı karşılaştırması](images/defter_full_pages/defter_p026.jpg)
+
 ![W.58'den seçilen el yazısı parça: iki farklı delta IL senaryosu için minimum Cout karşılaştırması](images/defter_snippets_web/d26_w58_compared_min_cout_cases.jpg)
 
 `W.58`, aynı ripple alt sınırını iki bobin ripple senaryosu için karşılaştırır:
@@ -542,6 +544,8 @@ Bu iki satır, W.54-W.56 bobin zinciriyle W.58 Cout hesabını doğrudan bağlar
 
 ### `W.93`: Kapasitif Ripple Bileşeni
 
+![Defter p027 / W.93: kapasitif ripple bileşeni, Ipp ve Delta_IL(p-p) notu](images/defter_full_pages/defter_p027.jpg)
+
 ![W.93'ten seçilen el yazısı parça: Delta Vout(C) ve Ipp/8fswCout ilişkisinin kısa teyidi](images/defter_snippets_web/d27_w93_capacitive_ripple_component.jpg)
 
 `W.93`, kapasitif bileşeni kısa yazar:
@@ -552,6 +556,8 @@ Ipp = Delta_IL(p-p)
 ```
 
 Bu sayfa yeni final `Cout` sonucu vermez; `Delta_IL = 3.8 A` ve `2.7 A` senaryolarının ripple hesabına nasıl girdiğini teyit eder.
+
+[Tasarım İzi] Tam sayfada `Ipp -> Delta_IL(p-p) / inductor ripple current` notu ve `%42 -> 3.8 A`, alternatif olarak `2.7 A` okunur. Böylece W.58'deki iki ripple senaryosu ile W.93'teki kapasitif ripple formülü aynı owner zincirinde bağlanır.
 
 ### Calculator ve WEBENCH Ripple Teyitleri
 
