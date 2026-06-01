@@ -416,3 +416,45 @@ Açık notlar:
 
 - p018 kaynak görseli DOCX içinde ters yönde geldi; okuma için geçici 180 derece döndürülmüş kopya kullanıldı, repo commit'ine yalnız orijinal tam sayfa `defter_p018.jpg` alındı.
 - `Rated Current ≈ 47 A` ve `Saturation Current = 36.3 A` aynı rol değildir; 03 dosyasında bu ayrım tekrar vurgulandı.
+
+## Pass 011 - Sayfa 20-21
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p020.jpg](../images/defter_full_pages/defter_p020.jpg)
+- [defter_p021.jpg](../images/defter_full_pages/defter_p021.jpg)
+
+Defter işaretleri:
+
+- `W.46`: kapasitör empedansının frekansa bağlı değişimi, kapasitif/indüktif davranış geçişi ve çıkış kapasitörü seçim kriterleri.
+- `W.57`: paralel MLCC, toplam `C`, etkin `ESR`, DC-bias altında etkin sığa, `Delta_IL = 3.8 A` ripple akımı ve yüksek frekansta MLCC davranışı.
+
+Primary owner entegrasyonu:
+
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.46, W.57, W.72: Gerçek Kapasitör Modeli`.
+
+Kısa referans / owner dışı bağlantı:
+
+- MLCC dc-bias / etkin kapasite izi output `Cout` owner'ında tutuldu; giriş MLCC derating owner'ı [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde ayrıca yaşar.
+- `W.57` içindeki `2 x 22 uF -> etkin 22 uF` satırı eski örnek olarak etiketlendi; güncel `5 x 22 uF` fiziksel çıkış bankı kararını değiştirmez.
+
+Okunan ana sayısal / kavramsal izler:
+
+- kapasitör empedansı frekansa bağlı değişir
+- frekans çok artarsa kapasitör parazitik etkilerle indüktör gibi davranabilir
+- kapasitör seçim kriterleri: power loss, boyut, devre gürültüsü
+- çıkış tarafı etkileri: regulation kalitesi, hız, kararlılık, bandwidth, load transient response
+- paralel sığaçlar toplam `C` değerini artırır ve etkin `ESR`'yi düşürür
+- farklı `C` değerleri farklı frekanslardaki gürültüyü bastırabilir
+- MLCC etkin sığası gerilim altında yaklaşık `%50` seviyesine düşebilir
+- eski örnek: `2 x 22 uF` katalogda `44 uF`, etkin kabul yaklaşık `22 uF`
+- bobinden gelen `Delta_IL = 3.8 A` ripple akımı çıkış sığacına akar
+- yüksek frekans notu: `400 kHz - 1 MHz`
+- kapasitif reaktans notu: `Z = 1 / (j*w*C)`
+
+Açık notlar:
+
+- `W.57` sayfasındaki `Vripple` satırı tamamlanmış sayısal denklem değil; ripple hesabının seramik çıkış sığacıyla ilişkileneceğini gösteren tasarım izidir.
+- `2 x 22 uF` örneği güncel çıkış bankı değildir; eski MLCC derating sezgisi olarak korunur.

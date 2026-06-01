@@ -366,13 +366,39 @@ Bobin akımı bir anda değiştirmek istemez; kapasitör gerilimi bir anda deği
 
 ### `W.46`, `W.57`, `W.72`: Gerçek Kapasitör Modeli
 
+![Defter p020 / W.46: kapasitör empedansı, frekans davranışı, seçim kriterleri ve çıkış kalitesi](images/defter_full_pages/defter_p020.jpg)
+
 ![W.46'dan seçilen el yazısı parça: kapasitör empedansı, frekans davranışı ve seçim kriterleri](images/defter_snippets_web/d20_w46_capacitor_frequency_tradeoffs.jpg)
 
 `W.46`, kapasitör seçiminin yalnız `uF` olmadığını hatırlatır: power loss, boyut, lifetime, regulation kalitesi, hız, kararlılık, bandwidth ve load transient response birlikte düşünülür.
 
+[Tasarım İzi] `W.46` defter yazısının metne alınmış okuması:
+
+- Kapasitörün empedansı frekansa bağlı olarak değişir.
+- Buck converter çalışırken kapasitörün enerji depolayabilmesi için belirli bir frekans aralığında kapasitör gibi davranması gerekir.
+- Frekans çok artarsa kapasitör, parazitik etkiler nedeniyle indüktör gibi davranmaya başlayabilir.
+- Sayfadaki V-şekilli çizim, düşük frekansta kapasitif bölgeyi, yüksek frekansta indüktif/parazitik bölgeyi ve aradaki minimum empedans bölgesini hatırlatır.
+- Çıkış kapasitörü seçilirken power loss, boyut ve devre gürültüsü birlikte düşünülür.
+- Çıkış tarafında regulation kalitesi, hız, kararlılık, bandwidth ve load transient response doğrudan etkilenir.
+
+![Defter p021 / W.57: paralel MLCC, ESR düşüşü, DC-bias derating, ripple ve yüksek frekans notları](images/defter_full_pages/defter_p021.jpg)
+
 ![W.57'den seçilen el yazısı parça: çıkış kapasitelerinde frekansa göre görev paylaşımı ve MLCC notları](images/defter_snippets_web/d21_w57_output_caps_frequency_notes.jpg)
 
 `W.57`, paralel MLCC bankının toplam `C` değerini artırdığını ve etkin `ESR`'yi düşürdüğünü söyler; aynı zamanda MLCC'lerin DC-bias altında katalogdaki `22 uF` değerinden ciddi şekilde düşebileceğini not eder. Defterdeki `2 x 22 uF` notu güncel `5 x 22 uF` fiziksel bankın tam karşılığı değil; MLCC derating sezgisinin eski örneğidir.
+
+[Tasarım İzi] `W.57` defter yazısının metne alınmış okuması:
+
+- Çıkış sığaçlarını paralel bağlamak toplam `C` değerini artırır ve etkin `ESR`'yi düşürür.
+- Farklı `C` değerlerindeki sığaçlar, farklı frekanslardaki gürültüyü bastırmak için kullanılabilir.
+- Uygulamada MLCC sığaçların gerilim altında etkin sığası yaklaşık `%50` seviyesine kadar düşebilir.
+- Bu nedenle sayfadaki eski örnekte `2 x 22 uF` paralel MLCC, katalogdaki `44 uF` gibi değil, etkin olarak yaklaşık `22 uF` gibi kabul edilir.
+- Bobinden gelen `Delta_IL = 3.8 A` ripple akımının büyük kısmının çıkış sığacından aktığı not edilir.
+- Sayfada `Vripple` hesabının seramik sığaçla ilişkilendirileceği yazılmış, fakat tam sayısal denklem bu sayfada tamamlanmamıştır.
+- Alt notta MLCC'lerin yüksek frekanslı sorunları bastırma rolü vardır.
+- `400 kHz - 1 MHz` frekanslarda parazitik indüktans etkisi artabilir; buna rağmen bu frekans aralığında MLCC'nin kapasitif reaktansı `Z = 1 / (j*w*C)` baskınsa iyi ripple bastırma yapar.
+
+[Eski İterasyon] `2 x 22 uF -> etkin 22 uF` satırı, güncel fiziksel çıkış bankı olan `5 x 22 uF` kararını değiştirmez. Buradaki rolü MLCC dc-bias/etkin kapasite sezgisini korumaktır.
 
 ![W.72'den seçilen el yazısı parça: kapasitörün ESR, ESL ve sızıntı dahil eşdeğer modeli](images/defter_snippets_web/d22_w72_capacitor_equivalent_model.jpg)
 
