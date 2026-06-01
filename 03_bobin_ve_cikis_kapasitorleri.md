@@ -513,6 +513,8 @@ C ≈ Delta_IL * T_switch / (8*Delta_V)
 
 ### `W.34` ve `W.58`: Ripple Tabanlı Alt Sınır
 
+![Defter p024 / W.34: ripple tabanlı minimum Cout hesabı, Delta_IL ve R_ESR duyarlılığı](images/defter_full_pages/defter_p024.jpg)
+
 ![W.34'ten seçilen el yazısı parça: ripple sınırına göre minimum Cout hesabı](images/defter_snippets_web/d24_w34_ripple_based_min_cout.jpg)
 
 `W.34`, `fsw = 332 kHz`, `Delta_IL ≈ 3.8 A`, `Delta_Vout = 0.1 V` ve `R_ESR = 5 mOhm` varsayımıyla yaklaşık:
@@ -520,6 +522,8 @@ C ≈ Delta_IL * T_switch / (8*Delta_V)
 ```text
 Cout >= 14.57 uF
 ```
+
+[Tasarım İzi] Aynı sayfada `Delta_IL` azalırsa ve/veya `R_ESR` azalırsa gereken `Cout` değerinin azalacağı notu vardır. Üst nottaki `6.8 uH` bobin için yüksek ripple koşulu, bu hesabın kötümser / zorlayıcı taraf olduğunu gösterir.
 
 ![W.58'den seçilen el yazısı parça: iki farklı delta IL senaryosu için minimum Cout karşılaştırması](images/defter_snippets_web/d26_w58_compared_min_cout_cases.jpg)
 
@@ -573,9 +577,13 @@ I_step ≈ 5.429 A
 
 ### `W.37` ve `W.59`: Transient Tabanlı Minimum `Cout`
 
+![Defter p025 / W.37: load-step overshoot sınırı için Cout enerji hesabı](images/defter_full_pages/defter_p025.jpg)
+
 ![W.37'den seçilen el yazısı parça: load-step overshoot sınırına göre minimum Cout hesabı](images/defter_snippets_web/d25_w37_transient_based_min_cout.jpg)
 
 `W.37`, load-step / overshoot sınırından minimum `Cout` kontrolünün erken defter izidir. Bu sonuç ripple tabanlı alt sınırdan daha gevşek görünür.
+
+Sayfadaki yerine koyma `L_F = 6.8 uH`, `Delta_Iout = 5.429 A`, `Vout = 14 V` ve `Delta_Vovershoot = 14*0.2 = 2.8 V` izlerini kullanır; sonuç `Cout >> 2.32 uF` olarak okunur. Defterdeki "Denklem (9) ile hesaplanan yetiyor" notu, W.34'teki ripple tabanlı `~14.57 uF` alt sınırının bu transient alt sınırdan daha yüksek kalmasına bağlanır.
 
 ![W.59'dan seçilen el yazısı parça: yük azalmasında overshoot limiti için minimum Cout hesabı](images/defter_snippets_web/d28_w59_load_step_overshoot_cout.jpg)
 

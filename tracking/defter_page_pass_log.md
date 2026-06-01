@@ -503,3 +503,43 @@ Açık notlar:
 
 - p022 kaynak görseli DOCX içinde yan yönde geldi; okuma için geçici döndürülmüş kopya kullanıldı, repo commit'ine yalnız orijinal tam sayfa `defter_p022.jpg` alındı.
 - `W.28` içindeki `2 x 22 uF` ve polymer capacitor fikri güncel final çıkış bankı değildir; eski iterasyon olarak etiketlendi.
+
+## Pass 013 - Sayfa 24-25
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p024.jpg](../images/defter_full_pages/defter_p024.jpg)
+- [defter_p025.jpg](../images/defter_full_pages/defter_p025.jpg)
+
+Defter işaretleri:
+
+- `W.34`: output capacitor ripple hesabı; `Delta_IL`, `R_ESR`, `fsw`, `Delta_Vout` ve minimum `Cout` ilişkisi.
+- `W.37`: output capacitor transient / overshoot hesabı; load-step enerjisiyle minimum `Cout` kontrolü.
+
+Primary owner entegrasyonu:
+
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.34 ve W.58: Ripple Tabanlı Alt Sınır`.
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.37 ve W.59: Transient Tabanlı Minimum Cout`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `W.34` bobin ripple'ından gelen `Delta_IL` değerini kullanır; bobin hesabının primary owner'ı aynı dosyadaki bobin bölümüdür.
+- `W.37` load-step / overshoot tarafını açar; gerçek transient kapanış yine simülasyon ve `Zout(fc)` kontrolüyle birlikte okunmalıdır.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `W.34` üst notu: `6.8 uH` bobin için ripple yüksek taraftadır.
+- `W.34` sezgisi: `Delta_IL` azalırsa gereken `Cout` azalır; `R_ESR` azalırsa gereken `Cout` azalır.
+- Ripple hesabında `R_ESR = 5 mOhm` örnek değeri, `Delta_IL = 3.8 A`, `fsw = 332 kHz` ve `Delta_Vout = 0.1 V` kullanılmıştır.
+- Ripple tabanlı sonuç: `Cout >> 14.57 uF`.
+- `W.37` denklemi: `Cout >> L_F * Delta_Iout^2 / ((Vout + Delta_Vovershoot)^2 - Vout^2)`.
+- Overshoot örneğinde `Delta_Vovershoot = 14 * 0.2 = 2.8 V`, `L_F = 6.8 uH`, `Delta_Iout = 5.429 A` ve `Vout = 14 V` izleri vardır.
+- Transient tabanlı sonuç: `Cout >> 2.32 uF`.
+- Sayfa notu: `Denklem (9) ile hesaplanan yetiyor`; bu, ripple tabanlı minimumun transient minimumdan daha yüksek kalması şeklinde owner dosyasında açıklandı.
+
+Açık notlar:
+
+- `W.34` ve `W.37` güncel çıkış kapasitörü owner'ının parçasıdır; ayrı bir yeni owner açılmadı.
+- Bu pass yeni final komponent değeri üretmedi; mevcut `Cout` kararını destekleyen defter izlerini tam sayfa görsellerle görünür yaptı.
