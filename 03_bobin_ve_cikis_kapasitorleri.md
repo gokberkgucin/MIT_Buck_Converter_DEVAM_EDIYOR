@@ -400,6 +400,8 @@ Bobin akımı bir anda değiştirmek istemez; kapasitör gerilimi bir anda deği
 
 [Eski İterasyon] `2 x 22 uF -> etkin 22 uF` satırı, güncel fiziksel çıkış bankı olan `5 x 22 uF` kararını değiştirmez. Buradaki rolü MLCC dc-bias/etkin kapasite sezgisini korumaktır.
 
+![Defter p022 / W.72: kapasitör eşdeğer modeli, Rleak, ESL, ESR ve yaklaşık Z ifadesi](images/defter_full_pages/defter_p022.jpg)
+
 ![W.72'den seçilen el yazısı parça: kapasitörün ESR, ESL ve sızıntı dahil eşdeğer modeli](images/defter_snippets_web/d22_w72_capacitor_equivalent_model.jpg)
 
 `W.72` gerçek kapasitör modelini açık eder:
@@ -408,6 +410,16 @@ Bobin akımı bir anda değiştirmek istemez; kapasitör gerilimi bir anda deği
 Z = (Z_C || Z_Rleak) + Z_ESL + Z_ESR
 Z ≈ Z_C + Z_ESL + Z_ESR
 ```
+
+[Tasarım İzi] `W.72` defter yazısının metne alınmış okuması:
+
+- Gerçek kapasitör, ideal `C` elemanı tek başına değildir.
+- Eşdeğer modelde `ESR` seri direnç, `ESL` seri endüktans ve `Rleak` sızıntı yolu çizilir.
+- Genel ifade `Z = (Z_C || Z_Rleak) + Z_ESL + Z_ESR` olarak yazılmıştır.
+- `Rleak` genelde çok büyük olduğu için DC ve düşük frekans dışında çoğu pratik AC/ripple hesabında ihmal edilebilir.
+- Bu nedenle yaklaşık ifade `Z ≈ Z_C + Z_ESL + Z_ESR` olarak korunur.
+- Alt satırda `Z ≈ 1/(sC) + sL + ESR` notu vardır; burada `sL`, ESL etkisini temsil eder.
+- `R0 = sqrt(L/C)` notu, LC karakteristik empedansı / rezonans sezgisine giden ayrı bir hatırlatmadır; burada final plant sayısı olarak kullanılmaz.
 
 Burada `C` ve DC-bias etkin enerji/ripple kapasitesini, `ESR` ripple ve ESR-zero tarafını, `ESL` ise spike/ringing ve layout tarafını etkiler.
 
@@ -478,9 +490,26 @@ C ≈ Delta_IL * T_switch / (8*Delta_V)
 
 ### `W.28`: Eski / Alternatif İlk İterasyon
 
+![Defter p023 / W.28: eski Cout iterasyonu, Cmin ripple hesabı, 2x22 uF MLCC ve ESR kontrolü](images/defter_full_pages/defter_p023.jpg)
+
 ![W.28'den seçilen el yazısı parça: alternatif ilk Cout iterasyonu ve ESR kontrolü](images/defter_snippets_web/d23_w28_esr_and_cout_check.jpg)
 
 [Eski İterasyon] `W.28`, `2 x 22 uF` ve `~2 mOhm ESR` benzeri eski / alternatif bir çıkış bankı varsayımıdır. Güncel `70 uF` etkin `Cout` kararının yerine geçmez; ripple alt-sınırı düşüncesinin erken izi olarak tutulur.
+
+[Tasarım İzi] `W.28` defter yazısının metne alınmış okuması:
+
+- Sayfada eski çıkış kapasitörü örneği olarak `Cout = 22 uF`, `ESR = 2 mOhm` notu vardır.
+- `2` adet paralel kullanılacağı, fakat hesabın tek eşdeğer blok gibi düşünüleceği yazılmıştır.
+- Minimum kapasite denklemi `Cmin = (1 - Dmin) / (8 * L * (Delta_Vo / Vo) * fs^2)` biçiminde kurulmuştur.
+- Yerine koymada `Dmin = 0.3888`, `L = 6.8 uH`, `Delta_Vo / Vo = 0.1 / 14` ve `fs ≈ 330 kHz` izleri görünür.
+- Defter sonucu yaklaşık `Cmin ≈ 14.43 uF` / `14 uF` olarak okunur.
+- MLCC capacitor için `2 x 22 uF` ve `2 mOhm ESR` notu tekrar yazılmıştır.
+- Birden fazla MLCC ve bir tane polymer capacitor kullanma fikri not edilmiştir; bu güncel output bulk kararı değildir, eski/alternatif düşünce izidir.
+- ESR kontrolü `ESR <= Delta_Vo / Delta_IL` şeklinde yazılır.
+- `Delta_Vo = 0.1 V`, `Delta_IL ≈ 3.8 A` için `ESR <= 0.1 / 3.8 A ≈ 26.3 mOhm` sonucu çıkar.
+- `2 mOhm <= 26.3 mOhm` satırı, eski örnekte ESR sınırının sağlandığını gösterir.
+
+[Eski İterasyon] `W.28` içindeki polymer capacitor fikri ve `2 x 22 uF` örneği, güncel output-bulk'suz / derated MLCC bankı kararının yerine geçmez. Buradaki rolü ripple tabanlı `Cmin` ve `ESR <= Delta_V/Delta_I` düşüncesinin erken defter izini korumaktır.
 
 ### `W.34` ve `W.58`: Ripple Tabanlı Alt Sınır
 

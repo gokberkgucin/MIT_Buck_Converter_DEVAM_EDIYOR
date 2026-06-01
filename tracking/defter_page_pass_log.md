@@ -458,3 +458,48 @@ Açık notlar:
 
 - `W.57` sayfasındaki `Vripple` satırı tamamlanmış sayısal denklem değil; ripple hesabının seramik çıkış sığacıyla ilişkileneceğini gösteren tasarım izidir.
 - `2 x 22 uF` örneği güncel çıkış bankı değildir; eski MLCC derating sezgisi olarak korunur.
+
+## Pass 012 - Sayfa 22-23
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p022.jpg](../images/defter_full_pages/defter_p022.jpg)
+- [defter_p023.jpg](../images/defter_full_pages/defter_p023.jpg)
+
+Defter işaretleri:
+
+- `W.72`: gerçek kapasitör eşdeğer modeli; ideal `C`, `Rleak`, `ESL`, `ESR` ve yaklaşık empedans ifadeleri.
+- `W.28`: eski / alternatif çıkış kapasitörü iterasyonu; `Cmin` ripple hesabı, `2 x 22 uF` MLCC örneği, `2 mOhm ESR` ve `ESR <= Delta_Vo / Delta_IL` kontrolü.
+
+Primary owner entegrasyonu:
+
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.46, W.57, W.72: Gerçek Kapasitör Modeli`.
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.28: Eski / Alternatif İlk İterasyon`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `W.72` içindeki `ESR/ESL` modeli output-cap owner'ında tutuldu; EMI/layout tarafında yalnız kısa referans kullanılmalı.
+- `W.28` içindeki polymer capacitor fikri güncel output bulk kararı değildir; output bulk kararı aynı 03 dosyasındaki bulk bölümünde korunur.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Z = (Z_C || Z_Rleak) + Z_ESL + Z_ESR`
+- `Rleak` genelde çok büyük olduğu için çoğu AC/ripple hesabında ihmal edilebilir
+- yaklaşık ifade: `Z ≈ Z_C + Z_ESL + Z_ESR`
+- alt not: `Z ≈ 1/(sC) + sL + ESR`
+- `R0 = sqrt(L/C)` karakteristik empedans / rezonans sezgisi
+- eski örnek: `Cout = 22 uF`, `ESR = 2 mOhm`
+- `2` adet paralel MLCC, eşdeğer tek blok gibi düşünülmüş
+- `Cmin = (1 - Dmin) / (8 * L * (Delta_Vo / Vo) * fs^2)`
+- `Dmin = 0.3888`, `L = 6.8 uH`, `Delta_Vo / Vo = 0.1 / 14`, `fs ≈ 330 kHz`
+- yaklaşık sonuç: `Cmin ≈ 14.43 uF` / `14 uF`
+- ESR sınırı: `ESR <= Delta_Vo / Delta_IL`
+- `ESR <= 0.1 / 3.8 A ≈ 26.3 mOhm`
+- eski örnek sonucu: `2 mOhm <= 26.3 mOhm`
+
+Açık notlar:
+
+- p022 kaynak görseli DOCX içinde yan yönde geldi; okuma için geçici döndürülmüş kopya kullanıldı, repo commit'ine yalnız orijinal tam sayfa `defter_p022.jpg` alındı.
+- `W.28` içindeki `2 x 22 uF` ve polymer capacitor fikri güncel final çıkış bankı değildir; eski iterasyon olarak etiketlendi.
