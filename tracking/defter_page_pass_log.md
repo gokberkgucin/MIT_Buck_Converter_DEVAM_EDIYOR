@@ -623,3 +623,50 @@ Açık notlar:
 
 - `W.98` içindeki `Vin = 5 V`, `Vout = 2 V`, `L = 1 uH` örneği güncel `24-36 V / 14 V` buck tasarımının final sayısı değildir; fiziksel tasarım izi olarak etiketlendi.
 - Bu pass yeni final komponent değeri üretmedi; W.59/W.98 sayfalarını mevcut output-cap / slew-rate owner zincirine bağladı.
+
+## Pass 016 - Sayfa 30-31
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p030.jpg](../images/defter_full_pages/defter_p030.jpg)
+- [defter_p031.jpg](../images/defter_full_pages/defter_p031.jpg)
+
+Defter işaretleri:
+
+- `W.116`: output filter parametre özeti; fiziksel çıkış MLCC bankı, `C28`, etkin `Cout`, bobin, `DCR`, `R_damp` ve `f0`.
+- `W.60`: çıkış kapasitörünün transient rolü, kontrol loop ile birlikte okuma, `Q_load`, `Q_loss` ve toplam `Q`.
+
+Primary owner entegrasyonu:
+
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.116: Output Filter Parametre Özeti`.
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.60-W.66: Q, Gvd(s) ve Zout Tasarım İzleri`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `W.116` içindeki `L`, `Cout`, `R_damp` ve `f0` kontrol dosyasına yeniden owner olarak taşınmadı; kontrol tarafı bu plant değerlerine referans vermelidir.
+- `W.60` kontrol loop'a değinse de primary owner'ı output filter / plant düşüncesidir.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `C18-C22` çıkış MLCC grubu için `22 uF` notu okunur.
+- `C28 = 0.1 uF`, `0603`, `X7R`, `100 V`, `%10` izleri okunur.
+- `14 uF @ 14 Vdc -> 70 uF` etkin kapasite izi okunur.
+- Bobin girdisi: `L_F = 6.8 uH`, `DCR = 0.88 mOhm`.
+- MOSFET notu: high-side/low-side aynı MOSFET olarak okunur; `R_DS(on)` izi `20.25 mOhm`.
+- `Dmaxη = 0.6481` ve `R_DAMP = D*RDS(on)_high + (1-D)*RDS(on)_low + R_DCR` ilişkisi okunur.
+- `R_DAMP = 0.02113 Ohm = 21.13 mOhm`.
+- `omega_0 ≈ 1/sqrt(L_F*Cout) = 45.83 krad/s`; `f0 ≈ 7.309 kHz`.
+- `W.60` notu: çıkış kapasitörü ani yük değişimlerinde devreye destek olur ve gerilimi sabit tutmak için enerji desteği sağlar.
+- `W.60` notu: control loop gerilim sapmasını algılar, MOSFET duty oranlarını ayarlar; birlikte çalışırlar, kapasitör ani tepki verir, kontrol daha yavaştır.
+- `Q_load = R / sqrt(L/C)`.
+- `Q_loss = sqrt(L/C) / (R_ESR + R_L)` şeklinde okunur.
+- Örnek: `L = 1 uH`, `C = 200 uF`, `R_ESR = 0.8 mOhm`, `R_L = 30 mOhm`, `Q_loss ≈ 2.3`.
+- Örnek yük: `Vout = 1.8 V`, `I = 5 A`, `R = 0.36 Ohm`, `Q_load ≈ 5.09`, toplam `Q ≈ 1.55`.
+
+Açık notlar:
+
+- `W.116` üzerindeki `ESR` / `ESR_Ceq` okuması, 03 dosyasındaki mevcut `[Açık Kontrol - ESR farkı]` altında tutuldu; tek sayıya sessizce indirilmedi.
+- p031 kaynak görseli DOCX içinde yan yönde geldi; okuma için geçici döndürülmüş kopya kullanıldı, repo commit'ine yalnız orijinal tam sayfa `defter_p031.jpg` alınacaktır.
+- `W.60` içindeki `1 uH / 200 uF / 1.8 V / 5 A` örneği güncel final plant sayısı değildir; Q düşüncesinin eski/öğretici izi olarak korundu.

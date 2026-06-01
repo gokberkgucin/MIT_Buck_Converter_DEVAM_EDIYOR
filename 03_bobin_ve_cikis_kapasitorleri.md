@@ -298,19 +298,23 @@ Bu görsel, çıkış LC filtresinin yükle birlikte okunduğu temel topolojiyi 
 
 [Güncel Omurga] `W.116`, fiziksel MLCC bankı, `C28 = 0.1 uF`, etkin `70 uF`, `ESR_Ceq`, `DCR`, `R_damp` ve `f0` notlarını aynı sayfada topladığı için bu owner'da kritik handoff sayfasıdır.
 
+![Defter p030 / W.116: output filter parametre özeti, Cout bankı, bobin, Rdamp ve f0](images/defter_full_pages/defter_p030.jpg)
+
 ![W.116'dan seçilen el yazısı parça: output filter sayıları, ESR, DCR, Rdamp ve f0 özeti](images/defter_snippets_web/d30_w116_output_filter_parameter_summary.jpg)
 
 Okunan ana notlar:
 
 | Büyüklük | Okuma |
 |---|---:|
-| Fiziksel parça izi | `C10-C22` grubu ve `22 uF` notları |
+| Fiziksel parça izi | `C18-C22` grubu ve `22 uF` notları |
 | Yardımcı küçük kapasitör | `C28 = 0.1 uF` |
 | Plant hesabındaki etkin ana kapasite | `Cout ≈ 70 uF` |
 | Output MLCC ESR izi | `ESR_Ceq ≈ 1.3 mOhm` |
 | Bobin girdisi | `L_F = 6.8 uH`, `DCR ≈ 0.88 mOhm` |
 | Plant damping izi | `R_damp ≈ 21.13 mOhm` |
 | Output filter doğal frekans izi | `f0 ≈ 7.309 kHz` |
+
+[Tasarım İzi] Tam sayfada `C18-C22` için `22 uF`, `C28` için `0.1 uF`, `X7R`, `100 V`, `%10` ve yaklaşık `14 uF @ 14 Vdc -> 70 uF` izi okunur. Aynı sayfada tek MLCC `ESR` izi ile paralel bank `ESR_Ceq` hesabı aynı ailede geçtiği için aşağıdaki ESR farkı açık kontrol olarak korunur.
 
 ![Seçilen 22 uF MLCC için switching frekansı civarında ESR grafiği](images/foto_selected/p49_output_mlcc_esr_graph.jpg)
 
@@ -713,6 +717,8 @@ di_L/dt = V_L / L
 
 [Tasarım İzi] `W.60-W.66` zinciri, çıkış kapasitörünü yalnız minimum `uF` hesabı değil, LC filtre `Q`, `Gvd(s)` ve `Zout` eğrisi üzerinden de düşündüğümü gösterir. Bu sayfaların bazı sayıları harici / eski örneklerdir; güncel BOM satırı gibi okunmayacak.
 
+![Defter p031 / W.60: çıkış kapasitörü transient rolü, Qload, Qloss ve toplam Q düşüncesi](images/defter_full_pages/defter_p031.jpg)
+
 ![W.60'tan seçilen el yazısı parça: Qload, Qloss ve toplam Q düşüncesinin ilk kurulumu](images/defter_snippets_web/d31_w60_q_load_q_loss_intro.jpg)
 
 `W.60` örnek zinciri:
@@ -724,6 +730,8 @@ Q = Q_loss || Q_load
 ```
 
 Örnek sayılar: `L = 1 uH`, `C = 200 uF`, kayıp dirençleri `0.8 mOhm + 30 mOhm`, `Q_loss ≈ 2.3`, `R = 0.36 Ohm`, `Q_load ≈ 5.09`, toplam `Q ≈ 1.55`.
+
+[Tasarım İzi] Tam sayfa, çıkış kapasitörünün ani yük değişimlerinde enerji desteği verdiğini ve kontrol loop'un MOSFET duty oranını gerilim sapmasına göre ayarladığını söyler. Aynı sayfadaki `L = 1 uH`, `C = 200 uF` ve `R = 0.36 Ohm` örneği güncel `6.8 uH / 70 uF` plant kararı değil; `Q_load`, `Q_loss` ve toplam `Q` mantığını kuran eski/öğretici izdir.
 
 ![W.61'den seçilen el yazısı parça: yük değiştikçe Qload ve toplam Q'nun nasıl değiştiğinin sayısal notu](images/defter_snippets_web/d32_w61_q_vs_load_cases.jpg)
 
