@@ -455,6 +455,8 @@ Bu satır steady-state anahtarlama ripple'ı içindir. Load-step undershoot/over
 
 ### `W.68-W.71`: İki Zout Penceresinin Defter Özeti
 
+![Defter p038 / W.68: düşük output impedance, Zout(fc) ve Zout(fsw) ayrımı](images/defter_full_pages/defter_p038.jpg)
+
 ![W.68'den seçilen el yazısı parça: load transientte Zout(fc) ve ripple tarafında Zout(fsw) ayrımı](images/defter_snippets_web/d38_w68_zout_fc_vs_fsw.jpg)
 
 `W.68` iki ilişkiyi aynı sayfada ayırır:
@@ -464,7 +466,11 @@ Vout,undershoot ≈ Delta_Iout * |Zout(fc)|
 V_ripple ≈ I_L(p-p) * |Zout(fsw)|
 ```
 
+[Tasarım İzi] Tam sayfada düşük çıkış empedansının yük değişimlerine hızlı ve küçük gerilim sapmasıyla cevap vermeyi sağladığı yazılır. `Ceramic or electrolytic output capacitors` notu, kapasite büyüdükçe / `ESR` düştükçe ve bobin seri direnci düşük kaldıkça output impedance'ın düşük tutulacağını söyler. Sayfadaki `fc` yükselirse o frekanstaki empedansın düşebileceği notu, kontrol bandwidth'i ve faz marjı kapanmadan final karar gibi okunmayacak.
+
 ![W.69'dan seçilen el yazısı parça: Zc(f)=1/(2pi f C) ile frekans sezgisinin kısa notu](images/defter_snippets_web/d39_w69_basic_zc_frequency_note.jpg)
+
+![Defter p039 / W.69: ideal kapasitör empedansı ve frekansa bağlı davranış sezgisi](images/defter_full_pages/defter_p039.jpg)
 
 `W.69`, ideal kapasitör sezgisini verir:
 
@@ -473,6 +479,8 @@ Z_C(f) = 1 / (2*pi*f*C)
 ```
 
 Bu tek başına `332 kHz` civarındaki gerçek `Zout(fsw)` değildir; `ESR`, `ESL`, DC-bias ve layout ile birlikte okunur.
+
+[Tasarım İzi] Tam sayfada ideal `Z_C(f)` davranışı "bode/graphical" sezgiyle özetlenir: düşük frekansta empedans yüksek olduğu için enerji depolama rolü öndedir, yüksek frekansta empedans düşerek süzme etkisi artar. Bu ifade gerçek MLCC'nin `ESR/ESL` sınırlarını iptal etmez; W.70-W.72 eşdeğer model notlarıyla birlikte okunur.
 
 ![W.70'ten seçilen el yazısı parça: Zc, ESR/ESL etkisi ve DeltaQ=CDeltaV üzerinden ripple denklemi](images/defter_snippets_web/d40_w70_zc_and_ripple_equations.jpg)
 

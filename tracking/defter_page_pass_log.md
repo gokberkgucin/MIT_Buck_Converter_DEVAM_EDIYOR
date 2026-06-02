@@ -793,3 +793,43 @@ Açık notlar:
 
 - `W.65-W.66` içindeki `1 uH / 200 uF` örneği güncel `6.8 uH / 70 uF` plant'i değildir; eski/harici POL `Zout` tasarım izi olarak etiketlendi.
 - Bu pass yeni final komponent değeri üretmedi; W.65-W.66 tam sayfa görselleri mevcut output-filter / plant owner zincirine bağlandı.
+
+## Pass 020 - Sayfa 38-39
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p038.jpg](../images/defter_full_pages/defter_p038.jpg)
+- [defter_p039.jpg](../images/defter_full_pages/defter_p039.jpg)
+
+Defter işaretleri:
+
+- `W.68`: düşük output impedance, `Zout(fc)` ile transient sapma ve `Zout(fsw)` ile ripple ayrımı.
+- `W.69`: ideal kapasitör empedansı `Z_C(f)` ve frekansa bağlı davranış sezgisi.
+
+Primary owner entegrasyonu:
+
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.68-W.71: İki Zout Penceresinin Defter Özeti`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `W.68` kontrol bandwidth / `fc` konusuna değinir; fakat bu pass'te primary owner output capacitor `Zout` ayrımıdır.
+- `fc` artırma fikri kontrol / kompanzasyon kapanışı olmadan final karar gibi okunmayacak.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `W.68`: düşük çıkış empedansı yük değişimlerine hızlı ve küçük gerilim sapmalarıyla cevap verilmesini sağlar.
+- `W.68`: sığa büyüdükçe, `ESR` düşük oldukça ve bobinin seri direnci düşük oldukça çıkış empedansı düşük tutulur.
+- `W.68`: `Ceramic or electrolytic output capacitors` notu okunur.
+- `W.68`: `Vout,over/undershoot ≈ Delta_Iout * Zout(fc)` ilişkisi korunur.
+- `W.68`: `V_ripple ≈ I_L(p-p) * Zout(fsw)` ilişkisi korunur.
+- `W.68`: `fc` artırılırsa o frekanstaki empedansın düşebileceği ve undershoot/overshoot'un azalabileceği notu vardır; bu, kontrol closure olmadan final kabul değildir.
+- `W.68`: ripple için `I_L(p-p)` değerini küçültme veya `Zout(fsw)` değerini düşürme sezgisi okunur.
+- `W.69`: `Z_C(f) = 1/(2*pi*f*C)` ideal kapasitör empedansı olarak yazılır.
+- `W.69`: düşük frekansta empedans yüksek, enerji depolama rolü önde; yüksek frekansta empedans düşük, süzme rolü artar notu okunur.
+
+Açık notlar:
+
+- `W.69` ideal kapasitör sezgisidir; gerçek `Zout(fsw)` için `ESR`, `ESL`, DC-bias ve layout etkileri W.70-W.72 ile birlikte okunmalıdır.
+- Bu pass yeni final komponent değeri üretmedi; W.68-W.69 tam sayfa görselleri mevcut `Zout(fc)` / `Zout(fsw)` owner zincirine bağlandı.
