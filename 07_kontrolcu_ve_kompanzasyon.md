@@ -517,6 +517,14 @@ fp2  = 166 kHz
 
 Bu görseller Type-III ağın `Rc1`, `Rc2`, `RFB1`, `RFB2`, `Cc1`, `Cc2`, `Cc3` isimleriyle nasıl okunacağını gösterir. `p24` genel analog kompanzatör sezgisi verir; `p57`, `p58` ve `p89` LM5146 tarafındaki gerçek sembollere bağlar.
 
+![Defter p042 / W.73: Type-III ağ çizimi, kontrol-to-output Bode sezgisi ve `ZF/Z1` empedans oranı](images/defter_full_pages/defter_p042.jpg)
+
+![Defter p043: `ZF/Z1` empedans oranının cebirsel açılım devamı](images/defter_full_pages/defter_p043.jpg)
+
+[Tasarım İzi] `p042-p043`, Type-III topolojisinin yalnız komponent listesi olmadığını, hata yükselteci çevresindeki iki empedans ağı üzerinden kurulduğunu gösterir. Defterde `ZF` yeşil geri besleme ağı, `Z1` mavi giriş/sense ağı olarak ayrılır ve kompanzatör kazancı yaklaşık `A(s) = Vc/V0 = -ZF/Z1` biçiminde okunur. `p042` üzerinde `Z1 = R1 || (R3 + 1/(sC2))` ve `ZF = 1/(sC3) || (R2 + 1/(sC1))` yazımı görünür; `p043` bu paralel empedansların cebirsel açılımını sürdürür. Bu iki sayfa final komponent seti üretmez, mevcut Type-III sembol haritasının defterdeki ham türetim izidir.
+
+[Açık Kontrol] `p042` üzerinde üst kol kondansatörü `C3 = 390 pF` gibi, mavi ağdaki `C2` de `560 pF` / `5600 pF` ayrımını kesinleştirmeye muhtaç şekilde okunur. Aşağıdaki `W.142-W.143` eski aday satırlarında yer alan `C3 ≈ 290 pF` ve `C2 ≈ 5600 pF` değerleriyle sessizce birleştirilmedi; fiziksel `CC1/CC2/CC3` eşlemesi calculator ve şema üzerinden ayrıca kapatılacak.
+
 ### Kompanzatör ve Hata Yükselteci Modeli
 
 Kompanzatör transfer fonksiyonu:

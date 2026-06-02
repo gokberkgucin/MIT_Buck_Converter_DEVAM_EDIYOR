@@ -874,3 +874,42 @@ Açık notlar:
 
 - p041 kaynak görseli DOCX içinde yan yönde geldi; metin doğrudan okunabildiği için geçici döndürülmüş kopya kullanılmadı.
 - Bu pass yeni final komponent değeri üretmedi; W.70-W.71 tam sayfa görselleri mevcut `Zout` owner zincirini tamamladı.
+
+## Pass 022 - Sayfa 42-43
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p042.jpg](../images/defter_full_pages/defter_p042.jpg)
+- [defter_p043.jpg](../images/defter_full_pages/defter_p043.jpg)
+
+Defter işaretleri:
+
+- `p042`: üst işaret `W.73` gibi okunuyor; Type-III ağ çizimi, `control-to-output` Bode sezgisi, yeşil `ZF` ve mavi `Z1` empedans blokları.
+- `p043`: `ZF/Z1` empedans oranının cebirsel açılım devamı; üst işaret net okunmadığı için yeni `W` numarası zorlanmadı.
+
+Primary owner entegrasyonu:
+
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `Type-III Kompanzatör Topolojisi`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass kontrol/kompanzasyon owner'ına aittir; güç katı veya çıkış kapasitörü hesabı gibi yeniden sahiplenilmedi.
+- `control-to-output` Bode çizimi plant'e değinir; plant sayıları için primary owner [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) olarak kalır.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `p042`: yeşil `ZF` ağında `C3`, `R2`, `C1` elemanları görünür.
+- `p042`: mavi `Z1` ağında `R3`, `C2`, `R1` elemanları görünür.
+- `p042`: `A(s) = Vc/V0 = -ZF/Z1` gibi okunan oran yazılır.
+- `p042`: `Z1 = R1 || (R3 + 1/(sC2))`.
+- `p042`: `ZF = 1/(sC3) || (R2 + 1/(sC1))`.
+- `p043`: `1/(sC3)`, `(sR2C1 + 1)/(sC1)` ve `(sR3C2 + 1)/(sC2)` biçimindeki paralel empedans açılımları devam eder.
+- `p042`: Bode çiziminde `Gdc`, `Q-factor`, `-40 dB/dec`, `ESR zero` ve `-20 dB/dec` sezgisi görünür.
+
+Açık notlar:
+
+- `p042` üzerinde `C3 = 390 pF` gibi okunuyor; mevcut eski aday okumasındaki `C3 ≈ 290 pF` ile sessizce birleştirilmedi.
+- `p042` üzerinde mavi ağdaki `C2` değeri `560 pF` / `5600 pF` ayrımını kesinleştirmeye muhtaçtır; mevcut `W.142-W.143` aday değerleri korunur.
+- Bu pass yeni final Type-III komponent seti üretmedi; yalnız topoloji ve empedans türetimi için tam sayfa defter izi eklendi.
