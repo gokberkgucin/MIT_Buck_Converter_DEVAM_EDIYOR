@@ -793,9 +793,15 @@ Q = 2.3
 
 ![W.65'ten seçilen el yazısı parça: harici örnekte open-loop Zout eğrisinin kavramsal eskizi](images/defter_snippets_web/d36_w65_zout_sketch_example.jpg)
 
+![Defter p036 / W.65: harici POL örneğinde açık çevrim Zout eskizi ve empedans bölgeleri](images/defter_full_pages/defter_p036.jpg)
+
 `W.65`, aynı harici örnekte `Zout` sezgisini çizer: `L = 1 uH`, `R_L ≈ 30 mOhm`, `C = 200 uF`, `R_ESR ≈ 0.8 mOhm`, `f0 ≈ 11 kHz`, `f_ESR ≈ 1 MHz` ve `~4.7 kHz` civarı bobin kolu notu.
 
+[Eski İterasyon] Tam sayfa, `Zout = Za || Zb` sezgisini grafikleştirir: düşük frekansta kapasitif kol, orta bölgede rezonans / tepe, yüksek frekansta ESR/ESL ve bobin kolu baskın hale gelir. Bu çizim güncel `6.8 uH / 70 uF` değerleriyle yeniden çizilmiş final empedans eğrisi değildir; `Zout` okuma mantığını koruyan harici örnektir.
+
 ![W.66'dan seçilen el yazısı parça: Zout = Z0 || Zb ve karakteristik frekansların daha formel notu](images/defter_snippets_web/d37_w66_zout_formalized_notes.jpg)
+
+![Defter p037 / W.66: fESR, f2, Za/Zb paralel birleşimi ve f0 yaklaşımı](images/defter_full_pages/defter_p037.jpg)
 
 `W.66`, `Zout` parça empedanslarından nasıl kuruluyor sorusunu daha formel yazar:
 
@@ -805,6 +811,8 @@ R_L = omega*L -> f2 = R_L / (2*pi*L) ≈ 4.7 kHz
 Zout = Z0 || Zb
 f0 ≈ 1 / (2*pi*sqrt(L_F*Cout)) ≈ 11.25 kHz
 ```
+
+[Eski İterasyon] Tam sayfada `f_ESR ≈ 1 MHz`, `f2 ≈ 4.7 kHz`, `Zout = Za || Zb` ve `f0 ≈ 11.278 kHz` izleri aynı harici POL örneğinin devamı olarak yazılmıştır. Sayfadaki "side lobe" ve `f_peak` notları rezonans tepesinin `Q`/damping ile ilişkisine işaret eder; güncel tasarım için final peak değeri olarak kullanılmayacak.
 
 [Eski İterasyon] `W.64-W.66` içindeki `1 uH / 200 uF` örneği güncel `6.8 uH / 70 uF` plant'i değildir. Burada korunmasının nedeni, `Zout`, `f0`, `f_ESR` ve `Q` düşüncesine giden tasarım izini kaybetmemektir.
 

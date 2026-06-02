@@ -752,3 +752,44 @@ Açık notlar:
 
 - p035 kaynak görseli DOCX içinde yan yönde geldi; okuma için geçici döndürülmüş kopyalar kullanıldı, repo commit'ine yalnız orijinal tam sayfa `defter_p035.jpg` alınacaktır.
 - `W.64` içindeki `1 uH / 200 uF / 11 kHz / 1 MHz` örneği güncel final plant değeri değildir; eski/harici POL tasarım izi olarak etiketlendi.
+
+## Pass 019 - Sayfa 36-37
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p036.jpg](../images/defter_full_pages/defter_p036.jpg)
+- [defter_p037.jpg](../images/defter_full_pages/defter_p037.jpg)
+
+Defter işaretleri:
+
+- `W.65`: harici POL örneğinde açık çevrim output impedance / `Zout` eskizi.
+- `W.66`: `f_ESR`, `f2`, `Za || Zb`, `f0` yaklaşımı ve rezonans tepe / side-lobe notları.
+
+Primary owner entegrasyonu:
+
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.60-W.66: Q, Gvd(s) ve Zout Tasarım İzleri`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `W.65-W.66` kontrol loop empedansı ve rezonans sezgisine değinir; fakat burada primary owner output filter / `Zout` tasarım izidir.
+- Güncel kontrol dosyası bu harici `1 uH / 200 uF` örneğini final plant gibi yeniden kullanmamalı.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `W.65`: output impedance / `Zout` grafiği çizilir.
+- Harici örnek değerleri: `L = 1 uH`, `R_L ≈ 30 mOhm`, `C = 200 uF`, `R_ESR ≈ 0.8 mOhm`.
+- `W.65`: `1/(omega*C)` kapasitif eğimi, bobin kolu ve ESR yatay bölgesi aynı grafikte sezgisel olarak gösterilir.
+- `W.65`: `f2 ≈ 4.7 kHz`, `f0 ≈ 11 kHz`, `f1 ≈ 1 MHz` bölgeleri okunur.
+- `W.65`: `Zout` için `Za || Zb` paralel birleşim sezgisi çizilir.
+- `W.66`: `f_ESR = 1/(2*pi*R_ESR*C) ≈ 1 MHz`.
+- `W.66`: `f2 = R_L/(2*pi*L) ≈ 4.7 kHz`.
+- `W.66`: `Zout = Za || Zb` ve paralel empedansın düşük olan kol tarafından baskılanması not edilir.
+- `W.66`: `f0 ≈ 1/(2*pi*sqrt(L_F*Cout)) ≈ 11.278 kHz` / `11.25 kHz` izi korunur.
+- `W.66`: `side lobe`, `f_peak` ve `Q`/damping ilişkisine işaret eden notlar vardır.
+
+Açık notlar:
+
+- `W.65-W.66` içindeki `1 uH / 200 uF` örneği güncel `6.8 uH / 70 uF` plant'i değildir; eski/harici POL `Zout` tasarım izi olarak etiketlendi.
+- Bu pass yeni final komponent değeri üretmedi; W.65-W.66 tam sayfa görselleri mevcut output-filter / plant owner zincirine bağlandı.
