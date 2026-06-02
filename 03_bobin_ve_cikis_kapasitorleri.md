@@ -484,6 +484,8 @@ Bu tek başına `332 kHz` civarındaki gerçek `Zout(fsw)` değildir; `ESR`, `ES
 
 ![W.70'ten seçilen el yazısı parça: Zc, ESR/ESL etkisi ve DeltaQ=CDeltaV üzerinden ripple denklemi](images/defter_snippets_web/d40_w70_zc_and_ripple_equations.jpg)
 
+![Defter p040 / W.70: kapasitör empedansı, ESR/ESL etkisi ve ripple denklemine geçiş](images/defter_full_pages/defter_p040.jpg)
+
 `W.70`, kapasitif ripple bileşenine geçişi gösterir:
 
 ```text
@@ -492,9 +494,15 @@ Delta_V ≈ Delta_IL * T_switch / (8*C)
 C ≈ Delta_IL * T_switch / (8*Delta_V)
 ```
 
+[Tasarım İzi] Tam sayfada kapasitör empedansı "AC akıma karşı gösterilen direnç" olarak tanımlanır ve ideal `Z_C(f) = 1/(2*pi*f*C)` davranışının `ESR` / `ESL` yüzünden bozulduğu not edilir. Sayfanın altındaki `Delta_Q = C*Delta_V` zinciri, ripple hesabının neden `Delta_IL`, `T_switch` ve `Cout` ile bağlandığını açıklar.
+
 ![W.71'den seçilen el yazısı parça: Zout(fc) ile transient, Zout(fsw) ile ripple ayrımının kısa özeti](images/defter_snippets_web/d41_w71_zout_summary_note.jpg)
 
+![Defter p041 / W.71: fc ve fsw pencerelerinde Zout kullanımının kısa özeti](images/defter_full_pages/defter_p041.jpg)
+
 `W.71`, bu ayrımı kısa özetler: `fc` civarı `undershoot/overshoot`, `fsw` civarı `V_ripple`.
+
+[Tasarım İzi] Tam sayfada `fc` frekansında çıkış empedansının düşük olmasının önemi, `Vout,undershoot ≈ Delta_Iout * Zout(fc)` ilişkisiyle tekrar yazılır. Aynı sayfada ripple tarafı `V_ripple = I_L(p-p) * Zout(fsw)` olarak ayrılır; ayrıca gerçek kapasitör davranışı için derating curve ve mümkünse LCR metre / gerçek devre ölçümü notu korunur.
 
 ## Steady-state Ripple ve Minimum `Cout`
 

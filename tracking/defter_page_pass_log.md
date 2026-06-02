@@ -833,3 +833,44 @@ Açık notlar:
 
 - `W.69` ideal kapasitör sezgisidir; gerçek `Zout(fsw)` için `ESR`, `ESL`, DC-bias ve layout etkileri W.70-W.72 ile birlikte okunmalıdır.
 - Bu pass yeni final komponent değeri üretmedi; W.68-W.69 tam sayfa görselleri mevcut `Zout(fc)` / `Zout(fsw)` owner zincirine bağlandı.
+
+## Pass 021 - Sayfa 40-41
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p040.jpg](../images/defter_full_pages/defter_p040.jpg)
+- [defter_p041.jpg](../images/defter_full_pages/defter_p041.jpg)
+
+Defter işaretleri:
+
+- `W.70`: kapasitör empedansı, `ESR/ESL` yüzünden ideal davranışın bozulması ve `Delta_Q = C*Delta_V` üzerinden ripple denklemine geçiş.
+- `W.71`: `fc` ve `fsw` pencerelerinde `Zout` kullanımının kısa özeti.
+
+Primary owner entegrasyonu:
+
+- [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `W.68-W.71: İki Zout Penceresinin Defter Özeti`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `W.71` kontrol crossover bölgesine değinir; ancak bu pass'te primary owner çıkış kapasitörü `Zout(fc)` / `Zout(fsw)` ayrımıdır.
+- Gerçek kapasitör davranışı için `ESR/ESL`, derating ve ölçüm notları output capacitor owner'ında kaldı; EMI/layout tarafına uzun tekrar taşınmadı.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `W.70`: kapasitörün frekansa bağlı empedansı yazılır.
+- `W.70`: empedans, kapasitörün AC akıma karşı gösterdiği direnç olarak not edilir.
+- `W.70`: `Z_C(f) = 1/(2*pi*f*C)` ideal ilişkisidir.
+- `W.70`: sığanın `ESR` ve `ESL` nedeniyle idealliğinin bozulacağı vurgulanır.
+- `W.70`: `Delta_Q = C*Delta_V`.
+- `W.70`: `Delta_V = Delta_IL*T_switch/(8*C)` ve `C = Delta_IL*T_switch/(8*Delta_V)` zinciri korunur.
+- `W.71`: `fc` frekansında çıkış empedansının düşük olması istenir.
+- `W.71`: `Vout,undershoot ≈ Delta_Iout * Zout(fc)`.
+- `W.71`: ripple tarafı `V_ripple = I_L(p-p) * Zout(fsw)` olarak ayrılır.
+- `W.71`: derating curve'e bakma ve gerçek değer için LCR metre / devre ölçümü notu okunur.
+
+Açık notlar:
+
+- p041 kaynak görseli DOCX içinde yan yönde geldi; metin doğrudan okunabildiği için geçici döndürülmüş kopya kullanılmadı.
+- Bu pass yeni final komponent değeri üretmedi; W.70-W.71 tam sayfa görselleri mevcut `Zout` owner zincirini tamamladı.
