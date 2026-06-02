@@ -149,6 +149,8 @@ I_IN,min = 125 W / (0.9 * 36 V) ≈ 3.86 A
 
 ![W.47'den seçilen el yazısı parça: giriş akımının darbeli olması ve DeltaVin ripple sezgisi](images/defter_snippets_web/d44_w47_input_cap_pulsating_current_note.jpg)
 
+![Defter p044 / W.47: darbeli giriş akımı, `Delta Vin p-p` ve giriş sığası hesap sezgisi](images/defter_full_pages/defter_p044.jpg)
+
 `W.47` tarafındaki ilk kapasitif ripple ilişkisi:
 
 ```text
@@ -156,6 +158,8 @@ Delta_Vripple ≈ Iout * D * (1-D) / (fsw * CIN)
 ```
 
 Bu ilişki yalnız kapasitif ilk alt sınırı verir. `ESR/ESL`, kaynak / LISN empedansı, layout parazitleri ve input filter etkisi bu tek satırla kapanmaz.
+
+[Tasarım İzi] Tam sayfada buck converter'ın girişten herhangi bir anda düzgün/sürekli değil, anahtarlama periyotlarına bağlı darbeli akım çektiği çizilir. `tON/tOFF` bölgeleriyle girişteki `Delta Vin p-p` sapması yan yana gösterilir; "girişe koyacağımız capacitors bu ripple'ı küçülteceği" notu ve güç kaynağının ideal olmadığı vurgusu korunur. Sayfadaki `100 mV` örneği bu dosyadaki güncel `0.24 Vpp` hedefinin yerine geçmez; ripple hedefi sıkılaştırılırsa `Cin` ihtiyacının büyüyeceğini gösteren tasarım izidir.
 
 ![W.48'den seçilen el yazısı parça: bulk, MLCC ve LISN üzerine test soruları ve notlar](images/defter_snippets_web/d46_w48_input_cap_test_questions.jpg)
 
@@ -168,7 +172,11 @@ Bu ilişki yalnız kapasitif ilk alt sınırı verir. `ESR/ESL`, kaynak / LISN e
 
 ![W.52'den seçilen el yazısı parça: CIN ve COUT akım rollerini gösteren işaretli akım döngüleri](images/defter_snippets_web/d45_w52_input_output_current_loops.jpg)
 
+![Defter p045 / W.52: buck devresinde `ICIN`, `ICO`, `IIN`, `IDD` ve `tON/tOFF` akım yolları](images/defter_full_pages/defter_p045.jpg)
+
 `W.52`, `Q1 ON` / `Q1 OFF` akım yollarını gösterir. `I_CIN`, kaynağın anlık sağlayamadığı hızlı akım bileşenini taşır. Bu aynı zamanda layout kuralıdır: ana giriş MLCC bankı high-side drain / low-side source hot-loop'una yakın durmalıdır.
+
+[Tasarım İzi] Tam sayfada `IIN`, `IDD`, `I_CIN`, `I_CO`, `CIN`, `CO`, `Q1`, diyot ve bobin aynı akım çizimi üzerinde görülür. `I_CIN: Input Capacitor Ripple Current` ve `I_CO: Output Capacitor Ripple Current` ayrımı özellikle korunur: giriş kapasitörü ripple akımı bu dosyanın primary owner'ıdır; `I_CO` ve çıkış sığacı ripple tarafı [03](03_bobin_ve_cikis_kapasitorleri.md) dosyasındaki çıkış kapasitörü owner'ına bağlı kısa karşılaştırmadır.
 
 ### `W.49`, `W.50`, `W.94`: Kavramsal ve Kaynak İzleri
 

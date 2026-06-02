@@ -913,3 +913,45 @@ Açık notlar:
 - `p042` üzerinde `C3 = 390 pF` gibi okunuyor; mevcut eski aday okumasındaki `C3 ≈ 290 pF` ile sessizce birleştirilmedi.
 - `p042` üzerinde mavi ağdaki `C2` değeri `560 pF` / `5600 pF` ayrımını kesinleştirmeye muhtaçtır; mevcut `W.142-W.143` aday değerleri korunur.
 - Bu pass yeni final Type-III komponent seti üretmedi; yalnız topoloji ve empedans türetimi için tam sayfa defter izi eklendi.
+
+## Pass 023 - Sayfa 44-45
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p044.jpg](../images/defter_full_pages/defter_p044.jpg)
+- [defter_p045.jpg](../images/defter_full_pages/defter_p045.jpg)
+
+Defter işaretleri:
+
+- `W.47`: giriş gerilimi ripple çizimi, `Delta Vin p-p`, `tON/tOFF` anahtarlama aralıkları ve giriş sığası hesap sezgisi.
+- `W.52`: buck devresi üzerinde `IIN`, `IDD`, `I_CIN`, `I_CO`, `CIN`, `CO`, `Q1`, diyot, bobin ve yük akım yolları.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `W.47, W.48, W.52: Darbeli Giriş Akımı`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `W.52` üzerinde `I_CO: Output Capacitor Ripple Current` da görünür; çıkış kapasitörü ripple hesabının primary owner'ı [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) olarak kalır.
+- `W.47` içindeki `tON/tOFF` çizimi global duty/timing hesabı değildir; [02_startup_pin_programlama_ve_ortak_sabitler.md](../02_startup_pin_programlama_ve_ortak_sabitler.md) dosyasındaki duty/timing owner'ına yalnız referans niteliğindedir.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `W.47`: buck converter girişten sürekli değil, anahtarlamaya bağlı darbeli akım çeker.
+- `W.47`: girişte `Delta Vin p-p` ripple çizimi vardır.
+- `W.47`: `tON` ve `tOFF` aralıkları giriş akımı darbeleriyle birlikte çizilir.
+- `W.47`: "girişe koyacağımız capacitors bu ripple'ı küçülteceği" notu okunur.
+- `W.47`: güç kaynağının mükemmel olmadığı ve çıkış empedansının devreye etki ettiği notu okunur.
+- `W.47`: giriş sığasının hesaplanmasında kullanılan yönteme geçiş notu vardır.
+- `W.47`: `100 mV` örnek hedef gibi görünür; güncel `0.24 Vpp` hedefiyle sessizce değiştirilmedi.
+- `p045 / W.52`: `I_CIN: Input Capacitor Ripple Current`.
+- `p045 / W.52`: `I_CO: Output Capacitor Ripple Current`.
+- `W.52`: `tON iken akan akım` ve `tOFF iken akan akım` yolları işaretlenir.
+
+Açık notlar:
+
+- `100 mV` satırı güncel giriş ripple hedefi yapılmadı; daha sıkı ripple örneği / tasarım izi olarak korundu.
+- `I_CO` etiketi output-cap owner'ına referans verir; bu pass'te çıkış kapasitörü hesabı yeniden anlatılmadı.
+- Bu pass yeni final `Cin` değeri üretmedi; W.47/W.52 tam sayfa görselleri mevcut darbeli giriş akımı ve `ICIN` ripple owner zincirini tamamladı.
