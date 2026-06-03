@@ -1137,3 +1137,46 @@ Açık notlar:
 - Bu pass yeni final `Cin`, yeni BOM adedi veya yeni EMI filtre değeri üretmedi.
 - `10-47 uF` aralığı güncel final MLCC bankı gibi okunmadı; gerçek BOM ve dc-bias ayrımı 04 dosyasındaki ana MLCC/bulk bölümlerinde korunur.
 - Layout notu high-confidence kavramsal kuraldır; fiziksel EVM rework uygulanmadığı için ölçümle doğrulanmış sonuç değildir.
+
+## Pass 028 - Sayfa 54-55
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p054.jpg](../images/defter_full_pages/defter_p054.jpg)
+- [defter_p055.jpg](../images/defter_full_pages/defter_p055.jpg)
+
+Defter işaretleri:
+
+- `W.32`: ripple sınırına göre minimum `Cin` değeri; `Cin >= D*(1-D)*Iout/(fsw*(Delta_VIN - R_ESR*Iout))` ailesi.
+- `W.32`: "belirlediğin maksimum ripple gerilimine göre gereken minimum `Cin`" ve bunun tasarımda başlangıç noktası olarak kullanılması.
+- `W.32`: yapılacaklar akışı; `Delta_VIN` ripple hedefini belirle, minimum `Cin` hesapla, uygun kapasitörü seç / paralel bağla, seçilen sığacın `I_RMS` değeri yeterli mi kontrol et, gerçek ripple'ı yeniden hesapla.
+- `W.32`: hesaplanan gerçek `Delta_VIN` hedefin üzerinde kalırsa `Cin` artırma veya `R_ESR` düşürme ihtiyacı.
+- `W.33`: `allowed input current ripple (p-p): 50 mA`, `25 mA peak` spec notu.
+- `W.33`: `Delta_VIN = I_ripple * Z_IN`, `Z_IN ≈ 1/(2*pi*fsw*Cin)` basit ilişkisi.
+- `W.33`: `50 mA`, `fsw = 332 kHz`, `Delta_VIN = 0.05 V` ile yaklaşık `Cin ≈ 0.47 uF` saf kapasitif egzersizi.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `MLCC Minimum Cin Hesabı`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `50 mA` input-current ripple maddesi [01_tasarim_girdileri_ve_kaynaklar.md](../01_tasarim_girdileri_ve_kaynaklar.md) içindeki global G94/spec snapshot'a bağlıdır.
+- `50 mA` hedefi ve `Z_IN` yorumu [08_emi_giris_filtresi_ve_yerlesim.md](../08_emi_giris_filtresi_ve_yerlesim.md) içindeki EMI / input-filter owner'ına kısa referans olarak bırakıldı.
+- `D`, `fsw` ve shared timing değerleri [02_startup_pin_programlama_ve_ortak_sabitler.md](../02_startup_pin_programlama_ve_ortak_sabitler.md) owner'ına bağlı girdi olarak okundu.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `W.32`: `Delta_VIN` ripple hedefi önce belirlenir; minimum `Cin` buna göre çıkar.
+- `W.32`: seçilen kapasitör ve paralel sayıdan sonra gerçek ripple yeniden hesaplanmalıdır.
+- `W.32`: gerçek ripple hedefin altında olmalı; üstünde kalırsa `Cin` artırma veya `R_ESR` düşürme düşünülür.
+- `W.33`: yüksek kaliteli tasarımlarda kimi zaman `Delta_VIN ≈ %1 Vin` gibi hedeflerden söz edilir; bu, bu projedeki `50 mA` gibi düşük ripple hedefiyle doğrudan aynı karar değildir.
+- `W.33`: saf kapasitif `Z_IN` varsayımıyla `0.47 uF` sonucu bulunur; sayfa üzerinde `ESR` yok sayıldığı not edilir.
+
+Açık notlar:
+
+- `0.47 uF` sonucu final `Cin` ihtiyacı değildir; `28.4-31.1 uF` etkin kapasite bandıyla birleştirilmedi.
+- `50 mA` input-current ripple hedefi yalnız MLCC sığasıyla kapanmış kabul edilmedi; EMI/input-filter doğrulaması gerekir.
+- Bu pass yeni BOM kararı üretmedi; mevcut minimum `Cin` ve EMI handoff zincirini defter tam sayfa iziyle güçlendirdi.

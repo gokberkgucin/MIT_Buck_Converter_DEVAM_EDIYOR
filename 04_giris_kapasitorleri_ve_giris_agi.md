@@ -282,11 +282,24 @@ Bu koşul "hangi kapasitör kullanılacak" ve "kaç adet paralel kapasitör gere
 
 ![W.32'den seçilen el yazısı parça: daha sıkı Delta V_IN hedefi ile tekrar hesap ve yapılacaklar listesi](images/defter_snippets_web/d54_w32_stricter_dvin_exercise.jpg)
 
-[Eski İterasyon / Hassasiyet İzi] `W.32`, `Delta_VIN = 50 mV` gibi daha sıkı bir hedefle yapılmış egzersizdir. Güncel hedef `0.24 Vpp` olduğundan final gereksinim gibi okunmaz; ripple hedefi sıkılaşırsa kapasitans / filtre ihtiyacının büyüyeceğini gösterir.
+![Defter p054 / W.32: ripple sınırına göre minimum `Cin` akışı ve hedef tutturulamazsa yapılacaklar](images/defter_full_pages/defter_p054.jpg)
+
+[Eski İterasyon / Hassasiyet İzi] `W.32`, `Delta_VIN = 50 mV` gibi daha sıkı bir hedefle yapılmış egzersizdir. Güncel hedef `0.24 Vpp` olduğundan final gereksinim gibi okunmaz; ripple hedefi sıkılaşırsa kapasitans / filtre ihtiyacının büyüyeceğini gösterir. Tam sayfadaki okuma akışı şudur: önce `Delta_VIN` ripple hedefi belirlenir, sonra minimum `Cin` hesabı yapılır, uygun kapasitör/paralel sayı seçilir, seçilen sığacın RMS değeri kontrol edilir ve gerçek `Delta_VIN` yeniden hesaplanır. Hesaplanan gerçek `Delta_VIN` hedefin üstünde kalırsa denklem yeniden çözülür; `Cin` artırma veya `R_ESR` düşürme seçenekleri düşünülür.
 
 ![W.33'den seçilen el yazısı parça: 50 mA input ripple maddesinin Delta V_IN, Z_in ve Cin ile yorumlanması](images/defter_snippets_web/d55_w33_50ma_input_ripple_interpretation.jpg)
 
+![Defter p055 / W.33: 50 mA input-current ripple maddesinin `Zin`, `Cin` ve saf kapasitif varsayımla yorumlanması](images/defter_full_pages/defter_p055.jpg)
+
 `W.33`, `50 mA` input ripple maddesini kaynak tarafının gördüğü empedans ve input filter bağlamına açar. Bu hesap [08](08_emi_giris_filtresi_ve_yerlesim.md) tarafında EMI / input-filter owner'ına bağlanır.
+
+[Tasarım İzi / Açık Kontrol] Tam sayfada `allowed input current ripple (p-p): 50 mA` satırı MIT/G94 spec bağlantısı gibi okunur. En basit ilişki olarak:
+
+```text
+Delta_VIN = I_ripple * Z_IN
+Z_IN ≈ 1/(2*pi*fsw*Cin)
+```
+
+not edilir. `50 mA`, `fsw = 332 kHz` ve `Delta_VIN = 0.05 V` kullanıldığında defterde yaklaşık `Cin ≈ 0.47 uF` gibi küçük bir değer bulunur. Bu sonuç final MLCC seçimi değildir; sayfanın kendi notunda da `Z_IN` için saf kapasitif bileşen kullanıldığı, `ESR`'nin yok sayıldığı ve bunun yalnız basit bir alt/boşlangıç kontrolü olduğu belirtilir. Bu yüzden `0.47 uF`, mevcut `28.4-31.1 uF` etkin `Cin` bandıyla sessizce birleştirilmedi.
 
 ![W.35'ten seçilen el yazısı parça: ESR terimini açıkça ekleyip minimum Cin'i 31.1 uF civarına taşıyan hesap](images/defter_snippets_web/d51_w35_esr_including_min_cin.jpg)
 
