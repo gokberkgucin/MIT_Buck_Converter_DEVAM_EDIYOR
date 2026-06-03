@@ -625,6 +625,8 @@ Mesaj:
 
 ![W.95'ten seçilen el yazısı parça: kapasitörün frekansa bağlı empedans modeli ve farklı C değerlerinin eğimleri](images/defter_snippets_web/d61_w95_cap_impedance_model.jpg)
 
+![Defter p062 / W.95: gerçek kapasitör empedans modeli, `Z_C + Z_ESL + ESR`, reaktans diyagramı ve farklı MLCC değerlerinin empedans eğrileri](images/defter_full_pages/defter_p062.jpg)
+
 `W.95` gerçek kapasitörü şu modelle hatırlatır:
 
 ```text
@@ -633,7 +635,11 @@ Z ≈ R_ESR + j*w*L_ESL - j/(w*C)
 |Z| = sqrt(R_ESR^2 + (X_L + X_C)^2)
 ```
 
+[Tasarım İzi] Tam sayfa, kapasitör empedansının yalnız `C` ile sabit kalmadığını açıkça gösterir: düşük frekansta kapasitif reaktans, rezonans civarında `ESR`, yüksek frekansta ise `ESL` baskın hale gelir. `Z_C || Z_Rleak + Z_ESL + ESR` iskeleti ve `R + jX` gösterimi, helper MLCC / ana MLCC / bulk ayrımının neden frekans bölgesine göre okunması gerektiğini destekler. Bu sayfa yeni kapasitör değeri üretmez; giriş kapasitör ağının frekans davranışı için model izidir.
+
 ![W.96'dan seçilen el yazısı parça: MLCC ve polymer kapasitörleri Q, f0 ve damping açısından karşılaştıran not](images/defter_snippets_web/d62_w96_mlcc_vs_polymer_q.jpg)
+
+![Defter p063 / W.96: EMI suppression filter bağlamında MLCC ve polymer için `f0`, `R0`, `Q` ve underdamped / overdamped karşılaştırması](images/defter_full_pages/defter_p063.jpg)
 
 `W.96` MLCC / polymer frekans davranışını karşılaştırır:
 
@@ -641,6 +647,8 @@ Z ≈ R_ESR + j*w*L_ESL - j/(w*C)
 |---|---|---|
 | MLCC | `C ≈ 1.4 uF`, `ESR ≈ 1.3 mOhm`, `ESL ≈ 1.6 nH`, `f0 ≈ 3362 kHz`, `R0 ≈ 33.8 mOhm`, `Q ≈ 26` | düşük empedans, keskin rezonans / underdamped risk |
 | Polymer | `C ≈ 100 uF`, `R_ESR ≈ 0.36 ohm`, `ESL ≈ 20 nH`, `f0 ≈ 112.5 kHz`, `Q ≈ 0.04` | daha sönümlü / overdamped davranış |
+
+[Tasarım İzi / EMI Köprüsü] Tam sayfada "EMI Suppression Filters" başlığı ve yüksek frekansta farklı `C` değerlerinin aynı `ESL` ailesine yaklaşabileceği notu görünür. Buradaki mesaj 04 owner'ı için komponent davranışıdır: çok düşük `ESR` rezonansı keskinleştirebilir, polymer / elektrolitik tarafındaki daha yüksek `ESR` ise damping etkisi verebilir. EMI filtresi, Middlebrook ve `R_D-C_D` kapanışı [08](08_emi_giris_filtresi_ve_yerlesim.md) owner'ına bağlıdır; bu sayfa burada yalnız giriş kapasitör ağının damping sezgisini taşır.
 
 ![W.99'dan seçilen el yazısı parça: aynı C ve ESL için ESR değişince Q davranışının nasıl keskinleştiğini gösteren eskiz](images/defter_snippets_web/d63_w99_esr_changes_q_behavior.jpg)
 

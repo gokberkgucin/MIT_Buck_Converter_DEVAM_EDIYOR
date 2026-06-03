@@ -1306,3 +1306,46 @@ Açık notlar:
 - Bu pass yeni helper MLCC değeri, snubber `RC` değeri veya `Rboot` değeri üretmedi.
 - `X7R daha iyi` notu tek başına parça yeterlilik kanıtı değildir; sıcaklık, dc-bias ve RMS akım grafikleriyle birlikte okunur.
 - Küçük MLCC ekleme notu fiziksel yerleşim uygulanmış / ölçülmüş sonuç gibi sunulmadı; EVM rework uygulanmamış durumda kalır.
+
+## Pass 032 - Sayfa 62-63
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p062.jpg](../images/defter_full_pages/defter_p062.jpg)
+- [defter_p063.jpg](../images/defter_full_pages/defter_p063.jpg)
+
+Defter işaretleri:
+
+- `W.95`: gerçek kapasitör empedans modeli; `Z_C`, `R_ESR`, `L_ESL`, kaçak direnç ve frekansa bağlı bileşik empedans.
+- `W.95`: `Z ≈ Z_C + Z_ESL + ESR`, `Z ≈ R_ESR + j*w*L_ESL - j/(w*C)` ve `|Z| = sqrt(R_ESR^2 + (X_L + X_C)^2)` notları.
+- `W.95`: `0.47 uF` ve `47 uF` gibi farklı değerlerin empedans eğrisi; düşük frekansta kapasitif, yüksek frekansta `ESL` baskın davranış.
+- `W.96`: "EMI Suppression Filters" bağlamında MLCC ve polymer kapasitör karşılaştırması.
+- `W.96`: MLCC örneği `C ≈ 1.4 uF`, `ESR ≈ 1.3 mOhm`, `ESL ≈ 1.6 nH`, `f0 ≈ 3362 kHz`, `R0 ≈ 33.8 mOhm`, `Q ≈ 26`.
+- `W.96`: polymer örneği `C ≈ 100 uF`, `R_ESR ≈ 0.36 ohm`, `ESL ≈ 20 nH`, `f0 ≈ 112.5 kHz`, `R0 ≈ 0.0141 ohm`, `Q ≈ 0.04`.
+- `W.96`: `Q >> 1` underdamped, `Q << 1` overdamped sezgisi; "düşük ESR her zaman tek başına iyi değildir" mesajı.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `ESL ve Küçük Yardımcı MLCC'ler` / `W.95-W.96-W.99: Empedans, Q ve Damping Sezgisi`.
+
+Kısa referans / owner dışı bağlantı:
+
+- EMI filtresi, Middlebrook portu ve `R_D-C_D` damping kapanışı [08_emi_giris_filtresi_ve_yerlesim.md](../08_emi_giris_filtresi_ve_yerlesim.md) owner'ına bağlıdır.
+- Bu pass 08 dosyasında yeni filtre hesabı üretmedi; W.96'daki EMI başlığı 04 içinde komponent empedansı ve damping sezgisi olarak kullanıldı.
+- `0.47 uF`, `47 uF`, `1.4 uF`, `100 uF` örnekleri yeni BOM kararı değildir; model / karşılaştırma izidir.
+
+Okunan ana sayısal / kavramsal izler:
+
+- Düşük frekansta `1/(wC)` davranışı, yüksek frekansta `wL_ESL` davranışı.
+- `ESR` rezonans çevresinde minimum empedans ve damping davranışını belirler.
+- MLCC düşük `ESR` ile güçlüdür ama keskin rezonans / underdamped risk taşıyabilir.
+- Polymer / elektrolitik daha yüksek `ESR` ile damping katkısı verebilir.
+- Aynı `ESL` ailesine sahip farklı `C` değerleri yüksek frekansta benzer eğime yaklaşabilir; bu yüzden sadece katalog `uF` değeriyle karar verilmez.
+
+Açık notlar:
+
+- Bu pass yeni final `Cin`, helper MLCC, polymer veya bulk değeri üretmedi.
+- `Q ≈ 26` ve `Q ≈ 0.04` örnekleri aynı devrede ölçülmüş final sonuç gibi sunulmadı; MLCC / polymer davranışını kıyaslayan tasarım izidir.
+- EMI suppression başlığına rağmen final conducted EMI veya Middlebrook sonucu burada kapanmadı; ilgili doğrulama 08 ve 09 dosyalarında açık kalır.
