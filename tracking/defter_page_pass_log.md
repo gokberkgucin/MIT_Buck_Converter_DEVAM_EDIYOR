@@ -1090,3 +1090,50 @@ Açık notlar:
 - `4 x 22 uF` MLCC satırı güncel BOM kararı yapılmadı; güncel ana bank ve dc-bias gerçekliği 04 dosyasındaki ana MLCC bankı bölümünde ayrı tutulur.
 - `50 VDC yeterli` notu, `44 V / 1 ms` survive-only transient ve gerçek derating ile ayrıca doğrulanmalıdır.
 - Bu pass yeni final `Cin` değeri üretmedi; `28.4 uF` ve `31 uF` mevcut minimum etkin kapasite zincirini tam sayfa defter iziyle tamamladı.
+
+## Pass 027 - Sayfa 52-53
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p052.jpg](../images/defter_full_pages/defter_p052.jpg)
+- [defter_p053.jpg](../images/defter_full_pages/defter_p053.jpg)
+
+Defter işaretleri:
+
+- `W.30`: `Cin devamı`, kavramsal temizlik; buck giriş akımının pulse şeklinde aktığı, AC bileşenin büyük oranda giriş sığaçları üzerinden kapandığı, `Cin` RMS akımının dikkatle hesaplanması gerektiği.
+- `W.30`: `X5R` / `X7R` seramik kapasitör notu; düşük `ESR`, düşük `ESL`, yüksek RMS current rating ve geniş sıcaklık aralığı gerekçeleri.
+- `W.30`: layout notu; `Cin`, `Q1` drain ile `Q2` source arasında kısa/doğrudan yollarla, MOSFET'lere yakın bağlanmalı.
+- `W.30-W.31`: `10-47 uF` arası MLCC'lerin paralel bağlanabileceği; giriş akımının `DC` ve `AC` bileşen olarak okunabileceği.
+- `W.31`: input capacitor görev listesi; giriş ripple gerilimini sınırlamak, yüksek RMS akımını taşımak, parazitleri bastırmak.
+- `W.31`: `I_CIN,RMS` koşulu ve `Delta_VIN` ripple denklemi.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `MLCC Minimum Cin Hesabı` ve `RMS Akımı ve Termal Bakış`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `W.30` layout notu [08_emi_giris_filtresi_ve_yerlesim.md](../08_emi_giris_filtresi_ve_yerlesim.md) içindeki hot-loop / EMI owner'ına kısa köprü olarak bırakıldı; burada EMI hesabı yeniden açılmadı.
+- `D = 0.5` ve `fsw = 332 kHz` satırı [02_startup_pin_programlama_ve_ortak_sabitler.md](../02_startup_pin_programlama_ve_ortak_sabitler.md) içindeki shared duty/timing owner'ına bağlı girdi olarak okundu.
+- `I_CIN,RMS <= capacitor datasheetindeki I_RMS` şartı 04 dosyasındaki RMS/termal owner içinde tutuldu; 06 termal closure yalnız toplam sıcaklık kapanışında buna referans verebilir.
+
+Okunan ana sayısal / kavramsal izler:
+
+- Buck converter giriş akımı kesikli / pulse şeklinde akar.
+- Pulse akımın `AC` bileşeni büyük oranda giriş kapasitörleri üzerinden akar.
+- `Cin` RMS akımı dikkatlice hesaplanmalıdır.
+- `X5R` veya `X7R` dielektrikli seramik kapasitörler önerilir; `X7R` daha iyi ama biraz daha pahalı seçenek olarak not edilir.
+- `Cin`, high-side / low-side MOSFET hot-loop'una çok yakın yerleştirilmelidir.
+- `10-47 uF` arası MLCC'lerin paralel bağlanabileceği not edilir.
+- `I_CIN,RMS = sqrt(D*(Iout^2*(1-D) + Delta_IL^2/12))` ailesi görünür.
+- `I_CIN,RMS <= capacitor datasheetindeki I_RMS` koşulu görünür.
+- `Delta_VIN = Iout*D*(1-D)/(Fsw*Cin) + Iout*R_ESR` formu görünür.
+- Tasarım soruları: hangi kapasitör kullanılacak, kaç adet paralel kapasitör gerekecek, seçilen `Cin` ile ripple hedefin altında mı kalacak.
+
+Açık notlar:
+
+- Bu pass yeni final `Cin`, yeni BOM adedi veya yeni EMI filtre değeri üretmedi.
+- `10-47 uF` aralığı güncel final MLCC bankı gibi okunmadı; gerçek BOM ve dc-bias ayrımı 04 dosyasındaki ana MLCC/bulk bölümlerinde korunur.
+- Layout notu high-confidence kavramsal kuraldır; fiziksel EVM rework uygulanmadığı için ölçümle doğrulanmış sonuç değildir.

@@ -258,11 +258,27 @@ Defter yerleştirmesi:
 
 ![W.31'den seçilen el yazısı parça: giriş kapasitörü RMS akımı ve ripple gerilimi formüllerinin yan yana kurulması](images/defter_snippets_web/d53_w31_input_cap_rms_and_ripple.jpg)
 
-`W.30-W.31`, kapasitif terime `ESR` etkisini ekler:
+![Defter p052 / W.30: darbeli giriş akımı, X5R/X7R seçimi, layout yakınlığı ve Delta V_IN denklemine geçiş](images/defter_full_pages/defter_p052.jpg)
+
+![Defter p053 / W.31: input capacitor görevleri, RMS akım koşulu ve giriş ripple gerilimi denklemi](images/defter_full_pages/defter_p053.jpg)
+
+`W.30-W.31`, kapasitif terime `ESR` etkisini ekler ve minimum `Cin` hesabını gerçek parça kontrollerine bağlar:
 
 ```text
 Delta_VIN ≈ Iout*D*(1-D)/(fsw*Cin) + Iout*R_ESR
 ```
+
+[Tasarım İzi] Tam sayfa notlarda buck converter giriş akımının kesikli / pulse şeklinde aktığı, bu pulse akımın `AC` bileşeninin büyük oranda giriş sığaçları üzerinden kapandığı ve bu yüzden `Cin` RMS akımının dikkatle hesaplanması gerektiği yazılıdır. Aynı sayfada `X5R` veya `X7R` dielektrikli seramik kapasitörler düşük `ESR`, düşük `ESL`, yüksek RMS current rating ve geniş sıcaklık aralığı gerekçeleriyle anılır; `X7R` daha iyi ama daha pahalı seçenek olarak not edilir.
+
+[Tasarım İzi / Layout Köprüsü] `W.30` üzerindeki layout notu, `Cin`'in `Q1` drain bacağı ile `Q2` source bacağı arasında doğrudan ve kısa yollarla, MOSFET'lere yakın bağlanması gerektiğini söyler. Bu, EMI/layout owner'ını burada yeniden açmaz; ayrıntılı hot-loop kapanışı [08](08_emi_giris_filtresi_ve_yerlesim.md) dosyasındadır. Bu dosyada kalan mesaj şudur: `10-47 uF` arası MLCC'ler paralel bağlanabilir, fakat paralel sayı ve yerleşim RMS paylaşımı ve `ESR/ESL` davranışıyla birlikte doğrulanmalıdır.
+
+`W.31` üzerindeki RMS kapısı ayrıca şu koşulu görünür kılar:
+
+```text
+I_CIN,RMS <= capacitor datasheetindeki I_RMS değeri
+```
+
+Bu koşul "hangi kapasitör kullanılacak" ve "kaç adet paralel kapasitör gerekecek" sorularına geçiştir; tam RMS sayısal kapanışı aşağıdaki [RMS Akımı ve Termal Bakış](#rms-akımı-ve-termal-bakış) bölümünde tutulur.
 
 ![W.32'den seçilen el yazısı parça: daha sıkı Delta V_IN hedefi ile tekrar hesap ve yapılacaklar listesi](images/defter_snippets_web/d54_w32_stricter_dvin_exercise.jpg)
 
@@ -452,6 +468,8 @@ Bu nedenle ana okuma:
 | `5` paralel MLCC için kaba pay | `0.91-0.99 A_RMS / parça` |
 
 Eşit paylaşım yalnız ilk varsayımdır. Gerçek akım paylaşımı layout, `ESR/ESL` farkı ve kapasitörlerin hot-loop'a uzaklığına bağlıdır.
+
+[Çapraz Teyit] `W.31` tam sayfa izi yukarıdaki minimum `Cin` bölümünde tutulur; burada yalnız RMS owner sonucu okunur. Defterdeki `I_CIN,RMS <= capacitor datasheetindeki I_RMS` şartı, aşağıdaki sıcaklık grafikleri ve parça başına `0.91-0.99 A_RMS` paylaşım kontrolüyle birlikte kapanmalıdır.
 
 ### MLCC Sıcaklık Artışı
 
