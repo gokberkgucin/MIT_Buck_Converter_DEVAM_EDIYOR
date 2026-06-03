@@ -748,9 +748,13 @@ ESR_B <= 0.991 ohm
 
 ![W.44'ten seçilen el yazısı parça: ESR_B eşitliğinde D_max vurgusunu tekrar eden kısa hatırlatıcı not](images/defter_snippets_web/d69_w44_esrb_dmax_reminder.jpg)
 
-`W.44`, aynı ilişkiyi tekrar eder ve `Dmax` duyarlılığını vurgular.
+![Defter p070 / W.44: `Dmax` içeren `ESR_B < Delta_VIN,tran/(I_step*Dmax)` kontrolü ve ilk spike'ın ESR_B kaynaklı okunması](images/defter_full_pages/defter_p070.jpg)
+
+`W.44`, aynı ilişkiyi tekrar eder ve `Dmax` duyarlılığını vurgular. [Tasarım İzi] Tam sayfa, ilk spike'ın `ESR_B` kaynaklı okunması gerektiğini ve `Dmax` çarpanının denklemin daha belirgin / korunmacı hali olarak tutulduğunu gösterir. Bu sayfa `W.40` içindeki `0.991 ohm` erken kontrolünü yeniden bağlar; güncel duty owner'ını burada açmaz.
 
 ![W.41'den seçilen el yazısı parça: ESR_B kaynaklı ilk spike ile bulk enerji tamponu kaynaklı ikinci düşüşü ayıran kavramsal not](images/defter_snippets_web/d70_w41_two_spike_bulk_reasoning.jpg)
+
+![Defter p071 / W.41: transient yük değişiminde iki `Vin` spike, `ESR_B` kaynaklı hızlı düşüş ve `C_B` / enerji kaynaklı ikinci düşüş](images/defter_full_pages/defter_p071.jpg)
 
 `W.41`, transientte iki mekanizmayı ayırır:
 
@@ -758,7 +762,7 @@ ESR_B <= 0.991 ohm
 V_spike ≈ I_step * ESR_B
 ```
 
-İlk hızlı düşüş `ESR_B` kaynaklıdır; daha yavaş düşüş bulk enerjisinin boşalmasıyla ilgilidir.
+İlk hızlı düşüş `ESR_B` kaynaklıdır; daha yavaş düşüş bulk enerjisinin boşalmasıyla ilgilidir. [Tasarım İzi] Tam sayfa notu, MLCC'lerin ripple akımını iyi süzebileceğini ama ani yük değişimlerinde yeterli enerjiyi tek başına sağlayamayabileceğini söyler. Bu nedenle ilk spike `V_spike1 = I_step * ESR_B`, ikinci spike ise `C_B` ve kaynak akımı ile converter talebi arasındaki geçici fark üzerinden okunur. Bu yeni final `C_B` veya `ESR_B` değeri değildir.
 
 ![W.43'ten seçilen el yazısı parça: MLCC ile bulk arasındaki görev paylaşımını sözlü olarak kuran özet sayfa](images/defter_snippets_web/d71_w43_mlcc_vs_bulk_roles.jpg)
 

@@ -1492,3 +1492,46 @@ Açık notlar:
 - Bu pass yeni final `C_B`, `ESR_B`, `Dmax`, `f_BW-PS` veya bulk parça değeri üretmedi.
 - `0.991 ohm` ve `0.1023 ohm` aynı koşulun sessiz harmonizasyonu değildir; farklı aşama / varsayım izleri olarak kalır.
 - `4.43 uF -> 4.92 uF` ara MLCC etkin kapasite izi, güncel ana MLCC bankı veya güncel bulk adayı yerine kullanılmadı.
+
+## Pass 036 - Sayfa 70-71
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p070.jpg](../images/defter_full_pages/defter_p070.jpg)
+- [defter_p071.jpg](../images/defter_full_pages/defter_p071.jpg)
+
+Defter işaretleri:
+
+- `W.44`: bulk `ESR_B` transient sınırı, `Dmax` içeren biçimiyle tekrar okunur.
+- `W.44`: `ESR_B < Delta_VIN,tran / (I_step * Dmax)` ilişkisi korunur.
+- `W.44`: ilk spike'ın `ESR_B` kaynaklı olduğu ve `Dmax` çarpanının denklem içinde özellikle tutulduğu görülür.
+- `W.41`: `3 Select Bulk Capacitors` geçidi; MLCC'lerin ripple süzmede iyi olduğu ama ani yük değişiminde enerji tamponu açısından tek başına yeterli olmayabileceği not edilir.
+- `W.41`: transient yük değişiminde `Vin` üzerinde iki farklı düşüş / spike mekanizması ayrılır.
+- `W.41`: ilk spike `V_spike1 = I_step * ESR_B` olarak okunur.
+- `W.41`: ikinci spike `C_B` ve kaynak akımı ile converter'ın anlık talebi arasındaki geçici fark / bulk enerjisi üzerinden açıklanır.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `Bulk Seçimi Mantığı`.
+- Aynı dosyada `W.38-W.45: Bulk Kriterleri`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `Dmax` burada duty owner'ını yeniden açmaz; paylaşılan duty/timing girdileri [02_startup_pin_programlama_ve_ortak_sabitler.md](../02_startup_pin_programlama_ve_ortak_sabitler.md) içinde kalır.
+- İki-spike transient sezgisi, aynı 04 owner'ında sonraki `W.67`, `W.74`, `W.75` bloğuna bağlanır.
+- Bu pass [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md), [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) veya [08_emi_giris_filtresi_ve_yerlesim.md](../08_emi_giris_filtresi_ve_yerlesim.md) içinde yeni tam anlatım açmadı.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `ESR_B < Delta_VIN,tran / (I_step * Dmax)`.
+- `V_spike1 = I_step * ESR_B`.
+- MLCC: yüksek frekans ripple akımı / ripple gerilimi tarafında güçlü, fakat ani transient enerji açığını tek başına kapatmayabilir.
+- Bulk: transient enerji tamponu ve `ESR_B` kaynaklı ilk spike kontrolü için ayrı değerlendirilir.
+
+Açık notlar:
+
+- Bu pass yeni final `C_B`, yeni final `ESR_B` veya yeni duty değeri üretmedi.
+- `0.991 ohm` erken kontrolü ve sonraki `0.1023 ohm` korunmacı kontrol yine sessizce birleştirilmedi.
+- Sayfalar EVM üzerinde uygulanmış rework / ölçüm sonucu gibi sunulmadı; defter tasarım izi olarak eklendi.
