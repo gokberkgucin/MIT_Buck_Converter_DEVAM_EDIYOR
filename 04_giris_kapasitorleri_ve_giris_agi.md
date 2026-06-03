@@ -717,6 +717,8 @@ Bu formül gerçek akım paylaşımını tam çözmez; hızlı seçim sanity che
 
 ![W.39'dan seçilen el yazısı parça: T_rip, I_step ve mevcut MLCC katkısını birlikte düşünerek C_B alt sınırı arayan hesap](images/defter_snippets_web/d67_w39_bulk_min_cap_estimate.jpg)
 
+![Defter p068 / W.39: bulk capacitor `C_B,min` hesabı, `T_R_PS ≈ 41 us`, MLCC etkin kapasite izi ve `15.27 uF -> 18.32 uF` marjı](images/defter_full_pages/defter_p068.jpg)
+
 `W.39`, bulk kapasite alt sınırını transient enerji penceresiyle düşünür. Okunan izler:
 
 ```text
@@ -724,7 +726,11 @@ ilk ara sonuç: C_B >= 5.27 uF
 marjlı hedef izi: C_bulk >= 18.32 uF
 ```
 
+[Tasarım İzi / Açık Kontrol] Tam sayfada `T_R_PS ≈ 1/(f_BW-PS * 4)` kabulü ve `f_BW-PS ≈ 6 kHz` civarı okumasıyla `T_R_PS ≈ 41 us` ara değeri görünür. Sayfa ayrıca `MLCC ceramic ≈ 4.43 uF`, `12 V DC-bias` sonrasında etkin kapasite kontrolü, `4.43 uF x 1.1 ≈ 4.92 uF` gibi eski/ara izleri ve `C_B > 15.27 uF` sonucunun toleransla `18.32 uF` bandına taşındığını gösterir. Bu, güncel ana `2 x 47 uF / 50 V / X7R` bulk adayını değiştirmez; bulk ihtiyacının erken C-min hesabıdır.
+
 ![W.40'tan seçilen el yazısı parça: ESR_B üst sınırını Delta V_IN,tran, I_step ve D_max ile bağlayan kontrol](images/defter_snippets_web/d68_w40_esrb_transient_limit.jpg)
+
+![Defter p069 / W.40: bulk `ESR_B` üst sınırı, `0.36 V / (3 A * 0.121) ≈ 0.991 ohm` ve `V_IN,tran` gereksinimi](images/defter_full_pages/defter_p069.jpg)
 
 `W.40`, erken bulk `ESR_B` kontrolünü yazar:
 
@@ -737,6 +743,8 @@ ESR_B <= 0.991 ohm
 ```
 
 [Eski İterasyon] Buradaki `Dmax ≈ 0.121`, güncel duty ailesi değildir. `0.991 ohm` sonucu final sınır değil, erken "ESR aşırı büyük olmasın" sanity check'idir.
+
+[Tasarım İzi] Tam sayfa bu hesabı `V_IN,tran <= ESR_B * I_step * Dmax` şeklinde de tersinden okur. Notta hesabın `Dmax` ve `Vin,min` koşullarında yapıldığı, design requirement olarak `V_IN,tran <= 0.36 V` tutulduğu yazılır. Bu sayfa yeni `ESR_B` kararı üretmez; sonraki `0.1023 ohm` korunmacı kontrolüyle karıştırılmaması gereken erken transient-ESR kapısıdır.
 
 ![W.44'ten seçilen el yazısı parça: ESR_B eşitliğinde D_max vurgusunu tekrar eden kısa hatırlatıcı not](images/defter_snippets_web/d69_w44_esrb_dmax_reminder.jpg)
 

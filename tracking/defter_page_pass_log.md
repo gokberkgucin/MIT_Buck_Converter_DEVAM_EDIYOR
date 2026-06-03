@@ -1444,3 +1444,51 @@ Açık notlar:
 - Bu pass yeni final bulk teknolojisi, yeni `C_B`, yeni `ESR_B` veya yeni `I_CB,RMS` sonucu üretmedi.
 - `22.7 V -> 20.5 V` notu EVM üzerinde uygulanmış ölçüm gibi sunulmadı; kaynak örneği olarak kaldı.
 - Bulk seçiminde `C_B` ve `ESR_B` kriterleri mevcut `W.38-W.45`, `W.80-W.83` ve `W.91` zincirine bağlandı; ayrı yeni owner açılmadı.
+
+## Pass 035 - Sayfa 68-69
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p068.jpg](../images/defter_full_pages/defter_p068.jpg)
+- [defter_p069.jpg](../images/defter_full_pages/defter_p069.jpg)
+
+Defter işaretleri:
+
+- `W.39`: bulk capacitor `C_B,min` hesabı.
+- `W.39`: `T_R_PS ≈ 1/(f_BW-PS * 4)` kabulü; `f_BW-PS ≈ 6 kHz` gibi okunup `T_R_PS ≈ 41 us` ara değeri kullanılır.
+- `W.39`: kaynak / tez notu: `f_BW-PS` için crossover frequency gibi kabul edilen eski/ara okuma vardır.
+- `W.39`: `MLCC ceramic ≈ 4.43 uF`; `12 V DC-bias` sonrasında etkin kapasite düşüşüyle `4.43 uF x 1.1 ≈ 4.92 uF` gibi ara iz görünür.
+- `W.39`: iki paralel seçme / bias sonrası effective capacitance notu vardır; bu güncel final `2 x 47 uF` bulk kararıyla birleştirilmedi.
+- `W.39`: `C_B > 15.27 uF` ve tolerans/marj ile `15.27 uF x 1.2 -> 18.32 uF` izi.
+- `W.40`: bulk capacitor `ESR_B` üst sınırı.
+- `W.40`: `ESR_B <= V_IN,tran / (I_step * Dmax)`.
+- `W.40`: `0.36 V / (3 A * 0.121) ≈ 0.991 ohm`.
+- `W.40`: hesabın `Dmax`, `Vin,min` koşullarında yapıldığı notu.
+- `W.40`: design requirement olarak `V_IN,tran <= 0.36 V` korunur.
+- `W.40`: ters okuma: `V_IN,tran <= ESR_B * I_step * Dmax`.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `Bulk Seçimi Mantığı` / `W.38-W.45: Bulk Kriterleri`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `Dmax ≈ 0.121` ve `f_BW-PS ≈ 6 kHz` bu bulk hesabının eski/ara koşullarıdır; shared duty/timing owner'ı [02_startup_pin_programlama_ve_ortak_sabitler.md](../02_startup_pin_programlama_ve_ortak_sabitler.md), kontrol crossover owner'ı [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) olarak kalır.
+- Güncel bulk aday hattı [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içindeki `W.81: 2 x 47 uF / 50 V / X7R Bulk Adayı` bölümündedir.
+- `0.991 ohm` erken `ESR_B` sanity check'idir; sonraki `0.1023 ohm` korunmacı kontrolle sessizce birleştirilmedi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `T_R_PS ≈ 41 us`.
+- `C_B > 15.27 uF`.
+- `C_bulk >= 18.32 uF` marjlı hedef izi.
+- `ESR_B <= 0.991 ohm`.
+- `V_IN,tran <= 0.36 V`.
+
+Açık notlar:
+
+- Bu pass yeni final `C_B`, `ESR_B`, `Dmax`, `f_BW-PS` veya bulk parça değeri üretmedi.
+- `0.991 ohm` ve `0.1023 ohm` aynı koşulun sessiz harmonizasyonu değildir; farklı aşama / varsayım izleri olarak kalır.
+- `4.43 uF -> 4.92 uF` ara MLCC etkin kapasite izi, güncel ana MLCC bankı veya güncel bulk adayı yerine kullanılmadı.
