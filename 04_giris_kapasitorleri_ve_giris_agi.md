@@ -766,11 +766,22 @@ V_spike ≈ I_step * ESR_B
 
 ![W.43'ten seçilen el yazısı parça: MLCC ile bulk arasındaki görev paylaşımını sözlü olarak kuran özet sayfa](images/defter_snippets_web/d71_w43_mlcc_vs_bulk_roles.jpg)
 
-`W.43`: MLCC yüksek frekans ripple'ı, bulk ise transient enerji rezervini destekler.
+![Defter p072 / W.43: MLCC ve bulk giriş kapasitörlerinin görev paylaşımı, bulk seçiminde transient ve RMS ripple akımı kriterleri](images/defter_full_pages/defter_p072.jpg)
+
+`W.43`, bulk seçimini yeni bir final parça değeri üretmeden iki role ayırır:
+
+- MLCC, yüksek frekans ripple akımını taşımada iyidir; fakat dc-bias ve çalışma koşulları altında etkin kapasitans kaybeder.
+- Bulk, transient response için gereken enerjiyi daha yavaş zaman ölçeğinde sağlar.
+
+[Tasarım İzi] Sayfa bulk seçerken iki kontrol kapısını not eder: `Vin` overshoot/undershoot limitleri ve yeni RMS ripple-current değerinin uygun olması. Aynı sayfada `I_IN-D` akımı için dc bileşen + ripple bileşeni ayrımı çizilir; `I_IN-D ≈ I_L x D` gibi okunan sezgi, buck giriş terminalindeki darbeli akımın ortalama / ripple ayrımını anlatır. Bu satır duty owner'ını yeniden açmaz; yalnız giriş bulk hesabında hangi akımın tamponlandığını görünür yapar.
 
 ![W.45'ten seçilen el yazısı parça: input cap'in enerji tamponu rolünü çizim ve dalga biçimleriyle anlatan kavramsal sayfa](images/defter_snippets_web/d72_w45_input_cap_concept_sketch.jpg)
 
-`W.45`: kaynak akımı ile converter'ın anlık akım ihtiyacı aynı anda değişemez; farkı giriş kapasitörleri taşır.
+![Defter p073 / W.45: buck girişinde `Cin`, anahtarlar, `Lout/Cout`, `Iload` ve kaynak akımı arasındaki transient enerji tamponu çizimi](images/defter_full_pages/defter_p073.jpg)
+
+`W.45`, aynı bulk ihtiyacını devre çizimiyle açıklar. Buck giriş terminalinden geçen akım yük tarafındaki ani değişimle bir anda artabilir; kaynak / bus akımı ve bobin akımı ise kontrol döngüsü, güç kaynağı bant genişliği ve enerji yolu nedeniyle hemen aynı hızda değişemez.
+
+[Tasarım İzi] Sayfadaki örnekte `Iload 3 A -> 6 A oldu` notu, yeni proje load-step değeri değildir; "ani ek akım ilk anda nereden gelir?" sorusunu anlatan kavramsal örnektir. Defter cevabı: ilk anda bulk capacitor devreye girer. `IL` kontrol devresine bağlı olduğu için değişmesi zaman alır; `IPS` / bus kaynağı da sınırlı bant genişliği nedeniyle hemen artamaz. Bu yüzden giriş bulk'u, MLCC bankının yüksek frekans rolünden ayrı olarak transient enerji tamponu gibi tutulur.
 
 ### `W.67`, `W.74`, `W.75`: İki Spike, RMS ve Frekans Rolleri
 

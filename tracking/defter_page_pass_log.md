@@ -1535,3 +1535,48 @@ Açık notlar:
 - Bu pass yeni final `C_B`, yeni final `ESR_B` veya yeni duty değeri üretmedi.
 - `0.991 ohm` erken kontrolü ve sonraki `0.1023 ohm` korunmacı kontrol yine sessizce birleştirilmedi.
 - Sayfalar EVM üzerinde uygulanmış rework / ölçüm sonucu gibi sunulmadı; defter tasarım izi olarak eklendi.
+
+## Pass 037 - Sayfa 72-73
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p072.jpg](../images/defter_full_pages/defter_p072.jpg)
+- [defter_p073.jpg](../images/defter_full_pages/defter_p073.jpg)
+
+Defter işaretleri:
+
+- `W.43`: `How to Input capacitor` / `3. Select Bulk capacitors` geçidi.
+- `W.43`: MLCC'nin ripple current taşıma tarafında iyi olduğu, fakat etkin capacitance kaybedebileceği not edilir.
+- `W.43`: bulk capacitor'ın transient response için gereken enerjiyi sağladığı not edilir.
+- `W.43`: bulk seçerken `Vin` overshoot/undershoot limitleri ve ripple-current taşıma kapasitesi / RMS ripple-current uygunluğu kontrol kapıları olarak yazılır.
+- `W.43`: `I_IN-D` akımı dc bileşen + ripple bileşeni olarak çizilir; `I_IN-D ≈ I_L x D` sezgisi buck giriş terminalindeki darbeli akım bağlamında tutulur.
+- `W.45`: buck girişinde `Cin`, high-side / low-side anahtarlar, `Lout`, `Cout` ve `Iload` aynı çizimde gösterilir.
+- `W.45`: `Iload 3 A -> 6 A oldu` notu kavramsal load-step örneğidir; güncel proje load-step değeriyle sessizce birleştirilmedi.
+- `W.45`: ani ek akımın ilk anda bulk capacitor tarafından karşılanacağı; `IL` ve kaynak / bus akımının hemen değişemeyeceği not edilir.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `Bulk Seçimi Mantığı`.
+- Aynı dosyada `W.38-W.45: Bulk Kriterleri`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `D` ve `I_L` burada shared duty/timing veya bobin owner'ını yeniden açmaz; yalnız input bulk akım sezgisini açıklar.
+- `Iload 3 A -> 6 A` örneği güncel [01](../01_tasarim_girdileri_ve_kaynaklar.md) load-step girdisinin yerine geçmez.
+- `IL` kontrol döngüsüyle değişir notu kontrol owner'ına uzun anlatım taşımadı; transient enerji tamponu gerekçesi 04 owner'ında tutuldu.
+
+Okunan ana sayısal / kavramsal izler:
+
+- MLCC: ripple current / yüksek frekans tarafında güçlü, fakat etkin `C` kaybı yaşayabilir.
+- Bulk: transient response için enerji rezervi.
+- Bulk seçim kapıları: `Vin` overshoot/undershoot ve RMS ripple-current uygunluğu.
+- `I_IN-D ≈ I_L x D` giriş darbeli akım sezgisi.
+- Kavramsal örnek: `Iload 3 A -> 6 A`.
+
+Açık notlar:
+
+- Bu pass yeni final `C_B`, `ESR_B`, `Cin`, duty veya load-step değeri üretmedi.
+- `Iload 3 A -> 6 A` yalnız defterdeki açıklayıcı örnek olarak kaldı; güncel `3.571 A -> 9 A` load-step omurgası değiştirilmedi.
+- Sayfalar EVM üzerinde uygulanmış rework / ölçüm sonucu gibi sunulmadı; giriş bulk seçimi için tasarım izi olarak eklendi.
