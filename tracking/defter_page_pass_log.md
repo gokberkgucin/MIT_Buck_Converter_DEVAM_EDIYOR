@@ -1349,3 +1349,50 @@ Açık notlar:
 - Bu pass yeni final `Cin`, helper MLCC, polymer veya bulk değeri üretmedi.
 - `Q ≈ 26` ve `Q ≈ 0.04` örnekleri aynı devrede ölçülmüş final sonuç gibi sunulmadı; MLCC / polymer davranışını kıyaslayan tasarım izidir.
 - EMI suppression başlığına rağmen final conducted EMI veya Middlebrook sonucu burada kapanmadı; ilgili doğrulama 08 ve 09 dosyalarında açık kalır.
+
+## Pass 033 - Sayfa 64-65
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p064.jpg](../images/defter_full_pages/defter_p064.jpg)
+- [defter_p065.jpg](../images/defter_full_pages/defter_p065.jpg)
+
+Defter işaretleri:
+
+- `W.99`: `47 uF`, `2.5 nH ESL` ve farklı `ESR` değerleriyle `Q` karşılaştırması.
+- `W.99`: `R0 = sqrt(L_ESL/C) = sqrt(2.5 nH / 47 uF) ≈ 7.29 mOhm`.
+- `W.99`: `ESR1 = 0.25 ohm = 250 mOhm`, `Q1 = R0/ESR1 ≈ 0.02916`, `Q1 < 1`.
+- `W.99`: `ESR2 = 0.001 ohm = 1 mOhm`, `Q2 = R0/ESR2 ≈ 7.29`, `Q2 > 1`.
+- `W.88`: ek küçük input ceramic capacitor ile switch-node spike örneği; kaynak sayfada `22.7 V -> 20.5 V`.
+- `W.88`: küçük ceramic capacitor phase-node ringing'i azaltabilir; fakat PCB alanı, maliyet, boyut ve performans tradeoff'u vardır.
+- `W.88`: bulk input capacitor seçiminde transient overshoot/undershoot gereksinimi ve allowable ripple current gereksinimi birlikte okunur.
+- `W.88`: idealize transient akım grafiği: `i_Load`, `i_L`, `i_IN_D`, `i_PS`, `T_R_PS` ve `V_IN,tran < 0.36 V`.
+- `W.88`: ilk spike `ESR_B` ile, ikinci spike buck converter input current ile bus-converter output current farkıyla ilişkilendirilir.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `ESL ve Küçük Yardımcı MLCC'ler` / `W.86-W.89: Büyük / Küçük MLCC ve Ringing Mantığı`.
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `W.95-W.96-W.99: Empedans, Q ve Damping Sezgisi`.
+- Aynı dosyada `Bulk Seçimi Mantığı` ve `W.38-W.45: Bulk Kriterleri` bölümlerine kavramsal kaynak izi olarak bağlandı; bulk hesabı ayrıca tekrar büyütülmedi.
+
+Kısa referans / owner dışı bağlantı:
+
+- Switch-node ringing'in EMI/layout etkisi [08_emi_giris_filtresi_ve_yerlesim.md](../08_emi_giris_filtresi_ve_yerlesim.md) owner'ına bağlıdır; bu pass 08 içinde yeni EMI hesabı üretmedi.
+- `Rboot` / snubber çözüm ailesi [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) ve [08](../08_emi_giris_filtresi_ve_yerlesim.md) tarafına pointer olarak kalır.
+- `22.7 V -> 20.5 V` ve önceki `22.9 V -> 20.5 V` okuması sessizce tekleştirilmedi; aynı kaynak/snapshot ailesinin iki okunma izi olarak görünür bırakıldı.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `47 uF`, `2.5 nH`, `R0 ≈ 7.29 mOhm`.
+- `250 mOhm` ESR ile `Q ≈ 0.029`; yüksek damping / düşük Q sezgisi.
+- `1 mOhm` ESR ile `Q ≈ 7.29`; düşük damping / ringing riskinin keskinleşmesi.
+- Ek küçük input ceramic capacitor kaynak örneğinde spike azalmasını gösterebilir; bu final EVM ölçümü değildir.
+- MLCC yüksek frekans ripple için güçlüdür; bulk input capacitor transient enerji ve allowable ripple-current kriterleriyle seçilir.
+
+Açık notlar:
+
+- Bu pass yeni final `Cin`, bulk, helper MLCC, `Rboot` veya snubber değeri üretmedi.
+- W.99 içindeki `4 uF` benzeri önceki kısa-kırpım okuması, tam sayfa ve `R0` hesabıyla `47 uF` olarak netleşti; bu high-confidence kaynak okumasıdır.
+- EVM üzerinde ek küçük input ceramic veya bulk modifikasyonu uygulanmış / ölçülmüş gibi anlatılmadı; kaynak figürleri tasarım izi olarak korundu.

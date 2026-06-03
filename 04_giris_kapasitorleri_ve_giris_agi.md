@@ -617,9 +617,13 @@ Mesaj:
 
 `W.88`, küçük seramik eklemenin switch-node davranışını iyileştirebildiğini ve aynı sayfanın alt tarafında bulk transient rolünü gösterir. Bu sayfa helper MLCC'den bulk'a geçiş köprüsüdür.
 
+![Defter p065 / W.88: ek küçük giriş seramiğiyle switch-node spike örneği, bulk capacitor seçim gerekçesi ve idealize input transient akım grafiği](images/defter_full_pages/defter_p065.jpg)
+
+[Çapraz Teyit / Tasarım İzi] Tam kaynak sayfası, ek küçük input ceramic capacitor ile switch-node spike örneğinin `22.7 V -> 20.5 V` olarak düştüğünü gösterir; bu proje final ölçümü değil, kaynak makaledeki problem ailesidir. Aynı sayfa bulk seçimini de açar: MLCC ripple-current açısından güçlüdür ama transient response için gereken etkin kapasite tarafında zorlanabilir; bulk input capacitor seçiminde overshoot/undershoot transient gereksinimi ve allowable ripple current birlikte okunmalıdır. Grafikte `i_Load`, `i_L`, `i_IN_D`, `i_PS`, `T_R_PS` ve `V_IN,tran < 0.36 V` ilişkisi görünür; bu çizim sonraki bulk hesaplarının kaynak izi olarak korunur.
+
 ![W.89'dan seçilen el yazısı parça: küçük yardımcı kapasitör, bulk görevi ve ESR'nin damping etkisini özetleyen not](images/defter_snippets_web/d65_w89_bulk_summary_and_esr_note.jpg)
 
-`W.89` kaynak figürü üzerinden `22.9 V -> 20.5 V` gibi spike azalma örneği not eder. Bu proje final ölçümü değildir; küçük, düşük-`ESL` seramik eklemenin aynı problem ailesinde ringing'i azaltabildiğini gösterir.
+`W.89` kaynak figürü üzerinden `22.9 V -> 20.5 V` gibi spike azalma örneği not eder. Tam kaynak sayfadaki `22.7 V -> 20.5 V` okumasıyla bu satır sessizce tekleştirilmedi; ikisi de aynı kaynak / ekran ailesinin okunma izi olarak kalır. Bu proje final ölçümü değildir; küçük, düşük-`ESL` seramik eklemenin aynı problem ailesinde ringing'i azaltabildiğini gösterir.
 
 ### `W.95-W.96-W.99`: Empedans, Q ve Damping Sezgisi
 
@@ -652,13 +656,17 @@ Z ≈ R_ESR + j*w*L_ESL - j/(w*C)
 
 ![W.99'dan seçilen el yazısı parça: aynı C ve ESL için ESR değişince Q davranışının nasıl keskinleştiğini gösteren eskiz](images/defter_snippets_web/d63_w99_esr_changes_q_behavior.jpg)
 
-`W.99` aynı `C = 4 uF`, `ESL = 2.5 nH` için iki `ESR` örneği verir:
+![Defter p064 / W.99: `47 uF`, `2.5 nH ESL`, farklı `ESR` değerleri ve `Q` karşılaştırması](images/defter_full_pages/defter_p064.jpg)
+
+`W.99` tam sayfa teyidiyle aynı `C = 47 uF`, `ESL = 2.5 nH` için iki `ESR` örneği verir:
 
 ```text
-R0 = sqrt(2.5 nH / 4 uF) ≈ 7.29 mOhm
+R0 = sqrt(2.5 nH / 47 uF) ≈ 7.29 mOhm
 ESR1 = 250 mOhm -> Q1 ≈ 0.029
 ESR2 = 1 mOhm   -> Q2 ≈ 7.29
 ```
+
+[Çapraz Teyit] Önceki kısa kırpım tek başına `4 uF` gibi okunmaya açıktı; tam sayfadaki başlık ve `R0 ≈ 7.29 mOhm` hesabı `47 uF` ile tutarlıdır. Bu düzeltme yeni parça seçimi değildir, W.99 damping egzersizinin kendi iç tutarlılığıdır.
 
 Bu üç sayfa yeni BOM kararı değildir. Mesaj: sadece düşük `ESR` iyi demek değildir; damping kaybolursa ringing keskinleşebilir.
 
