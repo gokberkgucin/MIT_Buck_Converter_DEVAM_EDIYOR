@@ -344,6 +344,8 @@ Bu checkpoint `28.4-31.1 uF` etkin ihtiyaç bandını destekler; fakat gerçek B
 
 ![W.51'den seçilen el yazısı parça: ripple-current, rated-voltage ve dc-bias kontrollerini aynı yerde toplayan gerçek parça seçim notu](images/defter_snippets_web/d56_w51_real_cap_selection_checks.jpg)
 
+![Defter p057 / W.51: gerçek `Cin` parçası için ripple-current rating, rated-voltage ve dc-bias grafiği kontrol kapıları](images/defter_full_pages/defter_p057.jpg)
+
 `W.51`, teorik minimum `Cin` hesabının yeterli olmadığını gösterir. Gerçek parça için üç kapı vardır:
 
 | Kapı | Kontrol |
@@ -353,6 +355,8 @@ Bu checkpoint `28.4-31.1 uF` etkin ihtiyaç bandını destekler; fakat gerçek B
 | Etkin kapasite | dc-bias, tolerans ve sıcaklık sonrası kalan `Cin`, `28-31 uF` ihtiyacını karşılıyor mu? |
 
 Bu üç kapıdan biri açık kalırsa parça seçimi final sayılmaz.
+
+[Tasarım İzi] Tam sayfada kapasitörün taşıyabileceği maksimum ripple akımı, devreden geçen ripple akımından büyük olmalı diye yazılır. Nominal / rated gerilim de girişte karşılaşılabilecek maksimum `Vin` ve ani yükselme / surge darbelerinin üzerinde seçilmelidir; bu not `44 V / 1 ms` survive-only girdisi ve gerçek voltage derating ile birlikte okunur. Sayfanın altındaki seramik kapasitör grafiği, MLCC'lerde gerilim arttıkça etkin kapasitenin düştüğünü gösteren dc-bias sezgisidir; bu yüzden katalog `uF` değeri tek başına yeterli kabul edilmez.
 
 ## Ana Giriş MLCC Bankı
 
@@ -445,6 +449,17 @@ sqrt(D*(1-D) + (1/12)*(VOUT/(L*fsw*Imax))^2*(1-D)^2*D)
 ```
 
 `D = 0.5`, `Vout = 14 V`, `L = 6.8 uH`, `fsw = 332 kHz`, `Imax = 9 A` ile yaklaşık `4.55 A_RMS` çıkar.
+
+![Defter p056 / W.34: `Cin` ripple-current rating formülü, rated-voltage notu ve `ICIN`/`ICO` ripple ayrımı](images/defter_full_pages/defter_p056.jpg)
+
+[Tasarım İzi] `W.34` aynı RMS ailesini `Vin(min)` üzerinden yazar:
+
+```text
+I_CIN,RMS = sqrt((Vout/Vin(min)) *
+                 (Iout^2*(1 - Vout/Vin(min)) + Delta_IL^2/12))
+```
+
+Sayfadaki ana kapı, kapasitörün taşıyabileceği maksimum ripple akımının devreden geçen ripple akımından büyük olmasıdır. Aynı tam sayfada `ICIN` ripple akımının agresif/darbeli olduğu, çıkış kapasitörü akımının ise daha yumuşak ripple biçiminde ele alındığı çizilir; `ICO` ayrıntısı [03_bobin_ve_cikis_kapasitorleri.md](03_bobin_ve_cikis_kapasitorleri.md) dosyasının owner'ıdır.
 
 ![W.29'dan seçilen el yazısı parça: daha korumacı 4.94 Arms sonucuna giden ayrıntılı I_Cin,RMS denemesi](images/defter_snippets_web/d57_w29_detailed_input_rms_estimate.jpg)
 

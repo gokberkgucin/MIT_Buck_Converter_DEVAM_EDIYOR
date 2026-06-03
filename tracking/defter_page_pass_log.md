@@ -1180,3 +1180,44 @@ Açık notlar:
 - `0.47 uF` sonucu final `Cin` ihtiyacı değildir; `28.4-31.1 uF` etkin kapasite bandıyla birleştirilmedi.
 - `50 mA` input-current ripple hedefi yalnız MLCC sığasıyla kapanmış kabul edilmedi; EMI/input-filter doğrulaması gerekir.
 - Bu pass yeni BOM kararı üretmedi; mevcut minimum `Cin` ve EMI handoff zincirini defter tam sayfa iziyle güçlendirdi.
+
+## Pass 029 - Sayfa 56-57
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p056.jpg](../images/defter_full_pages/defter_p056.jpg)
+- [defter_p057.jpg](../images/defter_full_pages/defter_p057.jpg)
+
+Defter işaretleri:
+
+- `W.34`: kapasitörün taşıyabileceği maksimum ripple akımı / ripple-current rating, devreden geçen ripple akımından büyük olmalı.
+- `W.34`: `I_CIN,RMS = sqrt((Vout/Vin(min))*(Iout^2*(1 - Vout/Vin(min)) + Delta_IL^2/12))` ailesi.
+- `W.34`: kapasitörün nominal / rated gerilimi, girişte karşılaşılabilecek maksimum `Vin` ve ani yükselme / surge darbelerinin üzerinde olmalı.
+- `W.34`: `ICIN` ripple akımı agresif/darbeli, `ICO` çıkış ripple akımı daha yumuşak gibi çizilmiş karşılaştırma.
+- `W.51`: gerçek parça kontrol kapıları; ripple-current/RMS rating, rated voltage, dc-bias altındaki gerçek kapasite.
+- `W.51`: seramik / MLCC kapasitesinin DC bias ile düştüğünü anlatan grafik izi.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `RMS Akımı ve Termal Bakış` ve `W.51: Gerçek Parçaya Geçiş Kontrolleri`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `ICO` / çıkış kapasitörü ripple ayrıntısı [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) owner'ına kısa pointer olarak bırakıldı.
+- Rated-voltage notu `44 V / 1 ms` survive-only input transient ve global input şartları için [01_tasarim_girdileri_ve_kaynaklar.md](../01_tasarim_girdileri_ve_kaynaklar.md) dosyasına bağlıdır.
+- RMS akımın termal sonucu [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde yalnız toplam termal closure referansı olarak kullanılabilir; primary owner 04'te kaldı.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `I_CIN,RMS` formülü `Vin(min)` üzerinden yazılmıştır.
+- Giriş kapasitörü ripple-current rating'i hesaplanan/devreden geçen ripple akımından büyük olmalıdır.
+- Rated voltage, normal maksimum girişin ve surge benzeri ani yükselmelerin üstünde seçilmelidir.
+- MLCC katalog kapasitesi, dc-bias altında düşer; gerçek kapasite datasheet / grafikle okunmalıdır.
+
+Açık notlar:
+
+- Bu pass yeni final MLCC adedi veya yeni `Cin` değeri üretmedi.
+- `W.34` formülü mevcut `4.5-4.94 A_RMS` RMS ailesine eklendi; çelişkili yeni sonuç gibi kullanılmadı.
+- `ICIN` / `ICO` karşılaştırması owner ayrımı için korundu; çıkış kapasitörü hesabı 03 dosyasına taşınmadı veya burada büyütülmedi.
