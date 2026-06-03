@@ -1396,3 +1396,51 @@ Açık notlar:
 - Bu pass yeni final `Cin`, bulk, helper MLCC, `Rboot` veya snubber değeri üretmedi.
 - W.99 içindeki `4 uF` benzeri önceki kısa-kırpım okuması, tam sayfa ve `R0` hesabıyla `47 uF` olarak netleşti; bu high-confidence kaynak okumasıdır.
 - EVM üzerinde ek küçük input ceramic veya bulk modifikasyonu uygulanmış / ölçülmüş gibi anlatılmadı; kaynak figürleri tasarım izi olarak korundu.
+
+## Pass 034 - Sayfa 66-67
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p066.jpg](../images/defter_full_pages/defter_p066.jpg)
+- [defter_p067.jpg](../images/defter_full_pages/defter_p067.jpg)
+
+Defter işaretleri:
+
+- `W.89`: küçük `D` capacitor eklendiğinde kaynak örnekte spike'ın `22.7 V` seviyesinden `20.5 V` seviyesine düştüğü notu tekrar görünür.
+- `W.89`: MLCC'ler ripple akımı taşımada iyi ama iki büyük sıkıntı var: dc-bias altında etkin kapasite düşer ve büyük kapasitans için parça/paket büyür.
+- `W.89`: bulk capacitor teknoloji adayları olarak aluminium electrolytic, polymer electrolytic ve hybrid capacitor aileleri işaretlenir.
+- `W.89`: bulk capacitor görevleri: transient response desteği ve ripple-current yükünü MLCC bankıyla paylaşma.
+- `W.89`: bulk seçiminde iki kritik parametre not edilir: `C_B` ve `ESR_B`.
+- `W.89`: `C_B`, yük değişimi sırasında gerilimi tutulabilmek için yeterli olmalı; `ESR_B`, ripple current taşırken çok yüksek olmamalı.
+- `W.89`: çok düşük `ESR` ripple gerilimini azaltır; bir miktar `ESR` ise `LC` resonance sönümleme / damping için faydalı olabilir.
+- `W.38`: `I_CB,RMS,allowed > I_CB,RMS` kriteri.
+- `W.38`: `I_CB,RMS,allowed` bulk capacitor datasheet'inden gelen izin verilen RMS akım olarak, `I_CB,RMS` gerçek devrede `C_B` üzerinden geçecek ripple akım RMS'i olarak ayrılır.
+- `W.38`: `Delta_VIN-pp` ripple gerilimi MLCC / toplam etkin giriş kapasitesiyle hesaplanır; bulk tarafında `ESR_B` üzerinden ripple-current RMS kontrolü ayrıca yapılır.
+- `W.38`: `ESR_B` küçülürse bulk üzerinden geçen ripple-current artabilir; bu nedenle allowable RMS current kontrolü gerekir.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `Bulk Seçimi Mantığı`.
+- Aynı dosyada `W.38-W.45: Bulk Kriterleri`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Switch-node spike ve küçük input ceramic notu [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içindeki `W.86-W.89` helper MLCC/ringing bloğuna bağlıdır; EMI/layout etkisi [08_emi_giris_filtresi_ve_yerlesim.md](../08_emi_giris_filtresi_ve_yerlesim.md) owner'ına kısa pointer olarak kalır.
+- Bulk teknoloji adayları burada kavramsal izdir; güncel ana aday hattı `2 x 47 uF / 50 V / X7R` bölümünde ayrıca korunur.
+- Bu pass [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde termal/kayıp anlatımı açmadı; bulk RMS ve ısınma yalnız 04 owner'ında işaretlendi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `22.7 V -> 20.5 V` kaynak örneği.
+- `I_CB,RMS,allowed > I_CB,RMS`.
+- `I_CB,RMS ≈ Delta_VIN_PP / (2*sqrt(3)*ESR_B)` ailesi.
+- `Delta_VIN-pp` MLCC / etkin giriş kapasitesiyle kontrol edilir; bulk ripple-current kriteri ayrı kontrol edilir.
+- `ESR_B` çok büyükse ripple/gerilim etkisi kötüleşebilir; çok küçükse bulk RMS ripple-current yükü artabilir.
+
+Açık notlar:
+
+- Bu pass yeni final bulk teknolojisi, yeni `C_B`, yeni `ESR_B` veya yeni `I_CB,RMS` sonucu üretmedi.
+- `22.7 V -> 20.5 V` notu EVM üzerinde uygulanmış ölçüm gibi sunulmadı; kaynak örneği olarak kaldı.
+- Bulk seçiminde `C_B` ve `ESR_B` kriterleri mevcut `W.38-W.45`, `W.80-W.83` ve `W.91` zincirine bağlandı; ayrı yeni owner açılmadı.

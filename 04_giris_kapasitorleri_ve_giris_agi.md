@@ -674,6 +674,10 @@ Bu üç sayfa yeni BOM kararı değildir. Mesaj: sadece düşük `ESR` iyi demek
 
 [Güncel Omurga] Ana MLCC bankı dc-bias altında `~8.2 uF` kaldığı için, `28.4-31.1 uF` etkin ihtiyaçla arasında açık vardır. Giriş bulk'u bu açığı, transient enerji tamponunu ve damping sezgisini kapatmak için düşünülür.
 
+![Defter p066 / W.89: MLCC'nin ripple akımı ve dc-bias etkin kapasite sınırlamaları, bulk capacitor rolü ve teknoloji adayları](images/defter_full_pages/defter_p066.jpg)
+
+[Tasarım İzi] `W.89` tam sayfası, MLCC'lerin ripple akımı taşıma tarafında iyi olduğunu ama iki büyük sınırı bulunduğunu not eder: dc-bias altında etkin kapasite düşer ve büyük kapasite için parça/paket büyür. Bu yüzden bulk capacitor için alüminyum elektrolitik, polymer elektrolitik ve hybrid capacitor aileleri düşünülür. Sayfadaki "bulk cap ne işe yarar?" notu iki ana görevi ayırır: transient response desteği ve ripple-current yükünü MLCC bankıyla paylaşma. Aynı satırda çok düşük `ESR`nin ripple gerilimini azaltabileceği, fakat bir miktar `ESR`nin `LC` rezonansını sönümleyip damping sağlayabileceği korunur; bu not final teknoloji seçimi değil, bulk karar sezgisidir.
+
 ### ODT Bulk İzleri ve Eski Aday
 
 ![Giriş bulk capacitor seçimi - 1](images/odt_embedded/fig_17_input_bulk_selection_01.png)
@@ -696,12 +700,16 @@ ODT notu:
 
 ![W.38'den seçilen el yazısı parça: bulk capacitor için ripple-current ve ESR tabanlı ikinci seçim kriteri](images/defter_snippets_web/d66_w38_bulk_rms_and_esr_criterion.jpg)
 
+![Defter p067 / W.38: `I_CB,RMS,allowed > I_CB,RMS`, MLCC ripple hesabı ve bulk ESR üzerinden ripple-current kriteri](images/defter_full_pages/defter_p067.jpg)
+
 `W.38`, bulk'un yalnız `uF` değil ripple-current / `ESR` / ısınma kriteriyle seçilmesi gerektiğini söyler:
 
 ```text
 I_CB,RMS,allowed > I_CB,RMS
 I_CB,RMS ≈ Delta_VIN_PP / (2*sqrt(3)*ESR_B)
 ```
+
+[Tasarım İzi] Tam sayfada `I_CB,RMS,allowed` değeri bulk capacitor datasheet'inden gelen izin verilen RMS akım, `I_CB,RMS` ise gerçek devrede `C_B` üzerinden geçecek ripple akım RMS'i olarak ayrılır. Aynı sayfa `Delta_VIN-pp` ripple geriliminin önce MLCC / toplam etkin giriş kapasitesiyle kontrol edildiğini, bulk hesabında ise `ESR_B` üzerinden bulk'un taşıyacağı RMS ripple akımının ayrıca kontrol edildiğini söyler. `ESR_B` küçüldükçe bulk üzerinden geçen ripple-current artabilir; bu yüzden "çok küçük ESR her zaman tek başına iyi" değildir, damping ve akım paylaşımıyla birlikte okunur.
 
 ![Bulk capacitor RMS akımı ile ESR/ripple ilişkisini gösteren notlu ekran görüntüsü](images/foto_selected/p23_bulk_rms_esr_constraint.jpg)
 
