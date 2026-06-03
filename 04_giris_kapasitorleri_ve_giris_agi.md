@@ -194,17 +194,27 @@ Bu ilişki yalnız kapasitif ilk alt sınırı verir. `ESR/ESL`, kaynak / LISN e
 
 ![W.50'den seçilen el yazısı parça: bulk ve MLCC'nin farklı rollerini anlatan kavramsal notlar](images/defter_snippets_web/d48_w50_bulk_vs_mlcc_notes.jpg)
 
+![Defter p048 / W.50: input capacitor selection notu, storage/noise-reduction ayrımı ve bulk/MLCC görev paylaşımı](images/defter_full_pages/defter_p048.jpg)
+
 `W.50`, MLCC ve bulk ayrımını kavramsal kurar:
 
 - MLCC: yüksek frekans ripple / EMI bastırma,
 - bulk: daha yavaş enerji tamponu, brown-out / giriş düşüşü riskine destek.
 
+[Tasarım İzi] Tam sayfada kapasitörün iki işe yaradığı açık yazılır: `storage` ve `noise reduction / ripple reduction`. Ani yük değişiminde giriş kaynağının anlık cevap veremeyebileceği, bu yüzden bulk kapasitörle enerji tamponu gerektiği not edilir. Aynı sayfada MOSFET'in yüksek hızlı kapanma/açılma sürecinden doğan yüksek frekanslı ripple ve EMI tarafının seramik / MLCC ile azaltılması gerektiği korunur. Sayfadaki `1 A -> 5 A` load-step örneği kavramsal örnektir; bu projenin [01](01_tasarim_girdileri_ve_kaynaklar.md) dosyasındaki güncel load-step girdisinin yerine geçmez.
+
 ![W.94'ten seçilen el yazısı parça: G39/TI uygulama notu üzerine alınmış input capacitor selection notları](images/defter_snippets_web/d49_w94_g39_input_cap_article_notes.jpg)
+
+![Defter p049 / W.94: TI SLTA055 input capacitor selection kaynağı, ripple voltage ve duty-cycle RMS akım grafiği](images/defter_full_pages/defter_p049.jpg)
 
 `W.94`, giriş kapasitörü seçiminde iki ekseni kaynak notu olarak gösterir:
 
 1. input ripple voltage'u azaltmak,
 2. input current / pulse-current kapasitesini doğru seçmek.
+
+[Kaynak İzi / Çapraz Teyit] Tam sayfa TI `SLTA055 - Input and Output Capacitor Selection` uygulama raporunu kaynak olarak gösterir. Okunan ana fikirler: seramik kapasitörler regülatör girişine yakın yerleşirse düşük `ESR` sayesinde input ripple gerilimini azaltır; bulk kapasitörler tek başına yüksek frekanslı ripple gerilimini azaltmak için yeterli değildir; ripple gerilimi azaltıldığında bulk kapasitörlerden akan RMS ripple akımı da düşer. Sayfadaki `75 mV` kural-benzeri kaynak notu bu projenin güncel `0.24 Vpp` hedefiyle sessizce değiştirilmedi; yalnız kaynak izi olarak tutulur.
+
+[Tasarım İzi] `W.94` ayrıca giriş ripple geriliminin yük akımıyla arttığını ve tek faz buck için pulse-current / AC RMS davranışında `D = 0.5` çevresinin pratik worst-case bölge olduğunu destekler. Bu, global duty hesabının sahibi değildir; yalnız `Cin` minimumu ve RMS akımı için bu dosyada kullanılan pratik kontrol noktasını teyit eder.
 
 ![Duty cycle'a göre input RMS/load current oranı üzerine alınmış not](images/foto_selected/p21_input_rms_vs_duty.jpg)
 

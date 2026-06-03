@@ -998,3 +998,48 @@ Açık notlar:
 
 - `W.49` sayfasındaki frekans ve süreler ders/kaynak izi olarak tutuldu; güncel proje `fsw = 332 kHz` omurgasıyla sessizce birleştirilmedi.
 - Bu pass yeni final bulk veya MLCC değeri üretmedi; test mantığı ve hızlı giriş akımı gerekçesi owner dosyaya eklendi.
+
+## Pass 025 - Sayfa 48-49
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p048.jpg](../images/defter_full_pages/defter_p048.jpg)
+- [defter_p049.jpg](../images/defter_full_pages/defter_p049.jpg)
+
+Defter işaretleri:
+
+- `W.50`: input capacitor selection notu; kapasitörün `storage` ve `noise/ripple reduction` işleri, bulk/MLCC görev ayrımı, load transient ve brown-out bağlamı.
+- `W.94`: TI `SLTA055 - Input and Output Capacitor Selection` kaynak izi; input ripple voltage, ceramic input capacitor, bulk RMS ripple current ve duty-cycle pulse-current grafiği.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `W.49, W.50, W.94: Kavramsal ve Kaynak İzleri`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `W.50` içindeki load transient örneği giriş bulk / enerji tamponu gerekçesidir; çıkış kapasitörü transient hesabının primary owner'ı [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) olarak kalır.
+- `W.94` üzerindeki `D = 0.5` duty-cycle RMS sezgisi global duty owner'ı değildir; [02_startup_pin_programlama_ve_ortak_sabitler.md](../02_startup_pin_programlama_ve_ortak_sabitler.md) içindeki duty/timing omurgasına kısa referans olarak bağlanır.
+- `SLTA055` kaynak sayfası kaynak izi / çapraz teyittir; final komponent değerleri doğrudan bu sayfadan alınmadı.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `W.50`: kapasitör iki işe yarar: `storage` ve `noise reduction / ripple reduction`.
+- `W.50`: ani yük değişiminde giriş kaynağı anlık cevap veremeyebilir.
+- `W.50`: bulk kapasitör, load transient / brown-out benzeri durumda enerji tamponu olarak düşünülür.
+- `W.50`: MOSFET'in hızlı açma-kapama süreci yüksek frekanslı ripple ve EMI üretir; seramik/MLCC ile azaltılmalıdır.
+- `W.50`: `1 A -> 5 A` load-step örneği görünür; proje güncel load-step girdisi yapılmadı.
+- `W.94`: TI `SLTA055`, `Input and Output Capacitor Selection`, Jason Arrigo, `February 2006` kaynak izi görünür.
+- `W.94`: giriş kapasitörü seçiminde ilk hedef, regülatör girişinde görülen ripple voltage genliğini azaltmak olarak okunur.
+- `W.94`: regülatör girişine yakın seramik kapasitörlerin düşük `ESR` ile ripple voltage'u azalttığı notu görünür.
+- `W.94`: büyük bulk kapasitörlerin yüksek frekanslı ripple voltage'u tek başına azaltmadığı ve bulk RMS ripple akımı / ısınma riskinin azaltılması gerektiği notu okunur.
+- `W.94`: kaynak üzerinde `75 mV` gibi bir rule-of-thumb görünür.
+- `W.94`: input ripple voltage yük akımıyla orantılıdır; maksimum çıkış yük akımında büyür.
+- `W.94`: tek faz buck için `D = 0.5` çevresinde AC RMS pulse-current büyüklüğü maksimuma yaklaşır.
+
+Açık notlar:
+
+- `75 mV` kaynak notu güncel `0.24 Vpp` proje hedefinin yerine geçirilmedi.
+- `1 A -> 5 A` load-step örneği proje load-step girdisi yapılmadı.
+- Bu pass yeni final `Cin`, bulk veya EMI filtre değeri üretmedi; kaynak ve görev-ayrımı izleri owner dosyaya eklendi.
