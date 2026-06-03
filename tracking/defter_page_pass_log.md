@@ -1221,3 +1221,44 @@ Açık notlar:
 - Bu pass yeni final MLCC adedi veya yeni `Cin` değeri üretmedi.
 - `W.34` formülü mevcut `4.5-4.94 A_RMS` RMS ailesine eklendi; çelişkili yeni sonuç gibi kullanılmadı.
 - `ICIN` / `ICO` karşılaştırması owner ayrımı için korundu; çıkış kapasitörü hesabı 03 dosyasına taşınmadı veya burada büyütülmedi.
+
+## Pass 030 - Sayfa 58-59
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p058.jpg](../images/defter_full_pages/defter_p058.jpg)
+- [defter_p059.jpg](../images/defter_full_pages/defter_p059.jpg)
+
+Defter işaretleri:
+
+- `W.36`: input capacitor RMS hesabının temiz tekrar sayfası.
+- `W.36`: `I_CIN,RMS = sqrt(D*(Iout^2*(1-D) + Delta_IL^2/12))` ailesi; `D = 0.5`, `Iout = 9 A`, bobin ripple terimi ve `I_CIN,RMS ≈ 4.566 Arms`.
+- `W.90`: input capacitor RMS hesabının farklı yerleşimli tekrarında `4.544 Arms`.
+- `W.90`: `D = 0.5` için `Iin,RMS,max ≈ 0.5*Iload`; `Iload = 9 A` için `4.5 A`.
+- `W.90`: düşük `ESL` için çoklu paralel MLCC ve yüksek frekans bastırma için küçük MLCC ekleme notu.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `RMS Akımı ve Termal Bakış`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `D = 0.5` burada yalnız RMS worst-case / pratik kontrol noktasıdır; shared duty owner'ı [02_startup_pin_programlama_ve_ortak_sabitler.md](../02_startup_pin_programlama_ve_ortak_sabitler.md) olarak kalır.
+- Çoklu paralel MLCC ve küçük MLCC notu aynı 04 dosyası içindeki `ESL ve Küçük Yardımcı MLCC'ler` bölümüne bağlandı; yeni helper BOM kararı üretilmedi.
+- Bu pass termal closure'ı yeniden açmadı; RMS akımın sıcaklığa etkisi 04 içinde, toplam termal kapanış referansı [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) dosyasındadır.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `I_CIN,RMS ≈ 4.566 Arms`.
+- `Iin,RMS,max ≈ 4.544 Arms`.
+- `D = 0.5` için kaba sezgi `Iin,RMS,max ≈ 0.5*Iload`.
+- `Iload = 9 A` için kaba sonuç `4.5 A`.
+- Düşük `ESL` için paralel MLCC kullanma ve yüksek frekansları bastırmak için küçük MLCC ekleme notu.
+
+Açık notlar:
+
+- `4.544 Arms` ve `4.566 Arms` sessizce tek sayıya yuvarlanmadı; mevcut `4.544-4.566 A_RMS` temiz tekrar bandı olarak bırakıldı.
+- Bu pass yeni final kapasitör adedi, yeni `Cin` veya yeni helper MLCC değeri üretmedi.
+- `0.5*Iload` ifadesi yalnız `D = 0.5` çevresindeki pratik RMS kontrolüdür; tüm duty aralığının global tanımı değildir.

@@ -471,13 +471,19 @@ I_Cin,RMS ≈ sqrt(D*(Iout^2*(1-D) + Delta_IL^2/12)) ≈ 4.94 A
 
 ![W.36'dan seçilen el yazısı parça: temiz yeniden yerleştirmeyle 4.566 Arms sonucunu veren I_Cin,RMS teyidi](images/defter_snippets_web/d58_w36_clean_input_rms_result.jpg)
 
+![Defter p058 / W.36: `I_CIN,RMS` denkleminin temiz tekrarında `D = 0.5`, `9 A`, `Delta_IL` terimi ve `4.566 Arms` sonucu](images/defter_full_pages/defter_p058.jpg)
+
 `W.36` aynı aileyi daha temiz tekrar eder:
 
 ```text
 I_Cin,RMS ≈ 4.566 A_RMS
 ```
 
+[Çapraz Teyit] Tam sayfa izinde `D = 0.5`, `Iout = 9 A` ve bobin ripple terimi aynı denklem içinde tutulur. Bu, ayrı bir final karar değil; `4.55 A_RMS` mertebesinin elle tekrar teyididir.
+
 ![W.90'dan seçilen el yazısı parça: 4.544 Arms sonucu, 0.5 Iload yaklaşımı ve paralel MLCC notu](images/defter_snippets_web/d59_w90_rms_recheck_and_half_iload_rule.jpg)
+
+![Defter p059 / W.90: input capacitor RMS hesabının tekrarında `4.544 Arms`, `0.5*Iload` kuralı ve düşük ESL için paralel MLCC notu](images/defter_full_pages/defter_p059.jpg)
 
 `W.90`:
 
@@ -485,6 +491,8 @@ I_Cin,RMS ≈ 4.566 A_RMS
 Iin_RMS,max ≈ 4.544 A_RMS
 Iin_RMS ≈ 0.5 * Iload ≈ 4.5 A
 ```
+
+[Çapraz Teyit / ESL Köprüsü] Tam sayfa, `D = 0.5` için `Iin,RMS,max ≈ 0.5*Iload` sezgisini tekrar eder ve `Iload = 9 A` için `4.5 A` sonucunu kullanır. Aynı sayfadaki "ESL'yi düşük tutmak için çoklu paralel MLCC" ve "yüksek frekansları bastırmak için küçük MLCC ekle" notları, aşağıdaki [ESL ve Küçük Yardımcı MLCC'ler](#esl-ve-küçük-yardımcı-mlccler) bölümüne bağlanır; ana RMS hesabını başka owner'a taşımaz.
 
 Bu nedenle ana okuma:
 
