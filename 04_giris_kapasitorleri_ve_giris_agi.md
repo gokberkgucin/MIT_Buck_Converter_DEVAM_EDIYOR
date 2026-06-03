@@ -787,6 +787,8 @@ V_spike ≈ I_step * ESR_B
 
 ![W.67'den seçilen el yazısı parça: ESR_B kaynaklı ilk spike ile ikinci daha yavaş spike'ı ayıran not](images/defter_snippets_web/d73_w67_two_spike_explanation.jpg)
 
+![Defter p074 / W.67: input transientte ilk spike'ın `ESR_B`, daha yavaş sapmanın `I_IN-D` ve `I_PS` farkı kaynaklı okunması](images/defter_full_pages/defter_p074.jpg)
+
 `W.67`, iki input transient mekanizmasını daha net ayırır:
 
 1. `ESR_B` kaynaklı hızlı spike,
@@ -794,7 +796,11 @@ V_spike ≈ I_step * ESR_B
 
 `0.36 V` transient hedefi bu ikisinin toplam davranışında kontrol edilir; yalnız `ESR_B` düşüşüne ayrılmış tek bütçe değildir.
 
+[Tasarım İzi] Tam sayfa bu ayrımı sözlü olarak açar: yük step olduğunda ilk tane gerilim sıçraması / düşüşü bulk cap'in `ESR_B`'sinden gelir. Bu ilk ve çok hızlı spike, `ESR`'si yüksek ve düşük iki farklı bulk adayıyla denenmesi gereken bir duyarlılık noktasıdır. İkinci, daha yavaş sapma ise high-side MOSFET drain tarafındaki converter giriş akımı `I_IN-D` ile güç kaynağı / bus akımı `I_PS` arasındaki farktan doğar; defterde `I_IN-D = I_PS + I_CINBulk` gibi bir akım paylaşımı sezgisi not edilir. Bu çizgi yeni duty veya yeni load-step değeri üretmez, sadece bulk'un neden transient enerji tamponu olarak ayrı tutulduğunu açıklar.
+
 ![W.74'ten seçilen el yazısı parça: bulk RMS akımı ve toplam etkili C ile Delta V_IN,PP kontrolünü birleştiren sayfa](images/defter_snippets_web/d74_w74_bulk_rms_and_total_c_check.jpg)
+
+![Defter p075 / W.74: `I_CB,RMS`, `Delta_VIN-PP`, `ESR_B` ve `CCE_total` ayrımını aynı sayfada kuran bulk RMS kontrolü](images/defter_full_pages/defter_p075.jpg)
 
 `W.74`:
 
@@ -804,6 +810,8 @@ I_CB,RMS ≈ (1/(2*sqrt(3))) * 0.24 V / 0.103 ohm ≈ 0.677 A_RMS
 ```
 
 Bu `0.103 ohm -> 0.677 A_RMS` satırı, sonraki `W.81` gerçek aday `ESR ≈ 4 mOhm` değeriyle aynı aşama değildir. Burada amaç bulk ripple-current / ESR ilişkisini kontrol etmektir.
+
+[Tasarım İzi] Tam sayfa bulk capacitor'ın ideal bypass elemanı olmadığını not eder: düşük frekanslı ripple ve transient durumlarda bir miktar akım taşır. Formül, tüm giriş ripple akımı yalnız bulk üzerinden geçseydi bulk üzerinde oluşacak RMS akımın `I_CB,RMS` kadar olacağını anlatan korunmacı kontrol gibi okunur. Aynı sayfada `Delta_VIN-PP` hesabına `CCE_total` yani seramik + elektrolit / bulk etkili kapasite toplamının dahil edilmesi gerektiği yazılır; bu yüzden denklem yalnız MLCC hesabı gibi okunmamalıdır. `0.24 V` hedefi burada tasarım sınırı olarak korunur, yeni ölçüm sonucu değildir.
 
 ![W.75'ten seçilen el yazısı parça: bulk ile MLCC'nin frekansa göre görev paylaşımını empedans sezgisiyle anlatan not](images/defter_snippets_web/d75_w75_bulk_vs_mlcc_frequency_roles.jpg)
 

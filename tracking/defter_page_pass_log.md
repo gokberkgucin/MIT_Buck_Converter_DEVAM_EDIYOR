@@ -1580,3 +1580,51 @@ Açık notlar:
 - Bu pass yeni final `C_B`, `ESR_B`, `Cin`, duty veya load-step değeri üretmedi.
 - `Iload 3 A -> 6 A` yalnız defterdeki açıklayıcı örnek olarak kaldı; güncel `3.571 A -> 9 A` load-step omurgası değiştirilmedi.
 - Sayfalar EVM üzerinde uygulanmış rework / ölçüm sonucu gibi sunulmadı; giriş bulk seçimi için tasarım izi olarak eklendi.
+
+## Pass 038 - Sayfa 74-75
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p074.jpg](../images/defter_full_pages/defter_p074.jpg)
+- [defter_p075.jpg](../images/defter_full_pages/defter_p075.jpg)
+
+Defter işaretleri:
+
+- `W.67`: input transient / ani yük değişimi bağlamında `Vin` üzerinde oluşabilecek sapma iki mekanizmaya ayrılır.
+- `W.67`: ilk hızlı spike'ın bulk cap `ESR_B` ile ilişkili olduğu not edilir.
+- `W.67`: `ESR_B` yüksek ve düşük iki farklı bulk adayıyla transient duyarlılığı denenebilir notu görülür.
+- `W.67`: ikinci spike / daha yavaş sapma `I_IN-D` ile `I_PS` arasındaki farktan kaynaklanır.
+- `W.67`: high-side MOSFET drain tarafındaki akım için `I_IN-D = I_PS + I_CINBulk` benzeri akım paylaşımı sezgisi korunur.
+- `W.74`: bulk capacitor ideal bypass elemanı değildir; düşük frekanslı ripple ve transient durumlarda akım taşır.
+- `W.74`: `I_CB,RMS ≈ (1/(2*sqrt(3))) * Delta_VIN-PP / ESR_B` ilişkisi yazılır.
+- `W.74`: tüm giriş ripple akımı yalnız bulk üzerinden geçseydi, üzerinde oluşacak RMS akım `I_CB,RMS` kadar olurdu şeklindeki worst-case / sanity-check mantığı korunur.
+- `W.74`: `Delta_VIN-PP` hesabında `CCE_total` yani seramik + elektrolit / bulk etkili kapasite toplamına dikkat edilmesi gerektiği not edilir.
+- `W.74`: `0.24 V` tasarım sınırı tekrar görünür.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `Bulk Seçimi Mantığı`.
+- Aynı dosyada `W.67`, `W.74`, `W.75`: `İki Spike, RMS ve Frekans Rolleri`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `I_IN-D`, high-side MOSFET drain akımı ve `I_L/D` sezgisi burada MOSFET selection veya duty owner'ını yeniden açmaz; giriş bulk transient akımını açıklamak için kullanılır.
+- `0.24 V` hedefi [01](../01_tasarim_girdileri_ve_kaynaklar.md) global input snapshot'ından gelir; bu pass yeni requirement üretmedi.
+- Bulk RMS / ESR duyarlılığı termal kapanışa yalnız kısa referansla bağlanır; tam giriş bulk owner'ı 04 dosyasında kalır.
+
+Okunan ana sayısal / kavramsal izler:
+
+- İlk spike: bulk `ESR_B`.
+- İkinci / daha yavaş sapma: `I_IN-D` ve `I_PS` farkı.
+- `I_IN-D = I_PS + I_CINBulk` sezgisi.
+- `I_CB,RMS ≈ (1/(2*sqrt(3))) * Delta_VIN-PP / ESR_B`.
+- `Delta_VIN-PP` hesabında `CCE_total` dikkat notu.
+- Tasarım sınırı: `Delta_VIN-PP <= 0.24 V`.
+
+Açık notlar:
+
+- Bu pass yeni final `C_B`, `ESR_B`, `I_CB,RMS`, `Cin`, duty veya MOSFET akım değeri üretmedi.
+- `0.103 ohm -> 0.677 A_RMS` mevcut 04 owner'ındaki korunmacı bulk RMS kontrolüyle aynı bağlamda tutuldu; sonraki `W.81` `2 x 47 uF / 50 V / X7R` aday `ESR` değeriyle sessizce birleştirilmedi.
+- Sayfalar EVM üzerinde uygulanmış rework / ölçüm sonucu gibi sunulmadı; giriş bulk ve transient enerji tamponu için tasarım izi olarak eklendi.
