@@ -1262,3 +1262,47 @@ Açık notlar:
 - `4.544 Arms` ve `4.566 Arms` sessizce tek sayıya yuvarlanmadı; mevcut `4.544-4.566 A_RMS` temiz tekrar bandı olarak bırakıldı.
 - Bu pass yeni final kapasitör adedi, yeni `Cin` veya yeni helper MLCC değeri üretmedi.
 - `0.5*Iload` ifadesi yalnız `D = 0.5` çevresindeki pratik RMS kontrolüdür; tüm duty aralığının global tanımı değildir.
+
+## Pass 031 - Sayfa 60-61
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p060.jpg](../images/defter_full_pages/defter_p060.jpg)
+- [defter_p061.jpg](../images/defter_full_pages/defter_p061.jpg)
+
+Defter işaretleri:
+
+- `W.86`: `X7R` / `X5R` sıcaklık dayanımı notu; `X7R` daha iyi seçenek gibi tutulur.
+- `W.86`: MLCC'nin düşük `ESR` avantajı, yüksek frekansta `ESL` nedeniyle sınırlanması ve yüksek frekans spike/ripple bastırma için paralel veya küçük MLCC düşüncesi.
+- `W.86`: paralel MLCC için `C_total = C1 + C2`, `ESL_total = ESL1*ESL2/(ESL1+ESL2)` veya eş eleman yaklaşımıyla `ESL/n`, `ESR_total = ESR/n`.
+- `W.86`: büyük MLCC / küçük MLCC / paralel küçük+büyük MLCC özet tablosu; `ESR` ve `ESL` tradeoff'u.
+- `W.87`: kaynak figür / örnek üzerinden küçük kapasitör ekleme, `22.7 V` spike notu ve yeni overshoot/ringing riski.
+- `W.87`: parazitik `L` ve `C` etkilerinin bir `LC` gibi davranıp ringing üretmesi; ringing'in EMI kaynağı olması.
+- `W.87`: çözüm notları olarak `Rboot`, snubber `RC`, küçük MLCC ve yerleşim.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `ESL ve Küçük Yardımcı MLCC'ler` / `W.86-W.89: Büyük / Küçük MLCC ve Ringing Mantığı`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `Rboot` ve bootstrap/gate-drive elektriksel kapanışı [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) owner'ına bağlıdır; burada final `Rboot` değeri üretilmedi.
+- EMI / layout etkisi [08_emi_giris_filtresi_ve_yerlesim.md](../08_emi_giris_filtresi_ve_yerlesim.md) owner'ına pointer olarak bırakıldı.
+- `22.7 V` spike notu proje final ölçümü değildir; kaynak/örnek problem izi olarak tutuldu.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `ESR_total ≈ ESR/n`.
+- `ESL_total ≈ ESL/n` eş / benzer paralel MLCC ilk yaklaşımı.
+- `ESL_total = ESL1*ESL2/(ESL1+ESL2)` iki paralel endüktans yaklaşımı.
+- Küçük MLCC daha düşük `ESL` sağlayabilir; büyük MLCC daha düşük `ESR` / daha yüksek kapasite tarafında güçlüdür.
+- Büyük + küçük MLCC birlikte ripple azaltma ve spike bastırma dengesini iyileştirebilir.
+- Parazitik `LC` ringing EMI kaynağıdır.
+
+Açık notlar:
+
+- Bu pass yeni helper MLCC değeri, snubber `RC` değeri veya `Rboot` değeri üretmedi.
+- `X7R daha iyi` notu tek başına parça yeterlilik kanıtı değildir; sıcaklık, dc-bias ve RMS akım grafikleriyle birlikte okunur.
+- Küçük MLCC ekleme notu fiziksel yerleşim uygulanmış / ölçülmüş sonuç gibi sunulmadı; EVM rework uygulanmamış durumda kalır.

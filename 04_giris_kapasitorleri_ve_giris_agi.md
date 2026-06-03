@@ -589,10 +589,14 @@ Okuma:
 
 ![W.86'dan seçilen el yazısı parça: büyük-küçük MLCC, ESR-ESL dengesi ve paralel bağlama notlarını özetleyen sayfa](images/defter_snippets_web/d60_w86_esr_esl_small_vs_large_mlcc.jpg)
 
+![Defter p060 / W.86: X7R-X5R notu, MLCC paralelleme, `ESL_total` / `ESR_total` ve büyük-küçük MLCC özet tablosu](images/defter_full_pages/defter_p060.jpg)
+
 `W.86`:
 
 ```text
 ESR_total ≈ ESR / n
+ESL_total ≈ ESL / n            (eş / benzer paralel MLCC ilk yaklaşımı)
+ESL_total = ESL1*ESL2/(ESL1 + ESL2)
 ```
 
 Mesaj:
@@ -601,7 +605,13 @@ Mesaj:
 - küçük MLCC: `ESL` düşük olabilir, dc-bias / akım sınırları daha zorlayıcı olabilir,
 - büyük + küçük MLCC birlikte daha dengeli frekans davranışı verebilir.
 
+[Tasarım İzi] Tam sayfada `X7R`'ın `X5R`'ye göre sıcaklığa daha dayanıklı olduğu, MLCC'nin `ESR` tarafında iyi ama yüksek frekansta `ESL` nedeniyle sınırlı kaldığı not edilir. Bu yüzden yüksek frekans spike/ripple bastırma niyetiyle paralel MLCC veya daha küçük MLCC kullanma fikri korunur. Aynı sayfadaki özet tablo, tek büyük MLCC, tek küçük MLCC ve paralel büyük+küçük düzenini `ESR` / `ESL` açısından kıyaslar; bu tablo yeni BOM kararı değil, seçim sezgisidir.
+
 `W.87`, MOSFET switching sırasında ringing/spike gözlemini problem olarak açar. `Vin = 36 V` civarında `22.7 V` seviyesine kadar inen spike / sapma gibi bir not vardır; bu final ölçüm değil, problem tipi izidir. Çözüm sırası: hot-loop yakın küçük MLCC, gerekirse `Rboot`, gerekirse snubber RC.
+
+![Defter p061 / W.87: küçük kapasitör ekleme, `22.7 V` spike, parasitik LC ringing ve `Rboot` / snubber çözüm notları](images/defter_full_pages/defter_p061.jpg)
+
+[Tasarım İzi / Açık Kontrol] Tam sayfada kaynak figür / örnek üzerinden "küçük bir capacitor eklenirse" spike/ringing davranışının değişebileceği anlatılır. `22.7 V` spike notu ve `MOS1 ON` sırasında `Vsw` davranışı proje final ölçümü değildir; problem tipini göstermek için korunur. Notta parazitik endüktans ve kapasitansın bir `LC` gibi davranıp ringing ürettiği, bunun EMI kaynağı olduğu yazılıdır. Çözüm notları `Rboot`, snubber `RC` ve küçük MLCC yerleşimi olarak görünür; `Rboot` / bootstrap elektriksel kapanışı [06](06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md), EMI/layout kapanışı ise [08](08_emi_giris_filtresi_ve_yerlesim.md) owner'ına bağlıdır.
 
 ![W.88'den seçilen el yazısı parça: üstte küçük seramik eklemenin switch-node davranışına etkisi, altta bulk transient mantığı](images/defter_snippets_web/d64_w88_small_mlcc_and_bulk_bridge.jpg)
 
