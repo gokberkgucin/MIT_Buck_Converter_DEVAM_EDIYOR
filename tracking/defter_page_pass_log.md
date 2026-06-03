@@ -1043,3 +1043,50 @@ Açık notlar:
 - `75 mV` kaynak notu güncel `0.24 Vpp` proje hedefinin yerine geçirilmedi.
 - `1 A -> 5 A` load-step örneği proje load-step girdisi yapılmadı.
 - Bu pass yeni final `Cin`, bulk veya EMI filtre değeri üretmedi; kaynak ve görev-ayrımı izleri owner dosyaya eklendi.
+
+## Pass 026 - Sayfa 50-51
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p050.jpg](../images/defter_full_pages/defter_p050.jpg)
+- [defter_p051.jpg](../images/defter_full_pages/defter_p051.jpg)
+
+Defter işaretleri:
+
+- `W.27`: input capacitor minimum etkin kapasite hesabı; `Dmax/Dmin`, `D = 0.5`, `28.4 uF`, eski `4 x 22 uF / 50 V / X7R` MLCC aday izi.
+- `W.35`: `Delta_VIN` ripple denklemine `R_ESR` terimi eklenmiş hali ve `Cin >= 31 uF` bandı.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `MLCC Minimum Cin Hesabı`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `Dmax/Dmin` ve `D = 0.5` burada yalnız `Cin` hesabı girdisidir; shared duty/timing owner'ı [02_startup_pin_programlama_ve_ortak_sabitler.md](../02_startup_pin_programlama_ve_ortak_sabitler.md) olarak kalır.
+- `Loadstep = 3.571 A -> 9 A` izi [01_tasarim_girdileri_ve_kaynaklar.md](../01_tasarim_girdileri_ve_kaynaklar.md) içindeki global girdilere bağlanır.
+- `4 x 22 uF` MLCC aday izi güncel `5 x 4.7 uF` ana MLCC bankıyla birleştirilmedi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `W.27`: `Loadstep = 3.571 A -> 9 A -> 5.429 A`.
+- `W.27`: `Dmax = 14/(24*0.9) ≈ 0.648`.
+- `W.27`: `Dmin = 14/(36*0.9) ≈ 0.432`.
+- `W.27`: `G39` kaynağı, input capacitor hesabı için `D = 0.5` worst-case kontrol noktasına işaret eder.
+- `W.27`: `Cin >= D*(1-D)*Iout/(Delta_VIN-pp*fsw)`.
+- `W.27`: `D = 0.5`, `Iout = 9 A`, `Delta_VIN-pp = 0.24 V`, `fsw = 332 kHz` ile `Cin >= 28.4 uF`.
+- `W.27`: `50 VDC` voltage rating düşüncesi görünür; EVM'nin daha yüksek input rating'ine gerek olmadığı not edilir.
+- `W.27`: `4 adet x 22 uF / 50 V / X7R MLCC 1210` eski/ara aday izi görünür.
+- `W.27`: her bir MLCC için yaklaşık `7.5 uF` efektif kapasite notu okunur.
+- `W.27`: `C29/C30/C31/C9` gibi küçük yardımcı kapasitör notları ve `0.01 uF` izi görünür.
+- `W.35`: `Delta_VIN = Iout*D*(1-D)/(fsw*Cin) + Iout*R_ESR`.
+- `W.35`: `R_ESR = 3 mOhm` varsayımı görünür.
+- `W.35`: `Cin >= D*(1-D)*Iout/(fsw*(Delta_VIN - R_ESR,in*Iout))`.
+- `W.35`: `D = 0.5`, `Iout = 9 A`, `Delta_VIN = 0.24 V`, `fsw = 332 kHz`, `R_ESR = 3 mOhm` ile `Cin >= 31 uF`.
+
+Açık notlar:
+
+- `4 x 22 uF` MLCC satırı güncel BOM kararı yapılmadı; güncel ana bank ve dc-bias gerçekliği 04 dosyasındaki ana MLCC bankı bölümünde ayrı tutulur.
+- `50 VDC yeterli` notu, `44 V / 1 ms` survive-only transient ve gerçek derating ile ayrıca doğrulanmalıdır.
+- Bu pass yeni final `Cin` değeri üretmedi; `28.4 uF` ve `31 uF` mevcut minimum etkin kapasite zincirini tam sayfa defter iziyle tamamladı.

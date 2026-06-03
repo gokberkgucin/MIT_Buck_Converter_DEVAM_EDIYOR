@@ -230,6 +230,8 @@ Bu iki ekran görüntüsü, `D = 0.5` bölgesinin giriş pulse / RMS akımı iç
 
 ![W.27'den seçilen el yazısı parça: minimum etkin Cin için ilk hand-calculation ve 28.4 uF sonucu](images/defter_snippets_web/d50_w27_minimum_cin_hand_calc.jpg)
 
+![Defter p050 / W.27: minimum etkin `Cin`, Dmax/Dmin notları ve eski `4 x 22 uF` MLCC aday izi](images/defter_full_pages/defter_p050.jpg)
+
 Kullanılan ilişki:
 
 ```text
@@ -245,6 +247,10 @@ Defter yerleştirmesi:
 | `Delta_VIN_PP` | `0.24 V` |
 | `fsw` | `332 kHz` |
 | Minimum etkin `Cin` | `≈ 28.4 uF` |
+
+[Tasarım İzi] Tam sayfada `Loadstep = 3.571 A -> 9 A -> 5.429 A`, `Dmax ≈ 0.648`, `Dmin ≈ 0.432`, `G39` kaynaklı `D = 0.5` worst-case sezgisi ve `50 VDC` voltage rating düşüncesi aynı hesap bağlamında görünür. `Dmax/Dmin` burada duty owner'ını yeniden açmaz; [02](02_startup_pin_programlama_ve_ortak_sabitler.md) içindeki paylaşılan duty/timing girdilerine referans verir.
+
+[Eski İterasyon] Aynı sayfada `4 adet x 22 uF / 50 V / X7R MLCC 1210`, "her birinden yaklaşık `7.5 uF` efektif" ve küçük yardımcı konumlar (`C29/C30/C31/C9` gibi `0.01 uF` izi) görünür. Bu, güncel ana `5 x 4.7 uF` giriş MLCC bankıyla sessizce birleştirilmedi; minimum `28.4 uF` etkin ihtiyaç için eski/ara aday izi olarak korunur.
 
 ### `W.30-W.35`: ESR Dahil Etkin `Cin` Bandı
 
@@ -268,6 +274,8 @@ Delta_VIN ≈ Iout*D*(1-D)/(fsw*Cin) + Iout*R_ESR
 
 ![W.35'ten seçilen el yazısı parça: ESR terimini açıkça ekleyip minimum Cin'i 31.1 uF civarına taşıyan hesap](images/defter_snippets_web/d51_w35_esr_including_min_cin.jpg)
 
+![Defter p051 / W.35: `Delta_VIN` ripple formülü, `R_ESR` terimi ve `Cin >= 31 uF` kontrolü](images/defter_full_pages/defter_p051.jpg)
+
 `W.35` yerleştirmesi:
 
 ```text
@@ -278,6 +286,8 @@ fsw = 332 kHz
 Delta_VIN = 0.24 V
 Cin >= 0.5*(1-0.5)*9 / (332 kHz*(0.24 - 0.003*9)) ≈ 31.1 uF
 ```
+
+[Tasarım İzi] Tam sayfada iki form birlikte görünür: önce `Delta_VIN = Iout*D*(1-D)/(fsw*Cin) + Iout*R_ESR`, sonra bu denklem `Cin >= D*(1-D)*Iout / (fsw*(Delta_VIN - R_ESR,in*Iout))` biçimine çevrilir. Sayfadaki `R_ESR = 3 mOhm` ve `31 uF` sonucu, `28.4 uF` kapasitif alt sınırını ESR dahil daha korunmacı banda taşır.
 
 Bu grup tek final rakam değildir. Okuma:
 
