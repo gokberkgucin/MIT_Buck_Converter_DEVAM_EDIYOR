@@ -163,12 +163,16 @@ Bu ilişki yalnız kapasitif ilk alt sınırı verir. `ESR/ESL`, kaynak / LISN e
 
 ![W.48'den seçilen el yazısı parça: bulk, MLCC ve LISN üzerine test soruları ve notlar](images/defter_snippets_web/d46_w48_input_cap_test_questions.jpg)
 
+![Defter p046 / W.48: bulk/MLCC test soruları, LISN notu ve seramik kapasitörün hızlı gürültü/ripple rolü](images/defter_full_pages/defter_p046.jpg)
+
 `W.48`, giriş kapasitörü konusunu test ve EMI bağlamına bağlar:
 
 - bulk kapasitör kullanımı ripple'ı nasıl değiştirir,
 - MLCC etkisi ne kadar olur,
 - `LISN = Line Impedance Stabilization Network`,
 - kaynak ideal değil; belirli hat empedansı ve EMI ölçüm bağlamı vardır.
+
+[Tasarım İzi] Tam sayfada test edilecek sorular açık bırakılır: bulk kapasitör elektrolitik olarak az olursa ne olur, fazla olursa ne olur, MLCC eklenirse ripple ne kadar azalır. Aynı sayfada seramik kapasitörün iki katkısı not edilir: yüksek frekanslı gürültüyü bastırmak ve anahtarlama kaynaklı giriş gerilimi dalgalanmasını azaltmak. Bu sayfa yeni parça değeri üretmez; [08](08_emi_giris_filtresi_ve_yerlesim.md) içindeki LISN/EMI doğrulamasına kısa köprü kurar.
 
 ![W.52'den seçilen el yazısı parça: CIN ve COUT akım rollerini gösteren işaretli akım döngüleri](images/defter_snippets_web/d45_w52_input_output_current_loops.jpg)
 
@@ -182,7 +186,11 @@ Bu ilişki yalnız kapasitif ilk alt sınırı verir. `ESR/ESL`, kaynak / LISN e
 
 ![W.49'dan seçilen el yazısı parça: switching periyot bölgeleri ve giriş kapasitörü akım dalga biçimi örneği](images/defter_snippets_web/d47_w49_switching_waveform_example.jpg)
 
+![Defter p047 / W.49: giriş kapasitörünün ikinci işi, hızlı kenarlar ve elektrolitik kapasitörün yavaş kalması](images/defter_full_pages/defter_p047.jpg)
+
 [Eski İterasyon / Kaynak İzi] `W.49` ders / video örneği gibi durur. `fsw ≈ 200 kHz`, `Tsw ≈ 5 us`, `t_rise / t_fall ≈ 30 ns` notları bu projenin `332 kHz` final girdisi değildir. Burada tutulan fikir: giriş kapasitörü akımı yalnız ortalama/RMS değil, hızlı anahtarlama kenarlarıyla da şekillenir.
+
+[Tasarım İzi] Tam sayfada kırmızı/üst dalga giriş gerilimi veya kapasitör gerilimi sapması, mavi/alt dalga ise anahtarlama aralıklarıyla ilişkili akım davranışı gibi okunur. `t_r`, `tON time`, `t_f`, `tOFF time` etiketleriyle hızlı `di/dt` bölgesi özellikle işaretlenir. Sayfadaki ana mesaj: yalnız elektrolitik kapasitörler varsa bu hızlı değişimlere cevap vermek zorlaşır; hızlı darbeleri süzmek için seramik kapasitör gerekir.
 
 ![W.50'den seçilen el yazısı parça: bulk ve MLCC'nin farklı rollerini anlatan kavramsal notlar](images/defter_snippets_web/d48_w50_bulk_vs_mlcc_notes.jpg)
 

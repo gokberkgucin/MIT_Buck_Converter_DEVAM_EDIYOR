@@ -955,3 +955,46 @@ Açık notlar:
 - `100 mV` satırı güncel giriş ripple hedefi yapılmadı; daha sıkı ripple örneği / tasarım izi olarak korundu.
 - `I_CO` etiketi output-cap owner'ına referans verir; bu pass'te çıkış kapasitörü hesabı yeniden anlatılmadı.
 - Bu pass yeni final `Cin` değeri üretmedi; W.47/W.52 tam sayfa görselleri mevcut darbeli giriş akımı ve `ICIN` ripple owner zincirini tamamladı.
+
+## Pass 024 - Sayfa 46-47
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p046.jpg](../images/defter_full_pages/defter_p046.jpg)
+- [defter_p047.jpg](../images/defter_full_pages/defter_p047.jpg)
+
+Defter işaretleri:
+
+- `W.48`: bulk/MLCC test soruları, LISN notu, seramik kapasitörün yüksek frekans gürültüsü ve giriş gerilimi ripple azaltma rolü.
+- `W.49`: giriş kapasitörünün ikinci işi; hızlı `t_r/t_f` kenarları, `tON/tOFF` aralıkları ve elektrolitik kapasitörün hızlı değişime cevap verememesi.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `W.47, W.48, W.52: Darbeli Giriş Akımı` ve `W.49, W.50, W.94: Kavramsal ve Kaynak İzleri`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `LISN` ve ölçüm/test bağlamı [08_emi_giris_filtresi_ve_yerlesim.md](../08_emi_giris_filtresi_ve_yerlesim.md) tarafındaki EMI/input-filter owner'ına bağlanır.
+- `W.49` üzerindeki `fsw ≈ 200 kHz`, `Tsw ≈ 5 us`, `t_r/t_f ≈ 30 ns` notları final `332 kHz` timing girdisi değildir; [02](../02_startup_pin_programlama_ve_ortak_sabitler.md) owner'ındaki güncel `fsw` ile karıştırılmayacak.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `W.48`: test edilecek şeyler listesi görünür.
+- `W.48`: bulk kapasitör elektrolitik olarak az olursa ne olur sorusu vardır.
+- `W.48`: bulk kapasitör fazla olursa ne olur sorusu vardır.
+- `W.48`: MLCC olursa ripple ne kadar azalır sorusu vardır.
+- `W.48`: yeterli büyüklükte bulk kapasitör yoksa ani yük değişimlerinde giriş geriliminin nasıl değişeceği test konusu yapılır.
+- `W.48`: `LISN = Line Impedance Stabilization Network` notu vardır.
+- `W.48`: seramik kapasitör için yüksek frekans gürültüsünü bastırma ve input voltage ripple reduction notları okunur.
+- `W.48`: buck converter giriş akımının MOSFET ON iken hızlı çekildiği, OFF iken sıfıra yakın olduğu ve bu yüzden darbeli olduğu belirtilir.
+- `W.49`: giriş kapasitörünün ikinci işi hızlı kenarlara cevap vermektir.
+- `W.49`: `t_r`, `tON time`, `t_f`, `tOFF time` etiketleri görünür.
+- `W.49`: `fsw = 200 kHz`, `Tsw = 5 us` ve `t_rise/t_fall` için `30 ns` örnek notu görünür.
+- `W.49`: hızlı `di/dt` yüzünden yalnız elektrolitik kapasitörlerin cevap veremeyeceği notu korunur.
+
+Açık notlar:
+
+- `W.49` sayfasındaki frekans ve süreler ders/kaynak izi olarak tutuldu; güncel proje `fsw = 332 kHz` omurgasıyla sessizce birleştirilmedi.
+- Bu pass yeni final bulk veya MLCC değeri üretmedi; test mantığı ve hızlı giriş akımı gerekçesi owner dosyaya eklendi.
