@@ -869,6 +869,8 @@ Bu açığı kapatmak için `~30 uF` sınıfında, `ESR_B < 0.10233 ohm` koşulu
 
 ![W.81'den seçilen el yazısı parça: 2x47 uF bulk seçimi için ESR ve etkin kapasite kontrolünün kısa özet notu](images/defter_snippets_web/d81_w81_bulk_candidate_check.jpg)
 
+![Defter p082 / W.81: `2 x 47 uF / 50 V / X7R` bulk adayı için `ESR_B`, dc-bias altı etkin kapasite ve `C_B > 27.93 uF` kontrolü](images/defter_full_pages/defter_p082.jpg)
+
 ![Seçilen 47 uF / 50 V bulk MLCC için 36.3 V civarında okunan etkin kapasitans ekranı](images/foto_selected/p76_bulk_capacitance_47uf_36v.jpg)
 
 ![Aynı bulk MLCC için 0.3 MHz civarında okunan ESR yaklaşık 4 mOhm ekranı](images/foto_selected/p77_bulk_esr_300khz.jpg)
@@ -892,9 +894,13 @@ Okunan ana değerler:
 
 `2 mOhm` paralel aday, `0.1023 ohm` transient `ESR_B` sınırının çok altındadır; ancak bu yalnız ani ESR düşüşü tarafını rahatlatır. Frekansa bağlı empedans, damping, akım paylaşımı ve layout yine açık kontrol olarak kalır.
 
+[Çapraz Teyit] Tam sayfa `p082`, `50 V`, `47 uF`, `±20%`, `X7R` bulk adayını ve iki adet paralel kullanımını aynı kaynak izi içinde gösterir. Sayfada `ESR_B = 0.004 ohm = 4 mOhm`, `ESR_B/2 = 2 mOhm`, `ESR_B < 0.1023` koşulunun sağlandığı, dc-bias sonrası tek parça etkin kapasitenin `17 uF` sınıfında okunup iki adet için `34 uF` toplam verdiği ve `34 uF > 27.93 uF` kontrolünün kapandığı görülür. Bu satır, EVM üzerinde uygulanmış modifikasyon / ölçüm sonucu değildir; bulk adayının defterdeki sayısal kapanış izidir.
+
 ### `W.82`: Toplam Giriş Ağı Kontrolü
 
 ![W.82'den seçilen el yazısı parça: toplam seçilen giriş kapasitansı ile 0.2006 V < 0.24 V kontrolünün kapandığını gösteren kısım](images/defter_snippets_web/d82_w82_total_c_and_dvin_check.jpg)
+
+![Defter p083 / W.82: `8.228 uF + 34 uF` toplam etkin giriş kapasitesiyle `Delta_VIN-PP,hesap ≈ 0.2006 V < 0.24 V` kontrolü](images/defter_full_pages/defter_p083.jpg)
 
 `W.82`, MLCC + bulk toplam etkin ağıyla `0.24 Vpp` hedefini tekrar kontrol eder:
 
@@ -914,6 +920,8 @@ Delta_VIN_PP,hesap ≈ 0.2006 V
 [Güncel Omurga] Bu sonuç yalnız steady-state / switching ripple hedefi için kapanış gibi okunur. `0.36 V` transient, bulk-MLCC akım paylaşımı, EMI filtresiyle etkileşim ve layout kaynaklı `ESL` / ringing problemini otomatik kapatmaz.
 
 `W.82` sağ tarafındaki `100 uF polymer` notu alternatif / karşılaştırma izidir. Ana aday hattı hala `2 x 47 uF / 50 V / X7R`; polymer satırı daha sönümlü bulk alternatifi / damping sezgisi olarak kalır.
+
+[Çapraz Teyit] Tam sayfa `p083`, `C_CE,total` içinde ana MLCC etkin kapasitesi ile bulk etkin kapasitesinin `8.228 uF + 34 uF` olarak toplandığını, tolerans teriminin `(1 - 0.20)` şeklinde kullanıldığını ve `Delta_VIN-PP,hesaplanan <= Delta_VIN-allowed` koşulunun `0.2006 V < 0.24 V` ile kapandığını gösterir. Sayfanın üst bölümündeki `100 uF polymer` / damping izi, ana `2 x 47 uF` seramik bulk kararının yerine geçirilmedi; daha sönümlü alternatif ve açık kontrol notu olarak kaldı.
 
 ### `W.83`, `W.91`, `W.97`, `W.92`: Transient Enerji Penceresi
 

@@ -1770,3 +1770,53 @@ Açık notlar:
 - Bu pass yeni final `Cin`, yeni ana MLCC parça sayısı, yeni helper MLCC sayısı veya yeni EMI/input-filter kararı üretmedi.
 - `8.195 uF` ile aynı W.79 çevresinde görülen `8.228 uF` özeti sessizce harmonize edilmedi; küçük helper kapasitörlerin dahil olup olmamasına bağlı iz farkı olarak owner içinde görünür kaldı.
 - Tam sayfa görseller, seçili kırpımların yerine geçmedi; kırpımlar hızlı okuma kanıtı, tam sayfalar kaynak izi olarak birlikte tutuldu.
+
+## Pass 042 - Sayfa 82-83
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p082.jpg](../images/defter_full_pages/defter_p082.jpg)
+- [defter_p083.jpg](../images/defter_full_pages/defter_p083.jpg)
+
+Defter işaretleri:
+
+- `W.81`: `KCM55-MH13` gibi okunan bulk aday izi; `50 V`, `47 uF`, `±20%`, `X7R`.
+- `W.81`: `ESR_B = 0.004 ohm = 4 mOhm`.
+- `W.81`: `2 tane kullanacağım paralel` notu ve `ESR_B/2 = 4 mOhm / 2 = 2 mOhm`.
+- `W.81`: `ESR_B < 0.1023` koşulunun sağlandığı notu.
+- `W.81`: `DC Bias = 36 V` koşulunda yeni etkin kapasite `17 uF x 2 = 34 uF` gibi okunur.
+- `W.81`: `C_B > 27.93 uF` koşulu ve `34 uF > 27.93 uF` kapanışı.
+- `W.82`: `Delta_VIN-PP,hesaplanan` formülü `D*(1-D)*Iout,max / (C_CE,total * fsw * (1 - TOL))` ailesinde yazılır.
+- `W.82`: `D = 0.5`, `Iout,max = 9 A`, `C_CE,total = 8.228 uF + 34 uF`, `fsw = 332 kHz`, `TOL = 0.20`.
+- `W.82`: `Delta_VIN-PP,hesaplanan ≈ 0.2006 V`.
+- `W.82`: `Delta_VIN-PP,hesaplanan <= Delta_VIN-allowed` koşulu `0.2006 V < 0.24 V` ile sağlandı notu.
+- `W.82`: sayfa üstündeki `100 uF polymer` / damping izi alternatif bulk karşılaştırması gibi korunur.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `Bulk Seçimi Mantığı`.
+- Aynı dosyada `W.81: 2 x 47 uF / 50 V / X7R Bulk Adayı`.
+- Aynı dosyada `W.82: Toplam Giriş Ağı Kontrolü`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass yeni EMI/input-filter hesabı açmadı; `100 uF polymer` / damping notu 04 içinde alternatif bulk izi olarak kaldı ve [08](../08_emi_giris_filtresi_ve_yerlesim.md) tarafına yalnız açık kontrol köprüsü taşır.
+- `2 mOhm` bulk aday `ESR_eq` değeri, daha önceki `0.1023 ohm` transient sınırı veya `0.103 ohm -> 0.677 A_RMS` sanity check'iyle sessizce birleştirilmedi.
+- `0.2006 V < 0.24 V` steady-state / switching ripple kapanışıdır; `0.36 V` transient ve layout/ESL/ringing konularını otomatik kapatmaz.
+
+Okunan ana sayısal / kavramsal izler:
+
+- Bulk aday: `2 x 47 uF / 50 V / X7R`.
+- Tek bulk `ESR_B ≈ 4 mOhm`; iki paralel `ESR_eq ≈ 2 mOhm`.
+- Dc-bias altında tek parça `~17 uF`, iki parça `~34 uF`.
+- Transient kapasite koşulu: `C_B > 27.93 uF`; kapanış: `34 uF > 27.93 uF`.
+- Toplam etkin giriş ağı: `8.228 uF + 34 uF`.
+- Ripple kontrol sonucu: `Delta_VIN-PP,hesaplanan ≈ 0.2006 V < 0.24 V`.
+
+Açık notlar:
+
+- Bu pass yeni final bulk teknolojisi veya yeni parça sayısı üretmedi; mevcut `2 x 47 uF` seramik bulk adayını tam sayfa kaynak iziyle güçlendirdi.
+- `100 uF polymer` ana aday yapılmadı; daha sönümlü alternatif / damping sezgisi olarak korundu.
+- Sayfalar EVM üzerinde uygulanmış rework veya ölçüm sonucu gibi sunulmadı; seçilmiş ve planlanmış giriş bulk ağı tasarım izi olarak eklendi.
