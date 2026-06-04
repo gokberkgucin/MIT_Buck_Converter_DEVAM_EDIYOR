@@ -1675,3 +1675,52 @@ Açık notlar:
 - Bu pass yeni final `Cin`, `C_B`, `ESR_B`, `I_CB,RMS`, helper MLCC sayısı veya ana MLCC sayısı üretmedi.
 - `C29` helper izi enerji deposu gibi okunmadı; yüksek frekans bypass / düşük `ESL` rolünde tutuldu.
 - `4 adet` egzersizi ve `5 adet` ana MLCC hattı aynı owner altında etiketli kaldı; sessiz harmonizasyon yapılmadı.
+
+## Pass 040 - Sayfa 78-79
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p078.jpg](../images/defter_full_pages/defter_p078.jpg)
+- [defter_p079.jpg](../images/defter_full_pages/defter_p079.jpg)
+
+Defter işaretleri:
+
+- `W.77`: `0.01 uF` yardımcı kapasitörden `4 tane` notu okunur.
+- `W.77`: `4.7 uF x 5 tane` ana MLCC hattı aynı sayfada görünür.
+- `W.77`: `I_RMS = 4.54 Arms / 4 adet ≈ 1.135 Arms` dört parçalı ara paylaşım egzersizi olarak korunur.
+- `W.77`: `ESL max ≈ 0.0008 uH` ve `ESL_0.01uF,toplam ≈ 0.0002 uH` helper aday için düşük-ESL izi gibi okunur.
+- `W.77`: `36 V` civarında dc-bias etkisiyle kapasite azalması ve `I_RMS` kaynaklı küçük sıcaklık artışı notları görünür.
+- `W.77`: `8392 pF` ve `33.568 nF` yardımcı-kapasite ara değerleri okunur.
+- `W.78`: `4.7 uF 5 tane` ana giriş MLCC bankı daha temiz sayısal hatta geçer.
+- `W.78`: `I_RMS = 4.54 Arms / 5 adet = 0.908 Arms`.
+- `W.78`: `ESL_max = 0.0007 uH` ve `ESL_4.7uF,toplam ≈ 0.14 nH` ideal paralel izi.
+- `W.78`: dc-bias etkisiyle kapasite `%63.9` azalır notu.
+- `W.78`: tek parça etkin kapasite `1.639 uF`, toplam `5 adet` etkin kapasite `8.195 uF`.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `Ana Giriş MLCC Bankı`.
+- Aynı dosyada `W.77-W.78: RMS Paylaşımı, ESL ve Dc-bias`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `W.77` helper `0.01 uF` / `10 nF` aday izini büyütür; helper MLCC ana owner'ı yine aynı 04 dosyasındaki `ESL ve Küçük Yardımcı MLCC'ler` bölümüne bağlıdır.
+- `W.78` ana `5 x 4.7 uF` bankı destekler; `4 adet` ara paylaşım egzersizi final parça sayısı yapılmadı.
+- Sıcaklık notu [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) toplam termal kapanışa yalnız kısa referansla gider; giriş MLCC sıcaklık owner'ı 04 dosyasında kalır.
+
+Okunan ana sayısal / kavramsal izler:
+
+- Helper ara izi: `0.01 uF`, `4 adet`, `ESL max ≈ 0.0008 uH`, `ESL_toplam ≈ 0.0002 uH`.
+- Helper bias ara izi: `8392 pF`, `33.568 nF`.
+- Eski/ara RMS paylaşımı: `4.54 Arms / 4 ≈ 1.135 Arms`.
+- Güncel ana MLCC paylaşımı: `4.54 Arms / 5 = 0.908 Arms`.
+- Ana MLCC ideal paralel ESL: `0.0007 uH / 5 ≈ 0.14 nH`.
+- Ana MLCC etkin kapasite: `1.639 uF` tek parça, `8.195 uF` toplam.
+
+Açık notlar:
+
+- Bu pass yeni final ana MLCC parça sayısı üretmedi; `5 x 4.7 uF` hattını teyit etti.
+- `4 adet` ve `5 adet` izleri aynı sayfa ailesinde ama farklı aşama / varsayım olarak etiketlendi; sessiz harmonizasyon yapılmadı.
+- `0.14 nH` ideal paralel `ESL` değeridir; gerçek PCB parazitleriyle ayrıca doğrulanmalıdır.

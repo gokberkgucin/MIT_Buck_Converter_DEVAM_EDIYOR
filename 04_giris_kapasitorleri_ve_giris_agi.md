@@ -378,9 +378,17 @@ Bu üç kapıdan biri açık kalırsa parça seçimi final sayılmaz.
 
 ![W.77'den seçilen el yazısı parça: dc-bias altındaki gerçek kapasite ve kapasitör başına düşen RMS akım kontrolleri](images/defter_snippets_web/d77_w77_dc_bias_and_rms_share.jpg)
 
+![Defter p078 / W.77: `0.01 uF` yardımcı aday, `4.7 uF x 5` notu, `I_RMS/4` ara paylaşımı, dc-bias ve sıcaklık izleri](images/defter_full_pages/defter_p078.jpg)
+
 `W.77`, katalog değeri yerine bias altındaki kapasiteye bakılması gerektiğini tekrar açar. Bazı `8332 pF` / `33.568 nF` ara notları küçük yardımcı adaylar için iz gibi durur; ana `4.7 uF x 5` bankın temiz sayısal hattı `W.78`tedir.
 
+[Eski İterasyon / Tasarım İzi] Tam sayfada `0.01 uF` yardımcı kapasitörden `4 tane` ve `4.7 uF x 5 tane` notu aynı sayfada görünür. `I_RMS = 4.54 Arms / 4 adet ≈ 1.135 Arms` satırı, dört parçalı ara paylaşım egzersizi gibi tutuldu; güncel `5 adet` ana MLCC bankındaki `0.908 A_RMS/parça` sonucuyla sessizce birleştirilmedi. Sayfadaki `ESL max ≈ 0.0008 uH` ve `ESL_0.01uF,toplam ≈ 0.0002 uH` izleri de helper adayın düşük-ESL niyetini gösterir, fakat final helper yerleşim kanıtı değildir.
+
+[Açık Kontrol] `36 V` civarında dc-bias etkisiyle kapasitenin azaldığı, `I_RMS` akımının küçük bir sıcaklık artışı doğurabileceği ve `8392 pF` / `33.568 nF` gibi yardımcı-kapasite ara değerleri okunur. Bu sayılar ana `5 x 4.7 uF` bankın etkin `~8.2 uF` sonucunun yerine geçmez; küçük helper adayın bias / sıcaklık izidir.
+
 ![W.78'den seçilen el yazısı parça: 5 adet 4.7 uF MLCC bankası için ESL, RMS ve derated C hesabının sayısal kontrolü](images/defter_snippets_web/d78_w78_five_mlcc_bank_numeric_check.jpg)
+
+![Defter p079 / W.78: `4.7 uF x 5` ana giriş MLCC bankında `0.908 Arms/parça`, `0.14 nH` ideal ESL ve `8.195 uF` toplam etkin kapasite](images/defter_full_pages/defter_p079.jpg)
 
 `W.78` ana MLCC bankını sayıya döker:
 
@@ -404,6 +412,8 @@ Bu üç kapıdan biri açık kalırsa parça seçimi final sayılmaz.
 ![Aynı 4.7 uF MLCC için 37 V civarında gerçek etkin kapasitans ekranı](images/foto_selected/p70_input_mlcc_dc_bias_capacitance.jpg)
 
 [Açık Kontrol] `0.14 nH` ideal paralel `ESL` sonucudur. Gerçek PCB'de pad/via endüktansı, loop geometrisi, kapasitörlerin MOSFET'lere uzaklığı ve mutual coupling bu değeri büyütebilir.
+
+[Çapraz Teyit] Tam sayfa `4.7 uF 5 tane`, `I_RMS = 4.54 Arms / 5 adet = 0.908 Arms`, `ESL_max = 0.0007 uH` ve `ESL_4.7uF,toplam ≈ 0.14 nH` satırlarını birlikte gösterir. Aynı sayfada akım kaynaklı sıcaklık artışının ihmal edilebilir düzeyde olabileceği notu, dc-bias etkisiyle kapasitenin `%63.9` azalması ve tek parça etkin kapasitenin `1.639 uF` civarına inmesiyle birlikte okunur. Bu nedenle asıl kapanış `5 adet` toplam etkin kapasitenin `8.195 uF` civarında kalmasıdır; katalog `23.5 uF` değeri tek başına kullanılmaz.
 
 ### `W.79`: ESR ve Toplam Derated Kapasite Özeti
 
