@@ -419,12 +419,18 @@ Bu üç kapıdan biri açık kalırsa parça seçimi final sayılmaz.
 
 ![W.79'dan seçilen el yazısı parça: 5x4.7 uF MLCC grubunun ESR_eq ve toplam derated kapasitesini özetleyen sayfa](images/defter_snippets_web/d79_w79_mlcc_bank_summary.jpg)
 
+![Defter p080 / W.79: `fsw = 332 kHz` ve `fc = 35 kHz` noktalarında 5 paralel MLCC için `ESR_eq` kontrolü](images/defter_full_pages/defter_p080.jpg)
+
+![Defter p081 / W.79: `5 x 4.7 uF` bank için RMS paylaşımı, ideal ESL ve dc-bias sonrası `8.195 uF` etkin toplam kapasite teyidi](images/defter_full_pages/defter_p081.jpg)
+
 `W.79`, ana MLCC bankının frekansa göre `ESR` izini özetler:
 
 | Frekans bölgesi | Tek MLCC `ESR` | `5 adet` paralel `ESR_eq` |
 |---|---:|---:|
 | `fsw = 332 kHz` civarı | `≈ 4 mOhm` | `≈ 0.8 mOhm` |
 | `fc = 35 kHz` civarı | `≈ 10 mOhm` | `≈ 2 mOhm` |
+
+[Çapraz Teyit] Tam sayfa `p080`, bu tabloyu doğrudan destekler: `fsw = 332 kHz` noktasında tek MLCC `ESR ≈ 4 mOhm`, `5 adet` paralel için `ESR_eq ≈ 0.8 mOhm`; `fc = 35 kHz` noktasında tek MLCC `ESR ≈ 0.01 ohm`, `5 adet` paralel için `ESR_eq ≈ 2 mOhm`. Bu iki değer aynı final `ESR` sayısı gibi birleştirilmedi; frekans noktasına bağlı çapraz teyit olarak tutuldu.
 
 ![Seçilen 4.7 uF giriş MLCC için 0.3 MHz civarında okunan ESR yaklaşık 4 mOhm ekranı](images/foto_selected/p72_input_mlcc_esr_300khz.jpg)
 
@@ -439,6 +445,8 @@ C_MLCC,toplam,etkin ≈ 8.228 uF
 ```
 
 olarak toplar. `8.195 uF` ile `8.228 uF` farkı yeni tasarım kararı değildir; küçük yardımcı kapasitörlerin kenarda göründüğü özet farkı gibi okunur. Pratik sonuç: nominal `23.5 uF` bank, çalışma bias'ı altında `~8.2 uF` civarına düşer.
+
+[Çapraz Teyit] Tam sayfa `p081`, `W.78` hattını `W.79` özetiyle tekrar bağlar: `4.54 Arms / 5 = 0.908 Arms`, `0.0007 uH / 5 ≈ 0.14 nH`, dc-bias ile `%63.9` azalma, tek parça `1.639 uF` ve `5 adet` için `8.195 uF` toplam. Bu sayfa yeni final `Cin` üretmez; önceki ana MLCC bankı kararını tam sayfa kaynak iziyle teyit eder.
 
 ## RMS Akımı ve Termal Bakış
 

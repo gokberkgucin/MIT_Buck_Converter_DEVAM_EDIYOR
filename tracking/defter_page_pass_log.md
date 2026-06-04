@@ -1724,3 +1724,49 @@ Açık notlar:
 - Bu pass yeni final ana MLCC parça sayısı üretmedi; `5 x 4.7 uF` hattını teyit etti.
 - `4 adet` ve `5 adet` izleri aynı sayfa ailesinde ama farklı aşama / varsayım olarak etiketlendi; sessiz harmonizasyon yapılmadı.
 - `0.14 nH` ideal paralel `ESL` değeridir; gerçek PCB parazitleriyle ayrıca doğrulanmalıdır.
+
+## Pass 041 - Sayfa 80-81
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p080.jpg](../images/defter_full_pages/defter_p080.jpg)
+- [defter_p081.jpg](../images/defter_full_pages/defter_p081.jpg)
+
+Defter işaretleri:
+
+- `W.79`: `fsw = 332 kHz` noktasında ana `5 x 4.7 uF` MLCC bankı için `ESR` kontrolü yapılır.
+- `W.79`: tek MLCC `ESR ≈ 4 mOhm`, `5 adet` paralel için `ESR_eq ≈ 0.8 mOhm`.
+- `W.79`: `fc = 35 kHz` noktasında tek MLCC `ESR ≈ 0.01 ohm`, `5 adet` paralel için `ESR_eq ≈ 2 mOhm`.
+- `W.79`: altta `4 tane 0.01 uF + 5 x 4.7 uF` helper + ana MLCC toplamı notu kısmen görünür; bu satır yeni final toplam gibi büyütülmedi.
+- `W.79`: `I_RMS = 4.54 Arms / 5 adet = 0.908 Arms` paylaşımı tekrar okunur.
+- `W.79`: tek `4.7 uF` MLCC için `ESL_max ≈ 0.0007 uH`; ideal paralelde `ESL_4.7uF,toplam ≈ 0.00014 uH ≈ 0.14 nH`.
+- `W.79`: akımın sebep olduğu sıcaklık artışının ihmal edilebilir düzeyde olduğu notu korunur.
+- `W.79`: dc-bias etkisiyle kapasitenin `%63.9` azaldığı, tek parça etkin kapasitenin `1.639 uF`, `5 adet` toplam etkin kapasitenin `8.195 uF` olduğu tekrar teyit edilir.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `Ana Giriş MLCC Bankı`.
+- Aynı dosyada `W.79: ESR ve Toplam Derated Kapasite Özeti`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass EMI input-filter owner'ını yeniden açmadı; frekans-noktası `ESR` değerleri 04 dosyasındaki giriş MLCC bankı kararı için tutuldu.
+- `0.8 mOhm` ve `2 mOhm` aynı final `ESR` sayısı gibi birleştirilmedi; sırasıyla `fsw` ve `fc` civarı için ayrı çapraz teyit olarak kaldı.
+- `0.14 nH` ideal paralel `ESL` hesabıdır; PCB pad/via/yerleşim parazitleriyle ölçülmüş değer değildir.
+- Giriş MLCC sıcaklık notu 04 dosyasında owner olarak kaldı; toplam sistem termal kapanışı [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) dosyasına yalnız kısa bağlanır.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `fsw = 332 kHz`, `ESR ≈ 4 mOhm`, `ESR_eq(5 paralel) ≈ 0.8 mOhm`.
+- `fc = 35 kHz`, `ESR ≈ 0.01 ohm`, `ESR_eq(5 paralel) ≈ 2 mOhm`.
+- `I_RMS = 4.54 Arms / 5 = 0.908 Arms`.
+- `ESL_max = 0.0007 uH`, `ESL_parallel ≈ 0.00014 uH ≈ 0.14 nH`.
+- Dc-bias azalması `%63.9`; tek parça etkin kapasite `1.639 uF`; toplam etkin kapasite `8.195 uF`.
+
+Açık notlar:
+
+- Bu pass yeni final `Cin`, yeni ana MLCC parça sayısı, yeni helper MLCC sayısı veya yeni EMI/input-filter kararı üretmedi.
+- `8.195 uF` ile aynı W.79 çevresinde görülen `8.228 uF` özeti sessizce harmonize edilmedi; küçük helper kapasitörlerin dahil olup olmamasına bağlı iz farkı olarak owner içinde görünür kaldı.
+- Tam sayfa görseller, seçili kırpımların yerine geçmedi; kırpımlar hızlı okuma kanıtı, tam sayfalar kaynak izi olarak birlikte tutuldu.
