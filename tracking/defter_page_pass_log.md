@@ -1820,3 +1820,49 @@ Açık notlar:
 - Bu pass yeni final bulk teknolojisi veya yeni parça sayısı üretmedi; mevcut `2 x 47 uF` seramik bulk adayını tam sayfa kaynak iziyle güçlendirdi.
 - `100 uF polymer` ana aday yapılmadı; daha sönümlü alternatif / damping sezgisi olarak korundu.
 - Sayfalar EVM üzerinde uygulanmış rework veya ölçüm sonucu gibi sunulmadı; seçilmiş ve planlanmış giriş bulk ağı tasarım izi olarak eklendi.
+
+## Pass 043 - Sayfa 84-85
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p084.jpg](../images/defter_full_pages/defter_p084.jpg)
+- [defter_p085.jpg](../images/defter_full_pages/defter_p085.jpg)
+
+Defter işaretleri:
+
+- `W.83`: `undershoot` yük aniden artarsa giriş geriliminin kısa süreli düşmesi olarak not edilir.
+- `W.83`: `overshoot` yük aniden azalırsa enerjinin kısa süreli boşaltılamaması / gerilimin kısa süreli artması olarak not edilir.
+- `W.83`: bulk capacitor transient response requirement koşulunda `ESR_B` ve `C_B` birlikte işaretlenir.
+- `W.83`: `ESR_B < Delta_VIN,tran / (Istep * Dmax)` koşulunun daha önce hesaplandığı not edilir.
+- `W.83`: `T_RIPS ≈ 1/(f_BW*4)`, `fc ≈ fsw/10`, `1/(33.2 kHz*4) ≈ 7.53 us`.
+- `W.91`: `ESR_B <= V_IN-Tran / (Istep * Dmax,verimle)` temiz tekrar.
+- `W.91`: `0.36 V / (5.429 * 0.6481) <= 0.1023 ohm`.
+- `W.91`: `denklem (4)` kullanımı not edilir.
+- `W.91`: `T_RIPS ≈ 1/(f_BW*4)`, `fc ≈ fsw/10`, `fc ≈ 35 kHz`, `T_RIPS ≈ 7.14 us` mertebesi.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `Bulk Seçimi Mantığı`.
+- Aynı dosyada `W.83, W.91, W.97, W.92: Transient Enerji Penceresi`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass yeni control-loop owner'ı açmadı; `fc ≈ fsw/10`, `33.2 kHz` ve `35 kHz` yalnız bulk transient zaman penceresini kurmak için kısa referans olarak kullanıldı.
+- `0.1023 ohm` transient `ESR_B` sınırı, `2 x 47 uF` adayının `~2 mOhm` paralel ESR değeriyle sessizce birleştirilmedi.
+- Undershoot / overshoot notları giriş bulk transient owner'ında tutuldu; çıkış kapasitörü transient owner'ına taşınmadı çünkü sayfa girişi ve bulk capacitor şartını anlatıyor.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `ESR_B < Delta_VIN,tran / (Istep * Dmax)`.
+- `ESR_B <= 0.36 / (5.429 * 0.6481) ≈ 0.1023 ohm`.
+- `T_RIPS ≈ 1/(33.2 kHz*4) ≈ 7.53 us`.
+- `T_RIPS ≈ 1/(35 kHz*4) ≈ 7.14 us`.
+- Bulk transient gereksinimi `ESR_B` hızlı sapma ve `C_B` enerji penceresi olarak iki parçalı okunur.
+
+Açık notlar:
+
+- Bu pass yeni final `C_B`, `ESR_B`, `fc`, duty veya load-step değeri üretmedi.
+- `7.53 us` ve `7.14 us` aynı zaman penceresinin iki yakın okuması olarak kaldı; biri `33.2 kHz`, diğeri `35 kHz` hattından gelir.
+- Sayfalar EVM üzerinde uygulanmış rework veya ölçüm sonucu gibi sunulmadı; giriş bulk transient kapanışı için defter kaynak izi olarak eklendi.

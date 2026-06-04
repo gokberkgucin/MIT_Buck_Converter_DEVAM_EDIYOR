@@ -927,6 +927,8 @@ Delta_VIN_PP,hesap ≈ 0.2006 V
 
 ![W.83'ten seçilen el yazısı parça: ESR_B koşulu ile T_rip zaman ölçeğini aynı yerde kuran köprü sayfa](images/defter_snippets_web/d83_w83_esrb_and_trip_time.jpg)
 
+![Defter p084 / W.83: bulk transient requirement için undershoot/overshoot tanımı, `ESR_B` ve `C_B` koşulları, `T_RIPS ≈ 7.53 us`](images/defter_full_pages/defter_p084.jpg)
+
 `W.83`, bulk transient hesabını ikiye ayırır:
 
 1. hızlı ilk düşüş: `ESR_B`,
@@ -940,7 +942,11 @@ f_c ≈ f_sw / 10 ≈ 33.2 kHz
 T_rip ≈ 1 / (33.2 kHz * 4) ≈ 7.53 us
 ```
 
+[Çapraz Teyit] Tam sayfa `p084`, `undershoot` ve `overshoot` notlarını aynı transient bağlama bağlar: yük aniden artarsa giriş gerilimi kısa süreli düşebilir, yük aniden azalırsa enerji boşaltılamadığı için kısa süreli artış görülebilir. Aynı sayfada bulk capacitor için `transient response requirement` altında `ESR_B` ve `C_B` koşullarının birlikte düşünülmesi gerektiği ve `T_RIPS ≈ 1/(f_BW*4) ≈ 1/(33.2 kHz*4) ≈ 7.53 us` hesabı görülür. Bu sayfa yeni `C_B` veya `ESR_B` değeri üretmez; `W.83` köprü sayfasının tam kaynak izidir.
+
 ![W.91'den seçilen el yazısı parça: 0.1023 ohm ESR_B sınırı ve 7.14 us T_rips notunu daha temiz veren sayfa](images/defter_snippets_web/d84_w91_clean_esrb_and_trips.jpg)
+
+![Defter p085 / W.91: `ESR_B <= 0.36/(5.429*0.6481) ≈ 0.1023 ohm` ve `T_RIPS ≈ 1/(35 kHz*4) ≈ 7.14 us` temiz kontrolü](images/defter_full_pages/defter_p085.jpg)
 
 `W.91` aynı hesabı daha güncel değerlerle temizler:
 
@@ -955,6 +961,8 @@ T_rips ≈ 1 / (35 kHz * 4) ≈ 7.14 us
 ```
 
 `7.53 us` ve `7.14 us` aynı ailede tutulur; biri `f_sw/10 = 33.2 kHz` ilk kuralından, diğeri `35 kHz` crossover hedefinden gelir.
+
+[Çapraz Teyit] Tam sayfa `p085`, `ESR_B <= V_IN-Tran/(Istep*Dmax,verimli)` hattını `0.36 V/(5.429*0.6481)` ile açar ve `ESR_B <= 0.1023 ohm` sınırının `denklem (4)` kullanımından geldiğini gösterir. Sayfanın alt tarafındaki `T_RIPS ≈ 1/(f_BW*4)` kontrolü, `fc ≈ fsw/10` ve `35 kHz` hedefiyle `~7.14 us` mertebesini tekrar kurar. `0.1023 ohm`, gerçek `2 x 47 uF` adayının `~2 mOhm` paralel ESR değeriyle aynı şey değildir; biri transient sınırı, diğeri aday parça izidir.
 
 `W.97` silik ama şu alternatif zaman ölçeğini verir:
 
