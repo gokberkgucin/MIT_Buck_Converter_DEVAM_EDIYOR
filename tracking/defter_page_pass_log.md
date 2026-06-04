@@ -1628,3 +1628,50 @@ Açık notlar:
 - Bu pass yeni final `C_B`, `ESR_B`, `I_CB,RMS`, `Cin`, duty veya MOSFET akım değeri üretmedi.
 - `0.103 ohm -> 0.677 A_RMS` mevcut 04 owner'ındaki korunmacı bulk RMS kontrolüyle aynı bağlamda tutuldu; sonraki `W.81` `2 x 47 uF / 50 V / X7R` aday `ESR` değeriyle sessizce birleştirilmedi.
 - Sayfalar EVM üzerinde uygulanmış rework / ölçüm sonucu gibi sunulmadı; giriş bulk ve transient enerji tamponu için tasarım izi olarak eklendi.
+
+## Pass 039 - Sayfa 76-77
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p076.jpg](../images/defter_full_pages/defter_p076.jpg)
+- [defter_p077.jpg](../images/defter_full_pages/defter_p077.jpg)
+
+Defter işaretleri:
+
+- `W.75`: bulk cap üzerinden geçen RMS ripple akımının hesaplanması tekrar edilir.
+- `W.75`: `I_CB,RMS = (1/(2*sqrt(3))) * Delta_VIN-PP / ESR_B` ilişkisi korunur.
+- `W.75`: bulk üzerinden geçen ripple akımının yaklaşık olarak `Delta_VIN-PP` ile doğru orantılı olduğu not edilir.
+- `W.75`: bulk capacitor empedansının yüksek frekans ripple akımı için MLCC'lere göre daha yüksek kalabileceği yazılır.
+- `W.75`: yüksek frekans ripple bypass için MLCC'nin daha iyi olduğu; bunun düşük `ESL` ve düşük `ESR` ile ilişkili olduğu not edilir.
+- `W.75`: bulk ve MLCC'nin frekans bölgelerini ayıran kavramsal empedans çizimi vardır.
+- `W.76`: `C29 küçük Cin` için `10 nF`, `100 V`, `X7R`, `0603` sınıfı yardımcı aday izi görülür.
+- `W.76`: `C10, C11, C12, C13, C14` benzeri ana giriş MLCC konumları ve `4.7 uF` notu okunur.
+- `W.76`: `fc = 35 kHz`, `2.1 ohm`, `ESR = 0.5 ohm` ve `4 adet` ile bölme egzersizi silik ara iz olarak korunur; final `ESR_eq` yapılmadı.
+
+Primary owner entegrasyonu:
+
+- [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `W.67`, `W.74`, `W.75`: `İki Spike, RMS ve Frekans Rolleri`.
+- Aynı dosyada `Ana Giriş MLCC Bankı` / `W.76: Gerçek MLCC Adayları ve EVM İzi`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `W.75` bulk / MLCC frekans rolünü açıklar; EMI input filter owner'ını burada yeniden açmaz. EMI / Middlebrook kapanışı [08](../08_emi_giris_filtresi_ve_yerlesim.md) dosyasında kalır.
+- `W.76` küçük helper MLCC izidir; ana `5 x 4.7 uF` bankın temiz final hattı `W.78-W.79` ile aynı 04 owner'ında kapanır.
+- Silik `4 adet` egzersizi, güncel `5 adet` ana MLCC bankıyla sessizce birleştirilmedi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `I_CB,RMS = (1/(2*sqrt(3))) * Delta_VIN-PP / ESR_B`.
+- Bulk ripple akımı yaklaşık `Delta_VIN-PP` ile doğru orantılıdır.
+- MLCC yüksek frekans bypass tarafında güçlüdür; bulk yüksek frekans ripple'a karşı daha yüksek empedans gösterebilir.
+- `C29` helper: `10 nF`, `100 V`, `X7R`, `0603`.
+- Ana MLCC konumları: `C10-C14` ailesi ve `4.7 uF` notu.
+- Silik ara izler: `fc = 35 kHz`, `2.1 ohm`, `ESR = 0.5 ohm`, `4 adet`.
+
+Açık notlar:
+
+- Bu pass yeni final `Cin`, `C_B`, `ESR_B`, `I_CB,RMS`, helper MLCC sayısı veya ana MLCC sayısı üretmedi.
+- `C29` helper izi enerji deposu gibi okunmadı; yüksek frekans bypass / düşük `ESL` rolünde tutuldu.
+- `4 adet` egzersizi ve `5 adet` ana MLCC hattı aynı owner altında etiketli kaldı; sessiz harmonizasyon yapılmadı.

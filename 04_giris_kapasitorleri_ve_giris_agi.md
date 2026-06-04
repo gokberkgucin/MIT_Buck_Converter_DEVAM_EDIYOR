@@ -366,9 +366,13 @@ Bu üç kapıdan biri açık kalırsa parça seçimi final sayılmaz.
 
 ![W.76'dan seçilen el yazısı parça: gerçek giriş MLCC adayları ve frekansa göre ESR eşitliği üzerinden yapılan ilk seçim notu](images/defter_snippets_web/d76_w76_real_mlcc_candidates_and_esr.jpg)
 
+![Defter p077 / W.76: `C29` küçük `Cin`, `10 nF / 100 V / X7R / 0603` yardımcı aday izi ve ana MLCC konumları](images/defter_full_pages/defter_p077.jpg)
+
 ![EVM şeması üzerinde C29 ile C10-C14 giriş kapasitör bankasını aynı anda gösteren ekran görüntüsü](images/foto_selected/p79_evm_input_output_cap_bank.jpg)
 
 `W.76`, `C29` küçük yüksek-frekans seramik adayını ve `C10-C14` gibi `4.7 uF` MLCC grubunu birlikte gösterir. Sayfadaki `4 adet` paralel `ESR` egzersizi ara izdir; EVM üzerinde `C10-C14` beş konum olarak görünür ve sonraki `W.78-W.79` daha net `5 adet` hattına gider.
+
+[Tasarım İzi / Açık Kontrol] Tam sayfada `C29 küçük Cin` için `10 nF`, `100 V`, `X7R`, `0603` sınıfı yardımcı aday okunur. Aynı sayfada ana MLCC ailesi için `C10, C11, C12, C13, C14` benzeri konumlar ve `4.7 uF` notu görünür. Alt taraftaki `fc = 35 kHz` civarında `2.1 ohm`, `ESR = 0.5 ohm` ve `4 adet` ile bölme egzersizi siliktir; bu yüzden yeni final `ESR_eq` veya parça sayısı olarak kullanılmadı. Buradaki güvenli okuma: küçük yardımcı MLCC yüksek frekans bypass içindir; ana giriş bankı ise `W.78-W.79` temiz hattıyla kapanır.
 
 ### `W.77-W.78`: RMS Paylaşımı, ESL ve Dc-bias
 
@@ -815,11 +819,17 @@ Bu `0.103 ohm -> 0.677 A_RMS` satırı, sonraki `W.81` gerçek aday `ESR ≈ 4 m
 
 ![W.75'ten seçilen el yazısı parça: bulk ile MLCC'nin frekansa göre görev paylaşımını empedans sezgisiyle anlatan not](images/defter_snippets_web/d75_w75_bulk_vs_mlcc_frequency_roles.jpg)
 
+![Defter p076 / W.75: bulk RMS akımı, `Delta_VIN-PP`, bulk empedansı ve MLCC yüksek frekans bypass rolü](images/defter_full_pages/defter_p076.jpg)
+
 `W.75`, bulk ve MLCC'nin frekans rollerini ayırır:
 
 - yüksek frekans bypass: MLCC,
 - daha düşük frekans / yavaş enerji: bulk,
 - bulk tek başına yüksek frekanslı ripple bastırma elemanı değildir.
+
+[Tasarım İzi] Tam sayfa `I_CB,RMS = (1/(2*sqrt(3))) * Delta_VIN-PP / ESR_B` ilişkisini tekrar eder ve bulk üzerinden geçen ripple akımının yaklaşık olarak giriş gerilimi ripple'ı `Delta_VIN-PP` ile doğru orantılı olduğunu not eder. Sayfa ayrıca bulk capacitor empedansının seramik MLCC'lere kıyasla yüksek frekans bölgesinde daha yüksek kaldığını söyler; özellikle yüksek frekans ripple akımını bypass etmek için MLCC'nin daha iyi olduğu, çünkü `ESL` ve `ESR` değerlerinin düşük tutulabildiği not edilir.
+
+[Tasarım İzi / Damping] Sayfanın altındaki empedans çizimi, bulk ve MLCC'nin frekans bölgelerini kavramsal ayırır: bulk daha düşük frekans / transient enerji tarafında; MLCC daha hızlı ripple / yüksek frekans bypass tarafında güçlüdür. Bulk'un `ESR`'si de tamamen kötü bir şey gibi değil, ripple gerilimi oluşumuna katkı yaparken bir yandan damping / sönümleme sezgisi sağlayabilecek gerçek direnç olarak okunur. Bu yeni bulk seçimi değildir; `W.81` aday hattı ayrı kalır.
 
 ### `W.80`: MLCC Açığı ve Bulk Kararı
 
