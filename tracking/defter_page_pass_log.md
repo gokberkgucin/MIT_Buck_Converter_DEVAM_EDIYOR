@@ -2976,3 +2976,55 @@ Açık notlar:
 
 - Bu pass yeni final `Ciss/Coss/Crss`, `Cgd`, `Cgs`, `Cds`, `Qgd`, `Coss` kaybı veya switching-time değeri üretmedi.
 - `VDS≈22 V`, `VDS,off≈380 V` ve `W.163` küçük kapasitans hattı aynı koşulun cevapları değildir; final kapanışta hangi kapasitans ailesi kullanılacaksa `VDS`, `Tj`, gate-drive ve datasheet grafiği aynı setten seçilecek.
+
+## Pass 068 - Sayfa 134-135
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p134.jpg](../images/defter_full_pages/defter_p134.jpg)
+- [defter_p135.jpg](../images/defter_full_pages/defter_p135.jpg)
+
+Defter işaretleri:
+
+- `W.132`: `Tj = Tcase + Ploss * RthetaJC` ilişkisi korunur.
+- `W.132`: `Tcase ≈ 73.9 C`, `Ploss ≈ 1.29 W`, `RthetaJC ≈ 1.6 C/W`.
+- `W.132`: `Tj ≈ 75.964 C ≈ 76 C`.
+- `W.132`: `ID ≈ 9 A + 3.8 A / 2 ≈ 11 A`.
+- `W.132`: `VDS ≈ 36 V - 14 V ≈ 22 V`.
+- `W.132`: `Vdrive = VCC ≈ 7.5 V`.
+- `W.132`: `Rgate = R3 = 2.2 ohm = RBST` gibi görünen not, "yanlış olabilir" uyarısıyla korunur.
+- `W.132`: G88/G32 isimlendirme eşlemesi: `RHI ≈ RHO-up / RLO-up ≈ 1.5 ohm`; gate'i `Vdrive/VCC` tarafına çeken pull-up / sürme yolu.
+- `W.132`: `RLO ≈ RHO-down / RLO-down ≈ 0.9 ohm`; gate'i `GND` tarafına çeken pull-down / söndürme yolu.
+- `W.177`: `Rtotal = Rdriver + RG,external + RG,internal`.
+- `W.177`: `RG,external ≈ 0 ohm`.
+- `W.177`: `RG,internal ≈ 0.5-1 ohm` aralığı; hesapta yaklaşık `0.7 ohm` alınır.
+- `W.177`: tutucu driver direnci `Rdriver ≈ 1.5 ohm`.
+- `W.177`: `Rtotal ≈ 1.5 ohm + 0 ohm + 0.7 ohm ≈ 2.2 ohm`.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `W.163` alternatif parametre setinin hemen yanında tam sayfa `p134` ve `p135`.
+
+Kısa referans / owner dışı bağlantı:
+
+- MOSFET seçim dosyası [05](../05_mosfet_secimi_ve_dayanim_mantigi.md) büyütülmedi; gate-yolu direnci ve termal/kayıp kapanışı primary olarak [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde kaldı.
+- `Rgate/RBST/Rboot` isim karışıklığı bootstrap bölümündeki `Rboot = 2.2 ohm` açık kontrolüne bağlandı.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Tj ≈ 75.964 C ≈ 76 C`.
+- `RthetaJC ≈ 1.6 C/W` bu sayfadaki iz; önceki `1.9 C/W` iziyle sessizce birleştirilmedi.
+- `ID ≈ 11 A`.
+- `VDS ≈ 22 V`.
+- `Vdrive ≈ 7.5 V`.
+- `RHI ≈ 1.5 ohm`, `RLO ≈ 0.9 ohm`.
+- `RG,external ≈ 0 ohm`, `RG,internal ≈ 0.7 ohm`.
+- `Rtotal ≈ 2.2 ohm`.
+
+Açık notlar:
+
+- Bu pass yeni final gate direnci, final switching time, final bootstrap direnci veya final `Tj` üretmedi.
+- `2.2 ohm` hem gate-yolu toplam direnci hem de bootstrap/RBST notu olarak göründüğü için reference designator ve fiziksel eleman bazında ayrıca kapanacak.
+- `RthetaJC ≈ 1.6 C/W` ve `RthetaJC ≈ 1.9 C/W` aynı final termal modelde koşulları netleşmeden birleştirilmeyecek.

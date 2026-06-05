@@ -291,6 +291,51 @@ Coss,ave ≈ 39.2 pF
 Cgs ≈ 830.2 pF
 ```
 
+![Defter p134 / W.132: `Tj = Tcase + Ploss*RthetaJC`, `ID≈11 A`, `VDS=22 V`, `Vdrive=7.5 V` ve `RHI/RLO` isimlendirme ayrımı](images/defter_full_pages/defter_p134.jpg)
+
+[Tasarım İzi / Açık Kontrol] Tam sayfa `p134`, aynı parametre setinin termal ve gate-yolu girdilerini açar:
+
+```text
+Tj = Tcase + Ploss * RthetaJC
+Tcase ≈ 73.9 C
+Ploss ≈ 1.29 W
+RthetaJC ≈ 1.6 C/W  [bu sayfadaki iz]
+Tj ≈ 75.964 C ≈ 76 C
+
+ID ≈ 9 A + 3.8 A / 2 ≈ 11 A
+VDS ≈ 36 V - 14 V ≈ 22 V
+Vdrive = VCC ≈ 7.5 V
+```
+
+Sayfadaki `Rgate = R3 = 2.2 ohm = RBST` notu "yanlış olabilir" uyarısıyla birlikte korunur. Bu iz, gate yolu direnci ile bootstrap seri direncinin aynı fiziksel eleman gibi karışabileceği noktayı görünür yapar; final devre/BOM kontrolünde `Rgate`, `Rboot/RBST` ve reference designator'lar ayrı doğrulanacak.
+
+`p134` ayrıca G88 ve G32 isimlendirmesini eşler:
+
+```text
+G88'deki RHI ≈ G32'deki RHO-up / RLO-up ≈ 1.5 ohm
+  -> gate'i Vdrive/VCC'ye çeken pull-up / sürme yolu direnci
+
+G88'deki RLO ≈ G32'deki RHO-down / RLO-down ≈ 0.9 ohm
+  -> gate'i GND'ye çeken pull-down / söndürme yolu direnci
+```
+
+![Defter p135 / W.177: `Rtotal = Rdriver + RG,external + RG,internal`, `Rdriver=1.5 ohm`, `RG,external=0 ohm`, `RG,internal≈0.7 ohm` ve `Rtotal≈2.2 ohm`](images/defter_full_pages/defter_p135.jpg)
+
+[Tasarım İzi] Tam sayfa `p135`, gate-yolu toplam direncini daha temiz açar:
+
+```text
+Rtotal = Rdriver + RG,external + RG,internal
+RG,external ≈ 0 ohm
+RG,internal ≈ 0.5-1 ohm aralığı; bu hesapta ≈ 0.7 ohm alındı
+
+Pull-up / pull-down driver direnci için tutucu kabul:
+Rdriver ≈ 1.5 ohm
+
+Rtotal ≈ 1.5 ohm + 0 ohm + 0.7 ohm ≈ 2.2 ohm
+```
+
+Defter notu bu direncin switching süresi, `tfall` ve eşdeğer hesaplarda kullanılabileceğini söyler; aynı sayfada bu ayrıntılı zaman hesabının o anda atlandığı da belirtilir. Bu yüzden `2.2 ohm`, burada gate-yolu toplam direnci izidir; bootstrap bölümündeki `Rboot = 2.2 ohm` ile aynı eleman gibi okunmayacak.
+
 [Açık Kontrol] `54 pF / 783 pF / 729 pF` hattı ile `11.21 pF / 39.2 pF / 830.2 pF` hattı aynı koşulun iki final cevabı gibi karıştırılmayacak. Hangi kapasitans seti kullanılıyorsa `Qgd`, `Coss` kaybı, Miller kontrolü ve switching süreleri aynı setten yürütülecek.
 
 ![W.190'dan küçük kırpım: erken `tr` ve `toff` kestirimlerinde `Qgs2` ve `Qgd` kullanan ara hesap](images/defter_snippets_web/d137_w190_early_tr_toff_estimate.jpg)
