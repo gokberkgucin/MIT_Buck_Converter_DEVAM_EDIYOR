@@ -497,11 +497,15 @@ Bu dört sayfa final dalga şekli değildir; `dV/dt` / Miller probleminin parame
 
 ![W.149'dan küçük kırpım: kaynak sayfa üzerine alınmış Vpl ve turn-on interval notları](images/defter_snippets_web/d117_w149_source_waveform_and_notes.jpg)
 
+![Defter p118 / W.149: `VPL` ve `VGS(th)` tahmini için TI kaynak sayfası, turn-on waveform ve saturation-region notları](images/defter_full_pages/defter_p118.jpg)
+
 `W.149`, kendi çizimlerini TI kaynak şekliyle hizalar:
 
 - `t1-t2`: MOSFET threshold'u geçer ve akım taşımaya başlar,
 - `t2-t3`: Miller `Cgd` şarj olur, `VGS` plateau'da kalır, `VDS` düşer,
 - `VPL` / `VGS(th)` hesabı switching interval yorumunun parçasıdır.
+
+[Kaynak İzi / Tasarım İzi] Tam sayfa `p118`, `VPL` ve `VGS(th)` değerlerinin datasheet'teki tek tablo sayısı gibi değil, drain-source akımıyla değişen çalışma noktası olarak okunması gerektiğini gösterir. Kaynak, doğru `tr` ve `toff` tahmininin `QGS2`, `QGD`, `VGS(th)` ve `VPL` doğruluğuna bağlı olduğunu söyler. Defter notu ayrıca `t2-t3` aralığını Miller `Cgd` şarj bölgesi olarak işaretler: `VGS` plateau'da sabit kalırken `VDS` düşer ve switching transition burada anlam kazanır. Bu sayfa yeni final `VPL`, `VTH` veya `QGD` üretmez; 06 dosyasındaki kayıp denklemlerine giden datasheet-okuma bağlamıdır.
 
 ### `W.150`, `W.155`, `W.156`: Kayıp Sınıflarına Handoff
 

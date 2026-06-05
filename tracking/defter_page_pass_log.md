@@ -2611,3 +2611,48 @@ Açık notlar:
 
 - Bu pass yeni `tr`, `tf`, `P_switching`, `Qgd`, `Qgs` veya gate direnci sayısı üretmedi.
 - `W.147-W.148` dalga şekli açıklaması, `W.190` ve `W.153-W.154` sayısal hesaplarıyla aynı koşul setine çekilmeden final hesap gibi kullanılmayacak.
+
+## Pass 060 - Sayfa 118-119
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p118.jpg](../images/defter_full_pages/defter_p118.jpg)
+- [defter_p119.jpg](../images/defter_full_pages/defter_p119.jpg)
+
+Defter işaretleri:
+
+- `W.149`: `VPL` ve `VGS(th)` tahmini için TI `SLVAEQ9` kaynak sayfası korunur.
+- `W.149`: doğru `tr` ve `toff` tahmininin `QGS2`, `QGD`, `VGS(th)` ve `VPL` doğruluğuna bağlı olduğu not edilir.
+- `W.149`: `t0-t4` turn-on aralıkları tekrar kaynak metinle bağlanır; `t2-t3` aralığı Miller `Cgd` şarj / `VDS` düşüş bölgesidir.
+- `W.149`: output-characteristic saturation zone koşulu `VGS > VGS(th)` ve `VDS > VGS - VGS(th)` olarak görünür.
+- `W.150`: conduction loss formu `P_CON = RDS(on) * I_QSW(RMS)^2` olarak korunur.
+- `W.150`: high-side conduction formu `RDS(on) * (VOUT/VIN) * (I_OUT^2 + I_RIPPLE^2/12)` olarak görünür.
+- `W.150`: switching-loss enerji ilişkileri `Et1`, `Et2`, `P_SW`, `t1 = QGS2/IG`, `t2 = QGD/IG`, `IG = C*dv/dt`, `Q = C*V` olarak korunur.
+
+Primary owner entegrasyonu:
+
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `Gate Sürme ve Switching Interval Bağlamı / W.147-W.149`: tam sayfa `p118`.
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `Kayıp Bütçesinin Kapsamı`: tam sayfa `p119`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `VPL` / `VGS(th)` datasheet-okuma ve seçim bağlamı 05 dosyasında kalır.
+- Conduction/switching loss denklemleri ve final kayıp kapanışı 06 dosyasında kalır.
+- Bobin ripple terimi [03](../03_bobin_ve_cikis_kapasitorleri.md) owner sonucundan gelir.
+- Global `VIN`, `VOUT`, `f_sw` ve duty bağlamı [01](../01_tasarim_girdileri_ve_kaynaklar.md) dosyasına bağlıdır.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `VPL`, `VGS(th)`, `QGS2`, `QGD`.
+- `t0-t1`, `t1-t2`, `t2-t3`, `t3-t4`.
+- `iD = Kn * (VGS - VGS(th))^2` saturation-region ilişkisi kaynak sayfada görünür.
+- `P_CON = RDS(on) * I_QSW(RMS)^2`.
+- `P_SW = 2 * (Et1 + Et2) * f_SW`.
+- `VGS(actual) ≈ 7.5 V` defter notu, LM5146 gate-drive bağlamı.
+
+Açık notlar:
+
+- Bu pass yeni final `VPL`, `VGS(th)`, `P_CON`, `P_SW`, `tr`, `toff`, `QGS2`, `QGD` veya efficiency sayısı üretmedi.
+- `W.149` kaynak teorisi ile `W.190`, `W.153-W.154` ve `W.191-W.192` sayısal defter hesapları aynı koşul setinde tekrar eşleştirilecek.

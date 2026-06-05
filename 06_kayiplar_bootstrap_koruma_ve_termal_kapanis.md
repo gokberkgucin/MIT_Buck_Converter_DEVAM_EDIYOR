@@ -133,7 +133,28 @@ Yani kayıp denklem zinciri için `G81`, dalga şekli ve zaman ekseni sezgisi i�
 
 ![W.150'den küçük kırpım: conduction ve switching loss şekillerini aynı sayfada gösteren kaynak](images/defter_snippets_web/d118_w150_conduction_vs_switching_figures.jpg)
 
+![Defter p119 / W.150: conduction loss, switching loss enerjileri ve gate-charge ilişkileri](images/defter_full_pages/defter_p119.jpg)
+
 [Kaynak İzi] `W.150`, conduction ve switching loss'un aynı MOSFET kayıp çatısı altında ayrı mekanizmalar olduğunu gösterir. `RDS(on)` gerçek `VGS` ve sıcaklık koşuluyla, switching tarafı ise `VPLAT`, `VGS(th)`, `Qgs`, `Qgd` ve gate-charge dalga şekliyle okunur.
+
+Tam sayfa `p119`, bu kaynak hattındaki iki denklem ailesini yan yana korur:
+
+```text
+P_CON = RDS(on) * I_QSW(RMS)^2
+P_CON = RDS(on) * (VOUT/VIN) * (I_OUT^2 + I_RIPPLE^2/12)
+```
+
+```text
+Et1 = (VDS * ID / 2) * t1
+Et2 = (VDS / 2 * ID) * t2
+P_SW = 2 * (Et1 + Et2) * f_SW
+t1 = QGS2 / IG
+t2 = QGD / IG
+IG = C * dv/dt
+Q = C * V
+```
+
+[Açık Kontrol] `p119` yeni final conduction veya switching-loss sayısı üretmez. `VGS(actual)`, `RDS(on)`, `QGS2`, `QGD`, `IG`, `t1/t2`, `VIN/VOUT`, ripple akımı ve sıcaklık aynı koşul setine çekilmeden bu denklemler final verim tablosuna doğrudan taşınmayacak. Defter notundaki LM5146 gate sürüşü için `VGS(actual) ≈ 7.5 V` izi, 05 dosyasındaki MOSFET datasheet okuma koşuluyla birlikte kullanılacak.
 
 ![W.155'ten küçük kırpım: G81 raporunun kapak ve kapsam sayfası](images/defter_snippets_web/d111_w155_g81_title_and_scope.jpg)
 
