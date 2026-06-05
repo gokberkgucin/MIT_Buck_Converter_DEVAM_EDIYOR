@@ -2479,3 +2479,48 @@ Açık notlar:
 
 - `50 C/W`, `115 C/W` ve `36.8 C/W` aynı koşul gibi birleştirilmedi; ilk iki değer ölçüm/PCB alanı karşılaştırması, `36.8 C/W` ise seçili MOSFET thermal metric listesi bağlamında tutuldu.
 - Thermocouple ölçümü yapılırsa `PsiJT` / `PsiJB` kullanım noktası ayrıca netleştirilecek.
+
+## Pass 057 - Sayfa 112-113
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p112.jpg](../images/defter_full_pages/defter_p112.jpg)
+- [defter_p113.jpg](../images/defter_full_pages/defter_p113.jpg)
+
+Defter işaretleri:
+
+- `W.155`: TI `SLVAEQ9 - July 2020` application report kapak sayfası korunur.
+- `W.155`: kaynak adı `An Accurate Approach for Calculating the Efficiency of a Synchronous Buck Converter Using the MOSFET Plateau Voltage`.
+- `W.155`: kaynak; switching loss, inductor loss, input/output capacitor ESR loss ve other loss kalemlerini verim hesabına bağlamak için kullanılır.
+- `W.155`: aynı kaynak MOSFET plateau voltage (`Vpl`) değerini farklı drain-source akımları için tahmin etme yöntemini içerir.
+- `W.156`: toplam kayıp bütçesi sınıfları renkli işaretlenmiş olarak korunur: `P_switches`, `P_inductor`, `P_capacitors`, `P_other`.
+- `W.156`: verim formülü `eta = Vo*Io / (Vo*Io + P_total_loss) * 100%` olarak korunur.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `Kayıp Bütçesinin Kapsamı`.
+- Tam sayfa `p112`, mevcut `W.155` kaynak kapağı kırpımının yanına eklendi.
+- Tam sayfa `p113`, mevcut `W.156` toplam kayıp/verim formülü kırpımının yanına eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- MOSFET seçim trade-off'u [05](../05_mosfet_secimi_ve_dayanim_mantigi.md) dosyasında kalır; bu pass oradaki handoff'u büyütmedi.
+- İndüktör kaybı owner bağlantısı [03](../03_bobin_ve_cikis_kapasitorleri.md) dosyasına gider.
+- Kapasitör ESR/ripple kayıpları [03](../03_bobin_ve_cikis_kapasitorleri.md) ve [04](../04_giris_kapasitorleri_ve_giris_agi.md) dosyalarındaki owner sonuçlarıyla kapanır.
+- Controller/driver/diğer kayıplar [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) dosyasında tutulur.
+
+Okunan ana sayısal / kavramsal izler:
+
+- Kaynak rapor: `SLVAEQ9 - July 2020`.
+- `P_total_loss = P_switches + P_inductor + P_capacitors + P_other`.
+- `eta = Vo*Io / (Vo*Io + P_total_loss) * 100%`.
+- Kayıp sınıfları: switches, inductor, capacitors, other.
+- Verim hesabının MOSFET plateau voltage (`Vpl`) doğruluğuyla ilişkisi.
+
+Açık notlar:
+
+- Bu pass yeni final efficiency, yeni MOSFET kaybı veya yeni termal kapanış sayısı üretmedi.
+- `P_capacitors`, giriş ve çıkış kapasitörü ESR/ripple kayıplarını owner dosyalardan alacak; tek bir kapasitör kararı gibi birleştirilmeyecek.
+- `P_other` içine controller, driver, PCB izi ve yardımcı kayıplar girerken çift sayım kontrolü yapılacak.

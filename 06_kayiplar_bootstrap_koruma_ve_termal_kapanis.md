@@ -137,7 +137,13 @@ Yani kayıp denklem zinciri için `G81`, dalga şekli ve zaman ekseni sezgisi i�
 
 ![W.155'ten küçük kırpım: G81 raporunun kapak ve kapsam sayfası](images/defter_snippets_web/d111_w155_g81_title_and_scope.jpg)
 
+![Defter p112 / W.155: TI SLVAEQ9 application report, synchronous buck verim ve MOSFET plateau voltage kaynak kapağı](images/defter_full_pages/defter_p112.jpg)
+
+[Kaynak İzi] Tam sayfa `p112`, `SLVAEQ9 - July 2020` TI application report'unun deftere alınmış kaynak kapağıdır: `An Accurate Approach for Calculating the Efficiency of a Synchronous Buck Converter Using the MOSFET Plateau Voltage`. Sayfa, bu kaynağın switching loss, inductor loss, input/output capacitor ESR loss ve diğer kayıp kalemlerini verim hesabına bağladığını; ayrıca farklı drain-source akımlarında MOSFET plateau voltage (`Vpl`) tahmini için kullanıldığını gösterir. Bu sayfa proje için yeni final verim sayısı üretmez; aşağıdaki kayıp bütçesi denklemlerinin kaynak/rol izidir.
+
 ![W.156'dan küçük kırpım: toplam kayıp bütçesi ve verim formülü](images/defter_snippets_web/d112_w156_power_loss_budget_formula.jpg)
+
+![Defter p113 / W.156: toplam kayıp sınıfları ve verim denklemine giden kaynak sayfa](images/defter_full_pages/defter_p113.jpg)
 
 `W.155-W.156`, toplam kayıp bütçesinin kaynak çatısını verir:
 
@@ -148,6 +154,8 @@ $$
 $$
 \eta = \frac{V_o I_o}{V_o I_o + P_{total\_loss}} \times 100\%
 $$
+
+`W.156` üstündeki renklendirme, toplam kaybı dört ayrı owner girdisine ayırır: MOSFET/switch kayıpları bu dosyada, indüktör kaybı [03](03_bobin_ve_cikis_kapasitorleri.md) dosyasında, kapasitör ESR/ripple kayıpları [03](03_bobin_ve_cikis_kapasitorleri.md) ve [04](04_giris_kapasitorleri_ve_giris_agi.md) dosyalarında, controller/yardımcı/diğer kayıplar ise yine bu dosyanın kapanış zincirinde tutulur.
 
 [Açık Kontrol] Bu formül "toplam kayıp kapandı" anlamına gelmez. MOSFET, bobin, kapasitör ESR/ripple, controller ve yardımcı kayıplar aynı koşul setine çekilmeden verim sayısı final kabul edilmeyecek.
 
