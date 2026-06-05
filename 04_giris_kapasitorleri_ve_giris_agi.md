@@ -966,6 +966,8 @@ T_rips ≈ 1 / (35 kHz * 4) ≈ 7.14 us
 
 `W.97` silik ama şu alternatif zaman ölçeğini verir:
 
+![Defter p086 / W.97: `fc = 33.2 kHz` üzerinden `tau ≈ 1/(2*pi*fc) ≈ 4.8 us` loop gecikmesi / bulk transient zaman ölçeği izi](images/defter_full_pages/defter_p086.jpg)
+
 ```text
 f_c = 33.2 kHz
 tau ≈ 1 / (2*pi*f_c) ≈ 4.8 us
@@ -973,9 +975,11 @@ tau ≈ 1 / (2*pi*f_c) ≈ 4.8 us
 
 [Tasarım İzi] `4.8 us`, `~7 us` penceresini iptal eden yeni ana süre değildir; bulk hesabının `4.8-7.5 us` aralığında duyarlılık kontrolü gerektirdiğini gösterir.
 
+[Açık Kontrol] Tam sayfa `p086` çok soluktur; güvenli okuma `fc = 33.2 kHz -> tau ≈ 4.8 us` hattıdır. Sağ altta görünen diğer notlar bu pass'te yeni final `L`, `R_ESR`, `Istep` veya transient sayı üretmek için kullanılmadı.
+
 ![W.92'den seçilen el yazısı parça: kapasitif terim ile ESR terimini ayırmayı hatırlatan kaynak-üstü not](images/defter_snippets_web/d86_w92_ripple_components_figure.jpg)
 
-`W.92` sembol olarak `VOUT/COUT` kullansa da burada tutulmasının nedeni, giriş bulk/transient hesabı için de geçerli olan ayrımı hatırlatmasıdır:
+`W.92` sembol olarak `VOUT/COUT` kullandığı için tam sayfa primary owner'ı [03_bobin_ve_cikis_kapasitorleri.md](03_bobin_ve_cikis_kapasitorleri.md) içindeki output ripple bölümüdür. Burada yalnız giriş bulk/transient hesabı için de geçerli olan ayrım kısa referans olarak tutulur:
 
 ```text
 Delta_V(pp) ≈ kapasitif terim + ESR terimi

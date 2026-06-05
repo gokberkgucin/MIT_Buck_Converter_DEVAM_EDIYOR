@@ -568,6 +568,8 @@ Bu iki satır, W.54-W.56 bobin zinciriyle W.58 Cout hesabını doğrudan bağlar
 
 ![W.93'ten seçilen el yazısı parça: Delta Vout(C) ve Ipp/8fswCout ilişkisinin kısa teyidi](images/defter_snippets_web/d27_w93_capacitive_ripple_component.jpg)
 
+![Defter p087 / W.92: kaynak figürde steady-state output ripple, `Delta_VOUT(dc) = Ipp/(8*fsw*COUT) + Ipp*ESR` ve `Ipp` dalga şekli](images/defter_full_pages/defter_p087.jpg)
+
 `W.93`, kapasitif bileşeni kısa yazar:
 
 ```text
@@ -575,7 +577,13 @@ Delta_Vout(C) ≈ Ipp / (8*fsw*Cout)
 Ipp = Delta_IL(p-p)
 ```
 
-Bu sayfa yeni final `Cout` sonucu vermez; `Delta_IL = 3.8 A` ve `2.7 A` senaryolarının ripple hesabına nasıl girdiğini teyit eder.
+[Çapraz Teyit] Tam sayfa `p087`, `W.92` kaynak figürü olarak `Delta_VOUT(dc)` hesabının kapasitif terim ile `ESR` teriminden oluştuğunu gösterir:
+
+```text
+Delta_VOUT(dc) = Ipp/(8*fsw*COUT) + Ipp*ESR
+```
+
+Bu kaynak sayfa yeni final `Cout` sonucu vermez; `Delta_IL = 3.8 A` ve `2.7 A` senaryolarının ripple hesabına nasıl girdiğini ve `ESR` teriminin neden ayrıca görünür tutulduğunu teyit eder. Aynı figür 04 dosyasında yalnız kısa referans olarak kullanılır; output ripple primary owner'ı burasıdır.
 
 [Tasarım İzi] Tam sayfada `Ipp -> Delta_IL(p-p) / inductor ripple current` notu ve `%42 -> 3.8 A`, alternatif olarak `2.7 A` okunur. Böylece W.58'deki iki ripple senaryosu ile W.93'teki kapasitif ripple formülü aynı owner zincirinde bağlanır.
 

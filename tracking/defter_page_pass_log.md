@@ -1866,3 +1866,46 @@ Açık notlar:
 - Bu pass yeni final `C_B`, `ESR_B`, `fc`, duty veya load-step değeri üretmedi.
 - `7.53 us` ve `7.14 us` aynı zaman penceresinin iki yakın okuması olarak kaldı; biri `33.2 kHz`, diğeri `35 kHz` hattından gelir.
 - Sayfalar EVM üzerinde uygulanmış rework veya ölçüm sonucu gibi sunulmadı; giriş bulk transient kapanışı için defter kaynak izi olarak eklendi.
+
+## Pass 044 - Sayfa 86-87
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p086.jpg](../images/defter_full_pages/defter_p086.jpg)
+- [defter_p087.jpg](../images/defter_full_pages/defter_p087.jpg)
+
+Defter işaretleri:
+
+- `W.97`: sayfa çok soluk; güvenli okuma `fc = 33.2 kHz -> loop gecikmesi / zaman sabiti` hattıdır.
+- `W.97`: `tau ≈ 1/(2*pi*fc) ≈ 1/(2*pi*33.2 kHz) ≈ 4.8 us`.
+- `W.97`: sağ altta görülen `L`, `R_ESR`, `Istep` benzeri notlar bu pass'te yeni final değer yapılmadı.
+- `W.92`: kaynak figürde steady-state output ripple gösterilir.
+- `W.92`: `Delta_VOUT(dc) = Ipp/(8*fsw*COUT) + Ipp*ESR`.
+- `W.92`: şekil `Ipp` ripple akımını ve `Delta VOUT(dc)` / `Delta VOUT(ac)` ayrımını gösterir.
+- `W.92`: eldeki sayfada `VOUT(nom) = 14 V` notu görünür; bu pass yeni output voltage spec üretmez.
+
+Primary owner entegrasyonu:
+
+- `W.97` için [04_giris_kapasitorleri_ve_giris_agi.md](../04_giris_kapasitorleri_ve_giris_agi.md) içinde `Bulk Seçimi Mantığı` / `Transient Enerji Penceresi`.
+- `W.92` için [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) içinde `Steady-state Ripple ve Minimum Cout`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `W.97` içindeki `4.8 us`, `7.53 us` ve `7.14 us` zaman pencerelerini iptal etmez; aynı transient duyarlılık ailesinin daha kısa zaman-sabiti okuması olarak tutuldu.
+- `W.92` sembol olarak `VOUT/COUT` kullandığı için tam anlatımı output capacitor owner'ında tutuldu; 04 dosyasında yalnız kapasitif terim + `ESR` terimi ayrımı için kısa referans bırakıldı.
+- Bu pass yeni `Cout`, `Cin`, `C_B`, `ESR_B`, `fc`, `Istep` veya `Vout` değeri üretmedi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `fc = 33.2 kHz`.
+- `tau ≈ 1/(2*pi*33.2 kHz) ≈ 4.8 us`.
+- `Delta_VOUT(dc) = Ipp/(8*fsw*COUT) + Ipp*ESR`.
+- Output ripple hesabında kapasitif bileşen ve `ESR` bileşeni ayrı tutulmalıdır.
+
+Açık notlar:
+
+- `p086` soluk olduğu için yalnız güvenle okunan zaman ölçeği owner dosyaya eklendi; soluk metinlerden yeni teknik karar çıkarılmadı.
+- `p087` output ripple figürüdür; giriş bulk owner'ında uzun tekrar olarak büyütülmedi.
+- Sayfalar EVM üzerinde uygulanmış rework veya ölçüm sonucu gibi sunulmadı; defter/kaynak izi olarak eklendi.
