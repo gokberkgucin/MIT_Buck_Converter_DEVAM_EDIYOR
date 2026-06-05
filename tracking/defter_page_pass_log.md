@@ -2656,3 +2656,47 @@ Açık notlar:
 
 - Bu pass yeni final `VPL`, `VGS(th)`, `P_CON`, `P_SW`, `tr`, `toff`, `QGS2`, `QGD` veya efficiency sayısı üretmedi.
 - `W.149` kaynak teorisi ile `W.190`, `W.153-W.154` ve `W.191-W.192` sayısal defter hesapları aynı koşul setinde tekrar eşleştirilecek.
+
+## Pass 061 - Sayfa 120-121
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p120.jpg](../images/defter_full_pages/defter_p120.jpg)
+- [defter_p121.jpg](../images/defter_full_pages/defter_p121.jpg)
+
+Defter işaretleri:
+
+- `W.124`: `2.2 Inductor Losses Calculation` ve `2.3 capacitor losses` bölümlerinin eksik kaldığı not edilir.
+- `W.124`: ESR belirlenmediği için denklemlerin yazıldığı ve anlatıldığı, fakat ayrıntılı hesap yapılmadığı korunur.
+- `W.124`: kayıp hesabında denklemler için `G81`, zaman/şekil sezgisi için `G90` kullanılacağı not edilir.
+- `W.124`: özellikle G81'in `[5]`, `[6]`, `[3]` denklemlerindeki zamanlar için `G81 Fig.3` yerine `G90 Fig.4` ve `Fig.2` tarafına bakılacağı yazılıdır.
+- `W.118`: `Et1 = (VDS * ID / 2) * t1` enerji ilişkisi birim kontrolüyle korunur.
+- `W.118`: `Volt * Coulomb/saniye * saniye` ifadesinin enerjiye gittiği, `Joule = Watt * saniye` okuması not edilir.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `Kayıp Bütçesinin Kapsamı / Enerji, Güç ve Kayıp Sınıfları`.
+- Tam sayfa `p121`, mevcut `W.118` enerji-birim kırpımının yanına eklendi.
+- Tam sayfa `p120`, mevcut `W.124` metod kırpımının yanına eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bobin kaybı final hesabı [03](../03_bobin_ve_cikis_kapasitorleri.md) owner sonucuna bağlı kalır.
+- Kapasitör ESR/ripple kayıpları [03](../03_bobin_ve_cikis_kapasitorleri.md) ve [04](../04_giris_kapasitorleri_ve_giris_agi.md) owner sonuçlarıyla kapanır.
+- MOSFET switching-loss hesapları [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde kalır; bu pass yalnız metod ve birim izini güçlendirdi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `2.2 Inductor Losses Calculation`.
+- `2.3 capacitor losses`.
+- `ESR` belirlenmediği için hesapların eksik kalması.
+- `G81` denklemleri ve `G90` şekilleri ayrımı.
+- `Et1 = (VDS * ID / 2) * t1`.
+- `Joule = Watt * saniye`.
+
+Açık notlar:
+
+- Bu pass yeni bobin kaybı, kapasitör ESR kaybı, MOSFET switching loss veya verim sayısı üretmedi.
+- `P_inductor` ve `P_capacitors` kalemleri final verim tablosuna eklenmeden önce owner dosyalardaki gerçek ESR/DCR/ripple koşullarıyla tamamlanacak.

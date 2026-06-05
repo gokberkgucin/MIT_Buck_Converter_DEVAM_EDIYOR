@@ -94,6 +94,8 @@ Bu toplam yalnız iki MOSFET kanal iletim ara toplamıdır; switching, gate-driv
 
 ![W.118'den küçük kırpım: Joule, Watt ve süre ilişkisini hatırlatan not](images/defter_snippets_web/d120_w118_energy_to_power_note.jpg)
 
+![Defter p121 / W.118: `Et1` enerji denkleminde Volt, Coulomb/saniye ve saniye birim kontrolü](images/defter_full_pages/defter_p121.jpg)
+
 [Tasarım İzi] `W.118` anahtarlama kaybı düşüncesini enerji üzerinden kurar:
 
 ```text
@@ -107,6 +109,8 @@ E_{sw} \sim \left(\frac{V_{DS} I_D}{2}\right)t_{sw}
 $$
 
 Önce tek anahtarlama olayındaki enerji düşünülür; sonra `f_sw` ile ortalama güce geçilir.
+
+Tam sayfa `p121`, `Et1 = (VDS * ID / 2) * t1` hattının birim kontrolünü açık tutar: `Volt * Coulomb/saniye * saniye` enerjiye gider; defter notunda bunun `Joule = Watt * saniye` olarak okunduğu yazılıdır. Bu sayfa yeni kayıp gücü üretmez; `W.150` ve `W.153-W.154` switching-loss hesaplarına giden enerji-to-power dönüşümünü görünür kılar.
 
 ![W.119'dan küçük kırpım: kayıp kategorilerini ve verim bağlantısını gösteren kaynak sayfa](images/defter_snippets_web/d121_w119_loss_article_and_contributors.jpg)
 
@@ -123,6 +127,8 @@ Bu sayfadaki `100 W / 10 W -> %90` notu proje verim sonucu değildir; kayıp bü
 
 ![W.124'ten küçük kırpım: denklem G81'den, şekil G90'dan notu](images/defter_snippets_web/d119_w124_methodology_note_g81_g90.jpg)
 
+![Defter p120 / W.124: `G81` denklemleri, `G90` şekilleri, indüktör ve kapasitör kaybı eksik kapanış notu](images/defter_full_pages/defter_p120.jpg)
+
 [Tasarım İzi] `W.124` metod notu:
 
 ```text
@@ -130,6 +136,8 @@ denklem G81'den, şekil G90'dan
 ```
 
 Yani kayıp denklem zinciri için `G81`, dalga şekli ve zaman ekseni sezgisi için `G90` kullanılmıştır. Bu not final sayı vermez; kaynak izini korur.
+
+[Açık Kontrol] Tam sayfa `p120`, `2.2 Inductor Losses Calculation` ve `2.3 capacitor losses` bölümlerinin eksik kaldığını özellikle not eder. Defterde "ESR falan belirlenmediği için denklemleri yazdık, anlattık ancak hesap yapmadık" izi korunur. Bu nedenle bobin ve kapasitör kayıp kalemleri burada final kapanmış sayılmaz; bobin tarafı [03](03_bobin_ve_cikis_kapasitorleri.md), giriş/çıkış kapasitör ESR/ripple tarafı [03](03_bobin_ve_cikis_kapasitorleri.md) ve [04](04_giris_kapasitorleri_ve_giris_agi.md) owner sonuçlarıyla tekrar bağlanacak.
 
 ![W.150'den küçük kırpım: conduction ve switching loss şekillerini aynı sayfada gösteren kaynak](images/defter_snippets_web/d118_w150_conduction_vs_switching_figures.jpg)
 
