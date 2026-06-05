@@ -3131,3 +3131,47 @@ Açık notlar:
 - `Ciss ≈ 835 pF / Coss ≈ 16.8 pF / Coss,ave ≈ 39.2 pF / Cgs ≈ 830.2 pF` önceki kısa kırpım okuması ile `p138` tam sayfa okuması çelişir; sessizce birleştirilmedi.
 - `RthetaJC ≈ 1.6 C/W` ve `1.9 C/W` izleri koşulları netleşmeden tek final değer yapılmadı.
 - `tr ≈ 3.23 ns / toff ≈ 2.66 ns`, pratik switching-loss hesabındaki `tr ≈ 32.5 ns / tf ≈ 20.63 ns` setini iptal etmez; eski/erken iterasyon olarak kalır.
+
+## Pass 071 - Sayfa 140-141
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p140.jpg](../images/defter_full_pages/defter_p140.jpg)
+- [defter_p141.jpg](../images/defter_full_pages/defter_p141.jpg)
+
+Defter işaretleri:
+
+- `p140 / W.153`: `Vin = 24 V`, `Delta_ILpp = 2.6 A`.
+- `p140 / W.153`: high-side switching overlap formülü yazılır:
+  `P_switching = Vin/2 * (I0 - Delta_ILpp/2) * fsw * tr + Vin/2 * (I0 + Delta_ILpp/2) * fsw * toff`.
+- `p140 / W.153`: yerine koyma satırında `I0 = 9 A`, `fsw = 332 kHz`, `tr ≈ 3.23 ns`, `toff ≈ 2.66 ns` izi görünür.
+- `p140 / W.153`: sonuç defterde `P_switching = 208.2 mW` olarak yazılır.
+- `p141 / W.154`: `Vin = 36 V`, `Delta_ILpp = 3.8 A`.
+- `p141 / W.154`: aynı formül `P_switching = 310.3 mW` sonucuyla taşınır.
+- `p141 / W.154`: off-on / on-off transition sırasında MOSFET switching kaybının oluştuğu açıklanır.
+- `p141 / W.154`: bazı kaynakların iki transition kaybını eşit kabul edebildiği; bu defter denkleminde açılma tarafında `I0 - Delta_ILpp/2`, kapanma tarafında `I0 + Delta_ILpp/2` akım uçlarının kullanıldığı not edilir.
+- `p141 / W.154`: `tr` ve `toff` sürelerinin doğru belirlenmesinin `Qgs2`, `Qgd`, `VGS(th)`, `VPL` ve gate-yolu parametrelerine bağlı olduğu yazılır.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `Switching Overlap Loss` owner'ına tam sayfa `p140` ve `p141` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bobin ripple / `Delta_ILpp` değerlerinin primary sahibi [03](../03_bobin_ve_cikis_kapasitorleri.md) olarak kaldı; [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde yalnız switching-loss girdisi olarak kullanıldı.
+- Gate-charge ve MOSFET seçim parametrelerinin primary okuması [05](../05_mosfet_secimi_ve_dayanim_mantigi.md) ile bağlantılı kaldı; [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde kayıp hesabına etkisi korunur.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Vin = 24 V`, `Delta_ILpp = 2.6 A`, `P_switching = 208.2 mW`.
+- `Vin = 36 V`, `Delta_ILpp = 3.8 A`, `P_switching = 310.3 mW`.
+- `tr ≈ 3.23 ns`, `toff ≈ 2.66 ns` izi p140/p141 içinde görünür.
+- Off-on ve on-off geçişleri için akım uçları aynı kabul edilmez; `I0 - Delta_ILpp/2` ve `I0 + Delta_ILpp/2` ayrımı korunur.
+
+Açık notlar:
+
+- `p140` içindeki `3.23 ns / 2.66 ns` yerine koyma izi, aynı `208.2 mW` sonucunu veren önceki `tr ≈ 32.5 ns / tf ≈ 20.63 ns` pratik setiyle sessizce birleştirilmedi.
+- Bu pass, `208.2 mW` veya `310.3 mW` değerlerini final toplam MOSFET kaybı yapmaz; bunlar yalnız high-side switching overlap parçasıdır.
+- `tr/toff` doğrulaması, `Qgs2`, `Qgd`, `VGS(th)`, `VPL`, gate yolu ve driver akımı aynı koşul setine çekilmeden kapatılmayacak.

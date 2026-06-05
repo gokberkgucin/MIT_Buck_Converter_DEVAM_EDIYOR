@@ -498,6 +498,8 @@ Bu tablo final MOSFET toplam kaybı değildir; yalnız kanal iletimi kapanmışt
 
 ![W.153'ten küçük kırpım: `Vin = 24 V` ve `Delta iL = 2.6 A` koşulu için switching-loss sonucu](images/defter_snippets_web/d138_w153_switching_loss_24v_result.jpg)
 
+![Defter p140 / W.153: `Vin = 24 V`, `Delta iLpp = 2.6 A` ve `P_switching = 208.2 mW` tam sayfa izi](images/defter_full_pages/defter_p140.jpg)
+
 `W.153`, `Vin = 24 V` için high-side switching overlap kaybını hesaplar:
 
 $$
@@ -523,13 +525,19 @@ Sonuç:
 P_switching ≈ 208.2 mW
 ```
 
+[Açık Kontrol] Tam sayfa `p140`, sayısal yerine koyma satırında `tr ≈ 3.23 ns` ve `toff ≈ 2.66 ns` izini de gösterir; fakat aynı sayfanın sonucu `P_switching = 208.2 mW` olarak yazılmıştır. Bu iz, yukarıdaki pratik `tr ≈ 32.5 ns / tf ≈ 20.63 ns` setiyle ve `p139 / W.190` erken zaman hesabıyla sessizce birleştirilmeyecek. Final verim hesabından önce geçiş sürelerinin birim/ondalık yeri ve rise/fall kapsamı yeniden doğrulanacak.
+
 ![W.154'ten küçük kırpım: `Vin = 36 V`, `Delta iL = 3.8 A` için switching-loss sonucu ve geçiş yorumu](images/defter_snippets_web/d139_w154_switching_loss_36v_result.jpg)
+
+![Defter p141 / W.154: `Vin = 36 V`, `Delta iLpp = 3.8 A`, `P_switching = 310.3 mW` ve geçiş yorumu tam sayfa izi](images/defter_full_pages/defter_p141.jpg)
 
 `W.154`, aynı hesabı `Vin = 36 V` ve `Delta iL = 3.8 A` için taşır:
 
 ```text
 P_switching ≈ 310.3 mW
 ```
+
+[Tasarım İzi / Açık Kontrol] Tam sayfa `p141`, `Vin = 36 V` ve `Delta iLpp = 3.8 A` koşulunu `P_switching = 310.3 mW` sonucuyla korur. Aynı sayfa off-on / on-off geçişlerini switching-loss penceresi olarak açıklar; bazı kaynakların iki geçiş kaybını eşit kabul ettiğini, bu defter hesabında ise akımın açılma tarafında `I0 - Delta_ILpp/2`, kapanma tarafında `I0 + Delta_ILpp/2` olarak ayrıldığını not eder. `tr/toff` sürelerinin doğru belirlenmesi `Qgs2`, `Qgd`, `VGS(th)`, `VPL` ve gate-yolu parametrelerine bağlı bırakıldığı için bu blok halen açık kontrol taşır.
 
 Bu iki sonuç toplam MOSFET kaybı değildir. Bunlar high-side anahtarın gerilim-akım örtüşme anlarından gelen switching-loss parçasıdır. `36 V` koşulu bu parça için daha ağır görünür; final kapanışta yanına conduction, gate-drive, `Coss`, body-diode/dead-time ve termal geri besleme eklenecek.
 
@@ -685,7 +693,7 @@ Bu kalemler low-side normal kanal iletiminin yerine geçmez. `W.192` kanal ileti
 | LS conduction @ `36 V` | `1.017 W` | duty tamamlayıcısı |
 | HS conduction @ `24 V` | `963.5 mW` | yüksek duty nedeniyle artar |
 | LS conduction @ `24 V` | `0.688 W` | duty tamamlayıcısı azalır |
-| Switching overlap @ `24 V` | `208.2 mW` | `tr/tf = 32.5/20.63 ns` seti |
+| Switching overlap @ `24 V` | `208.2 mW` | `tr/tf = 32.5/20.63 ns` pratik seti; `p140` içindeki `3.23/2.66 ns` izi açık kontrol |
 | Switching overlap @ `36 V` | `310.3 mW` | high-side overlap parçası |
 | Gate-drive total | `79.68 mW` | iki MOSFET için; driver/gate yolu termaline ayrılmalı |
 | `Coss` total | `≈185 mW` | double-count riski açık |
