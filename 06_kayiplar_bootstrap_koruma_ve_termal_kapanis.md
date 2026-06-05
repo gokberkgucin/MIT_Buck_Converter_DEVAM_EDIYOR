@@ -553,6 +553,8 @@ Bu iki sonuç toplam MOSFET kaybı değildir. Bunlar high-side anahtarın gerili
 
 ![W.193'ten küçük kırpım: gate-drive loss formülü ve toplam iki MOSFET sonucu](images/defter_snippets_web/d142_w193_gate_drive_loss_results.jpg)
 
+![Defter p144 / W.193: `P_gate-drive = Qg * Vdrive * fsw`, tek MOSFET için `39.84 mW` ve iki MOSFET için `79.68 mW` hesabı](images/defter_full_pages/defter_p144.jpg)
+
 `W.193`, gate-drive kaybını yazar:
 
 $$
@@ -566,7 +568,11 @@ P_gate-drive,total ≈ 2 * 39.84 mW ≈ 79.68 mW
 
 Bu kayıp MOSFET kanal iletim kaybı değildir. Enerji `VCC/driver` tarafından gate kapasitansını doldurup boşaltmak için harcanır; ısının bir kısmı driver içinde, bir kısmı gate yolu dirençlerinde dağılabilir.
 
+[Tasarım İzi] Tam sayfa `p144`, `Joule * 1/saniye = Watt` birim dönüşümünü ayrıca yazar. Defter notu bu kaybı MOSFET gate'ini charge/decharge etmek için harcanan enerji olarak açıklar; yüksek frekans ve büyük MOSFETlerde belirgin hale gelebileceğini, düşük `RDS(on)` uğruna daha büyük `Qg` seçmenin gate-drive kaybını artırabileceğini not eder.
+
 ![W.194'ten küçük kırpım: gate-drive kaybının fiziksel anlamı ve gate direnci seçimine dair kısa notlar](images/defter_snippets_web/d143_w194_gate_drive_physical_note.jpg)
+
+![Defter p145 / W.194: gate-drive enerjisinin dirençler üzerinde paylaşılması, `Rdriver`, harici `Rgate` ve termal paylaşım notları](images/defter_full_pages/defter_p145.jpg)
 
 `W.194`, bu enerjinin fiziksel dağılımını ve gate yolu direncini tartışır:
 
@@ -575,7 +581,9 @@ Rdriver,eff ≈ (1.5 + 0.9) / 2 = 1.2 ohm
 Rg,ext = 2.2 ohm  [eski/kaba isimlendirme]
 ```
 
-[Açık Kontrol] Daha sonra `W.177`, `2.2 ohm` değerini toplam gate-yolu direnci olarak daha temiz açar. Bu yüzden `1.2 ohm` driver notu ve `2.2 ohm` toplam yol notu aynı hesapta üst üste eklenmeyecek.
+[Tasarım İzi] Tam sayfa `p145`, gate sürücüsünün harcadığı enerjinin MOSFET gate kapasitansını şarj etmek için akan akımdan doğduğunu ve bu akımın geçtiği dirençlerde ısı kaybı ürettiğini yazar. Defter notu, kaybın üç direnç üzerinde paylaşıldığını; `Rgate,external = 2.2 ohm` değerinin bizim koyduğumuz ve kontrol edilebilir direnç olduğunu; direnci büyük olan yolun daha fazla ısıl pay taşıyacağını not eder. Bu yüzden PCB üzerindeki harici `Rgate` termal olarak ayrıca okunmalıdır.
+
+[Açık Kontrol] Daha sonra `W.177`, `2.2 ohm` değerini toplam gate-yolu direnci olarak daha temiz açar. Bu yüzden `1.2 ohm` driver notu, `2.2 ohm` harici/yerel gate direnci notu ve toplam yol direnci aynı hesapta üst üste eklenmeyecek. Gate-drive kaybının ne kadarının driver IC içinde, ne kadarının MOSFET iç gate direncinde ve ne kadarının PCB üzerindeki harici dirençte ısıya dönüştüğü final termal kapanışta ayrılacak.
 
 ### `Coss` / `Qoss` Loss
 

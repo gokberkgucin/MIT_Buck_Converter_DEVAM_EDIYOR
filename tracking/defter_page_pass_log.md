@@ -3222,3 +3222,55 @@ Açık notlar:
 - Bu pass yeni MOSFET toplam kayıp tablosu üretmedi; yalnız conduction-loss tam sayfa izlerini mevcut owner'a bağladı.
 - `36 V` ve `24 V` koşulları duty payları farklı olduğu için ayrı kalır; high-side ve low-side sonuçları tek koşul gibi birleştirilmeyecek.
 - `RDS(on)` sıcaklık çarpanı, final termal kapanışta gerçek `TJ`, gate-drive gerilimi ve datasheet koşuluyla tekrar eşleştirilecek.
+
+## Pass 073 - Sayfa 144-145
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p144.jpg](../images/defter_full_pages/defter_p144.jpg)
+- [defter_p145.jpg](../images/defter_full_pages/defter_p145.jpg)
+
+Defter işaretleri:
+
+- `p144 / W.193`: `Gate drive loss = P_gate-drive = (Qg * Vdrive) * fsw` formülü yazılır.
+- `p144 / W.193`: birim izi korunur: enerji `Joule`, `Joule * 1/saniye = Watt`.
+- `p144 / W.193`: `Qg = 16 nC`, `Vdrive = 7.5 V`, `fsw = 332 kHz`.
+- `p144 / W.193`: tek MOSFET için `P_gate-drive1 = 39.84 mW`.
+- `p144 / W.193`: bu kaybın MOSFET gate'ini charge/decharge etmek için harcanan enerjiden kaynaklandığı yazılır.
+- `p144 / W.193`: yüksek frekans ve büyük MOSFETlerde gate-drive kaybının belirgin hale gelebileceği not edilir.
+- `p144 / W.193`: düşük `RDS(on)` için daha büyük MOSFET kullanmanın `Qg` tarafını büyütebileceği ve seçimin buna göre dengelenmesi gerektiği not edilir.
+- `p144 / W.193`: aynı gate-drive loss'un low-side FET için de geçerli olduğu yazılır.
+- `p144 / W.193`: iki FET toplamı `P_gate-drive-loss = 2 * 39.84 mW = 79.68 mW`.
+- `p145 / W.194`: gate sürücüsünün harcadığı enerjinin MOSFET gate capacitance'ını şarj etmek için akan akımla oluştuğu yazılır.
+- `p145 / W.194`: akımın dirençler üzerinden geçerken ısı kaybı ürettiği; dirençler olmasaydı bu paylaşımın farklı olacağı not edilir.
+- `p145 / W.194`: gate-drive sırasında harcanan toplam enerjinin üç direnç üzerinde paylaşıldığı, yani kaybın apportioned olduğu yazılır.
+- `p145 / W.194`: `Rgate` / iç gate direnci yaklaşık `1 ohm` gibi okunur.
+- `p145 / W.194`: driver tarafı için pull-up / pull-down dirençlerin ortalaması gibi bir not korunur: `Rdriver ≈ (1.5 ohm + 0.9 ohm) / 2 ≈ 1.2 ohm`.
+- `p145 / W.194`: harici gate direnci `Rgate,external = 2.2 ohm`; bunun bizim koyduğumuz, kontrol edilebilir direnç olduğu yazılır.
+- `p145 / W.194`: direnç büyük olan yolun daha fazla ısıl pay taşıyacağı ve PCB üzerindeki harici `Rgate`in termal olarak ayrıca okunması gerektiği not edilir.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `Gate-drive Loss` altına tam sayfa `p144` ve `p145` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `Qg ≈ 16 nC` seçimi [05](../05_mosfet_secimi_ve_dayanim_mantigi.md) içindeki gate-charge / MOSFET seçim izine bağlı kalır.
+- `Vdrive ≈ 7.5 V` ve harici VCC/DVCC bağlamı [02](../02_startup_pin_programlama_ve_ortak_sabitler.md) ve termal kapanış için [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde birlikte okunur.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `P_gate-drive = Qg * Vdrive * fsw`.
+- `Qg = 16 nC`, `Vdrive = 7.5 V`, `fsw = 332 kHz`.
+- `P_gate-drive1 ≈ 39.84 mW / MOSFET`.
+- `P_gate-drive,total ≈ 79.68 mW / iki MOSFET`.
+- `Rdriver ≈ 1.2 ohm`.
+- `Rgate,external ≈ 2.2 ohm`.
+
+Açık notlar:
+
+- `P_gate-drive,total ≈ 79.68 mW`, MOSFET conduction veya switching overlap kaybıyla aynı mekanizma değildir.
+- Gate-drive kaybının driver IC, MOSFET iç gate direnci ve PCB üzerindeki harici direnç arasında nasıl ısıya dönüştüğü final termal kapanışta ayrılacak.
+- `1.2 ohm` driver notu, `2.2 ohm` harici/yerel gate direnci notu ve `W.177` toplam gate-yolu direnci aynı hesapta üst üste eklenmeyecek.
