@@ -1022,6 +1022,8 @@ Bu kontrol `CVCC` kaynağının `CBST`yi rahat besleyip besleyemeyeceğine bakar
 
 ![W.169'dan küçük kırpım: `CVCC` için `1-6 uF` aralığı, seramik bypass ve startup etkisi notları](images/defter_snippets_web/d158_w169_cvcc_bypass_selection_note.jpg)
 
+![Defter p161 / W.169: VCC-AGND arası `CVCC` bypass, pinlere yakın yerleşim, X7R/düşük ESR, `40 mA` internal VCC regulator limiti ve büyük `CVCC` startup gecikmesi notları](images/defter_full_pages/defter_p161.jpg)
+
 `W.169`, `CVCC` seçim kurallarını toplar:
 
 - `VCC` ile `AGND` arasına seramik bypass konulmalı,
@@ -1030,6 +1032,12 @@ Bu kontrol `CVCC` kaynağının `CBST`yi rahat besleyip besleyemeyeceğine bakar
 - `1-6 uF` mertebesi not edilmiş,
 - `2.2 uF` seçimi bu aralığa oturur,
 - gereksiz büyük `CVCC`, startup sırasında `VCC` yükselişini yavaşlatabilir.
+
+[Tasarım İzi] Tam sayfa `p161`, `CVCC = C25` hattını VCC bypass / decoupling owner'ı olarak netleştirir. Notta `VCC` ile `AGND` arasına `1-5 uF` seramik kapasitör konması, parçanın `VCC` ve `AGND` pinlerine çok yakın yerleşmesi, `X7R` ve düşük `ESR` tercih edilmesi yazılır. Amaç, `VCC` hattındaki ani akım çekişlerini dengelemek, yüksek frekanslı parazitleri bastırmak ve PWM kontrolcüsü ile gate sürücüleri için temiz, sabit bir `VCC` gerilimi sağlamaktır.
+
+[Güncel Omurga] Defter notu burada önemli bir sınırı da açık bırakır: harici kaynak kullanılsa da kullanılmasa da `CVCC` gerekir. Internal `VCC` regulator için `40 mA` akım limiti not edilmiştir; ilk açılışta `CVCC` bu LDO çıkışıyla şarj olur, `VCC` yavaşça yükselir. Bu yüzden `CVCC` aşırı büyük seçilirse, defterde örnek olarak `10 uF`, startup beslemesi ve soft-start başlangıcı gecikebilir.
+
+[Açık Kontrol] Küçük kırpım/metin hattında `1-6 uF`, tam sayfa `p161` üzerinde `1-5 uF` gibi okunur. Bu iki aralık sessizce tek değere indirgenmedi; final datasheet/EVM notu kontrolünde aynı `CVCC` owner'ı altında kapanacak.
 
 ![W.185'ten küçük kırpım: neden yerel `bypass capacitor` gerektiğini sürücü-gate yolu üzerinden açıklayan kavramsal not](images/defter_snippets_web/d159_w185_driver_bypass_why_local.jpg)
 
@@ -1158,6 +1166,8 @@ C16 = 0.1 uF
 
 ![W.168'den küçük kırpım: `DeltaVHB = 4.1 V` ve `Cboot > Qtotal/DeltaVHB` alt-sınır hesabını veren sonuç bloğu](images/defter_snippets_web/d157_w168_cboot_minimum_and_dvhb.jpg)
 
+![Defter p160 / W.168: `Delta VHB = VDD - VDH - VHBL`, `8.4 V - 0.9 V - 3.4 V = 4.1 V`, `Cboot > 16.255 nC / 4.1 V = 3.96 nF` ve `Ipeak = Cbst * dVsw/dt` notları](images/defter_full_pages/defter_p160.jpg)
+
 `W.168`, minimum `Cboot` alt sınırıdır:
 
 $$
@@ -1177,6 +1187,10 @@ $$
 ```text
 Cboot > 16.255 nC / 4.1 V ≈ 3.96 nF
 ```
+
+[Tasarım İzi] Tam sayfa `p160`, bu alt sınırın arkasındaki gerilim zarfını açık yazar: `VCC - VBST-fwd = Vbst`, yani `8.4 V - 0.9 V = 7.5 V`. Bootstrap kapasitesi high-side MOSFET'i sürdükçe boşalır; `BST-SW` gerilimi `3.4 V` UVLO eşiğinin altına düşerse high-side sürüş kapanır. Bu yüzden izin verilen en büyük düşüm `7.5 V - 3.4 V = 4.1 V` olarak kullanılır ve `Cboot > Qtotal / Delta VHB` kontrolü `16.255 nC / 4.1 V ≈ 3.96 nF` sonucunu verir.
+
+[Tasarım İzi] Aynı sayfa, `Cboot` büyütmenin yalnızca iyi yönde okunmaması gerektiğini de not eder. Gerilim düşümünü azaltmak için `Cboot` büyütülebilir; fakat `Ipeak = Cbst * dVsw/dt` sezgisiyle, her anahtarlamada bootstrap diyodu ve PCB üzerinde oluşan tepe akımı / gerilim baskısı da artar. Bu nedenle `0.1 uF` seçimi finalde yalnız kapasite alt sınırıyla değil, diyot, iz, `BST-SW` UVLO margin ve tepe akım davranışıyla birlikte okunur.
 
 `21.33 nF` ve `3.96 nF` farklı kontrollerdir. İlki `10 x Cg` sanity check'i, ikincisi `Qtotal / DeltaVHB` alt sınırıdır. Seçilen `0.1 uF` nominal olarak ikisini de rahat geçer; finalde etkin kapasite, diyot/iz tepe akımı ve `BST-SW` UVLO margin birlikte kontrol edilir.
 

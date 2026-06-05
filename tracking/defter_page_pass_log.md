@@ -3668,3 +3668,60 @@ Açık notlar:
 - Bu pass yeni final `CBST` değeri üretmedi; `0.1 uF` seçiminin tek denklemle değil üç senaryo ve `CVCC` rezervuar ilişkisiyle okunması gerektiğini güçlendirdi.
 - `CVCC/CBST ≈ 20` ile `10 kat` notu çelişki değildir; mevcut `2.2 uF / 0.1 uF` seçiminin yaklaşık `10x` minimum sezgiyi geçtiğini gösterir.
 - `CBST1/CBST2/CBST3` için ayrı sayısal sonuçlar bu sayfalarda yoktur; sonraki veya önceki hesaplarla bağlanmadan yeni değer uydurulmadı.
+
+## Pass 081 - Sayfa 160-161
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p160.jpg](../images/defter_full_pages/defter_p160.jpg)
+- [defter_p161.jpg](../images/defter_full_pages/defter_p161.jpg)
+
+Defter işaretleri:
+
+- `p160 / W.168`: başlık çevresinde `VCC`, `VBST-fwd` ve `VBST-uv: BST-to-SW undervoltage detection` notları var.
+- `p160 / W.168`: `Delta VHB = VDD - VDH - VHBL` biçiminde okunan bootstrap gerilim düşümü denklemi yazılmıştır.
+- `p160 / W.168`: sayısal yerleştirme `Delta VHB = 8.4 V - 0.9 V - 3.4 V` ve sonuç `4.1 V` olarak yazılır.
+- `p160 / W.168`: `Vbst = 7.5 V` izi, `VCC - VBST-fwd = Vbst` açıklamasıyla birlikte korunur.
+- `p160 / W.168`: `Cboot > Qtotal / Delta VHB` ve `Cboot > 16.255 nC / 4.1 V = 3.96 nF` alt sınırı görünür.
+- `p160 / W.168`: `Cboot` büyüdükçe gerilim düşümünün azalacağı, fakat `Ipeak = Cbst * dVsw/dt` nedeniyle bootstrap diyodu ve PCB üzerindeki tepe stresin artabileceği not edilir.
+- `p161 / W.169`: `VCC` ile `AGND` arasında `1-5 uF` seramik `CVCC` bypass konması yazılır.
+- `p161 / W.169`: `CVCC`nin `VCC` ve `AGND` pinlerine çok yakın yerleşmesi gerektiği ve `X7R` / düşük `ESR` tercihinin yazıldığı görülür.
+- `p161 / W.169`: `CVCC = C25` hattı, VCC decoupling capacitor amacıyla ilişkilendirilir.
+- `p161 / W.169`: `CVCC`, `VCC` hattındaki ani akım çekişlerini dengelemek, yüksek frekans parazitlerini bastırmak ve PWM kontrolcü / gate sürücülerine temiz `VCC` sağlamak için kullanılır.
+- `p161 / W.169`: harici kaynak kullanılsa da kullanılmasa da `CVCC` gerektiği özellikle yazılır.
+- `p161 / W.169`: internal `VCC` regulator için `40 mA` akım limiti not edilir.
+- `p161 / W.169`: power-up sırasında `CVCC`nin LDO çıkışıyla şarj edildiği, çok büyük `CVCC` değerlerinin, örnek olarak `10 uF`, startup beslemesini veya soft-start başlangıcını geciktirebileceği yazılır.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `Qtotal, Minimum Cboot ve UVLO` altındaki `W.168` bloğuna tam sayfa `p160` eklendi.
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `CVCC ve CBST İlişkisi` altındaki `W.169` bloğuna tam sayfa `p161` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `CVCC`nin startup davranışına etkisi [02](../02_startup_pin_programlama_ve_ortak_sabitler.md) dosyasındaki startup/pin-programming akışıyla komşudur; burada asıl owner VCC bypass ve bootstrap enerji zinciri olarak [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde tutuldu.
+- `Cboot` alt sınırı, `Qtotal`, `Delta VHB` ve `BST-SW` UVLO margin aynı bootstrap owner'ında tutulur; MOSFET gate-charge seçimi [05](../05_mosfet_secimi_ve_dayanim_mantigi.md) dosyasına yalnız girdi ilişkisiyle bağlanır.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `VCC = 8.4 V`.
+- `VBST-fwd = 0.9 V`.
+- `Vbst = 7.5 V`.
+- `BST-SW` UVLO eşiği olarak `3.4 V`.
+- `Delta VHB = 4.1 V`.
+- `Qtotal = 16.255 nC`.
+- `Cboot > 3.96 nF`.
+- `Ipeak = Cbst * dVsw/dt`.
+- `CVCC = C25`.
+- `CVCC` için tam sayfada `1-5 uF` gibi okunan aralık.
+- Önceki kırpım/metin hattında `1-6 uF` olarak duran aralık.
+- Internal `VCC` regulator akım limiti `40 mA`.
+- Aşırı büyük `CVCC` örneği olarak `10 uF`.
+
+Açık notlar:
+
+- `1-5 uF` ve `1-6 uF` aralıkları sessizce birleştirilmedi; final datasheet/EVM kontrolünde aynı `CVCC` owner'ı altında kapanacak.
+- `VDH`, `VBST-fwd` ve `VHBL` sembol okuması defterden geldiği gibi korunur; datasheet sembolleriyle son notasyon hizalama ayrı kontrol ister.
+- `Ipeak = Cbst * dVsw/dt` bu pass için tepe stres sezgisidir; sayfada yeni sayısal tepe akım sonucu yoktur.
