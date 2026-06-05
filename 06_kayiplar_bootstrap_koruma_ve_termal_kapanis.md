@@ -1112,6 +1112,10 @@ I_Q,HS ≈ 1 mA
 
 ![W.189'dan küçük kırpım: `transient-off`, `transient-on` ve `steady-state` açılarını aynı bootstrap seçim mantığında toplayan metod notu](images/defter_snippets_web/d155_w189_bootstrap_multi_case_method.jpg)
 
+![Defter p158 / W.189: `CBST` hesabının `transient-off`, `transient-on` ve `steady-state` için ayrı ayrı yapılması ve en büyük sonucun seçilmesi notu](images/defter_full_pages/defter_p158.jpg)
+
+![Defter p159 / W.189: `CVCC/CBST ≈ 2.2 uF / 0.1 uF`, `CVCC >> CBST` gerekçesi ve high-side sürücü enerjisinin yerel bootstrap kapasitesinden gelmesi notu](images/defter_full_pages/defter_p159.jpg)
+
 `W.189`, `CBST` seçiminin üç senaryoya göre düşünülmesi gerektiğini söyler:
 
 ```text
@@ -1122,6 +1126,10 @@ en büyüğü seçilecek
 ```
 
 Bu sayfa yeni `uF` sonucu vermez; `Cboot` seçiminin tek denklemle kapanmadığını gösterir.
+
+[Tasarım İzi] Tam sayfa `p158`, `CBST` hesabının tek bir steady-state denkleminden ibaret olmadığını özellikle işaretler. Defter notu üç ayrı açıdan hesap yapılacağını yazar: `CBST2` transient-off, `CBST3` transient-on ve `CBST1` steady-state. Bunların en büyüğü seçilecek; bu nedenle `0.1 uF` seçimi yalnız bir alt-sınır hesabıyla değil, üç durumun en kötü sonucu ve `CVCC` rezervuar ilişkisiyle birlikte okunacak.
+
+[Tasarım İzi] Tam sayfa `p159`, `CVCC / CBST = 2.2 uF / 0.1 uF` oranının yaklaşık `20 kat` olduğunu ve `G88` benzeri kaynağın `CVCC >> CBST`, uygulamada yaklaşık `10 kat` mertebesi istediğini tekrarlar. Aynı sayfa "CBST neden?" sorusunu bağlamlandırır: high-side MOSFET'in gate kapısını açmak için enerji `CBST` üzerinden sağlanır; bu enerji nihai olarak `VCC` hattındaki bypass kapasitesinden gelir. `CBST` şarj olduğunda `VCC` hattının gerilimi yeterince düşmemeli; gate gerilimi yeterince yüksek kalmalı ve sürücü yüksek hızlı geçişlerde kararlı çalışabilmelidir.
 
 ![W.172'den küçük kırpım: `Cg = Qg/Vgs` ve `Cboot > 10 x Cg` hızlı kuralını gösteren bootstrap yeterlilik kontrolü](images/defter_snippets_web/d156_w172_quick_cboot_rule.jpg)
 

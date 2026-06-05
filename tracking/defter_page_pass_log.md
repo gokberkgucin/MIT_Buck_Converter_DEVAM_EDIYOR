@@ -3616,3 +3616,55 @@ Açık notlar:
 - `IHB = 80 uA`, `0.13 mA` ve `IQBS = 1 mA` değerleri aynı akımın farklı yazımları gibi birleştirilmeyecek; hangi datasheet satırı ve hangi koşuldan geldiği son kontrolde ayrılacak.
 - `tBST,rr` değeri tam sayfada `400 us` gibi okunurken önceki küçük kırpım/README hattında `400 ns` olarak duruyor; bu süre sessizce düzeltilmedi.
 - `Delta Vboost,max = 3 V` notu UVLO margin kontrolünün yerine geçmez; `BST-SW/HB-HS` absolute maximum ve UVLO eşiği birlikte doğrulanacak.
+
+## Pass 080 - Sayfa 158-159
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p158.jpg](../images/defter_full_pages/defter_p158.jpg)
+- [defter_p159.jpg](../images/defter_full_pages/defter_p159.jpg)
+
+Defter işaretleri:
+
+- `p158 / W.189`: başlık `6.88 Bootstrap`.
+- `p158 / W.189`: `CBST`yi hesaplayan denklemin tek durum için kullanılmayacağı not edilir.
+- `p158 / W.189`: dikkat notu olarak üç farklı açıdan hesap yapılacağı yazılır.
+- `p158 / W.189`: üç durum `transient-off`, `transient-on` ve `steady-state` olarak ayrılır.
+- `p158 / W.189`: bu durumlar `CBST2`, `CBST3` ve `CBST1` gibi etiketlenir.
+- `p158 / W.189`: bunlardan hangisi en büyükse onun seçileceği yazılır.
+- `p158 / W.189`: `CVCC / CBST = 2.2 uF / 0.1 uF` oranının yaklaşık `20 kat` olduğu not edilir.
+- `p158 / W.189`: `G88` bağlamında `CVCC >> CBST` seçilmesi gerektiği, uygulamada yaklaşık `10 kat` mertebesinden söz edildiği yazılır.
+- `p159 / W.189`: `CVCC / CBST ≈ 2.2 uF / 0.1 uF` oranı tekrar görünür.
+- `p159 / W.189`: `CVCC >> CBST` seçilmesi gerektiği tekrar edilir.
+- `p159 / W.189`: "CBST neden?" sorusu yazılır.
+- `p159 / W.189`: high-side MOSFET'in gate kapısını açmak için gereken enerjinin `CBST` tarafından sağlandığı not edilir.
+- `p159 / W.189`: bu enerjinin nihai olarak `VCC` hattındaki bypass kapasitöründen geldiği yazılır.
+- `p159 / W.189`: `CBST` her şarj olduğunda `VCC` hattındaki gerilim düşüşünün sınırlı kalması gerektiği not edilir.
+- `p159 / W.189`: gate geriliminin yeterince yüksek kalması ve sürücünün yüksek hızlı geçişlerde kararlı çalışabilmesi gerektiği yazılır.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `Qtotal, Minimum Cboot ve UVLO` altındaki `W.189` çoklu-senaryo metoduna tam sayfa `p158` ve `p159` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `CVCC/CBST` oranı [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde bootstrap enerji zinciri olarak kalır; VCC/DVCC genel startup bağlamı [02](../02_startup_pin_programlama_ve_ortak_sabitler.md) ile ilişkilidir.
+- `CBST1/2/3` etiketleri yeni ayrı owner değildir; transient-off, transient-on ve steady-state durumlarını aynı bootstrap seçimi altında ayırır.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `transient-off`, `transient-on`, `steady-state`.
+- `CBST2`, `CBST3`, `CBST1`.
+- `CVCC = 2.2 uF`, `CBST = 0.1 uF`.
+- `CVCC / CBST ≈ 20`.
+- `CVCC >> CBST`, uygulamada yaklaşık `10 kat` notu.
+- `CBST`, high-side gate sürücünün yerel enerji deposudur.
+- `CBST` enerjisi nihai olarak `VCC` bypass kapasitesinden gelir.
+
+Açık notlar:
+
+- Bu pass yeni final `CBST` değeri üretmedi; `0.1 uF` seçiminin tek denklemle değil üç senaryo ve `CVCC` rezervuar ilişkisiyle okunması gerektiğini güçlendirdi.
+- `CVCC/CBST ≈ 20` ile `10 kat` notu çelişki değildir; mevcut `2.2 uF / 0.1 uF` seçiminin yaklaşık `10x` minimum sezgiyi geçtiğini gösterir.
+- `CBST1/CBST2/CBST3` için ayrı sayısal sonuçlar bu sayfalarda yoktur; sonraki veya önceki hesaplarla bağlanmadan yeni değer uydurulmadı.
