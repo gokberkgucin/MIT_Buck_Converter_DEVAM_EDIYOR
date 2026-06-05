@@ -3785,3 +3785,55 @@ Açık notlar:
 - Önceki Markdown/OCR hattındaki `27.1 nF` aktarımı ile tam sayfa `p163` üzerinde okunan `221 nF` sonucu uyuşmuyor. Bu fark sessizce düzeltilmedi; `06` dosyasında açık kontrol olarak bırakıldı.
 - `Qg(max) = 150 nC` ve `Qg tahmined = 115 nC kabul` aynı sayfada farklı rollerle durur; final driver bypass hesabında hangi gate-charge koşulunun kullanılacağı netleştirilecek.
 - `Dmax = 0.7` ve `fdrive = 100 kHz`, global duty/fsw owner'ındaki ana proje değerleriyle aynı rol değildir; bu pass içinde driver bypass kaba hesabının yerel girdisi olarak korunur.
+
+## Pass 083 - Sayfa 164-165
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p164.jpg](../images/defter_full_pages/defter_p164.jpg)
+- [defter_p165.jpg](../images/defter_full_pages/defter_p165.jpg)
+
+Defter işaretleri:
+
+- `p164 / W.187`: kısa sayfa, `Cbypass = CVCC = (IQ,HI * Dmax/fdrive + Qg) / DeltaV` denklem tekrarını gösterir.
+- `p164 / W.187`: yeni sayısal sonuç üretmez; önceki `W.186` driver bypass hesabındaki yük bileşenlerinin ve `Cbypass = CVCC` okumasının kaybolmaması için kullanıldı.
+- `p165 / W.25`: başlık `6.95 Phase Margin'i bulma` olarak okunur.
+- `p165 / W.25`: phase margin için önce transfer fonksiyonunun kazancının `1` veya `0 dB` olduğu frekansın bulunacağı yazılır; bu frekans `wpm` olarak etiketlenir.
+- `p165 / W.25`: `|T(jwpm)| = 1` veya `0 dB` notu görünür.
+- `p165 / W.25`: transfer fonksiyonunun bu `wpm` frekansındaki phase'inin okunacağı, bunun genelde negatif derece olduğu not edilir.
+- `p165 / W.25`: phase margin bağıntısı `PM = 180° + phi` olarak yazılır.
+- `p165 / W.25`: kararlılık için transfer fonksiyonunun phase'i `-180°`e gelmeden kazancın çoktan `0 dB` altına inmiş olması gerektiği not edilir.
+- `p165 / W.25`: gain margin için Bode'de transfer fonksiyonunun phase'inin `-180°` olduğu frekansın bulunacağı yazılır; bu frekans `wgm` olarak etiketlenir.
+- `p165 / W.25`: `T(jwgm) = -180°` notu görünür.
+- `p165 / W.25`: `wgm` frekansındaki kazancın `Gpc = 20log10 |T(jwgm)|` olarak okunacağı yazılır.
+- `p165 / W.25`: normal ölçekte `GM = 1 / |T(jwgm)|` ilişkisi not edilir.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `CVCC ve CBST İlişkisi` altındaki `W.187` denklem tekrarına tam sayfa `p164` eklendi.
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `W.25: PM / GM Tanım Notu` altına tam sayfa `p165` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `p164`, driver bypass / `CVCC` zincirinin owner'ı olan [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde kaldı.
+- `p165`, kontrol döngüsü Bode okuması olduğu için [07](../07_kontrolcu_ve_kompanzasyon.md) içine alındı; güç katı, bootstrap veya EMI owner'ı değildir.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Cbypass = CVCC`.
+- `IQ,HI * Dmax / fdrive + Qg`.
+- `DeltaV`.
+- `|T(jwpm)| = 1`.
+- `0 dB`.
+- `PM = 180° + phi`.
+- `T(jwgm) = -180°`.
+- `Gpc = 20log10 |T(jwgm)|`.
+- `GM = 1 / |T(jwgm)|`.
+
+Açık notlar:
+
+- `p164` yeni final `Cbypass` değeri üretmedi; önceki `W.186` hesabının denklem izidir.
+- `p165` yeni final phase margin veya gain margin değeri üretmedi; Bode okuma kuralını sabitler.
+- `T(jwgm) = -180°` yazımı sayfada transfer fonksiyonunun phase koşulu olarak okunur; final dokümantasyonda gerekirse `angle T(jwgm) = -180°` biçiminde notasyon temizliği yapılabilir.

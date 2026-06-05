@@ -1072,6 +1072,8 @@ Cbypass ≈ (2.5 mA * 0.7 / 100 kHz + 115 nC) / 0.6 V ≈ 221 nF
 
 Bu `C25`i `221 nF` seviyesine indirme önerisi değildir. `C25 = 2.2 uF`, `1-6 uF` uygulama aralığı, `CVCC/CBST` enerji zinciri ve startup davranışıyla birlikte okunur.
 
+![Defter p164 / W.187: `Cbypass = CVCC = (IQ,HI * Dmax/fdrive + Qg) / DeltaV` denklem tekrarını gösteren kısa sayfa](images/defter_full_pages/defter_p164.jpg)
+
 [Tasarım İzi] `W.187`, aynı bypass ifadesini tekrar eder:
 
 $$
@@ -1079,7 +1081,7 @@ C_{bypass}=C_{VCC}\approx
 \frac{I_{xxHI}\frac{D_{max}}{f_{drive}}+Q_g}{\Delta V}
 $$
 
-Yeni sayı üretmez; `W.186`daki iki yük bileşeninin kaybolmaması için korunur.
+Tam sayfa `p164` de aynı rolü taşır: yeni sayı üretmez; `W.186`daki iki yük bileşeninin ve `Cbypass = CVCC` okumasının kaybolmaması için korunur.
 
 ### `Qtotal`, Minimum `Cboot` ve UVLO
 

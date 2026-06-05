@@ -883,10 +883,43 @@ Bu hedef bandı nominal tek nokta için değildir. Son kapanışta şu koşullar
 
 ![W.25'ten küçük kırpım: birim kazanç frekansı, faz marjı ve kazanç marjı tanımlarını özetleyen not](images/defter_snippets_web/d161_w25_phase_and_gain_margin_note.jpg)
 
+![Defter p165 / W.25: phase margin ve gain margin okuma adımları; `|T(jwpm)| = 1`, `PM = 180° + phi`, `T(jwgm) = -180°`, `Gpc = 20log10|T|` ve `GM = 1/|T|` notları](images/defter_full_pages/defter_p165.jpg)
+
 `W.25`, sayısal proje sonucu değildir; Bode okumada hangi noktaya bakılacağını sabitler:
 
 - birim kazanç frekansındaki faz açısından `PM`,
 - faz `-180 deg` olduğundaki büyüklükten `GM`.
+
+[Tasarım İzi] Tam sayfa `p165`, phase margin için okuma sırasını açık yazar:
+
+```text
+1) Transfer fonksiyonunun kazancının 1 veya 0 dB olduğu frekansı bul.
+   Bu frekans wpm.
+
+|T(jwpm)| = 1 veya 0 dB
+
+2) Transfer fonksiyonunun bu wpm frekansındaki phase'ini oku.
+   Genelde negatif derecedir.
+
+3) PM = 180° + phi
+```
+
+Sağ kenardaki kararlılık notu, faz `-180°`e gelmeden önce kazancın çoktan `0 dB` altına inmiş olması gerektiğini hatırlatır. Bu cümle yeni final `PM` değeri üretmez; calculator / WEBENCH / LTspice Bode okumalarında hangi noktaya bakılacağını sabitler.
+
+[Tasarım İzi] Aynı sayfa gain margin için de okuma sırasını verir:
+
+```text
+1) Bode'de transfer fonksiyonunun phase'inin -180° olduğu frekansı bul.
+   Bu frekans wgm.
+
+T(jwgm) = -180°
+
+2) Bu wgm frekansındaki kazancı bul.
+   Gpc = 20log10 |T(jwgm)|
+
+3) GM hesabı dB'li ya da normal okunur.
+   GM = 1 / |T(jwgm)|
+```
 
 Sayısal kapanış, seçilen Type-III komponentleriyle kurulacak open-loop Bode sonucunda yapılacak.
 
