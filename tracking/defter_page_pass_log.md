@@ -2791,3 +2791,48 @@ Açık notlar:
 
 - Bu pass yeni final `VTH`, `VMiller`, `K`, `gfs`, switching time veya kayıp sayısı üretmedi.
 - `W.128`, `W.173-W.174`, `W.149`, `W.162`, `W.190` ve `W.153-W.154` aynı koşul setine çekilmeden birbirine sayısal final gibi bağlanmayacak.
+
+## Pass 064 - Sayfa 126-127
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p126.jpg](../images/defter_full_pages/defter_p126.jpg)
+- [defter_p127.jpg](../images/defter_full_pages/defter_p127.jpg)
+
+Defter işaretleri:
+
+- `W.175`: bizim MOSFET transfer eğrisinden iki nokta seçilerek `VTH`, `K` ve `VGS,miller` ara hesabı yapılır.
+- `W.175`: noktaların saturasyon bölgesine girmeden önceki daha doğrusal bölgede seçildiği not edilir.
+- `W.175`: `ID1 = 10 A`, `VGS1 ≈ 3.35 V`, `ID2 = 20 A`, `VGS2 ≈ 3.65 V`.
+- `W.175`: `VTH ≈ 2.625 V`, `K ≈ 19.036`, `VGS,miller ≈ 3.3125 V`.
+- `W.175`: `Tc ≈ 76.35 C`, grafik okuması `25 C`, sıcaklık katsayısı `-0.003 V/C`.
+- `W.175`: `Delta Vadj ≈ -0.154 V`, `VTH,adj ≈ 2.471 V`, `VGS,miller,adj ≈ 3.1585 V`.
+- `W.157`: TI `SLVAEQ9` içindeki `Vpl Calculator` örneği kaynak / çapraz teyit olarak korunur.
+- `W.157`: kaynak örnekte `Kn = 13.51`, `VGS(th) = 3.72 V`, `Vplateau = 4.58 V`.
+- `W.157`: kaynak örnekte ölçüm-hesap karşılaştırması `5.22 V / 4.58 V` ve `5.30 V / 4.94 V` olarak görünür.
+
+Primary owner entegrasyonu:
+
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `Gate Surme ve Switching Interval Baglami / W.175 ve W.157`: tam sayfa `p126` ve `p127`.
+
+Kısa referans / owner dışı bağlantı:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde termal owner'a yalnız `76.35 C`, `-0.003 V/C`, `-0.154 V` ve düzeltilmiş gerilim izleri bağlandı.
+- `W.157` proje MOSFET final datasheet sonucu değildir; TI kaynak yönteminin örneğidir.
+- `W.175` sonucu, `W.128` ve `W.174` ara sonuçlarını silmez; farklı okuma noktası / sıcaklık düzeltmesi olarak tutulur.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `VTH ≈ 2.625 V`.
+- `K ≈ 19.036`.
+- `VGS,miller ≈ 3.3125 V`.
+- `VTH,adj ≈ 2.471 V`.
+- `VGS,miller,adj ≈ 3.1585 V`.
+- TI kaynak örneği: `Kn = 13.51`, `VGS(th) = 3.72 V`, `Vplateau = 4.58 V`.
+
+Açık notlar:
+
+- Bu pass yeni final `VTH`, `VMiller`, `K`, switching time veya kayıp sayısı üretmedi.
+- Defterdeki "deneyde doğrulama yap" notu gereği bu ara değerler gerçek gate dalga şekli ve devredeki çalışma koşullarıyla doğrulanmadan final kabul edilmeyecek.

@@ -1062,7 +1062,7 @@ W.128: TJ ≈ 73.9 C  [farklı/erken iz]
 W.174: 150 C eğrisinden yaklaşık 100 C tarafına düzeltme denemesi
 ```
 
-[Referans Notu] `W.128` ve `W.173-W.174` tam sayfa görselleri [05](05_mosfet_secimi_ve_dayanim_mantigi.md) dosyasındaki gate threshold / Miller plateau ara hesapları altında korunur. Termal owner açısından bu sayfalardan yalnız sıcaklık izleri alınır: `TJ ≈ 73.9 C`, `VGS(th)/TJ = -8.5 mV/C`, `-0.41565 V` erken threshold kayması; ayrıca `150 C` transfer eğrisinden `100 C` civarına taşımak için kullanılan `-7 mV/C`, `+0.35 V`, `VTH,düzeltilmiş ≈ 3.51 V` ve `VMiller,düzeltilmiş ≈ 4.76 V` notları. Bu değerler final termal kapanışla veya `~76 C` izleriyle sessizce birleştirilmeyecek.
+[Referans Notu] `W.128`, `W.173-W.175` ve `W.157` tam sayfa görselleri [05](05_mosfet_secimi_ve_dayanim_mantigi.md) dosyasındaki gate threshold / Miller plateau ara hesapları altında korunur. Termal owner açısından bu sayfalardan yalnız sıcaklık izleri alınır: `TJ ≈ 73.9 C`, `VGS(th)/TJ = -8.5 mV/C`, `-0.41565 V` erken threshold kayması; `150 C` transfer eğrisinden `100 C` civarına taşımak için kullanılan `-7 mV/C`, `+0.35 V`, `VTH,düzeltilmiş ≈ 3.51 V`, `VMiller,düzeltilmiş ≈ 4.76 V`; ayrıca bizim MOSFET eğrisi için `Tc ≈ 76.35 C`, `-0.003 V/C`, `Delta Vadj ≈ -0.154 V`, `VTH,adj ≈ 2.471 V` ve `VGS,miller,adj ≈ 3.1585 V`. Bu değerler final termal kapanışla veya `~76 C` izleriyle sessizce birleştirilmeyecek.
 
 Bu sıcaklık izleri tek `T_J` değerine sessizce indirilmeyecek. Aynı koşul setine çekilecekler: `Vin`, `Iout`, `f_sw`, `Vdrive`, gate yolu, MOSFET kayıp toplamı ve kart termal modeli.
 

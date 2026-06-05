@@ -570,6 +570,59 @@ VTH,düzeltilmiş ≈ 3.157 V + 0.35 V = 3.51 V
 
 Bu değerler `W.128` üzerindeki `VGS(th) ≈ 3.906 V`, `Kn ≈ 10.034`, `VPL ≈ 4.95 V` ara hattını silmez. İki hesap farklı okuma noktaları / sıcaklık kabulüyle durur ve final switching-loss zincirine bağlanmadan önce aynı koşul setinde tekrar eşleştirilecek.
 
+### `W.175` ve `W.157`: Bizim MOSFET Eğrisi ve Kaynak Calculator Teyidi
+
+![Defter p126 / W.175: bizim MOSFET transfer eğrisinden iki nokta seçimi, `VTH`, `K`, `VGS,miller` ve `76.35 C` sıcaklık düzeltmesi](images/defter_full_pages/defter_p126.jpg)
+
+[Tasarım İzi] Tam sayfa `p126`, önceki `W.173-W.174` yöntemini bu kez bizim MOSFET'in transfer-characteristic eğrisi üstünden seçilen iki noktayla tekrarlar. Defter notu, noktaların saturasyon bölgesine geçmeden önceki doğrusal kabul edilebilecek bölgede seçildiğini ve `20 A - 10 A` aralığının hesap için alındığını belirtir.
+
+Korunan ara okuma:
+
+```text
+Nokta 1: ID1 = 10 A, VGS1 ≈ 3.35 V
+Nokta 2: ID2 = 20 A, VGS2 ≈ 3.65 V
+VTH ≈ 2.625 V
+K ≈ 19.036
+VGS,miller ≈ VTH + sqrt(9 A / K) ≈ 3.3125 V
+```
+
+Sıcaklık düzeltmesi:
+
+```text
+Tc ≈ 76.35 C
+grafik okuması ≈ 25 C
+sıcaklık katsayısı ≈ -0.003 V/C
+Delta Vadj ≈ (76.35 C - 25 C) * (-0.003 V/C) ≈ -0.154 V
+VTH,adj ≈ 2.625 V - 0.154 V = 2.471 V
+VGS,miller,adj ≈ 3.3125 V - 0.154 V = 3.1585 V
+```
+
+[Açık Kontrol] Bu hesap `W.128` ve `W.174` değerlerini silmez; aksine farklı grafik noktası ve sıcaklık okumasıyla üçüncü bir ara iz oluşturur. `VTH ≈ 3.906 V`, `VTH ≈ 3.157 V`, `VTH ≈ 2.625 V` aileleri aynı final değer gibi birleştirilmeyecek. Hepsi hangi MOSFET grafiği, hangi sıcaklık ve hangi akım noktalarıyla okunduğu belirtilerek kalır.
+
+![Defter p127 / W.157: TI `Vpl Calculator` kaynak örneği, `Kn`, `VGS(th)` ve `Vplateau` hesap-validasyon tablosu](images/defter_full_pages/defter_p127.jpg)
+
+[Kaynak İzi / Çapraz Teyit] Tam sayfa `p127`, `SLVAEQ9` içindeki `MOSFETs' Vpl and VGS(th) Estimation` örnek calculator tablosunu gösterir. Bu kaynak sayfa, `Kn`, `VGS(th)` ve `Vplateau` değerlerinin MOSFET datasheet output-characteristic eğrilerinden seçilen `Ids` / `Vgs` noktalarıyla hesaplandığını gösterir.
+
+Korunan kaynak örneği:
+
+```text
+VGS1 = 6 V, IDS1 = 70 A
+VGS2 = 5 V, IDS2 = 21 A
+IDS(work) = 10 A
+Kn = 13.51
+VGS(th) = 3.72 V
+Vplateau = 4.58 V
+```
+
+Kaynak örnekte ölçüm / hesap karşılaştırması da tutulur:
+
+```text
+IDS = 10 A: test Vplateau = 5.22 V, hesap = 4.58 V
+IDS = 20 A: test Vplateau = 5.30 V, hesap = 4.94 V
+```
+
+[Açık Kontrol] Defter üst notu "deneyde doğrulama yap" diye özellikle uyarır. Buradaki calculator mantığı proje devresinde gerçek gate dalga şekli, `VTH`, `VMiller`, gate sürücü seviyesi ve sıcaklıkla tekrar kontrol edilmeden final switching-loss girdisi sayılmayacak.
+
 ### `W.150`, `W.155`, `W.156`: Kayıp Sınıflarına Handoff
 
 ![W.150'den küçük kırpım: conduction ve switching loss şekillerini aynı sayfada gösteren kaynak](images/defter_snippets_web/d118_w150_conduction_vs_switching_figures.jpg)
