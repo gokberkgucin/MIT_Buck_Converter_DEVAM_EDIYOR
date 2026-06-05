@@ -422,6 +422,8 @@ Bu değerler `W.153-W.154`te kullanılan `tr ≈ 32.5 ns` ve `tf ≈ 20.63 ns` s
 
 ![W.191'den küçük kırpım: high-side conduction loss hesabında iki koşulun sonuç kutuları](images/defter_snippets_web/d140_w191_hs_conduction_loss_results.jpg)
 
+![Defter p142 / W.191: high-side MOSFET conduction loss, sıcak `RDS(on)` çarpanı ve `646.4 mW / 963.5 mW` sonuçları](images/defter_full_pages/defter_p142.jpg)
+
 [Güncel Omurga / Tasarım İzi] `W.191`, high-side iletim kaybını sayıya döker. Sıcaklık düzeltmesi:
 
 $$
@@ -464,7 +466,11 @@ $$
 P_HS,cond ≈ 963.5 mW
 ```
 
+[Tasarım İzi] Tam sayfa `p142`, MOSFET iletim kaybının `RDS(on)` ve MOSFET üzerinden geçen akımın RMS değeriyle belirlendiğini açıkça yazar. Sıcaklık bağı `delta = 0.35` ile temsil edilir; bu yüzden `15 mOhm` oda-sıcaklığı izi, yaklaşık `75 C` hattında `20.25 mOhm` olarak kullanılır. Sayfa ayrıca aynı high-side formülünü `Vin = 36 V` ve `Vin = 24 V` koşullarında ayrı tutar; bu iki sonuç sessizce tek koşul gibi birleştirilmez.
+
 ![W.192'den küçük kırpım: low-side conduction loss hesabında iki koşulun sonuç blokları](images/defter_snippets_web/d141_w192_ls_conduction_loss_results.jpg)
+
+![Defter p143 / W.192: low-side MOSFET conduction loss, `(1-D)` payı ve `1.017 W / 0.688 W` sonuçları](images/defter_full_pages/defter_p143.jpg)
 
 `W.192`, low-side tarafını tamamlar:
 
@@ -484,6 +490,8 @@ P_LS,cond ≈ 1.017 W
 ```text
 P_LS,cond ≈ 0.688 W
 ```
+
+[Tasarım İzi] Tam sayfa `p143`, low-side MOSFET iletim kaybını high-side hesabının tamamlayıcısı olarak kurar: duty payı `D` yerine `(1-D)` kullanılır. Bu yüzden `36 V` koşulunda low-side kayıp `1.017 W` ile daha yüksek, `24 V` koşulunda ise `0.688 W` ile daha düşük görünür. Bu fark duty ailesiyle ilgilidir; duty açıklamasının primary owner'ı [02](02_startup_pin_programlama_ve_ortak_sabitler.md) olarak kalır.
 
 Ara okuma:
 

@@ -3175,3 +3175,50 @@ Açık notlar:
 - `p140` içindeki `3.23 ns / 2.66 ns` yerine koyma izi, aynı `208.2 mW` sonucunu veren önceki `tr ≈ 32.5 ns / tf ≈ 20.63 ns` pratik setiyle sessizce birleştirilmedi.
 - Bu pass, `208.2 mW` veya `310.3 mW` değerlerini final toplam MOSFET kaybı yapmaz; bunlar yalnız high-side switching overlap parçasıdır.
 - `tr/toff` doğrulaması, `Qgs2`, `Qgd`, `VGS(th)`, `VPL`, gate yolu ve driver akımı aynı koşul setine çekilmeden kapatılmayacak.
+
+## Pass 072 - Sayfa 142-143
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p142.jpg](../images/defter_full_pages/defter_p142.jpg)
+- [defter_p143.jpg](../images/defter_full_pages/defter_p143.jpg)
+
+Defter işaretleri:
+
+- `p142 / W.191`: `Conduction Loss Calculation` başlığı altında MOSFET iletim kaybının `on-resistance` ve MOSFET üzerinden geçen akımın RMS değeriyle belirlendiği yazılır.
+- `p142 / W.191`: `RDS(on)` sıcaklık bağı `delta` ile temsil edilir; MOSFET ısındıkça `RDS(on)` artar.
+- `p142 / W.191`: bu hesabın power MOSFET conduction-loss bağlamında yapıldığı not edilir.
+- `p142 / W.191`: sıcak değer izi korunur: `RDS(on)(TJ = 75 C) = RDS(on)(TJ = 25 C) x 1.35`.
+- `p142 / W.191`: `20.25 mOhm = 15 mOhm x 1.35`.
+- `p142 / W.191`: high-side conduction formülü duty payı `D` ile kurulur.
+- `p142 / W.191`: `Vin = 36 V`, `Delta_ILpp = 3.8 A`, `D = 14 V / 36 V` koşulunda `P_HS,conduction = 646.4 mW`.
+- `p142 / W.191`: `Vin = 24 V`, `Delta_ILpp = 2.6 A`, `D = 14 V / 24 V` koşulunda `P_HS,conduction = 963.5 mW`.
+- `p143 / W.192`: `Conduction loss devam` ve `Lowside MOSFET'in iletim kaybı` başlığıyla low-side hesabı açılır.
+- `p143 / W.192`: low-side formülünde high-side'dan farklı olarak duty payı `(1-D)` kullanılır.
+- `p143 / W.192`: `Vin = 36 V`, `Delta_ILpp = 3.8 A` koşulunda `P_LS,conduction = 1.017 W`.
+- `p143 / W.192`: `Vin = 24 V`, `Delta_ILpp = 2.6 A` koşulunda `P_LS,conduction = 0.688 W`.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `High-side ve Low-side Conduction Loss` altına tam sayfa `p142` ve `p143` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- Duty ailesinin primary sahibi [02](../02_startup_pin_programlama_ve_ortak_sabitler.md) olarak kaldı; [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde yalnız kayıp hesabındaki duty payı olarak kullanıldı.
+- MOSFET seçimi / datasheet `RDS(on)` okuması [05](../05_mosfet_secimi_ve_dayanim_mantigi.md) ile bağlantılı kalır; burada termal/kayıp sonucu kapatılır.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `RDS(on)(75 C) ≈ 20.25 mOhm = 15 mOhm x 1.35`.
+- `P_HS,conduction @ Vin = 36 V ≈ 646.4 mW`.
+- `P_HS,conduction @ Vin = 24 V ≈ 963.5 mW`.
+- `P_LS,conduction @ Vin = 36 V ≈ 1.017 W`.
+- `P_LS,conduction @ Vin = 24 V ≈ 0.688 W`.
+
+Açık notlar:
+
+- Bu pass yeni MOSFET toplam kayıp tablosu üretmedi; yalnız conduction-loss tam sayfa izlerini mevcut owner'a bağladı.
+- `36 V` ve `24 V` koşulları duty payları farklı olduğu için ayrı kalır; high-side ve low-side sonuçları tek koşul gibi birleştirilmeyecek.
+- `RDS(on)` sıcaklık çarpanı, final termal kapanışta gerçek `TJ`, gate-drive gerilimi ve datasheet koşuluyla tekrar eşleştirilecek.
