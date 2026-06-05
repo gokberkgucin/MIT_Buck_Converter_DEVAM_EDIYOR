@@ -1007,6 +1007,8 @@ Bu sıcaklık izleri tek `T_J` değerine sessizce indirilmeyecek. Aynı koşul s
 
 ![W.107'den küçük kırpım: termal empedans makalesi üstüne Tj notu](images/defter_snippets_web/d107_w107_thermal_impedance_article_and_tj.jpg)
 
+![Defter p108 / W.107: TI `Understanding MOSFET Data Sheets, Part 6 - Thermal Impedance` kaynak sayfası ve `T_J = T_A + P_D RthetaJA` izi](images/defter_full_pages/defter_p108.jpg)
+
 `W.107` temel uyarısı:
 
 - `RthetaJA` mutlak ve her yerde geçerli tek sabit değildir,
@@ -1017,9 +1019,19 @@ $$
 T_J=T_A+P_D R_{\theta JA}
 $$
 
+[Kaynak İzi / Çapraz Teyit] Tam sayfa `p108`, TI / Brett Barr `Understanding MOSFET Data Sheets, Part 6 - Thermal Impedance` makalesinin deftere alınmış kaynak sayfasıdır. Defter notu, `RthetaJA` değerinin yalnız MOSFET silikonu tarafından belirlenmediğini; ısının junction'dan hem PCB/alt pad yoluna hem paket üstü/ortam yoluna yayılan bir direnç ağıyla dağıldığını vurgular. Bu sayfa yeni final `RthetaJA` üretmez; MOSFET termal metriklerinin hangi fiziksel yol için okunduğunu netleştirir.
+
 ![W.109'dan küçük kırpım: RthJA eşdeğer ağı ve işaretlenmiş termal yol](images/defter_snippets_web/d108_w109_rthja_network_marked.jpg)
 
-`W.109`, ısının tek bir yoldan değil, paket ve PCB üzerinden çoklu termal yollardan dağıldığını gösterir.
+![Defter p109 / W.109: `RthetaJA` paralel termal direnç ağı, `RthetaJB+RthetaBA` ve paket üstü yol ayrımı](images/defter_full_pages/defter_p109.jpg)
+
+`W.109`, ısının tek bir yoldan değil, paket ve PCB üzerinden çoklu termal yollardan dağıldığını gösterir:
+
+```text
+RthetaJA ≈ (RthetaJB + RthetaBA) || (RthetaJTop + RthetaTA)
+```
+
+[Tasarım İzi] Tam sayfa `p109`, alt/PCB yolunu `RthetaJB + RthetaBA`, paket üstü/ortam yolunu `RthetaJTop + RthetaTA` olarak ayırır. Defter notlarında PCB yolu daha etkin olduğunda toplam `RthetaJA` değerini belirleyen baskın terimin board/pad/bakır koşulu olduğu; bir heatsink bağlanırsa üst yolun paralel termal direnç olarak modele eklenebileceği yazılıdır. Bu nedenle datasheet `RthetaJA` değeri, kart bakırı, pad alanı, airflow ve ölçüm düzeninden kopuk final junction sıcaklığı gibi kullanılmayacak.
 
 ![W.110'dan küçük kırpım: ölçüm kurulumu ve PCB alanına göre RthJA değişimi](images/defter_snippets_web/d109_w110_measurement_setup_and_layout_effect.jpg)
 

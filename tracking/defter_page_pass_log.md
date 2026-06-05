@@ -2387,3 +2387,50 @@ Açık notlar:
 
 - `>=60 V` sınıf notu, önceki `BVDSS > 1.25 * Vin,max` kuralını iptal etmez; biri pratik sınıf seçimi, diğeri alt sınır kuralıdır.
 - `75 C` burada kayıp hesabına giden eski/ara çalışma varsayımıdır; final termal kapanış değildir.
+
+## Pass 055 - Sayfa 108-109
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p108.jpg](../images/defter_full_pages/defter_p108.jpg)
+- [defter_p109.jpg](../images/defter_full_pages/defter_p109.jpg)
+
+Defter işaretleri:
+
+- `W.107`: TI / Brett Barr `Understanding MOSFET Data Sheets, Part 6 - Thermal Impedance` kaynak sayfası deftere alınmıştır.
+- `W.107`: kaynak sayfa MOSFET datasheet thermal information / thermal impedance parametrelerinin karıştırılmaması için kullanılır.
+- `W.107`: `RthetaJA` junction-to-ambient termal empedans olarak okunur; tek mutlak paket sabiti gibi kullanılmaz.
+- `W.107`: defterde temel ilişki `T_J = T_A + P_D * RthetaJA` olarak korunur.
+- `W.107`: MOSFET tarafının belirlediği sabit iç parametrelerle paket/PCB/yerleşim tarafından belirlenen parametrelerin ayrılması gerektiği not edilir.
+- `W.109`: `RthetaJA` paralel termal ağ olarak çizilir: `(RthetaJB + RthetaBA) || (RthetaJTop + RthetaTA)`.
+- `W.109`: alt/PCB yolu `RthetaJB + RthetaBA` olarak, paket üstü/ortam yolu `RthetaJTop + RthetaTA` olarak ayrılır.
+- `W.109`: PCB/alt pad yolu daha etkin olduğunda `RthetaJA` üzerinde baskın rolü board koşullarının oynadığı not edilir.
+- `W.109`: heatsink bağlanırsa paket üstü yolun paralel termal direnç olarak modele eklenebileceği yazılır.
+- `W.109`: tabloda `P_D`, `T_J`, `T_A`, `T_B`, `T_T`, `RthetaJB`, `RthetaBA`, `RthetaJTop`, `RthetaTA`, `RthetaJA` tanımları görünür.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `MOSFET Termal Yolu ve Datasheet Thermal Metrics`.
+- Aynı dosyada `W.107`, `W.109`, `W.110`, `W.117` termal metrik okuma zinciri.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass [05](../05_mosfet_secimi_ve_dayanim_mantigi.md) dosyasındaki MOSFET seçim gerekçesini yeniden açmadı.
+- Bu pass yeni MOSFET kayıp toplamı, yeni `T_J`, yeni `RthetaJA` veya final board sıcaklığı üretmedi.
+- `RthetaJA` metriği, ölçüm/kart koşulundan kopuk final sıcaklık hesabı gibi kullanılmayacak.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `T_J = T_A + P_D * RthetaJA`.
+- `RthetaJA ≈ (RthetaJB + RthetaBA) || (RthetaJTop + RthetaTA)`.
+- PCB / bottom thermal path: `RthetaJB + RthetaBA`.
+- Paket üstü / top thermal path: `RthetaJTop + RthetaTA`.
+- Board koşulları: PCB alanı, bakır, pad, airflow ve ölçüm düzeni.
+- Heatsink varsa paket üstü yol paralel termal direnç olarak modele eklenebilir.
+
+Açık notlar:
+
+- Bu sayfalar kaynak/defter izi ve termal metrik okuma kuralıdır; final MOSFET junction sıcaklığı değildir.
+- Son termal kapanışta `Rtheta`, `Psi`, board sıcaklığı ve ölçüm noktası aynı koşul setinde seçilecek.
