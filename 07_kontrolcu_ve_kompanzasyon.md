@@ -975,6 +975,22 @@ T(jwgm) = -180°
    GM = 1 / |T(jwgm)|
 ```
 
+[Tasarım İzi - örnek PM/GM okuması] Tam sayfa `p176-p177`, `6.95 örnek` başlığıyla genel bir open-loop transfer fonksiyonu üzerinde PM/GM okuma pratiğini gösterir:
+
+![Defter p176 / 6.95 örnek: `L(jw)=1000/((jw+4)(jw+8)(jw+10))`, `wpm ≈ 6.79 rad/s`, faz okuması ve `PM ≈ 46°` örneği](images/defter_full_pages/defter_p176.jpg)
+
+![Defter p177 / 6.95 örnek devamı: Bode PM/GM çizimi, `wpm`, `GM`, `wgm ≈ 12.33` ve `-20log10|T(jw)|` notları](images/defter_full_pages/defter_p177.jpg)
+
+Örnekte kullanılan transfer fonksiyonu proje plant'i değildir:
+
+```text
+L(jw) = 1000 / ((jw + 4)(jw + 8)(jw + 10))
+```
+
+p176 üzerinde `|L(jwpm)| = 1` koşuluna karşılık gelen büyüklük hesabı ve `wpm ≈ 6.79 rad/s` gibi okunan ara sonuç vardır. Faz tarafında `-tan^-1(wpm/4) - tan^-1(wpm/8) - tan^-1(wpm/10)` çizgisi görülür; sayfada `-134°` okumasından `PM = 180° - 134° = 46°` hattına gidilir.
+
+p177, aynı örneğin gain-margin tarafını sürdürür. Sayfada `wgm ≈ 12.33` gibi okunan faz-kesim frekansı, `GM = 1/|T(j12.33)|` biçiminde lineer okuma ve `dB cinsinden = -20log10 |T(jw...)|` notu vardır. Bu örnek, final LM5146 kompanzatörünün `PM ≈ 55°` hedefini değiştirmez; yalnız Bode üzerinde hangi noktanın nasıl okunacağını somutlaştırır.
+
 Sayısal kapanış, seçilen Type-III komponentleriyle kurulacak open-loop Bode sonucunda yapılacak.
 
 ### Kararlılık Kriteri ve Kapalı Çevrim

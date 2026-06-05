@@ -4094,3 +4094,51 @@ Açık notlar:
 
 - `w0` satırı görselde `45.8 krad/s` gibi okunur; önceki defter/owner zincirinde farklı okunan yakın değer varsa sessizce birleştirilmedi.
 - "Figure 2 Buck Converter Schematic foto bul" notu bu pass içinde kapatıldı; yeni dosya indirilmedi, repo içinde zaten bulunan ODT gömülü görseller bağlandı.
+
+## Pass 089 - Sayfa 176-177
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p176.jpg](../images/defter_full_pages/defter_p176.jpg)
+- [defter_p177.jpg](../images/defter_full_pages/defter_p177.jpg)
+
+Defter işaretleri:
+
+- `p176 / 6.95 örnek`: genel open-loop örnek transfer fonksiyonu `L(jw) = 1000 / ((jw+4)(jw+8)(jw+10))` olarak yazılır.
+- `p176 / 6.95 örnek`: "PM'yi bul" notu vardır.
+- `p176 / 6.95 örnek`: Bode eskizinde `|L(jw)|`, `0 dB`, `wpm`, `GM` ve faz eğrisi gösterilir.
+- `p176 / 6.95 örnek`: `|L(jwpm)| = 1000 / (sqrt(wpm^2+4^2) sqrt(wpm^2+8^2) sqrt(wpm^2+10^2)) = 1` hattı görünür.
+- `p176 / 6.95 örnek`: `wpm ≈ 6.79 rad/s` gibi okunan ara sonuç vardır.
+- `p176 / 6.95 örnek`: faz hesabı `-tan^-1(wpm/4) - tan^-1(wpm/8) - tan^-1(wpm/10)` şeklinde yazılır.
+- `p176 / 6.95 örnek`: faz sonucu `-134°` gibi okunur ve `PM = 180 - 134`, `PM = 46°` sonucuna gidilir.
+- `p177 / 6.95 örnek devamı`: aynı Bode/PM/GM çizimi devam eder.
+- `p177 / 6.95 örnek devamı`: `wgm ≈ 12.33` gibi okunan faz-kesim frekansı vardır.
+- `p177 / 6.95 örnek devamı`: `GM = 1/|T(jwgm)|` ve `GM = 1/|T(j12.33)|` biçimindeki lineer gain-margin okuması görünür.
+- `p177 / 6.95 örnek devamı`: `dB cinsinden = -20log10 |T(jw...)|` notu yazılır; sağ tarafta "matlab kodu ver" notu vardır.
+
+Primary owner entegrasyonu:
+
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `Faz, Kazanç Marjı ve WEBENCH Cross-checkleri` / `W.25: PM / GM Tanım Notu` altına PM/GM okuma örneği olarak eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu iki sayfa proje plant'i, final LM5146 kompanzatörü veya güncel `PM ≈ 55°` hedefi değildir.
+- PM/GM tanımının nasıl okunacağını gösteren matematik örneği olarak tutuldu; Type-III final komponent hesabı yine [07](../07_kontrolcu_ve_kompanzasyon.md) içindeki ilgili komponent ve calculator bölümlerinde kalır.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `L(jw) = 1000 / ((jw+4)(jw+8)(jw+10))`.
+- `|L(jwpm)| = 1`.
+- `wpm ≈ 6.79 rad/s`.
+- `phase ≈ -134°`.
+- `PM ≈ 46°`.
+- `wgm ≈ 12.33`.
+- `GM = 1/|T(jwgm)|`.
+- `dB cinsinden = -20log10|T(jw)|`.
+
+Açık notlar:
+
+- `p177` üzerindeki `dB cinsinden` satırında argüman `wpm`/`wgm` yazımı net okunmayabilir; gain-margin için bağlam `wgm` olarak yorumlandı ama final modele taşınmadı.
+- "matlab kodu ver" notu bu pass içinde yeni MATLAB dosyası üretmez; yalnız gelecekteki Bode/PM/GM otomasyonu için izdir.
