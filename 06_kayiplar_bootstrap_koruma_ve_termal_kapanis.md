@@ -231,6 +231,8 @@ MOSFET seçimi ve datasheet okuma kuralları [05](05_mosfet_secimi_ve_dayanim_ma
 
 ![W.152'den küçük kırpım: ripple, kapasitanslar ve gate-charge giriş parametrelerini aynı sayfada toplayan hesap bloğu](images/defter_snippets_web/d134_w152_switching_loss_input_summary.jpg)
 
+![Defter p136 / W.152: bobin ripple değerleri, MOSFET kapasitansları, gate-drive dirençleri, `Qgd` ve `Qgs2` switching-loss giriş seti](images/defter_full_pages/defter_p136.jpg)
+
 [Tasarım İzi] `W.152`, switching-loss hesabına giren parametreleri toplar:
 
 ```text
@@ -246,6 +248,10 @@ Q_GD ≈ C_GD * V_DS ≈ 54 pF * 22 V ≈ 1.2 nC
 V_GS(th) ≈ 3.49 V
 V_GS,miller ≈ 4.535 V
 Q_gs2 ≈ C_GS * (V_miller - V_GS(th)) ≈ 1.34 nC
+
+R_gate,internal ≈ 1 ohm
+R_pull-down ≈ 0.9 ohm
+R_gate ≈ 2.2 ohm  [p136 shorthand; p135'te toplam gate-yolu olarak açılmıştır]
 ```
 
 Bobin ripple formu burada switching-loss girdisi olarak tekrar görünür:
@@ -258,7 +264,11 @@ Bu formülün primary bobin owner'ı [03](03_bobin_ve_cikis_kapasitorleri.md) do
 
 [Referans Notu] `Crss,ave ≈ 54 pF`, `Coss,ave ≈ 783 pF`, `Cgs ≈ 1282 pF` ve `Cds ≈ 729 pF` hattının tam kapasitans dönüşüm izi [05](05_mosfet_secimi_ve_dayanim_mantigi.md) dosyasındaki `W.130` / tam sayfa `p132` altında tutulur. `p133`teki `380 V` örnek hattı bu kayıp setiyle sessizce birleştirilmeyecek.
 
+[Açık Kontrol] `p136` üzerindeki `R_gate ≈ 2.2 ohm` yazımı, `p135`teki `Rtotal ≈ 1.5 + 0 + 0.7 ≈ 2.2 ohm` toplam gate-yolu iziyle birlikte okunacak. Bootstrap bölümündeki `Rboot/RBST = 2.2 ohm` ile aynı fiziksel eleman gibi kullanılmayacak.
+
 ![W.161'den küçük kırpım: `Qgd = Crss,ave x VDS` yaklaşımı ve çok küçük çıkan Miller charge sorgulaması](images/defter_snippets_web/d135_w161_qgd_sanity_check.jpg)
+
+![Defter p137 / W.161: `Miller charge = Qgd = Crss,ave * DeltaVDS`, `11.21 pF * 22 V` ve çok küçük çıkan `0.24662 nC` notu](images/defter_full_pages/defter_p137.jpg)
 
 [Çapraz Teyit / Açık Kontrol] `W.161`, `Qgd` için daha küçük bir alternatif iz bırakır:
 
@@ -267,7 +277,7 @@ VGS = 7.5 V iken Qg ≈ 8 nC  [ara okuma]
 Qgd ≈ 11.21 pF * 22 V ≈ 246.62 pC ≈ 0.24662 nC
 ```
 
-Bu sonuç `W.152`deki `Qgd ≈ 1.2 nC` ile sessizce birleştirilmez. Notun kendisi de bu değerin `G81 Fig.3` plateau sezgisine göre fazla küçük göründüğünü söyler.
+Bu sonuç `W.152`deki `Qgd ≈ 1.2 nC` ile sessizce birleştirilmez. Notun kendisi de bu değerin `G81 Fig.3` plateau sezgisine göre fazla küçük göründüğünü söyler. Sayfadaki yorum, Miller charge küçükse `VDS` ve `IDS` örtüşme süresinin / switching-loss penceresinin farklı okunacağını, bu yüzden değerlerin yalnız formül sonucuyla değil gate-charge eğrisi ve ölçüm/simülasyonla da teyit edilmesi gerektiğini işaret eder.
 
 ![W.163'ten küçük kırpım: `Tj`, `Vdrive`, `VDS` ve revize kapasitans değerlerini aynı sayfada toparlayan ara not](images/defter_snippets_web/d136_w163_revised_tj_and_capacitances.jpg)
 

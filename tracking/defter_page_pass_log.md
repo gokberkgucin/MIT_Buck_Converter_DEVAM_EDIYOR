@@ -3028,3 +3028,53 @@ Açık notlar:
 - Bu pass yeni final gate direnci, final switching time, final bootstrap direnci veya final `Tj` üretmedi.
 - `2.2 ohm` hem gate-yolu toplam direnci hem de bootstrap/RBST notu olarak göründüğü için reference designator ve fiziksel eleman bazında ayrıca kapanacak.
 - `RthetaJC ≈ 1.6 C/W` ve `RthetaJC ≈ 1.9 C/W` aynı final termal modelde koşulları netleşmeden birleştirilmeyecek.
+
+## Pass 069 - Sayfa 136-137
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p136.jpg](../images/defter_full_pages/defter_p136.jpg)
+- [defter_p137.jpg](../images/defter_full_pages/defter_p137.jpg)
+
+Defter işaretleri:
+
+- `W.152`: bobin ripple formülü switching-loss girdisi olarak tekrar kullanılır.
+- `W.152`: `Delta_ILpp,max ≈ (36 V - 14 V) / 6.8 uH * 14 V / 36 V * 1 / 332 kHz ≈ 3.8 A`.
+- `W.152`: `Delta_ILpp,min ≈ (24 V - 14 V) / 6.8 uH * 14 V / 24 V * 1 / 332 kHz ≈ 2.6 A`.
+- `W.152`: MOSFET switching-loss giriş seti tekrar listelenir: `Crss,ave ≈ 54 pF = CGD`, `Coss,ave ≈ 783 pF`, `CGS ≈ 1282 pF`, `CDS ≈ 729 pF`.
+- `W.152`: `Qg(total) ≈ 16 nC`, `Vdrive ≈ 7.5 V`.
+- `W.152`: `Rgate,internal ≈ 1 ohm`, `Rpull-down ≈ 0.9 ohm`, `Rgate ≈ 2.2 ohm`.
+- `W.152`: `QGD(Miller) ≈ CGD * VDS ≈ 54 pF * 22 V ≈ 1.2 nC`.
+- `W.152`: `VGS(thres) ≈ 3.49 V`, `VGSmiller ≈ 4.535 V`.
+- `W.152`: `Qgs2 ≈ Cgs * (Vmiller - VGS(th)) ≈ 1282 pF * (4.535 - 3.49 V) ≈ 1.34 nC`.
+- `W.161`: `Miller charge = Qgd = Crss,ave * DeltaVDS` ilişkisi tekrar yazılır.
+- `W.161`: `Qgd ≈ 11.21 pF * 22 V ≈ 246.62 pC ≈ 0.24662 nC`.
+- `W.161`: defter bu değeri G81 Fig.3 ile karşılaştırınca çok küçük bulur; bunun switching-loss penceresi / Miller plateau yorumu için açık kontrol olduğu yazılır.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `W.152` switching-loss giriş parametreleri ve `W.161` `Qgd` sanity-check altına tam sayfa `p136` ve `p137`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bobin ripple denkleminin primary sahibi [03](../03_bobin_ve_cikis_kapasitorleri.md) olarak kaldı; [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde yalnız switching-loss girdisi olarak kullanıldı.
+- Kapasitans dönüşümünün primary izi [05](../05_mosfet_secimi_ve_dayanim_mantigi.md) / `W.130` altında kaldı; burada gate/switching hesabına giren değerler kullanıldı.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Delta_ILpp,max ≈ 3.8 A`, `Delta_ILpp,min ≈ 2.6 A`.
+- `Crss,ave ≈ 54 pF`, `Coss,ave ≈ 783 pF`, `CGS ≈ 1282 pF`, `CDS ≈ 729 pF`.
+- `Qg(total) ≈ 16 nC`.
+- `Vdrive ≈ 7.5 V`.
+- `Rgate,internal ≈ 1 ohm`, `Rpull-down ≈ 0.9 ohm`, `Rgate ≈ 2.2 ohm`.
+- `QGD ≈ 1.2 nC` ana çalışma hattı.
+- `Qgs2 ≈ 1.34 nC`.
+- Alternatif / çok küçük `Qgd ≈ 0.24662 nC`.
+
+Açık notlar:
+
+- Bu pass yeni final `Qgd`, `Qgs2`, switching-time, gate direnci veya switching-loss değeri üretmedi.
+- `Qgd ≈ 1.2 nC` ve `Qgd ≈ 0.24662 nC` aynı final cevap gibi birleştirilmeyecek.
+- `Rgate ≈ 2.2 ohm` burada gate-yolu shorthand'i olarak kaldı; bootstrap `Rboot/RBST` ile fiziksel olarak karışmayacak.
