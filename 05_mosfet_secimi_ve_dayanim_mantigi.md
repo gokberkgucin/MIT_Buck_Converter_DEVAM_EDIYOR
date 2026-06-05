@@ -312,9 +312,15 @@ VDS,max * Cgd / (Cgs + Cgd) < VTH
 
 ![W.180'den küçük kırpım: ilk sayısal Miller kontrolü ve VDS,max sonucu](images/defter_snippets_web/d93_w180_first_numeric_miller_check.jpg)
 
+![Defter p094 / W.180: `Crss = 6 pF`, `Coss = 200 pF`, `Ciss = 1100 pF`, `Cgs = 1094 pF` ve ilk `VDS,max` kontrolü](images/defter_full_pages/defter_p094.jpg)
+
 `W.180`, `Cgd ≈ 6 pF`, `Coss ≈ 200 pF`, `Ciss ≈ 1100 pF` gibi iyimser / küçük kapasitans senaryosuyla ilk yoklamadır. Sonuç rahatlık yönündedir, fakat bu yalnız o kapasite modeli için geçerlidir.
 
+[Çapraz Teyit] Tam sayfa `p094`, `Cgd/Crss = 6 pF`, `Coss = 200 pF`, `Ciss = 1100 pF` okumasıyla `Cgs = Ciss - Cgd = 1094 pF` hattını gösterir. Bu ilk senaryoda `VDS,max ≈ VTH*(Cgs+Cgd)/Cgd` ilişkisiyle `398 V` mertebesinde çok rahat bir sonuç görülür. Bu değer final switch-node marjı değildir; küçük/iyimser `Cgd` kabulünün sonucu olarak etiketli kalır.
+
 ![W.181'den küçük kırpım: ikinci senaryo için dv/dt limit hesabı](images/defter_snippets_web/d94_w181_dvdt_limit_scenario2.jpg)
+
+![Defter p095 / W.181: ikinci senaryo için `dV/dt_N-limit = VTH/(RGi*CGD)` ve `~517 V/ns` mertebesi](images/defter_full_pages/defter_p095.jpg)
 
 `W.181`:
 
@@ -324,6 +330,8 @@ RGi ≈ 0.7 ohm
 CGD ≈ 6 pF
 sonuç ≈ 5.7e11 V/s mertebesi
 ```
+
+[Çapraz Teyit] Tam sayfa `p095`, aynı ikinci senaryoyu `VTH/(RGi*CGD)` biçiminde açar ve `2.171 V / (0.7 ohm * 6e-12 F)` hesabından `517 x 10^9 V/s`, yani yaklaşık `517 V/ns` mertebesini verir. Bu sayı gerçek ölçülmüş switch-node eğimi değildir; gate yolu ve küçük `CGD` varsayımına bağlı teorik limit izidir.
 
 ![W.182'den küçük kırpım: CGD akımı ve gate yolu üzerinden VGS oluşumu](images/defter_snippets_web/d95_w182_cgd_current_gate_path.jpg)
 

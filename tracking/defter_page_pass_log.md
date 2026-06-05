@@ -2038,3 +2038,50 @@ Açık notlar:
 - Bu sayfalar gerçek switch-node ölçümü değildir; Miller yanlış turn-on riskini kuran defter/kaynak izidir.
 - Final kabulte gerçek `Cgd(VDS)`, gate pull-down yolu, common-source inductance, layout ve switch-node dalga şekli birlikte kontrol edilmelidir.
 - EVM üzerinde uygulanmış rework veya ölçüm sonucu gibi sunulmadı.
+
+## Pass 048 - Sayfa 94-95
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p094.jpg](../images/defter_full_pages/defter_p094.jpg)
+- [defter_p095.jpg](../images/defter_full_pages/defter_p095.jpg)
+
+Defter işaretleri:
+
+- `W.180`: ilk senaryo, küçük / iyimser kapasitans setiyle Miller yanlış turn-on kontrolüdür.
+- `W.180`: `VDS = 22 V` bağlamı görülür.
+- `W.180`: `Crss = 6 pF`, `Coss = 200 pF`, `Ciss = 1100 pF`.
+- `W.180`: `Cgs = Ciss - Cgd = 1100 - 6 = 1094 pF`.
+- `W.180`: `VDS,max ≈ VTH*(Cgs+Cgd)/Cgd` ilişkisiyle `398 V` mertebesi okunur.
+- `W.180`: sayfada "MOS kendiliğinden ON olmaz" sonucu bu küçük `Cgd` senaryosu için not edilir.
+- `W.181`: ikinci senaryo `dV/dt_N-limit = VTH/(RGi*CGD)` hattıdır.
+- `W.181`: `2.171 V / (0.7 ohm * 6e-12 F)` hesabından `517 x 10^9 V/s`, yani yaklaşık `517 V/ns` mertebesi okunur.
+- `W.181`: "normalde bunun çok yüksek olduğu, pratikte daha düşük olabileceği" uyarısı görünür.
+
+Primary owner entegrasyonu:
+
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `dV/dt, Miller ve Yanlış Turn-on`.
+- Aynı dosyada `W.178-W.184: Proje İçindeki Miller Kontrolleri`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içindeki gate-drive kayıp veya bootstrap hesabını açmadı.
+- `398 V`, `517 V/ns` ve önceki `190.6 V/ns` gibi izler sessizce tek cevap yapılmadı; farklı senaryo / kapasitans / gate-yolu varsayımları olarak kaldı.
+- Bu pass yeni final `Cgd`, `Cgs`, `VTH`, `VDS,max`, `dV/dt` limiti veya gate direnci kararı üretmedi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Cgd/Crss = 6 pF`.
+- `Coss = 200 pF`.
+- `Ciss = 1100 pF`.
+- `Cgs = 1094 pF`.
+- İlk senaryoda `VDS,max ≈ 398 V` mertebesi.
+- İkinci senaryoda `(dV/dt)_N-limit ≈ 517 V/ns` mertebesi.
+
+Açık notlar:
+
+- Bu sayfalar gerçek switch-node ölçümü değildir; Miller yanlış turn-on riskine dair teorik / defter kontrolüdür.
+- Küçük `Cgd = 6 pF` varsayımı sonraki korumacı kapasitans senaryolarıyla aynı final değer gibi birleştirilmedi.
+- Final kabulte gerçek `Cgd(VDS)`, gate pull-down yolu, common-source inductance, layout ve switch-node dalga şekli birlikte kontrol edilmelidir.
