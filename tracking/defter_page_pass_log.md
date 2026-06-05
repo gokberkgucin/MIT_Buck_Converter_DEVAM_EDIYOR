@@ -3545,3 +3545,74 @@ Açık notlar:
 
 - `p154`, yeni hesap değil süreç/dokümantasyon izidir; teknik değer olarak yalnız mevcut `Rboot = R3 = 2.2 ohm` tekrarını taşır.
 - `CVCC >> 10 x CBST` kontrolü hızlı rezervuar sanity check'idir; minimum `Cboot`, `Qtotal`, `DeltaVHB`, UVLO ve gerçek etkin kapasite kontrollerinin yerine geçmez.
+
+## Pass 079 - Sayfa 156-157
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p156.jpg](../images/defter_full_pages/defter_p156.jpg)
+- [defter_p157.jpg](../images/defter_full_pages/defter_p157.jpg)
+
+Defter işaretleri:
+
+- `p156 / W.171`: başlık `6.34 Bootstrap`.
+- `p156 / W.171`: `Qg` yalnız MOSFET kapı yüküdür; gate'i açmak için gereken yük olarak yazılır.
+- `p156 / W.171`: `Qg ≈ 16 nC` izi görünür.
+- `p156 / W.171`: `Qtotal`, bootstrap kapasitörünün her anahtarlama çevriminde sağlamak zorunda olduğu toplam yük miktarıdır.
+- `p156 / W.171`: `Qtotal`, `Qg`ye ek olarak iki yük bileşeni daha içerir.
+- `p156 / W.171`: `IHBS * Dmax / fsw`, `HB` pininden `VSS`e akan kaçak/sızıntı akımının oluşturduğu yük olarak açıklanır.
+- `p156 / W.171`: `IHBS` akımı datasheet'ten bulunur; entegre devre olduğu için oldukça küçük kabul edilir ve `5 uA` alınır.
+- `p156 / W.171`: `IHB * 1 / fsw`, high-side gate-driver'ın high-side kısmının sabit / quiescent akımının oluşturduğu yük olarak açıklanır.
+- `p156 / W.171`: `IHB` için `80 uA` not edilir.
+- `p156 / W.171`: formül `Qtotal = Qg + IHBS * Dmax / fsw + IHB * 1 / fsw`.
+- `p156 / W.171`: yerine koyma `16 nC + 5 uA * 0.95 / 332 kHz + 80 uA * 1 / 332 kHz`.
+- `p156 / W.171`: ara katkılar `0.01431 nC` ve `0.241 nC`.
+- `p156 / W.171`: sonuç `Qtotal = 16.255 nC`.
+- `p157 / W.188`: başlık bozuk/yarım yazılmış gibi görünse de bağlam bootstrap parametre taramasıdır.
+- `p157 / W.188`: bootstrap kapasitörünün high-side gate sürücü devresine enerji sağlayan kritik eleman olduğu yazılır.
+- `p157 / W.188`: `VINmax = 65 V`, maximum steady-state input voltage.
+- `p157 / W.188`: `VDRV = 12 V`, high-side driver / gate sürme genliği bağlamında not edilir.
+- `p157 / W.188`: `Delta VBST = 0.5 V`, steady-state ripple ve `CBOOT` bağlamında kullanılır.
+- `p157 / W.188`: `Delta Vboost,max = 3 V`; bu kadar gerilim düşümünde UVLO olabileceği yazılır.
+- `p157 / W.188`: `tBST,rr = 400 us` gibi okunur; süre değeri mevcut metindeki küçük kırpımda `400 ns` olarak geçtiği için çelişki açık tutulur.
+- `p157 / W.188`: `tON,TL = 20 us` transient-on bağlamında not edilir.
+- `p157 / W.188`: `Qg`, MOSFET'in toplam gate yükü olarak açıklanır; `12 V` uygulandığında ve `VDS = 65 V` iken gate'i tamamen sürmek için gereken toplam yük bağlamı yazılır.
+- `p157 / W.188`: `RGS`, gate-source arasındaki pull-down dirençtir; MOSFET kapandığında gate'te gerilim kalmaması için kullanılır ve bootstrap'tan bir miktar akım çekebilir.
+- `p157 / W.188`: bootstrap diode forward gerilim düşümü `VFDBST = 0.6 V` olarak alınır; `100 mA` ve `Tj = 80 C` koşulu not edilir.
+- `p157 / W.188`: level-shifter leakage akımı `0.13 mA` olarak okunur; `Vinmax` ve `Tj = 100 C` koşulu not edilir.
+- `p157 / W.188`: floating driver quiescent current için `IQBS = 1 mA` not edilir.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `Qtotal, Minimum Cboot ve UVLO` altına tam sayfa `p156` ve `p157` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- Duty/timing ailesinin primary sahibi [02](../02_startup_pin_programlama_ve_ortak_sabitler.md) olarak kalır; burada `Dmax = 0.95` yalnız bootstrap high-side bias / datasheet hesabı bağlamında kullanılır.
+- MOSFET gate charge seçimi [05](../05_mosfet_secimi_ve_dayanim_mantigi.md) ile ilişkilidir; burada `Qg` bootstrap yük hesabı girdisidir.
+- UVLO ve startup bağlamı [02](../02_startup_pin_programlama_ve_ortak_sabitler.md) ile komşudur; bu pass bootstrap `BST-SW/HB-HS` yeterliliğini taşır.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Qg ≈ 16 nC`.
+- `IHBS ≈ 5 uA`.
+- `IHB ≈ 80 uA`.
+- `Dmax ≈ 0.95`.
+- `fsw ≈ 332 kHz`.
+- `Qtotal ≈ 16.255 nC`.
+- `VINmax = 65 V`.
+- `VDRV = 12 V`.
+- `Delta VBST ≈ 0.5 V`.
+- `Delta Vboost,max ≈ 3 V`.
+- `VFDBST ≈ 0.6 V @ 100 mA, Tj = 80 C`.
+- `level-shifter leakage ≈ 0.13 mA`.
+- `IQBS ≈ 1 mA`.
+
+Açık notlar:
+
+- `Dmax = 0.95`, proje duty zarfındaki `0.648` ile aynı rol değildir; bootstrap özel worst-case / datasheet hesabı olarak kalır.
+- `IHB = 80 uA`, `0.13 mA` ve `IQBS = 1 mA` değerleri aynı akımın farklı yazımları gibi birleştirilmeyecek; hangi datasheet satırı ve hangi koşuldan geldiği son kontrolde ayrılacak.
+- `tBST,rr` değeri tam sayfada `400 us` gibi okunurken önceki küçük kırpım/README hattında `400 ns` olarak duruyor; bu süre sessizce düzeltilmedi.
+- `Delta Vboost,max = 3 V` notu UVLO margin kontrolünün yerine geçmez; `BST-SW/HB-HS` absolute maximum ve UVLO eşiği birlikte doğrulanacak.

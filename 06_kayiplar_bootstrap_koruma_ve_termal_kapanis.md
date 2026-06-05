@@ -1065,6 +1065,8 @@ Yeni sayı üretmez; `W.186`daki iki yük bileşeninin kaybolmaması için korun
 
 ![W.171'den küçük kırpım: `Qtotal = Qg + I_HBS Dmax/fsw + I_HB/fsw` toplamını ve `16.255 nC` sonucunu veren hesap](images/defter_snippets_web/d153_w171_qtotal_bootstrap_components.jpg)
 
+![Defter p156 / W.171: minimum `Cboot` hesabı için `Qtotal = Qg + IHBS * Dmax/fsw + IHB * 1/fsw`, `5 uA`, `80 uA` ve `Qtotal = 16.255 nC` izi](images/defter_full_pages/defter_p156.jpg)
+
 `W.171`, minimum `Cboot` hesabına giren toplam charge değerini açıklar:
 
 $$
@@ -1080,9 +1082,13 @@ fsw ≈ 332 kHz
 Qtotal ≈ 16.255 nC
 ```
 
+[Tasarım İzi] Tam sayfa `p156`, `Qg` değerinin MOSFET kapı yükü olduğunu ve gate'i açmak için gereken yükü temsil ettiğini yazar. `Qtotal`, yalnız `Qg` değildir; her anahtarlama çevriminde bootstrap kapasitörünün sağlaması gereken toplam yük olarak `Qg + IHBS * Dmax / fsw + IHB * 1 / fsw` şeklinde tutulur. Sayfa `IHBS` için datasheet'ten bulunan değerin entegre devre olduğu için oldukça küçük kabul edildiğini ve `5 uA` olarak kullanıldığını; high-side gate-driver quiescent akımının ise `80 uA` olarak alındığını not eder.
+
 [Açık Kontrol] Buradaki `Dmax ≈ 0.95`, normal proje duty zarfındaki `0.648` ile aynı rol değildir. `0.95` donanımsal / korumacı high-side bias süresi gibi durur; final hesapta hangi duty'nin hangi rol için kullanıldığı yazılmalı.
 
 ![W.188'den küçük kırpım: bootstrap kapasitörü hesabına girecek `Vinmax`, `VDRV`, `DeltaVBST` ve benzeri parametreleri toplayan sayfa](images/defter_snippets_web/d154_w188_bootstrap_parameter_collection.jpg)
+
+![Defter p157 / W.188: bootstrap hesap parametreleri, `VINmax = 65 V`, `VDRV = 12 V`, `DeltaVBST = 0.5 V`, `DeltaVboost,max = 3 V`, `VFDBST = 0.6 V`, `0.13 mA` ve `1 mA` izleri](images/defter_full_pages/defter_p157.jpg)
 
 `W.188`, kaynak parametre taramasıdır:
 
@@ -1098,7 +1104,11 @@ I_HB ≈ 0.13 mA
 I_Q,HS ≈ 1 mA
 ```
 
+[Tasarım İzi] Tam sayfa `p157`, bootstrap kapasitörünün high-side gate sürücü devresine enerji sağlayan kritik eleman olduğunu tekrarlar. `VDRV = 12 V` notu high-side driver beslemesi / gate sürme genliği olarak okunur; sayfada bunun LM5146 içinde farklı koşullara bağlı olabileceği uyarısı vardır. `Delta VBST ≈ 0.5 V` steady-state ripple, `Delta Vboost,max ≈ 3 V` ise bootstrap gerilimi en fazla bu kadar düşerse UVLO riski doğar şeklinde not edilir. Aynı sayfa `RGS` pull-down direncinin MOSFET kapandığında gate'te gerilim kalmaması için kullanıldığını ve bootstrap'tan bir miktar akım çekebileceğini de hatırlatır.
+
 [Açık Kontrol] `W.171`deki `IHB = 80 uA` ile burada görünen `IHB ≈ 0.13 mA` aynı koşul satırı olmayabilir. Bu sayfa son sayı kararı değil, parametre kaynağıdır.
+
+[Açık Kontrol] `tBST,rr` satırı önceki kısa kırpım/metin hattında `400 ns` olarak tutulmuşken tam sayfa `p157` üzerinde `400 us` gibi okunur. Bu süre farkı sessizce düzeltilmedi; datasheet parametre adı ve birimi tekrar okunacak.
 
 ![W.189'dan küçük kırpım: `transient-off`, `transient-on` ve `steady-state` açılarını aynı bootstrap seçim mantığında toplayan metod notu](images/defter_snippets_web/d155_w189_bootstrap_multi_case_method.jpg)
 
