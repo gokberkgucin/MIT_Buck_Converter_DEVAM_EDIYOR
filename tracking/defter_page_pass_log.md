@@ -1909,3 +1909,46 @@ Açık notlar:
 - `p086` soluk olduğu için yalnız güvenle okunan zaman ölçeği owner dosyaya eklendi; soluk metinlerden yeni teknik karar çıkarılmadı.
 - `p087` output ripple figürüdür; giriş bulk owner'ında uzun tekrar olarak büyütülmedi.
 - Sayfalar EVM üzerinde uygulanmış rework veya ölçüm sonucu gibi sunulmadı; defter/kaynak izi olarak eklendi.
+
+## Pass 045 - Sayfa 88-89
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p088.jpg](../images/defter_full_pages/defter_p088.jpg)
+- [defter_p089.jpg](../images/defter_full_pages/defter_p089.jpg)
+
+Defter işaretleri:
+
+- `W.120`: TI `Understanding MOSFET Data Sheets, Part 1 - UIS/avalanche Ratings` kaynak sayfası.
+- `W.120`: üst notta "UIS testi nasıl yapılır?" ve "akım arta arta MOSFET bozulma noktasına gider" okuması vardır.
+- `W.120`: kaynak figürde `UIS Test Circuit`, gate controller, DUT MOSFET, endüktör `L` ve supply bağlantısı görünür.
+- `W.120`: `UIS` testi MOSFET datasheetindeki avalanche dayanımını anlamak için kaynak izidir.
+- `W.121`: `Pre-leakage` notu ve drain voltage / gate voltage / drain current dalga şekilleri çizilir.
+- `W.121`: MOSFET gate kapatıldığında normalde `OFF` olur; fakat endüktif akım yol arar.
+- `W.121`: drain gerilimi `VBK` bölgesine yükselir, avalanche current loop ve `Eav` / avalanche energy sezgisi çizilir.
+
+Primary owner entegrasyonu:
+
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `Avalanche ve UIS`.
+- Aynı dosyada `W.120-W.121: Avalanche / UIS Farkındalığı`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) dosyasındaki kayıp / termal hesaplarını açmadı; MOSFET dayanım seçimi 05 owner'ında kaldı.
+- `UIS` ve avalanche notları normal çalışma hedefi gibi yazılmadı; `VDS` spike, layout, `Rboot`, snubber ve simülasyon açık kontrollerine bağlandı.
+- Bu pass yeni `EAS`, `L`, test akımı, `VDS` limiti, SOA sınırı veya MOSFET kayıp değeri üretmedi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `UIS`: unclamped inductive switching dayanım testi.
+- Gate kapalıyken endüktif akımın devam etmek istemesi `VDS` yükselmesine yol açabilir.
+- Avalanche bölgesi, enerji sönümleme / arıza dayanımı bağlamında okunur.
+- Test sonrası leakage / hasar kontrolü fikri korunur.
+
+Açık notlar:
+
+- Kaynak sayfasındaki makale proje ölçümü değildir; datasheet okuma ve seçim kontrolü için kaynak izidir.
+- `p088` ve `p089`, seçilen MOSFET'in avalanche açısından final doğrulandığını göstermez.
+- Final kabul için `VDS` spike / ringing simülasyonu, snubber veya gate direnci kararı, SOA ve termal kapanış aynı koşul setinde ayrıca kontrol edilmelidir.

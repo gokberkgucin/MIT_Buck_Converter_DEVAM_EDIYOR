@@ -167,17 +167,23 @@ Bu, `1.25 * 36 V = 45 V` marj kuralına göre rahat görünür. Fakat tek başı
 
 ![W.120'den seçilen el yazısı parça: UIS/avalanche makalesi üstüne alınmış not ve temel test devresi](images/defter_snippets_web/d87_w120_uis_article_and_test_circuit.jpg)
 
+![Defter p088 / W.120: TI `Understanding MOSFET Data Sheets, Part 1 - UIS/avalanche Ratings` kaynak sayfası ve UIS test devresi](images/defter_full_pages/defter_p088.jpg)
+
 `W.120` TI'nin UIS / avalanche datasheet yorumunu kaynak-not olarak kullanır. Korunan fikir:
 
 - `UIS` yani unclamped inductive switching testi, endüktif enerji boşalımı sırasında MOSFET dayanımını sınar,
 - MOSFET kapandığında endüktif akım devam etmek ister,
 - yeterli boşalma yolu yoksa `VDS` yükselir ve cihaz avalanche bölgesine girebilir.
 
+[Kaynak İzi / Çapraz Teyit] Tam sayfa `p088`, TI kaynak makalesinin başlangıç sayfasını ve `UIS Test Circuit` çizimini korur. Üst notlarda "UIS testi nasıl yapılır?" ve "akım arta arta MOSFET bozulma noktasına gider" okuması vardır. Bu sayfa proje için yeni `EAS`, `L`, test akımı veya kabul limiti üretmez; datasheet'teki avalanche / UIS satırlarının neden seçim kontrolüne alındığını belgelendirir.
+
 ![Seçilen MOSFET datasheet'inde EAS single-pulse avalanche energy notu](images/foto_selected/p26_avalanche_energy_single_pulse.jpg)
 
 Bu ekran, seçilen parçanın datasheet'inde `EAS` / single-pulse avalanche energy kaleminin de arandığını gösterir.
 
 ![W.121'den seçilen el yazısı parça: drain voltage, gate voltage ve drain current ile UIS test mantığını anlatan kendi dalga şekli çizimi](images/defter_snippets_web/d88_w121_uis_waveform_sketch.jpg)
+
+![Defter p089 / W.121: UIS testinde drain voltage, gate voltage, drain current, avalanche current loop ve avalanche energy sezgisi](images/defter_full_pages/defter_p089.jpg)
 
 `W.121`, UIS testini dalga şekliyle sezgisel kurar:
 
@@ -186,6 +192,8 @@ Bu ekran, seçilen parçanın datasheet'inde `EAS` / single-pulse avalanche ener
 - uygun yol yoksa `VDS` hızlı yükselir,
 - avalanche bölgesinde enerji sönümlenir,
 - test sonrası leakage / hasar kontrol edilir.
+
+[Tasarım İzi] Tam sayfa `p089`, gate kapatıldığında MOSFET'in normal olarak `OFF` olduğunu, drain geriliminin yükseldiğini ve endüktif akım için yol arandığını çizimle anlatır. Sayfadaki `VBK`, `Eav` ve `Avalanche current loop` notları, avalanche'ın bir hedef çalışma modu değil, arıza / spike dayanımını anlamak için kullanılan stres bölgesi olduğunu destekler.
 
 [Açık Kontrol] Bu notlar normal çalışmada avalanche'a girmek kabul edilebilir anlamına gelmez. Öncelik `VDS` spike'ını layout, input MLCC, gate direnci, `Rboot` ve gerekirse snubber ile düşürmektir; kalan marj datasheet `EAS` / UIS bilgisiyle kontrol edilir.
 
