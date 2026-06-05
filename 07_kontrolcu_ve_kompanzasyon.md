@@ -449,6 +449,16 @@ Bu `1.46985 / 3.3454 dB`, sabit nihai kompanzatör kazancı değildir. `|F(jwt)|
 
 ![W.5'ten küçük kırpım: hedef faz marjından gereken kompanzatör faz katkısını çıkaran not](images/defter_snippets_web/d166_w5_required_compensator_phase.jpg)
 
+![Defter p170 / W.5: plant fazı, `PM = 55°`, `fc = 10 kHz` eski/alternatif hedefi, `∠L(jfc) = -125°` ve kompanzatör faz katkısı hesabı](images/defter_full_pages/defter_p170.jpg)
+
+![Defter p171 / W.5: `F(jw)` faz formülü, `∠F(jw) ≈ -146°`, `∠G3(jw) ≈ 21°` ve `phi_comp ≈ 201°` notları](images/defter_full_pages/defter_p171.jpg)
+
+[Eski İterasyon / Tasarım İzi] Tam sayfa `p170-p171`, hedef `PM = 55°` için gereken kompanzatör faz katkısını başka bir ara çizgide kurar. p170 üzerinde `fc = 10 kHz` gibi okunan eski/alternatif crossover notu vardır; bu, bu dosyadaki güncel `~35 kHz` hedefiyle sessizce birleştirilmeyecek. Aynı sayfa `PM = 180° + ∠L(jfc) = 55°` ilişkisinden `∠L(jfc) = -125°` koşulunu çıkarır ve `∠L(jw) = ∠M(jw) + ∠F(jw) + ∠G3(jw)` ayrımını kullanır.
+
+[Tasarım İzi] p171, `F(jw)` fazını pay/payda açı farkı olarak okur. Sayfada `∠F(jw) ≈ -146°` notu, ardından `-125° = 0 + -146° + ?` çizgisi ve buradan `∠G3(jw) ≈ 21°` sonucu görünür. Bu `21°`, kompanzasyon ağının katkısı olarak not edilir; error amp faz gösterimi için `phi_comp = 21° + 180° = 201°` yazılır.
+
+[Açık Kontrol] `p167` üzerinde `∠F(jwt) ≈ -176.43°` ve `∠G3 ≈ 51.43°` hattı, `p170-p171` üzerinde ise `∠F ≈ -146°` ve `∠G3 ≈ 21°` hattı vardır. Bu iki sonuç farklı `fc` / plant varsayımı veya faz sarımı bağlamı gibi durur; tek final faz bütçesi gibi birleştirilmedi.
+
 ![W.6'dan küçük kırpım: crossover'da `|L(jwt)| = 1` ve `|G(jwt)|` büyüklüğü için ara kontrol](images/defter_snippets_web/d167_w6_unity_gain_magnitude_check.jpg)
 
 ![W.7'den küçük kırpım: hata yükseltecinin açık-çevrim modeli ve `fpe = GBW/Adc` ilişkisi](images/defter_snippets_web/d168_w7_error_amp_open_loop_pole.jpg)

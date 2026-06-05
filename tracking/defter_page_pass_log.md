@@ -3940,3 +3940,57 @@ Açık notlar:
 
 - Bu sayfalarda yeni final `L`, `C`, `R`, `fc`, `PM` veya Type-III komponent değeri yoktur.
 - `Zout`, `F(s)` ve output-filter transfer fonksiyonu notasyonu son kontrol turunda 03/07 ayrımıyla hizalanabilir; burada defter cebiri kaybolmasın diye korundu.
+
+## Pass 086 - Sayfa 170-171
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p170.jpg](../images/defter_full_pages/defter_p170.jpg)
+- [defter_p171.jpg](../images/defter_full_pages/defter_p171.jpg)
+
+Defter işaretleri:
+
+- `p170 / W.5`: `F(jw)` için pay/payda büyüklük/faz yapısının devamı görünür.
+- `p170 / W.5`: gerçek ve sanal kısım grupları `g1` ve `g2` gibi etiketlenir.
+- `p170 / W.5`: `∠F(jw) = tan^-1(w rc C / 1) - tan^-1(w g2 / g1)` şeklinde okunabilen faz formülü yazılır.
+- `p170 / W.5`: "quadrantına bak" notu vardır; fazın doğru bölgede okunması gerektiği hatırlatılır.
+- `p170 / W.5`: `∠F(jw) = -146°` gibi okunan sonuç yazılır; "fc frekansında bu kadar yük kaybettiriyor" notu görünür.
+- `p170 / W.5`: "Amaç G3(s)'nin kaç derece phase katkısı sağlaması gerektiğini hesaplamak" notu vardır.
+- `p170 / W.5`: "Neye göre belirliyoruz?" sorusuna `PM = 55° istiyoruz, fc = 10 kHz'de` gibi okunan eski/alternatif hedef cevabı yazılır.
+- `p170 / W.5`: `PM = 180° + ∠L(jfc) = 55° olmalı`, bu nedenle `∠L(jfc) = -125° olmalı` notu görünür.
+- `p170 / W.5`: loop fazı `∠L(jw) = ∠M(jw) + ∠F(jw) + ∠G3(jw)` olarak ayrılır.
+- `p170 / W.5`: `-125° = 0 + -146° + ?` yerleştirmesiyle `∠G3(jw) = 146 - 125 = 21°` sonucuna gidilir.
+- `p170 / W.5`: "Dikkat ∠G3(jwc) = 21 bulduk; bu comp network'ündür" notu vardır.
+- `p170 / W.5`: error amp faz gösterimi için `phi_comp = 21° + 180° = 201° phase seçilmesi gerekiyor` gibi okunan not görünür.
+- `p171 / W.5`: `F(jw)` için aynı faz/bileşen açılımının devamı ve `1 + j w rc C` ifadesi görülür.
+- `p171 / W.5`: `g1`, `g2` ve pay/payda gruplarını gösteren karalama devam eder; yeni final komponent değeri üretmez.
+
+Primary owner entegrasyonu:
+
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `W.2-W.12: Faz Bütçesi, Modülatör ve İlk Kırılımlar` altındaki `W.5` gereken kompanzatör faz katkısı bloğuna tam sayfa `p170` ve `p171` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `p170-p171`, kontrol tarafındaki faz bütçesi ve Type-III/K-factor yaklaşımı için tutuldu; güç katı veya çıkış kapasitörü owner'ı yapılmadı.
+- Fiziksel plant sayıları [03](../03_bobin_ve_cikis_kapasitorleri.md) tarafında kalır; burada yalnız `F(jw)` fazının kontrol hesabındaki kullanımı korunur.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `∠F(jw) ≈ -146°`.
+- `PM = 55°`.
+- `fc = 10 kHz` gibi okunan eski/alternatif hedef notu.
+- `PM = 180° + ∠L(jfc)`.
+- `∠L(jfc) = -125°`.
+- `∠L(jw) = ∠M(jw) + ∠F(jw) + ∠G3(jw)`.
+- `∠M(jw) ≈ 0°`.
+- `∠G3(jw) ≈ 21°`.
+- `phi_comp ≈ 201°`.
+- `quadrantına bak` uyarısı.
+
+Açık notlar:
+
+- `p167` üzerindeki `∠F(jwt) ≈ -176.43° / ∠G3 ≈ 51.43°` hattı ile `p170-p171` üzerindeki `∠F ≈ -146° / ∠G3 ≈ 21°` hattı sessizce birleştirilmedi.
+- `fc = 10 kHz` notu güncel `~35 kHz` hedefiyle aynı rol değildir; eski/alternatif faz bütçesi izi olarak tutuldu.
+- `phi_comp = 201°` yazımı faz sarımı / error-amp gösterimi bağlamında son notasyon kontrolü ister.
