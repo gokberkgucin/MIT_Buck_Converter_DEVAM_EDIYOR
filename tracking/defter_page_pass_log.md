@@ -2287,3 +2287,55 @@ Açık notlar:
 
 - Bu iki sayfa sayısal final hesap değil, MOSFET seçim mantığını açıklayan kavramsal defter izidir.
 - Switching loss ayrıntısı ve toplam kayıp kapanışı 06 dosyasında kalır; burada yalnız seçim/dayanım bağlamı korunur.
+
+## Pass 053 - Sayfa 104-105
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p104.jpg](../images/defter_full_pages/defter_p104.jpg)
+- [defter_p105.jpg](../images/defter_full_pages/defter_p105.jpg)
+
+Defter işaretleri:
+
+- `W.144`: "Power MOSFET" genel seçim notu olarak açılır.
+- `W.144`: `RDS(on)`, MOSFET iletimdeyken drain-source arasındaki direnç olarak tanımlanır.
+- `W.144`: daha düşük `RDS(on)` conduction loss'u ve ısı üretimini azaltır; verimlilik tarafına olumlu etki eder.
+- `W.144`: MOSFET iç yapısında istenmeyen parazitik kapasitanslar `Cgs`, `Cgd`, `Cds` vardır.
+- `W.144`: bu kapasitansların şarj/deşarj olması zaman alır; MOSFET'in açılıp kapanmasını yavaşlatır ve switching loss'a bağlanır.
+- `W.144`: üretici `RDS(on)` düşürmek için daha büyük MOSFET / daha fazla silikon kullandığında `Qg` ve `Qoss` artabilir.
+- `W.144`: sonuç notu, düşük `RDS(on)` ile düşük `Qg/Qoss` arasında seçim dengesi kurulması gerektiğini gösterir.
+- `W.145`: `RDS(on)` okumasında sıcaklık koşulu görünür; defterde `TC = 125 C` için dikkat notu var.
+- `W.145`: LM5146 gate sürücüsü yaklaşık `7.5 V` verdiği için `RDS(on)` bu gate gerilimi koşulunda okunmalı.
+- `W.145`: `BVDSS`, drain-source breakdown voltage olarak tanımlanır.
+- `W.145`: pratik seçim kuralı olarak `BVDSS > 1.25 * Vin,max` yazılır.
+- `W.145`: tipik `BVDSS` sınıfları için `60 V`, `80 V`, `100 V` örnekleri görünür.
+- `W.145`: `Qg` gate charge parametresi yine `VGS = 7.5 V` koşuluyla ilişkilendirilir.
+
+Primary owner entegrasyonu:
+
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `Seçim Mantığı`.
+- Aynı dosyada `RDS(on) Okuması` ve `W.145: Datasheet Hangi Koşulda Okunacak?`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içindeki ayrıntılı conduction-loss, switching-loss, gate-drive loss veya termal toplamayı açmadı.
+- `RDS(on)`, `Qg`, `Qoss`, `BVDSS` burada seçim/dayanım okuma koşulları olarak kaldı.
+- Bu pass yeni final MOSFET parçası, final `RDS(on)`, final `Qg`, final `Qoss` veya final `BVDSS` üretmedi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `RDS(on)` = iletimde drain-source arası direnç.
+- `Cgs`, `Cgd`, `Cds` parazitik kapasitansları.
+- Daha büyük MOSFET / daha fazla silikon -> daha düşük `RDS(on)` ama daha yüksek `Qg/Qoss` riski.
+- `TC = 125 C` sıcaklık okuma koşulu notu.
+- LM5146 gate sürüşü: `VGS ≈ 7.5 V`.
+- `BVDSS > 1.25 * Vin,max`.
+- Tipik `BVDSS` sınıfları: `60 V`, `80 V`, `100 V`.
+- `Qg @ VGS = 7.5 V`.
+
+Açık notlar:
+
+- `TC = 125 C` notu ile önceki `75 C` termal iterasyonu aynı final koşul gibi birleştirilmedi; biri datasheet okuma uyarısı, diğeri eski çalışma varsayımıdır.
+- `BVDSS > 1.25 * Vin,max` kuralı final spike/ringing doğrulamasının yerine geçmez; 05 içinde dayanım seçim izi olarak kalır.

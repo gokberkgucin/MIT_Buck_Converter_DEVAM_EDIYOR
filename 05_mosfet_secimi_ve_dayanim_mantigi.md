@@ -98,6 +98,10 @@ Eski README'deki ilk parametre kartı:
 
 İlk görsel, `VGS ≈ 7.5 V` civarında `RDS(on)` okuması gerektiğini gösterir. İkinci görsel, `RHI`, `RLO`, harici gate direnci ve `CGD / CGS / CDS` üzerinden `dV/dt`, Miller etkisi ve gate sürme hızını aynı seçim mantığına bağlar.
 
+![Defter p104 / W.144: power MOSFET seçiminde `RDS(on)`, parazitik kapasitans, `Qg/Qoss` ve conduction/switching loss dengesi](images/defter_full_pages/defter_p104.jpg)
+
+[Tasarım İzi] Tam sayfa `p104`, `RDS(on)` değerini MOSFET iletimdeyken drain-source arasındaki direnç olarak tanımlar; düşük `RDS(on)` ile conduction loss ve ısı üretiminin azalacağını not eder. Aynı sayfa `Cgs`, `Cgd`, `Cds` parazitik kapasitanslarının açma/kapama hızını yavaşlattığını ve switching loss'a bağlandığını; üreticinin `RDS(on)` düşürmek için daha büyük MOSFET / daha fazla silikon kullanmasının `Qg` ve `Qoss` değerlerini büyütebildiğini yazar. Bu, ayrıntılı kayıp hesabı değil, seçim trade-off izidir.
+
 ## `RDS(on)` Okuması
 
 [Güncel Omurga] `RDS(on)` datasheet'teki tek nominal satır değildir; gerçek gate sürme gerilimi ve sıcaklıkla birlikte okunur.
@@ -105,6 +109,8 @@ Eski README'deki ilk parametre kartı:
 ### `W.145`: Datasheet Hangi Koşulda Okunacak?
 
 ![W.145'ten küçük kırpım: datasheet'i hangi koşullarda okumak gerektiğini gösteren kontrol listesi](images/defter_snippets_web/d104_w145_datasheet_checklist.jpg)
+
+![Defter p105 / W.145: `TC=125 C`, LM5146 `VGS≈7.5 V`, `BVDSS > 1.25*Vin,max` ve `Qg @ VGS=7.5 V` okuma notları](images/defter_full_pages/defter_p105.jpg)
 
 `W.145` kontrol listesi:
 
@@ -120,6 +126,8 @@ BVDSS > 1.25 * Vin,max
 ```
 
 `Vin,max = 36 V` için bu alt sınır `45 V` mertebesidir; seçilen parçada `100 V` hattı ayrıca `W.151`de görünür.
+
+[Tasarım İzi] Tam sayfa `p105`, bu listenin ham defter bağlamını gösterir: `RDS(on)` için sıcaklık koşulu ve LM5146'nın yaklaşık `7.5 V` gate sürüşü birlikte okunur; `BVDSS` drain-source breakdown gerilimi olarak tanımlanır ve tipik `60 V`, `80 V`, `100 V` sınıflarından söz edilir; `Qg` de yine `VGS = 7.5 V` koşuluyla ilişkilendirilir. Bu sayfa yeni final MOSFET değeri üretmez, datasheet okuma koşullarını görünür yapar.
 
 ### `W.146`: `7.5 V` ve Sıcaklık Düzeltmesi
 
