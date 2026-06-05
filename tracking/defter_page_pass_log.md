@@ -2134,3 +2134,53 @@ Açık notlar:
 - Bu sayfalar gerçek switch-node ölçümü değildir; Miller yanlış turn-on için teorik/defter kontrolüdür.
 - Küçük `CGD = 6 pF` varsayımı korunmacı kapasitans senaryolarıyla aynı final değer gibi birleştirilmedi.
 - Final kabulte gerçek `Cgd(VDS)`, gate pull-down yolu, common-source inductance, layout ve switch-node dalga şekli birlikte kontrol edilmelidir.
+
+## Pass 050 - Sayfa 98-99
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p098.jpg](../images/defter_full_pages/defter_p098.jpg)
+- [defter_p099.jpg](../images/defter_full_pages/defter_p099.jpg)
+
+Defter işaretleri:
+
+- `W.184`: korumacı / nominal kapasitans setiyle kapasitif bölücü senaryosu tekrar edilir.
+- `W.184`: sayfada kapasitans nominal değerlerinin kullanıldığı ve sıcaklık / eşik tarafı için `+0.35 V` ek notu görünüyor.
+- `W.184`: `Ciss ≈ 2600 pF`, `Cgd ≈ 340 pF`.
+- `W.184`: p098 tam sayfa aritmetiği `(3.157 V + 0.35 V)*2600 pF/340 pF ≈ 26.82 V` verir.
+- `W.184`: önceki küçük kırpım / özet okumasında `26.12 V` izi vardı; bu iki iz sessizce tek değer yapılmadı.
+- `W.125`: G88 kaynak yöntemi `VTH`, `CGD`, gate yolu dirençleri ve pull-down yolunu birlikte kullanır.
+- `W.125`: p098 alt kısmında IRFP120 doğal `dV/dt` limiti için `VTH + ΔV ≈ 3.157 V + 0.35 V`, `RGI ≈ 1.6 ohm`, `CGD ≈ 340 pF` ve `≈ 6.4 kV/us` izi okunur.
+- `W.125`: üçüncü senaryo için `RGI + Rgate + RLO ≈ 1.6 + 5 + 5 ohm` ve `≈ 889 V/us` izi okunur.
+- `W.125`: p099 üzerinde `3.49 V`, gate yolu dirençleri ve `10.64` sonucu görünür; birim / anlam defterde net final gibi durmadığı için açık iz olarak bırakıldı.
+
+Primary owner entegrasyonu:
+
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `dV/dt, Miller ve Yanlış Turn-on`.
+- Aynı dosyada `W.178-W.184: Proje İçindeki Miller Kontrolleri` ve `W.125-W.127: G88 Kaynak / Ara Notları`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içindeki bootstrap, kayıp veya termal hesabını açmadı.
+- `26.12 V`, `26.82 V`, `52.35 V`, `10.64 V/ns`, `889 V/us`, `6.4 kV/us`, `190.6 V/ns` ve `517 V/ns` izleri tek final cevap gibi birleştirilmedi.
+- Bu pass yeni final `Cgd`, `Ciss`, `VTH`, `VDS,max`, gate direnci veya gerçek switch-node `dV/dt` ölçümü üretmedi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Ciss ≈ 2600 pF`.
+- `Cgd ≈ 340 pF`.
+- `VTH + ΔV ≈ 3.157 V + 0.35 V`.
+- `VDS,max ≈ 26.82 V` p098 tam sayfa aritmetiği.
+- `RGI ≈ 1.6 ohm`.
+- `Rgate ≈ 5 ohm`.
+- `RLO ≈ 5 ohm`.
+- IRFP120 / G88 kaynak örneğinde `≈ 6.4 kV/us` ve `≈ 889 V/us` izleri.
+- p099 kaynak notunda `10.64` sonucu; birim / uygulanabilirlik açık kontrol olarak kaldı.
+
+Açık notlar:
+
+- Bu sayfalar gerçek switch-node ölçümü değildir; kaynak yöntemleri ve kapasitans varsayımlarının duyarlılığını gösterir.
+- `26.12 V` ile `26.82 V` aynı owner altında görünür bırakıldı.
+- `10.64` sonucu birim ve bağlam açısından net olmadığı için final limit yapılmadı.

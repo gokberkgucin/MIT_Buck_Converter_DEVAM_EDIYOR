@@ -367,19 +367,26 @@ sonucunu verir. Bu gerçek switch-node ölçümü değil, yanlış turn-on için
 
 ![W.184'den küçük kırpım: korumacı nominal kapasite setiyle alternatif Miller kontrolü](images/defter_snippets_web/d97_w184_conservative_capacitance_model.jpg)
 
+![Defter p098 / W.184-W.125: korumacı nominal kapasitanslarla `VDS,max`, `+0.35 V` notu ve IRFP120 doğal `dV/dt` senaryoları](images/defter_full_pages/defter_p098.jpg)
+
 `W.184`, daha korumacı kapasitans setiyle aynı problemi tekrar açar:
 
 ```text
 Ciss ≈ 2600 pF
 Cgd ≈ 340 pF
-VDS,max ≈ 26.12 V
+VDS,max ≈ 26.12 V [önceki küçük kırpım okuması]
+VDS,max ≈ 26.82 V [p098 tam sayfa aritmetiği: (3.157 V + 0.35 V)*2600 pF/340 pF]
 ```
 
-[Açık Kontrol] `26.12 V`, `52.35 V`, `190.6 V/ns` gibi sonuçlar tek final cevap değildir. Bunlar hangi `Cgd` okumasının seçildiğine çok duyarlıdır. Finalde gerçek `Cgd(VDS)`, gate pull-down yolu, common-source inductance, switch-node dalga şekli ve layout ile tekrar kapanacak.
+[Tasarım İzi] Tam sayfa `p098`, kapasitansların nominal değerlerinin kullanıldığını ve sıcaklık / eşik gerilimi tarafında `+0.35 V` ek notu olduğunu görünür yapar. Bu yüzden `26.12 V` izi ile p098 üzerindeki `26.82 V` aritmetiği sessizce tek değere indirilmedi.
+
+[Açık Kontrol] `26.12 V`, `26.82 V`, `52.35 V`, `190.6 V/ns` gibi sonuçlar tek final cevap değildir. Bunlar hangi `Cgd` okumasının seçildiğine çok duyarlıdır. Finalde gerçek `Cgd(VDS)`, gate pull-down yolu, common-source inductance, switch-node dalga şekli ve layout ile tekrar kapanacak.
 
 ### `W.125-W.127`: G88 Kaynak / Ara Notları
 
 ![W.125'ten küçük kırpım: G88 kaynaklı dv/dt limit notu](images/defter_snippets_web/d98_w125_g88_dvdt_limit_note.jpg)
+
+![Defter p099 / W.125: G88 kaynak yönteminin devamı; `VTH`, `CGD`, gate yolu dirençleri ve `10.64` sonucunun şüpheli/anlamlandırılacak izi](images/defter_full_pages/defter_p099.jpg)
 
 `W.125` kaynak yönteminde:
 
@@ -387,6 +394,10 @@ VDS,max ≈ 26.12 V
 (dV/dt)_limit ≈ VTH / (CGD * (RGext + RGint + Rpull-down))
 örnek iz ≈ 10.64 V/ns
 ```
+
+[Tasarım İzi] `p098` alt kısmı aynı kaynak hattında IRFP120 için iki ek senaryo notu taşır: `VTH + ΔV ≈ 3.157 V + 0.35 V`, `RGI ≈ 1.6 ohm`, `CGD ≈ 340 pF` ile doğal limit için `≈ 6.4 kV/us`; `RGI + Rgate + RLO ≈ 1.6 + 5 + 5 ohm` alındığında ise `≈ 889 V/us` mertebesi yazılır. Bunlar seçilen MOSFET için final dalga şekli değildir; G88/IRFP120 kaynak örneğinin nasıl ölçeklendiğini gösterir.
+
+[Açık Kontrol] `p099` üzerindeki `10.64` sonucu defterde birim ve anlam açısından şüpheli / yeniden yorumlanacak iz gibi duruyor. Bu nedenle `10.64 V/ns`, `889 V/us`, `6.4 kV/us`, `190.6 V/ns` ve `517 V/ns` aynı fiziksel büyüklüğün doğrudan karşılaştırılabilir final cevapları gibi birleştirilmedi.
 
 ![W.126'dan küçük kırpım: kaba dv/dt üst-sınır tahmini](images/defter_snippets_web/d99_w126_quick_dvdt_estimate.jpg)
 
