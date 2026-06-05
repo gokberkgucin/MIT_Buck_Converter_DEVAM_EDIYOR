@@ -2339,3 +2339,51 @@ Açık notlar:
 
 - `TC = 125 C` notu ile önceki `75 C` termal iterasyonu aynı final koşul gibi birleştirilmedi; biri datasheet okuma uyarısı, diğeri eski çalışma varsayımıdır.
 - `BVDSS > 1.25 * Vin,max` kuralı final spike/ringing doğrulamasının yerine geçmez; 05 içinde dayanım seçim izi olarak kalır.
+
+## Pass 054 - Sayfa 106-107
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p106.jpg](../images/defter_full_pages/defter_p106.jpg)
+- [defter_p107.jpg](../images/defter_full_pages/defter_p107.jpg)
+
+Defter işaretleri:
+
+- `W.151`: `BVDSS`, MOSFET'in drain-source arasında dayanabileceği en yüksek gerilim olarak anlatılır.
+- `W.151`: giriş gerilimi bu sınırı aşarsa MOSFET'in bozulacağı not edilir.
+- `W.151`: `Vinmax = 36 V` bağlamında en az `60 V` BVDSS sınıfına sahip MOSFET kullanma notu görülür.
+- `W.151`: seçilen MOSFET için `BVDSS = 100 V` izi korunur.
+- `W.146`: MOSFET seçim parametrelerinde LM5146 ile uyumlu verimli çalışma için `RDS(on) @ VGS = 7.5 V` okuması tekrar edilir.
+- `W.146`: `RDS(on)`, MOSFET açıkken drain-source arasındaki dirençtir; bu direnç küçüldükçe iletim kaybı ve ısınma azalır.
+- `W.146`: defterde önce Fig.3 / `VGS = 7.5 V` grafiğinden `RDS(on) ≈ 15 mOhm` okunduğu yazılır.
+- `W.146`: bu `15 mOhm` değerinin `Tj = 25 C` için geçerli olduğu not edilir.
+- `W.146`: çalışma tarafında MOSFET sıcaklığının yaklaşık `75 C` olacağı varsayımıyla sıcaklık katsayısı `1.35` alınır.
+- `W.146`: `RDS(on)(75 C) = 15 mOhm * 1.35 = 20.25 mOhm` hesabı kutulanmıştır.
+
+Primary owner entegrasyonu:
+
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `RDS(on) Okuması`.
+- Aynı dosyada `BVDSS, VDS Marjı ve 44 V Bağlamı`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içindeki MOSFET conduction-loss ve termal toplamayı açmadı; yalnız 05'ten 06'ya gidecek sıcak `RDS(on)` izini güçlendirdi.
+- `45 V` alt sınır, `60 V` pratik sınıf notu ve `100 V` seçilen MOSFET izi tek sayı gibi birleştirilmedi.
+- Bu pass yeni final `RDS(on)`, final `Tj`, final `BVDSS` veya final switch-node spike marjı üretmedi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Vinmax = 36 V`.
+- Pratik BVDSS sınıf notu: `>= 60 V`.
+- Seçilen MOSFET: `BVDSS = 100 V`.
+- `VGS = 7.5 V`.
+- `RDS(on) ≈ 15 mOhm @ Tj = 25 C`.
+- Sıcaklık katsayısı: `1.35`.
+- `RDS(on)(75 C) ≈ 20.25 mOhm`.
+
+Açık notlar:
+
+- `>=60 V` sınıf notu, önceki `BVDSS > 1.25 * Vin,max` kuralını iptal etmez; biri pratik sınıf seçimi, diğeri alt sınır kuralıdır.
+- `75 C` burada kayıp hesabına giden eski/ara çalışma varsayımıdır; final termal kapanış değildir.

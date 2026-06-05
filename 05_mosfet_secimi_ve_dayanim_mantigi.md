@@ -137,6 +137,8 @@ BVDSS > 1.25 * Vin,max
 
 ![W.146'dan küçük kırpım: 15 mOhm'dan 20.25 mOhm'a sıcaklık düzeltmesi](images/defter_snippets_web/d106_w146_rdson_75c_result.jpg)
 
+![Defter p107 / W.146: `RDS(on) @ VGS=7.5 V`, `Tj=25 C` okuması, `75 C` katsayısı ve `20.25 mOhm` hesabı](images/defter_full_pages/defter_p107.jpg)
+
 `W.146` uygulaması:
 
 ```text
@@ -144,6 +146,8 @@ RDS(on) @ VGS = 7.5 V, Tj = 25 C ≈ 15 mOhm
 sıcaklık katsayısı @ yaklaşık 75 C ≈ 1.35
 RDS(on)(75 C) ≈ 15 mOhm * 1.35 = 20.25 mOhm
 ```
+
+[Çapraz Teyit] Tam sayfa `p107`, LM5146 gate sürüşünün `7.5 V` olduğu için `RDS(on)` değerinin bu `VGS` noktasından okunması gerektiğini tekrar eder. Defterde `15 mOhm` değerinin `Tj = 25 C` için geçerli olduğu, çalışmada MOSFET'in yaklaşık `75 C` tarafına çıkacağı ve normalize sıcaklık grafiğinden `1.35` katsayısı ile `15 mOhm * 1.35 = 20.25 mOhm` hattına gidildiği görünür. Bu, final termal kapanış değil; kayıp hesabına gidecek sıcak `RDS(on)` izidir.
 
 [Tasarım İzi] `75 C` son termal kapanış değildir; bu iterasyondaki çalışma varsayımıdır. MOSFET kayıp tablosu ve termal yol değişirse `RDS(on)` yeniden okunacak. Bu bağlantı [06](06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) dosyasına gider.
 
@@ -153,6 +157,8 @@ RDS(on)(75 C) ≈ 15 mOhm * 1.35 = 20.25 mOhm
 
 ![W.151'den küçük kırpım: seçilen MOSFET için 100 V BVDSS vurgusu](images/defter_snippets_web/d105_w151_bvdss_100v_note.jpg)
 
+![Defter p106 / W.151: `Vinmax=36 V`, pratik `>=60 V` BVDSS sınıfı ve seçilen MOSFET için `BVDSS=100 V` izi](images/defter_full_pages/defter_p106.jpg)
+
 `W.151` seçilen MOSFET'in:
 
 ```text
@@ -160,6 +166,8 @@ BVDSS = 100 V
 ```
 
 olduğunu not eder.
+
+[Tasarım İzi] Tam sayfa `p106`, `BVDSS`i MOSFET'in drain-source arasında dayanabileceği en yüksek gerilim olarak açıklar. Sayfada giriş gerilimi bu sınırı aşarsa MOSFET'in bozulacağı; `Vinmax = 36 V` için en az `60 V` sınıfında BVDSS'e sahip MOSFET kullanılması gerektiği ve bu tasarımda seçilen MOSFET'in `BVDSS = 100 V` olduğu yazılıdır. Bu `60 V` pratik sınıf notu, önceki `1.25 * 36 V = 45 V` alt sınırını silmez; sınıf seçimi / güvenlik izi olarak kalır.
 
 Bu, `1.25 * 36 V = 45 V` marj kuralına göre rahat görünür. Fakat tek başına `VDS` stresinin kapandığı anlamına gelmez:
 
