@@ -2434,3 +2434,48 @@ Açık notlar:
 
 - Bu sayfalar kaynak/defter izi ve termal metrik okuma kuralıdır; final MOSFET junction sıcaklığı değildir.
 - Son termal kapanışta `Rtheta`, `Psi`, board sıcaklığı ve ölçüm noktası aynı koşul setinde seçilecek.
+
+## Pass 056 - Sayfa 110-111
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p110.jpg](../images/defter_full_pages/defter_p110.jpg)
+- [defter_p111.jpg](../images/defter_full_pages/defter_p111.jpg)
+
+Defter işaretleri:
+
+- `W.110`: aynı MOSFET ve aynı exposed metal pad ile PCB bakır/pad alanı değişince `RthetaJA` ölçümünün değiştiği not edilir.
+- `W.110`: `1 inch^2` 2-oz Cu koşulundaki `50 C/W` ve minimum pad alanındaki `115 C/W` karşılaştırması korunur.
+- `W.110`: bu değerler final MOSFET sıcaklığı değil, datasheet termal metriğinin test/kart koşuluna bağlı okuma kuralıdır.
+- `W.117`: `RthetaJA = 36.8 C/W`, `RthetaJC(top) = 28 C/W`, `RthetaJC(bot) = 2.1 C/W`, `RthetaJB = 11.8 C/W`, `PsiJT = 0.4 C/W`, `PsiJB = 11.7 C/W` listesi korunur.
+- `W.117`: `PsiJT` ve `PsiJB`, thermocouple ile ölçüm yapılacaksa kullanılacak karakterizasyon parametreleri olarak işaretlenir.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `MOSFET Termal Yolu ve Datasheet Thermal Metrics`.
+- Tam sayfa `p110`, mevcut `W.110` kırpımının yanına eklendi.
+- Tam sayfa `p111`, mevcut `W.117` thermal metric listesinin yanına eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass [05](../05_mosfet_secimi_ve_dayanim_mantigi.md) dosyasındaki MOSFET seçim kriterlerini yeniden sahiplenmedi.
+- Bu pass [04](../04_giris_kapasitorleri_ve_giris_agi.md) dosyasındaki giriş MLCC sıcaklık hesabını yeniden açmadı.
+- Ölçüm/termal kapanış zinciri için asıl owner [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) olarak korunur.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `RthetaJA = 50 C/W` @ `1 inch^2` 2-oz Cu.
+- `RthetaJA = 115 C/W` @ minimum pad area, 2-oz Cu.
+- `RthetaJA = 36.8 C/W`.
+- `RthetaJC(top) = 28 C/W`.
+- `RthetaJC(bot) = 2.1 C/W`.
+- `RthetaJB = 11.8 C/W`.
+- `PsiJT = 0.4 C/W`.
+- `PsiJB = 11.7 C/W`.
+
+Açık notlar:
+
+- `50 C/W`, `115 C/W` ve `36.8 C/W` aynı koşul gibi birleştirilmedi; ilk iki değer ölçüm/PCB alanı karşılaştırması, `36.8 C/W` ise seçili MOSFET thermal metric listesi bağlamında tutuldu.
+- Thermocouple ölçümü yapılırsa `PsiJT` / `PsiJB` kullanım noktası ayrıca netleştirilecek.

@@ -1035,9 +1035,13 @@ RthetaJA ≈ (RthetaJB + RthetaBA) || (RthetaJTop + RthetaTA)
 
 ![W.110'dan küçük kırpım: ölçüm kurulumu ve PCB alanına göre RthJA değişimi](images/defter_snippets_web/d109_w110_measurement_setup_and_layout_effect.jpg)
 
-`W.110`, `RthetaJA` değerinin ölçüm düzenine ve PCB bakır alanına bağlı olduğunu gösterir.
+![Defter p110 / W.110: aynı MOSFET için exposed pad sabitken PCB bakır alanına göre `RthetaJA` ölçümünün değişmesi](images/defter_full_pages/defter_p110.jpg)
+
+`W.110`, `RthetaJA` değerinin ölçüm düzenine ve PCB bakır alanına bağlı olduğunu gösterir. Defter notu, burada MOSFET'in ve altındaki exposed metal pad'in aynı kaldığını; değişenin MOSFET'in temas ettiği bakır/pad alanı olduğunu vurgular. Bu yüzden aynı package/MOSFET için `RthetaJA`, geniş bakır alan ile minimum pad alanı arasında farklı okunur; sayfada görünen karşılaştırma `1 inch^2` 2-oz Cu koşulunda `50 C/W`, minimum pad alanında `115 C/W` olarak korunur.
 
 ![W.117'den küçük kırpım: termal parametrelerin elle özetlendiği liste](images/defter_snippets_web/d110_w117_thermal_parameter_list.jpg)
+
+![Defter p111 / W.117: thermal metric listesi, `Rtheta` ve `Psi` parametrelerinin ölçüm bağlamı](images/defter_full_pages/defter_p111.jpg)
 
 `W.117`, MOSFET thermal metric listesini korur:
 
@@ -1056,6 +1060,7 @@ Okuma kuralı:
 - `RthetaJC(bot)`: exposed pad / alt termal yolun gücünü gösterir,
 - `PsiJT` ve `PsiJB`: klasik thermal resistance değil, ölçüm noktalarından junction tahmini için karakterizasyon parametreleridir,
 - `T_J ≈ T_case + P_loss RthetaJC` kullanılacaksa `T_case` noktasının paket üstü mü, alt pad/board tarafı mı olduğu açık yazılmalıdır.
+- Defter notunda `PsiJT` ve `PsiJB`, thermocouple ile ölçüm yapılırken kullanılacak karakterizasyon parametreleri olarak ayrıca işaretlenmiştir.
 
 ### Board Worst-case ve Kayıp Kapanış Sırası
 
