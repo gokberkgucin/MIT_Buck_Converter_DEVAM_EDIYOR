@@ -114,12 +114,16 @@ Tam sayfa `p121`, `Et1 = (VDS * ID / 2) * t1` hattının birim kontrolünü aç�
 
 ![W.119'dan küçük kırpım: kayıp kategorilerini ve verim bağlantısını gösteren kaynak sayfa](images/defter_snippets_web/d121_w119_loss_article_and_contributors.jpg)
 
+![Defter p122 / W.119: TI Analog Applications Journal MOSFET kayıp makalesi, lineer regülatör, ideal switching regülatör ve buck kayıp katkıları](images/defter_full_pages/defter_p122.jpg)
+
 [Kaynak İzi / Çapraz Teyit] `W.119`, TI'nin MOSFET kayıp makalesi üstüne alınmış genel kayıp bütçesi notudur. Korunan sınıflar:
 
 - conduction loss,
 - switching loss,
 - gate-drive ile ilişkili kayıp,
 - bobin / PCB izi / kontrol devresi gibi diğer kayıplar.
+
+Tam sayfa `p122`, George Lakkas imzalı `MOSFET power losses and how they affect power-supply efficiency` makalesinin defterdeki kaynak izidir. Sayfadaki şekiller lineer regülatör kaybı, ideal switching regülatör sezgisi ve buck içindeki kayıp katkılarını aynı çatıya koyar. Bu görsel yeni proje sayısı üretmez; aşağıdaki MOSFET conduction/switching/gate-drive kayıplarını neden ayrı mekanizmalar olarak tuttuğumu belgeler.
 
 Bu sayfadaki `100 W / 10 W -> %90` notu proje verim sonucu değildir; kayıp bütçesinin verim üzerindeki etkisini ölçeklemek için tutulur.
 
@@ -1057,6 +1061,8 @@ W.175: TJ ≈ 76.39 C ve Delta V ≈ -0.154 V düzeltmesi
 W.128: TJ ≈ 73.9 C  [farklı/erken iz]
 W.174: 150 C eğrisinden yaklaşık 100 C tarafına düzeltme denemesi
 ```
+
+[Referans Notu] `W.128` tam sayfa görseli [05](05_mosfet_secimi_ve_dayanim_mantigi.md) dosyasındaki gate threshold / Miller plateau ara hesabı altında korunur. Termal owner açısından bu sayfadan yalnız `TJ ≈ 73.9 C` erken izi ve `VGS(th)/TJ = -8.5 mV/C` sıcaklık katsayısıyla `-0.41565 V` threshold kayması notu alınır; bu değer final termal kapanışla sessizce birleştirilmeyecek.
 
 Bu sıcaklık izleri tek `T_J` değerine sessizce indirilmeyecek. Aynı koşul setine çekilecekler: `Vin`, `Iout`, `f_sw`, `Vdrive`, gate yolu, MOSFET kayıp toplamı ve kart termal modeli.
 

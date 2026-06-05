@@ -2700,3 +2700,47 @@ Açık notlar:
 
 - Bu pass yeni bobin kaybı, kapasitör ESR kaybı, MOSFET switching loss veya verim sayısı üretmedi.
 - `P_inductor` ve `P_capacitors` kalemleri final verim tablosuna eklenmeden önce owner dosyalardaki gerçek ESR/DCR/ripple koşullarıyla tamamlanacak.
+
+## Pass 062 - Sayfa 122-123
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p122.jpg](../images/defter_full_pages/defter_p122.jpg)
+- [defter_p123.jpg](../images/defter_full_pages/defter_p123.jpg)
+
+Defter işaretleri:
+
+- `W.119`: TI Analog Applications Journal içindeki MOSFET kayıp makalesinin ilk sayfası korunur.
+- `W.119`: lineer regülatör, ideal switching regülatör ve buck içindeki kayıp katkıları aynı kaynak sayfada görünür.
+- `W.128`: `Gate Threshold and Miller Plateau Voltages` başlığıyla `G81` hesap yönteminin kullanılacağı not edilir.
+- `W.128`: `ID = Kn * (VGS - VGS(th))^2` ilişkisiyle `VGS(th) ≈ 3.906 V`, `Kn ≈ 10.034` ve `VPL ≈ 4.95 V` ara hesabı korunur.
+- `W.128`: saturation koşulları `VGS >= VGS(th)` ve `VDS > VGS - VGS(th)` olarak yazılır.
+- `W.128`: `TJ ≈ 73.9 C`, `VGS(th)/TJ = -8.5 mV/C` ve `-0.41565 V` threshold sıcaklık kayması izi korunur.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `Kayip Butcesinin Kapsami / Enerji, Guc ve Kayip Siniflari`: tam sayfa `p122`.
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `Gate Surme ve Switching Interval Baglami / W.128`: tam sayfa `p123`.
+
+Kısa referans / owner dışı bağlantı:
+
+- `W.119` kaynak makalesi MOSFET kayıp mekanizmaları için 06 dosyasında kalır; MOSFET parça seçimi 05 dosyasına taşınmaz.
+- `W.128` içindeki gate threshold / Miller plateau ara hesabı 05 dosyasında kalır; sıcaklık kayması yalnız termal owner olan 06 dosyasına kısa referansla bağlanır.
+- Bu sayfalardaki değerler final verim, final switching-time veya final junction sıcaklığı olarak yeniden kullanılmadı.
+
+Okunan ana sayısal / kavramsal izler:
+
+- MOSFET loss contributor sınıfları: conduction, switching, gate-drive, bobin, PCB trace, control/feedback static loss.
+- `VGS(th) ≈ 3.906 V`.
+- `Kn ≈ 10.034`.
+- `VPL ≈ 4.95 V`.
+- `TJ ≈ 73.9 C`.
+- `VGS(th)/TJ = -8.5 mV/C`.
+- `Delta VGS(th) ≈ -0.41565 V`.
+
+Açık notlar:
+
+- `W.128` ara hesabı mevcut `W.149`, `W.153-W.154`, `W.162` ve `W.190` switching-loss zinciriyle aynı koşul setine çekilmeden final hesap gibi kullanılmayacak.
+- `TJ ≈ 73.9 C` erken izi, 06 dosyasındaki `~76 C` termal izleriyle sessizce birleştirilmeyecek.

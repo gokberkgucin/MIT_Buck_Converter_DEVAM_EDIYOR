@@ -507,6 +507,22 @@ Bu dört sayfa final dalga şekli değildir; `dV/dt` / Miller probleminin parame
 
 [Kaynak İzi / Tasarım İzi] Tam sayfa `p118`, `VPL` ve `VGS(th)` değerlerinin datasheet'teki tek tablo sayısı gibi değil, drain-source akımıyla değişen çalışma noktası olarak okunması gerektiğini gösterir. Kaynak, doğru `tr` ve `toff` tahmininin `QGS2`, `QGD`, `VGS(th)` ve `VPL` doğruluğuna bağlı olduğunu söyler. Defter notu ayrıca `t2-t3` aralığını Miller `Cgd` şarj bölgesi olarak işaretler: `VGS` plateau'da sabit kalırken `VDS` düşer ve switching transition burada anlam kazanır. Bu sayfa yeni final `VPL`, `VTH` veya `QGD` üretmez; 06 dosyasındaki kayıp denklemlerine giden datasheet-okuma bağlamıdır.
 
+### `W.128`: Gate Threshold ve Miller Plateau Ara Hesabı
+
+![Defter p123 / W.128: gate threshold, Miller plateau, saturation koşulları ve sıcaklıkla `VGS(th)` kayması ara hesabı](images/defter_full_pages/defter_p123.jpg)
+
+[Tasarım İzi] Tam sayfa `p123`, `Gate Threshold and Miller Plateau Voltages` başlığı altında `G81` hesap yönteminin kullanılacağını not eder. Sayfada transfer-characteristic okumasının koşula duyarlı olduğu uyarısı vardır; bu nedenle aşağıdaki değerler final datasheet tablosu gibi değil, defter ara hesabı olarak korunur:
+
+```text
+ID1 = Kn * (VGS1 - VGS(th))^2
+ID2 = Kn * (VGS2 - VGS(th))^2
+VGS(th) ≈ 3.906 V
+Kn ≈ 10.034
+VPL ≈ sqrt(Iload / Kn) + VGS(th) ≈ 4.95 V
+```
+
+Sayfa ayrıca saturation-region koşullarını `VGS >= VGS(th)` ve `VDS > VGS - VGS(th)` olarak kontrol eder. Aynı defter sayfasının altındaki `TJ ≈ 73.9 C`, `VGS(th)/TJ = -8.5 mV/C` ve `-0.41565 V` sıcaklık kayması notu termal owner'a kısa referans olarak [06](06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) dosyasında bağlıdır. Bu pass yeni final `VPL`, `VGS(th)`, switching time veya termal kapanış sayısı üretmez.
+
 ### `W.150`, `W.155`, `W.156`: Kayıp Sınıflarına Handoff
 
 ![W.150'den küçük kırpım: conduction ve switching loss şekillerini aynı sayfada gösteren kaynak](images/defter_snippets_web/d118_w150_conduction_vs_switching_figures.jpg)
