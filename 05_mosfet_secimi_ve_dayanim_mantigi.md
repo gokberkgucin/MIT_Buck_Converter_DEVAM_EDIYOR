@@ -245,14 +245,18 @@ SOA okuması:
 
 [Tasarım İzi] Tam sayfa `p129`, gate sürücü çıkışını ve MOSFET gate çevresini aynı eşdeğer çizimde toplar. Görselde driver'ın high/low yolları, `RHI`, `RLO`, harici `Rgate`, MOSFET iç gate direnci `RGI`, Miller kapasitansı `Cgd`, gate-source kapasitansı `Cgs`, `VDS(off)` ve drain akımı `ID` işaretlenir. Bu çizim yeni sayısal değer üretmez; önceki `dV/dt` / Miller yanlış turn-on kontrollerinde ve [06](06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) dosyasındaki gate-drive/switching-loss hesabında kullanılan elektriksel yolun defter izidir.
 
-### `W.129`: Gate-charge Okuma İzleri
+### `W.129` ve `W.164`: Gate-charge Okuma İzleri
 
 ![W.129'dan küçük kırpım: Qg güncellemesi ve Qgd yaklaşık 1.2 nC notu](images/defter_snippets_web/d128_w129_qg_update_and_qgd_estimate.jpg)
+
+![Defter p130 / W.129: datasheet `Qg(total)`, `QGS`, `QGD` koşulları, `VGS=10 V` ile bizim `7.5 V` gate-drive ayrımı ve `QGD = CGD * VDS` notu](images/defter_full_pages/defter_p130.jpg)
 
 `W.129`, gate-charge değerlerinin gerçek sürme koşuluna uyarlanması gerektiğini gösterir. Bu hatta görünen değerler:
 
 | İz | Değer / okuma |
 |---|---:|
+| Datasheet koşulu | `Qg(total) = 20 nC @ VGS = 10 V, VDS = 50 V, IDS = 20 A` |
+| Datasheet parça yükleri | `QGS ≈ 6.4 nC`, `QGD ≈ 6.5 nC` |
 | Datasheet / ilk uyarlama | `Qg,total ≈ 10 nC` gibi ara iz |
 | Başka Fig.6 okuması | `Qg ≈ 12.2 nC` |
 | Fiilen kullanılan gate-drive / bootstrap hattı | `Qg ≈ 16 nC` |
@@ -262,7 +266,21 @@ SOA okuması:
 
 ![VGS = 7.5 V için Qg yaklaşık 16 nC okuması](images/foto_selected/p99_gate_charge_reading_7v5_16nc.jpg)
 
-[Açık Kontrol] `10 nC`, `12.2 nC` ve `16 nC` aynı koşulun üç final cevabı gibi birleştirilmeyecek. Son kayıp / bootstrap / `CVCC` hesabında hangi `Qg` kullanılıyorsa aynı koşul setiyle etiketlenecek.
+![Defter p131 / W.164: gate charge kavramı, `Q=C*V`, MOSFET kapasitanslarının sabit olmaması ve Fig.6 gate-charge grafiği kullanma uyarısı](images/defter_full_pages/defter_p131.jpg)
+
+[Tasarım İzi] Tam sayfa `p131`, gate charge kavramını metne çevirir: MOSFET'in açılıp kapanabilmesi için gate ucuna belirli bir yük aktarılması gerekir; bu yük gate-source ve gate-drain sığalarını doldurmak için gereklidir. Defter notu `Q = C * V` ilişkisini yazar, fakat MOSFET iç kapasitanslarının çoğunlukla sabit olmadığını özellikle belirtir. Bu yüzden `Fig.6` gate-charge grafiği kullanılacak; dikey eksen `VGS`, yatay eksen `Qg(nC)` olarak okunacak.
+
+Defterdeki açık sorular da korunur:
+
+```text
+LM5146 gate drive yaklaşık 7.5 V ise bizim MOSFET için Qg nereden okunacak?
+Qg ≈ 12.2 nC ara okuması gate sürücünün sağlayabileceği yük mü?
+MOSFET kaç ns içinde anahtarlanabilecek?
+Gate-drive gücü ne kadar tüketilecek?
+Kesinlikle Fig.6 grafiğini kullan.
+```
+
+[Açık Kontrol] `10 nC`, `12.2 nC`, `16 nC` ve datasheet'teki `20 nC @ VGS = 10 V` aynı koşulun dört final cevabı gibi birleştirilmeyecek. Son kayıp / bootstrap / `CVCC` hesabında hangi `Qg` kullanılıyorsa aynı `VGS`, `VDS`, sıcaklık ve gate-drive koşul setiyle etiketlenecek.
 
 ### `W.130-W.133`, `W.163`: Parazitik Kapasitanslar ve FOM İzleri
 

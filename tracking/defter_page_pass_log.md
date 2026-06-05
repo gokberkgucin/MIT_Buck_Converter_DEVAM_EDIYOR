@@ -2879,3 +2879,49 @@ Açık notlar:
 
 - Bu pass yeni final `VTH`, `VPL`, `Kn`, switching time, gate direnci veya kayıp sayısı üretmedi.
 - `W.158`teki nokta seçimi yüksek akım ve farklı grafik koşulu içerdiğinden önceki `VTH/VPL` aileleriyle aynı koşula çekilmeden kullanılmayacak.
+
+## Pass 066 - Sayfa 130-131
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p130.jpg](../images/defter_full_pages/defter_p130.jpg)
+- [defter_p131.jpg](../images/defter_full_pages/defter_p131.jpg)
+
+Defter işaretleri:
+
+- `W.129`: datasheet koşulu olarak `Qg(total) = 20 nC @ VGS = 10 V`, `VDS = 50 V`, `IDS = 20 A` not edilir.
+- `W.129`: `QGS ≈ 6.4 nC`, `QGD ≈ 6.5 nC` izleri korunur.
+- `W.129`: bizim gate sürüşümüzün `VGS = 10 V` değil yaklaşık `7.5 V` olduğu yazılır.
+- `W.129`: bu nedenle `Qg` değerinin `Fig.6` gate-charge grafiğinden okunması gerektiği not edilir.
+- `W.129`: `Qg(total) ≈ 16 nC` ara/çalışma hattı korunur.
+- `W.129`: Miller charge için `QGD = CGD * VDS = 54 pF * 22 V ≈ 1.2 nC` hesabı korunur.
+- `W.164`: gate charge'ın MOSFET'i açıp kapatmak için gate'e aktarılması gereken yük olduğu yazılır.
+- `W.164`: bu yükün gate-source ve gate-drain sığalarını doldurmak için gerektiği not edilir.
+- `W.164`: `Q = C * V` ilişkisi yazılır; ancak MOSFET kapasitanslarının çoğunlukla sabit olmadığı uyarısı korunur.
+- `W.164`: `Fig.6` grafiğinde dikey eksenin `VGS`, yatay eksenin `Qg(nC)` olduğu ve farklı gate-drive gerilimleri için toplam `Qg` tahmini yaptığı not edilir.
+
+Primary owner entegrasyonu:
+
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `Gate-drive, Qg/Qgd ve Miller Baglami / W.129 ve W.164`: tam sayfa `p130` ve `p131`.
+
+Kısa referans / owner dışı bağlantı:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde gate-drive kaybı / bootstrap hesabına yalnız `Qg ≈ 16 nC` handoff referansı eklendi.
+- `20 nC @ 10 V`, `12.2 nC`, `16 nC` ve `1.2 nC QGD` aynı büyüklük gibi karıştırılmadı; her biri koşuluyla tutuldu.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Qg(total) = 20 nC @ VGS = 10 V`.
+- `QGS ≈ 6.4 nC`.
+- `QGD ≈ 6.5 nC`.
+- Bizim gate-drive seviyesi: yaklaşık `7.5 V`.
+- `Qg(total) ≈ 16 nC` çalışma hattı.
+- `QGD ≈ 54 pF * 22 V ≈ 1.2 nC`.
+- `Q = C * V`.
+
+Açık notlar:
+
+- Bu pass yeni final `Qg`, `QGD`, gate-drive gücü, switching süresi veya bootstrap değeri üretmedi.
+- Defterdeki "MOS kaç ns içinde anahtarlanabilecek?" ve "ne kadar gate-drive gücü tüketilecek?" soruları 06 dosyasındaki gate-drive loss / switching-time kapanışına bağlı kalır.

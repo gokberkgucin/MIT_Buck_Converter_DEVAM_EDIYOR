@@ -207,6 +207,8 @@ MOSFET seçimi ve datasheet okuma kuralları [05](05_mosfet_secimi_ve_dayanim_ma
 | `Coss`, `Qoss` | output-capacitance loss |
 | `R_driver`, `Rg`, `Rgate,total` | switching süreleri, EMI, `dV/dt`, gate-drive akımı |
 
+[Referans Notu] `Qg ≈ 16 nC` handoff'u [05](05_mosfet_secimi_ve_dayanim_mantigi.md) dosyasındaki `W.129/W.164` gate-charge okuma izinden gelir. Orada `20 nC @ VGS = 10 V`, `12.2 nC` ara okuması ve `16 nC @ yaklaşık 7.5 V` hattı koşullarıyla ayrı tutulur; bu dosyada gate-drive kaybı ve bootstrap hesabına giren değer olarak yalnız seçilen koşul seti kullanılacak.
+
 ### Switching Loss Girdilerinin Toplanması
 
 ![Defter p114 / W.210: synchronous buck içindeki kayıp bölgeleri, MOSFET kayıp sınıfları ve `P_switching` denklemine kaynak şekil](images/defter_full_pages/defter_p114.jpg)
