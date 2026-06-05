@@ -465,6 +465,8 @@ Bu dört sayfa final dalga şekli değildir; `dV/dt` / Miller probleminin parame
 
 ![W.147'den küçük kırpım: turn-on sürecinin ilk iki aralığını anlatan el yazısı not](images/defter_snippets_web/d115_w147_turn_on_first_intervals.jpg)
 
+![Defter p116 / W.147: MOSFET gate-driver turn-on procedure, `VTH`, `Cgs`, `Cgd` ve turn-on delay notları](images/defter_full_pages/defter_p116.jpg)
+
 `W.147`, MOSFET turn-on sürecini aralıklara ayırır:
 
 - gate `0 V`tan `VGS(th)` seviyesine çıkar,
@@ -472,7 +474,11 @@ Bu dört sayfa final dalga şekli değildir; `dV/dt` / Miller probleminin parame
 - turn-on delay oluşur,
 - sonrasında `VGS(th)` ile Miller plateau arası başlar.
 
+[Tasarım İzi] Tam sayfa `p116`, bu ilk aralığı "MOSFET gate driver / turn-on procedure" başlığıyla korur. Defter notu, `VGS` threshold'a yükselirken `Cgs` yükünün dolduğunu, `Cgd` tarafına az bir akım aktığını ve bu periyodun turn-on delay olarak okunduğunu söyler. Bu aşamada drain akımı ve drain gerilimi henüz belirgin değişmez; gate gerilimi threshold seviyesine geldiğinde MOSFET akım taşımaya başlar.
+
 ![W.148'den küçük kırpım: turn-on dalga şekillerinin elle çizilmiş özeti](images/defter_snippets_web/d116_w148_turn_on_waveform_sketch.jpg)
+
+![Defter p117 / W.148: `VGS`, `QGS`, `QGD`, `VDS` ve `ID` dalga şekillerinin elle çizilmiş turn-on haritası](images/defter_full_pages/defter_p117.jpg)
 
 `W.148`, gate, drain gerilimi ve drain akımı dalga şekillerini birlikte gösterir:
 
@@ -480,6 +486,8 @@ Bu dört sayfa final dalga şekli değildir; `dV/dt` / Miller probleminin parame
 - `Qgd` / Miller bölgesi,
 - `VDS` düşüşü,
 - gate'in son sürme seviyesine yükselmesi.
+
+[Tasarım İzi] Tam sayfa `p117`, `VGS` eğrisini `t0-t4` zaman aralıklarıyla çizer: `VTH` geçildikten sonra `QGS` bölgesi, ardından Miller plateau / `QGD` bölgesi ve son gate yükselişi görünür. Alttaki not, `VGS` threshold'u aştığında `ID` akımının akmaya başladığını; `VDS` düşüşünün ise `Cgd` dolmaya devam ettiği Miller bölgesinde belirginleştiğini kaydeder. Bu sayfa yeni `tr/tf` veya kayıp sayısı üretmez; seçim dosyasında gate-charge dalga şekli sezgisini, [06](06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) dosyasındaki switching-loss hesabına handoff olarak tutar.
 
 ![G81 Figure 3 MOSFET Switch Transition](images/odt_embedded/G81_Figure 3 MOSFET Switch Transition.png)
 

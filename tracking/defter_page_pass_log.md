@@ -2568,3 +2568,46 @@ Açık notlar:
 - Bu pass yeni `P_switching` sayısı üretmedi.
 - `W.162` gate-charge okuması, `W.190` erken `tr/toff` kestirimi ve `W.153-W.154` pratik switching-loss hesaplarıyla aynı koşul setine çekilmeden birleştirilmeyecek.
 - `QTH + QGS2` ve `QGD` ayrımı korunacak; Miller plateau bölgesi sıradan gate-charge toplamı gibi eritilmeyecek.
+
+## Pass 059 - Sayfa 116-117
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p116.jpg](../images/defter_full_pages/defter_p116.jpg)
+- [defter_p117.jpg](../images/defter_full_pages/defter_p117.jpg)
+
+Defter işaretleri:
+
+- `W.147`: MOSFET gate-driver turn-on procedure notu korunur.
+- `W.147`: gate `0 V`tan `VTH` seviyesine yükselirken `Cgs` yükünün dolduğu, `Cgd` tarafına az akım aktığı ve bu aralığın turn-on delay olduğu yazılıdır.
+- `W.147`: bu ilk aralıkta drain akımı / drain gerilimi belirgin değişmeden gate gerilimi threshold'a yaklaşır.
+- `W.148`: `VGS` dalga şekli `t0-t4` aralıklarıyla çizilir; `QGS` ve `QGD` bölgeleri ayrılır.
+- `W.148`: `VGS` threshold'u aştığında `ID` akımının akmaya başladığı, `VDS` düşüşünün `Cgd` dolmaya devam ettiği Miller bölgesinde belirginleştiği not edilir.
+
+Primary owner entegrasyonu:
+
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `Gate Sürme ve Switching Interval Bağlamı / W.147-W.149`.
+- Tam sayfa `p116`, mevcut `W.147` küçük kırpımının yanına eklendi.
+- Tam sayfa `p117`, mevcut `W.148` küçük kırpımının yanına eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- Ayrıntılı switching-loss sayıları [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) dosyasında kalır.
+- Bu pass [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içindeki `W.153-W.154` kayıp hesaplarını tekrar açmadı.
+- Gate-charge davranışı burada seçim/datasheet okuma bağlamında; kayıp kapanışı ise 06 owner'ında tutulur.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `VTH` / threshold geçişi.
+- `Cgs` şarjı ve kısmi `Cgd` akımı.
+- `QGS` ve `QGD` bölgeleri.
+- `t0`, `t1`, `t2`, `t3`, `t4` turn-on zaman aralıkları.
+- `ID` akımının threshold sonrasında başlaması.
+- `VDS` düşüşünün Miller / `QGD` bölgesinde belirginleşmesi.
+
+Açık notlar:
+
+- Bu pass yeni `tr`, `tf`, `P_switching`, `Qgd`, `Qgs` veya gate direnci sayısı üretmedi.
+- `W.147-W.148` dalga şekli açıklaması, `W.190` ve `W.153-W.154` sayısal hesaplarıyla aynı koşul setine çekilmeden final hesap gibi kullanılmayacak.
