@@ -437,6 +437,14 @@ Bu `1.46985 / 3.3454 dB`, sabit nihai kompanzatör kazancı değildir. `|F(jwt)|
 
 ![W.3'ten küçük kırpım: paralel `R-C` ve eşdeğer empedans üzerinden yapılan ara karalama](images/defter_snippets_web/d164_w3_parallel_impedance_sketch.jpg)
 
+![Defter p168 / W.3: `L-C-R` çıkış filtresi eskizi, `R || Zc` ve `ZL` üzerinden plant eşdeğer empedans karalaması](images/defter_full_pages/defter_p168.jpg)
+
+![Defter p169 / W.3: `R || 1/sC`, `R/(sCR+1)` dönüşümü ve `sL` terimiyle çıkış filtresi transfer fonksiyonuna giden cebir izi](images/defter_full_pages/defter_p169.jpg)
+
+[Tasarım İzi] Tam sayfa `p168-p169`, `W.3` plant cebirinin defter izidir. p168 üzerinde seri `L`, çıkış düğümünde paralel `C` ve yük `R` çizilir; notta `(R || Zc) + ZL` benzeri eşdeğer empedans okuması görünür. p169 bu paralel kolu `R || 1/sC` olarak açar ve `R/(sCR+1)` biçimine indirir; ardından `sL` terimiyle aynı paydaya getirme karalaması yapılır.
+
+[Çapraz Teyit] Bu iki sayfa fiziksel `L`, `Cout`, `ESR`, `Rdamp` veya yük değerlerinin primary owner'ı değildir. O değerler [03](03_bobin_ve_cikis_kapasitorleri.md) dosyasında kalır; burada yalnız `F(s)` / output-filter plant transfer fonksiyonuna giden cebirsel ara yol korunur.
+
 ![W.4'ten küçük kırpım: Type-III `G3(s)` ifadesinin sadeleştirilmiş hali ve kullanılan referans şekil](images/defter_snippets_web/d165_w4_type3_simplified_transfer.jpg)
 
 ![W.5'ten küçük kırpım: hedef faz marjından gereken kompanzatör faz katkısını çıkaran not](images/defter_snippets_web/d166_w5_required_compensator_phase.jpg)

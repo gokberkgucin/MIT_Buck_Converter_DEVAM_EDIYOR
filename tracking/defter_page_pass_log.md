@@ -3896,3 +3896,47 @@ Açık notlar:
 - `p166-p167` yeni final Type-III komponent seti üretmedi; `W.1-W.2` K-factor / faz bütçesi hesabının tam sayfa kaynak izidir.
 - `231.43°` ve `51.43°` faz yazımları sessizce tekleştirilmedi; muhtemel faz sarımı / `+180°` gösterim farkı olarak açık bırakıldı.
 - `F(jwt)` uzun plant hesabı burada yeniden plant owner'ı olmuyor; kontrol tarafında kullanılan büyüklük/faz ara sonucu olarak duruyor.
+
+## Pass 085 - Sayfa 168-169
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p168.jpg](../images/defter_full_pages/defter_p168.jpg)
+- [defter_p169.jpg](../images/defter_full_pages/defter_p169.jpg)
+
+Defter işaretleri:
+
+- `p168 / W.3`: seri `L`, çıkış düğümünde `C` ve yük `R` içeren basit output-filter / plant eskizi görülür.
+- `p168 / W.3`: yük direncinin paralel kolu işaretlenir; `R || Zc` ve `ZL` üzerinden toplam eşdeğer empedans karalaması yapılır.
+- `p168 / W.3`: alt notta `R || 1/sC` biçimine geçişin başlangıcı görünür.
+- `p169 / W.3`: `R || 1/sC` paralel eşdeğerinin cebirsel açılımı yapılır.
+- `p169 / W.3`: ara dönüşüm `R * 1/sC / (R + 1/sC)` ve sadeleşmiş form `R / (sCR + 1)` olarak okunur.
+- `p169 / W.3`: seri `sL` terimiyle aynı payda altında toplama karalaması görünür.
+- `p169 / W.3`: alt satırlarda `R + sL(sCR+1)` benzeri ifade ve `R + s^2 LCR + sL` biçimine giden açılım görülür.
+
+Primary owner entegrasyonu:
+
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `W.2-W.12: Faz Bütçesi, Modülatör ve İlk Kırılımlar` altındaki `W.3` paralel empedans / plant cebiri yanına tam sayfa `p168` ve `p169` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- Fiziksel `L`, `Cout`, `ESR`, `Rdamp` ve yük kararları [03](../03_bobin_ve_cikis_kapasitorleri.md) owner'ında kalır.
+- Bu pass [07](../07_kontrolcu_ve_kompanzasyon.md) içinde yalnız output-filter plant transfer fonksiyonuna giden cebirsel iz olarak tutuldu.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `L-C-R` çıkış filtresi.
+- `R || Zc`.
+- `ZL`.
+- `R || 1/sC`.
+- `R/(sCR + 1)`.
+- `sL`.
+- `R + sL(sCR+1)`.
+- `R + s^2 LCR + sL` biçimine giden açılım.
+
+Açık notlar:
+
+- Bu sayfalarda yeni final `L`, `C`, `R`, `fc`, `PM` veya Type-III komponent değeri yoktur.
+- `Zout`, `F(s)` ve output-filter transfer fonksiyonu notasyonu son kontrol turunda 03/07 ayrımıyla hizalanabilir; burada defter cebiri kaybolmasın diye korundu.
