@@ -2085,3 +2085,52 @@ Açık notlar:
 - Bu sayfalar gerçek switch-node ölçümü değildir; Miller yanlış turn-on riskine dair teorik / defter kontrolüdür.
 - Küçük `Cgd = 6 pF` varsayımı sonraki korumacı kapasitans senaryolarıyla aynı final değer gibi birleştirilmedi.
 - Final kabulte gerçek `Cgd(VDS)`, gate pull-down yolu, common-source inductance, layout ve switch-node dalga şekli birlikte kontrol edilmelidir.
+
+## Pass 049 - Sayfa 96-97
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p096.jpg](../images/defter_full_pages/defter_p096.jpg)
+- [defter_p097.jpg](../images/defter_full_pages/defter_p097.jpg)
+
+Defter işaretleri:
+
+- `W.182`: üçüncü senaryo, yalnız MOSFET iç yapısı değil harici gate direnci ve driver içindeki `RLO` yolu ile birlikte okunur.
+- `W.182`: `I_CGD = C_GD * dVDS/dt` ilişkisi yazılır.
+- `W.182`: `VGS = I * (RGi + Rgate + RLO)` ilişkisi görünür.
+- `W.182`: `VGS > VTH` olursa MOSFET yanlışlıkla açılır notu korunur.
+- `W.183`: `VTH = 2.171 V`.
+- `W.183`: `Rgate = 0.5-1 ohm`; en kötü senaryo için `1 ohm` alınır.
+- `W.183`: `RLO-down / low-state resistance ≈ 0.9 ohm`.
+- `W.183`: `CGD = 6 pF`.
+- `W.183`: `(dV/dt)_limit ≈ 2.171 V / ((1 ohm + 1 ohm + 0.9 ohm)*6 pF) ≈ 190.6 V/ns`.
+- `W.183`: "MOSFET'in kendiliğinden açılması gibi bir risk çıkmaz" sonucu bu küçük `CGD` ve gate-yolu senaryosu için not edilir.
+
+Primary owner entegrasyonu:
+
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `dV/dt, Miller ve Yanlış Turn-on`.
+- Aynı dosyada `W.178-W.184: Proje İçindeki Miller Kontrolleri`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içindeki gate-drive kayıp, bootstrap veya termal hesabını açmadı.
+- `190.6 V/ns`, `517 V/ns`, `398 V`, `26.12 V` ve `52.35 V` izleri sessizce tek final cevap yapılmadı; farklı model / kapasitans / gate-yolu varsayımları olarak kaldı.
+- Bu pass yeni final `CGD`, `Rgate`, `RLO`, `VTH`, `VDS,max` veya gerçek switch-node `dV/dt` ölçümü üretmedi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `I_CGD = C_GD * dVDS/dt`.
+- `VGS = I * (RGi + Rgate + RLO)`.
+- `VTH = 2.171 V`.
+- `Rgate = 1 ohm` en kötü senaryo.
+- `RLO ≈ 0.9 ohm`.
+- `CGD = 6 pF`.
+- `(dV/dt)_limit ≈ 190.6 V/ns`.
+
+Açık notlar:
+
+- Bu sayfalar gerçek switch-node ölçümü değildir; Miller yanlış turn-on için teorik/defter kontrolüdür.
+- Küçük `CGD = 6 pF` varsayımı korunmacı kapasitans senaryolarıyla aynı final değer gibi birleştirilmedi.
+- Final kabulte gerçek `Cgd(VDS)`, gate pull-down yolu, common-source inductance, layout ve switch-node dalga şekli birlikte kontrol edilmelidir.

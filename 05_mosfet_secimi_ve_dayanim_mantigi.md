@@ -335,6 +335,8 @@ sonuç ≈ 5.7e11 V/s mertebesi
 
 ![W.182'den küçük kırpım: CGD akımı ve gate yolu üzerinden VGS oluşumu](images/defter_snippets_web/d95_w182_cgd_current_gate_path.jpg)
 
+![Defter p096 / W.182: üçüncü senaryo; `I_CGD = C_GD*dVDS/dt`, gate yolu dirençleri ve `VGS = I*(RGi+Rgate+RLO)` ilişkisi](images/defter_full_pages/defter_p096.jpg)
+
 `W.182` daha gerçek gate yolunu yazar:
 
 ```text
@@ -343,7 +345,11 @@ VGS = I_CGD * (RGi + RGext + RLO)
 (dV/dt)_limit ≈ VTH / ((RGi + RGext + RLO) * CGD)
 ```
 
+[Tasarım İzi] Tam sayfa `p096`, yalnız MOSFET iç kapasitif bölücüsünün değil, harici gate direnci ve driver'ın `RLO` yolunun da hesaba katıldığı üçüncü senaryoyu açar. `Cgd` üzerinden akan akım, gate yolundaki dirençlerde gerilim oluşturur; bu gerilim `VTH` üstüne çıkarsa MOSFET yanlışlıkla açılabilir. Bu sayfa yeni sayısal limit üretmez, `W.183`teki pratik direnç hesabına zemin hazırlar.
+
 ![W.183'den küçük kırpım: pratik gate direnci ile dv/dt limit teyidi](images/defter_snippets_web/d96_w183_practical_gate_resistance_limit.jpg)
+
+![Defter p097 / W.183: `VTH = 2.171 V`, `Rgate = 0.5-1 ohm`, `RLO ≈ 0.9 ohm`, `CGD = 6 pF` ile `~190.6 V/ns` kontrolü](images/defter_full_pages/defter_p097.jpg)
 
 `W.183`, pratik gate yolu ile:
 
@@ -356,6 +362,8 @@ VTH = 2.172 V
 ```
 
 sonucunu verir. Bu gerçek switch-node ölçümü değil, yanlış turn-on için üst sınır yoklamasıdır.
+
+[Çapraz Teyit] Tam sayfa `p097`, `VTH = 2.171 V`, `Rgate = 0.5-1 ohm` aralığında en kötü senaryo için `1 ohm`, `RLO-down ≈ 0.9 ohm` ve `CGD = 6 pF` kabulünü birlikte gösterir. Hesap `2.171 V / ((1 ohm + 1 ohm + 0.9 ohm)*6 pF) ≈ 190.6 x 10^9 V/s ≈ 190.6 V/ns` mertebesine iner. Bu değer `517 V/ns` ikinci senaryo sonucunu iptal etmez; gate yolu daha gerçekçi eklendiği için farklı varsayım setidir.
 
 ![W.184'den küçük kırpım: korumacı nominal kapasite setiyle alternatif Miller kontrolü](images/defter_snippets_web/d97_w184_conservative_capacitance_model.jpg)
 
