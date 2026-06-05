@@ -239,6 +239,12 @@ SOA okuması:
 
 [Güncel Omurga] Gate-charge değerleri sabit tablo sayısı değildir; `VGS`, `VDS`, akım, sıcaklık ve gate yolu koşuluyla okunur. Bu değerler seçim gerekçesini etkiler, ayrıntılı gate-drive kaybı ve bootstrap hesabı [06](06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) dosyasına gider.
 
+### `W.159`: Gate Driver ve Miller Eşdeğer Çizimi
+
+![Defter p129 / W.159: driver `RHI/RLO`, harici `Rgate`, iç `RGI`, `Cgd/Cgs`, `VDS(off)` ve drain akımıyla MOSFET gate-drive eşdeğer modeli](images/defter_full_pages/defter_p129.jpg)
+
+[Tasarım İzi] Tam sayfa `p129`, gate sürücü çıkışını ve MOSFET gate çevresini aynı eşdeğer çizimde toplar. Görselde driver'ın high/low yolları, `RHI`, `RLO`, harici `Rgate`, MOSFET iç gate direnci `RGI`, Miller kapasitansı `Cgd`, gate-source kapasitansı `Cgs`, `VDS(off)` ve drain akımı `ID` işaretlenir. Bu çizim yeni sayısal değer üretmez; önceki `dV/dt` / Miller yanlış turn-on kontrollerinde ve [06](06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) dosyasındaki gate-drive/switching-loss hesabında kullanılan elektriksel yolun defter izidir.
+
 ### `W.129`: Gate-charge Okuma İzleri
 
 ![W.129'dan küçük kırpım: Qg güncellemesi ve Qgd yaklaşık 1.2 nC notu](images/defter_snippets_web/d128_w129_qg_update_and_qgd_estimate.jpg)
@@ -622,6 +628,22 @@ IDS = 20 A: test Vplateau = 5.30 V, hesap = 4.94 V
 ```
 
 [Açık Kontrol] Defter üst notu "deneyde doğrulama yap" diye özellikle uyarır. Buradaki calculator mantığı proje devresinde gerçek gate dalga şekli, `VTH`, `VMiller`, gate sürücü seviyesi ve sıcaklıkla tekrar kontrol edilmeden final switching-loss girdisi sayılmayacak.
+
+![Defter p128 / W.158: `Fig.7` output-characteristic eğrisi üzerinden bizim MOSFET için `VGS(th)`, `Kn` ve `VPL` ara hesabı](images/defter_full_pages/defter_p128.jpg)
+
+[Tasarım İzi] Tam sayfa `p128`, aynı TI `SLVAEQ9` yöntemini bu kez "G88 belgesinden farklı grafik" diye not edilen output-characteristic eğrisiyle kullanır. Üst not, `Fig.7` / `ID-VDS` grafiğinden iki nokta seçerek `VGS(th)` ve `VGS,miller` tahmin edileceğini söyler.
+
+Defterde görünen ara okuma:
+
+```text
+Nokta 1: ID1 ≈ 123 A, VGS1 = 6 V, VDS = 3 V
+Nokta 2: ID2 ≈ 59 A, VGS2 = 4.5 V, VDS = 3 V
+VGS(th) ≈ 1.12 V
+Kn ≈ 5.1649
+VPL ≈ sqrt(9 A / 5.1649) + 1.12 V ≈ 2.44 V
+```
+
+[Açık Kontrol] Bu `W.158` sonucu da final `VTH/VPL` değeri değildir. `W.128`, `W.174`, `W.175` ve `W.158` farklı grafik, sıcaklık ve akım noktalarından okunduğu için aynı sayıya zorlanmayacak. Defterin bu kısmı özellikle "hangi grafikten hangi iki nokta seçildi?" izini korumak için tutulur.
 
 ### `W.150`, `W.155`, `W.156`: Kayıp Sınıflarına Handoff
 

@@ -2836,3 +2836,46 @@ Açık notlar:
 
 - Bu pass yeni final `VTH`, `VMiller`, `K`, switching time veya kayıp sayısı üretmedi.
 - Defterdeki "deneyde doğrulama yap" notu gereği bu ara değerler gerçek gate dalga şekli ve devredeki çalışma koşullarıyla doğrulanmadan final kabul edilmeyecek.
+
+## Pass 065 - Sayfa 128-129
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p128.jpg](../images/defter_full_pages/defter_p128.jpg)
+- [defter_p129.jpg](../images/defter_full_pages/defter_p129.jpg)
+
+Defter işaretleri:
+
+- `W.158`: `Fig.7` / `ID-VDS` output-characteristic grafiği üzerinden `VGS(th)` ve `VGS,miller` tahmin yöntemi sürdürülür.
+- `W.158`: defter üst notu bu grafiğin `G88` belgesinden farklı grafik olduğunu belirtir.
+- `W.158`: seçilen noktalar `ID1 ≈ 123 A`, `VGS1 = 6 V`, `VDS = 3 V`; `ID2 ≈ 59 A`, `VGS2 = 4.5 V`, `VDS = 3 V`.
+- `W.158`: `VGS(th) ≈ 1.12 V`, `Kn ≈ 5.1649`, `VPL ≈ 2.44 V` ara hesabı korunur.
+- `W.159`: gate sürücü / MOSFET eşdeğer çizimi korunur.
+- `W.159`: çizimde `RHI`, `RLO`, harici `Rgate`, iç `RGI`, `Cgd`, `Cgs`, `VDS(off)` ve `ID` yolları görünür.
+
+Primary owner entegrasyonu:
+
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `Gate-drive, Qg/Qgd ve Miller Baglami / W.159`: tam sayfa `p129`.
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `Gate Surme ve Switching Interval Baglami / W.158`: tam sayfa `p128`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Gate-drive kayıp ve bootstrap sayısal kapanışı [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) dosyasında kalır.
+- `W.159` bu sayısal kapanışın devre yolu / model izi olarak 05'te tutulur.
+- `W.158`, `W.128`, `W.174` ve `W.175` ara sonuçları tek final `VTH/VPL` değeri gibi birleştirilmedi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `ID1 ≈ 123 A`, `VGS1 = 6 V`, `VDS = 3 V`.
+- `ID2 ≈ 59 A`, `VGS2 = 4.5 V`, `VDS = 3 V`.
+- `VGS(th) ≈ 1.12 V`.
+- `Kn ≈ 5.1649`.
+- `VPL ≈ 2.44 V`.
+- Gate-drive eşdeğer yolu: `RHI/RLO`, `Rgate`, `RGI`, `Cgd`, `Cgs`, `VDS(off)`, `ID`.
+
+Açık notlar:
+
+- Bu pass yeni final `VTH`, `VPL`, `Kn`, switching time, gate direnci veya kayıp sayısı üretmedi.
+- `W.158`teki nokta seçimi yüksek akım ve farklı grafik koşulu içerdiğinden önceki `VTH/VPL` aileleriyle aynı koşula çekilmeden kullanılmayacak.
