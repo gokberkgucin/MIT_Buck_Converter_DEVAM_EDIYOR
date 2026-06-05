@@ -644,6 +644,8 @@ P_LS,Coss ≈ 0.5 * 13.76 nC * 36 V * 332 kHz ≈ 82.15 mW
 
 ![W.197'den küçük kırpım: toplam `Pcoss` ifadesi ve `185 mW` teyit sonucu](images/defter_snippets_web/d146_w197_total_coss_loss_result.jpg)
 
+![Defter p148 / W.197: LM denklem hattıyla `P_Coss = 185 mW`, `Qoss2`, `Eoss1`, `Eoss2` ve `P_Coss = fsw * (Vin * Qoss2 + Eoss1 - Eoss2)` teyidi](images/defter_full_pages/defter_p148.jpg)
+
 `W.197`, toplamı teyit eder:
 
 ```text
@@ -665,9 +667,15 @@ Eoss1 ≈ 0.310 uJ
 Eoss2 ≈ 0.248 uJ
 ```
 
+[Çapraz Teyit] Tam sayfa `p148`, önceki iki ayrı sonuç hattını üretici/LM denklem formuna bağlar: `P_HS,Coss ≈ 102.9 mW`, `P_LS,Coss ≈ 82.2 mW` ve alternatif `P_Coss = f_sw(V_in Q_oss2 + E_oss1 - E_oss2)` hesabı aynı mertebede `P_Coss ≈ 185 mW` sonucuna çıkar. Sayfa ayrıca `Eoss ≈ 1/2 * Qoss * Vin`, `Eoss1 ≈ 0.310 uJ` ve `Eoss2 ≈ 0.248 uJ` izini görünür bırakır.
+
 ![W.198'den küçük kırpım: `Pcoss = 185 mW` teyidi ve `Eoss1/Eoss2` fiziksel yorum notu](images/defter_snippets_web/d147_w198_coss_physical_interpretation.jpg)
 
-`W.198`, `185 mW` sonucunu fiziksel enerji akışıyla açıklar: high-side kapanırken bobin akımı `Coss1`i şarj eder, high-side tekrar açılırken ve low-side tarafında `Coss2` boşalırken/şarj olurken enerji akışı oluşur.
+![Defter p149 / W.198: `P_Coss = 185 mW`, `(10)+(11) = 185.1 mW` ve high-side / low-side `Coss` enerji akışı yorumu](images/defter_full_pages/defter_p149.jpg)
+
+`W.198`, `185 mW` sonucunu fiziksel enerji akışıyla açıklar: high-side kapanırken bobin akımı `Coss1`i şarj eder; bu şarj akımı defter notuna göre kayıpsız kabul edilir ve bobinden çıkış sığasına enerji geçişi ideal durumda direnç kaybı üretmez. High-side tekrar açılırken `Coss1` içinde depolanan `Eoss1` turn-on anında ısıya dönüşür; low-side tarafında önceden depolanmış `Eoss2` ise bu sistemde geri kazanılan enerji gibi düşünülür ve high-side kaybından kısmen düşülür.
+
+[Çapraz Teyit] Tam sayfa `p149`, `LM'deki denklemle P_Coss = 185 mW` notunu ve `6.81 denklem (10)+(11) toplamı = 102.9 mW + 82.2 mW = 185.1 mW` satırını yan yana tutar. Bu, iki hesap yolunun aynı sonucu verdiğini gösterir; yeni bir final değer yaratmaz.
 
 [Açık Kontrol] `P_Coss,total ≈ 185 mW`, `W.153-W.154`teki switching overlap kaybıyla aynı mekanizma gibi çift sayılmayacak. Üretici `Eoss/Qoss` modeli veya switching simülasyonu aynı enerjiyi zaten içeriyorsa final tabloda tekrar toplamaya dikkat edilecek.
 

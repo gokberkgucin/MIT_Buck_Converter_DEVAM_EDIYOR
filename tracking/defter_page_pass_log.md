@@ -3330,3 +3330,56 @@ Açık notlar:
 - Önceki küçük kırpım/metin hattında `Coss,spec = 265 pF` izi varken tam sayfa `p146` `260 pF` ile `982.8 pF` sonucunu verir; bu fark sessizce birleştirilmeyecek.
 - `Coss` kaybı, switching overlap kaybıyla aynı enerji mekanizmasını kapsayabilir; final toplam kayıp tablosunda çift sayım kontrolü yapılacak.
 - `VDS,LS,OFF = 14 V` notu özellikle korunacak; low-side için `22 V` kullanılmayacak.
+
+## Pass 075 - Sayfa 148-149
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p148.jpg](../images/defter_full_pages/defter_p148.jpg)
+- [defter_p149.jpg](../images/defter_full_pages/defter_p149.jpg)
+
+Defter işaretleri:
+
+- `p148 / W.197`: önceki sayfadaki sonuçlar tekrar bağlanır: `(10) P_HS-Coss = 102.9 mW`, `(11) P_LS-Coss = 82.2 mW`.
+- `p148 / W.197`: high-side için `P_HS-Coss = 1/2 * Qoss1 * Vin * fsw` formülü yeniden işaretlenir.
+- `p148 / W.197`: LM MOSFET output-charge denklem hattı yazılır: `P_Coss = fsw * (Vin * Qoss2 + Eoss1 - Eoss2)`.
+- `p148 / W.197`: enerji yaklaşımı korunur: `Eoss ≈ 1/2 * Qoss * Vin`.
+- `p148 / W.197`: `Qoss1 = 17.23 nC`, `Qoss2 = 13.76 nC`.
+- `p148 / W.197`: `Eoss1 ≈ 1/2 * 17.23 nC * 36 V = 0.310 uJ`.
+- `p148 / W.197`: `Eoss2 ≈ 1/2 * 13.76 nC * 36 V ≈ 0.248 uJ`.
+- `p148 / W.197`: yerine koyma `332 kHz * (36 V * 13.76 nC + 0.310 uJ - 0.248 uJ)`.
+- `p148 / W.197`: sonuç `P_Coss ≈ 185 mW`.
+- `p149 / W.198`: `LM'deki denklemle P_Coss = 185 mW` notu yazılır.
+- `p149 / W.198`: `6.81 denklem (10)+(11) toplamı` satırı `P_HS-Coss + P_LS-Coss = 102.9 mW + 82.2 mW = 185.1 mW` sonucunu verir.
+- `p149 / W.198`: defter notu, aynı sonucun iki hesap yoluyla alındığını yazar.
+- `p149 / W.198`: high-side MOSFET kapanırken bobin akımının `Coss1`i şarj ettiği ve bu şarj akımının kayıpsız kabul edildiği açıklanır.
+- `p149 / W.198`: bobinden çıkış sığasına enerji geçişinin ideal durumda direnç kaybı üretmediği not edilir.
+- `p149 / W.198`: high-side tekrar açıldığında `Coss1` içinde depolanan `Eoss1` enerjisinin turn-on anında ısıya dönüştüğü yazılır.
+- `p149 / W.198`: low-side kapanmasında önceden depolanmış `Eoss2` enerjisinin bu sistemde geri kazanılan enerji gibi düşünülebileceği ve high-side kaybını kısmen dengelediği not edilir.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `Coss / Qoss Loss` altına tam sayfa `p148` ve `p149` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `Cout` / gerçek çıkış kapasitör bankı owner'ı [03](../03_bobin_ve_cikis_kapasitorleri.md) olarak kalır; bu pass MOSFET `Coss` kaybının fiziksel enerji yorumudur.
+- Switching overlap hesabı [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde ayrı kalem olarak durur; `Coss` ile çift sayım riski açık kontrol olarak korunur.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `P_HS,Coss ≈ 102.9 mW`.
+- `P_LS,Coss ≈ 82.2 mW`.
+- `(10)+(11) ≈ 185.1 mW`.
+- `P_Coss ≈ 185 mW`.
+- `Qoss1 ≈ 17.23 nC`, `Qoss2 ≈ 13.76 nC`.
+- `Eoss1 ≈ 0.310 uJ`, `Eoss2 ≈ 0.248 uJ`.
+- LM denklem hattı: `P_Coss = f_sw(V_in Q_oss2 + E_oss1 - E_oss2)`.
+
+Açık notlar:
+
+- `102.9 mW + 82.2 mW = 185.1 mW` ile `P_Coss ≈ 185 mW` farkı yuvarlama izi olarak korunur; yeni bir ayrı final değer üretilmedi.
+- `Eoss2` geri kazanım yorumu, üretici modeli ve gerçek switching dalga şekilleriyle final tabloda tekrar kontrol edilecek.
+- `P_Coss ≈ 185 mW`, switching overlap kalemiyle çift sayılmayacak.
