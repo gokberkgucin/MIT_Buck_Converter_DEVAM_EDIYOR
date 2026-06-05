@@ -479,6 +479,20 @@ Bu `1.46985 / 3.3454 dB`, sabit nihai kompanzatör kazancı değildir. `|F(jwt)|
 
 ![W.10'dan küçük kırpım: modülatör / duty ilişkisi ve `Vout = D*Vin` mantığını destekleyen kısa not](images/defter_snippets_web/d171_w10_modulator_vout_d_vin.jpg)
 
+![Defter p174 / W.9: `fz1`, `f0`, `fp1`, `fp2`, `fESR`, `fsw`, `fc` satırları ve `wz1 = 0.5*w0`, `wp1 = wESR`, `wz2 = w0`, `wp2 = wsw/2` kırılım yerleşimi](images/defter_full_pages/defter_p174.jpg)
+
+![Defter p175 / W.10: modülatör ortalama modeli, `Vout = (1/T) int Vmod(t)dt`, `ton/(ton+toff) * Vin` ve `D*Vin` türetimi](images/defter_full_pages/defter_p175.jpg)
+
+![ODT Figure 2 / Buck Converter Schematic: p175'te "Figure 2 foto bul" diye işaretlenen temel buck anahtarlama şeması](images/odt_embedded/Figure 2. Buck Converter Schematic.jpg)
+
+![ODT fig_22 / Voltage Mode Modulator: p175'teki modülatör ortalama modeli ve `D*Vin` sezgisini bağlayan PWM karşılaştırma şeması](images/odt_embedded/fig_22_voltage_mode_modulator.png)
+
+[Tasarım İzi] Tam sayfa `p174`, Type-III kırılım frekanslarının ilk yerleşim mantığını tablo halinde tutar. Sol tarafta `fz1`, `f0`, `fp1`, `fp2`, `fESR`, `fsw`, `fc` sırası; sağ tarafta `wz1 = 0.5*w0`, `wp1 = wESR`, `wz2 = w0`, `wp2 = wsw/2` notları okunur. Sayfada ayrıca `w0 ≈ 45.8 krad/s` ve `wz1 = 0.5 * ... krad/s -> 1/(Rc1*Cc1)` çizgisi görünür. Bu sayfa nihai komponent değerini tek başına belirlemez; W.13-W.24 ve calculator bölümlerindeki Type-III komponent adaylarına giden frekans yerleştirme izidir.
+
+[Çapraz Teyit] Tam sayfa `p175`, modülatör/duty ilişkisinin ortalama modelden nasıl geldiğini gösterir: `Vout = (1/T) int_0^T Vmod(t) dt`, ardından `1/T [int_0^ton Vin dt + int_ton^T 0 dt]` ve `ton/(ton+toff) * Vin = D * Vin` hattı okunur. Hemen yanına konan `Figure 2. Buck Converter Schematic` ve `fig_22 Voltage Mode Modulator`, defterde istenen kaynak görsel bağlamıdır. Bu, shared duty owner'ındaki tam duty anlatımını tekrar sahiplenmez; kontrol dosyasında yalnız modülatör blok sezgisi ve `M = Vs/Vramp` hesabının arka planı olarak kalır.
+
+[Açık Kontrol] p174 üzerindeki `w0` satırı `45.8 krad/s` gibi okunur; bazı defter/owner zincirlerinde daha önce `48.8 krad/s` benzeri okuma izleri varsa sessizce harmonize edilmeyecek. Kırılım frekansları final Type-III komponent setine bağlanırken bu satır birim ve okuma kontrolü ister.
+
 ![W.11'den küçük kırpım: faz marjı / kazanç marjı için örnek ara hesap](images/defter_snippets_web/d172_w11_example_pm_gm.jpg)
 
 ![W.12'den küçük kırpım: `PM = 55 deg` hedefiyle plant fazının yeniden hesabı](images/defter_snippets_web/d173_w12_plant_phase_calc.jpg)

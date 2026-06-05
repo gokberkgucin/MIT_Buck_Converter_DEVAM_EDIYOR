@@ -4041,3 +4041,56 @@ Açık notlar:
 
 - p173 üzerindeki `15 V/V` için dB karşılığı gibi görünen kısa not final modele sessizce aktarılmadı; lineer `KFF = 15 V/V` kullanılmaya devam eder.
 - "Eski hocanın LTspice'ında bunun olduğunu göster" notu, LTspice modelinde feedforward / ramp kazancı gerçekten temsil ediliyor mu sorusuna açık kontrol olarak bırakıldı.
+
+## Pass 088 - Sayfa 174-175
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p174.jpg](../images/defter_full_pages/defter_p174.jpg)
+- [defter_p175.jpg](../images/defter_full_pages/defter_p175.jpg)
+- [Figure 2. Buck Converter Schematic.jpg](../images/odt_embedded/Figure%202.%20Buck%20Converter%20Schematic.jpg)
+- [fig_22_voltage_mode_modulator.png](../images/odt_embedded/fig_22_voltage_mode_modulator.png)
+
+Defter işaretleri:
+
+- `p174 / W.9-W.10 geçişi`: sol tarafta frekans satırları `fz1`, `f0`, `fp1`, `fp2`, `fESR`, `fsw`, `fc` olarak dizilir.
+- `p174 / W.9-W.10 geçişi`: `wz1 = 0.5*w0` notu görünür.
+- `p174 / W.9-W.10 geçişi`: `wp1 = wESR` notu görünür.
+- `p174 / W.9-W.10 geçişi`: `wz2 = w0` notu görünür.
+- `p174 / W.9-W.10 geçişi`: `wp2 = wsw/2` notu görünür.
+- `p174 / W.9-W.10 geçişi`: `w0 ≈ 45.8 krad/s` gibi okunan satır vardır.
+- `p174 / W.9-W.10 geçişi`: `wz1 = 0.5 * ... krad/s -> 1/(Rc1*Cc1)` çizgisi görünür.
+- `p175 / W.10`: "Modulator" başlığı ve "6.98'den dikkat, Figure 2 Buck Converter Schematic foto bul" notu okunur.
+- `p175 / W.10`: `Vout = (1/T) int_0^T Vmod(t) dt` ortalama modeli yazılır.
+- `p175 / W.10`: `1/T [int_0^ton Vin dt + int_ton^T 0 dt]` ayrımı yapılır.
+- `p175 / W.10`: `ton/(ton+toff) * Vin` ve buradan `D*Vin` hattı görünür.
+
+Primary owner entegrasyonu:
+
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `W.2-W.12: Faz Bütçesi, Modülatör ve İlk Kırılımlar` altındaki `W.9/W.10` frekans yerleşimi ve modülatör/duty izlerine tam sayfa `p174` ve `p175` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- Duty ailesinin tam anlatımı [01](../01_tasarim_girdileri_ve_kaynaklar.md) ve startup/timing bağlamı [02](../02_startup_pin_programlama_ve_ortak_sabitler.md) tarafında kalır.
+- `p175`, kontrol dosyasında yalnız modülatörün ortalama modelini ve `Vout = D*Vin` sezgisinin kontrol hesabındaki kullanımını destekler; kullanıcının işaret ettiği `Figure 2. Buck Converter Schematic` ve `fig_22_voltage_mode_modulator` görselleri p175'in hemen yanına bağlandı.
+- Kırılım frekanslarının nihai komponent değerlerine dönüşümü [07](../07_kontrolcu_ve_kompanzasyon.md) içindeki Type-III ve calculator alt bölümlerinde kalır; p174 yeni final RC/CC seti üretmez.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `fz1`, `f0`, `fp1`, `fp2`, `fESR`, `fsw`, `fc`.
+- `wz1 = 0.5*w0`.
+- `wp1 = wESR`.
+- `wz2 = w0`.
+- `wp2 = wsw/2`.
+- `w0 ≈ 45.8 krad/s` gibi okunan satır.
+- `wz1 -> 1/(Rc1*Cc1)`.
+- `Vout = (1/T) int Vmod(t)dt`.
+- `ton/(ton+toff) * Vin`.
+- `Vout = D*Vin`.
+
+Açık notlar:
+
+- `w0` satırı görselde `45.8 krad/s` gibi okunur; önceki defter/owner zincirinde farklı okunan yakın değer varsa sessizce birleştirilmedi.
+- "Figure 2 Buck Converter Schematic foto bul" notu bu pass içinde kapatıldı; yeni dosya indirilmedi, repo içinde zaten bulunan ODT gömülü görseller bağlandı.
