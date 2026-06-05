@@ -2925,3 +2925,54 @@ Açık notlar:
 
 - Bu pass yeni final `Qg`, `QGD`, gate-drive gücü, switching süresi veya bootstrap değeri üretmedi.
 - Defterdeki "MOS kaç ns içinde anahtarlanabilecek?" ve "ne kadar gate-drive gücü tüketilecek?" soruları 06 dosyasındaki gate-drive loss / switching-time kapanışına bağlı kalır.
+
+## Pass 067 - Sayfa 132-133
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p132.jpg](../images/defter_full_pages/defter_p132.jpg)
+- [defter_p133.jpg](../images/defter_full_pages/defter_p133.jpg)
+
+Defter işaretleri:
+
+- `W.130`: `Ciss`, `Coss`, `Crss` datasheet kapasitansları ve ölçüm koşulları korunur.
+- `W.130`: `Ciss,spec ≈ 1300 pF`, `Coss,spec ≈ 260 pF`, `Crss,spec ≈ 18 pF`.
+- `W.130`: koşul `VGS = 0 V`, `f = 1 MHz`, `VDS = 50 V`.
+- `W.130`: `Crss,ave ≈ 2 * 18 pF * sqrt(50 V / 22 V) ≈ 54 pF`.
+- `W.130`: `Coss,ave ≈ 2 * 260 pF * sqrt(50 V / 22 V) ≈ 783 pF`.
+- `W.130`: `Cgd = Crss,ave ≈ 54 pF`.
+- `W.130`: `Cgs ≈ 1300 pF - 18 pF ≈ 1282 pF`.
+- `W.130`: `Cds ≈ 783 pF - 54 pF ≈ 729 pF`.
+- `p133 / W.155?`: yüksek `VDS,off ≈ 380 V` bağlamında ayrı bir kapasitans ölçekleme örneği korunur.
+- `p133`: `ID ≈ 5 A`, `Tj ≈ 100 C`, `Rgate ≈ 5 ohm`, `RLO = RHI ≈ 5 ohm`.
+- `p133`: `ID,max ≈ 9 A + 3.8 A / 2 ≈ 10.9 A ≈ 11 A` notu korunur.
+- `p133`: `Ciss ≈ 2600 pF`, `Coss ≈ 720 pF`, `Crss ≈ 340 pF`, koşul `VGS = 0 V`, `VDS = 25 V`, `f = 1 MHz`.
+- `p133`: `Crss,ave ≈ 2 * 340 pF * sqrt(25 V / 380 V) ≈ 174 pF`.
+- `p133`: `Coss,ave ≈ 2 * 720 pF * sqrt(25 V / 380 V) ≈ 369 pF`.
+- `p133`: `Cgs ≈ 2600 pF - 340 pF ≈ 2260 pF`; sayfa özellikle ortalama değer kullanılmadığını not eder.
+
+Primary owner entegrasyonu:
+
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `Parazitik Kapasitanslar ve FOM İzleri`: tam sayfa `p132` ve `p133`.
+
+Kısa referans / owner dışı bağlantı:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde switching-loss / `Coss` hesabına yalnız kısa handoff notu eklendi.
+- `p133`teki `380 V` hattı mevcut `22 V` buck çalışma noktasıyla tek final kapasitans seti gibi birleştirilmedi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Ciss,spec ≈ 1300 pF`, `Coss,spec ≈ 260 pF`, `Crss,spec ≈ 18 pF`.
+- `Crss,ave ≈ 54 pF`.
+- `Coss,ave ≈ 783 pF`.
+- `Cgd ≈ 54 pF`.
+- `Cgs ≈ 1282 pF`.
+- `Cds ≈ 729 pF`.
+- Yüksek `VDS,off` örnek hattı: `380 V`, `174 pF`, `369 pF`, `2260 pF`.
+
+Açık notlar:
+
+- Bu pass yeni final `Ciss/Coss/Crss`, `Cgd`, `Cgs`, `Cds`, `Qgd`, `Coss` kaybı veya switching-time değeri üretmedi.
+- `VDS≈22 V`, `VDS,off≈380 V` ve `W.163` küçük kapasitans hattı aynı koşulun cevapları değildir; final kapanışta hangi kapasitans ailesi kullanılacaksa `VDS`, `Tj`, gate-drive ve datasheet grafiği aynı setten seçilecek.

@@ -256,6 +256,8 @@ $$
 
 Bu formülün primary bobin owner'ı [03](03_bobin_ve_cikis_kapasitorleri.md) dosyasıdır; burada yalnız switching kaybına taşınan ripple değeri kullanılır.
 
+[Referans Notu] `Crss,ave ≈ 54 pF`, `Coss,ave ≈ 783 pF`, `Cgs ≈ 1282 pF` ve `Cds ≈ 729 pF` hattının tam kapasitans dönüşüm izi [05](05_mosfet_secimi_ve_dayanim_mantigi.md) dosyasındaki `W.130` / tam sayfa `p132` altında tutulur. `p133`teki `380 V` örnek hattı bu kayıp setiyle sessizce birleştirilmeyecek.
+
 ![W.161'den küçük kırpım: `Qgd = Crss,ave x VDS` yaklaşımı ve çok küçük çıkan Miller charge sorgulaması](images/defter_snippets_web/d135_w161_qgd_sanity_check.jpg)
 
 [Çapraz Teyit / Açık Kontrol] `W.161`, `Qgd` için daha küçük bir alternatif iz bırakır:

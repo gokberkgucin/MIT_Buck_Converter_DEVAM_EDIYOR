@@ -286,17 +286,62 @@ Kesinlikle Fig.6 grafiğini kullan.
 
 ![W.130'dan küçük kırpım: Ciss, Coss, Crss'ten Cgd, Cgs ve Cds türetimi](images/defter_snippets_web/d130_w130_ciss_coss_crss_to_cgd_cgs_cds.jpg)
 
+![Defter p132 / W.130: `Ciss/Coss/Crss` datasheet koşulları, `Crss,ave`, `Coss,ave`, `Cgd/Cgs/Cds` dönüşümü ve `VDS≈22 V` uyarlaması](images/defter_full_pages/defter_p132.jpg)
+
 `W.130`, datasheet kapasitanslarını `VDS ≈ 22 V` bağlamına taşımaya çalışan ilk hattır:
 
 ```text
-Cgd ≈ 54 pF
-Coss,ave ≈ 783 pF
-Cds ≈ 729 pF
+Ciss,spec ≈ 1300 pF
+Coss,spec ≈ 260 pF
+Crss,spec ≈ 18 pF
+
+Datasheet koşulu: VGS = 0 V, f = 1 MHz, VDS = 50 V
+
+Crss,ave ≈ 2 * Crss,spec * sqrt(VDS,spec / VDS,off)
+         ≈ 2 * 18 pF * sqrt(50 V / 22 V)
+         ≈ 54 pF
+
+Coss,ave ≈ 2 * Coss,spec * sqrt(VDS,spec / VDS,off)
+         ≈ 2 * 260 pF * sqrt(50 V / 22 V)
+         ≈ 783 pF
+
+Cgd = Crss,ave ≈ 54 pF
+Cgs ≈ Ciss - Crss ≈ 1300 pF - 18 pF ≈ 1282 pF
+Cds ≈ Coss,ave - Crss,ave ≈ 783 pF - 54 pF ≈ 729 pF
 ```
+
+[Tasarım İzi] Tam sayfa `p132`, `Ciss = Cgs + Cgd`, `Coss = Cds + Cgd` ve `Crss = Cgd` ilişkilerini aynı yerde tutar. Sayfadaki "bunlar spec olduğunda getirebiliriz" notu, katalog değerlerinin doğrudan çalışma noktasına taşınmadığını; `VDS,spec` ile `VDS,off` arasındaki ölçeklemenin defter izinde özellikle yapıldığını gösterir.
 
 ![MOSFET kapasitanslarının VDS ile değişimi](images/foto_selected/p29_mosfet_capacitance_vs_vds.jpg)
 
 ![MOSFET kapasitans okuması, VDS yaklaşık 22 V bağlamı](images/foto_selected/p98_mosfet_capacitance_reading_22v.jpg)
+
+![Defter p133 / W.155?: yüksek `VDS,off` örnek hattı; `Ciss/Coss/Crss` değerlerinin `380 V` bağlamına ölçeklenmesi ve `Cgs` için ham değer uyarısı](images/defter_full_pages/defter_p133.jpg)
+
+[Eski İterasyon / Kaynak Örneği] Tam sayfa `p133`, aynı kapasitans mantığını daha yüksek `VDS,off` senaryosunda açar. Bu sayfa mevcut buck çalışma noktasının final kapasitans seti değildir; `VDS,off = 380 V` bağlamında, kaynak yönteminin nasıl uygulandığını gösteren ayrı izdir:
+
+```text
+Uygulama koşulu izleri:
+VDS,off ≈ 380 V
+ID ≈ 5 A
+Tj ≈ 100 C
+Rgate ≈ 5 ohm
+RLO = RHI ≈ 5 ohm
+ID,max notu: 9 A + Delta_IL / 2 ≈ 9 A + 3.8 A / 2 ≈ 10.9 A ≈ 11 A
+
+Datasheet kapasitans koşulu:
+Ciss ≈ 2600 pF
+Coss ≈ 720 pF
+Crss ≈ 340 pF
+VGS = 0 V, VDS = 25 V, f = 1 MHz
+
+Crss,ave ≈ 2 * 340 pF * sqrt(25 V / 380 V) ≈ 174 pF
+Coss,ave ≈ 2 * 720 pF * sqrt(25 V / 380 V) ≈ 369 pF
+Cgd = Crss,ave ≈ 174 pF
+Cgs ≈ Ciss - Crss ≈ 2600 pF - 340 pF ≈ 2260 pF
+```
+
+[Açık Kontrol] `p133` alt notu `Cgs` için ortalama değer kullanılmadığını söyler; çünkü `Cgs`, `Cgd` ve `Cds` gibi `VDS` gerilimine güçlü bağlı kabul edilmemiştir. Bu nedenle `Cgs = 2260 pF` hattı ile `Cgd/Cds` ortalama hatları aynı matematiksel dönüşüm gibi okunmayacak.
 
 ![W.131'den küçük kırpım: Cgs, Ciss ve Miller rollerini toparlayan el yazısı not](images/defter_snippets_web/d101_w131_gate_caps_roles.jpg)
 
@@ -329,7 +374,7 @@ Coss,ave ≈ 39.2 pF
 Cgs ≈ 830.2 pF
 ```
 
-[Açık Kontrol] `54 pF / 783 pF / 729 pF` hattı ile `11.21 pF / 39.2 pF / 830.2 pF` hattı sessizce birleştirilmeyecek. Bunlar farklı okuma / uyarlama izleridir. Final modelde kapasitanslar aynı `VDS`, `Tj`, gate-drive ve datasheet koşuluna çekilmeli.
+[Açık Kontrol] `54 pF / 783 pF / 729 pF` hattı, `174 pF / 369 pF / 2260 pF` yüksek `VDS,off` örnek hattı ve `11.21 pF / 39.2 pF / 830.2 pF` hattı sessizce birleştirilmeyecek. Bunlar farklı okuma / uyarlama izleridir. Final modelde kapasitanslar aynı `VDS`, `Tj`, gate-drive ve datasheet koşuluna çekilmeli.
 
 ## `dV/dt`, Miller ve Yanlış Turn-on
 
