@@ -523,6 +523,53 @@ VPL ≈ sqrt(Iload / Kn) + VGS(th) ≈ 4.95 V
 
 Sayfa ayrıca saturation-region koşullarını `VGS >= VGS(th)` ve `VDS > VGS - VGS(th)` olarak kontrol eder. Aynı defter sayfasının altındaki `TJ ≈ 73.9 C`, `VGS(th)/TJ = -8.5 mV/C` ve `-0.41565 V` sıcaklık kayması notu termal owner'a kısa referans olarak [06](06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) dosyasında bağlıdır. Bu pass yeni final `VPL`, `VGS(th)`, switching time veya termal kapanış sayısı üretmez.
 
+### `W.173-W.174`: `gfs`, `VTH` ve `VMiller` Devam Hesabı
+
+![Defter p124 / W.173: `G88` gate threshold ve Miller plateau gerilimi için `gfs` sezgisi, datasheet yoksa hesap yöntemi ve küçük-sinyal uyarısı](images/defter_full_pages/defter_p124.jpg)
+
+[Tasarım İzi] Tam sayfa `p124`, gate threshold ve Miller plateau gerilimlerinin MOSFET anahtarlama karakteristiğini doğrudan etkilediğini tekrar eder. Defterde "yaklaşık değil, mümkünse tam hesaplamak iyi olur" notu vardır; aynı sayfada datasheet'te doğrudan görünmeyen durumda `G81 Fig.3` / transfer-characteristic yöntemiyle ilerleme fikri korunur. `gfs = dID/dVGS` transconductance ilişkisi, gate gerilimindeki küçük değişimin drain akımını ne kadar artırdığını anlatmak için yazılmıştır; fakat sayfa kendi kendine uyarır: `gfs` küçük-sinyal parametresidir, bu nedenle büyük `Delta I` aralığında doğrudan final hesap gibi kullanılmayacak.
+
+Sayfanın dalga şekli yorumu:
+
+```text
+t2 aralığında ID: 0 A -> IDS(on)
+VGS: VTH -> VMiller
+```
+
+Bu not, `VTH` ile `VMiller` arasındaki farkın switching-loss hesabındaki `QGS2`, `QGD`, `t1/t2` zincirine neden girdiğini açıklar; yeni final switching-time üretmez.
+
+![Defter p125 / W.174: `VTH`, `K`, `VMiller` ve 150 C -> 100 C sıcaklık düzeltmesi ara hesabı](images/defter_full_pages/defter_p125.jpg)
+
+`W.174`, aynı yöntemi iki transfer-characteristic noktası üzerinden açar:
+
+```text
+ID1 = K * (VGS1 - VTH)^2
+ID2 = K * (VGS2 - VTH)^2
+VGS,miller = VTH + sqrt(Iload / K)
+```
+
+Defterde görünen ara okuma:
+
+```text
+ID1 = 3 A
+ID2 = 20 A
+VGS1 ≈ 4.13 V
+VGS2 ≈ 5.67 V
+VTH ≈ 3.157 V
+K ≈ 3.169
+VGS,miller ≈ 4.413 V
+```
+
+[Tasarım İzi / Açık Kontrol] Sayfa `150 C` eğrisinden okunan değeri gerçek çalışma sıcaklığına taşımak için sıcaklık düzeltmesi dener. Defter notu `VTH` değerinin sıcaklık arttıkça azaldığını ve yaklaşık `-7 mV/C` katsayısını kullanır. `150 C` eğrisinden `100 C` civarına düzeltme için:
+
+```text
+Delta Vadj = (100 C - 150 C) * (-0.007 V/C) ≈ +0.35 V
+VGS,miller,düzeltilmiş ≈ 4.413 V + 0.35 V = 4.76 V
+VTH,düzeltilmiş ≈ 3.157 V + 0.35 V = 3.51 V
+```
+
+Bu değerler `W.128` üzerindeki `VGS(th) ≈ 3.906 V`, `Kn ≈ 10.034`, `VPL ≈ 4.95 V` ara hattını silmez. İki hesap farklı okuma noktaları / sıcaklık kabulüyle durur ve final switching-loss zincirine bağlanmadan önce aynı koşul setinde tekrar eşleştirilecek.
+
 ### `W.150`, `W.155`, `W.156`: Kayıp Sınıflarına Handoff
 
 ![W.150'den küçük kırpım: conduction ve switching loss şekillerini aynı sayfada gösteren kaynak](images/defter_snippets_web/d118_w150_conduction_vs_switching_figures.jpg)

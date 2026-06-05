@@ -2744,3 +2744,50 @@ Açık notlar:
 
 - `W.128` ara hesabı mevcut `W.149`, `W.153-W.154`, `W.162` ve `W.190` switching-loss zinciriyle aynı koşul setine çekilmeden final hesap gibi kullanılmayacak.
 - `TJ ≈ 73.9 C` erken izi, 06 dosyasındaki `~76 C` termal izleriyle sessizce birleştirilmeyecek.
+
+## Pass 063 - Sayfa 124-125
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p124.jpg](../images/defter_full_pages/defter_p124.jpg)
+- [defter_p125.jpg](../images/defter_full_pages/defter_p125.jpg)
+
+Defter işaretleri:
+
+- `W.173`: `G88` gate threshold ve Miller plateau gerilimi devam notudur.
+- `W.173`: `VGS(threshold)` ve `VGS(plateau)` gerilimlerinin MOSFET anahtarlama karakteristiğini etkilediği yazılır.
+- `W.173`: datasheet'te değer doğrudan yoksa `G81 Fig.3` / transfer-characteristic üzerinden hesap yöntemi denenir.
+- `W.173`: `gfs = dID/dVGS` ilişkisi not edilir; gate gerilimindeki küçük değişikliğin drain akımını nasıl artırdığını anlatır.
+- `W.173`: `gfs` küçük-sinyal parametresi olduğu için büyük `Delta I` hesabında doğrudan final sayı gibi kullanılmaması gerektiği uyarısı korunur.
+- `W.174`: `ID1 = K*(VGS1 - VTH)^2`, `ID2 = K*(VGS2 - VTH)^2` ve `VGS,miller = VTH + sqrt(Iload/K)` ilişkileri korunur.
+- `W.174`: ara okuma `ID1 = 3 A`, `ID2 = 20 A`, `VGS1 ≈ 4.13 V`, `VGS2 ≈ 5.67 V`, `VTH ≈ 3.157 V`, `K ≈ 3.169`, `VGS,miller ≈ 4.413 V`.
+- `W.174`: sıcaklık düzeltmesi için `-7 mV/C`, `150 C -> 100 C`, `+0.35 V`, `VGS,miller,düzeltilmiş ≈ 4.76 V`, `VTH,düzeltilmiş ≈ 3.51 V` izi korunur.
+
+Primary owner entegrasyonu:
+
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `Gate Surme ve Switching Interval Baglami / W.173-W.174`: tam sayfa `p124` ve `p125`.
+
+Kısa referans / owner dışı bağlantı:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde termal owner'a yalnız sıcaklık düzeltmesi notu bağlandı.
+- `W.173-W.174` hesapları, `W.128` ara hesabını silmez; farklı koşul/okuma seti olarak birlikte görünür kalır.
+- Switching-loss sayısal kapanışı yine 06 dosyasındaki `W.153-W.154`, `W.190` ve gate-charge zincirine bağlıdır.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `gfs = dID/dVGS`.
+- `ID1 = 3 A`, `ID2 = 20 A`.
+- `VGS1 ≈ 4.13 V`, `VGS2 ≈ 5.67 V`.
+- `VTH ≈ 3.157 V`.
+- `K ≈ 3.169`.
+- `VGS,miller ≈ 4.413 V`.
+- `Delta Vadj ≈ +0.35 V`.
+- `VGS,miller,düzeltilmiş ≈ 4.76 V`.
+- `VTH,düzeltilmiş ≈ 3.51 V`.
+
+Açık notlar:
+
+- Bu pass yeni final `VTH`, `VMiller`, `K`, `gfs`, switching time veya kayıp sayısı üretmedi.
+- `W.128`, `W.173-W.174`, `W.149`, `W.162`, `W.190` ve `W.153-W.154` aynı koşul setine çekilmeden birbirine sayısal final gibi bağlanmayacak.
