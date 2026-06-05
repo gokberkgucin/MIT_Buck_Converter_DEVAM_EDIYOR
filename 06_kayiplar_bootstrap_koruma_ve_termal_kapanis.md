@@ -176,6 +176,24 @@ MOSFET seçimi ve datasheet okuma kuralları [05](05_mosfet_secimi_ve_dayanim_ma
 
 ### Switching Loss Girdilerinin Toplanması
 
+![Defter p114 / W.210: synchronous buck içindeki kayıp bölgeleri, MOSFET kayıp sınıfları ve `P_switching` denklemine kaynak şekil](images/defter_full_pages/defter_p114.jpg)
+
+[Kaynak İzi / Tasarım İzi] Tam sayfa `p114`, `SLVAEQ9` kaynağında synchronous buck kayıplarının nerede oluştuğunu görsel olarak ayırır: switch/MOSFET bloğu, indüktör, giriş/çıkış kapasitörü ESR kayıpları ve sense/diğer kayıplar. Sayfadaki altı çizili liste MOSFET kayıplarını beş ana parçaya böler: switching loss, conduction loss, gate-drive loss, output-capacitance loss ve LS MOSFET body-diode loss. Bu sınıflar bu dosyada ayrı ayrı kapanır; indüktör ve kapasitör tarafları kendi owner dosyalarından gelen sonuçlarla bağlanır.
+
+`W.210` aynı zamanda gate-charge dalga şeklini `t0-t4`, `VTH`, `VPL`, `QTH`, `QGS2` ve `QGD` bölgeleriyle gösterir. Sayfanın altındaki `P_switching` denklemi, aşağıdaki `W.153-W.154` pratik switching-loss hesaplarının kaynak denklemidir; burada yeni final sayı üretmez.
+
+![Defter p115 / W.162: G81 Figure 3 gate-charge okuması, `t0-t4`, `QTH`, `QGS2`, `QGD` ve Miller plateau notları](images/defter_full_pages/defter_p115.jpg)
+
+[Tasarım İzi] `W.162`, `G81 Fig.3` dalga şeklini elle okur:
+
+- `t0`: MOSFET off durumdadır, `VGS = 0 V`.
+- `t1`: `VGS`, `VTH` eşiğine kadar artar; MOSFET hâlâ gerilim bloklar, `IDS` t1 sonunda akmaya başlar.
+- `t2`: `VGS`, `VTH` seviyesinden `VPL` / Miller plateau seviyesine çıkar; `IDS` sıfırdan artmaya başlar ve bu bölgede `QTH + QGS2` yükü not edilir.
+- `t3`: `VGS`, plateau civarında kalır, `QGD` şarj olur; `VDS` azalmaya geçer ve switching-loss açısından kritik bölgedir.
+- `t4`: `VGS`, plateau'dan sonra yükselmeye devam eder ve MOSFET fully-on durumuna gider.
+
+[Açık Kontrol] `W.162`teki gate-charge okuması, `W.190` erken `tr/toff` kestirimi ve `W.153-W.154` pratik switching-loss sayılarıyla aynı koşul setinde tekrar eşleştirilecek. `QTH`, `QGS2`, `QGD`, `VPL`, `VTH`, gate direnci ve sürücü akımı aynı modelden seçilmeden zaman/kayıp sayıları birleştirilmeyecek.
+
 ![W.152'den küçük kırpım: ripple, kapasitanslar ve gate-charge giriş parametrelerini aynı sayfada toplayan hesap bloğu](images/defter_snippets_web/d134_w152_switching_loss_input_summary.jpg)
 
 [Tasarım İzi] `W.152`, switching-loss hesabına giren parametreleri toplar:

@@ -2524,3 +2524,47 @@ Açık notlar:
 - Bu pass yeni final efficiency, yeni MOSFET kaybı veya yeni termal kapanış sayısı üretmedi.
 - `P_capacitors`, giriş ve çıkış kapasitörü ESR/ripple kayıplarını owner dosyalardan alacak; tek bir kapasitör kararı gibi birleştirilmeyecek.
 - `P_other` içine controller, driver, PCB izi ve yardımcı kayıplar girerken çift sayım kontrolü yapılacak.
+
+## Pass 058 - Sayfa 114-115
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p114.jpg](../images/defter_full_pages/defter_p114.jpg)
+- [defter_p115.jpg](../images/defter_full_pages/defter_p115.jpg)
+
+Defter işaretleri:
+
+- `W.210`: synchronous buck kayıp bölgeleri görsel olarak ayrılır: MOSFET/switch bloğu, sense/diğer kayıp, indüktör ve giriş/çıkış kapasitörü ESR kayıpları.
+- `W.210`: MOSFET kayıpları beş sınıfa ayrılır: switching loss, conduction loss, gate-drive loss, output-capacitance loss ve LS MOSFET body-diode loss.
+- `W.210`: `MOSFET Switch Transition` şekli `VGS`, `VDS`, `IDS`, `VTH`, `VPL`, `QTH`, `QGS2`, `QGD` bölgeleriyle korunur.
+- `W.210`: `P_switching` denklemi, aşağıdaki `W.153-W.154` pratik switching-loss hesaplarının kaynak denklemi olarak korunur.
+- `W.162`: `G81 Fig.3` elle okunur; `t0-t4` gate-charge aralıkları, Miller plateau ve `QGD` şarj bölgesi açıklanır.
+- `W.162`: `t3` bölgesinde `VDS` düşerken switching loss'un kritik olduğu not edilir.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `MOSFET Kayıp Mekanizmaları / Switching Loss Girdilerinin Toplanması`.
+- Tam sayfa `p114`, switching-loss kaynak denklem ve kayıp sınıfları girişine eklendi.
+- Tam sayfa `p115`, gate-charge zaman aralığı okuması olarak aynı bölümde korundu.
+
+Kısa referans / owner dışı bağlantı:
+
+- MOSFET seçim dosyası [05](../05_mosfet_secimi_ve_dayanim_mantigi.md), `VPL` / gate-charge davranışını seçim gerekçesi olarak kısa tutar; ayrıntılı switching-loss kapanışı [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) dosyasında kalır.
+- Bobin ripple değeri [03](../03_bobin_ve_cikis_kapasitorleri.md) dosyasından switching-loss hesabına handoff olarak gelir.
+- Kapasitör ESR/ripple kayıpları [03](../03_bobin_ve_cikis_kapasitorleri.md) ve [04](../04_giris_kapasitorleri_ve_giris_agi.md) owner sonuçlarıyla kapanır.
+
+Okunan ana sayısal / kavramsal izler:
+
+- MOSFET kayıp sınıfları: switching, conduction, gate-drive, output-capacitance, LS body-diode.
+- Gate-charge bölgeleri: `QTH`, `QGS2`, `QGD`.
+- Zaman bölgeleri: `t0`, `t1`, `t2`, `t3`, `t4`.
+- Gerilim bölgeleri: `VTH`, `VPL`, `VGS`, `VDS`.
+- Switching-loss denklemi `tr`, `toff`, `f_sw`, `Io` ve `Delta iLpp` ile ilişkilidir.
+
+Açık notlar:
+
+- Bu pass yeni `P_switching` sayısı üretmedi.
+- `W.162` gate-charge okuması, `W.190` erken `tr/toff` kestirimi ve `W.153-W.154` pratik switching-loss hesaplarıyla aynı koşul setine çekilmeden birleştirilmeyecek.
+- `QTH + QGS2` ve `QGD` ayrımı korunacak; Miller plateau bölgesi sıradan gate-charge toplamı gibi eritilmeyecek.
