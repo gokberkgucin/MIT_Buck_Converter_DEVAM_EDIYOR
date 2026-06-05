@@ -721,7 +721,7 @@ Bu kalemler low-side normal kanal iletiminin yerine geçmez. `W.192` kanal ileti
 - `Vin` yükseldikçe dahili LDO'nun daha çok ısınacağı uyarısı,
 - ısınma sorununu azaltmak için `VCC` pinine `8 V - 13 V` aralığında harici yardımcı kaynak bağlama seçeneği.
 
-[Çapraz Teyit] Startup/pin-programming tarafında dahili `VCC/LDO` ana varsayımı [02](02_startup_pin_programlama_ve_ortak_sabitler.md) içinde kalır. Bu dosyada korunan ana nokta, bu varsayımın kayıp ve sıcaklık kapanışının ayrıca yapılması gerektiğidir.
+[Çapraz Teyit] Startup/pin-programming tarafında dahili `VCC/LDO` çalışma bağlamı ve harici `VCC/DVCC` alternatifi [02](02_startup_pin_programlama_ve_ortak_sabitler.md) içinde kalır. Bu dosyada korunan ana nokta, seçilecek VCC yolunun kayıp ve sıcaklık kapanışının ayrıca yapılması gerektiğidir.
 
 ### Thermal Shutdown, Exposed Pad ve Kontrolcü Limitleri
 

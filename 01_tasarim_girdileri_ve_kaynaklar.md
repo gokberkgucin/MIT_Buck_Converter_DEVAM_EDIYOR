@@ -65,7 +65,7 @@ Ana kaynak: [G94_SPEC.txt](G94_SPEC.txt)
 | Worst-case board sıcaklığı | `76 °C` | termal kapanış hedef girdisi |
 | Load-step | `3.571 A -> 9 A` | yaklaşık `5.429 A` step |
 | Anahtarlama frekansı | `332 kHz` | mevcut tasarım seçimi |
-| Harici bias / VCC | kullanılmayacak | dahili VCC/LDO bağlamı kontrol edilecek |
+| Harici bias / VCC | dışlanmış final karar değil | dahili VCC/LDO ve harici VCC/DVCC yolu birlikte kontrol edilecek |
 
 Not: `44 V / 1 ms` satırı normal çalışma hedefi değildir; yalnız hayatta kalma koşuludur.
 
@@ -202,8 +202,8 @@ Startup ve pin-programming ayrıntılarının primary owner'ı: [02_startup_pin_
 
 Bu dosyada yalnız global bağlam kalır:
 
-- LM5146 dahili `7.5 V` VCC/LDO kullanımı bu iterasyonun ana varsayımıdır.
-- Harici VCC/bias kullanılmayacak kabul edilmiştir.
+- LM5146 dahili `7.5 V` VCC/LDO kullanımı ve harici `8 V - 13 V` VCC/DVCC alternatifi aynı startup/pin owner içinde tutulur.
+- Harici VCC/bias dışlanmış bir final karar değildir; rework, BOM ve termal kapanışta tekrar kontrol edilecek açık seçenektir.
 - EN/UVLO, SS/TRK, RT ve VCC UVLO ayrıntıları [02_startup_pin_programlama_ve_ortak_sabitler.md](02_startup_pin_programlama_ve_ortak_sabitler.md) dosyasında yaşar.
 - VCC/LDO güç kaybı ve termal etkisi [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) dosyasına bağlanır.
 

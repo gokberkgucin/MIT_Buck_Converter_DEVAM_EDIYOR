@@ -54,7 +54,7 @@ G94 şartnamesinden bu repoda kullanılan ana hedefler:
 | EMI hedefi | CISPR 25 Class 5 / EN55025 bağlamı; input π-stage EMI filter ve damping |
 | Worst-case board sıcaklığı | 76 °C |
 | Load-step | 3.571 A'den 9 A'e, yani yaklaşık 5.429 A step |
-| VCC yaklaşımı | Harici VCC kaynağı kullanılmayacak; dahili VCC/LDO bağlamı kontrol edilecek |
+| VCC yaklaşımı | Harici VCC/DVCC seçeneği dışlanmış final karar değildir; dahili VCC/LDO ve harici VCC/DVCC yolu birlikte kontrol edilecek |
 
 Tam kaynak izi: [G94_SPEC.txt](G94_SPEC.txt). Global girdi owner'ı ve türetilmiş değerler için [01_tasarim_girdileri_ve_kaynaklar.md](01_tasarim_girdileri_ve_kaynaklar.md) okunur.
 
