@@ -201,6 +201,8 @@ Bu ekran, seçilen parçanın datasheet'inde `EAS` / single-pulse avalanche ener
 
 ![W.122'den seçilen el yazısı parça: SOA grafiği üzerindeki ana bölgeleri işaretleyen kaynak-üstü not](images/defter_snippets_web/d89_w122_soa_graph_note.jpg)
 
+![Defter p090 / W.122: TI `Understanding MOSFET Data Sheets, Part 2 - Safe Operating Area (SOA) Graph` kaynak sayfası ve SOA limit bölgeleri](images/defter_full_pages/defter_p090.jpg)
+
 `W.122`, Safe Operating Area grafiğinin seçim mantığına dahil edilmesi gerektiğini gösterir.
 
 SOA okuması:
@@ -208,6 +210,12 @@ SOA okuması:
 - `VDS` ve `ID` birlikte değerlendirilir,
 - `DC`, `10 ms`, `1 ms`, `100 us` gibi pulse süreleri farklı sınırlar verir,
 - sınırı tek mekanizma belirlemez; akım limiti, güç limiti, termal kararlılık ve `BVdss` sınırı farklı bölgeler oluşturur.
+
+[Kaynak İzi / Çapraz Teyit] Tam sayfa `p090`, TI SOA makalesinin başlangıç sayfasını ve örnek `SOA Graph` üzerindeki `RDS(on) Limitation`, `Current Limitation`, `Max Power Limitation`, `Thermal Instability Limitation` ve `BVdss Limitation` bölgelerini korur. Üst nottaki "buck'taki MOSFET'ler tam bu bölgede çalışır" okuması, SOA'nın yalnız arıza değil, yüksek gerilim-akım-zaman kombinasyonlarında seçim dayanımı açısından okunması gerektiğini gösterir. Bu sayfa proje için yeni akım limiti veya SOA kabul noktası üretmez.
+
+![Defter p091 / W.123: MOSFET `ID-VDS` karakteristiğinde lineer ve saturasyon bölgeleri, `VGS` etkisi ve `ID ≈ VDS/RDS(on)` sezgisi](images/defter_full_pages/defter_p091.jpg)
+
+[Tasarım İzi] `W.123`, SOA grafiğinin arkasındaki MOSFET çalışma bölgesi sezgisini çizer. Lineer bölgede akımın `VDS` ile ilişkili olduğu ve yaklaşık `ID ≈ VDS/RDS(on)` gibi düşünülebileceği not edilir. Saturasyon bölgesinde ise `VDS` artsa da `ID` artık `VGS` tarafından sınırlanır. Bu not, SOA eğrisini okurken "MOSFET zarar görmeden hangi gerilim-akım-süre bölgesinde kalır?" sorusunun fiziksel bağlamını verir; final çalışma noktası yerleştirmesi değildir.
 
 [Açık Kontrol] Bu dosyada proje-özel sayısal SOA yerleştirmesi yok. Finalde normal iletim, switching geçişi, startup, current-limit ve arıza pulse süreleri ayrı SOA pencereleriyle kontrol edilmeli.
 

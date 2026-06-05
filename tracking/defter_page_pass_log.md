@@ -1952,3 +1952,45 @@ Açık notlar:
 - Kaynak sayfasındaki makale proje ölçümü değildir; datasheet okuma ve seçim kontrolü için kaynak izidir.
 - `p088` ve `p089`, seçilen MOSFET'in avalanche açısından final doğrulandığını göstermez.
 - Final kabul için `VDS` spike / ringing simülasyonu, snubber veya gate direnci kararı, SOA ve termal kapanış aynı koşul setinde ayrıca kontrol edilmelidir.
+
+## Pass 046 - Sayfa 90-91
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p090.jpg](../images/defter_full_pages/defter_p090.jpg)
+- [defter_p091.jpg](../images/defter_full_pages/defter_p091.jpg)
+
+Defter işaretleri:
+
+- `W.122`: TI `Understanding MOSFET Data Sheets, Part 2 - Safe Operating Area (SOA) Graph` kaynak sayfası.
+- `W.122`: SOA grafiğinde `RDS(on) Limitation`, `Current Limitation`, `Max Power Limitation`, `Thermal Instability Limitation` ve `BVdss Limitation` bölgeleri görünür.
+- `W.122`: üst notta "MOSFET'in zarar görmeden çalışabileceği gerilim ve akım sınırlarını gösteren grafik" okuması vardır.
+- `W.122`: farklı pulse süreleri (`DC`, `10 ms`, `1 ms`, `100 us`) SOA eğrisinde ayrı sınırlar olarak görünür.
+- `W.123`: `ID-VDS` karakteristiği çizilir; `VGS = 6 V` ve `VGS = 3 V` gibi örnek gate gerilimleri görünür.
+- `W.123`: lineer bölgede akımın `VDS` ile ilişkili olduğu ve yaklaşık `ID ≈ VDS/RDS(on)` gibi okunabileceği not edilir.
+- `W.123`: saturasyon bölgesinde `VDS` artsa bile akımın `VGS` tarafından sınırlanacağı not edilir.
+
+Primary owner entegrasyonu:
+
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `SOA Okuması`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) dosyasındaki termal/kayıp kapanışını açmadı; SOA seçim/dayanım owner'ı 05 dosyasında kaldı.
+- `Thermal Instability Limitation` SOA grafiğinde görünse de ayrıntılı MOSFET junction/board termal kapanışı [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) owner'ına aittir.
+- Bu pass yeni proje-özel SOA çalışma noktası, akım limiti, pulse süresi veya MOSFET kayıp değeri üretmedi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- SOA grafiği `VDS`, `ID` ve pulse süresini birlikte okutur.
+- SOA limit bölgeleri: `RDS(on)`, current, max power, thermal instability ve `BVdss`.
+- Lineer bölgede yaklaşık `ID ≈ VDS/RDS(on)` sezgisi.
+- Saturasyon bölgesinde akım `VGS` ile sınırlanır.
+
+Açık notlar:
+
+- `p090` ve `p091`, seçilen MOSFET'in final SOA doğrulamasını yapmaz; SOA grafiğini nasıl okumak gerektiğini kaynak/defter izi olarak gösterir.
+- Final kabulte normal çalışma, switching geçişi, startup, current-limit ve fault pulse süreleri ayrı ayrı SOA üzerinde işaretlenmelidir.
+- EVM üzerinde uygulanmış rework veya ölçüm sonucu gibi sunulmadı.
