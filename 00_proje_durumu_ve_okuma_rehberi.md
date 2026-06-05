@@ -48,10 +48,14 @@ Bu ayrım repo boyunca korunmalıdır:
 | Durum | Açıklama |
 |---|---|
 | Seçildi | Hesaplar sonucunda bobin, kapasitörler, MOSFET, kompanzasyon elemanları, current-limit/protection elemanları, giriş filtresi ve ilgili pasifler için aday/parça aileleri belirlendi. |
-| Satın alındı | BOM klasöründe datasheet izleri bulunan birçok parça seçildi ve satın alındı. |
-| Planlandı | LM5146-Q1 EVM/kart üzerinde rework uygulanması planlandı; birçok elemanın değiştirilmesi öngörüldü. |
+| Satın alındı | BOM klasöründe datasheet izleri bulunan birçok parça seçildi ve satın alındı; harici VCC kaynağı için ikinci bir LM5146-Q1 EVM de alındı. |
+| Planlandı | LM5146-Q1 EVM/kart üzerinde rework uygulanması ve ikinci EVM'nin harici VCC kaynağı olarak kullanılması planlandı; birçok elemanın değiştirilmesi öngörüldü. |
 | Uygulanmadı | Seçilen bileşenler karta takılmadı; EVM üzerinde planlanan modifikasyon yapılmadı. |
 | Durduruldu | Proje daha sonra durduruldu; rework sonrası ölçüm, termal test, EMI testi ve tam LTspice/PSpice kapanışı yapılmadı. |
+
+![İki LM5146-Q1 EVM ve satın alınan komponent paketleri; ikinci EVM harici VCC kaynağı rolü için alınmış fiziksel karttır](images/GENEL_PCB/IMG_20260529_012123.jpg)
+
+[Tasarım İzi] Fotoğraf, iki LM5146-Q1 EVM kartını ve satın alınan komponent paketlerini aynı fiziksel durumda gösterir. Bu kayıt “seçildi / satın alındı / planlandı” aşamasını belgeler; kart rework'ünün uygulandığını veya laboratuvar doğrulamasının yapıldığını göstermez.
 
 Bu nedenle repo, tamamlanmış bir donanım doğrulama raporu gibi okunmamalıdır. Hesap ve parça seçim izi güçlüdür; fiziksel kart doğrulaması açık kalmıştır.
 

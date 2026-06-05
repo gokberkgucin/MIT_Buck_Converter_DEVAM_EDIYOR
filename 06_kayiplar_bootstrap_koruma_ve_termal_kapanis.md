@@ -729,7 +729,7 @@ Bu kalemler low-side normal kanal iletiminin yerine geçmez. `W.192` kanal ileti
 - `Vin` yükseldikçe dahili LDO'nun daha çok ısınacağı uyarısı,
 - ısınma sorununu azaltmak için `VCC` pinine `8 V - 13 V` aralığında harici yardımcı kaynak bağlama seçeneği.
 
-[Çapraz Teyit] Startup/pin-programming tarafında dahili `VCC/LDO` çalışma bağlamı ve harici `VCC/DVCC` alternatifi [02](02_startup_pin_programlama_ve_ortak_sabitler.md) içinde kalır. Bu dosyada korunan ana nokta, seçilecek VCC yolunun kayıp ve sıcaklık kapanışının ayrıca yapılması gerektiğidir.
+[Çapraz Teyit] Startup/pin-programming tarafında dahili `VCC/LDO` çalışma bağlamı ve harici `VCC/DVCC` alternatifi [02](02_startup_pin_programlama_ve_ortak_sabitler.md) içinde kalır. Harici VCC kaynağı için ikinci LM5146-Q1 EVM satın alınmış olsa da bu dosyada korunan ana nokta değişmez: seçilecek VCC yolunun kayıp ve sıcaklık kapanışı ayrıca yapılmalıdır.
 
 ### Thermal Shutdown, Exposed Pad ve Kontrolcü Limitleri
 
@@ -769,7 +769,7 @@ Okuma:
 
 - `Vin` yükseldikçe dahili LDO üzerindeki gerilim düşümü artar,
 - aynı `IVCC` akımında ısı kaybı artar,
-- aşırı ısınma görülürse `8 V - 13 V` aralığında harici kaynakla `DVCC/VCC` besleme seçeneği tekrar değerlendirilebilir.
+- harici VCC kaynağı için ikinci LM5146-Q1 EVM satın alınmıştır; bu yol kullanılırsa `8 V - 13 V` aralığı, bağlantı yöntemi, izolasyon/ortak referans ve controller termali birlikte doğrulanmalıdır.
 
 Bu konu startup ve pin-programming açısından [02](02_startup_pin_programlama_ve_ortak_sabitler.md) dosyasında tanımlıdır; termal sonucu burada kapanır.
 

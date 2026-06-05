@@ -60,7 +60,7 @@ Bu dosya aşağıdaki global değerleri [01_tasarim_girdileri_ve_kaynaklar.md](0
 | İdeal duty ailesi | `0.389 / 0.583` |
 | Verim dahil korumacı duty ailesi | `0.432 / 0.648` |
 | Minimum verim varsayımı | `eta ≈ 0.9` |
-| Harici bias / VCC | dışlanmış final karar değil; açık kontrol |
+| Harici bias / VCC | ikinci LM5146-Q1 EVM satın alındı; bağlantı/ölçüm açık kontrol |
 
 Bu değerler burada değiştirilmez. Yerel startup hesabı bu sabitlerin üstüne kurulur.
 
@@ -81,7 +81,7 @@ Bu görsel, `EN/UVLO`, `VCC UVLO`, `SS/TRK`, PWM logic ve gate driver yolunu ayn
 
 ## Dahili `VCC/LDO`
 
-[Güncel Omurga] LM5146-Q1'in dahili `7.5 V` `VCC/LDO` regülatörü startup ve gate-drive hesaplarında önemli bir çalışma bağlamıdır. Harici `8 V - 13 V` `VCC/DVCC` seçeneği de bilinçli olarak incelenmiştir; bu seçenek finalde dışlanmış kabul edilmeyecek ve rework/BOM/termal kapanışta ayrıca kontrol edilecektir.
+[Güncel Omurga] LM5146-Q1'in dahili `7.5 V` `VCC/LDO` regülatörü startup ve gate-drive hesaplarında önemli bir çalışma bağlamıdır. Harici `8 V - 13 V` `VCC/DVCC` seçeneği de bilinçli olarak incelenmiştir; harici VCC kaynağı için ikinci bir LM5146-Q1 EVM satın alınmış ve bu yol rework/BOM/termal kapanışta ayrıca kontrol edilecek fiziksel seçenek haline gelmiştir.
 
 Datasheet/ODT izinde kullanılan dropout aralığı:
 
@@ -128,8 +128,13 @@ Bu görseller, `7.5 V` dahili LDO, `FB / 0.8 V`, `COMP`, `SS/TRK` ve startup/pin
 Bu noktadaki okuma / karar kaydı:
 
 - dahili `VCC/LDO` yolu, hesaplarda kullanılan `7.5 V` gate-drive ve startup bağlamını verir,
-- harici `VCC/DVCC` yolu finalde dışlanmış değildir; rework, BOM ve termal kapanışta tekrar değerlendirilecek açık seçenektir,
+- harici `VCC/DVCC` yolu finalde dışlanmış değildir; bu rol için ikinci LM5146-Q1 EVM satın alınmıştır,
+- ikinci EVM'nin harici VCC kaynağı olarak kullanılması planlanan fiziksel çözümdür, fakat bağlantı/rework/ölçüm yapılmadığı için hâlâ açık kontroldür,
 - hangi yol seçilirse seçilsin, `VCC/LDO` kaybı, gate-drive, bootstrap ve controller termal aynı koşul setinde kapanacaktır.
+
+![İkinci LM5146-Q1 EVM; harici VCC kaynağı olarak kullanılmak üzere satın alınan kart fiziksel olarak bu fotoğrafta görülür](images/GENEL_PCB/IMG_20260529_012123.jpg)
+
+[Tasarım İzi] Fotoğrafta iki LM5146-Q1 EVM vardır. Bu görsel, harici `VCC/DVCC` yolunun yalnız teorik bir seçenek olmadığını; ikinci EVM'nin bu kaynak rolü için satın alındığını gösterir. Yine de rework uygulanmadığı için bu not tamamlanmış donanım doğrulaması değildir.
 
 ![DVCC ve harici VCC yolu üzerine alınmış not](images/foto_selected/p06_external_vcc_markup.jpg)
 

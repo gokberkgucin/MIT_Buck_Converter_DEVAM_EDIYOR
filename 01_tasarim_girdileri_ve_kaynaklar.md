@@ -65,7 +65,7 @@ Ana kaynak: [G94_SPEC.txt](G94_SPEC.txt)
 | Worst-case board sıcaklığı | `76 °C` | termal kapanış hedef girdisi |
 | Load-step | `3.571 A -> 9 A` | yaklaşık `5.429 A` step |
 | Anahtarlama frekansı | `332 kHz` | mevcut tasarım seçimi |
-| Harici bias / VCC | dışlanmış final karar değil | dahili VCC/LDO ve harici VCC/DVCC yolu birlikte kontrol edilecek |
+| Harici bias / VCC | ikinci LM5146-Q1 EVM harici VCC kaynağı olarak satın alındı | dahili VCC/LDO ve harici VCC/DVCC yolu birlikte kontrol edilecek |
 
 Not: `44 V / 1 ms` satırı normal çalışma hedefi değildir; yalnız hayatta kalma koşuludur.
 
@@ -203,7 +203,7 @@ Startup ve pin-programming ayrıntılarının primary owner'ı: [02_startup_pin_
 Bu dosyada yalnız global bağlam kalır:
 
 - LM5146 dahili `7.5 V` VCC/LDO kullanımı ve harici `8 V - 13 V` VCC/DVCC alternatifi aynı startup/pin owner içinde tutulur.
-- Harici VCC/bias dışlanmış bir final karar değildir; rework, BOM ve termal kapanışta tekrar kontrol edilecek açık seçenektir.
+- Harici VCC/bias dışlanmış bir final karar değildir; ikinci LM5146-Q1 EVM bu kaynak rolü için satın alınmıştır, fakat rework ve ölçüm uygulanmadığı için elektriksel/termal kapanış hâlâ açık kontroldür.
 - EN/UVLO, SS/TRK, RT ve VCC UVLO ayrıntıları [02_startup_pin_programlama_ve_ortak_sabitler.md](02_startup_pin_programlama_ve_ortak_sabitler.md) dosyasında yaşar.
 - VCC/LDO güç kaybı ve termal etkisi [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) dosyasına bağlanır.
 
@@ -216,6 +216,7 @@ Kaynak listesi "her ihtimale karşı arşiv" değildir; tasarım hesabı veya cr
 | G94 spec | [G94_SPEC.txt](G94_SPEC.txt) | hedefleri ve sınırları sabitler |
 | LM5146-Q1 datasheet | [references/pdfs/G32_lm5146-q1.pdf](references/pdfs/G32_lm5146-q1.pdf) | kontrolcü sınırları, pin/topoloji ve elektriksel referans |
 | LM5146-Q1 EVM user guide | [references/pdfs/G46_LM5146-Q1EVM User's Guide.pdf](<references/pdfs/G46_LM5146-Q1EVM User's Guide.pdf>) | EVM topolojisi ve fiziksel referans |
+| İkinci LM5146-Q1 EVM fiziksel fotoğrafı | [images/GENEL_PCB/IMG_20260529_012123.jpg](images/GENEL_PCB/IMG_20260529_012123.jpg) | harici VCC kaynağı için satın alınan ikinci EVM ve komponent paketleri |
 | LM5146 quickstart calculator | [LM5146_quickstart_calculator_revB1.xlsm](LM5146_quickstart_calculator_revB1.xlsm), [references/pdfs/LM5146_quickstart_calculator_revB1.xlsm](references/pdfs/LM5146_quickstart_calculator_revB1.xlsm) | hızlı komponent ve loop checkpoint |
 | BOM izleri | [BOM/](BOM/), [BOM/malzeme_yeni_bom_list.xlsx](BOM/malzeme_yeni_bom_list.xlsx), [BOM/gayri_resmi_bom.xlsx](BOM/gayri_resmi_bom.xlsx) | seçilen/satın alınan parça izleri |
 | Kaynak listesi | [references/used_sources.md](references/used_sources.md) | kullanılan kaynakların düzenli takibi |

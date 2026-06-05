@@ -54,7 +54,7 @@ G94 şartnamesinden bu repoda kullanılan ana hedefler:
 | EMI hedefi | CISPR 25 Class 5 / EN55025 bağlamı; input π-stage EMI filter ve damping |
 | Worst-case board sıcaklığı | 76 °C |
 | Load-step | 3.571 A'den 9 A'e, yani yaklaşık 5.429 A step |
-| VCC yaklaşımı | Harici VCC/DVCC seçeneği dışlanmış final karar değildir; dahili VCC/LDO ve harici VCC/DVCC yolu birlikte kontrol edilecek |
+| VCC yaklaşımı | Harici VCC/DVCC seçeneği dışlanmış final karar değildir; harici VCC kaynağı için ikinci LM5146-Q1 EVM satın alındı ve bu yol ayrıca kontrol edilecek |
 
 Tam kaynak izi: [G94_SPEC.txt](G94_SPEC.txt). Global girdi owner'ı ve türetilmiş değerler için [01_tasarim_girdileri_ve_kaynaklar.md](01_tasarim_girdileri_ve_kaynaklar.md) okunur.
 
@@ -174,12 +174,15 @@ Tracking ve editörlük dosyaları:
 [Açık Kontrol] Fiziksel gerçekleşme durumu:
 
 - Parçalar seçildi ve satın alındı.
+- Harici VCC kaynağı olarak kullanılmak üzere ikinci bir LM5146-Q1 EVM satın alındı.
 - Karta takılmadı.
 - EVM modifikasyonu uygulanmadı.
 - Ölçüm ve doğrulama yapılmadı.
 - Proje durduruldu.
 
-Repo içinde teknik görseller ve EVM/datasheet ekran kırpımları var; fakat rework uygulanmış kartı gösteren fiziksel proje durumu fotoğrafı yok. Bu nedenle README'de fiziksel fotoğraf galerisi kullanılmadı. İleride eklenecek fotoğraflar için hedef klasör: `images/project_status/`.
+![İki LM5146-Q1 EVM ve satın alınan komponent paketleri; sağdaki/ikinci EVM harici VCC kaynağı olarak kullanılmak üzere alınmış fiziksel karttır, rework uygulanmış final kart değildir](images/GENEL_PCB/IMG_20260529_012123.jpg)
+
+[Tasarım İzi] Bu fotoğraf iki LM5146-Q1 EVM kartını ve satın alınan komponent paketlerini gösterir. İkinci EVM'nin rolü, planlanan harici VCC kaynağıdır; seçilen parçaların karta takıldığı veya EVM rework'ünün tamamlandığı anlamına gelmez.
 
 ## Bu Repo'nun Ne Olmadığı
 
