@@ -589,6 +589,8 @@ Rg,ext = 2.2 ohm  [eski/kaba isimlendirme]
 
 ![W.195'ten küçük kırpım: `Coss,HS,ave` ve `Coss,LS,ave` ortalama değerlerini veren ara hesap bloğu](images/defter_snippets_web/d144_w195_coss_average_values.jpg)
 
+![Defter p146 / W.195: MOSFET output-capacitance loss, `Coss,ave` formülü, `Coss,HS,ave = 783 pF` ve `Coss,LS,ave = 982.8 pF`](images/defter_full_pages/defter_p146.jpg)
+
 `W.195`, `Coss` kaybı için ortalama kapasite değerlerini kurar:
 
 $$
@@ -598,10 +600,18 @@ $$
 ```text
 Coss,HS,ave ≈ 783 pF
 VDS,LS,OFF = 14 V  [22 V değil]
-Coss,LS,ave ≈ 2 * 265 pF * sqrt(50 V / 14 V) ≈ 982.8 pF
+Coss,LS,ave ≈ 2 * 260 pF * sqrt(50 V / 14 V) ≈ 982.8 pF  [p146 tam sayfa]
 ```
 
+[Tasarım İzi] Tam sayfa `p146`, buradaki "output capacitance losses" ifadesinin güç katı `Cout` bankı değil, MOSFET drain-source output capacitance (`Coss`) kaybı olduğunu gösterir. Defter notu `Coss` değerinin `VDS` ile doğrusal olmayan biçimde değiştiğini; gerilim arttıkça `Coss`un azaldığını ve bu yüzden ortalama `Coss,ave` yaklaşımının kullanıldığını yazar. Aynı sayfada `VDS,LS,OFF = 14 V` değerinin `22 V` sanılmaması gerektiği ayrıca işaretlenir.
+
+[Çapraz Teyit / Açık Kontrol] `p146` altındaki notlar, datasheet/Fig.7 benzeri pratik okumalarla bulunan yaklaşık `Coss,HS ≈ 700 pF` ve `Coss,LS ≈ 800 pF` mertebelerinin ortalama yöntemle aynı büyüklükte çıktığını ima eder. Bu satır sayısal finali değiştirmez; `783 pF / 982.8 pF` hesap hattı ile pratik grafik okumasının aynı koşul ve hassasiyetle tekrar eşleştirileceğini gösterir.
+
+[Açık Kontrol] Önceki küçük kırpım/metin hattında low-side `Coss,spec` için `265 pF` izi görülürken tam sayfa `p146`, `260 pF` ile `982.8 pF` sonucunu verir. Bu fark sessizce tek değere indirilmeyecek; datasheet grafiğinden seçilen nokta tekrar okunacak.
+
 ![W.196'dan küçük kırpım: `Qoss` ve high-side/low-side `Coss` kayıp güçlerini veren sonuç blokları](images/defter_snippets_web/d145_w196_coss_power_results.jpg)
+
+![Defter p147 / W.196: `Qoss = Coss,ave * VDS,off`, `17.23 nC / 13.76 nC`, `102.86 mW / 82.15 mW` sonuçları](images/defter_full_pages/defter_p147.jpg)
 
 `W.196`, `Qoss` ve güç hesabına geçer:
 
@@ -629,6 +639,8 @@ Low-side:
 ```text
 P_LS,Coss ≈ 0.5 * 13.76 nC * 36 V * 332 kHz ≈ 82.15 mW
 ```
+
+[Tasarım İzi] Tam sayfa `p147`, `Qoss = Coss,ave * VDS,off` adımını görünür bırakır: high-side için `783 pF * 22 V = 17.23 nC`, low-side için `983 pF * 14 V = 13.76 nC`. Güç hesabında iki tarafta da `Vin = 36 V` ve `fsw = 332 kHz` kullanılır. Bu blok `Coss` enerjisiyle ilgilidir; switching overlap kaybıyla çift sayım riski aşağıdaki açık kontrolde ayrıca korunur.
 
 ![W.197'den küçük kırpım: toplam `Pcoss` ifadesi ve `185 mW` teyit sonucu](images/defter_snippets_web/d146_w197_total_coss_loss_result.jpg)
 

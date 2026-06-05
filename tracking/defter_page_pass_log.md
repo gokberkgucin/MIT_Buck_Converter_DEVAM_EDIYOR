@@ -3274,3 +3274,59 @@ Açık notlar:
 - `P_gate-drive,total ≈ 79.68 mW`, MOSFET conduction veya switching overlap kaybıyla aynı mekanizma değildir.
 - Gate-drive kaybının driver IC, MOSFET iç gate direnci ve PCB üzerindeki harici direnç arasında nasıl ısıya dönüştüğü final termal kapanışta ayrılacak.
 - `1.2 ohm` driver notu, `2.2 ohm` harici/yerel gate direnci notu ve `W.177` toplam gate-yolu direnci aynı hesapta üst üste eklenmeyecek.
+
+## Pass 074 - Sayfa 146-147
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p146.jpg](../images/defter_full_pages/defter_p146.jpg)
+- [defter_p147.jpg](../images/defter_full_pages/defter_p147.jpg)
+
+Defter işaretleri:
+
+- `p146 / W.195`: başlık `Other losses / Output capacitance losses`; burada kastedilen güç katı `Cout` değil MOSFET output capacitance (`Coss`) kaybıdır.
+- `p146 / W.195`: high-side için `P_HS-Coss = 1/2 * Qoss1 * Vin * fsw` formülü yazılır.
+- `p146 / W.195`: low-side için `P_LS-Coss = 1/2 * Qoss2 * Vin * fsw` formülü yazılır.
+- `p146 / W.195`: MOSFET drain-source arasındaki giriş/output capacitance değerinin gerilime bağlı ve doğrusal olmayan şekilde değiştiği not edilir.
+- `p146 / W.195`: gerilim arttıkça `Coss` azalır notu korunur.
+- `p146 / W.195`: ortalama kapasite için `Coss,ave = 2 * Coss,spec * sqrt(VDS,spec / VDS,off)` formülü yazılır.
+- `p146 / W.195`: `Coss,HS,ave = 783 pF` daha önce bulunmuş değer olarak korunur.
+- `p146 / W.195`: low-side için `VDS,LS,OFF = 14 V`; `22 V` değil diye özellikle işaretlenir.
+- `p146 / W.195`: `Coss,LS,ave = 2 * 260 pF * sqrt(50 V / 14 V) ≈ 982.8 pF` sonucu kutulanır.
+- `p146 / W.195`: alt notlarda datasheet/Fig.7 benzeri pratik okuma ile yaklaşık `Coss,HS ≈ 700 pF`, `Coss,LS ≈ 800 pF` mertebelerinin ortalama yöntemle benzer çıktığı not edilir.
+- `p147 / W.196`: `Qoss = Coss,ave * VDS,off`.
+- `p147 / W.196`: `Qoss,HS = 783 pF * 22 V = 17.23 nC`.
+- `p147 / W.196`: `Qoss,LS = 983 pF * 14 V = 13.76 nC`.
+- `p147 / W.196`: `P_HS-Coss = 1/2 * Qoss,HS * Vin * fsw`.
+- `p147 / W.196`: yerine koyma `1/2 * 17.23 nC * 36 V * 332 kHz`; sonuç `P_HS-Coss = 102.86 mW`.
+- `p147 / W.196`: `P_LS-Coss = 1/2 * Qoss,LS * Vin * fsw`.
+- `p147 / W.196`: yerine koyma `1/2 * 13.76 nC * 36 V * 332 kHz`; sonuç `P_LS-Coss = 82.15 mW`.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `Coss / Qoss Loss` altına tam sayfa `p146` ve `p147` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `Cout` / gerçek çıkış kapasitör bankı owner'ı [03](../03_bobin_ve_cikis_kapasitorleri.md) olarak kalır; bu pass MOSFET `Coss` kaybıdır.
+- MOSFET seçim/datasheet kapasite okuması [05](../05_mosfet_secimi_ve_dayanim_mantigi.md) ile bağlantılıdır; 06 içinde yalnız kayıp kapanışı yapılır.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Coss,HS,ave ≈ 783 pF`.
+- `VDS,LS,OFF = 14 V`.
+- `Coss,LS,ave ≈ 982.8 pF`.
+- `Qoss,HS ≈ 17.23 nC`.
+- `Qoss,LS ≈ 13.76 nC`.
+- `P_HS,Coss ≈ 102.86 mW`.
+- `P_LS,Coss ≈ 82.15 mW`.
+- Pratik grafik okuma mertebesi: `Coss,HS ≈ 700 pF`, `Coss,LS ≈ 800 pF` civarı.
+
+Açık notlar:
+
+- `p146` üzerindeki pratik grafik okuma mertebeleri, `783 pF / 982.8 pF` hesap hattının yerine geçirilmedi; yalnız çapraz teyit izi olarak korundu.
+- Önceki küçük kırpım/metin hattında `Coss,spec = 265 pF` izi varken tam sayfa `p146` `260 pF` ile `982.8 pF` sonucunu verir; bu fark sessizce birleştirilmeyecek.
+- `Coss` kaybı, switching overlap kaybıyla aynı enerji mekanizmasını kapsayabilir; final toplam kayıp tablosunda çift sayım kontrolü yapılacak.
+- `VDS,LS,OFF = 14 V` notu özellikle korunacak; low-side için `22 V` kullanılmayacak.
