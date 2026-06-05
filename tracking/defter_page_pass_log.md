@@ -2184,3 +2184,57 @@ Açık notlar:
 - Bu sayfalar gerçek switch-node ölçümü değildir; kaynak yöntemleri ve kapasitans varsayımlarının duyarlılığını gösterir.
 - `26.12 V` ile `26.82 V` aynı owner altında görünür bırakıldı.
 - `10.64` sonucu birim ve bağlam açısından net olmadığı için final limit yapılmadı.
+
+## Pass 051 - Sayfa 100-101
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p100.jpg](../images/defter_full_pages/defter_p100.jpg)
+- [defter_p101.jpg](../images/defter_full_pages/defter_p101.jpg)
+
+Defter işaretleri:
+
+- `W.126`: doğal / kaba `dV/dt` üst sınır kontrolünü sürdürür.
+- `W.126`: `(dV/dt)_N-limit ≈ VTH / (RGI * CGD)` ilişkisi p100 tam sayfada görünür.
+- `W.126`: `VTH = 3.49 V`, `RGI = 1 ohm`, `CGD = 80 pF`.
+- `W.126`: `3.49 V / (1 ohm * 80 pF) = 4.36e10 V/s ≈ 43.6 V/ns`.
+- `W.126`: defter notu bu değeri "epey yüksek bir doğal sınır" olarak yorumlar; bu senaryoda MOSFET'in istemsizce açılma riski düşük görülür.
+- `W.127`: kapasitif bölücü yaklaşımını tekrar kurar: `VGS = VDS * CGD/(CGS + CGD)`.
+- `W.127`: ters kontrol olarak `VDS,max ≈ VTH*(CGS+CGD)/CGD` kullanılır.
+- `W.127`: `VDS = 36 V - 14 V = 22 V` bağlamı görünür.
+- `W.127`: `Crss/CGD = 80 pF`, `Coss = 700 pF`, `Ciss = 1200 pF` grafikten yaklaşık okunur.
+- `W.127`: `CDS = Coss - CGD = 700 pF - 80 pF = 620 pF`.
+- `W.127`: `CGS = Ciss - CGD = 1200 pF - 80 pF = 1120 pF`.
+- `W.127`: `VDS,max ≈ 3.49 V*(1120 pF + 80 pF)/80 pF ≈ 52.35 V`.
+- `W.127`: sonuç MOSFET kapalıyken / gate komutu yokken kendi kendine açılmama kontrolü olarak yazılır.
+
+Primary owner entegrasyonu:
+
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `dV/dt, Miller ve Yanlış Turn-on`.
+- Aynı dosyada `W.125-W.127: G88 Kaynak / Ara Notları`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içindeki gate-drive kaybı, bootstrap veya termal hesabını açmadı.
+- `43.6 V/ns`, `52.35 V`, `26.12 V`, `26.82 V`, `190.6 V/ns` ve `517 V/ns` izleri tek final cevap gibi birleştirilmedi.
+- Bu pass yeni final `CGD`, `Ciss`, `Coss`, `VTH`, `VDS,max` veya gerçek switch-node `dV/dt` ölçümü üretmedi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `VTH = 3.49 V`.
+- `RGI = 1 ohm`.
+- `CGD/Crss = 80 pF`.
+- `(dV/dt)_N-limit ≈ 43.6 V/ns`.
+- `VDS = 36 V - 14 V = 22 V`.
+- `Coss = 700 pF`.
+- `Ciss = 1200 pF`.
+- `CDS = 620 pF`.
+- `CGS = 1120 pF`.
+- `VDS,max ≈ 52.35 V`.
+
+Açık notlar:
+
+- Önceki kısa özet satırında W.126 için `Ciss` notasyonu vardı; p100 tam sayfa hesabı `CGD/Crss = 80 pF` kullandığı için owner dosyasında bu fark görünürleştirildi.
+- Bu sayfalar gerçek ölçüm değil, kapasitans grafiğinden yaklaşık değerlerle yapılan Miller yanlış turn-on kontrolleridir.

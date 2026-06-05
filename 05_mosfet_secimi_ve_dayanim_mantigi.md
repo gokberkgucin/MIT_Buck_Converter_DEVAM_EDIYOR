@@ -401,14 +401,20 @@ VDS,max ≈ 26.82 V [p098 tam sayfa aritmetiği: (3.157 V + 0.35 V)*2600 pF/340 
 
 ![W.126'dan küçük kırpım: kaba dv/dt üst-sınır tahmini](images/defter_snippets_web/d99_w126_quick_dvdt_estimate.jpg)
 
+![Defter p100 / W.126: `VTH = 3.49 V`, `RGI = 1 ohm`, `CGD = 80 pF` ile `43.6 V/ns` doğal `dV/dt` limit izi](images/defter_full_pages/defter_p100.jpg)
+
 `W.126` daha kaba bir üst sınır verir:
 
 ```text
-(dV/dt)_N-limit ≈ VTH / (RGext * Ciss)
+(dV/dt)_N-limit ≈ VTH / (RGI * CGD) [p100 tam sayfa hesabı]
 örnek iz ≈ 43.6 V/ns
 ```
 
+[Çapraz Teyit] Tam sayfa `p100`, hesabı `3.49 V / (1 ohm * 80 pF) = 4.36e10 V/s ≈ 43.6 V/ns` olarak açar. Sayfadaki not bu değeri "epey yüksek bir doğal sınır" diye yorumlar ve bu senaryoda MOSFET'in istemsiz açılma riskinin düşük olduğunu söyler. Önceki kısa özet satırındaki `Ciss` yazımı p100 ile aynı final değer gibi birleştirilmedi; bu tam sayfa izi `CGD/Crss = 80 pF` varsayımını netleştirir.
+
 ![W.127'den küçük kırpım: Miller kaynaklı yanlış turn-on için VDS,max kontrolü](images/defter_snippets_web/d100_w127_miller_false_turn_on_check.jpg)
+
+![Defter p101 / W.127: kapasitif bölücüyle `Cgd=80 pF`, `Coss=700 pF`, `Ciss=1200 pF`, `VDS,max≈52.35 V` kontrolü](images/defter_full_pages/defter_p101.jpg)
 
 `W.127` kapasitif bölücüyle:
 
@@ -423,7 +429,9 @@ VDS,max ≈ 52.35 V
 
 sonucunu verir.
 
-Bu üç sayfa final dalga şekli değildir; `dV/dt` / Miller probleminin parametre duyarlılığını gösterir.
+[Çapraz Teyit] Tam sayfa `p101`, `VGS = VDS * CGD/(CGS + CGD)` ve tersinden `VDS,max ≈ VTH*(CGS+CGD)/CGD` kontrolünü tekrar kurar. Aynı sayfada `VDS = 36 V - 14 V = 22 V` bağlamı, `Crss/CGD = 80 pF`, `Coss = 700 pF`, `Ciss = 1200 pF`, `CDS = Coss - CGD = 620 pF` ve `CGS = Ciss - CGD = 1120 pF` izleri birlikte durur; `52.35 V` sonucu bu kapasitans seti için MOSFET'in kendi kendine açılmadığı yorumuna bağlanır.
+
+Bu dört sayfa final dalga şekli değildir; `dV/dt` / Miller probleminin parametre duyarlılığını gösterir.
 
 ## Gate Sürme ve Switching Interval Bağlamı
 
