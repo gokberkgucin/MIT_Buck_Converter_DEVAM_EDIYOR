@@ -992,11 +992,17 @@ CVCC = C25 = 2.2 uF
 
 [Tasarım İzi] Tam sayfa `p153`, LM5146 pinlerini kavramsal olarak `HB = 8`, `HO = 7`, `HS = 6` diye işaretler. Notta `HB` düğümü switch node seviyesinin üstüne bootstrap gerilimi kadar binen bir düğüm gibi çizilir (`36 V + 7.5 V` izi), `HS/SW` tarafı ise anahtarlama düğümüdür. Alt not özellikle korunur: `CBOOT` doğrudan Q1'in gate-source arasına bağlı değildir; dolaylı biçimde Q1'in high-side driver beslemesini sağlar.
 
+![Defter p154 / W.166: `Rboot = R3 = 2.2 ohm` izini ve Word'e aktarma süreç notunu gösteren bootstrap sayfası](images/defter_full_pages/defter_p154.jpg)
+
 [Meta-yönlendirme] `W.166`, `W.160` çevresinin Word'e aktarıldığını gösteren süreç izidir; yeni teknik sonuç vermez.
+
+[Tasarım İzi] Tam sayfa `p154`, `Rboot = R3 = 2.2 ohm` satırını tekrar eder ve "Word'e ekledim" notuyla bu bootstrap alt kümesinin dokümana taşınma sürecini gösterir. Bu sayfa `Rboot` için yeni değer üretmez; `W.160` envanteri ve `W.205` bağlantı mantığının yanında iz olarak kalır.
 
 ### `CVCC` ve `CBST` İlişkisi
 
 ![W.167'den küçük kırpım: `CVCC >> 10 x CBST` kuralını ve `2.2 uF > 10 x 0.1 uF` kontrolünü gösteren not](images/defter_snippets_web/d152_w167_cvcc_vs_cbst_rule.jpg)
+
+![Defter p155 / W.167: `CVCC` bypass kapasitesinin `CBST` ihtiyacına göre büyük olması ve `2.2 uF > 10 * 0.1 uF` kontrolü](images/defter_full_pages/defter_p155.jpg)
 
 `W.167` hızlı rezervuar kontrolü:
 
@@ -1011,6 +1017,8 @@ CBST = 0.1 uF
 ```
 
 Bu kontrol `CVCC` kaynağının `CBST`yi rahat besleyip besleyemeyeceğine bakar. Minimum `Cboot` hesabının yerine geçmez.
+
+[Tasarım İzi] Tam sayfa `p155`, `CVCC` bypass kondansatörünün `CBST`nin ihtiyaç duyduğu charge'ı kısa sürede verecek kadar büyük olması gerektiğini açık yazar. Defterde kullanılan hızlı kural `CVCC >> 10 * CBST`; seçilen `CVCC = 2.2 uF` ve `CBST = 0.1 uF` için `2.2 uF > 10 * 0.1 uF` koşulunun sağlandığı not edilir.
 
 ![W.169'dan küçük kırpım: `CVCC` için `1-6 uF` aralığı, seramik bypass ve startup etkisi notları](images/defter_snippets_web/d158_w169_cvcc_bypass_selection_note.jpg)
 

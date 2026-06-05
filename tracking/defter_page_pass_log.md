@@ -3500,3 +3500,48 @@ Açık notlar:
 - `Rboot = R3 = 2.2 ohm`, gate-yolu tarafındaki `2.2 ohm` notuyla aynı fiziksel eleman gibi okunmayacak.
 - `36 V + 7.5 V` çizimi kavramsal bootstrap düğüm gösterimidir; final mutlak gerilim/stress kontrolü için `BST-SW`, `HB-HS`, transient ve datasheet absolute maximum sınırları ayrı doğrulanacak.
 - `CBST`, `CVCC`, dahili bootstrap diyodu ve `Rboot` reference designator'ları actual EVM şeması/BOM ile tekrar eşleştirilecek.
+
+## Pass 078 - Sayfa 154-155
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p154.jpg](../images/defter_full_pages/defter_p154.jpg)
+- [defter_p155.jpg](../images/defter_full_pages/defter_p155.jpg)
+
+Defter işaretleri:
+
+- `p154 / W.166`: başlık `6.34 Bootstrap direnci`.
+- `p154 / W.166`: `Rboot = R3 = 2.2 ohm` izi tekrar görünür.
+- `p154 / W.166`: sayfada "Word'e ekledim" süreç notu vardır.
+- `p154 / W.166`: sayfa büyük ölçüde boştur; yeni bootstrap hesabı üretmez.
+- `p155 / W.167`: başlık `6.34 CVCC cap bypass` bağlamındadır.
+- `p155 / W.167`: `CVCC` kondansatörünün `CBST`nin ihtiyaç duyduğu charge'ı çok daha hızlı/kısa sürede verecek kadar büyük olması gerektiği yazılır.
+- `p155 / W.167`: hızlı kural `CVCC >> 10 x CBST`.
+- `p155 / W.167`: `CVCC = 2.2 uF`.
+- `p155 / W.167`: `CBST = 0.1 uF`.
+- `p155 / W.167`: `2.2 uF > 10 x 0.1 uF` ve koşulun sağlandığı not edilir.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `Bootstrap Envanteri ve Bağlantı İzleri` altına tam sayfa `p154` eklendi.
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `CVCC ve CBST İlişkisi` altına tam sayfa `p155` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `Rboot = R3 = 2.2 ohm` bootstrap seri direnci olarak kalır; gate-yolu `2.2 ohm` notlarıyla karıştırılmayacak.
+- `CVCC` / VCC bypass ve harici VCC/DVCC bağlamı [02](../02_startup_pin_programlama_ve_ortak_sabitler.md) ile ilişkili olsa da bu pass bootstrap enerji rezervuarı açısından [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde tutulur.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Rboot = R3 = 2.2 ohm`.
+- `CVCC = 2.2 uF`.
+- `CBST = 0.1 uF`.
+- `CVCC >> 10 x CBST`.
+- `2.2 uF > 10 x 0.1 uF`.
+
+Açık notlar:
+
+- `p154`, yeni hesap değil süreç/dokümantasyon izidir; teknik değer olarak yalnız mevcut `Rboot = R3 = 2.2 ohm` tekrarını taşır.
+- `CVCC >> 10 x CBST` kontrolü hızlı rezervuar sanity check'idir; minimum `Cboot`, `Qtotal`, `DeltaVHB`, UVLO ve gerçek etkin kapasite kontrollerinin yerine geçmez.
