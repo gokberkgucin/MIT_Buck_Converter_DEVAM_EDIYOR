@@ -2238,3 +2238,52 @@ Açık notlar:
 
 - Önceki kısa özet satırında W.126 için `Ciss` notasyonu vardı; p100 tam sayfa hesabı `CGD/Crss = 80 pF` kullandığı için owner dosyasında bu fark görünürleştirildi.
 - Bu sayfalar gerçek ölçüm değil, kapasitans grafiğinden yaklaşık değerlerle yapılan Miller yanlış turn-on kontrolleridir.
+
+## Pass 052 - Sayfa 102-103
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p102.jpg](../images/defter_full_pages/defter_p102.jpg)
+- [defter_p103.jpg](../images/defter_full_pages/defter_p103.jpg)
+
+Defter işaretleri:
+
+- `W.131`: `Cgs` için "sabit kabul edilir" ve `VDS` / `VGS` ile çok az bağlı olduğu notu okunur.
+- `W.131`: gate, MOSFET'in kontrol edilen tarafı olarak anlatılır; gate işareti önce kapasitansları şarj eder.
+- `W.131`: girişte görülen toplam kapasitans için `Ciss = Cgs + Cgd` ilişkisi korunur.
+- `W.131`: `Cgs` büyükse gate tepki süresi daha yavaş olur ve daha fazla gate charge `Qg` gerekir.
+- `W.131`: `Cgs` küçükse açma/kapama daha hızlı olur, fakat kontrol daha hassas hale gelir.
+- `W.132`: `Cgd` Miller kapasitansı olarak etiketlenir.
+- `W.132`: gate'e uygulanan gerilim değiştiğinde drain üzerindeki gerilimin etkilendiği ve anahtarlama sırasında `VGS`in plateau / sabit bölge gibi davranabileceği not edilir.
+- `W.133`: `Cgs`, `Cgd`, `Cds` parazitik kapasitansları MOSFET açılma süresini etkiler.
+- `W.133`: bu sığalar küçüldükçe MOSFET daha hızlı anahtarlama yapabilir; daha hızlı anahtarlama daha az switching loss ile ilişkilendirilir.
+- `W.133`: yüksek frekansta çalışan uygulamalarda parazitik kapasitans etkisi kritik not edilir.
+- `W.133`: `Qg` arttıkça MOSFET'i açıp kapatmak için daha fazla enerji ve zaman gerektiği yazılır.
+- `W.133`: `RDS(on) * Qg` figure-of-merit / başarım göstergesi olarak tutulur; düşük `RDS(on)` ile düşük `Qg` arasında denge aranır.
+
+Primary owner entegrasyonu:
+
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `Gate-drive, Qg/Qgd ve Miller Bağlamı`.
+- Aynı dosyada `W.130-W.133, W.163: Parazitik Kapasitanslar ve FOM İzleri`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içindeki ayrıntılı switching-loss, gate-drive loss veya bootstrap charge hesabını açmadı.
+- `RDS(on) * Qg` burada seçim göstergesi olarak kaldı; sayısal final FOM değeri üretilmedi.
+- Bu pass yeni final `Cgs`, `Cgd`, `Cds`, `Ciss`, `Qg`, `RDS(on)` veya switching-time değeri üretmedi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Ciss = Cgs + Cgd`.
+- `Cgd = Miller kapasitansı`.
+- `Cgs` büyükse daha yavaş gate tepki süresi ve daha fazla `Qg`.
+- Parazitik kapasitanslar küçüldükçe daha hızlı anahtarlama.
+- Hızlı anahtarlama ile daha az switching loss bağlantısı.
+- `RDS(on) * Qg` figure-of-merit.
+
+Açık notlar:
+
+- Bu iki sayfa sayısal final hesap değil, MOSFET seçim mantığını açıklayan kavramsal defter izidir.
+- Switching loss ayrıntısı ve toplam kayıp kapanışı 06 dosyasında kalır; burada yalnız seçim/dayanım bağlamı korunur.

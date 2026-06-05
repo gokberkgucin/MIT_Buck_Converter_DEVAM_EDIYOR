@@ -242,7 +242,7 @@ SOA okuması:
 
 [Açık Kontrol] `10 nC`, `12.2 nC` ve `16 nC` aynı koşulun üç final cevabı gibi birleştirilmeyecek. Son kayıp / bootstrap / `CVCC` hesabında hangi `Qg` kullanılıyorsa aynı koşul setiyle etiketlenecek.
 
-### `W.130`, `W.131`, `W.163`: Parazitik Kapasitansların Rolü
+### `W.130-W.133`, `W.163`: Parazitik Kapasitanslar ve FOM İzleri
 
 ![W.130'dan küçük kırpım: Ciss, Coss, Crss'ten Cgd, Cgs ve Cds türetimi](images/defter_snippets_web/d130_w130_ciss_coss_crss_to_cgd_cgs_cds.jpg)
 
@@ -260,6 +260,8 @@ Cds ≈ 729 pF
 
 ![W.131'den küçük kırpım: Cgs, Ciss ve Miller rollerini toparlayan el yazısı not](images/defter_snippets_web/d101_w131_gate_caps_roles.jpg)
 
+![Defter p102 / W.131-W.132: `Cgs`, `Ciss=Cgs+Cgd`, gate tepki süresi, gate charge ve Miller rolü](images/defter_full_pages/defter_p102.jpg)
+
 `W.131`, rolleri kavramsal ayırır:
 
 ```text
@@ -267,6 +269,12 @@ Ciss = Cgs + Cgd
 Cgd = Miller kapasitansı
 Cgs büyükse gate daha yavaş tepki verir ama yanlış turn-on'a karşı daha güçlü bölücü oluşabilir
 ```
+
+[Tasarım İzi] Tam sayfa `p102`, `Cgs` için "sabit kabul edilir, `VDS` veya `VGS`ye çok az bağlıdır" notunu, gate'in kontrol edilen taraf olduğunu ve `Ciss = Cgs + Cgd` ilişkisinin girişte görülen toplam kapasitansın büyük kısmını oluşturduğunu korur. Aynı sayfada `Cgs` büyüdükçe gate tepki süresinin yavaşladığı ve daha fazla gate charge `Qg` gerektiği; `Cgs` küçüldükçe açma/kapama hızının arttığı ama kontrolün daha hassas hale geldiği yazılıdır. Bu, sayısal kayıp hesabı değil, seçim mantığıdır.
+
+![Defter p103 / W.133: parazitik kapasitansların switching time, switching loss ve `RDS(on)*Qg` figure-of-merit bağlantısı](images/defter_full_pages/defter_p103.jpg)
+
+[Tasarım İzi] Tam sayfa `p103`, `Cgs`, `Cgd` ve `Cds` parazitik kapasitanslarının MOSFET açılma süresini etkilediğini; bu sığalar küçüldükçe daha hızlı anahtarlama yapılabildiğini ve switching loss'un azaldığını not eder. Sayfa ayrıca yüksek frekansta bu etkinin kritik olduğunu, fakat `Qg` arttıkça MOSFET'i açıp kapatmak için daha fazla enerji ve zaman gerektiğini yazar. Alttaki `Figure of Merit` notunda `RDS(on) * Qg` seçim göstergesi olarak tutulur: düşük `RDS(on)` ile düşük `Qg` arasında denge aranır.
 
 ![W.163'ten küçük kırpım: Tj, Vdrive, VDS ve revize kapasitans değerlerini aynı sayfada toparlayan ara not](images/defter_snippets_web/d136_w163_revised_tj_and_capacitances.jpg)
 
