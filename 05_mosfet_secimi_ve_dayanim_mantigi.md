@@ -363,7 +363,11 @@ Cgs büyükse gate daha yavaş tepki verir ama yanlış turn-on'a karşı daha g
 
 ![W.163'ten küçük kırpım: Tj, Vdrive, VDS ve revize kapasitans değerlerini aynı sayfada toparlayan ara not](images/defter_snippets_web/d136_w163_revised_tj_and_capacitances.jpg)
 
-`W.163`, daha sonra daha küçük bir kapasitans setiyle tekrar kontrol yapar:
+![Defter p138 / W.163: EVM case sıcaklığı, `Tj` hesabı, `Vdrive/RHI/RLO` notları ve revize `Ciss/Coss/Crss` okuması](images/defter_full_pages/defter_p138.jpg)
+
+`W.163`, daha sonra daha küçük bir kapasitans setiyle tekrar kontrol yapar. Bu hatta iki okuma izi ayrı tutulur:
+
+[Önceki Kısa Kırpım Okuması]
 
 ```text
 Ciss ≈ 835 pF
@@ -374,7 +378,23 @@ Coss,ave ≈ 39.2 pF
 Cgs ≈ 830.2 pF
 ```
 
-[Açık Kontrol] `54 pF / 783 pF / 729 pF` hattı, `174 pF / 369 pF / 2260 pF` yüksek `VDS,off` örnek hattı ve `11.21 pF / 39.2 pF / 830.2 pF` hattı sessizce birleştirilmeyecek. Bunlar farklı okuma / uyarlama izleridir. Final modelde kapasitanslar aynı `VDS`, `Tj`, gate-drive ve datasheet koşuluna çekilmeli.
+[Tam Sayfa p138 Okuması]
+
+```text
+EVM ölçüm bağlamı:
+Iout ≈ 8 A, Vin ≈ 48 V, Tcase ≈ 73.9 C
+Bizim bağlam: Iout,max ≈ 9 A, Vin,max ≈ 36 V
+Tj ≈ 73.9 C + 1.29 W * 1.9 C/W ≈ 76.35 C
+
+Ciss ≈ 885 pF
+Coss ≈ 168 pF
+Crss ≈ 4.8 pF
+Crss,ave ≈ 2 * 4.8 pF * sqrt(30 V / 22 V) ≈ 11.21 pF
+Coss,ave ≈ 2 * 168 pF * sqrt(30 V / 22 V) ≈ 392 pF
+Cgs ≈ Ciss - Crss ≈ 885 pF - 4.8 pF ≈ 880.2 pF
+```
+
+[Açık Kontrol] `54 pF / 783 pF / 729 pF` hattı, `174 pF / 369 pF / 2260 pF` yüksek `VDS,off` örnek hattı, önceki kısa `11.21 pF / 39.2 pF / 830.2 pF` okuması ve tam sayfa `11.21 pF / 392 pF / 880.2 pF` okuması sessizce birleştirilmeyecek. Bunlar farklı okuma / uyarlama izleridir. Final modelde kapasitanslar aynı `VDS`, `Tj`, gate-drive ve datasheet koşuluna çekilmeli.
 
 ## `dV/dt`, Miller ve Yanlış Turn-on
 

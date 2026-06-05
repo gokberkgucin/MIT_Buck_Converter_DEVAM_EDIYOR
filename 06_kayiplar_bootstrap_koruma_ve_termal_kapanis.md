@@ -283,6 +283,8 @@ Bu sonuç `W.152`deki `Qgd ≈ 1.2 nC` ile sessizce birleştirilmez. Notun kendi
 
 [Eski / Alternatif Parametre Seti] `W.163`, farklı kapasitans setiyle tekrar bakar:
 
+[Önceki Kısa Kırpım Okuması]
+
 ```text
 ID,max ≈ 9 A + 3.8 A / 2 ≈ 11 A
 Vdrive = VCC = 7.5 V
@@ -300,6 +302,37 @@ Crss,ave ≈ 11.21 pF
 Coss,ave ≈ 39.2 pF
 Cgs ≈ 830.2 pF
 ```
+
+![Defter p138 / W.163: EVM ölçüm bağlamı, `Tcase=73.9 C`, `TJ≈76.35 C`, `RHI/RLO` notları ve revize kapasitans seti](images/defter_full_pages/defter_p138.jpg)
+
+[Tam Sayfa p138 Okuması / Çelişki Görünür] `p138`, aynı `W.163` hattını daha geniş bağlamla verir:
+
+```text
+ID,max ≈ 9 A + 3.8 A / 2 ≈ 11 A
+Vdrive = VCC ≈ 7.5 V
+RLO-down ≈ 0.9 ohm
+RHI / pull-up ≈ 1.5 ohm
+VDS ≈ 36 V - 14 V ≈ 22 V
+
+MOSFET Tj hesabı:
+Tj = Tcase + Ploss * RthetaJC
+EVM ölçüm bağlamı: Iout ≈ 8 A, Vin ≈ 48 V
+Bizim bağlam: Iout,max ≈ 9 A, Vin,max ≈ 36 V
+Tcase ≈ 73.9 C
+Ploss,mos,total ≈ 1.29 W
+RthetaJC ≈ 1.9 C/W
+Tj ≈ 73.9 C + 1.29 W * 1.9 C/W ≈ 76.35 C
+
+Revize kapasitans okuması:
+Ciss ≈ 885 pF
+Coss ≈ 168 pF
+Crss ≈ 4.8 pF
+Crss,ave ≈ 2 * 4.8 pF * sqrt(30 V / 22 V) ≈ 11.21 pF
+Coss,ave ≈ 2 * 168 pF * sqrt(30 V / 22 V) ≈ 392 pF
+Cgs ≈ Ciss - Crss ≈ 885 pF - 4.8 pF ≈ 880.2 pF
+```
+
+[Açık Kontrol] Bu tam sayfa okuması, önceki kısa kırpımda görünen `Ciss ≈ 835 pF`, `Coss ≈ 16.8 pF`, `Coss,ave ≈ 39.2 pF`, `Cgs ≈ 830.2 pF` hattıyla çelişir. Bu fark sessizce düzeltilmedi; final switching / `Coss` / Miller hesabı için datasheet grafiği ve kullanılan `VDS` koşulu yeniden okunacak.
 
 ![Defter p134 / W.132: `Tj = Tcase + Ploss*RthetaJC`, `ID≈11 A`, `VDS=22 V`, `Vdrive=7.5 V` ve `RHI/RLO` isimlendirme ayrımı](images/defter_full_pages/defter_p134.jpg)
 
@@ -346,9 +379,11 @@ Rtotal ≈ 1.5 ohm + 0 ohm + 0.7 ohm ≈ 2.2 ohm
 
 Defter notu bu direncin switching süresi, `tfall` ve eşdeğer hesaplarda kullanılabileceğini söyler; aynı sayfada bu ayrıntılı zaman hesabının o anda atlandığı da belirtilir. Bu yüzden `2.2 ohm`, burada gate-yolu toplam direnci izidir; bootstrap bölümündeki `Rboot = 2.2 ohm` ile aynı eleman gibi okunmayacak.
 
-[Açık Kontrol] `54 pF / 783 pF / 729 pF` hattı ile `11.21 pF / 39.2 pF / 830.2 pF` hattı aynı koşulun iki final cevabı gibi karıştırılmayacak. Hangi kapasitans seti kullanılıyorsa `Qgd`, `Coss` kaybı, Miller kontrolü ve switching süreleri aynı setten yürütülecek.
+[Açık Kontrol] `54 pF / 783 pF / 729 pF` hattı, önceki kısa `11.21 pF / 39.2 pF / 830.2 pF` hattı ve tam sayfa `11.21 pF / 392 pF / 880.2 pF` hattı aynı koşulun final cevabı gibi karıştırılmayacak. Hangi kapasitans seti kullanılıyorsa `Qgd`, `Coss` kaybı, Miller kontrolü ve switching süreleri aynı setten yürütülecek.
 
 ![W.190'dan küçük kırpım: erken `tr` ve `toff` kestirimlerinde `Qgs2` ve `Qgd` kullanan ara hesap](images/defter_snippets_web/d137_w190_early_tr_toff_estimate.jpg)
+
+![Defter p139 / W.190: `tr=t1+t2`, `toff=t3+t4`, `Qgs2/Qgd`, driver/gate dirençleri ve `3.23 ns / 2.66 ns` erken zaman hesabı](images/defter_full_pages/defter_p139.jpg)
 
 [Eski İterasyon / Açık Kontrol] `W.190`, charge-parçalı erken zaman hesabıdır:
 
@@ -362,6 +397,23 @@ Rdriver ≈ 1 + 0.9 = 1.9 ohm
 Rg ≈ 2.2 ohm
 tr ≈ 3.23 ns
 toff ≈ 2.66 ns
+```
+
+Sayfadaki açık form:
+
+```text
+tr = t1 + t2
+Rdrive = Rgate,internal + Rpull-down ≈ 1 + 0.9 ≈ 1.9 ohm
+Rg = harici gate direnci ≈ 2.2 ohm
+
+tr ≈ (
+  Qgs2 / (Vdrive - 0.5*(Vmiller + VGS(th)))
+  + Qgd / (Vdrive - Vmiller)
+) * (Rg + Rdrive)
+≈ 3.23 ns
+
+toff = t3 + t4
+≈ 2.66 ns
 ```
 
 Bu değerler `W.153-W.154`te kullanılan `tr ≈ 32.5 ns` ve `tf ≈ 20.63 ns` setiyle çelişir. Burada korunacak bilgi şu: `W.190` parçalı charge hesabı denemesidir; `W.153-W.154` ise pratik kayıp gücüne geçen hesap setidir. Finalde gate yolu, driver akımı, `Qgd/Qgs2` ve seçilen `tr/tf` aynı koşula çekilmelidir.
@@ -1207,7 +1259,7 @@ Bu owner kapanmadan "verim iyi görünüyor" veya "datasheet current yetiyor" de
 - `~540 mW` ilk switching ölçeği ile `208.2 mW / 310.3 mW` overlap sonuçlarının kapsamı eşleştirilecek.
 - `tr/toff ≈ 3.23 ns / 2.66 ns` erken charge hesabı ile `tr/tf ≈ 32.5 ns / 20.63 ns` pratik switching seti ayrıştırılacak.
 - `Qgd ≈ 1.2 nC` ve `Qgd ≈ 0.24662 nC` aynı final tabloya sessizce karıştırılmayacak.
-- `Coss` için `783 pF / 982.8 pF` hattı ile `39.2 pF` alternatif hattı koşul bazında açıklanacak.
+- `Coss` için `783 pF / 982.8 pF` hattı ile `39.2 pF / 392 pF` alternatif hatları koşul bazında açıklanacak.
 - `P_Coss ≈ 185 mW` ile switching overlap kaybı arasında double-count riski kontrol edilecek.
 - `P_gate-drive,total ≈ 79.68 mW`, `P_IC = 64.8 mW` ve `VCC/LDO` kaybı aynı datasheet akım tanımlarıyla tekrar ayrıştırılacak.
 - `Rboot = 2.2 ohm` ile gate-yolu `2.2 ohm` notu fiziksel eleman/reference designator bazında karışmayacak.

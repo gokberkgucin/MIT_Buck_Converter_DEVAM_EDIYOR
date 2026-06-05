@@ -3078,3 +3078,56 @@ Açık notlar:
 - Bu pass yeni final `Qgd`, `Qgs2`, switching-time, gate direnci veya switching-loss değeri üretmedi.
 - `Qgd ≈ 1.2 nC` ve `Qgd ≈ 0.24662 nC` aynı final cevap gibi birleştirilmeyecek.
 - `Rgate ≈ 2.2 ohm` burada gate-yolu shorthand'i olarak kaldı; bootstrap `Rboot/RBST` ile fiziksel olarak karışmayacak.
+
+## Pass 070 - Sayfa 138-139
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p138.jpg](../images/defter_full_pages/defter_p138.jpg)
+- [defter_p139.jpg](../images/defter_full_pages/defter_p139.jpg)
+
+Defter işaretleri:
+
+- `p138 / W.163`: `ID,max ≈ 9 A + 3.8 A / 2 ≈ 11 A` notu tekrar görünür.
+- `p138 / W.163`: `Vdrive = VCC ≈ 7.5 V`.
+- `p138 / W.163`: `RLO-down ≈ 0.9 ohm`, `RHI / pull-up ≈ 1.5 ohm`.
+- `p138 / W.163`: `VDS ≈ 36 V - 14 V ≈ 22 V`.
+- `p138 / W.163`: MOSFET `Tj` hesabı için `Tj = Tcase + Ploss * RthetaJC`.
+- `p138 / W.163`: EVM ölçüm bağlamı olarak `Iout ≈ 8 A`, `Vin ≈ 48 V`; bizim bağlam olarak `Iout,max ≈ 9 A`, `Vin,max ≈ 36 V` not edilir.
+- `p138 / W.163`: `Tcase ≈ 73.9 C`, `Ploss,mos,total ≈ 1.29 W`, `RthetaJC ≈ 1.9 C/W`.
+- `p138 / W.163`: `Tj ≈ 73.9 C + 1.29 W * 1.9 C/W ≈ 76.35 C`.
+- `p138 / W.163`: tam sayfa kapasitans okuması `Ciss ≈ 885 pF`, `Coss ≈ 168 pF`, `Crss ≈ 4.8 pF`.
+- `p138 / W.163`: `Crss,ave ≈ 2 * 4.8 pF * sqrt(30 V / 22 V) ≈ 11.21 pF`.
+- `p138 / W.163`: `Coss,ave ≈ 2 * 168 pF * sqrt(30 V / 22 V) ≈ 392 pF`.
+- `p138 / W.163`: `Cgs ≈ 885 pF - 4.8 pF ≈ 880.2 pF`.
+- `p139 / W.190`: `tr = t1 + t2` ve `toff = t3 + t4` erken charge-parçalı zaman hesabı açılır.
+- `p139 / W.190`: `Rdrive = Rgate,internal + Rpull-down ≈ 1 + 0.9 ≈ 1.9 ohm`.
+- `p139 / W.190`: `Rg = harici gate direnci ≈ 2.2 ohm`.
+- `p139 / W.190`: `Qgs2 ≈ 1.34 nC`, `Qgd ≈ 1.2 nC`, `Vdrive ≈ 7.5 V`, `Vmiller ≈ 4.535 V`, `VGS(th) ≈ 3.49 V`.
+- `p139 / W.190`: `tr ≈ 3.23 ns`, `toff ≈ 2.66 ns`.
+
+Primary owner entegrasyonu:
+
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `W.163` parazitik kapasitans izine tam sayfa `p138` eklendi.
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `W.163` alternatif parametre seti ve `W.190` erken `tr/toff` hesabı altına tam sayfa `p138` ve `p139` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- Kapasitans okumasının seçim / datasheet tarafı [05](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde tutuldu; switching-time ve termal/kayıp sonucu [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde kaldı.
+- `p138`teki EVM ölçüm bağlamı, final termal ölçüm gibi yazılmadı; `Tcase` girdisinin nereden geldiğini gösteren tasarım izi olarak kaldı.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Tcase ≈ 73.9 C`, `Ploss ≈ 1.29 W`, `RthetaJC ≈ 1.9 C/W`, `Tj ≈ 76.35 C`.
+- `Ciss ≈ 885 pF`, `Coss ≈ 168 pF`, `Crss ≈ 4.8 pF`.
+- `Crss,ave ≈ 11.21 pF`, `Coss,ave ≈ 392 pF`, `Cgs ≈ 880.2 pF`.
+- `Rdrive ≈ 1.9 ohm`, `Rg ≈ 2.2 ohm`.
+- `tr ≈ 3.23 ns`, `toff ≈ 2.66 ns`.
+
+Açık notlar:
+
+- `Ciss ≈ 835 pF / Coss ≈ 16.8 pF / Coss,ave ≈ 39.2 pF / Cgs ≈ 830.2 pF` önceki kısa kırpım okuması ile `p138` tam sayfa okuması çelişir; sessizce birleştirilmedi.
+- `RthetaJC ≈ 1.6 C/W` ve `1.9 C/W` izleri koşulları netleşmeden tek final değer yapılmadı.
+- `tr ≈ 3.23 ns / toff ≈ 2.66 ns`, pratik switching-loss hesabındaki `tr ≈ 32.5 ns / tf ≈ 20.63 ns` setini iptal etmez; eski/erken iterasyon olarak kalır.
