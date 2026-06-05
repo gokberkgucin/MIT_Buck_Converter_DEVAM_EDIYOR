@@ -3448,3 +3448,55 @@ Açık notlar:
 - `VF` için `0.87 V` ve `0.83 V` izleri birlikte korunur; final dead-time hesabında MOSFET datasheet koşulu ve sıcaklık tekrar okunacak.
 - `P_IC`, `P_gate-drive` ve `VCC/driver` kaybıyla çift sayılmayacak.
 - `P_sense` satırı final denklem değildir; `Rilim/Rsense` zinciri netleşince yeniden kurulacak.
+
+## Pass 077 - Sayfa 152-153
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p152.jpg](../images/defter_full_pages/defter_p152.jpg)
+- [defter_p153.jpg](../images/defter_full_pages/defter_p153.jpg)
+
+Defter işaretleri:
+
+- `p152 / W.160`: başlık bootstrap ağı ve kullanılan elemanlar bağlamındadır.
+- `p152 / W.160`: `CBOOT` / `CBST` için `C16 = 0.1 uF` notu görünür.
+- `p152 / W.160`: `CBOOT` için `HB ile HS arasında` notu yazılır.
+- `p152 / W.160`: `DBOOT / Bootstrap diode` satırı, bootstrap diyodunun LM5146 içinde olduğunu belirtir.
+- `p152 / W.160`: `DBOOT` için `VCC ile BST arasında` notu görünür.
+- `p152 / W.160`: `RBOOT` için `Rboot = R3 = 2.2 ohm` notu korunur.
+- `p152 / W.160`: `RBOOT`un `CBST` ile seri olduğu not edilir.
+- `p152 / W.160`: `CVDD / bypass capacitor` satırı `CVCC = C25 = 2.2 uF` notuyla tutulur.
+- `p153 / W.205`: kavramsal çizimde LM5146 high-side bootstrap pinleri `HB = 8`, `HO = 7`, `HS = 6` olarak işaretlenir.
+- `p153 / W.205`: `Cboot`, `HB` ile `HS/SW` arasında gösterilir.
+- `p153 / W.205`: `HO`, high-side MOSFET gate sürüş yoluna bağlanır.
+- `p153 / W.205`: `HS/SW` düğümü anahtarlama düğümü olarak çizilir.
+- `p153 / W.205`: `HB` düğümünün switch-node seviyesinin üstüne bootstrap gerilimi kadar bindiği `36 V + 7.5 V` benzeri notla gösterilir.
+- `p153 / W.205`: alt notta `CBOOT`un doğrudan Q1'in gate-source arasına bağlı olmadığı; dolaylı olarak Q1'in driver'ını beslediği yazılır.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `Bootstrap Envanteri ve Bağlantı İzleri` altına tam sayfa `p152` ve `p153` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- Duty/timing sayıları [02](../02_startup_pin_programlama_ve_ortak_sabitler.md) owner'ından gelir; bu pass bootstrap bağlantısı ve eleman envanteridir.
+- MOSFET seçimi [05](../05_mosfet_secimi_ve_dayanim_mantigi.md) owner'ında kalır; bu pass high-side driver besleme yolunu açıklar.
+- `CVCC` bypass ve VCC/DVCC termal bağlamı [02](../02_startup_pin_programlama_ve_ortak_sabitler.md) ve [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde birlikte okunur.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `C16 = 0.1 uF` / `CBST`.
+- `C25 = 2.2 uF` / `CVCC`.
+- `Rboot = R3 = 2.2 ohm`.
+- `DBOOT` LM5146 içinde, `VCC` ile `BST/HB` arasında.
+- `CBOOT`, `HB/BST` ile `HS/SW` arasında.
+- `HB = 8`, `HO = 7`, `HS = 6` pin izi.
+- `CBOOT` doğrudan Q1 gate-source arasına bağlı değildir; high-side driver beslemesidir.
+
+Açık notlar:
+
+- `Rboot = R3 = 2.2 ohm`, gate-yolu tarafındaki `2.2 ohm` notuyla aynı fiziksel eleman gibi okunmayacak.
+- `36 V + 7.5 V` çizimi kavramsal bootstrap düğüm gösterimidir; final mutlak gerilim/stress kontrolü için `BST-SW`, `HB-HS`, transient ve datasheet absolute maximum sınırları ayrı doğrulanacak.
+- `CBST`, `CVCC`, dahili bootstrap diyodu ve `Rboot` reference designator'ları actual EVM şeması/BOM ile tekrar eşleştirilecek.

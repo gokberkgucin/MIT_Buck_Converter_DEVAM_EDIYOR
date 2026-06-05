@@ -964,6 +964,8 @@ Bu ideal ilk an tahminidir. Bootstrap diyotu, iz empedansı ve ringing açısın
 
 ![W.160'tan küçük kırpım: bootstrap ağındaki gerçek elemanları ve kart referanslarını toplayan envanter notu](images/defter_snippets_web/d150_w160_bootstrap_inventory_map.jpg)
 
+![Defter p152 / W.160: bootstrap ağında kullanılan `CBOOT/CBST`, dahili `DBOOT`, `RBOOT` ve `CVCC` elemanlarının kart referanslarıyla envanteri](images/defter_full_pages/defter_p152.jpg)
+
 `W.160`, gerçek elemanları toplar:
 
 ```text
@@ -973,9 +975,13 @@ Rboot = R3 = 2.2 ohm, CBST ile seri
 CVCC = C25 = 2.2 uF
 ```
 
+[Tasarım İzi] Tam sayfa `p152`, bootstrap ağını bir eleman envanteri olarak okur: `CBOOT` / `CBST` high-side sürücünün yerel besleme kondansatörüdür; `DBOOT` ayrı harici diyot gibi değil, LM5146 içinde `VCC` ile `BST/HB` arasında düşünülür; `RBOOT = R3 = 2.2 ohm` bootstrap şarj yoluna seri elemandır; `CVCC = C25 = 2.2 uF` ise `VCC` bypass rezervuarıdır. Sayfadaki "HB ile HS arasında" ve "BST ile SW arasında" yazımları aynı floating high-side besleme düğüm çiftini anlatır.
+
 [Açık Kontrol] Buradaki `R3 = 2.2 ohm` bootstrap yolundaki `Rboot` elemanıdır. MOSFET gate-yolu tarafında geçen `2.2 ohm` toplam direnç notuyla aynı fiziksel eleman gibi okunmayacak.
 
 ![W.205'ten küçük kırpım: `HB/HO/HS`, `Cboot` ve üst MOSFET bağlantısını gösteren kavramsal bootstrap çizimi](images/defter_snippets_web/d151_w205_bootstrap_connection_sketch.jpg)
+
+![Defter p153 / W.205: `HB`, `HO`, `HS`, `Cboot`, üst MOSFET ve switch-node ilişkisini gösteren bootstrap bağlantı eskizi](images/defter_full_pages/defter_p153.jpg)
 
 `W.205` bağlantı mantığını netleştirir:
 
@@ -983,6 +989,8 @@ CVCC = C25 = 2.2 uF
 - `HO`, üst MOSFET gate'ini sürer,
 - `HS/SW` düğümü anahtarlama ile hareket eder,
 - `Cboot` doğrudan Q1 gate-source arasına konmuş bir kapasitör değildir; high-side driver'ı besler.
+
+[Tasarım İzi] Tam sayfa `p153`, LM5146 pinlerini kavramsal olarak `HB = 8`, `HO = 7`, `HS = 6` diye işaretler. Notta `HB` düğümü switch node seviyesinin üstüne bootstrap gerilimi kadar binen bir düğüm gibi çizilir (`36 V + 7.5 V` izi), `HS/SW` tarafı ise anahtarlama düğümüdür. Alt not özellikle korunur: `CBOOT` doğrudan Q1'in gate-source arasına bağlı değildir; dolaylı biçimde Q1'in high-side driver beslemesini sağlar.
 
 [Meta-yönlendirme] `W.166`, `W.160` çevresinin Word'e aktarıldığını gösteren süreç izidir; yeni teknik sonuç vermez.
 
