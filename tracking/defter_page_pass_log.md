@@ -1994,3 +1994,47 @@ Açık notlar:
 - `p090` ve `p091`, seçilen MOSFET'in final SOA doğrulamasını yapmaz; SOA grafiğini nasıl okumak gerektiğini kaynak/defter izi olarak gösterir.
 - Final kabulte normal çalışma, switching geçişi, startup, current-limit ve fault pulse süreleri ayrı ayrı SOA üzerinde işaretlenmelidir.
 - EVM üzerinde uygulanmış rework veya ölçüm sonucu gibi sunulmadı.
+
+## Pass 047 - Sayfa 92-93
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p092.jpg](../images/defter_full_pages/defter_p092.jpg)
+- [defter_p093.jpg](../images/defter_full_pages/defter_p093.jpg)
+
+Defter işaretleri:
+
+- `W.178`: `dV/dt Limit` başlığı ve drain-source gerilimi çok hızlı arttığında MOSFET'in kendiliğinden açılabileceği notu.
+- `W.178`: "biz kendi isteğimizle / kontrolümüzle `VGS` uygulamayarak" ifadesi, gate komutu yokken oluşan parasitik `VGS` riskini anlatır.
+- `W.178`: çizimde gate direnci, `Cgd`, `Cgs`, `Cds`, MOSFET ve `dV/dt` oku görünür.
+- `W.178`: "toplamda 3 adet senaryo halinde incelenecek" notu vardır.
+- `W.179`: ilk senaryo sade kapasitif bölücüdür; MOSFET off iken gerilim arttığında gate-source arasında gerilim oluşabilir.
+- `W.179`: `VGS = VDS * CGD / (CGS + CGD)` ilişkisi yazılır.
+- `W.179`: `VDSmax * CGD/(CGS+CGD) < VTH` koşulu not edilir.
+- `W.179`: gate sürücüsü ve direnç ne olursa olsun `dV/dt` etkisiyle gate'e gerilim oluşabileceği uyarısı görünür.
+
+Primary owner entegrasyonu:
+
+- [05_mosfet_secimi_ve_dayanim_mantigi.md](../05_mosfet_secimi_ve_dayanim_mantigi.md) içinde `dV/dt, Miller ve Yanlış Turn-on`.
+- Aynı dosyada `W.178-W.184: Proje İçindeki Miller Kontrolleri`.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içindeki gate-drive kayıp veya bootstrap hesaplarını açmadı; Miller yanlış turn-on seçimi / dayanım riski olarak 05 owner'ında kaldı.
+- `W.179` kapasitif bölücü formülü, sonraki `W.180-W.184` farklı kapasitans setleriyle sessizce birleştirilmedi.
+- Bu pass yeni `Cgd`, `Cgs`, `VTH`, `VDS,max`, `dV/dt` limiti veya gate direnci değeri üretmedi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- Hızlı `dV/dt`, `Cgd` üzerinden gate'e parasitik gerilim taşıyabilir.
+- Kapasitif bölücü sezgisi: `VGS ≈ VDS * Cgd/(Cgs + Cgd)`.
+- Yanlış turn-on olmaması için `VDS,max * Cgd/(Cgs + Cgd) < VTH`.
+- Problem üç senaryo halinde incelenecek şekilde kurulmuştur.
+
+Açık notlar:
+
+- Bu sayfalar gerçek switch-node ölçümü değildir; Miller yanlış turn-on riskini kuran defter/kaynak izidir.
+- Final kabulte gerçek `Cgd(VDS)`, gate pull-down yolu, common-source inductance, layout ve switch-node dalga şekli birlikte kontrol edilmelidir.
+- EVM üzerinde uygulanmış rework veya ölçüm sonucu gibi sunulmadı.

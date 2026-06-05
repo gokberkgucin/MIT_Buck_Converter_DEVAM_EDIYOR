@@ -291,9 +291,15 @@ Cgs ≈ 830.2 pF
 
 ![W.178'den küçük kırpım: dv/dt problemi ve parasitik kapasitans çizimi](images/defter_snippets_web/d91_w178_dvdt_problem_intro.jpg)
 
+![Defter p092 / W.178: yüksek `dV/dt` durumunda `Cgd`, `Cgs`, `Cds` ve gate yolu üzerinden Miller yanlış turn-on riski](images/defter_full_pages/defter_p092.jpg)
+
 `W.178`, problemi tarif eder: hızlı `VDS` değişimi `Cgd` üzerinden gate'e akım enjekte edebilir ve istenmeyen `VGS` oluşturabilir.
 
+[Tasarım İzi] Tam sayfa `p092`, drain-source gerilimi çok hızlı arttığında MOSFET'in bizim gate komutumuz olmadan kendiliğinden açılabileceği riskini çizer. `CGD`, `CGS`, `CDS`, gate direnci ve `dV/dt` oku aynı çizimde görünür. Bu sayfa yeni `dV/dt` sınırı üretmez; Miller yanlış turn-on probleminin fiziksel yolunu görünür yapar.
+
 ![W.179'dan küçük kırpım: kapasitif bölücü ile parasitik VGS ifadesi](images/defter_snippets_web/d92_w179_capacitive_divider_vgs.jpg)
+
+![Defter p093 / W.179: kapasitif bölücüyle oluşan `VGS`, `VTH` altı koşulu ve ilk senaryo notu](images/defter_full_pages/defter_p093.jpg)
 
 İlk sezgisel ilişki:
 
@@ -301,6 +307,8 @@ Cgs ≈ 830.2 pF
 VGS ≈ VDS * Cgd / (Cgs + Cgd)
 VDS,max * Cgd / (Cgs + Cgd) < VTH
 ```
+
+[Tasarım İzi] Tam sayfa `p093`, ilk senaryoda sadece kapasitif bölücüyü kullanan kaba modeli anlatır: MOSFET gate'i açık sürülmese bile `Cgd` ve `Cgs` üzerinden oluşan gerilim `VGS` gibi görülebilir; `VGS` değerinin `VTH` altında kalması istenir. Sayfadaki "3 senaryo halinde incelenecek" notu, sonraki `W.180-W.184` hesaplarının neden farklı kapasitans / gate-yolu varsayımlarına ayrıldığını açıklar.
 
 ![W.180'den küçük kırpım: ilk sayısal Miller kontrolü ve VDS,max sonucu](images/defter_snippets_web/d93_w180_first_numeric_miller_check.jpg)
 
