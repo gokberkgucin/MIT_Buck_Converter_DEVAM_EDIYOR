@@ -3725,3 +3725,63 @@ Açık notlar:
 - `1-5 uF` ve `1-6 uF` aralıkları sessizce birleştirilmedi; final datasheet/EVM kontrolünde aynı `CVCC` owner'ı altında kapanacak.
 - `VDH`, `VBST-fwd` ve `VHBL` sembol okuması defterden geldiği gibi korunur; datasheet sembolleriyle son notasyon hizalama ayrı kontrol ister.
 - `Ipeak = Cbst * dVsw/dt` bu pass için tepe stres sezgisidir; sayfada yeni sayısal tepe akım sonucu yoktur.
+
+## Pass 082 - Sayfa 162-163
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p162.jpg](../images/defter_full_pages/defter_p162.jpg)
+- [defter_p163.jpg](../images/defter_full_pages/defter_p163.jpg)
+
+Defter işaretleri:
+
+- `p162 / W.185`: başlık `6.88` ve `Calculating Driver Bypass Cap Value` olarak okunur.
+- `p162 / W.185`: "Bu sayfadan itibaren önce LM'yi yap" notu, bootstrap / driver supply zincirinin bu kısımdan devam ettiğini gösterir.
+- `p162 / W.185`: "Neden bypass cap?" sorusu yazılır.
+- `p162 / W.185`: MOSFET sürücülerinin hızlı switching yapmak için düşük empedanslı ve anlık yüksek akım verebilen bir besleme kaynağına ihtiyaç duyduğu yazılır.
+- `p162 / W.185`: güç kaynağından gelen hatların uzun yollar ve parazitik endüktans nedeniyle bu hızlı akımı sağlayamayacağı, ani akım taleplerinin gerilim dalgalanmasına yol açabileceği not edilir.
+- `p162 / W.185`: çözüm olarak sürücünün besleme ucuna bypass kapasitörü eklenmesi yazılır.
+- `p162 / W.185`: buck converter girişindeki MLCC kapasitörleriyle sürücü bypass kapasitesinin aynı owner olmadığı özellikle işaretlenir.
+- `p162 / W.185`: alttaki çizimde `VCC`, `VBST`, `Vdrive`, `bypass`, gate sürücü yolu ve `Rgate` ilişkisi şematik olarak gösterilir.
+- `p163 / W.186`: başlık `Driver Bypass Cap değerini` biçiminde okunur.
+- `p163 / W.186`: sürücünün MOSFET gate'ine hızlı akım verirken, kendi güç pinine bağlı `Cbypass` kapasitöründen beslendiği yazılır.
+- `p163 / W.186`: bypass kapasitörünün sürücünün ihtiyaç duyduğu akımı kararlı sağlayarak hızlı ve güvenilir sürme işlemini mümkün kıldığı not edilir.
+- `p163 / W.186`: denklem `Cbypass = (IQ,HI * Dmax / fdrive + Qg) / DeltaV` olarak okunur.
+- `p163 / W.186`: sayısal yerleştirme `2.5 mA`, `0.7`, `100 kHz`, `115 nC` ve `0.6 V` izlerini içerir.
+- `p163 / W.186`: sonuç yaklaşık `221 nF` gibi okunur.
+- `p163 / W.186`: `Qg`, MOSFET'in toplam gate yükü olarak açıklanır; `Qg(max) 150 nC` datasheet notuna rağmen yerel hesapta `Qg tahmined = 115 nC kabul` izi vardır.
+- `p163 / W.186`: `IQ-RUN (2.1 mA)` ve harici bias varsa `IVCC = 2.3 mA` gibi okunan bağlamlar yazılır.
+- `p163 / W.186`: gate sürücüsüne paralel bağlanan bypass kapasitesinin değerinin frekansa bağlı depolama/destek davranışına göre değiştiği not edilir.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `CVCC ve CBST İlişkisi` altındaki `W.185` driver bypass gerekçesine tam sayfa `p162` eklendi.
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `CVCC ve CBST İlişkisi` altındaki `W.186` driver bypass hesabına tam sayfa `p163` eklendi.
+- Aynı blokta önceki `27.1 nF` aktarımıyla tam sayfa `221 nF` okuması arasındaki fark açık kontrol olarak görünür hale getirildi.
+
+Kısa referans / owner dışı bağlantı:
+
+- Buck converter girişindeki MLCC `Cin` bankasının ana hesabı [04](../04_giris_kapasitorleri_ve_giris_agi.md) dosyasında kalır; `p162` burada yalnız sürücü besleme bypass kapasitesiyle `Cin` arasındaki owner ayrımını netleştirir.
+- MOSFET gate charge seçimi [05](../05_mosfet_secimi_ve_dayanim_mantigi.md) dosyasıyla ilişkilidir; burada `Qg`, driver bypass hesabının yük bileşeni olarak kullanılır.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Cbypass = (IQ,HI * Dmax / fdrive + Qg) / DeltaV`.
+- `IQ,HI` / sürücü yüksek seviye boşta akımı bağlamı.
+- `2.5 mA`.
+- `Dmax = 0.7`.
+- `fdrive = 100 kHz`.
+- `Qg = 115 nC` kabul izi.
+- `Qg(max) = 150 nC` datasheet notu.
+- `DeltaV = 0.6 V`.
+- `Cbypass ≈ 221 nF`.
+- `IQ-RUN = 2.1 mA`.
+- Harici bias varsa `IVCC = 2.3 mA` gibi okunan not.
+
+Açık notlar:
+
+- Önceki Markdown/OCR hattındaki `27.1 nF` aktarımı ile tam sayfa `p163` üzerinde okunan `221 nF` sonucu uyuşmuyor. Bu fark sessizce düzeltilmedi; `06` dosyasında açık kontrol olarak bırakıldı.
+- `Qg(max) = 150 nC` ve `Qg tahmined = 115 nC kabul` aynı sayfada farklı rollerle durur; final driver bypass hesabında hangi gate-charge koşulunun kullanılacağı netleştirilecek.
+- `Dmax = 0.7` ve `fdrive = 100 kHz`, global duty/fsw owner'ındaki ana proje değerleriyle aynı rol değildir; bu pass içinde driver bypass kaba hesabının yerel girdisi olarak korunur.

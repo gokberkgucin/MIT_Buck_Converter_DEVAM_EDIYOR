@@ -1041,24 +1041,36 @@ Bu kontrol `CVCC` kaynağının `CBST`yi rahat besleyip besleyemeyeceğine bakar
 
 ![W.185'ten küçük kırpım: neden yerel `bypass capacitor` gerektiğini sürücü-gate yolu üzerinden açıklayan kavramsal not](images/defter_snippets_web/d159_w185_driver_bypass_why_local.jpg)
 
+![Defter p162 / W.185: driver bypass kapasitesinin neden giriş MLCC'lerinden ayrı düşünülmesi gerektiğini, parasitik endüktans ve sürücüye yakın düşük empedanslı kaynak ihtiyacını gösteren not](images/defter_full_pages/defter_p162.jpg)
+
 `W.185`, bypass kondansatörünün fiziksel gerekçesini verir: MOSFET switching sırasında sürücü tarafı anlık akım çeker; bu akım için düşük empedanslı yerel kaynak gerekir.
 
-![W.186'dan küçük kırpım: `driver bypass capacitor` için minimum değeri `27.1 nF` civarında bulan kaba hesap](images/defter_snippets_web/d160_w186_driver_bypass_minimum_calc.jpg)
+[Tasarım İzi] Tam sayfa `p162`, "neden bypass cap?" sorusunu anlatır. MOSFET sürücüleri hızlı switching için düşük empedanslı, anlık yüksek akım verebilen bir besleme kaynağına ihtiyaç duyar. Güç kaynağından gelen hatlar uzun yol ve parazitik endüktans nedeniyle bu hızlı akımı doğrudan sağlayamaz; ani akım talepleri sürücü beslemesinde gerilim dalgalanmasına yol açabilir. Bu nedenle bypass kapasitörü sürücünün besleme ucuna yerel olarak eklenir.
+
+[Çapraz Teyit] Bu not, giriş kapasitörü owner'ıyla karıştırılmaması gereken sınırı da açıkça yazar: burada söz edilen eleman buck converter girişindeki MLCC `Cin` bankası değil, sürücü/VCC tarafındaki bypass kapasitesidir. `Cin` hesabı [04](04_giris_kapasitorleri_ve_giris_agi.md) dosyasında kalır; burada yalnız driver supply bypass zinciri tutulur.
+
+![W.186'dan küçük kırpım: `driver bypass capacitor` için `2.5 mA`, `0.7`, `100 kHz`, `115 nC`, `0.6 V` ve yaklaşık `221 nF` görünen kaba hesap izi](images/defter_snippets_web/d160_w186_driver_bypass_minimum_calc.jpg)
+
+![Defter p163 / W.186: driver bypass hesabı, `IQ,HI * Dmax / fdrive + Qg` yük bileşenleri, `221 nF` hesap izi, `IQ-RUN`, harici bias `IVCC` ve `Qg` tahmini notları](images/defter_full_pages/defter_p163.jpg)
 
 `W.186`, driver bypass alt sınırını kaba hesaplar:
 
 $$
 C_{bypass}\approx
-\frac{Q_{B,HI}\frac{D_{max}}{f_{drive}}+Q_g}{\Delta V}
+\frac{I_{Q,HI}\frac{D_{max}}{f_{drive}}+Q_g}{\Delta V}
 $$
 
 Sayfadaki yerleştirme:
 
 ```text
-Cbypass ≈ (2.5 mA * 0.95 / 400 kHz + 15 nC) / 0.1 V ≈ 27.1 nF
+Cbypass ≈ (2.5 mA * 0.7 / 100 kHz + 115 nC) / 0.6 V ≈ 221 nF
 ```
 
-Bu `C25`i `27 nF` seviyesine indirme önerisi değildir. `C25 = 2.2 uF`, `1-6 uF` uygulama aralığı, `CVCC/CBST` enerji zinciri ve startup davranışıyla birlikte okunur.
+[Tasarım İzi] Tam sayfa `p163`, sürücünün MOSFET gate'ine hızlı akım verirken bu akımı kendi güç pinine bağlı `Cbypass` kapasitesinden çektiğini açıklar. Notta `IQ-RUN` için `2.1 mA`, harici bias varsa `IVCC = 2.3 mA` gibi okunan bağlamlar ve MOSFET datasheet `Qg(max) = 150 nC` satırına rağmen yerel hesapta `Qg tahmined = 115 nC kabul` izi vardır. Alttaki uyarı, gate sürücüsüne paralel bağlanan bypass kapasitesinin frekansa bağlı depolama / destek davranışı olduğunu ve `CVCC` gibi doğrudan tek bir MOSFET'e değil driver beslemesine bağlandığını hatırlatır.
+
+[Açık Kontrol] Önceki Markdown/OCR hattında aynı `W.186` küçük kırpımı `2.5 mA * 0.95 / 400 kHz + 15 nC`, `0.1 V` ve `27.1 nF` gibi aktarılmıştı. Tam sayfa `p163` ve mevcut küçük kırpım üzerinde okunan değerler bununla uyuşmuyor; bu nedenle `27.1 nF` final hesap gibi korunmadı, uyuşmayan eski aktarım izi olarak burada görünür bırakıldı.
+
+Bu `C25`i `221 nF` seviyesine indirme önerisi değildir. `C25 = 2.2 uF`, `1-6 uF` uygulama aralığı, `CVCC/CBST` enerji zinciri ve startup davranışıyla birlikte okunur.
 
 [Tasarım İzi] `W.187`, aynı bypass ifadesini tekrar eder:
 
