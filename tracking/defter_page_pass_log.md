@@ -3994,3 +3994,50 @@ Açık notlar:
 - `p167` üzerindeki `∠F(jwt) ≈ -176.43° / ∠G3 ≈ 51.43°` hattı ile `p170-p171` üzerindeki `∠F ≈ -146° / ∠G3 ≈ 21°` hattı sessizce birleştirilmedi.
 - `fc = 10 kHz` notu güncel `~35 kHz` hedefiyle aynı rol değildir; eski/alternatif faz bütçesi izi olarak tutuldu.
 - `phi_comp = 201°` yazımı faz sarımı / error-amp gösterimi bağlamında son notasyon kontrolü ister.
+
+## Pass 087 - Sayfa 172-173
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p172.jpg](../images/defter_full_pages/defter_p172.jpg)
+- [defter_p173.jpg](../images/defter_full_pages/defter_p173.jpg)
+
+Defter işaretleri:
+
+- `p172 / W.7-W.8 geçişi`: hata yükselteci açık çevrim modeli `A_OL(s) = A_dc / (1 + s / wpe)` biçiminde yazılır.
+- `p172 / W.7-W.8 geçişi`: sağ tarafta `wpe`, `GBW` ve `A_dc` ilişkisini bağlayan karalama görülür; `2*pi*fpe` ve `2*pi*GBW/A_dc` çizgisi gibi okunur.
+- `p172 / W.7-W.8 geçişi`: alt tarafta açık çevrim kazancının kırılma frekansı sonrası düşüşünü gösteren Bode benzeri çizim vardır.
+- `p173 / W.8-W.9 geçişi`: `Vref = 800 mV` ve "FB pininden sabit 0.8 V istiyor" notu okunur.
+- `p173 / W.8-W.9 geçişi`: `Avol: DC Gain 94 dB = 50118 V/V` satırı yazılır.
+- `p173 / W.8-W.9 geçişi`: `GBW: Unity-gain Bandwidth = 6.5 MHz` satırı yazılır.
+- `p173 / W.8-W.9 geçişi`: `KFF: PWM feedforward gain Vin/Vramp = 15 V/V` notu görünür.
+- `p173 / W.8-W.9 geçişi`: "8.3.8 Voltage-Mode Control (Comp)" başlığı altında modülatör / feedforward blok şeması çizilir.
+- `p173 / W.8-W.9 geçişi`: `Vin` değiştikçe duty'nin değişmesi, buna rağmen `Vout`'un sabitlenmesi ve LM5146-Q1'in feedforward ile çarpımı sabitleme sezgisi not edilir.
+- `p173 / W.8-W.9 geçişi`: "Eski hocanın LTspice'ında bunun olduğunu göster, zannedersem var" gibi okunan LTspice çapraz teyit notu vardır.
+
+Primary owner entegrasyonu:
+
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `W.2-W.12: Faz Bütçesi, Modülatör ve İlk Kırılımlar` altındaki `W.7/W.8` modülatör ve hata yükselteci izlerine tam sayfa `p172` ve `p173` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `Avol/GBW` ayrıntılı hata yükselteci modeli yine [07](../07_kontrolcu_ve_kompanzasyon.md) içindeki `Kompanzatör ve Hata Yükselteci Modeli` bölümünde kalır.
+- Global `Vin`, `Vout`, `fsw`, duty ve timing değerleri [01](../01_tasarim_girdileri_ve_kaynaklar.md) ve [02](../02_startup_pin_programlama_ve_ortak_sabitler.md) tarafında kalır; p173 burada yalnız modülatör/feedforward sezgisi için kullanıldı.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `A_OL(s) = A_dc / (1 + s / wpe)`.
+- `wpe` / `GBW` / `A_dc` ilişkisi.
+- `Vref = 800 mV`.
+- `Avol = 94 dB = 50118 V/V`.
+- `GBW = 6.5 MHz`.
+- `KFF = Vin / Vramp = 15 V/V`.
+- Voltage-mode control / modülatör / feedforward blok sezgisi.
+- `Vin = 24 V - 36 V` değişirken duty'nin değişmesi ve `Vout`'un sabit tutulması notu.
+
+Açık notlar:
+
+- p173 üzerindeki `15 V/V` için dB karşılığı gibi görünen kısa not final modele sessizce aktarılmadı; lineer `KFF = 15 V/V` kullanılmaya devam eder.
+- "Eski hocanın LTspice'ında bunun olduğunu göster" notu, LTspice modelinde feedforward / ramp kazancı gerçekten temsil ediliyor mu sorusuna açık kontrol olarak bırakıldı.

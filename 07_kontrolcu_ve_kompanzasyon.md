@@ -465,6 +465,16 @@ Bu `1.46985 / 3.3454 dB`, sabit nihai kompanzatör kazancı değildir. `|F(jwt)|
 
 ![W.8'den küçük kırpım: `KFF = 15 V/V`, `Vm/Vramp` ve LM5146 modülasyon sezgisi notu](images/defter_snippets_web/d169_w8_kff_and_vm_ramp_note.jpg)
 
+![Defter p172 / W.7-W.8 geçişi: hata yükselteci açık çevrim modeli `A_OL(s) = A_dc / (1 + s / wpe)` ve `wpe` / `GBW` ilişkisi](images/defter_full_pages/defter_p172.jpg)
+
+![Defter p173 / W.8-W.9 geçişi: `Vref = 800 mV`, `Avol = 94 dB`, `GBW = 6.5 MHz`, `KFF = 15 V/V` ve voltage-mode feedforward blok sezgisi](images/defter_full_pages/defter_p173.jpg)
+
+[Tasarım İzi] Tam sayfa `p172-p173`, modülatör ve hata yükselteci modelinin ara defter izidir. p172 üzerinde hata yükselteci açık çevrim kazancı `A_OL(s) = A_dc / (1 + s / wpe)` biçiminde kurulmuş görünür; sağ tarafta `wpe` ile `GBW / A_dc` ilişkisini bağlayan karalama vardır. Bu, aşağıdaki `Kompanzatör ve Hata Yükselteci Modeli` bölümünde kullanılan `A_VOL = 94 dB`, `GBW = 6.5 MHz` ve `omega_opamp = 2*pi*GBW/A_VOL` çizgisiyle aynı aileye aittir.
+
+[Çapraz Teyit] p173, LM5146-Q1 kontrol bloklarına geçiş notudur: `Vref = 800 mV`, `Avol: DC Gain 94 dB = 50118 V/V`, `GBW: Unity-gain Bandwidth = 6.5 MHz` ve `KFF: PWM feedforward gain Vin/Vramp = 15 V/V` satırları okunur. Alt çizimde voltage-mode control zinciri, duty / `Vin` değişimi ve feedforward ile modülatör kazancının pratikte sabitlenmesi sezgisi tutulur. Bu sayfa yeni `Vin`, `Vout`, `fc` veya Type-III komponent değeri üretmez; `KFF = 15 V/V` modülatör varsayımının defter kaynağıdır.
+
+[Açık Kontrol] p173 üzerinde `15 V/V` için dB karşılığı gibi görünen kısa not okunur; final dokümanda modülatör girdisi yine lineer `15 V/V` olarak kullanılacak. Bu dB notu, calculator/LTspice modeline taşınmadan önce birim ve bağlam kontrolü ister.
+
 ![W.9'dan küçük kırpım: ilk kutup/sıfır kırılım frekanslarını tablo halinde toplayan ara sayfa](images/defter_snippets_web/d170_w9_break_frequency_table.jpg)
 
 ![W.10'dan küçük kırpım: modülatör / duty ilişkisi ve `Vout = D*Vin` mantığını destekleyen kısa not](images/defter_snippets_web/d171_w10_modulator_vout_d_vin.jpg)
