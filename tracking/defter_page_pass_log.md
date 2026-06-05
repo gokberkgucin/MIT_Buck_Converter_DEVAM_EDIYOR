@@ -3837,3 +3837,62 @@ Açık notlar:
 - `p164` yeni final `Cbypass` değeri üretmedi; önceki `W.186` hesabının denklem izidir.
 - `p165` yeni final phase margin veya gain margin değeri üretmedi; Bode okuma kuralını sabitler.
 - `T(jwgm) = -180°` yazımı sayfada transfer fonksiyonunun phase koşulu olarak okunur; final dokümantasyonda gerekirse `angle T(jwgm) = -180°` biçiminde notasyon temizliği yapılabilir.
+
+## Pass 084 - Sayfa 166-167
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p166.jpg](../images/defter_full_pages/defter_p166.jpg)
+- [defter_p167.jpg](../images/defter_full_pages/defter_p167.jpg)
+
+Defter işaretleri:
+
+- `p166 / W.1`: loop büyüklüğü için `|L(jwt)| = |M(jwt)| * |F(jwt)| * |G3(jwt)| = 1 olmalı` notu görülür.
+- `p166 / W.1`: `ft = 35 kHz'de 1 olmalı` yazılır.
+- `p166 / W.1`: modülatör kazancı `M = Vs / Vramp = 15` olarak not edilir.
+- `p166 / W.1`: plant büyüklüğü `|F(jwt)| = 0.045356` olarak okunur.
+- `p166 / W.1`: gerekli kompanzatör büyüklüğü `|G3(jwt)| = 1 / (|M(jwt)| * |F(jwt)|)` şeklinde yazılır.
+- `p166 / W.1`: sayısal sonuç `|G3(jwt)| = 1.46985 = 3.3454 dB` olarak görünür.
+- `p167 / W.2`: plant transfer fonksiyonu `F(jwt) = (A + jB) / (C + jD)` olarak açılır.
+- `p167 / W.2`: ara kompleks terimler `1 + j0.0004002` ve `-22.0102 + j1.2824` gibi okunur.
+- `p167 / W.2`: `∠F(jwt) = 0.2293 - 176.665 = -176.43°` hesabı görünür.
+- `p167 / W.2`: `PM = 180° + ∠L(jfc) = 55°` ilişkisi kullanılır.
+- `p167 / W.2`: buradan `∠L(jfc) = -125°` gibi okunan hedef loop fazı çıkar.
+- `p167 / W.2`: `∠L(jfc) = ∠M(jw) + ∠F(jw) + ∠G3(jw)` ayrımı yazılır.
+- `p167 / W.2`: `∠M(jw)` yaklaşık `0°`, `∠F(jw)` yaklaşık `-176.43°` okunur.
+- `p167 / W.2`: kompanzatör faz katkısı `∠G3(jw) = 176.43 - 125 = 51.43°` olarak hesaplanır.
+- `p167 / W.2`: aynı sayfada büyük yazıyla `231.43°` gibi bir toplam/alternatif faz yazımı da görünür.
+
+Primary owner entegrasyonu:
+
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `W.1: Gerekli Kompanzatör Kazancı` altına tam sayfa `p166` eklendi.
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `W.2-W.12: Faz Bütçesi, Modülatör ve İlk Kırılımlar` altına tam sayfa `p167` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `M = Vs/Vramp = 15` modülatör kazancı olarak [07](../07_kontrolcu_ve_kompanzasyon.md) içinde kalır; global duty/fsw veya güç katı owner'ı değildir.
+- `F(jwt)` plant büyüklüğü/fazı fiziksel olarak [03](../03_bobin_ve_cikis_kapasitorleri.md) değerlerine dayanır; burada kontrol hesabına giren transfer fonksiyonu izi olarak tutuldu.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `ft = 35 kHz`.
+- `M = Vs / Vramp = 15`.
+- `|F(jwt)| = 0.045356`.
+- `|G3(jwt)| = 1.46985`.
+- `20log10(|G3|) = 3.3454 dB`.
+- `F(jwt) = (A + jB) / (C + jD)`.
+- `1 + j0.0004002`.
+- `-22.0102 + j1.2824`.
+- `∠F(jwt) ≈ -176.43°`.
+- `PM = 180° + ∠L(jfc) = 55°`.
+- `∠L(jfc) ≈ -125°`.
+- `∠G3(jw) ≈ 51.43°`.
+- `231.43°` olarak görünen alternatif/toplam faz yazımı.
+
+Açık notlar:
+
+- `p166-p167` yeni final Type-III komponent seti üretmedi; `W.1-W.2` K-factor / faz bütçesi hesabının tam sayfa kaynak izidir.
+- `231.43°` ve `51.43°` faz yazımları sessizce tekleştirilmedi; muhtemel faz sarımı / `+180°` gösterim farkı olarak açık bırakıldı.
+- `F(jwt)` uzun plant hesabı burada yeniden plant owner'ı olmuyor; kontrol tarafında kullanılan büyüklük/faz ara sonucu olarak duruyor.

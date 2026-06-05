@@ -392,6 +392,8 @@ $$
 
 ![W.1'den küçük kırpım: `|F(jwt)| = 0.045356` üzerinden gerekli `|G3(jwt)| = 1.46985 = 3.3454 dB` sonucuna giden hesap](images/defter_snippets_web/d162_w1_required_g3_gain_result.jpg)
 
+![Defter p166 / W.1: `|L(jwt)| = |M(jwt)| * |F(jwt)| * |G3(jwt)| = 1`, `ft = 35 kHz`, `M = Vs/Vramp = 15`, `|F(jwt)| = 0.045356` ve `|G3(jwt)| = 1.46985 = 3.3454 dB` hesap izi](images/defter_full_pages/defter_p166.jpg)
+
 `W.1`, crossover noktasında kompanzatörün gereken kazancını çıkarır:
 
 ```text
@@ -419,9 +421,19 @@ $$
 
 Bu `1.46985 / 3.3454 dB`, sabit nihai kompanzatör kazancı değildir. `|F(jwt)|`, `70 uF`, `6.8 uH`, `Rdamp`, `ESR`, yük ve seçilen `fc` noktasına bağlıdır.
 
+[Tasarım İzi] Tam sayfa `p166`, aynı hesabın daha geniş defter bağlamıdır. Sayfada `ft = 35 kHz` noktasında loop büyüklüğünün `1` olması gerektiği yazılır; `M = Vs/Vramp = 15` modülatör kazancı olarak kullanılır. `|F(jwt)|` için plant transfer fonksiyonunun uzun ifadeli büyüklük hesabı görünür ve bu ara sonuç `0.045356` olarak taşınır. Bu sayfa yeni final `fc` veya yeni komponent değeri üretmez; `W.1`deki küçük kırpımın kaynak izini tamamlar.
+
 ### `W.2-W.12`: Faz Bütçesi, Modülatör ve İlk Kırılımlar
 
 ![W.2'den küçük kırpım: plant fazı, loop faz toplamı ve `PM = 55 deg` hedefi arasındaki ilişki](images/defter_snippets_web/d163_w2_phase_sum_and_pm_result.jpg)
+
+![Defter p167 / W.2: `F(jwt) = (A+jB)/(C+jD)`, `∠F(jwt) ≈ -176.43°`, `PM = 180° + ∠L(jfc) = 55°` ve kompanzatör faz ihtiyacı hesabı](images/defter_full_pages/defter_p167.jpg)
+
+[Tasarım İzi] Tam sayfa `p167`, `W.2` faz bütçesi devamıdır. Plant tarafı `F(jwt) = (A + jB)/(C + jD)` biçiminde açılır; sayfada `1 + j0.0004002` ve `-22.0102 + j1.2824` gibi ara kompleks terimler görülür. Defterde `∠F(jwt) = 0.2293 - 176.665 = -176.43°` olarak okunur.
+
+[Tasarım İzi] Aynı sayfa, hedef `PM = 55°` için `PM = 180° + ∠L(jfc)` ilişkisini kullanır; buradan `∠L(jfc) = -125°` çizgisi çıkar. Loop fazı `∠L(jfc) = ∠M(jw) + ∠F(jw) + ∠G3(jw)` olarak ayrılır; `∠M(jw)` yaklaşık `0°`, `∠F(jw)` yaklaşık `-176.43°` alındığında kompanzatörün sağlayacağı faz katkısı `∠G3(jw) = 176.43 - 125 = 51.43°` gibi okunur.
+
+[Açık Kontrol] Sayfada ayrıca büyük yazıyla `231.43°` gibi toplam/alternatif faz yazımı da görünür. `51.43°` kompanzatör katkısı ile `231.43°` yazımı sessizce tek anlama indirgenmedi; faz sarımı / `+180°` gösterim tercihi final notasyon kontrolünde netleştirilecek.
 
 ![W.3'ten küçük kırpım: paralel `R-C` ve eşdeğer empedans üzerinden yapılan ara karalama](images/defter_snippets_web/d164_w3_parallel_impedance_sketch.jpg)
 
