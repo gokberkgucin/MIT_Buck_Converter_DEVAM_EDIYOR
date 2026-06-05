@@ -3383,3 +3383,68 @@ Açık notlar:
 - `102.9 mW + 82.2 mW = 185.1 mW` ile `P_Coss ≈ 185 mW` farkı yuvarlama izi olarak korunur; yeni bir ayrı final değer üretilmedi.
 - `Eoss2` geri kazanım yorumu, üretici modeli ve gerçek switching dalga şekilleriyle final tabloda tekrar kontrol edilecek.
 - `P_Coss ≈ 185 mW`, switching overlap kalemiyle çift sayılmayacak.
+
+## Pass 076 - Sayfa 150-151
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p150.jpg](../images/defter_full_pages/defter_p150.jpg)
+- [defter_p151.jpg](../images/defter_full_pages/defter_p151.jpg)
+
+Defter işaretleri:
+
+- `p150 / W.199`: üst notta "buradaki hesaplar tam doğru olmayabilir" uyarısı korunur.
+- `p150 / W.199`: başlık `Body diode reverse recovery`.
+- `p150 / W.199`: `P_RR = Vin * fsw * Qrr` formülü yazılır.
+- `p150 / W.199`: `Qrr = 50 nC` ve `Tj = 25 C` koşulu not edilir; sıcaklık için `1.3` katı alındığı yazılır.
+- `p150 / W.199`: yerine koyma `Prr = 36 V * 332 kHz * 50 nC * 1.3`.
+- `p150 / W.199`: sonuç `Prr = 776.88 mW`.
+- `p150 / W.199`: `Qrr` değerini etkileyen parametreler ve sıcaklık bağlamı olduğu not edilir.
+- `p150 / W.199`: başlık `Bodydiode Dead-Time Loss`.
+- `p150 / W.199`: dead-time kaybı denklemi yazılır: `Pdead = VF * (I0 - Delta ILpp/2) * tdr * fsw + VF * (I0 + Delta ILpp/2) * tdf * fsw`.
+- `p150 / W.199`: denklem, ölü zaman sırasında body diode üzerinden akan akımın diyot gerilimiyle çarpımından doğan güç kaybı olarak açıklanır.
+- `p150 / W.199`: `VF = VSD forward diode voltage = 0.83 V` kabul edilir.
+- `p150 / W.199`: `tdr = rising-edge dead-time = 6.8 ns` ve `tdf = falling-edge dead-time = 39 ns` not edilir.
+- `p150 / W.199`: yerine koyma `0.83 V`, `9 A`, `3.8 A`, `6.8 ns`, `39 ns`, `332 kHz` ile yapılır.
+- `p150 / W.199`: sonuç `Pdead = 130 mW`.
+- `p151 / W.200`: başlık `Other losses`.
+- `p151 / W.200`: `(19) P_IC = Vin * Iq` / `P_IC = Vin * IQ-RUN` hattı yazılır.
+- `p151 / W.200`: LM5146'nın kendi çektiği akımın datasheet tablosundan alındığı not edilir.
+- `p151 / W.200`: `IQ-RUN: operating input current, no switching = 1.8 mA`.
+- `p151 / W.200`: yerine koyma `P_IC = 36 V * 1.8 mA`.
+- `p151 / W.200`: sonuç `P_IC = 64.8 mW`.
+- `p151 / W.200`: `P_sense = Rsense * Iout^2 * D * (1 + 1/12 * Delta ILpp^2)` şeklinde hızlı bir sense-loss notu yazılır.
+- `p151 / W.200`: `P_sense` hesabının "SONRA" yapılacağı, `Rilim`, `Rsense` gibi LM5146 hesapları tamamlandıktan sonra dönüleceği not edilir.
+- `p151 / W.200`: sonraki başlık geçişi olarak `Inductor Losses Calculation` ve `Input and Output Capacitor losses` yazılır.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `Body-diode Reverse Recovery ve Dead-time Loss` altına tam sayfa `p150` eklendi.
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `PIC ve Diğer Yardımcı Kayıp Açıkları` altına tam sayfa `p151` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `P_sense`, current-limit / sensing zincirine bağlıdır; final kapanış aşağıdaki protection/current-limit/sensing owner'ında yapılacak.
+- Bobin kayıpları [03](../03_bobin_ve_cikis_kapasitorleri.md) owner'ına, giriş/çıkış kapasitör ESR/ripple kayıpları [03](../03_bobin_ve_cikis_kapasitorleri.md) ve [04](../04_giris_kapasitorleri_ve_giris_agi.md) owner'larına bağlıdır; `p151` bu başlıklara geçiş izi bırakır.
+- `P_IC`, MOSFET junction kaybı değildir; LM5146 kontrolcünün kendi tüketimi ve VCC/DVCC termal kapanışı ile birlikte okunur.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Qrr = 50 nC` ve sıcaklık çarpanı `1.3`.
+- `P_RR ≈ 776.88 mW` tam sayfa izi.
+- Önceki küçük kırpım/okuma izi: `Qrr ≈ 5 nC`, `P_RR ≈ 77.688 mW`.
+- `VF = 0.83 V` tam sayfa izi.
+- Önceki küçük kırpım/okuma izi: `VF ≈ 0.87 V`.
+- `tdr ≈ 6.8 ns`, `tdf ≈ 39 ns`.
+- `Pdead ≈ 130 mW`.
+- `IQ-RUN = 1.8 mA`.
+- `P_IC = 36 V * 1.8 mA = 64.8 mW`.
+
+Açık notlar:
+
+- `Qrr / P_RR` hattında 10x fark vardır: `5 nC -> 77.688 mW` ve `50 nC -> 776.88 mW`. Bu çelişki sessizce birleştirilmedi.
+- `VF` için `0.87 V` ve `0.83 V` izleri birlikte korunur; final dead-time hesabında MOSFET datasheet koşulu ve sıcaklık tekrar okunacak.
+- `P_IC`, `P_gate-drive` ve `VCC/driver` kaybıyla çift sayılmayacak.
+- `P_sense` satırı final denklem değildir; `Rilim/Rsense` zinciri netleşince yeniden kurulacak.

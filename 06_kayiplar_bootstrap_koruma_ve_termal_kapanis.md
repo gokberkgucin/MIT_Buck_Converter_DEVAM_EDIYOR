@@ -683,6 +683,8 @@ Eoss2 ≈ 0.248 uJ
 
 ![W.199'dan küçük kırpım: `PRR` ve dead-time loss hesaplarını aynı sayfada gösteren sonuç bloğu](images/defter_snippets_web/d148_w199_rr_and_deadtime_losses.jpg)
 
+![Defter p150 / W.199: body-diode reverse recovery, `Prr`, dead-time body-diode loss, `VF`, `tdr`, `tdf` ve `Pdead = 130 mW` hesap izi](images/defter_full_pages/defter_p150.jpg)
+
 `W.199`, body-diode tarafındaki iki ek kaybı ayırır.
 
 Reverse recovery:
@@ -692,10 +694,14 @@ P_{RR} \approx V_{in}f_{sw}Q_{rr}
 $$
 
 ```text
-Qrr ≈ 5 nC
+Qrr ≈ 5 nC      [küçük kırpım / önceki okuma]
+Qrr ≈ 50 nC     [p150 tam sayfa okuması]
 ek marj / çarpan notu ≈ 1.3
-P_RR ≈ 77.688 mW  [kaba, sıcaklık ve koşula bağlı]
+P_RR ≈ 77.688 mW   [küçük kırpım / önceki okuma]
+P_RR ≈ 776.88 mW   [p150 tam sayfa: 36 V * 332 kHz * 50 nC * 1.3]
 ```
+
+[Açık Kontrol] `Qrr / P_RR` hattında tam sayfa `p150` ile önceki küçük kırpım okuması arasında 10x fark var. Bu fark sessizce düzeltilmedi: `5 nC -> 77.688 mW` ve `50 nC -> 776.88 mW` izleri aynı owner altında ayrı etiketle tutulur. Final reverse-recovery hesabında MOSFET datasheet `Qrr` koşulu, `T_J`, akım ve `di/dt` şartları tekrar okunacak.
 
 Dead-time boyunca body-diode iletim kaybı:
 
@@ -708,7 +714,8 @@ $$
 Kullanılan değerler:
 
 ```text
-VF ≈ 0.87 V
+VF ≈ 0.87 V  [küçük kırpım / önceki okuma]
+VF ≈ 0.83 V  [p150 tam sayfa okuması]
 I0 = 9 A
 Delta IL,pp = 3.8 A
 tdr ≈ 6.8 ns
@@ -716,6 +723,8 @@ tdf ≈ 39 ns
 fsw ≈ 332 kHz
 P_dead ≈ 130 mW
 ```
+
+[Tasarım İzi] Tam sayfa `p150`, dead-time denklemine `VF = VSD forward diode voltage`, `tdr = rising-edge dead-time` ve `tdf = falling-edge dead-time` açıklamalarını ekler. Sayfadaki yerine koyma `0.83 V`, `9 A`, `3.8 A`, `6.8 ns`, `39 ns` ve `332 kHz` ile `Pdead ≈ 130 mW` sonucunu verir. Üst notta "buradaki hesaplar tam doğru olmayabilir" uyarısı bulunduğu için bu kalem final kapanış değil, korunmuş tasarım izidir.
 
 Bu kalemler low-side normal kanal iletiminin yerine geçmez. `W.192` kanal iletimi içindir; `W.199` anahtar değişimleri sırasındaki kısa diyot / recovery pencerelerini tutar.
 
@@ -733,8 +742,8 @@ Bu kalemler low-side normal kanal iletiminin yerine geçmez. `W.192` kanal ileti
 | Switching overlap @ `36 V` | `310.3 mW` | high-side overlap parçası |
 | Gate-drive total | `79.68 mW` | iki MOSFET için; driver/gate yolu termaline ayrılmalı |
 | `Coss` total | `≈185 mW` | double-count riski açık |
-| Reverse recovery | `≈77.688 mW` | kaba/sıcaklığa bağlı |
-| Dead-time body diode | `≈130 mW` | gerçek dead-time davranışına bağlı |
+| Reverse recovery | `≈77.688 mW` / `≈776.88 mW` | `Qrr` okumasında çelişki açık |
+| Dead-time body diode | `≈130 mW` | `VF = 0.87 V` / `0.83 V` izi açık |
 
 [Açık Kontrol] Bu tablo final toplama tablosu değildir. Farklı koşullardaki kalemleri tek satırda zorla toplamak bilgi kaybettirir. Final kapanış için her satırın `Vin`, `Iout`, `f_sw`, `Vdrive`, `T_J`, `RDS(on)`, `Qg`, `Coss/Qoss`, `tr/tf` ve gate yolu seti aynı olacak.
 
@@ -813,6 +822,8 @@ Bu konu startup ve pin-programming açısından [02](02_startup_pin_programlama_
 
 ![W.200'den küçük kırpım: `PIC = 64.8 mW` notu ve sonraya bırakılan kayıp kalemleri listesi](images/defter_snippets_web/d149_w200_pic_and_todo_losses.jpg)
 
+![Defter p151 / W.200: `IQ-RUN = 1.8 mA`, `PIC = 36 V * 1.8 mA = 64.8 mW`, `Psense` sonraya bırakma notu ve sonraki kayıp başlıklarına geçiş](images/defter_full_pages/defter_p151.jpg)
+
 `W.200`, kontrolcü / yardımcı devre tüketimini ve kalan kayıp kalemlerini not eder:
 
 $$
@@ -825,6 +836,8 @@ P_IC = 36 V * 1.8 mA = 64.8 mW
 
 Bu `64.8 mW`, MOSFET junction kaybı değildir; kontrolcünün `36 V` girişteki kendi çalışma akımı için ayrı bir yardımcı kayıp kalemidir.
 
+[Tasarım İzi] Tam sayfa `p151`, `IQ-RUN` değerini "operating input current, no switching" satırından `1.8 mA` olarak okur ve `P_IC = 36 V * 1.8 mA = 64.8 mW` hesabını kurar. Bu satır LM5146'nın kendi tüketimine gider; harici VCC/DVCC yolu seçilirse aynı kayıp kapanışı [02](02_startup_pin_programlama_ve_ortak_sabitler.md) ve bu dosyadaki termal owner ile birlikte yeniden okunacak.
+
 [Açık Kontrol] `Operating input current, no switching` satırı kullanıldığı için `P_IC`, `P_gate-drive` ve `VCC/driver` kaybı birlikte toplanırken çift sayım riski kontrol edilecek.
 
 `W.200` içindeki açık kayıp notları:
@@ -836,6 +849,8 @@ input and output capacitor losses / ESR
 ```
 
 Bu `P_sense` satırı final denklem değildir; ripple terimi boyutsal olarak hızlı yazılmış olabilir. Son hesapta sense direncinden geçen gerçek RMS akımla tekrar kurulacak.
+
+[Açık Kontrol] `p151` üzerinde `Psense` satırının üstüne büyük "SONRA" notu düşülmüş ve `Rilim`, `Rsense` gibi LM5146 iç hesapları tamamlandıktan sonra yapılacağı yazılmıştır. Bu yüzden `P_sense` burada yardımcı kayıp notu olarak görünür; current-limit / sensing zincirinin primary kapanışı aşağıdaki protection/current-limit/sensing owner'ında kalır.
 
 ## Bootstrap Ağı
 
