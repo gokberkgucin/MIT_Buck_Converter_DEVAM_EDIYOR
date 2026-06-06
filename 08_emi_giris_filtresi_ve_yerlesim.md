@@ -151,6 +151,8 @@ Bu ekran differential-mode EMI'nin soyut bir standart maddesi değil, doğrudan 
 
 ![W.103'ten küçük kırpım: ilk harmonik yaklaşımı ile gereken EMI attenuation hesabı](images/defter_snippets_web/d195_w103_required_emi_attenuation.jpg)
 
+![Defter p199 / W.103: EMI süzgecinin gerekli attenuation hesabı, ilk harmonik tanımı, `Cin = 4.7 uF` ara girdisi ve `Attn ≈ 46.8 dB` izi](images/defter_full_pages/defter_p199.jpg)
+
 `W.103`, differential-mode EMI filtresinin ne kadar attenuation sağlaması gerektiğini ilk harmonik yaklaşımıyla kestirmeye çalışır.
 
 Korunan ilişki:
@@ -179,6 +181,10 @@ Attn ≈ 46.80 dB
 ```
 
 Bu değer final standart uyum sonucu değildir. Filtre hedefinin artık "biraz bastırsın" seviyesinden çıkıp `~40 dB` üstü bir zayıflatma ihtiyacına geldiğini gösteren tasarım izidir.
+
+[Tasarım İzi] Tam sayfa `p199`, bu hesabın sözlü bağlamını tamamlar. Sayfa "EMI süzgecinin ne kadar attenuation sağlaması gerektiği" sorusuyla başlar; `I_L(peak)` giriş akımının birinci harmonik bileşeni / anahtarlama frekansı civarındaki darbeli akım izi olarak tanımlanır. `Dmax` için duty'nin en yüksek olduğu `24 V` giriş koşulundan `14/24` satırı kullanılır. `Vmax`, EMI standardına göre izin verilen maksimum gürültü seviyesi `dBµV` olarak açıklanır. Notun alt tarafı ilk harmonik bileşenin sisteme en çok EMI yayan bileşen olduğunu, bunun `Cin` tarafından bastırıldığını ve `Cin` yeterli değilse ek süzgeç bileşenleri gerekeceğini yazar.
+
+[Açık Kontrol] Tam sayfa `p199` üzerinde `Vmax = 70 dBµV`, `fsw = 333.333 kHz`, `Cin = 4.7 uF`, `Dmax = 0.5833` ve `Attn = 46.8 dB` gibi okunan izler vardır. Yukarıdaki küçük kırpım/OCR hattında ise `Vmax = 30 dBuV` ve `fsw = 332.333 kHz` korunmuştu. Bu farklar sessizce harmonize edilmedi. `Cin = 4.7 uF` burada tek kapasitör / ara EMI girdisi gibi okunur; gerçek etkin giriş kapasitansı ve bulk dahil/dahil değil ayrımı [04](04_giris_kapasitorleri_ve_giris_agi.md) owner'ından gelecek.
 
 ### `W.137`: Etkin `Cin` Seçimine Göre Attenuation
 

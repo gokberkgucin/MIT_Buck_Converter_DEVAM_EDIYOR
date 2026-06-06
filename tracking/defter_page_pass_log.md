@@ -4681,3 +4681,65 @@ Açık notlar:
 - `p196` üzerindeki `wL = LF/Rdamp` ters zaman sabiti okuması, README'deki `omega_L ≈ Rdamp/LF` frekans alanı notuyla sessizce değiştirilmedi; ilişki final plant modeliyle tekrar kontrol edilecek.
 - `p197` üzerindeki bootstrap başlığı tamamlanmamış / taşmış defter izi gibi durur; sayfanın ana sayısal gövdesi kompanzasyon owner'ında tutuldu.
 - `p197` üzerindeki `fESR` satırı el yazısı nedeniyle net değildir; küçük kırpımdaki `87.406 kHz` ve önceki `~8.74 kHz` izleri sessizce birleştirilmedi.
+
+## Pass 100 - Sayfa 198-199
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p198.jpg](../images/defter_full_pages/defter_p198.jpg)
+- [defter_p199.jpg](../images/defter_full_pages/defter_p199.jpg)
+
+Defter işaretleri:
+
+- `p198 / W.112`: LM5146 için frekans seçim kurallarını belirleme notu vardır.
+- `p198 / W.112`: kapasitör değerlerinin sıcaklık ve dc-bias ile azalabileceği, kompanzatör ağı tasarlanırken etkin kapasitansın dikkate alınması gerektiği yazılır.
+- `p198 / W.112`: `omega_0` için genel plant kutbu ifadesi `1/sqrt(LF*Cout) * sqrt((1+RESR/RL)/(1+RESR/Rdamp))` gibi okunur.
+- `p198 / W.112`: `RESR << RL` ve `RESR << Rdamp` ise `omega_0 ≈ 1/sqrt(LF*Cout)` sadeleşmesi vardır.
+- `p198 / W.112`: `omega_ESR = 1/(RESR*Cout)`.
+- `p198 / W.112`: damping / inverted-zero tarafında `wL = LF/Rdamp` gibi okunan ters zaman sabiti izi korunur.
+- `p198 / W.112`: `Rdamp = D*RDSon,high + (1-D)*RDSon,low + RDCR` effective damping resistance notu vardır.
+- `p198 / W.112`: `wp1`, `wp2`, `wz1`, `wz2` yerleşimleri aynı sayfada özetlenir.
+- `p198 / W.112`: `wp2 = wsw/2`, `wz1 = 0.5*w0`, `wz2 = w0` notları görünür.
+- `p198 / W.112`: `0.1 fsw < fc < 0.2 fsw`; ayrıca daha korumacı `fc < fsw/10` / `fc` kırılımlar arasında seçilir notu vardır.
+- `p199 / W.103`: EMI süzgecinin gerekli attenuation hesabı ilk harmonik yaklaşımıyla kurulur.
+- `p199 / W.103`: `I_L(peak)` giriş akımının birinci harmonik bileşeni / anahtarlama frekansı civarındaki bileşen olarak açıklanır.
+- `p199 / W.103`: `Dmax` için `24 V` girişte duty'nin en yüksek olduğu ve `14/24` satırı kullanıldığı yazılır.
+- `p199 / W.103`: `Vmax` EMI standardına göre izin verilen maksimum gürültü seviyesi `dBµV` olarak tanımlanır.
+- `p199 / W.103`: `Cin = 4.7 uF`, `Ipeak = 11 A`, `fsw = 333.333 kHz`, `Dmax = 0.5833`, `Vmax = 70 dBµV` gibi okunan girdiler vardır.
+- `p199 / W.103`: `Attn = 46.8 dB` sonucu korunur.
+
+Primary owner entegrasyonu:
+
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `W.112` frekans yerleşimi özetine tam sayfa `p198` eklendi.
+- [08_emi_giris_filtresi_ve_yerlesim.md](../08_emi_giris_filtresi_ve_yerlesim.md) içinde `W.103` ilk harmonik attenuation hesabına tam sayfa `p199` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `p198` üzerindeki `Cout`, `Cin`, `RESR`, `Rdamp` ve effective capacitance hatırlatmaları fiziksel komponent owner'ı değildir; çıkış kapasitesi [03](../03_bobin_ve_cikis_kapasitorleri.md), giriş kapasitansı [04](../04_giris_kapasitorleri_ve_giris_agi.md) tarafında kalır.
+- `p199` üzerindeki `Cin = 4.7 uF` EMI hesabının ara girdisidir; güncel etkin giriş kapasitörü seçimi yerine geçmez.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `omega_0 ≈ 1/sqrt(LF*Cout)` sadeleşmesi.
+- `omega_ESR = 1/(RESR*Cout)`.
+- `wL = LF/Rdamp` ters zaman sabiti / inverted-zero izi.
+- `Rdamp = D*RDSon,high + (1-D)*RDSon,low + RDCR`.
+- `wp2 = wsw/2`.
+- `wz1 = 0.5*w0`.
+- `wz2 = w0`.
+- `0.1 fsw < fc < 0.2 fsw`.
+- `Ipeak = 11 A`.
+- `fsw = 333.333 kHz` gibi okunan EMI hesabı girdisi.
+- `Cin = 4.7 uF`.
+- `Dmax = 0.5833`.
+- `Vmax = 70 dBµV`.
+- `Attn ≈ 46.8 dB`.
+
+Açık notlar:
+
+- `p198` üzerindeki `wL = LF/Rdamp` ters zaman sabiti okuması, 07 dosyasındaki `omega_L ≈ Rdamp/LF` frekans alanı okumasıyla sessizce değiştirilmedi.
+- `p198` etkin kapasitans uyarısı yeni `Cout/Cin` değeri üretmez; sadece kompanzasyon hesabında bias/sıcaklık altındaki değerlerin kullanılacağını hatırlatır.
+- `p199` tam sayfa okumasındaki `Vmax = 70 dBµV`, mevcut küçük `W.103` kırpımındaki `Vmax = 30 dBuV` iziyle sessizce harmonize edilmedi.
+- `p199` üzerindeki `fsw = 333.333 kHz` ile global `332 kHz`/küçük kırpım `332.333 kHz` farkı final EMI tablosunda tekrar kontrol edilecek.

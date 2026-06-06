@@ -1008,6 +1008,8 @@ Bu ekranlar ayrı ayrı final tasarım değildir; aynı aday ailesinin hassasiye
 
 ![W.112'den küçük kırpım: `omega_0`, `omega_ESR`, `omega_p1`, `omega_p2`, `omega_z1`, `omega_z2` özet sayfası](images/defter_snippets_web/d194_w112_frequency_placement_summary.jpg)
 
+![Defter p198 / W.112: LM5146 frekans seçim kuralları, etkin kapasitans uyarısı, plant kutup/sıfırları ve Type-III yerleşim özeti](images/defter_full_pages/defter_p198.jpg)
+
 Plant tarafı:
 
 $$
@@ -1049,7 +1051,13 @@ Erik Hoca: fc ≈ fsw / 10
 
 `omega_p2 = omega_sw/2`, `332 kHz` için `166 kHz` çizgisine denk gelir ve calculator satırıyla uyumludur.
 
-[Açık Kontrol] `omega_ESR ≈ omega_p1` ilişkisi son `Cout/ESR` değeriyle yeniden bağlanacak. `W.84-W.85-W.143` arasındaki `29 kHz`, `166 kHz`, `1.59 MHz` ve `f1-f3` farkları tek komponent seti seçilmeden kapatılamaz.
+[Tasarım İzi] Tam sayfa `p198`, bu özetin geniş defter sayfasıdır. Üst notta önce LM5146 için frekans seçim kurallarını belirlerken eleman sayısına ve özellikle kapasitörlerin sıcaklık / dc-bias altında azalan etkin değerine bakılması gerektiği yazılır. Bu, yeni `Cout` veya `Cin` hesabı değildir; kompanzasyon hesabında [03](03_bobin_ve_cikis_kapasitorleri.md) ve [04](04_giris_kapasitorleri_ve_giris_agi.md) owner'larından gelen etkin kapasitansların kullanılacağı uyarısıdır.
+
+[Tasarım İzi] Aynı sayfa plant ve kompanzatör kırılımlarını tek resimde toplar: `omega_0` için daha genel ifade `1/sqrt(LF*Cout) * sqrt((1+RESR/RL)/(1+RESR/Rdamp))` gibi yazılır; `RESR << RL` ve `RESR << Rdamp` ise `omega_0 ≈ 1/sqrt(LF*Cout)` sadeleşmesi not edilir. `omega_ESR = 1/(RESR*Cout)`, damping/inverted-zero tarafında `wL = LF/Rdamp` gibi okunan iz, `Rdamp = D*RDSon,high + (1-D)*RDSon,low + RDCR`, `wp1`, `wp2`, `wz1` ve `wz2` yerleşimleri aynı sayfada durur.
+
+[Açık Kontrol] `p198` üzerinde `wL = LF/Rdamp` ters zaman sabiti şeklinde, burada kullanılan frekans alanı notunda ise `omega_L ≈ Rdamp/LF` şeklinde okuma vardır; bu iki ifade sessizce düzeltilmedi. `omega_ESR ≈ omega_p1` ilişkisi son `Cout/ESR` değeriyle yeniden bağlanacak. `W.84-W.85-W.112-W.143` arasındaki `29 kHz`, `166 kHz`, `1.59 MHz` ve `f1-f3` farkları tek komponent seti seçilmeden kapatılamaz.
+
+[Tasarım İzi] Sayfada `0.1 fsw < fc < 0.2 fsw`, ayrıca daha korumacı bir not olarak `fc < fsw/10` / `fc` genellikle `fz` tarafındaki kırılımlardan büyük, `fp1/fp2` tarafındakilerden küçük seçilir çizgisi görünür. Bu notlar güncel `fc ≈ 35 kHz` hedefini destekleyen tasarım izi olarak kalır; final loop kabulü değildir.
 
 ## Faz, Kazanç Marjı ve WEBENCH Cross-checkleri
 
