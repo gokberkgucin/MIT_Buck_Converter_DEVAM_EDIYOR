@@ -4205,3 +4205,55 @@ Açık notlar:
 - `Cc2` satırındaki `3.64 / 2.016` gibi okunan sonuçların birimi net değildir; final `CC1/CC2/CC3` eşlemesine sessizce dönüştürülmedi.
 - `8.72 nF` ve `4.829 nF` aynı komponentin farklı direnç/ara iterasyon hesabı gibi görünüyor; final `4.7 nF` ailesine yakın olan iz korunurken ilk değer de silinmedi.
 - p179'daki `C1/C2/C3` adları calculator `CC1/CC2/CC3` sırasıyla birebir aynı olmayabilir; şema ve calculator satırıyla son eşleştirme açık kalır.
+
+## Pass 091 - Sayfa 180-181
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p180.jpg](../images/defter_full_pages/defter_p180.jpg)
+- [defter_p181.jpg](../images/defter_full_pages/defter_p181.jpg)
+
+Defter işaretleri:
+
+- `p180 / W.13-W.16 devamı`: `phi_comp = 231.43°` gibi okunan değer görünür.
+- `p180 / W.13-W.16 devamı`: `K = tan^2((phi_comp + 90°)/4)` hesabı yazılır.
+- `p180 / W.13-W.16 devamı`: `K = tan^2((231.43° + 90°)/4)` ve `K = tan^2(80.35°) = 34.58779` gibi okunan sonuç vardır.
+- `p180 / W.13-W.16 devamı`: `K 1 olarak oradaki değerleri kullandık` gibi bir not görünür; bu satır bağlam kontrolü ister.
+- `p180 / W.13-W.16 devamı`: `Adım 1`: `R1 = RFB1 = 16.5 kOhm -> R11` eski/ara çizgisi vardır; üstünde `26.4 kOhm` notu da görünür.
+- `p180 / W.13-W.16 devamı`: `Adım 2`: `R2 = |G3(jwt)| * R1 / sqrt(K)` hesabı yazılır.
+- `p180 / W.13-W.16 devamı`: `1.46985 * 16.5k / sqrt(34.58779)` üzerinden `4123.774 ohm` gibi okunan ara sonuç vardır; `6598 kOhm` gibi sonradan düzeltilmiş/alternatif not da görünür.
+- `p180 / W.13-W.16 devamı`: `Adım 3`: `C1 = 1/(wt*R2*sqrt(K))` hesabı yazılır.
+- `p180 / W.13-W.16 devamı`: `C1 = 1.87497e-10 = 187.497 pF`, ardından `~117.2 pF` ve `120 pF kullandık` notu görünür.
+- `p181 / W.13-W.16 devamı`: `Adım 4`: `C2 = sqrt(K)/(wt*R2)` hesabı yazılır.
+- `p181 / W.13-W.16 devamı`: `C2 = 6.485129 nF = 6485.129 pF` gibi okunan sonuç vardır.
+- `p181 / W.13-W.16 devamı`: sağ kenarda `cap'i 6800 pF ve 5600 pF seçersek phase margin ...`, `6800 pF seçilirse PM = 53° korunuyor` gibi notlar görünür.
+- `p181 / W.13-W.16 devamı`: `Adım 5`: `C3 = sqrt(K)/(wt*R1)` hesabı yazılır.
+- `p181 / W.13-W.16 devamı`: `C3 = 1.6208e-9 = 1.6208 nF` gibi okunan sonuç vardır.
+
+Primary owner entegrasyonu:
+
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `W.13-W.16 ve W.20-W.24: Type-III Komponent Ailesine Yaklaşım` altındaki tam sayfa komponent hesabı bloğuna `p180-p181` devamı olarak eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass kontrol/kompanzasyon owner'ında kaldı; global duty, güç katı veya termal dosyaya taşınmadı.
+- `RFB1 = 16.5 kOhm` satırı feedback divider'ın eski/ara izi olarak korunur; güncel `26.4 kOhm / 1.6 kOhm` ailesiyle karıştırılmadı.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `phi_comp ≈ 231.43°`.
+- `K ≈ 34.58779`.
+- `RFB1 = 16.5 kOhm` eski/ara çizgisi ve `26.4 kOhm` notu.
+- `R2/Rc1 ≈ 4123.774 ohm` eski/ara sonuç.
+- `C1 ≈ 187.497 pF`, `~117.2 pF`, standart `120 pF`.
+- `C2 ≈ 6.485129 nF`, standart aday `6800 pF / 5600 pF`.
+- `PM = 53°` korunuyor notu.
+- `C3 ≈ 1.6208 nF`.
+
+Açık notlar:
+
+- `K 1 olarak ...` notu net değil; K-factor hesabındaki `K = 34.58779` ile aynı bağlamda mı, yoksa ayrı bir normalizasyon notu mu olduğu final yorumlanmadı.
+- `RFB1 = 16.5 kOhm` ve `RFB1 = 26.4 kOhm` aynı sayfa ailesinde yan yana görünür; güncel feedback divider çizgisi 26.4 kOhm ailesidir, 16.5 kOhm eski/ara iz olarak kaldı.
+- `C1/C2/C3` defter isimleri calculator `CC1/CC2/CC3` fiziksel isimleriyle sessizce eşleştirilmedi.

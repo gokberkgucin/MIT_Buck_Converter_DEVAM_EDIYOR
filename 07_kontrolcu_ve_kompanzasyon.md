@@ -565,6 +565,16 @@ p178 üzerinde ayrıca `Cc3 = 1/(2*pi*fz2*RFB1) ≈ 1.3197 nF` ve `Rc2 = 1/(2*pi
 
 p179, aynı hesabın standart parça ailesine yaklaşan tarafıdır. Sayfada `R10 = RFB2 = 1.6 kOhm`, `R1 = RFB1 = R11 = 26.4 kOhm`, `R2 = Rc1 = R6 ≈ 6.598 kOhm` ve standart adayı olarak `6.65 kOhm / 6.57 kOhm` görünür. Kapasitör tarafında `3900 pF / 4700 pF`, `1000 pF`, `117 pF -> 120 pF` ve `Rc2/R3 ≈ 763 ohm -> 759 ohm veya 768 ohm` notları okunur. Bunlar aşağıdaki final aday ailesiyle uyumludur, ama fiziksel `CC1/CC2/CC3` eşlemesi hâlâ şema/calculator satırıyla kontrol edilecektir.
 
+[Tasarım İzi - K-factor adım hesabı] `p180-p181`, aynı komponent ailesini K-factor adımlarıyla yeniden kuran defter izidir:
+
+![Defter p180 / W.13-W.16 devamı: `phi_comp`, `K ≈ 34.58779`, `RFB1`, `Rc1` ve `C1/C2` adım hesapları](images/defter_full_pages/defter_p180.jpg)
+
+![Defter p181 / W.13-W.16 devamı: `K ≈ 34.59`, `RFB1/RFB2`, `Rc1`, `C1/C2/C3` standart seçimleri ve `PM = 53°` notu](images/defter_full_pages/defter_p181.jpg)
+
+p180 üzerinde `K = tan^2((phi_comp + 90°)/4)` hesabı `phi_comp ≈ 231.43°` üzerinden `K ≈ 34.58779` gibi okunur. Aynı sayfada `Adım 1` için `R1 = RFB1 = 16.5 kOhm -> R11` eski/ara çizgisi, `Adım 2` için `R2 = |G3(jwt)| * R1 / sqrt(K)` hesabı ve `R2/Rc1/R6 ≈ 4123.774 ohm` gibi okunan ara sonuç vardır. Bu satırlar, daha sonra gelen `26.4 kOhm / 6.598 kOhm` aileyle sessizce birleştirilmeyecek.
+
+p180-p181 devamında `C1 = 1/(wt*R2*sqrt(K))` ile `C1 ≈ 187.497 pF` ve `120 pF kullandık` notu, `C2 = sqrt(K)/(wt*R2)` ile `C2 ≈ 6.485 nF` ve `6800 pF seçilirse PM ≈ 53° korunuyor` notu, `C3 = sqrt(K)/(wt*R1)` ile `C3 ≈ 1.6208 nF` gibi okunan sonuçlar vardır. p181 üzerindeki `3900 pF / 4700 pF`, `1000 pF`, `117 pF -> 120 pF`, `759/768 ohm` notları standart değer yuvarlama izidir; final calculator isimlendirmesine birebir sıra olarak aktarılmadan kontrol edilecektir.
+
 [Açık Kontrol] Defterdeki `C1/C2/C3` isimleri ile calculator `CC1/CC2/CC3` isimleri birebir aynı sırada yazılmayabilir. Fiziksel komponent eşlemesi `p58` ve calculator satırıyla final tabloda tek kez kapatılacak.
 
 ## Type-III Kompanzatör Topolojisi
