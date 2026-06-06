@@ -309,6 +309,8 @@ Bu, giriş kaynağı / filtre tarafının converter girişine doğru gördüğü
 
 ![W.101'den küçük kırpım: `CD >> 4 CIN` damping kuralı](images/defter_snippets_web/d205_w101_cd_much_greater_than_4cin.jpg)
 
+![Defter p209 / W.101: EMI rezonans tepe empedansını bastırmak için `C_D-R_D` damping ağı ve `C_D >> 4*C_IN` kuralı](images/defter_full_pages/defter_p209.jpg)
+
 `W.101`, rezonansı yumuşatmak için seri `R_D-C_D` damping kolu fikrini taşır:
 
 $$
@@ -323,6 +325,10 @@ Okuma:
 - `C_D` bu yüzden `C_IN`den çok daha büyük seçilmek istenmiş.
 
 Bu kural final eşitlik değildir; damping kolu için yönlendirici tasarım izidir.
+
+[Tasarım İzi] Tam sayfa `p209`, `C_D` ve `R_D` sönümleme ağını EMI rezonansındaki tepe empedansı bastırmak için kullanılan damping tasarımı olarak açıklar. `C_D`nin rezonans frekansında düşük empedans sunması gerekir ki `R_D` aktif şekilde damping yapabilsin.
+
+[Çapraz Teyit] Aynı sayfada `C_D`nin büyük seçilme gerekçesi iki yönlü verilir: DC bileşeni bloke ederek `R_D` üzerinde sürekli ısı kaybını önlemek ve `C_IN` ile etkileşip rezonans frekansını değiştirmemek. Bu yüzden `C_IN`den en az `4` kat büyük seçme izi korunur.
 
 ### `W.102`: İlk `L_IN-C_F` Boyutlandırma
 
@@ -491,6 +497,8 @@ Bu sabit direnç modeli değildir; constant-power yaklaşımından gelen referan
 
 ![W.136'dan küçük kırpım: projeye göre sayısal `|Zin|` sonucu](images/defter_snippets_web/d204_w136_numeric_zin_result.jpg)
 
+![Defter p208 / W.136: `ZIN = -VIN(min)^2/PIN` hesabının proje sayılarıyla uygulanması, `Pin ≈ 138.88 W` ve `Zin ≈ 4.15 ohm`](images/defter_full_pages/defter_p208.jpg)
+
 `W.136`, aynı ilişkiyi proje değerleriyle uygular:
 
 ```text
@@ -519,6 +527,10 @@ Bu Z_N = 4.15 ohm değerimiz
 ```
 
 Bu değer tek başına "filtre tamam" sonucu değildir; `Zfilter,out` ile aynı frekansta, aynı port tanımıyla ve damping dahil edilerek karşılaştırılacak referans çizgisidir.
+
+[Tasarım İzi] Tam sayfa `p208`, `W.106` denklemini proje girdileriyle tamamlar. Sayfa düşük giriş empedansının daha büyük enerji emme eğilimi anlamına geldiğini ve sistemin bu koşulda daha hassas hale gelebileceğini not eder. `Vin(min)=24 V`, `Pout,max=125 W`, `eta=0.90`, `Pin≈138.88 W` ve `|Zin|≈4.15 ohm` hattı aynı sayfada korunur.
+
+[Açık Kontrol] `4.15 ohm` değeri DC / constant-power referans çizgisidir; dampingli EMI filtresinin gerçek `Zfilter,out(jw)` eğrisiyle aynı port ve aynı frekans ekseninde karşılaştırılmadan final kabul olmayacak.
 
 ![Negatif giriş empedansı ve `|Zfilter(fres)| < |ZIN(min)|` kriterini notladığın ekran](images/foto_selected/p95_input_filter_middlebrook_note.jpg)
 

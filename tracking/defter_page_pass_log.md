@@ -4933,3 +4933,53 @@ Açık notlar:
 
 - `p206` üzerindeki `Z0`, `ZIN` ve LC süzgeç çıkış empedansı notları port tanımı gerektirir; final AC sweep'te `Zfilter,out` açıkça tanımlanacak.
 - `p207` sayısal sonuç üretmez; `W.136` üzerindeki proje sayılarıyla birlikte okunacak.
+
+## Pass 105 - Sayfa 208-209
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p208.jpg](../images/defter_full_pages/defter_p208.jpg)
+- [defter_p209.jpg](../images/defter_full_pages/defter_p209.jpg)
+
+Defter işaretleri:
+
+- `p208 / W.136`: `ZIN = -VIN(min)^2 / PIN` bağıntısı proje sayılarıyla uygulanır.
+- `p208 / W.136`: düşük impedance'in daha büyük enerji emme eğilimi anlamına geldiği ve bu nedenle sistemin daha hassas hale gelebileceği not edilir.
+- `p208 / W.136`: `Vin(min)=24 V`, `Pout,max=125 W`, `eta=0.90` satırları görülür.
+- `p208 / W.136`: `Pin = Pout / eta = 125 W / 0.9 = 138.88 W` hesabı korunur.
+- `p208 / W.136`: `|Zin| = |-24^2 / 138.88| ≈ 4.15 ohm` sonucu yazılır.
+- `p208 / W.136`: "Bu Zin = 4.15 ohm değerimiz" notu görünür.
+- `p209 / W.101`: EMI rezonans tepe empedansını bastırmak için kullanılan sönümleme ağı `C_D` ve `R_D` tasarımı olarak tanımlanır.
+- `p209 / W.101`: `C_D >> 4*C_IN` kuralı yazılır.
+- `p209 / W.101`: `C_D` rezonans frekansında düşük empedans sunmalı ki `R_D` aktif damping yapabilsin.
+- `p209 / W.101`: `C_D` büyük seçilerek DC bileşenin bloke edilmesi ve `R_D` üzerinde sürekli ısı kaybı olmaması hedeflenir.
+- `p209 / W.101`: `C_D`nin `C_IN` ile etkileşerek rezonans frekansını değiştirmemesi gerektiği not edilir.
+
+Primary owner entegrasyonu:
+
+- [08_emi_giris_filtresi_ve_yerlesim.md](../08_emi_giris_filtresi_ve_yerlesim.md) içinde `W.136` proje sayılarıyla `Zin` bölümüne tam sayfa `p208` eklendi.
+- Aynı dosyada `W.101` damping kolu bölümüne tam sayfa `p209` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `p208` üzerindeki `Vin(min)`, `Pout,max` ve `eta` global tasarım girdileriyle aynıdır; burada yeniden global owner yapılmadı, Middlebrook worst-case hesabında kullanılan referans olarak kaldı.
+- `p209` üzerindeki `C_D-R_D` damping kuralı giriş kapasitör bankı seçimi değildir; EMI filtresi kararlılığı ve damping owner'ında tutuldu.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Vin(min)=24 V`.
+- `Pout,max=125 W`.
+- `eta=0.90`.
+- `Pin≈138.88 W`.
+- `|Zin|≈4.15 ohm`.
+- `C_D >> 4*C_IN`.
+- `C_D` rezonans frekansında düşük empedans sunmalı.
+- `R_D` aktif damping yapmalı.
+- DC bileşen bloke edilmeli, `R_D` üzerinde sürekli ısı kaybı oluşmamalı.
+
+Açık notlar:
+
+- `4.15 ohm` constant-power referansıdır; dampingli `Zfilter,out(jw)` ile aynı portta ve aynı frekans ekseninde karşılaştırılmadan final kararlılık kabulü değildir.
+- `C_D >> 4*C_IN` yönlendirici kuraldır; final `C_D`, `R_D`, ESR, ısınma ve fiziksel yerleşimle birlikte kapanacak.
