@@ -4840,3 +4840,49 @@ Açık notlar:
 
 - `p202` üzerinde `f_EMI > fc` gibi okunan not, belgede kullanılan `fc ≈ 35 kHz` hedefi ve `f_EMI ≈ 19.21 kHz` sayısıyla sessizce uyumlu sayılmadı.
 - `p203` üzerindeki `R0` birimi net değildir. Formül boyutsal olarak ohm ölçeği verdiği için ana metinde `0.296 ohm` korunur; final tabloda birim ve kullanılan kapasitans türü tekrar teyit edilecek.
+
+## Pass 103 - Sayfa 204-205
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p204.jpg](../images/defter_full_pages/defter_p204.jpg)
+- [defter_p205.jpg](../images/defter_full_pages/defter_p205.jpg)
+
+Defter işaretleri:
+
+- `p204 / W.100`: "EMI resonance frekansını nasıl belirleriz?" sorusuyla giriş filtresi rezonansının hem kontrol kararlılığı hem EMI bastırma açısından kritik olduğu yazılır.
+- `p204 / W.100`: `fres = 1/(2*pi*sqrt(L_IN*C_F))` ilişkisi korunur.
+- `p204 / W.100`: `L_IN-C_F` filtresinin rezonans frekansında empedans tepesi oluşturabileceği not edilir.
+- `p204 / W.100`: bu rezonansın control-to-output transfer fonksiyonunu, open-loop `T(s)` davranışını, phase margin'i ve salınım riskini etkileyebileceği yazılır.
+- `p204 / W.100`: `fres ≈ 22.463 kHz` hesabı görünür.
+- `p204 / W.100`: `|Zfilter(jw)| < |Zin(jw)|` Middlebrook koşulu not edilir.
+- `p205 / W.104`: `L_IN`, `C_F` ve seri `C_D-R_D` damping kolunu gösteren filtre topolojisi çizilir.
+- `p205 / W.104`: `ZFilter = [R_D + 1/(j*w*C_D)] || [j*w*L_IN + 1/(j*w*C_F)]` empedans iskeleti korunur.
+
+Primary owner entegrasyonu:
+
+- [08_emi_giris_filtresi_ve_yerlesim.md](../08_emi_giris_filtresi_ve_yerlesim.md) içinde `W.100` filtre rezonansı ve Middlebrook notuna tam sayfa `p204` eklendi.
+- Aynı dosyada `W.104` dampingli filtre empedansı bölümüne tam sayfa `p205` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `p204` kontrol kararlılığına etkiden bahsetse de primary owner EMI/giriş filtresi kararlılığıdır; kontrol kompanzasyonu dosyasına yeni tam anlatım taşınmadı.
+- `p205` damping kolu ve port tanımı, komponent seçimi veya termal kapanış değil; Middlebrook/EMI filtre kapanışı için burada tutuldu.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `fres = 1/(2*pi*sqrt(L_IN*C_F))`.
+- `fres ≈ 22.463 kHz`.
+- `L_IN-C_F` rezonansında empedans tepesi.
+- control-to-output / open-loop `T(s)` etkisi.
+- phase margin azalması ve osilasyon riski.
+- `|Zfilter(jw)| < |Zin(jw)|`.
+- seri `L_IN`, şönt `C_F`, seri `C_D-R_D` damping kolu.
+- `ZFilter` paralel empedans iskeleti.
+
+Açık notlar:
+
+- `p204` üzerindeki `10.68` ve `4.7` L/C eşleşmesi, önceki `W.100` / `W.102` etiket karışıklığıyla birlikte açık kontrol olarak kaldı; sessizce final değer yapılmadı.
+- `p205` empedans ifadesi topolojik iskelet olarak tutuldu; Middlebrook için kullanılacak gerçek `Zfilter,out` portu final AC sweep'te açık etiketlenecek.

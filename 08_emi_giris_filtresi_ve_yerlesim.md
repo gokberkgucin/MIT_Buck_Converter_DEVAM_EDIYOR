@@ -268,6 +268,8 @@ Ana fikir:
 
 ![W.100'den küçük kırpım: `fres = 1/(2*pi*sqrt(LIN*CF))` ve Middlebrook uyumu notu](images/defter_snippets_web/d200_w100_middlebrook_and_filter_resonance.jpg)
 
+![Defter p204 / W.100: EMI filtre rezonansının kontrol kararlılığı ve EMI bastırma açısından kritik olduğunu, `fres ≈ 22.463 kHz` ve Middlebrook koşulunu gösteren tam sayfa](images/defter_full_pages/defter_p204.jpg)
+
 Filtre rezonans frekansı:
 
 $$
@@ -298,6 +300,10 @@ $$
 $$
 
 Bu, giriş kaynağı / filtre tarafının converter girişine doğru gördüğü çıkış empedansının, dönüştürücünün giriş empedansından küçük tutulması gerektiğini söyler.
+
+[Tasarım İzi] Tam sayfa `p204`, `W.100` küçük kırpımının bağlamını açar. Sayfa "filtrenin EMI resonance frekansını nasıl belirleriz?" sorusuyla başlar ve bunun hem kontrol sistemi kararlılığı hem EMI bastırma açısından kritik olduğunu not eder. `L_IN-C_F` filtresinin kendi rezonansında empedans tepesi oluşturabileceği; bunun control-to-output transfer fonksiyonunu, open-loop `T(s)` davranışını, phase margin'i ve salınım riskini etkileyebileceği yazılır.
+
+[Çapraz Teyit] Aynı sayfada `fres ≈ 22.463 kHz` hesabı ve `|Zfilter(jw)| < |Zin(jw)|` koşulu birlikte tutulur. Bu, yalnız frekans yerleşimi değil, Middlebrook empedans karşılaştırmasıyla kapanması gereken bir filtre-kararlılık problemidir.
 
 ### `W.101`: Damping Kolu
 
@@ -406,6 +412,8 @@ Bu `0.296 ohm`, doğrudan `R_D` seçimi değildir. Damping direnci seçilirken `
 
 ![W.104'ten küçük kırpım: EMI filtresi, `C_F` ve seri `R_D-C_D` damping kolunun topolojik çizimi](images/defter_snippets_web/d201_w104_filter_impedance_expression.jpg)
 
+![Defter p205 / W.104: `L_IN`, `C_F` ve seri `C_D-R_D` damping kolu ile `ZFilter` empedans iskeletini gösteren tam sayfa](images/defter_full_pages/defter_p205.jpg)
+
 `W.104`, filtreyi ideal `L_IN-C_F` çifti olmaktan çıkarıp damping ağıyla birlikte yazar:
 
 - seri kolda `L_IN`,
@@ -420,6 +428,8 @@ Z_{Filter}=
 \parallel
 \left(j\omega L_{IN}+\frac{1}{j\omega C_F}\right)
 $$
+
+[Tasarım İzi] Tam sayfa `p205`, bu topolojiyi çizimle görünür yapar: giriş hattında seri `L_IN`, düğümden toprağa `C_F`, ayrıca `C_D` ve `R_D` üzerinden sönümleme yolu. Defterdeki ifade, `R_D + 1/(j\omega C_D)` kolunun `j\omega L_IN + 1/(j\omega C_F)` koluyla paralel okunduğu bir empedans iskeleti olarak korunur.
 
 [Açık Kontrol - port tanımı] Bu ifade devrenin empedans iskeletidir; Middlebrook karşılaştırmasında kullanılacak büyüklük converter girişine doğru bakılan `Zfilter,out` olmalıdır. Kaynak/LISN tarafı, seri `L_IN` konumu, `C_F` noktası ve damping kolunun hangi düğüme bağlı olduğu portu değiştirir. Final AC sweep'te enjeksiyon noktası ve ölçüm düğümü açık yazılacak.
 
