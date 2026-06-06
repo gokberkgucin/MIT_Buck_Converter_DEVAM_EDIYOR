@@ -4363,3 +4363,49 @@ Açık notlar:
 - `p184` üzerinde EVM `619 ohm`, hesap ara değeri `572.8087 ohm` ve kullanılan `576 ohm` yine tek sayı gibi birleştirilmedi.
 - `p185` üzerindeki `Tv(s)` ifadesinin tamamı sayfada kesik/yarım kalır; final transfer fonksiyonuna sessizce tamamlanmadı.
 - `wp1` / `wESR` ve `wp2` / `wc` sadeleştirme notları final kabul değil; plant ESR sıfırı ve kompanzatör kutup yerleşimi calculator / simülasyonla tekrar kontrol edilecek.
+
+## Pass 094 - Sayfa 186-187
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p186.jpg](../images/defter_full_pages/defter_p186.jpg)
+- [defter_p187.jpg](../images/defter_full_pages/defter_p187.jpg)
+
+Defter işaretleri:
+
+- `p186 / W.21`: `FB2, kontrol loopta bir etkisi yok` notu görünür.
+- `p186 / W.21`: çıkış sığaçlarının `DC bias` etkisi ve sıcaklıkla derating tarafına bakılması gerektiği yazılır.
+- `p187 / W.22`: `3 kutup, 2 sıfır var` notu görünür.
+- `p187 / W.22`: ilk kutbun orijinde olduğu ve DC kazancı artırmak için kullanıldığı yazılır.
+- `p187 / W.22`: yüksek DC kazancın hata miktarını azaltarak çıkış gerilimini referansa daha yakın tutacağı not edilir.
+- `p187 / W.22`: iki sıfırın LC süzgeçten gelen çift kutbu dengelemek için kullanıldığı yazılır.
+- `p187 / W.22`: sıfırların doğru yerleştirilmesinin phase margin'i iyileştireceği not edilir.
+- `p187 / W.22`: bir kutbun `ESR`den gelen sıfırı etkisizleştirmek için kullanıldığı yazılır.
+- `p187 / W.22`: son kutbun `fsw`nin yarısına yerleştirildiği, amacın yüksek frekanslı bileşenleri/gürültüyü bastırmak ve EMI'yi azaltmak olduğu not edilir.
+
+Primary owner entegrasyonu:
+
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `W.13-W.16 ve W.20-W.24: Type-III Komponent Ailesine Yaklaşım` altına tam sayfa `p186` ve `p187` eklendi.
+- `p187`, Type-III kutup/sıfır rol haritası olarak kontrol owner'ında tutuldu.
+
+Kısa referans / owner dışı bağlantı:
+
+- `p186` içindeki çıkış sığacı `DC bias` / sıcaklık derating notu, [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) dosyasındaki çıkış kapasitörü owner'ına bağlı kısa referans olarak tutuldu; 07 içinde yeni `Cout` hesabı açılmadı.
+- `p187` içindeki `ESR` sıfırı notu plant / çıkış kapasitörü sayılarının owner'ı değildir; Type-III kutup/sıfır yerleşim gerekçesi olarak kaldı.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `FB2` kontrol loop'una doğrudan etki etmez.
+- Çıkış sığaçlarında `DC bias` ve sıcaklık derating kontrol edilecek.
+- Type-III rol haritası: `3 kutup / 2 sıfır`.
+- Orijin kutbu DC kazanç içindir.
+- İki sıfır LC çift kutbu dengelemek içindir.
+- ESR sıfırı bir kutupla sınırlanır / etkisizleştirilir.
+- Son kutup `fsw/2` civarına konur; yüksek frekanslı içeriği bastırma ve EMI sezgisi taşır.
+
+Açık notlar:
+
+- `p186` üzerindeki çıkış sığaç derating notu yeni hesap üretmez; 03 owner'daki mevcut `Cout` derating / etkin kapasite izleriyle birlikte okunacak.
+- `p187` sayfası kavramsal açıklamadır; `wz1`, `wz2`, `wp1`, `wp2` için yeni final frekans değeri üretmez.

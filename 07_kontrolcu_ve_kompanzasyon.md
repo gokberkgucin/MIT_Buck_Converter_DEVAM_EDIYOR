@@ -521,7 +521,11 @@ Bu grup tek nihai komponent listesi değildir. Rolleri:
 
 ![W.21'den küçük kırpım: `FB2`'nin loopa etkisi olmadığı ve çıkış sığaçlarında derating notu](images/defter_snippets_web/d182_w21_fb2_and_output_cap_derating_note.jpg)
 
+![Defter p186 / W.21: `FB2` kontrol loop'una girmez notu ve çıkış sığaçlarında DC-bias / sıcaklık derating hatırlatması](images/defter_full_pages/defter_p186.jpg)
+
 ![W.22'den küçük kırpım: Type-III kutup ve sıfırların rolü hakkında kısa özet](images/defter_snippets_web/d183_w22_type3_poles_zeros_roles.jpg)
+
+![Defter p187 / W.22: Type-III için 3 kutup / 2 sıfır rol özeti, orijin kutbu, LC çift kutup dengeleme, ESR sıfırı ve `fsw/2` son kutup notu](images/defter_full_pages/defter_p187.jpg)
 
 ![W.23'ten küçük kırpım: `Kmid`, `omega_c`, `fc` aralığı ve `omega_p1/omega_p2` yerleştirme notları](images/defter_snippets_web/d184_w23_kmid_and_we_placement.jpg)
 
@@ -532,6 +536,19 @@ Bu grup tek nihai komponent listesi değildir. Rolleri:
 [Tasarım İzi / Çapraz Teyit] Tam sayfa `p185`, küçük `W.20` kırpımının bağlamını tamamlar. Üstte `VIN/Vramp` satırı, modülatörün çıkışta ne kadar değişiklik yapacağını belirleyen düşük frekans kazanç sezgisi olarak not edilir; bu dosyada kullanılan `KFF = Vin/Vramp = 15 V/V` çizgisiyle aynı ailede okunur. Sayfadaki `Kmid = Rc1 / RFB1` notu ve alttaki `Tv(s)` ifadesi, Type-III ağın plant/modülatör zincirine nasıl bağlandığını gösteren ara türetimdir; yeni `Vin`, `fc` veya final `RC/CC` sayısı üretmez.
 
 [Açık Kontrol] `p185` üzerinde "eğer `wp1` frekansındaki kutup, `wESR` frekansındaki sıfırı yok ediyorsa..." ve "`wp2` kutbu `wc`nin çok üzerindeyse..." gibi sadeleştirme notları vardır. Bunlar final kompanzatör sadeleştirmesi gibi kabul edilmeyecek; plant `fESR`, `fc` ve Type-III kutup/sıfır yerleşimi aynı koşul setiyle tekrar kontrol edilecek.
+
+[Tasarım İzi] Tam sayfa `p186`, `FB2` direnç bacağının kontrol loop'una doğrudan kazanç / kompanzatör sıfır-kutup elemanı gibi girmediğini not eder. Aynı sayfadaki çıkış sığaçları için `DC bias` ve sıcaklık derating hatırlatması, kontrol owner'ında yeni `Cout` hesabı açmaz; çıkış kapasite bankının primary owner'ı [03](03_bobin_ve_cikis_kapasitorleri.md) olarak kalır.
+
+[Tasarım İzi] Tam sayfa `p187`, Type-III kompanzatörün "3 kutup, 2 sıfır" rol haritasını sözle özetler:
+
+```text
+orijin kutbu: DC kazancı artırmak, hata miktarını azaltıp Vout'u referansa yaklaştırmak
+iki sıfır: LC süzgeçten gelen çift kutbu dengelemek ve phase margin'i iyileştirmek
+ESR tarafı kutbu: ESR'den gelen sıfırın etkisini sınırlamak / etkisizleştirmek
+son kutup: fsw'nin yarısına yerleştirilir; yüksek frekanslı bileşenleri bastırma ve EMI sezgisi
+```
+
+[Açık Kontrol] `p187` açıklaması kavramsal rol haritasıdır; final `wz1`, `wz2`, `wp1`, `wp2` değerleri için tek başına sayı üretmez. Type-III yerleşimi yine plant `LC`, output ESR sıfırı, `fc`, `fsw` ve calculator / simülasyon sonuçlarıyla birlikte kapanacak.
 
 Finale yakın defter ailesi:
 
