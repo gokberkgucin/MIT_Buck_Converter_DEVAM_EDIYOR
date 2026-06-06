@@ -362,6 +362,18 @@ G88'deki RLO ≈ G32'deki RHO-down / RLO-down ≈ 0.9 ohm
   -> gate'i GND'ye çeken pull-down / söndürme yolu direnci
 ```
 
+![Defter p210 / W.176: internal gate resistance, `Rtotal = Rdriver + RG,external + RG,internal`, parasitic gate inductance ve gate overshoot/ringing notları](images/defter_full_pages/defter_p210.jpg)
+
+[Tasarım İzi] Tam sayfa `p210`, `internal gate resistance` kavramını sözlü olarak açar. MOSFET içinde çok sayıda küçük MOS hücresinin gate uçları birbirine bağlıdır; bu bağlantılar sıfır ohm değil, dağıtılmış bir direnç ağı gibi davranır. Bu ağın eşdeğer direnci `RG,I` / `RG,internal` olarak okunur ve gate işaretinin MOSFET içinde yayılma yolunu etkiler.
+
+[Açık Kontrol] Aynı sayfada bu parametrenin datasheet'te genellikle verilmediği, kullanılan MOSFET için bu bilginin doğrudan bulunmadığı not edilir. Bu yüzden `RG,internal` final sabit değer gibi kullanılmayacak; gate yolu hesabında kullanılan değer hangi kaynaktan / ölçümden geldiğiyle birlikte etiketlenecek.
+
+[Tasarım İzi] Sayfa `Rtotal = Rdriver + RG,external + RG,internal` ilişkisini `W.177` toplam gate direnci hesabına hazırlık olarak yazar. Notun yanında `Rtotal`in switching süresi, gate sürücü davranışı ve EMI davranışı gibi kritik etkileri olduğu belirtilir.
+
+[Açık Kontrol] Sayfanın alt kısmında parasitik gate endüktansı için `L ≈ 12.9 nH` ve ölçüm/impedance analyzer hattında `CISS ≈ 5.85 nF`, `RGI ≈ 1.6 ohm` gibi okunan izler vardır. Bunlar mevcut `p135/W.177`te kullanılan `RG,internal ≈ 0.7 ohm` iziyle sessizce birleştirilmedi. Hangi MOSFET, hangi ölçüm düzeneği ve hangi gate kısa-devre / source-drain bağlantısı kullanıldığı netleşmeden final gate modeli yapılmayacak.
+
+[Çapraz Teyit] Parasitic inductance notu, hızlı switching sırasında gate'te overshoot/ringing oluşabileceğini ve gate işaretinin bozulabileceğini söyler. Bu, [08](08_emi_giris_filtresi_ve_yerlesim.md) dosyasındaki EMI/layout risklerine kısa handoff'tur; tam gate-drive ve kayıp hesabı burada kalır.
+
 ![Defter p135 / W.177: `Rtotal = Rdriver + RG,external + RG,internal`, `Rdriver=1.5 ohm`, `RG,external=0 ohm`, `RG,internal≈0.7 ohm` ve `Rtotal≈2.2 ohm`](images/defter_full_pages/defter_p135.jpg)
 
 [Tasarım İzi] Tam sayfa `p135`, gate-yolu toplam direncini daha temiz açar:

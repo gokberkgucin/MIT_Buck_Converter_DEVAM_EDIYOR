@@ -4983,3 +4983,52 @@ Açık notlar:
 
 - `4.15 ohm` constant-power referansıdır; dampingli `Zfilter,out(jw)` ile aynı portta ve aynı frekans ekseninde karşılaştırılmadan final kararlılık kabulü değildir.
 - `C_D >> 4*C_IN` yönlendirici kuraldır; final `C_D`, `R_D`, ESR, ısınma ve fiziksel yerleşimle birlikte kapanacak.
+
+## Pass 106 - Sayfa 210
+
+Durum: `used`
+
+Not: `prepare_defter_pass.ps1` bu turda `image211` bulamadığı için hata verdi. DOCX medya listesi `word/media/image210.jpeg` ile bitiyor. Bu nedenle bu pass tek sayfa olarak işlendi ve `tracking/defter_auto_state.json` içinde `next_page = 211`, `last_prepared_pages = "210"` yapıldı.
+
+Çıkarılan / kullanılan tam sayfa görsel:
+
+- [defter_p210.jpg](../images/defter_full_pages/defter_p210.jpg)
+
+Defter işaretleri:
+
+- `p210 / W.176`: `Internal Gate Resistance nedir?` sorusuyla başlar.
+- MOSFET içinde çok sayıda küçük MOS hücresinin gate uçlarının birbirine bağlı olduğu; bu bağlantıların sıfır ohm olmadığı ve direnç ağı gibi davrandığı yazılır.
+- Bu ağın eşdeğer direnci `RG,I` / internal gate resistance olarak okunur.
+- Gate işaretinin bu direnç üzerinden MOSFET içine yayıldığı not edilir.
+- Bu parametrenin datasheet'te genellikle verilmediği; kullanılan MOSFET için doğrudan bilginin bulunmadığı not edilir.
+- `Rtotal = Rdriver + RG,external + RG,internal` ilişkisi yazılır.
+- `Rtotal`in switching süresi, gate sürücü davranışı ve EMI davranışı gibi kritik etkileri olduğu not edilir.
+- Parasitic inductance için `L ≈ 12.9 nH` izi vardır.
+- Bu parasitik endüktansın MOSFET'in gate ucundaki/bonding wire ve gate pad metalindeki parazitik endüktans gibi okunduğu yazılır.
+- Hızlı switching sırasında gate'te overshoot/ringing oluşmasına ve gate işaretinin bozulmasına neden olabileceği not edilir.
+- Alt kısımda impedance analyzer / ölçüm hattı gibi okunan notlarda `CISS ≈ 5.85 nF`, `RGI ≈ 1.6 ohm` izleri vardır.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `p135/W.177` toplam gate direnci hesabının hemen önüne `p210/W.176` tam sayfa izi eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `p210` MOSFET seçim gerekçesini yeniden açmaz; internal gate resistance ve parasitik gate inductance gate-drive / switching-loss / EMI davranışı girdisi olarak [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde kaldı.
+- Gate ringing ve EMI etkisi [08](../08_emi_giris_filtresi_ve_yerlesim.md) dosyasına yalnız kısa handoff olarak bağlandı.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `RG,I` / internal gate resistance.
+- `Rtotal = Rdriver + RG,external + RG,internal`.
+- MOSFET içindeki gate hücre bağlantıları sıfır ohm değildir.
+- `Rtotal` switching süresi, gate sürücü ve EMI davranışını etkiler.
+- `Lparasitic ≈ 12.9 nH`.
+- `CISS ≈ 5.85 nF` gibi okunan ölçüm izi.
+- `RGI ≈ 1.6 ohm` gibi okunan ölçüm izi.
+
+Açık notlar:
+
+- `RG,internal ≈ 0.7 ohm` (`p135/W.177`) ile `RGI ≈ 1.6 ohm` (`p210/W.176` ölçüm/okuma izi) sessizce birleştirilmedi.
+- `CISS ≈ 5.85 nF` mevcut datasheet/defter kapasitans setleriyle aynı koşul gibi kabul edilmedi.
+- DOCX içinde `image211` olmadığı için sıradaki iki sayfalık pass bu turda tamamlanamadı; defterin fotolu DOCX medya seti `image210` ile bitiyor gibi görünüyor.
