@@ -4629,3 +4629,55 @@ Açık notlar:
 - `p194` tam sayfa okumasındaki `151.14 kHz / 8.993 / 15.7 Hz` izleri, mevcut küçük `W.143` kırpımındaki `152.4 kHz / 89.934 kHz / 1.57 kHz` izleriyle sessizce harmonize edilmedi.
 - `p194` kaynak görseli DOCX içinde yan yönde geldi; repo commit'ine orijinal tam sayfa görsel eklenecek.
 - `p195` üzerinde önce genel `Cc2 >> Cc1 -> Ceq ≈ Cc1` kuralı, sonra bu devre için `Cc2 << Cc1 -> Ceq ≈ Cc2` okuması vardır; bu ayrım açıkça korunacak.
+
+## Pass 099 - Sayfa 196-197
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p196.jpg](../images/defter_full_pages/defter_p196.jpg)
+- [defter_p197.jpg](../images/defter_full_pages/defter_p197.jpg)
+
+Defter işaretleri:
+
+- `p196 / W.114`: `Power Stage Zeros` başlığı vardır.
+- `p196 / W.114`: `omega_ESR = 1/(RESR*Cout)` çıkış kapasitörü ESR sıfırı olarak yazılır.
+- `p196 / W.114`: damping tarafında `inverted zero` notu ve `wL = LF/Rdamp` gibi ters zaman sabiti okuması görünür.
+- `p197 / W.115`: üstte `G.34 Bootstrap Direnci` ve "start-up süresince bootstrap diode'daki..." gibi tamamlanmamış / taşmış başlık izi vardır.
+- `p197 / W.115`: sayfanın çalışan sayısal gövdesi eski `fc = 60 kHz` kompanzasyon adayına aittir.
+- `p197 / W.115`: `Cc1 = 8.711 nF` gibi okunan eski aday izi vardır.
+- `p197 / W.115`: `Kmid = 0.547`.
+- `p197 / W.115`: `Rc1 = RFB1 * Kmid`, `16.5k * 0.547`, `Rc1 ≈ 9.029 kOhm`.
+- `p197 / W.115`: `f0 = 7.309 kHz`.
+- `p197 / W.115`: `fsw/2 = fp2 ≈ 165/166 kHz`.
+- `p197 / W.115`: `fz1 = f0/2 ≈ 3.65 kHz`, `fz2 = f0 ≈ 7.309 kHz`.
+
+Primary owner entegrasyonu:
+
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `W.114` power-stage zero geçidine tam sayfa `p196` eklendi.
+- Aynı dosyada `W.115` eski `fc = 60 kHz` kompanzasyon adayına tam sayfa `p197` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `p196` fiziksel `L/Cout/RESR/Rdamp` değerlerinin primary owner'ı değildir; bu değerler [03](../03_bobin_ve_cikis_kapasitorleri.md) tarafında kalır.
+- `p197` üzerinde bootstrap başlığı görünse de uzun sayısal içerik kompanzasyon/frekans yerleşimine ait olduğu için [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) dosyasına yeni bootstrap hesabı olarak taşınmadı.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `omega_ESR = 1/(RESR*Cout)`.
+- `wL = LF/Rdamp` ters zaman sabiti / inverted-zero izi.
+- `fc = 60 kHz` eski iterasyon.
+- `Kmid = 0.547`.
+- `Rc1 ≈ 9.029 kOhm`.
+- `Cc1 ≈ 8.711 nF` gibi okunan eski aday izi.
+- `f0 ≈ 7.309 kHz`.
+- `fp2 ≈ 165/166 kHz`.
+- `fz1 ≈ 3.65 kHz`.
+- `fz2 ≈ 7.309 kHz`.
+
+Açık notlar:
+
+- `p196` üzerindeki `wL = LF/Rdamp` ters zaman sabiti okuması, README'deki `omega_L ≈ Rdamp/LF` frekans alanı notuyla sessizce değiştirilmedi; ilişki final plant modeliyle tekrar kontrol edilecek.
+- `p197` üzerindeki bootstrap başlığı tamamlanmamış / taşmış defter izi gibi durur; sayfanın ana sayısal gövdesi kompanzasyon owner'ında tutuldu.
+- `p197` üzerindeki `fESR` satırı el yazısı nedeniyle net değildir; küçük kırpımdaki `87.406 kHz` ve önceki `~8.74 kHz` izleri sessizce birleştirilmedi.

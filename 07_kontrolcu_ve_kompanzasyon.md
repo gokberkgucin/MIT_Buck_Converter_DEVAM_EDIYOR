@@ -888,6 +888,8 @@ Finale yakın `Cc1 = 4.7 nF`, `Cc2 = 120 pF` için oran yaklaşık `39:1`; paral
 
 ![W.114'ten küçük kırpım: `omega_ESR` ve dampingten gelen ikinci sıfır notu](images/defter_snippets_web/d192_w114_power_stage_zeros.jpg)
 
+![Defter p196 / W.114: power-stage zero notu, `omega_ESR = 1/(RESR*Cout)` ve damping/inverted-zero çizgisi](images/defter_full_pages/defter_p196.jpg)
+
 `W.114`, kompanzatör değil plant tarafındaki sıfırları hatırlatır:
 
 $$
@@ -910,7 +912,9 @@ $$
 f_L\approx495\,Hz
 $$
 
-Bu değer Type-III hedefi değildir; plant modelinde damping/kayıp yolunun frekans cevabına etkisini hatırlatan izdir.
+[Tasarım İzi] Tam sayfa `p196`, `Power Stage Zeros` başlığıyla aynı iki plant sıfırı ailesini işaretler: çıkış kapasitörü ESR yolu için `omega_ESR = 1/(RESR*Cout)` ve damping yolu için "inverted zero" notu. Sayfada damping tarafı `wL = LF/Rdamp` gibi ters zaman sabiti biçiminde çizilmiştir; bu, yukarıdaki frekans alanı `omega_L ≈ Rdamp/LF` okumasıyla sessizce değiştirilmedi, aynı plant-zero sezgisinin defter izi olarak tutuldu.
+
+Bu değer Type-III hedefi değildir; plant modelinde damping/kayıp yolunun frekans cevabına etkisini hatırlatan izdir. Fiziksel `L`, `Cout`, `RESR` ve `Rdamp` sayılarının primary owner'ı [03](03_bobin_ve_cikis_kapasitorleri.md) dosyasıdır.
 
 ## Calculator / Defter Frekans Yerleştirme Cross-checkleri
 
@@ -945,6 +949,8 @@ Bu çizgi `fc ≈ 35 kHz` hedefiyle uyumludur; ama `W.23-W.24` bazı eski feedba
 
 ![W.115'ten küçük kırpım: eski `fc = 60 kHz` iterasyonu ve buna bağlı aday frekanslar](images/defter_snippets_web/d193_w115_old_fc_60k_candidate.jpg)
 
+![Defter p197 / W.115: eski `fc = 60 kHz` kompanzasyon adayı, `Kmid`, `Rc1`, `f0/fESR/fp/fz` notları ve üstte taşmış bootstrap başlığı](images/defter_full_pages/defter_p197.jpg)
+
 [Eski İterasyon] `W.115`:
 
 ```text
@@ -953,6 +959,7 @@ Kmid = 0.547
 Rc1 = RFB1 * Kmid
 RFB1 = 16.5 kOhm
 Rc1 ≈ 9.029 kOhm
+Cc1 ≈ 8.711 nF gibi okunan eski aday izi
 fESR = 87.406 kHz
 f0 = 7.309 kHz
 fsw/2 = fp2 = 166 kHz
@@ -961,7 +968,9 @@ fz1 = f0/2 = 3.654 kHz
 fz2 = f0 = 7.309 kHz
 ```
 
-[Açık Kontrol] `fESR = 87.406 kHz` ile `W.23-W.24` içindeki `~8.74 kHz` notu doğrudan birleştirilmeyecek. Arada yaklaşık `10x` fark var; bu farklı ESR varsayımı, ondalık okuma veya eski iterasyon farkı olabilir.
+[Tasarım İzi] Tam sayfa `p197`, küçük `W.115` kırpımının geniş halidir. Üstte `G.34 Bootstrap Direnci` ve "start-up süresince bootstrap diode'daki..." gibi tamamlanmamış bir başlık izi görünür; ancak sayfanın çalışan sayısal gövdesi `fc = 60 kHz`, `Kmid = 0.547`, `Rc1 = 16.5k * 0.547 ≈ 9.029 kOhm`, `f0 = 7.309 kHz`, `fp2 = fsw/2 ≈ 165/166 kHz`, `fz1 = f0/2 ≈ 3.65 kHz` ve `fz2 = f0 ≈ 7.309 kHz` kompanzasyon adayına aittir. Bu nedenle sayfa bootstrap owner'ına taşınmadı; bootstrap başlığı tamamlanmamış / taşmış defter izi olarak kaldı.
+
+[Açık Kontrol] `fESR = 87.406 kHz` ile `W.23-W.24` içindeki `~8.74 kHz` notu doğrudan birleştirilmeyecek. Tam sayfa `p197` üzerindeki `fESR` satırı da el yazısı nedeniyle net değildir; aradaki yaklaşık `10x` fark farklı ESR varsayımı, ondalık okuma veya eski iterasyon farkı olabilir.
 
 ### Calculator Görüntüleri
 
