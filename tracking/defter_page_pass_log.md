@@ -4579,3 +4579,53 @@ Açık notlar:
 - `p192` üzerindeki `wz1/wz2` değerleri önceki `fz1 ≈ 4.334 kHz` notuyla aynı ölçeğe doğrudan oturmuyor olabilir; rad/s-Hz dönüşümü ve isimlendirme final tabloda tekrar kontrol edilecek.
 - `p193` üstündeki `C3 = 390 pF` okuması ile önceki küçük kırpımdaki `C3 ≈ 290 pF` izi aynı eski/ara Bode eskizi altında ayrı tutuldu.
 - `p193` kaynak görseli DOCX içinde yan yönde geldi; repo commit'ine orijinal tam sayfa görsel eklenecek.
+
+## Pass 098 - Sayfa 194-195
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p194.jpg](../images/defter_full_pages/defter_p194.jpg)
+- [defter_p195.jpg](../images/defter_full_pages/defter_p195.jpg)
+
+Defter işaretleri:
+
+- `p194 / W.143`: eski/ara Type-III Bode kırılım frekansı hesapları tam sayfa halinde görünür.
+- `p194 / W.143`: `f1 = 1/(2*pi*R2*C1) ≈ 10.526 kHz`.
+- `p194 / W.143`: `f2 = 1/(2*pi*R2*C3) ≈ 151.14 kHz` gibi okunur.
+- `p194 / W.143`: `f3 = 1/(2*pi*R3*C2) ≈ 8.993` gibi okunur; birim ve ölçek net değildir.
+- `p194 / W.143`: `f4 = 1/(2*pi*R1*C2) ≈ 15.7 Hz` gibi okunur.
+- `p194 / W.143`: sağ tarafta `R2`, `1/R3`, `1/(jwC3)`, `1/(jwC2)` katkılarıyla Bode eğimi çizilmiştir.
+- `p195 / W.113`: `Compensator Poles` başlığı altında `wp1 = 1/(Rc1*(Cc1 || Cc2)) ≈ 1/(Rc1*Cc2)` yaklaşımı yazılır.
+- `p195 / W.113`: `Ceq = Cc1*Cc2/(Cc1+Cc2)` eşdeğer paralel kapasite notu vardır.
+- `p195 / W.113`: genel paralel kapasite kuralı ile bu devrede kullanılan `Cc2 << Cc1` varsayımı ayrı ayrı görünür.
+- `p195 / W.113`: `wp2 = 1/(Rc2*Cc3)` ikinci kompanzatör kutbu izi korunur.
+
+Primary owner entegrasyonu:
+
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `Type-III Kutup / Sıfır Tasarım İzleri` altındaki `W.143` kırılım frekansı hesabına tam sayfa `p194` eklendi.
+- Aynı dosyada `W.113` kompanzatör kutbu yaklaşımına tam sayfa `p195` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass yalnız kontrol / kompanzasyon owner'ında kaldı.
+- `p194` üzerindeki frekanslar final Type-III komponent seti veya BOM değeri gibi kullanılmadı.
+- `p195` üzerindeki `Cc1 || Cc2` yaklaşımı, final aday `Cc1/Cc2` oranını açıklayan tasarım izi olarak tutuldu.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `f1 ≈ 10.526 kHz`.
+- `f2 ≈ 151.14 kHz`.
+- `f3 ≈ 8.993` birim/ölçek açık kontrol.
+- `f4 ≈ 15.7 Hz` gibi okunan iz.
+- `wp1 ≈ 1/(Rc1*Cc2)`.
+- `wp2 = 1/(Rc2*Cc3)`.
+- `Ceq = Cc1*Cc2/(Cc1+Cc2)`.
+- `Cc2 << Cc1` varsayımı.
+
+Açık notlar:
+
+- `p194` tam sayfa okumasındaki `151.14 kHz / 8.993 / 15.7 Hz` izleri, mevcut küçük `W.143` kırpımındaki `152.4 kHz / 89.934 kHz / 1.57 kHz` izleriyle sessizce harmonize edilmedi.
+- `p194` kaynak görseli DOCX içinde yan yönde geldi; repo commit'ine orijinal tam sayfa görsel eklenecek.
+- `p195` üzerinde önce genel `Cc2 >> Cc1 -> Ceq ≈ Cc1` kuralı, sonra bu devre için `Cc2 << Cc1 -> Ceq ≈ Cc2` okuması vardır; bu ayrım açıkça korunacak.

@@ -837,6 +837,8 @@ C3 ≈ 290 pF
 
 ![W.143'ten küçük kırpım: `f1-f4` kırılım frekanslarını komponent çiftlerinden çeken sayfa](images/defter_snippets_web/d190_w143_bode_break_frequencies.jpg)
 
+![Defter p194 / W.143: eski/ara Type-III Bode kırılım frekansları, `f1-f4` hesapları ve el çizimi Bode yerleşimi](images/defter_full_pages/defter_p194.jpg)
+
 `W.143`, aynı adayın kırılım frekanslarını yazar:
 
 $$
@@ -855,9 +857,13 @@ $$
 f_4=\frac{1}{2\pi R_1C_2}\approx1.57\,kHz
 $$
 
-[Açık Kontrol] `W.142`te okunan değerler aynen kullanıldığında bazı hızlı kontroller `f1/f2/f3` için farklı sonuçlar verebilir. Bu büyük olasılıkla `C1/C2/C3` değerlerinin `5.6/56/5600` veya `pF/nF` okunmasından ya da farklı aday setinden gelir. Frekanslar final kabul edilmeyecek; Bode-inşa izini korumak için tutulur.
+[Tasarım İzi] Tam sayfa `p194`, küçük `W.143` kırpımındaki hesabı daha geniş bağlamıyla gösterir. Sayfa üzerinde `f1 ≈ 10.526 kHz`, `f2 ≈ 151.14 kHz`, birimi/ölçeği net olmayan `f3 ≈ 8.993` satırı ve `f4 ≈ 15.7 Hz` gibi okunan satır vardır; sağ tarafta bu frekansların Bode eğimi üzerindeki yerleşimi çizilmiştir.
+
+[Açık Kontrol] `W.142`te okunan değerler aynen kullanıldığında bazı hızlı kontroller `f1/f2/f3` için farklı sonuçlar verebilir. Bu büyük olasılıkla `C1/C2/C3` değerlerinin `5.6/56/5600` veya `pF/nF` okunmasından ya da farklı aday setinden gelir. `p194` tam sayfa okumasındaki `151.14 kHz / 8.993 / 15.7` izleri ile küçük kırpımdaki `152.4 kHz / 89.934 kHz / 1.57 kHz` izleri sessizce birleştirilmedi. Frekanslar final kabul edilmeyecek; Bode-inşa izini korumak için tutulur.
 
 ![W.113'ten küçük kırpım: `omega_p1 ≈ 1/(Rc1 Cc2)` yaklaşımı ve `Cc2 << Cc1` notu](images/defter_snippets_web/d191_w113_pole_approximation_note.jpg)
+
+![Defter p195 / W.113: compensator poles, `Cc1 || Cc2` eşdeğeri, `Cc2 << Cc1` varsayımı ve `wp2 = 1/(Rc2*Cc3)` izi](images/defter_full_pages/defter_p195.jpg)
 
 `W.113`, `Cc1 || Cc2 ≈ Cc2` yaklaşımını açıklar:
 
@@ -877,6 +883,8 @@ Cc2 << Cc1
 ```
 
 Finale yakın `Cc1 = 4.7 nF`, `Cc2 = 120 pF` için oran yaklaşık `39:1`; paralel eşdeğer `~117 pF` civarına iner. Yaklaşım bu aday için makuldür, ama final `p1` değeri yine tek komponent setiyle tekrar yazılacak.
+
+[Tasarım İzi] Tam sayfa `p195`, aynı notu biraz daha açık kurar: `wp1 = 1/(Rc1*(Cc1 || Cc2))`, `Ceq = Cc1*Cc2/(Cc1+Cc2)` ve `wp2 = 1/(Rc2*Cc3)` satırları birlikte görünür. Sayfada önce genel paralel kapasite sezgisi olarak `Cc2 >> Cc1` durumunda `Ceq ≈ Cc1` çizgisi yazılır; hemen ardından bu devre için ters durumun, yani `Cc2 << Cc1` varsayımının kullanıldığı belirtilir. Bu yüzden `omega_p1 ≈ 1/(Rc1*Cc2)` yaklaşımı final set adayıyla uyumlu bir okuma izi olarak korunur.
 
 ![W.114'ten küçük kırpım: `omega_ESR` ve dampingten gelen ikinci sıfır notu](images/defter_snippets_web/d192_w114_power_stage_zeros.jpg)
 
