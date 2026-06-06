@@ -531,6 +531,10 @@ Bu grup tek nihai komponent listesi değildir. Rolleri:
 
 ![W.24'ten küçük kırpım: `fc`, `fo`, `fESR` ve `Kmid` ile ilgili ilk sayısal adaylar](images/defter_snippets_web/d185_w24_fc_fo_fesr_and_kmid.jpg)
 
+![Defter p188 / W.23: `fc` aralığı, `wc = 2*pi*fc`, `Kmid = fc/f0 * 1/KFF = Rc1/RFB1` ve `wz/wp` yerleştirme notları](images/defter_full_pages/defter_p188.jpg)
+
+![Defter p189 / W.24: `33.2 kHz < fc < 66 kHz`, `Kmid` aralığı, `Rc1`, `wESR/fESR` ve `fz/fp` adayları](images/defter_full_pages/defter_p189.jpg)
+
 [Tasarım İzi] `W.13` daha çok alternatif/ara iterasyon gibi durur. `W.14-W.16`, satın alınmış BOM ve calculator çizgisiyle daha uyumlu finale yakın aileyi gösterir.
 
 [Tasarım İzi / Çapraz Teyit] Tam sayfa `p185`, küçük `W.20` kırpımının bağlamını tamamlar. Üstte `VIN/Vramp` satırı, modülatörün çıkışta ne kadar değişiklik yapacağını belirleyen düşük frekans kazanç sezgisi olarak not edilir; bu dosyada kullanılan `KFF = Vin/Vramp = 15 V/V` çizgisiyle aynı ailede okunur. Sayfadaki `Kmid = Rc1 / RFB1` notu ve alttaki `Tv(s)` ifadesi, Type-III ağın plant/modülatör zincirine nasıl bağlandığını gösteren ara türetimdir; yeni `Vin`, `fc` veya final `RC/CC` sayısı üretmez.
@@ -549,6 +553,33 @@ son kutup: fsw'nin yarısına yerleştirilir; yüksek frekanslı bileşenleri ba
 ```
 
 [Açık Kontrol] `p187` açıklaması kavramsal rol haritasıdır; final `wz1`, `wz2`, `wp1`, `wp2` değerleri için tek başına sayı üretmez. Type-III yerleşimi yine plant `LC`, output ESR sıfırı, `fc`, `fsw` ve calculator / simülasyon sonuçlarıyla birlikte kapanacak.
+
+[Tasarım İzi] Tam sayfa `p188-p189`, `W.23-W.24` frekans yerleştirme hattını genişletir:
+
+```text
+fc aralığı: fsw/10 ile fsw/5 arası
+fsw = 332 kHz için: 33.2 kHz < fc < 66 kHz
+wc = 2*pi*fc = w0 * Kmid * Vin/Vramp
+Kmid = fc/f0 * 1/KFF = Rc1/RFB1
+RFB1 genellikle başlangıçta belirlenir; Rc1 buradan hesaplanır
+wz1 = 0.5*w0
+wz2 = w0
+wp1 = wESR
+wp2 = wsw/2
+```
+
+[Eski İterasyon / Tasarım İzi] `p189` üzerinde `fc = 66 kHz` üst sınır tarafı için `Kmid ≈ 0.6012` ve `Rc1` aralığı notları görünür; aynı sayfada `33.2 kHz` alt sınır / `0.303` gibi okunan Kmid izi de korunur. Bu aralık, final `fc ≈ 35 kHz` hedefinin yerine yeni karar olarak yazılmadı; K-factor yönteminde `Rc1` seçiminin `fc` bandına nasıl bağlandığını gösteren ara nottur.
+
+[Açık Kontrol] `p189` üzerinde `wESR = 1/(RESR*Cout)` satırı `0.26 mOhm * 70 uF` ile açılır ve `54.960 Mrad/s` gibi okunur; hemen yanında `fESR = 8.740 kHz` gibi birimle yazılmış bir iz de vardır. Bu iki satır ve daha aşağıdaki `fESR = 87.406 kHz` eski iterasyon izi sessizce tek değere çevrilmeyecek. Final plant/kompanzasyon hesabında `Cout`, `ESR_Ceq`, rad/s-Hz dönüşümü ve ondalık okuması birlikte kontrol edilecek.
+
+[Tasarım İzi] `p189` alt kısmındaki aday yerleşim çizgisi şu şekilde korunur:
+
+```text
+fp2 = fsw/2 = 332 kHz/2 = 166 kHz
+fp1 = fESR = 8.740 kHz  [birim / okuma açık kontrol]
+fz1 = f0/2 = 3.654 kHz
+fz2 = f0 = 7.309 kHz
+```
 
 Finale yakın defter ailesi:
 

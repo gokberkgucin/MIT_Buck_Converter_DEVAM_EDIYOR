@@ -4409,3 +4409,59 @@ Açık notlar:
 
 - `p186` üzerindeki çıkış sığaç derating notu yeni hesap üretmez; 03 owner'daki mevcut `Cout` derating / etkin kapasite izleriyle birlikte okunacak.
 - `p187` sayfası kavramsal açıklamadır; `wz1`, `wz2`, `wp1`, `wp2` için yeni final frekans değeri üretmez.
+
+## Pass 095 - Sayfa 188-189
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p188.jpg](../images/defter_full_pages/defter_p188.jpg)
+- [defter_p189.jpg](../images/defter_full_pages/defter_p189.jpg)
+
+Defter işaretleri:
+
+- `p188 / W.23`: `fc` aralığı için `fsw/10` ile `fsw/5` bandı not edilir.
+- `p188 / W.23`: `wc = 2*pi*fc = w0*Kmid*Vin/Vramp` ilişkisi görünür.
+- `p188 / W.23`: `Kmid = fc/f0 * 1/KFF = Rc1/RFB1` yazılır.
+- `p188 / W.23`: `RFB1` genellikle başlangıçta belirlenir, `Rc1` buradan hesaplanır notu görünür.
+- `p188 / W.23`: `wz1 = 0.5*w0`, `wz2 = w0`, `wp1 = wESR`, `wp2 = wsw/2` yerleşim çizgisi korunur.
+- `p188 / W.23`: hafif yükte `Qfactor` ve phase düşüşüyle ilgili hızlı not vardır; final faz hesabı gibi okunmadı.
+- `p189 / W.24`: `fc = fsw/10 ile fsw/5 arasında olmalı`; `fsw = 332 kHz`, yaklaşık `33.2 kHz < fc < 66 kHz`.
+- `p189 / W.24`: üst sınır tarafında `Kmid ≈ 0.6012` gibi okunan değer vardır.
+- `p189 / W.24`: alt sınır tarafında `Kmid ≈ 0.303` gibi okunan değer vardır.
+- `p189 / W.24`: `Rc1 = RFB1 * Kmid` notu ve `Rc1` aralığı görünür.
+- `p189 / W.24`: `wESR = 1/(RESR*Cout)` hesabı `0.26 mOhm * 70 uF` ile açılır.
+- `p189 / W.24`: `wESR ≈ 54.960 Mrad/s` gibi okunur.
+- `p189 / W.24`: `fESR = 8.740 kHz` gibi yazılmış bir iz görünür.
+- `p189 / W.24`: `fp2 = fsw/2 = 166 kHz`.
+- `p189 / W.24`: `fp1 = fESR = 8.740 kHz`.
+- `p189 / W.24`: `fz1 = f0/2 = 3.654 kHz`.
+- `p189 / W.24`: `fz2 = f0 = 7.309 kHz`.
+
+Primary owner entegrasyonu:
+
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `W.13-W.16 ve W.20-W.24: Type-III Komponent Ailesine Yaklaşım` altına tam sayfa `p188-p189` eklendi.
+- `fc`, `Kmid`, `Rc1`, `wz/wp` yerleşimi ve `fESR` açık kontrolü kontrol/kompanzasyon owner'ında tutuldu.
+
+Kısa referans / owner dışı bağlantı:
+
+- `f0`, `Cout` ve `ESR_Ceq` sayılarının fiziksel owner'ı [03_bobin_ve_cikis_kapasitorleri.md](../03_bobin_ve_cikis_kapasitorleri.md) olarak kalır; 07 içinde yalnız kontrol yerleşimine giren handoff olarak kullanıldı.
+- `fESR` birim / ondalık farkı, çıkış kapasitörü/plant sayılarıyla tekrar bağlanacak; burada sessizce düzeltilmedi.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `33.2 kHz < fc < 66 kHz`.
+- `Kmid = fc/f0 * 1/KFF = Rc1/RFB1`.
+- `Kmid ≈ 0.303 ... 0.6012` aralığı gibi okunan çizgi.
+- `wESR ≈ 54.960 Mrad/s`.
+- `fESR ≈ 8.740 kHz` defter izi.
+- `fp2 = 166 kHz`.
+- `fz1 = 3.654 kHz`.
+- `fz2 = 7.309 kHz`.
+
+Açık notlar:
+
+- `p188-p189` kaynak görselleri DOCX içinde yan yönde geldi; okuma görselden yapıldı, repo commit'ine orijinal tam sayfa görseller eklenecek.
+- `wESR ≈ 54.960 Mrad/s`, `fESR ≈ 8.740 kHz` ve daha önceki `fESR = 87.406 kHz` izleri tek bir değer gibi birleştirilmedi.
+- `fc` üst sınırı `66 kHz` yeni hedef değildir; güncel hedef çizgisi `~35 kHz` / calculator cross-check hattında kalır.
