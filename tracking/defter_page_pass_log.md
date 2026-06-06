@@ -4797,3 +4797,46 @@ Açık notlar:
 - `p200` etkin `Cin` hesabında bulk hariç tutuldu; bu karar final EMI tablosunda frekans, port ve bulk empedans davranışıyla tekrar kontrol edilecek.
 - `p200` `Attn > 43.14 dB` hattı ile `p201` `Attn = 46.8 dB` hattı farklı varsayım kümeleridir; tek final filtre hedefi gibi birleştirilmedi.
 - `p201` `L_IN = 4.7 uH`, `C_F = 10.68 uF` ilk filtre boyutlandırma izidir; finalde doyma akımı, DCR, ESR/ESL, damping ve Middlebrook kontrolüyle kapanacak.
+
+## Pass 102 - Sayfa 202-203
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p202.jpg](../images/defter_full_pages/defter_p202.jpg)
+- [defter_p203.jpg](../images/defter_full_pages/defter_p203.jpg)
+
+Defter işaretleri:
+
+- `p202 / W.138`: alternatif EMI filtre rezonansı için `f_EMI = 1/(2*pi*sqrt(L_IN*C_F))` ilişkisi korunur.
+- `p202 / W.138`: hesapta `L_IN ≈ 2.2 uH` ve `C_F ≈ 56 uF` çifti görülür.
+- `p202 / W.138`: sonuç `f_EMI ≈ 19.21 kHz` olarak yazılmıştır.
+- `p202 / W.138`: sayfada `f_EMI > fc ama f_EMI << fs` ve `f_EMI = 0.7 fs olabilir` gibi okunan hızlı kontrol notları vardır.
+- `p203 / W.139`: karakteristik empedans ölçeği için `R0 = sqrt(L_IN/C_IN)` ilişkisi yazılır.
+- `p203 / W.139`: `R0 = sqrt(2.2 uH / 25 uF) = sqrt(0.088) ≈ 0.296` izi korunur.
+
+Primary owner entegrasyonu:
+
+- [08_emi_giris_filtresi_ve_yerlesim.md](../08_emi_giris_filtresi_ve_yerlesim.md) içinde `W.138` alternatif filtre rezonansı bölümüne tam sayfa `p202` eklendi.
+- Aynı dosyada `W.139` karakteristik empedans bölümüne tam sayfa `p203` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `p202` ve `p203` giriş kapasitörü seçimi veya güç katı tasarımı değildir; EMI filtresi / Middlebrook / damping owner'ında tutuldu.
+- `p203` üzerindeki `R0` değeri doğrudan damping direnci seçimi değildir; `R_D-C_D`, ısınma ve `Zfilter,out` kontrolüyle birlikte kapanacak.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `L_IN ≈ 2.2 uH`.
+- `C_F ≈ 56 uF`.
+- `f_EMI ≈ 19.21 kHz`.
+- `f_EMI << fs` kontrol sezgisi.
+- `f_EMI = 0.7 fs olabilir` notu.
+- `C_IN = 25 uF` gibi okunan karakteristik empedans girdisi.
+- `R0 ≈ 0.296` karakteristik empedans sonucu.
+
+Açık notlar:
+
+- `p202` üzerinde `f_EMI > fc` gibi okunan not, belgede kullanılan `fc ≈ 35 kHz` hedefi ve `f_EMI ≈ 19.21 kHz` sayısıyla sessizce uyumlu sayılmadı.
+- `p203` üzerindeki `R0` birimi net değildir. Formül boyutsal olarak ohm ölçeği verdiği için ana metinde `0.296 ohm` korunur; final tabloda birim ve kullanılan kapasitans türü tekrar teyit edilecek.

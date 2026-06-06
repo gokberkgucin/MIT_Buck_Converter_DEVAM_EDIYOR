@@ -356,6 +356,8 @@ $$
 
 ![W.138'den küçük kırpım: alternatif `L_IN-C_F` çifti için `f_EMI` kontrolü](images/defter_snippets_web/d198_w138_alt_filter_resonance_freq.jpg)
 
+![Defter p202 / W.138: `f_EMI = 1/(2*pi*sqrt(L_IN*C_F))`, `2.2 uH x 56 uF`, `f_EMI ≈ 19.21 kHz` ve `0.7 fs` kontrol notu](images/defter_full_pages/defter_p202.jpg)
+
 Alternatif aday:
 
 $$
@@ -366,15 +368,21 @@ Sayfadaki iz:
 
 ```text
 L_IN ≈ 2.2 uH
-C_F = onlarca uF mertebesinde
+C_F ≈ 56 uF
 f_EMI ≈ 19.21 kHz
 ```
 
 Bu değer `fc ≈ 35 kHz` ile kıyaslanır ve `f_EMI << fs` olması gerektiği not edilir. `0.7 fs` benzeri hızlı kontrol notu da vardır; bağlamı net olmadığı için nihai kural gibi kullanılmayacak.
 
+[Tasarım İzi] Tam sayfa `p202`, küçük `W.138` kırpımındaki hesabı açar. Sayfada `f_EMI = 1/(2*pi*sqrt(L_IN*C_F))` ilişkisi `2.2 uH x 56 uF` çiftiyle uygulanır ve `19.21 kHz` sonucu yazılır. Aynı sayfada `f_EMI > fc ama f_EMI << fs` ve `f_EMI = 0.7 fs olabilir` gibi okunan hızlı tasarım notları vardır; bunlar final EMI kuralı gibi değil, filtre rezonansını kontrol döngüsü ve anahtarlama frekansı arasına yerleştirme denemesi olarak korunur.
+
+[Açık Kontrol] `19.21 kHz` değeri, belgede kullanılan `fc ≈ 35 kHz` hedefiyle sessizce uyumlu sayılmadı. Final EMI/Middlebrook kapanışında bu satır; gerçek `fc`, `fsw`, seçilen `L_IN`, seçilen `C_F`, damping kolu ve port tanımıyla yeniden kontrol edilecek.
+
 ### `W.139`: Karakteristik Empedans
 
 ![W.139'dan küçük kırpım: `R0 = sqrt(LIN/CIN)` ile karakteristik empedans notu](images/defter_snippets_web/d199_w139_filter_characteristic_impedance.jpg)
+
+![Defter p203 / W.139: `R0 = sqrt(L_IN/C_IN) = sqrt(2.2 uH / 25 uF) = sqrt(0.088) ≈ 0.296` karakteristik empedans izi](images/defter_full_pages/defter_p203.jpg)
 
 `W.139`, `W.138` adayına karakteristik empedans gibi bir ölçek ekler:
 
@@ -389,6 +397,10 @@ R0 ≈ sqrt(2.2 uH / 25 uF) ≈ 0.296 ohm
 ```
 
 Bu `0.296 ohm`, doğrudan `R_D` seçimi değildir. Damping direnci seçilirken `C_D` empedansı, `R_D` ısınması, filtre tepesinin ne kadar bastığı ve `Zfilter,out` eğrisi birlikte görülecek.
+
+[Tasarım İzi] Tam sayfa `p203`, `R0 = sqrt(L_IN/C_IN)` satırını tek başına bırakır ve `sqrt(0.088) ≈ 0.296` sonucunu görünür kılar. Bu değer damping sezgisi için karakteristik empedans ölçeğidir; filtreye seri eklenecek nihai direnç değeri olarak okunmayacak.
+
+[Açık Kontrol] Tam sayfadaki birim yazımı net değildir. Formül boyutsal olarak ohm ölçeği verdiği için metinde `0.296 ohm` olarak tutuldu; final tabloda `C_IN` mi `C_F` mi kullanıldığı ve birim dönüşümü tekrar teyit edilecek.
 
 ### `W.104`: Dampingli Filtre Empedansı
 
