@@ -4521,3 +4521,61 @@ Açık notlar:
 - `p191` üzerindeki `Gc(s)` ifadesi kesik/karmaşık olduğu için final transfer fonksiyonuna sessizce tamamlanmadı.
 - `3.44 kHz / 3.64 kHz`, `1 kHz / 1.02 kHz` ve feedback oranı notları eski/ara iz olarak tutuldu.
 - `H = 1.8/14 ≈ 0.12857` satırı, daha önceki `H = 1/14 ≈ 0.12857` çelişkisini açıklığa yaklaştırır ama final feedback oranı gibi kullanılmadı.
+
+## Pass 097 - Sayfa 192-193
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p192.jpg](../images/defter_full_pages/defter_p192.jpg)
+- [defter_p193.jpg](../images/defter_full_pages/defter_p193.jpg)
+
+Defter işaretleri:
+
+- `p192 / W.85`: eski/ara Type-III aday seti değerleri görünür.
+- `p192 / W.85`: `Rc2 = 100 ohm`.
+- `p192 / W.85`: `RFB1 = 21 kOhm`.
+- `p192 / W.85`: `Cc3 = 1 nF`.
+- `p192 / W.85`: `Rc1 = 8.06 kOhm`.
+- `p192 / W.85`: `Cc1 = 4.7 nF`.
+- `p192 / W.85`: `Cc2 = 100 pF`.
+- `p192 / W.85`: `wp1 ≈ 1/(Rc1*Cc2) ≈ 1/(8.06k*100p) ≈ 1.240 MHz` gibi okunan iz vardır.
+- `p192 / W.85`: `wp2 ≈ 1/(Rc2*Cc3) ≈ 10 MHz`.
+- `p192 / W.85`: `wz1 ≈ 1/(Rc1*Cc1)` hesabı yaklaşık `26 kHz` mertebesi gibi okunur.
+- `p192 / W.85`: `wz2 ≈ 1/((RFB1+Rc2)*Cc3)` hesabı yaklaşık `47.3 kHz` gibi okunur.
+- `p193 / W.142`: renkli Bode-inşa eskizi vardır.
+- `p193 / W.142`: üst kenarda `R1 = 18 kOhm`, `R2 = 2.74 kOhm`, `R3 = 31.6 ohm`.
+- `p193 / W.142`: `C1 = 56 nF`, `C2 = 5600 pF`, `C3 = 390 pF` gibi okunan değerler görünür.
+- `p193 / W.142`: renkli kırılım işaretleri yaklaşık `f1 = 10.526 kHz`, `f2 ≈ 152 kHz`, `f3 ≈ 89.934 kHz`, `f4 ≈ 1.57 kHz` çizgileriyle birlikte durur.
+
+Primary owner entegrasyonu:
+
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `Type-III Kutup / Sıfır Tasarım İzleri` altındaki `W.85` eski/ara aday setine tam sayfa `p192` eklendi.
+- Aynı dosyada `W.142` renkli Bode-inşa eskizine tam sayfa `p193` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass yalnız kontrol / kompanzasyon owner'ında kaldı.
+- `RFB1 = 21 kOhm`, `Rc1 = 8.06 kOhm`, `C1/C2/C3` gibi değerler final BOM ailesi değildir; finale yakın `26.4 kOhm / 1.6 kOhm` ve calculator setiyle karıştırılmadı.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Rc2 = 100 ohm`.
+- `RFB1 = 21 kOhm`.
+- `Rc1 = 8.06 kOhm`.
+- `Cc1 = 4.7 nF`.
+- `Cc2 = 100 pF`.
+- `Cc3 = 1 nF`.
+- `wp1 ≈ 1.240 MHz`.
+- `wp2 ≈ 10 MHz`.
+- `wz1 ≈ 26 kHz` gibi okunan iz.
+- `wz2 ≈ 47.3 kHz` gibi okunan iz.
+- `R1/R2/R3 = 18 kOhm / 2.74 kOhm / 31.6 ohm`.
+- `C1/C2/C3 = 56 nF / 5600 pF / 390 pF` gibi okunan tam sayfa izi.
+
+Açık notlar:
+
+- `p192` üzerindeki `wz1/wz2` değerleri önceki `fz1 ≈ 4.334 kHz` notuyla aynı ölçeğe doğrudan oturmuyor olabilir; rad/s-Hz dönüşümü ve isimlendirme final tabloda tekrar kontrol edilecek.
+- `p193` üstündeki `C3 = 390 pF` okuması ile önceki küçük kırpımdaki `C3 ≈ 290 pF` izi aynı eski/ara Bode eskizi altında ayrı tutuldu.
+- `p193` kaynak görseli DOCX içinde yan yönde geldi; repo commit'ine orijinal tam sayfa görsel eklenecek.

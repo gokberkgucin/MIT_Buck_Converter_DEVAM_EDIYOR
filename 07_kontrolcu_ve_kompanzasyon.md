@@ -755,6 +755,8 @@ H = 1.8 / 14 ≈ 0.12857 = R3/(R3+R5)
 
 ![W.85'ten küçük kırpım: aday `Rc1/Rc2/Cc1/Cc2/Cc3` değerleri ve kutup denklemleri](images/defter_snippets_web/d188_w85_candidate_type3_values.jpg)
 
+![Defter p192 / W.85: eski/ara Type-III aday setiyle `wp1`, `wp2`, `wz1`, `wz2` hesapları ve `Rc/Rfb/Cc` değerleri](images/defter_full_pages/defter_p192.jpg)
+
 `W.85`, aday değerlerle kutup denklemlerini dener:
 
 ```text
@@ -797,7 +799,26 @@ fz1 ≈ 4.334 kHz
 
 izini bırakır. Bu değer `W.84`teki `3.44 kHz` ile aynı büyüklük mertebesindedir; final değildir, ara tasarım izidir.
 
+[Tasarım İzi] Tam sayfa `p192`, `W.85` küçük kırpımındaki aday setin hesabını genişletir. Sayfada görünen ana izler:
+
+```text
+Rc2 = 100 ohm
+RFB1 = 21 kOhm
+Cc3 = 1 nF
+Rc1 = 8.06 kOhm
+Cc1 = 4.7 nF
+Cc2 = 100 pF
+wp1 ≈ 1/(Rc1*Cc2) ≈ 1/(8.06k*100p) ≈ 1.240 MHz mertebesi
+wp2 ≈ 1/(Rc2*Cc3) ≈ 10 MHz
+wz1 ≈ 1/(Rc1*Cc1) ≈ 26 kHz mertebesi gibi okunan iz
+wz2 ≈ 1/((RFB1+Rc2)*Cc3) ≈ 47.3 kHz gibi okunan iz
+```
+
+[Açık Kontrol] `p192` üzerindeki `wz1/wz2` satırları önceki `fz1 ≈ 4.334 kHz` notuyla aynı ölçeğe doğrudan oturmuyor olabilir; bu yüzden rad/s-Hz dönüşümü, hangi satırın `w` hangi satırın `f` olduğu ve komponent isimleri final tabloya sessizce taşınmayacak.
+
 ![W.142'den küçük kırpım: aday komponent seti için renkli Bode-inşası](images/defter_snippets_web/d189_w142_bode_sketch_candidate_breaks.jpg)
+
+![Defter p193 / W.142: renkli Bode-inşa eskizi, eski aday `R/C` değerleri ve `f1-f4` kırılım işaretleri](images/defter_full_pages/defter_p193.jpg)
 
 `W.142`, final sayfa değil; Type-III ağın Bode eğimine katkılarını görsel olarak kurma egzersizidir. Okunan aday set:
 
@@ -809,6 +830,10 @@ C1 ≈ 56 nF
 C2 ≈ 5600 pF
 C3 ≈ 290 pF
 ```
+
+[Tasarım İzi] Tam sayfa `p193`, aynı eski/ara aday setiyle renkli Bode-inşa eskizini korur. Üst kenarda `R1 = 18 kOhm`, `R2 = 2.74 kOhm`, `R3 = 31.6 ohm`, `C1 = 56 nF`, `C2 = 5600 pF`, `C3 = 390 pF` gibi okunan izler vardır. Sayfada kırılım işaretleri yaklaşık `f1 = 10.526 kHz`, `f2 ≈ 152 kHz`, `f3 ≈ 89.934 kHz`, `f4 ≈ 1.57 kHz` çizgileriyle birlikte görsel olarak yerleştirilir.
+
+[Açık Kontrol] `p193` üstünde `C3 = 390 pF` gibi okunurken mevcut küçük kırpımda `C3 ≈ 290 pF` korunmuştu. Bu fark sessizce düzeltilmedi; aynı eski/ara Bode eskizi içinde iki okuma izi olarak kalır. Final fiziksel `CC1/CC2/CC3` seti calculator / BOM satırıyla ayrıca kapanacak.
 
 ![W.143'ten küçük kırpım: `f1-f4` kırılım frekanslarını komponent çiftlerinden çeken sayfa](images/defter_snippets_web/d190_w143_bode_break_frequencies.jpg)
 
