@@ -1224,12 +1224,16 @@ Cboot > 16.255 nC / 4.1 V ≈ 3.96 nF
 
 ![Defter p183 / W.18: sıcak `RDS(on)`, `ILIM(Tj)`, MOSFET `Tj` izi ve `RILIM ≈ 572.8087 ohm -> 576 ohm` hesabı](images/defter_full_pages/defter_p183.jpg)
 
+![Defter p184 / W.19: `RILIM` formülü, EVM `619 ohm`, `CILIM = 10 pF` ve `tau ≈ 5.728 ns -> 6 ns` kontrolü](images/defter_full_pages/defter_p184.jpg)
+
 [Tasarım İzi] `W.17-W.19`, current-limit / `Rilim` hesabının defterdeki ana izidir:
 
 ```text
 T ≈ 1 / 332 kHz
 anahtar açık / kısa-devre durumlarında indüktör akımı current-limit bağlamında okunur
 `VSW` / `VILIM` eşik ilişkisi defterde açık tutulur
+Q2 ile ILIM pini arasındaki RDS(on) sensing bağı not edilir
+RILIM = ((Iout - DeltaIL/2) / IRDSON) * RDS(on)_Q2
 EVM referans değeri ≈ 619 ohm
 defterde hesaplanan ara değer: Rilim ≈ 572.8 ohm
 yerel finale yakın satır: R4 / Rilim = 576 ohm
@@ -1237,12 +1241,15 @@ MOSFET sıcaklık izi: Tj,mos ≈ 76.35 C
 sıcak RDS(on) izi: 15 mOhm * 1.35 = 20.25 mOhm
 ILIM(Tj) ≈ 250.8 uA ≈ 251 uA
 RILIM ≈ (9 A - 3.8 A / 2) * 20.25 mOhm / 251 uA ≈ 572.8087 ohm -> 576 ohm
-Cilim ile tau = Cilim * Rilim ≈ 6 ns
+Cilim / C17 = 10 pF
+Cilim ile tau = Cilim * Rilim ≈ 10 pF * 572.8087 ohm ≈ 5.728 ns ≈ 6 ns
 ```
 
 [Tasarım İzi] Tam sayfa `p182`, EVM üzerindeki `Rilim = R4 = 619 ohm` değerinin defterde "uygun değil" diye işaretlendiğini ve yerel hesap sonucunun `572.8 ohm` tarafına indiğini gösterir. Sayfanın altındaki not, `572.8 / 619` oranını ve `9 A` yerine yaklaşık `8 A` civarında daha erken koruma alarmı verme sezgisini yazar; bu yorum final protection davranışı gibi değil, defterdeki current-limit hassasiyet izi olarak korunur.
 
 [Tasarım İzi / Çapraz Teyit] Tam sayfa `p183`, `Rilim` hesabının yalnız sabit bir direnç seçimi olmadığını gösterir. Hesap sıcak `RDS(on) = 20.25 mOhm`, MOSFET sıcaklığı `Tj,mos ≈ 76.35 C` ve `ILIM(Tj) ≈ 251 uA` ile birlikte kurulur; bu yüzden protection hesabı termal kapanıştan kopuk okunmayacak.
+
+[Tasarım İzi] Tam sayfa `p184`, aynı hesabı formül ve zaman sabiti tarafında kapatır. Sol kenardaki not `Q2` ile `ILIM` pini arasındaki algılama bağını işaret eder; defter, bu zinciri `RDS(on)` sensing olarak okur. Sayfanın altındaki `CILIM / C17 = 10 pF` ve `10e-12 * 572.8087 = 5.728087 ns` hesabı, `tau ≈ 6 ns` kontrolünü üretir. Bu değer `Cilim` filtresi / blanking davranışı için owner notudur; kompanzasyon `CC` kapasitörleriyle karıştırılmayacak.
 
 [Eski İterasyon / Açık Kontrol] `p183` üst tarafında harici VCC kullanımına dair eski/yarım bir not görünür. Güncel repo bilgisi şudur: harici VCC/DVCC seçeneği dışlanmamıştır; bu rol için ikinci LM5146-Q1 EVM satın alınmıştır. Bu sayfadaki eski VCC izi, güncel VCC kararını bozacak şekilde final karar gibi okunmayacak; [02](02_startup_pin_programlama_ve_ortak_sabitler.md) ve bu dosyadaki `Dahili VCC/LDO Kaybı` başlığıyla birlikte kontrol edilecek.
 
@@ -1264,7 +1271,7 @@ Bu görsel `RDS(on)` modunda `ILIM` akımının `T_J` ile değiştiğini göster
 - `ILIM(Tj) ≈ 250.8 uA ≈ 251 uA`,
 - sıcak `RDS(on)`,
 - `ILIM` current-source koşulu,
-- `Cilim` zaman sabiti,
+- `Cilim = 10 pF` ve `tau ≈ 5.728 ns ≈ 6 ns` zaman sabiti,
 - MOSFET sıcaklığı,
 - `RDS(on)` toleransı,
 - current-limit pulse / fault davranışı.
@@ -1408,7 +1415,7 @@ Bu owner kapanmadan "verim iyi görünüyor" veya "datasheet current yetiyor" de
 - `Dmax ≈ 0.95` bootstrap charge hesabında hangi worst-case rolü taşıyor, proje duty `0.648/0.352` ile ayrımı yazılacak.
 - `IHB = 80 uA` ve `IHB ≈ 0.13 mA` bootstrap parametreleri hangi datasheet koşulundan geliyor, teyit edilecek.
 - `Rilim = 576 ohm`, hesap ara değeri `572.8 ohm` ve EVM `619 ohm` current-limit değerleri aynı final protection tablosunda kapanacak.
-- `Cilim * Rilim ≈ 6 ns` hesabı actual BOM değeriyle tekrar okunacak.
+- `Cilim = 10 pF` ve `Cilim * Rilim ≈ 5.728 ns ≈ 6 ns` hesabı actual BOM değeriyle tekrar okunacak.
 - `76 degC board worst-case`, MOSFET `T_J`, controller junction ve MLCC sıcaklığı ayrı düğümler olarak raporlanacak.
 - MOSFET thermal metrics (`RthetaJA`, `RthetaJC`, `PsiJT`, `PsiJB`) ölçüm noktasına göre seçilecek.
 

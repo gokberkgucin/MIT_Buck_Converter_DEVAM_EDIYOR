@@ -4312,3 +4312,54 @@ Açık notlar:
 - `619 ohm`, `572.8 ohm` ve `576 ohm` aynı final sayı gibi birleştirilmedi; EVM değeri, hesap ara değeri ve standart değer adayı olarak ayrı tutuldu.
 - `p182` altındaki `%7` / erken koruma alarmı yorumu defter sezgisidir; final current-limit davranışı datasheet formülü, sıcaklık, `RDS(on)` toleransı, actual BOM ve ölçümle doğrulanacak.
 - `p183` üstündeki harici VCC notu güncel repo kararıyla çelişebilecek eski/yarım izdir; repo güncel bilgisi ikinci EVM'nin harici VCC kaynağı için satın alındığını söyler.
+
+## Pass 093 - Sayfa 184-185
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p184.jpg](../images/defter_full_pages/defter_p184.jpg)
+- [defter_p185.jpg](../images/defter_full_pages/defter_p185.jpg)
+
+Defter işaretleri:
+
+- `p184 / W.19`: sol kenarda `Q2 ile ILIM pini arasına bağlı` gibi okunan not, current-limit sensing bağını işaret eder.
+- `p184 / W.19`: `RILIM = ((Iout - DeltaIL/2) / IRDSON) * RDS(on)_Q2` biçiminde okunan `RDS(on)` sensing formülü vardır.
+- `p184 / W.19`: `RILIM = R4 = 619 ohm EVM` notu korunur.
+- `p184 / W.19`: `CILIM / C17 = 10 pF`.
+- `p184 / W.19`: `tau = CILIM * RILIM ≈ 6 ns`.
+- `p184 / W.19`: `10 * 10^-12 * 572.8087 = 5.728087 ns`.
+- `p184 / W.19`: `Rlim = 576 ohm kullandık` notu görünür.
+- `p185 / W.20`: `VIN / Vramp` başlığı, modülatörün çıkışta ne kadar değişiklik yapacağını belirleyen düşük frekans kazanç sezgisi olarak yazılır.
+- `p185 / W.20`: `Kmid = Rc1 / RFB1` notu görünür.
+- `p185 / W.20`: `wp1` frekansındaki kutbun `wESR` frekansındaki sıfırı yok etmesi / sadeleştirmesi hakkında not vardır.
+- `p185 / W.20`: `wp2` kutbunun `wc`nin çok üzerindeyse sadeleşeceği not edilir.
+- `p185 / W.20`: `Tv(s) = Rc1 * Cc3 * VIN / Vramp * wo^2 / s ...` gibi okunan ara transfer ifadesi başlar.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `Protection, Current-limit ve Sensing Owner` altındaki `W.17-W.19` zincirine tam sayfa `p184`, `CILIM = 10 pF` ve `tau ≈ 5.728 ns ≈ 6 ns` kontrolü olarak eklendi.
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `W.13-W.16 ve W.20-W.24: Type-III Komponent Ailesine Yaklaşım` altına tam sayfa `p185`, `W.20` küçük kırpımının tam sayfa bağlamı olarak eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `p184` kontrol/kompanzasyon bölümüne taşınmadı; `CILIM` current-limit filtresidir, Type-III `CC` kapasitör ailesi değildir.
+- `p185` current-limit veya güç katı owner'ına taşınmadı; buradaki `VIN/Vramp`, `Kmid` ve `Tv(s)` notları kontrol/kompanzasyon türetim bağlamında tutuldu.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `RILIM = ((Iout - DeltaIL/2) / IRDSON) * RDS(on)_Q2`.
+- EVM `RILIM / R4 = 619 ohm`.
+- Yerel standart değer `Rlim = 576 ohm`.
+- `CILIM / C17 = 10 pF`.
+- `tau ≈ 10 pF * 572.8087 ohm ≈ 5.728087 ns ≈ 6 ns`.
+- `Kmid = Rc1 / RFB1`.
+- `VIN / Vramp` modülatör kazancı / feedforward bağlamı.
+- `wp1`, `wESR`, `wp2`, `wc` sadeleştirme notları.
+
+Açık notlar:
+
+- `p184` üzerinde EVM `619 ohm`, hesap ara değeri `572.8087 ohm` ve kullanılan `576 ohm` yine tek sayı gibi birleştirilmedi.
+- `p185` üzerindeki `Tv(s)` ifadesinin tamamı sayfada kesik/yarım kalır; final transfer fonksiyonuna sessizce tamamlanmadı.
+- `wp1` / `wESR` ve `wp2` / `wc` sadeleştirme notları final kabul değil; plant ESR sıfırı ve kompanzatör kutup yerleşimi calculator / simülasyonla tekrar kontrol edilecek.

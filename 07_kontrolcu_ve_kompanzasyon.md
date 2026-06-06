@@ -517,6 +517,8 @@ Bu grup tek nihai komponent listesi değildir. Rolleri:
 
 ![W.20'den küçük kırpım: `Kmid`, `Vin/Vramp` ve modülatör kazancı notu](images/defter_snippets_web/d181_w20_kmid_and_modulator_note.jpg)
 
+![Defter p185 / W.20: `VIN/Vramp`, `Kmid = Rc1/RFB1`, kutup/sıfır sadeleşmesi ve `Tv(s)` modülatör/kompanzatör ara ifadesi](images/defter_full_pages/defter_p185.jpg)
+
 ![W.21'den küçük kırpım: `FB2`'nin loopa etkisi olmadığı ve çıkış sığaçlarında derating notu](images/defter_snippets_web/d182_w21_fb2_and_output_cap_derating_note.jpg)
 
 ![W.22'den küçük kırpım: Type-III kutup ve sıfırların rolü hakkında kısa özet](images/defter_snippets_web/d183_w22_type3_poles_zeros_roles.jpg)
@@ -526,6 +528,10 @@ Bu grup tek nihai komponent listesi değildir. Rolleri:
 ![W.24'ten küçük kırpım: `fc`, `fo`, `fESR` ve `Kmid` ile ilgili ilk sayısal adaylar](images/defter_snippets_web/d185_w24_fc_fo_fesr_and_kmid.jpg)
 
 [Tasarım İzi] `W.13` daha çok alternatif/ara iterasyon gibi durur. `W.14-W.16`, satın alınmış BOM ve calculator çizgisiyle daha uyumlu finale yakın aileyi gösterir.
+
+[Tasarım İzi / Çapraz Teyit] Tam sayfa `p185`, küçük `W.20` kırpımının bağlamını tamamlar. Üstte `VIN/Vramp` satırı, modülatörün çıkışta ne kadar değişiklik yapacağını belirleyen düşük frekans kazanç sezgisi olarak not edilir; bu dosyada kullanılan `KFF = Vin/Vramp = 15 V/V` çizgisiyle aynı ailede okunur. Sayfadaki `Kmid = Rc1 / RFB1` notu ve alttaki `Tv(s)` ifadesi, Type-III ağın plant/modülatör zincirine nasıl bağlandığını gösteren ara türetimdir; yeni `Vin`, `fc` veya final `RC/CC` sayısı üretmez.
+
+[Açık Kontrol] `p185` üzerinde "eğer `wp1` frekansındaki kutup, `wESR` frekansındaki sıfırı yok ediyorsa..." ve "`wp2` kutbu `wc`nin çok üzerindeyse..." gibi sadeleştirme notları vardır. Bunlar final kompanzatör sadeleştirmesi gibi kabul edilmeyecek; plant `fESR`, `fc` ve Type-III kutup/sıfır yerleşimi aynı koşul setiyle tekrar kontrol edilecek.
 
 Finale yakın defter ailesi:
 
