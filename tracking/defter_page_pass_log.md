@@ -4257,3 +4257,58 @@ Açık notlar:
 - `K 1 olarak ...` notu net değil; K-factor hesabındaki `K = 34.58779` ile aynı bağlamda mı, yoksa ayrı bir normalizasyon notu mu olduğu final yorumlanmadı.
 - `RFB1 = 16.5 kOhm` ve `RFB1 = 26.4 kOhm` aynı sayfa ailesinde yan yana görünür; güncel feedback divider çizgisi 26.4 kOhm ailesidir, 16.5 kOhm eski/ara iz olarak kaldı.
 - `C1/C2/C3` defter isimleri calculator `CC1/CC2/CC3` fiziksel isimleriyle sessizce eşleştirilmedi.
+
+## Pass 092 - Sayfa 182-183
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p182.jpg](../images/defter_full_pages/defter_p182.jpg)
+- [defter_p183.jpg](../images/defter_full_pages/defter_p183.jpg)
+
+Defter işaretleri:
+
+- `p182 / W.17`: `T = 1 / 332k saniye` anahtarlama periyodu izi görünür.
+- `p182 / W.17`: anahtar açık / kısa-devre durumlarında indüktör ve current-limit bağlamı yazılır.
+- `p182 / W.17`: `VSW` ve `VILIM` eşik ilişkisi defterde current-limit algılama bağlamında not edilir.
+- `p182 / W.17`: `ILIM` akımı ve akım limiti başlığı altında hesap zinciri başlar.
+- `p182 / W.17`: `EVM'deki Rilim = R4 = 619 ohm uygun değil` notu görünür.
+- `p182 / W.17`: `Hesapladığımız Rlim = 572.8 ohm` satırı korunur.
+- `p182 / W.17`: `572.8 / 619` oranı üzerinden yaklaşık `%7` düşük değer sezgisi ve `9 A` yerine yaklaşık `8 A` civarında erken koruma alarmı yorumu görünür.
+- `p183 / W.18`: `Tcase ≈ 77.3 C` ve `Tj = Tc + PD * RthetaJC` formu görünür; üstteki harici VCC notu eski/yarım iz olarak bırakıldı.
+- `p183 / W.18`: `83.46 = 77.3 + 0.22 W * 28 C/W` gibi okunan controller/termal ara hesabı vardır.
+- `p183 / W.18`: MOSFET için `Tj = Tcase + RthetaJC * Ploss` hattı tekrar kurulur.
+- `p183 / W.18`: `Tj = 73.9 C + 1.9 C/W * 1.29 W`, sonuç `Tjmos ≈ 76.35 C`.
+- `p183 / W.18`: sıcak kanal direnci `RDS(on) = 15 mOhm * 1.35 = 20.25 mOhm`.
+- `p183 / W.18`: `RILIM = (9 A - 3.8 A / 2) * 20.25 mOhm / 251 uA`.
+- `p183 / W.18`: `RILIM = 572.8087 ohm -> 576 ohm`.
+- `p183 / W.18`: `I0 = 200 uA @ T0 = 27 C`, `Tc = +4500 ppm/C`, `DeltaT = Tj - T0` ve `ILIM(Tj) ≈ 250.8 uA ≈ 251 uA` izi görünür.
+
+Primary owner entegrasyonu:
+
+- [06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) içinde `Protection, Current-limit ve Sensing Owner` altına tam sayfa `p182-p183` görselleri ve `Rilim / ILIM / sıcak RDS(on)` zinciri eklendi.
+- Aynı dosyada `MOSFET Termal Yolu` listesine, current-limit hesabında kullanılan `Tj,mos ≈ 76.35 C`, `RDS(on) ≈ 20.25 mOhm` ve `ILIM(Tj) ≈ 251 uA` kısa termal bağlantısı işlendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass kontrol / kompanzasyon dosyasına taşınmadı; `Rilim`, `ILIM` ve `Cilim` ailesinin primary owner'ı [06](../06_kayiplar_bootstrap_koruma_ve_termal_kapanis.md) olarak kaldı.
+- Harici VCC hakkındaki eski/yarım defter notu, güncel proje bilgisini değiştirmedi. Güncel okuma: harici VCC/DVCC seçeneği dışlanmamıştır ve bu rol için ikinci LM5146-Q1 EVM satın alınmıştır; bağlantı/rework yapılmadığı için açık kontroldür.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `T ≈ 1 / 332 kHz`.
+- `EVM Rilim / R4 = 619 ohm`.
+- `hesaplanan Rilim ≈ 572.8 ohm`.
+- `standart değer adayı ≈ 576 ohm`.
+- `Tj,mos ≈ 76.35 C`.
+- `RDS(on, sıcak) ≈ 20.25 mOhm`.
+- `ILIM(Tj) ≈ 250.8 uA ≈ 251 uA`.
+- `RILIM ≈ (9 A - 3.8 A / 2) * 20.25 mOhm / 251 uA ≈ 572.8087 ohm`.
+- `9 A` hedefi ve yaklaşık `8 A` civarında erken koruma alarmı sezgisi.
+
+Açık notlar:
+
+- `619 ohm`, `572.8 ohm` ve `576 ohm` aynı final sayı gibi birleştirilmedi; EVM değeri, hesap ara değeri ve standart değer adayı olarak ayrı tutuldu.
+- `p182` altındaki `%7` / erken koruma alarmı yorumu defter sezgisidir; final current-limit davranışı datasheet formülü, sıcaklık, `RDS(on)` toleransı, actual BOM ve ölçümle doğrulanacak.
+- `p183` üstündeki harici VCC notu güncel repo kararıyla çelişebilecek eski/yarım izdir; repo güncel bilgisi ikinci EVM'nin harici VCC kaynağı için satın alındığını söyler.
