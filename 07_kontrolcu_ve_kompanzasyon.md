@@ -553,6 +553,18 @@ fc   = 35 kHz
 fp2  = 166 kHz
 ```
 
+[Tasarım İzi - tam sayfa komponent hesabı] `p178-p179`, yukarıdaki Type-III aileye giden elle hesap ve standart değer yuvarlama izidir:
+
+![Defter p178 / W.13-W.16: `Cc1`, `Cc2`, `Cc3`, `Rc2`, `Qloss`, `Qload` ve toplam `Q` ara hesapları](images/defter_full_pages/defter_p178.jpg)
+
+![Defter p179 / W.13-W.16: `RFB2 = 1.6 kOhm`, `RFB1 = 26.4 kOhm`, `Rc1 ≈ 6.598 kOhm`, `Rc2 ≈ 763 ohm`, `Cc1/Cc2/Cc3` standart değer adayları ve `Avol/GBW` notu](images/defter_full_pages/defter_p179.jpg)
+
+p178 üzerinde `Cc1 = 1/(2*pi*fz1*Rc1)` satırı iki ara okuma taşır: `Rc1 = 5 kOhm` çizgisinde `8.72 nF`, düzeltilmiş/alternatif `Rc1 ≈ 9.09 kOhm` çizgisinde `4.829 nF` gibi görünen sonuç. Bu, final ailedeki `CC1 = 4.7 nF` seçimine giden iz olarak tutuldu; ilk `8.72 nF` satırı silinmedi.
+
+p178 üzerinde ayrıca `Cc3 = 1/(2*pi*fz2*RFB1) ≈ 1.3197 nF` ve `Rc2 = 1/(2*pi*fp2*Cc3) ≈ 730.9 ohm` hattı okunur. Alt kısımda `Qloss`, `Qload` ve toplam `Q` için `sqrt(L/C)` tabanlı kontroller vardır; `Qloss ≈ 14.55`, `Qload ≈ 5.03` ve `Q ≈ 3.73 / 11.65 dB` gibi okunan değerler yeni final hedef değil, kırılım yerleştirme sezgisi ve sönüm kontrolüdür.
+
+p179, aynı hesabın standart parça ailesine yaklaşan tarafıdır. Sayfada `R10 = RFB2 = 1.6 kOhm`, `R1 = RFB1 = R11 = 26.4 kOhm`, `R2 = Rc1 = R6 ≈ 6.598 kOhm` ve standart adayı olarak `6.65 kOhm / 6.57 kOhm` görünür. Kapasitör tarafında `3900 pF / 4700 pF`, `1000 pF`, `117 pF -> 120 pF` ve `Rc2/R3 ≈ 763 ohm -> 759 ohm veya 768 ohm` notları okunur. Bunlar aşağıdaki final aday ailesiyle uyumludur, ama fiziksel `CC1/CC2/CC3` eşlemesi hâlâ şema/calculator satırıyla kontrol edilecektir.
+
 [Açık Kontrol] Defterdeki `C1/C2/C3` isimleri ile calculator `CC1/CC2/CC3` isimleri birebir aynı sırada yazılmayabilir. Fiziksel komponent eşlemesi `p58` ve calculator satırıyla final tabloda tek kez kapatılacak.
 
 ## Type-III Kompanzatör Topolojisi

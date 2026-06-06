@@ -4142,3 +4142,66 @@ Açık notlar:
 
 - `p177` üzerindeki `dB cinsinden` satırında argüman `wpm`/`wgm` yazımı net okunmayabilir; gain-margin için bağlam `wgm` olarak yorumlandı ama final modele taşınmadı.
 - "matlab kodu ver" notu bu pass içinde yeni MATLAB dosyası üretmez; yalnız gelecekteki Bode/PM/GM otomasyonu için izdir.
+
+## Pass 090 - Sayfa 178-179
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p178.jpg](../images/defter_full_pages/defter_p178.jpg)
+- [defter_p179.jpg](../images/defter_full_pages/defter_p179.jpg)
+
+Defter işaretleri:
+
+- `p178 / W.13-W.16`: `Cc1 = 1/(2*pi*fz1*Rc1)` satırı görünür.
+- `p178 / W.13-W.16`: `2*pi * 3.65 kHz * 5 kOhm` hattında `8.72 nF` gibi okunan ilk ara sonuç vardır.
+- `p178 / W.13-W.16`: aynı `Cc1` satırında `9.09 kOhm` gibi düzeltilmiş/alternatif direnç notu ve `4.829 nF` gibi okunan sonuç vardır.
+- `p178 / W.13-W.16`: `Cc2 = 1/(2*pi*fp1*Rc1)` satırı vardır; sonuç tarafında `3.64` ve `2.016` gibi iki küçük değer okunur, birim kesinleştirme ister.
+- `p178 / W.13-W.16`: `Cc3 = 1/(2*pi*fz2*RFB1)` satırı `2*pi * 7.309 k * 16.5 k` ile açılır ve `1.3197 nF` gibi okunur.
+- `p178 / W.13-W.16`: `Rc2 = 1/(2*pi*fp2*Cc3)` satırında `2*pi * 165 k * 1.3197 nF` üzerinden `730.9 ohm` sonucu görünür.
+- `p178 / W.13-W.16`: `Qloss = sqrt(L/C)/(Resr + Rdamp)` bağlamında `sqrt(6.8 uH / 70 uF)` ve `0.28 mOhm + 21.13 mOhm` notları vardır; sonuç `14.55` veya `23.28 dB` gibi okunur.
+- `p178 / W.13-W.16`: `Qload = R/sqrt(L/C)` satırında `1.569 ohm / sqrt(6.8 uH / 70 uF)` ve `5.03` veya `14.03 dB` sonucu görünür.
+- `p178 / W.13-W.16`: `Q = Qloss || Qload = Qloss*Qload/(Qloss+Qload)` satırında `14.55*5.03/(14.55+5.03) = 3.73` veya `11.65 dB` sonucu görünür.
+- `p179 / W.13-W.16`: `R10 = RFB2 = 1.6 kOhm` işaretlenir.
+- `p179 / W.13-W.16`: `R1 = RFB1 = R11 = 26.4 kOhm` işaretlenir.
+- `p179 / W.13-W.16`: `R2 = Rc1 = R6 = 6.598 kOhm hesaplandı`, yanına `6.65 kOhm` ve `6.57 kOhm` gibi standart adaylar yazılır.
+- `p179 / W.13-W.16`: `Cc1/C2` tarafında `3900 pF` ve `4700 pF` adayları görünür.
+- `p179 / W.13-W.16`: `Cc3/C27/C3 = 1000 pF` işaretlenir.
+- `p179 / W.13-W.16`: `Rg/Rc2/R3 = 763 ohm -> 759 ohm veya 768 ohm` gibi standart seçim çizgisi vardır.
+- `p179 / W.13-W.16`: `Cc2/C4/C1 = 117 pF -> 120 pF` notu görünür.
+- `p179 / W.13-W.16`: altta `Avol dc gain = 94 dB`, `GBW unity = 6.5 MHz`, `A_dc ≈ 50118 V/V` ve hata yükselteci baskın kutup formu başlar.
+
+Primary owner entegrasyonu:
+
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `W.13-W.16 ve W.20-W.24: Type-III Komponent Ailesine Yaklaşım` altına tam sayfa komponent hesabı ve standart değer yuvarlama izi olarak eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass kontrol/kompanzasyon owner'ında kaldı; güç katı veya global duty owner'ına taşınmadı.
+- `Avol/GBW` notu, aynı dosyadaki hata yükselteci modeliyle ilişkili olarak anıldı; yeni ayrı op-amp owner'ı açılmadı.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Cc1 = 1/(2*pi*fz1*Rc1)`.
+- `8.72 nF` eski/ara değer.
+- `4.829 nF` finale yakın ara değer.
+- `Cc3 ≈ 1.3197 nF`.
+- `Rc2 ≈ 730.9 ohm`.
+- `Qloss ≈ 14.55`.
+- `Qload ≈ 5.03`.
+- `Q ≈ 3.73` veya `11.65 dB`.
+- `RFB2 = 1.6 kOhm`.
+- `RFB1 = 26.4 kOhm`.
+- `Rc1 ≈ 6.598 kOhm`, standart `6.65 kOhm / 6.57 kOhm`.
+- `3900 pF / 4700 pF`.
+- `1000 pF`.
+- `Rc2 ≈ 763 ohm -> 759 ohm / 768 ohm`.
+- `117 pF -> 120 pF`.
+- `Avol = 94 dB`, `GBW = 6.5 MHz`, `A_dc ≈ 50118 V/V`.
+
+Açık notlar:
+
+- `Cc2` satırındaki `3.64 / 2.016` gibi okunan sonuçların birimi net değildir; final `CC1/CC2/CC3` eşlemesine sessizce dönüştürülmedi.
+- `8.72 nF` ve `4.829 nF` aynı komponentin farklı direnç/ara iterasyon hesabı gibi görünüyor; final `4.7 nF` ailesine yakın olan iz korunurken ilk değer de silinmedi.
+- p179'daki `C1/C2/C3` adları calculator `CC1/CC2/CC3` sırasıyla birebir aynı olmayabilir; şema ve calculator satırıyla son eşleştirme açık kalır.
