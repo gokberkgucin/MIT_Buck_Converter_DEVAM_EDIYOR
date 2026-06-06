@@ -4886,3 +4886,50 @@ Açık notlar:
 
 - `p204` üzerindeki `10.68` ve `4.7` L/C eşleşmesi, önceki `W.100` / `W.102` etiket karışıklığıyla birlikte açık kontrol olarak kaldı; sessizce final değer yapılmadı.
 - `p205` empedans ifadesi topolojik iskelet olarak tutuldu; Middlebrook için kullanılacak gerçek `Zfilter,out` portu final AC sweep'te açık etiketlenecek.
+
+## Pass 104 - Sayfa 206-207
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p206.jpg](../images/defter_full_pages/defter_p206.jpg)
+- [defter_p207.jpg](../images/defter_full_pages/defter_p207.jpg)
+
+Defter işaretleri:
+
+- `p206 / W.105`: EMI filter design bağlamında giriş empedansı `ZIN = VIN / iin` olarak tanımlanır.
+- `p206 / W.105`: pozitif giriş empedansında gerilim arttığında çekilen akımın arttığı; negatif giriş empedansında gerilim arttığında çekilen akımın azaldığı not edilir.
+- `p206 / W.105`: buck converter'ın çıkış gerilimini sabit tutmak için girişten sürekli enerji çektiği, giriş gerilimi azalınca bunu telafi etmek için daha fazla akım çekme eğilimi olduğu yazılır.
+- `p206 / W.105`: bu davranış `ZIN < 0` gibi yorumlanır; özellikle düşük frekanslarda vurgulanır.
+- `p206 / W.105`: LC giriş süzgecinin çıkış empedansının converter'ın negatif giriş empedansının mutlak değerinden küçük olması gerektiği not edilir.
+- `p206 / W.105`: aksi halde LC süzgeç rezonansa girerse converter negatif giriş empedansı etkisi bu rezonansı büyütebilir.
+- `p207 / W.106`: worst-case giriş empedansı için `ZIN = -VIN(min)^2 / PIN` bağıntısı yazılır.
+- `p207 / W.106`: `VIN(min)` converter'ın minimum giriş gerilimi, `PIN` giriş gücü olarak etiketlenir.
+- `p207 / W.106`: denklem, worst-case giriş empedansını tahmin etmek için kullanılır.
+- `p207 / W.106`: giriş gerilimi düştükçe giriş empedansının küçüldüğü ve daha büyük enerji emme eğilimi doğduğu not edilir.
+
+Primary owner entegrasyonu:
+
+- [08_emi_giris_filtresi_ve_yerlesim.md](../08_emi_giris_filtresi_ve_yerlesim.md) içinde `W.105` negatif giriş empedansı fikrine tam sayfa `p206` eklendi.
+- Aynı dosyada `W.106` worst-case `Zin` ifadesine tam sayfa `p207` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `p206` buck converter davranışını anlatsa da güç katı veya kontrol kompanzasyonu owner'ı değildir; input-filter/Middlebrook kararlılık bağlamında tutuldu.
+- `p207` üzerindeki `VIN(min)` ve `PIN` global tasarım girdisi değildir; burada worst-case Middlebrook kontrol girdisi olarak kullanılır.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `ZIN = VIN / iin`.
+- pozitif / negatif giriş empedansı ayrımı.
+- buck converter sabit çıkış gücü / sabit çıkış gerilimi sezgisi.
+- `ZIN < 0` düşük frekans davranışı notu.
+- `Zfilter,out` veya LC süzgeç çıkış empedansının converter negatif giriş empedansı büyüklüğünden küçük olması gerektiği.
+- `ZIN = -VIN(min)^2 / PIN`.
+- `VIN(min)` ve `PIN` tanımları.
+
+Açık notlar:
+
+- `p206` üzerindeki `Z0`, `ZIN` ve LC süzgeç çıkış empedansı notları port tanımı gerektirir; final AC sweep'te `Zfilter,out` açıkça tanımlanacak.
+- `p207` sayısal sonuç üretmez; `W.136` üzerindeki proje sayılarıyla birlikte okunacak.

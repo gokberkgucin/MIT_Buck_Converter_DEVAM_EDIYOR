@@ -439,6 +439,8 @@ $$
 
 ![W.105'ten küçük kırpım: negatif giriş empedansı ve `Z0`, `Zin` notları](images/defter_snippets_web/d202_w105_negative_input_impedance_note.jpg)
 
+![Defter p206 / W.105: `ZIN = VIN/iin`, buck converter sabit güç davranışı, negatif giriş empedansı ve LC filtre çıkış empedansı uyarısı](images/defter_full_pages/defter_p206.jpg)
+
 `W.105`, giriş filtresi kararlılığının neden dikkat istediğini açıklar:
 
 $$
@@ -456,9 +458,15 @@ LC filtresinin giriş empedansı converter'ın negatif empedansı ile etkileşir
 
 Bu işaret değil; büyüklük ve frekans bağlamında okunacak uyarıdır.
 
+[Tasarım İzi] Tam sayfa `p206`, negatif giriş empedansı sezgisini sözlü olarak kurar. Pasif devrede gerilim arttığında çekilen akımın artması pozitif giriş empedansı gibi okunur; buck converter ise çıkış gücünü sabit tutmaya çalışırken giriş gerilimi düştüğünde daha fazla giriş akımı çekebilir. Bu nedenle küçük-sinyal bakışta `ZIN < 0` gibi davranma riski doğar.
+
+[Çapraz Teyit] Aynı sayfa, LC giriş filtresinin çıkış empedansının converter'ın negatif giriş empedansının mutlak değerinden küçük tutulması gerektiğini not eder. Aksi halde LC süzgeç rezonansa girip converter negatif giriş empedansı etkisiyle bu rezonansı büyütebilir.
+
 ### `W.106`: Worst-case `Zin` İfadesi
 
 ![W.106'dan küçük kırpım: `|Zin| = |-Vin(min)^2 / Pin|` worst-case ilişkisi](images/defter_snippets_web/d203_w106_zin_min_equation.jpg)
+
+![Defter p207 / W.106: `ZIN = -VIN(min)^2/PIN`, minimum giriş gerilimi ve giriş gücü ile worst-case giriş empedansı yaklaşımı](images/defter_full_pages/defter_p207.jpg)
 
 Worst-case giriş empedansı için kullanılan büyüklük:
 
@@ -474,6 +482,10 @@ Burada:
 - daha düşük `|Zin|`: daha büyük enerji emme eğilimi ve filtreyle daha kritik etkileşim.
 
 Bu sabit direnç modeli değildir; constant-power yaklaşımından gelen referans büyüklüktür. Gerçek `Zin(jw)` kontrol döngüsü, feedforward, giriş kapasitörleri, ESR/ESL ve çalışma noktasıyla frekansa göre değişir.
+
+[Tasarım İzi] Tam sayfa `p207`, `ZIN = -VIN(min)^2 / PIN` bağıntısını açık yazar. `VIN(min)` converter'ın minimum giriş gerilimi, `PIN` giriş gücü olarak etiketlenir; sayfa bunun worst-case giriş empedansını tahmin etmek için kullanıldığını söyler.
+
+[Açık Kontrol] Defter notu, giriş gerilimi düştükçe giriş empedansının küçüldüğünü ve sistemin daha büyük enerji emme eğilimine girdiğini vurgular. Bu okuma, [01](01_tasarim_girdileri_ve_kaynaklar.md) dosyasındaki global `Vin_min` ve güç girdileriyle aynı role sahip değildir; burada yalnız Middlebrook worst-case kontrol girdisidir.
 
 ### `W.136`: Proje Sayılarıyla `Zin`
 
