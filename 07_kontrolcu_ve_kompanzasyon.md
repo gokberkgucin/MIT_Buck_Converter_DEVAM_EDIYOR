@@ -677,6 +677,8 @@ $$
 
 ![W.201'den küçük kırpım: `Avol = 94 dB`, `GBW = 6.5 MHz` ve açık-çevrim kutup hesabı](images/defter_snippets_web/d186_w201_error_amp_open_loop_gain_and_pole.jpg)
 
+![Defter p190 / W.201: `Avol = 94 dB`, `GBW = 6.5 MHz`, `A_OL(s)` modeli ve error-amplifier open-loop compensation pole hesabı](images/defter_full_pages/defter_p190.jpg)
+
 `W.201`:
 
 ```text
@@ -685,6 +687,8 @@ GBW = 6.5 MHz
 A_VOL ≈ 10^(94/20) ≈ 50118
 f_opamp ≈ 6.5 MHz / 50118 ≈ 129.7 Hz
 ```
+
+[Tasarım İzi] Tam sayfa `p190`, hata yükseltecinin açık çevrim kazancını tek kutuplu modelle bağlar: `A_OL(s) = A_DC / (1 + s/wp_e)`. Sayfada `Aop-amp(f)` ifadesi ve `GBW = unity gain bandwidth = 6.5 MHz` notu, `94 dB` DC kazancın lineer karşılığı `≈50118` ile birlikte kullanılır. Alttaki hesap `6.5 MHz = 50118 * frekans` çizgisinden `frekans ≈ 129.7 Hz` sonucuna gider.
 
 Bu `129.7 Hz`, loop crossover frekansı veya Type-III kutup/sıfır hedefi değildir. Hata yükseltecinin açık-çevrim baskın kutbunu temsil eder. Calculator veya LTspice modeli bu kutbu zaten içeriyorsa ikinci kez elle eklenmemelidir.
 
@@ -703,6 +707,8 @@ Bu poles/zeros haritası, plant modeli ve Type-III kompanzatörün aynı frekans
 ### Type-III Kutup / Sıfır Tasarım İzleri
 
 ![W.84'ten küçük kırpım: Type-III denklemi, hedef kırılımlar ve ilk sayısal yerleştirme](images/defter_snippets_web/d187_w84_type3_equations_and_breaks.jpg)
+
+![Defter p191 / W.84: Type-III `Gc(s)` formu, `fz1/fz2/fp1/fp2` adayları, `R/C` ilişkileri ve feedback oranı ara çizimi](images/defter_full_pages/defter_p191.jpg)
 
 `W.84`, kutup/sıfır yerleşiminin ilk ciddi taslağıdır. Güvenle okunan adaylar:
 
@@ -729,6 +735,23 @@ H = 1/14 ≈ 0.12857
 ```
 
 notu görünür. [Açık Kontrol] `1/14` matematiksel olarak `0.0714` eder; bu satır ya el yazısı/okuma karışmasıdır ya da kastedilen oran tam `1/14` değildir. Feedback / sense oranının sorgulandığını gösterdiği için korunur, ama final oran gibi kullanılmaz.
+
+[Tasarım İzi] Tam sayfa `p191`, aynı `W.84` hattının daha geniş hali olarak Type-III transfer fonksiyonunu ve komponent zaman sabitlerini aynı sayfada tutar. Güvenle okunan izler:
+
+```text
+Gc(s) = Gcm * zero terimleri / pole terimleri
+Gc(s) içinde 4.762 gibi okunan kazanç katsayısı
+fz tarafı: 1 kHz ve 3.44/3.64 kHz mertebesi
+fp tarafı: 29 kHz ve yaklaşık 1.02 kHz gibi okunan terimler
+C2*R2 = 1/(2*pi*fL) ≈ 159.1549 us gibi okunan zaman sabiti izi
+C4*R1 = 1/(2*pi*3.64 kHz) ≈ 46.2659 us
+C4*R4 = 1/(2*pi*29 kHz) ≈ 5.488 us
+R5 ≈ 87.2 kOhm
+R3 ≈ 12.8 kOhm
+H = 1.8 / 14 ≈ 0.12857 = R3/(R3+R5)
+```
+
+[Eski İterasyon / Açık Kontrol] `p191` üzerindeki `Gc(s)` ifadesinde bazı terimler kesik veya el yazısı nedeniyle belirsizdir; özellikle `1 kHz / 1.02 kHz`, `3.44 kHz / 3.64 kHz` ve `H = 1/14` benzeri notlar final transfer fonksiyonuna sessizce dönüştürülmedi. Bu sayfa eski/ara Type-III türetim izidir; finale yakın `26.4 kOhm / 1.6 kOhm` feedback ailesi ve calculator komponent setiyle aynı satıra indirilmeyecek.
 
 ![W.85'ten küçük kırpım: aday `Rc1/Rc2/Cc1/Cc2/Cc3` değerleri ve kutup denklemleri](images/defter_snippets_web/d188_w85_candidate_type3_values.jpg)
 

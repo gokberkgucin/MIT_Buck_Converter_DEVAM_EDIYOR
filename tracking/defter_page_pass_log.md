@@ -4465,3 +4465,59 @@ Açık notlar:
 - `p188-p189` kaynak görselleri DOCX içinde yan yönde geldi; okuma görselden yapıldı, repo commit'ine orijinal tam sayfa görseller eklenecek.
 - `wESR ≈ 54.960 Mrad/s`, `fESR ≈ 8.740 kHz` ve daha önceki `fESR = 87.406 kHz` izleri tek bir değer gibi birleştirilmedi.
 - `fc` üst sınırı `66 kHz` yeni hedef değildir; güncel hedef çizgisi `~35 kHz` / calculator cross-check hattında kalır.
+
+## Pass 096 - Sayfa 190-191
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p190.jpg](../images/defter_full_pages/defter_p190.jpg)
+- [defter_p191.jpg](../images/defter_full_pages/defter_p191.jpg)
+
+Defter işaretleri:
+
+- `p190 / W.201`: `Avol = 94 dB - DC gain`.
+- `p190 / W.201`: `GBW = unity gain bandwidth = 6.5 MHz`.
+- `p190 / W.201`: `Aop-amp(f)` / açık çevrim kazanç modeli yazılır.
+- `p190 / W.201`: `A_OL(s) = A_DC / (1 + s/wp_e)` biçimi görünür.
+- `p190 / W.201`: `20log10(kazanç) = 94`, `10^(94/20) ≈ 50118`.
+- `p190 / W.201`: `6.5M = 50118 * frekans`, sonuç `frekans ≈ 129.7 Hz`.
+- `p190 / W.201`: bu sonuç `Error Amplifier open-loop compensation pole` olarak not edilir.
+- `p191 / W.84`: `Gc(s)` Type-III transfer fonksiyonu formu yazılır.
+- `p191 / W.84`: `Gc(s)` içinde `4.762` gibi okunan kazanç katsayısı görünür.
+- `p191 / W.84`: `fz` tarafında `1 kHz` ve `3.44/3.64 kHz` mertebesi görünür.
+- `p191 / W.84`: `fp` tarafında `29 kHz` ve yaklaşık `1.02 kHz` gibi okunan terimler vardır.
+- `p191 / W.84`: `C2*R2 = 1/(2*pi*fL) ≈ 159.1549 us` gibi okunan zaman sabiti izi görünür.
+- `p191 / W.84`: `C4*R1 = 1/(2*pi*3.64 kHz) ≈ 46.2659 us`.
+- `p191 / W.84`: `C4*R4 = 1/(2*pi*29 kHz) ≈ 5.488 us`.
+- `p191 / W.84`: `R5 ≈ 87.2 kOhm`, `R3 ≈ 12.8 kOhm`.
+- `p191 / W.84`: `H = 1.8 / 14 = 0.12857 = R3/(R3+R5)` gibi okunan feedback/sense oranı izi vardır.
+
+Primary owner entegrasyonu:
+
+- [07_kontrolcu_ve_kompanzasyon.md](../07_kontrolcu_ve_kompanzasyon.md) içinde `Kompanzatör ve Hata Yükselteci Modeli` altına tam sayfa `p190` eklendi.
+- Aynı dosyada `Type-III Kutup / Sıfır Tasarım İzleri` / `W.84` altına tam sayfa `p191` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- Bu pass yalnız kontrol / kompanzasyon owner'ında kaldı; güç katı, giriş/çıkış kapasitörü veya termal dosyalara yeni hesap taşınmadı.
+- `Avol/GBW` modeli calculator veya LTspice modelinde zaten varsa ikinci kez elle eklenmemesi gerektiği notu korundu.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Avol = 94 dB`.
+- `GBW = 6.5 MHz`.
+- `A_DC ≈ 50118 V/V`.
+- `f_opamp ≈ 129.7 Hz`.
+- `Gc(s)` eski/ara Type-III formu.
+- `4.762` kazanç katsayısı izi.
+- `fz ≈ 1 kHz`, `fz ≈ 3.44/3.64 kHz`.
+- `fp ≈ 29 kHz`, `fp ≈ 1.02 kHz` gibi okunan terimler.
+- `R5 ≈ 87.2 kOhm`, `R3 ≈ 12.8 kOhm`.
+
+Açık notlar:
+
+- `p191` üzerindeki `Gc(s)` ifadesi kesik/karmaşık olduğu için final transfer fonksiyonuna sessizce tamamlanmadı.
+- `3.44 kHz / 3.64 kHz`, `1 kHz / 1.02 kHz` ve feedback oranı notları eski/ara iz olarak tutuldu.
+- `H = 1.8/14 ≈ 0.12857` satırı, daha önceki `H = 1/14 ≈ 0.12857` çelişkisini açıklığa yaklaştırır ama final feedback oranı gibi kullanılmadı.
