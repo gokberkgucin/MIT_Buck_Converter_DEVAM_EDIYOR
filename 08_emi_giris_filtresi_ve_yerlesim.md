@@ -190,6 +190,8 @@ Bu değer final standart uyum sonucu değildir. Filtre hedefinin artık "biraz b
 
 ![W.137'den küçük kırpım: etkin `Cin` seçimine göre attenuation hesabının değiştiğini gösteren not](images/defter_snippets_web/d196_w137_attenuation_vs_effective_cin.jpg)
 
+![Defter p200 / W.137: etkin `Cin = 8.22 uF`, bulk hariç yüksek frekans EMI yorumu, `Ipeak ≈ 10.9 A` ve `Attn > 43.14 dB` hesabı](images/defter_full_pages/defter_p200.jpg)
+
 `W.137`, aynı attenuation hesabına "hangi `Cin` etkili sayılmalı?" sorusunu ekler:
 
 ```text
@@ -217,6 +219,10 @@ Okuma:
 - `46.8 dB` ve `43.14 dB` aynı final sonuç değil; farklı `Cin` ve limit varsayımlarıyla kurulan iki tasarım izidir.
 - `Cin` azalırsa gereken attenuation artar.
 - Bulk kapasitör düşük frekans ve transientte güçlü olabilir; yüksek frekans EMI hesabında aynı ağırlıkta davranmayabilir.
+
+[Tasarım İzi] Tam sayfa `p200`, `W.137` küçük kırpımının geniş halidir. Sayfa `Ipeak = Ioutmax + DeltaIL/2 = 9 A + 3.8 A/2 = 10.9 A ≈ 11 A` hesabını açık yazar. `Cin,etkin = 8.22 uF` satırının yanına "bulk cap hariçtir" uyarısı düşülür; gerekçe olarak EMI attenuation hesabında esas belirleyici olanın yüksek frekanstaki etkin sığa olduğu, bulk kapasitörlerin daha düşük frekanslarda ve transient olaylarda etkili olduğu not edilir.
+
+[Çapraz Teyit] Sayfanın altındaki tekrar hesapta `Dmax = 0.6481`, `fsw ≈ 332 kHz`, `Cin,etkin ≈ 8.22 uF` ve limit olarak `67.75 dBµV` gibi okunan değerlerle `Attn > 43.14 dB` sonucuna gidilir. Bu çizgi, [04](04_giris_kapasitorleri_ve_giris_agi.md) dosyasındaki gerçek ana MLCC etkin kapasite ayrımına bağlıdır; burada yeni giriş kapasitörü seçimi yapılmaz.
 
 [Açık Kontrol] Final attenuation tablosunda her satırın şu bilgileri olacak: harmonik/frekans noktası, `Cin,etkin`, bulk dahil mi değil mi, limit çizgisi, LISN portu, filtre öncesi/sonrası düğüm ve birim.
 
@@ -316,6 +322,8 @@ Bu kural final eşitlik değildir; damping kolu için yönlendirici tasarım izi
 
 ![W.102'den küçük kırpım: `L_IN = 4.7 uH` seçimi ve `C_F ≈ 10.68 uF` ilk boyutlandırma notu](images/defter_snippets_web/d197_w102_lin_cf_initial_sizing.jpg)
 
+![Defter p201 / W.102: `L_IN` seçim aralığı, ilk harmonik yaklaşımı, `Attn = 46.8 dB`, `L_IN = 4.7 uH` ve `C_F = 10.68 uF` hesabı](images/defter_full_pages/defter_p201.jpg)
+
 `W.102`, ilk EMI filtre boyutlandırma izidir:
 
 $$
@@ -337,6 +345,10 @@ C_F\approx
 \left(\frac{10}{2\pi\cdot332\,kHz}\right)^2
 \approx10.68\,\mu F
 $$
+
+[Tasarım İzi] Tam sayfa `p201`, bu boyutlandırmanın nereden geldiğini açar. Defter, EMI filtresi tasarımında giriş akımını kare dalga gibi kabul edip özellikle ilk harmonik bileşeni bastırma yaklaşımını not eder. `L_IN` için `1 uH - 10 uH` aralığı ve yüksek akım uygulamalarında daha düşük indüktans seçme eğilimi yazılır; daha düşük `L_IN` değerinin genelde daha düşük `RDC` anlamına geldiği, `P_LIN = I^2 * R_DC` üzerinden verimi etkilediği not edilir.
+
+[Tasarım İzi] Aynı sayfa `L_IN = 4.7 uH seçtik`, `Attn = 46.8 dB`, `Fsw = 332 kHz` satırlarıyla denklem (19)'u uygular ve `C_F = 10.68 uF` sonucunu verir. Bu sonuç, `W.103`teki `46.8 dB` ilk attenuation izinden türemiş ilk filtre boyutlandırma denemesidir; `W.137`deki `43.14 dB` etkin-`Cin` hattıyla sessizce tek final filtre değeri yapılmayacak.
 
 [Açık Kontrol] `W.100` satırında `10.68 uH x 4.7 uF` gibi, `W.102`de ise `L_IN = 4.7 uH`, `C_F = 10.68 uF` gibi görünür. Çarpım aynı kaldığı için `fres` benzer çıkar; fakat final tasarımda bobin ve kapasitör etiketleri yer değiştirmiş gibi davranamaz. `L_IN`, `C_F`, doyma akımı, DCR, ESR/ESL ve damping kolu tek satırda netleşecek.
 

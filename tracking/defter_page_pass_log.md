@@ -4743,3 +4743,57 @@ Açık notlar:
 - `p198` etkin kapasitans uyarısı yeni `Cout/Cin` değeri üretmez; sadece kompanzasyon hesabında bias/sıcaklık altındaki değerlerin kullanılacağını hatırlatır.
 - `p199` tam sayfa okumasındaki `Vmax = 70 dBµV`, mevcut küçük `W.103` kırpımındaki `Vmax = 30 dBuV` iziyle sessizce harmonize edilmedi.
 - `p199` üzerindeki `fsw = 333.333 kHz` ile global `332 kHz`/küçük kırpım `332.333 kHz` farkı final EMI tablosunda tekrar kontrol edilecek.
+
+## Pass 101 - Sayfa 200-201
+
+Durum: `used`
+
+Çıkarılan / kullanılan tam sayfa görseller:
+
+- [defter_p200.jpg](../images/defter_full_pages/defter_p200.jpg)
+- [defter_p201.jpg](../images/defter_full_pages/defter_p201.jpg)
+
+Defter işaretleri:
+
+- `p200 / W.137`: `Cin` değiştirilebilir ana parametre gibi işaretlenir.
+- `p200 / W.137`: EMI süzgecinin gerekli attenuation değerini etkin `Cin` ile tekrar hesaplama hattıdır.
+- `p200 / W.137`: `Ipeak = Ioutmax + DeltaIL/2 = 9 A + 3.8 A/2 = 10.9 A ≈ 11 A`.
+- `p200 / W.137`: `Cin,etkin = 8.22 uF` notu vardır.
+- `p200 / W.137`: `bulk cap hariçtir` uyarısı açık yazılır.
+- `p200 / W.137`: bulk kapasitörlerin yüksek frekans EMI attenuation için esas belirleyici olmadığı, daha düşük frekanslarda ve transient olaylarda etkili olduğu not edilir.
+- `p200 / W.137`: `Dmax = 0.6481`, `fsw ≈ 332 kHz`, `67.75 dBµV` gibi okunan limit/hesap izleriyle `Attn > 43.14 dB` sonucu görünür.
+- `p201 / W.102`: denklem (19) üzerinden `C_F` ilk EMI filtre kapasitörü hesabı yapılır.
+- `p201 / W.102`: EMI filtresi tasarımında giriş akımı kare dalga gibi kabul edilir ve özellikle ilk harmonik bileşenin bastırılması yaklaşımı yazılır.
+- `p201 / W.102`: `L_IN` için `1 uH - 10 uH` aralığı ve yüksek akım uygulamalarında daha düşük indüktans seçme eğilimi not edilir.
+- `p201 / W.102`: düşük `L_IN` değerinin genellikle daha düşük `RDC` anlamına geldiği ve `P_LIN = I^2 * R_DC` kaybını etkilediği yazılır.
+- `p201 / W.102`: `L_IN = 4.7 uH seçtik`, `Attn = 46.8 dB`, `Fsw = 332 kHz`.
+- `p201 / W.102`: `C_F = 1/L_IN * (10^(Attn/40)/(2*pi*Fsw))^2 = 10.68 uF` sonucu korunur.
+
+Primary owner entegrasyonu:
+
+- [08_emi_giris_filtresi_ve_yerlesim.md](../08_emi_giris_filtresi_ve_yerlesim.md) içinde `W.137` etkin-`Cin` attenuation hesabına tam sayfa `p200` eklendi.
+- Aynı dosyada `W.102` ilk `L_IN-C_F` boyutlandırma bölümüne tam sayfa `p201` eklendi.
+
+Kısa referans / owner dışı bağlantı:
+
+- `p200` üzerindeki `Cin,etkin = 8.22 uF` giriş kapasitörü komponent seçimi değildir; [04](../04_giris_kapasitorleri_ve_giris_agi.md) owner'ından gelen etkin MLCC değerinin EMI hesabında kullanımıdır.
+- `p201` üzerindeki `L_IN/C_F` hattı EMI filtre owner'ında kaldı; giriş kapasitör bankı veya kontrol kompanzasyonu owner'ına taşınmadı.
+
+Okunan ana sayısal / kavramsal izler:
+
+- `Ipeak ≈ 10.9 A ≈ 11 A`.
+- `Cin,etkin ≈ 8.22 uF`.
+- bulk hariç yüksek frekans EMI yorumu.
+- `Dmax ≈ 0.6481`.
+- `Attn > 43.14 dB`.
+- `L_IN = 4.7 uH`.
+- `Attn = 46.8 dB`.
+- `Fsw = 332 kHz`.
+- `C_F ≈ 10.68 uF`.
+- `P_LIN = I^2 * R_DC` indüktör DCR kaybı sezgisi.
+
+Açık notlar:
+
+- `p200` etkin `Cin` hesabında bulk hariç tutuldu; bu karar final EMI tablosunda frekans, port ve bulk empedans davranışıyla tekrar kontrol edilecek.
+- `p200` `Attn > 43.14 dB` hattı ile `p201` `Attn = 46.8 dB` hattı farklı varsayım kümeleridir; tek final filtre hedefi gibi birleştirilmedi.
+- `p201` `L_IN = 4.7 uH`, `C_F = 10.68 uF` ilk filtre boyutlandırma izidir; finalde doyma akımı, DCR, ESR/ESL, damping ve Middlebrook kontrolüyle kapanacak.
